@@ -1,0 +1,626 @@
+/*! HTML5 Boilerplate v5.2.0 | MIT License | https://html5boilerplate.com/ */
+
+/* ==========================================================================
+   Base styles: opinionated defaults
+   ========================================================================== */
+
+html {
+    color: #ccc;
+    font-size: 1em;
+    font-family: 'Titillium Web', sans-serif;
+    background-color: #000;
+}
+
+::-moz-selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+::selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+
+audio,
+canvas,
+iframe,
+img,
+svg,
+video {
+    vertical-align: middle;
+}
+
+fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+textarea {
+    resize: vertical;
+}
+
+/* ==========================================================================
+   Browser Upgrade Prompt
+   ========================================================================== */
+
+.browserupgrade {
+    margin: 0.2em 0;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
+}
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+[class*="col-"] {
+	padding: 15px;
+	width: 100%;
+	}
+@media only screen and (min-width: 500px) {
+		.col-m-1 {width: 8.33%;}
+		.col-m-2 {width: 16.66%;}
+		.col-m-1r2 {width: 16.66%; margin-left: 8.33%;}
+		.col-m-1l2 {width: 16.66%; margin-right: 8.33%;}
+		.col-m-3 {width: 25%;}
+		.col-m-2r3 {width: 16.66%; margin-left: 8.33%;}
+		.col-m-2l3 {width: 16.66%; margin-right: 8.33%;}
+		.col-m-4 {width: 33.33%;}
+		.col-m-2r4 {width: 16.66%; margin-left: 16.66%;}
+		.col-m-2l4 {width: 16.66%; margin-right: 16.66%;}
+		.col-m-3r4 {width: 25%; margin-left: 8.33%;}
+		.col-m-3l4 {width: 25%; margin-right: 8.33%;}
+		.col-m-5 {width: 41.66%;}
+		.col-m-4r5 {width: 33.33%; margin-left: 8.33%;}
+		.col-m-4l5 {width: 33.33%; margin-right: 8.33%;}
+		.col-m-6 {width: 50%;}
+		.col-m-4r6 {width: 33.33%; margin-left: 16.66%;}
+		.col-m-4l6 {width: 33.33%; margin-right: 16.66%;}
+		.col-m-5r6 {width: 41.66%; margin-left: 8.33%;}
+		.col-m-5l6 {width: 41.66%; margin-right: 8.33%;}
+		.col-m-7 {width: 58.33%;}
+		.col-m-8 {width: 66.66%;}
+		.col-m-8c12 {width: 66.66%; margin: 0 16.66%;}
+		.col-m-8r12 {width: 66.66%; margin-left: 33.33%;}
+		.col-m-9 {width: 75%;}
+		.col-m-9r12 {width: 75%; margin-left: 25%}
+		.col-m-10 {width: 83.33%;}
+		.col-m-10r12 {width: 83.33%; margin-left: 25%;}
+		.col-m-11 {width: 91.66%;}
+		.col-m-12 {width: 100%;}
+}
+@media only screen and (min-width: 850px) {
+	 .col-1 {width: 8.33%;}
+    .col-2 {width: 16.66%;}
+    .col-1r2 {width: 16.66%; margin-left: 8.33%;}
+    .col-1l2 {width: 16.66%; margin-right: 8.33%;}
+    .col-3 {width: 25%;}
+    .col-2r3 {width: 16.66%; margin-left: 8.33%;}
+    .col-2l3 {width: 16.66%; margin-right: 8.33%;}
+    .col-4 {width: 33.33%;}
+    .col-2r4 {width: 16.66%; margin-left: 16.66%;}
+	 .col-2l4 {width: 16.66%; margin-right: 16.66%;} 
+    .col-3r4{width: 25%; margin-left: 8.33%;}
+    .col-3l4 {width: 25%; margin-right: 8.33%;}
+    .col-5 {width: 41.66%;}
+    .col-4r5 {width: 33.33%; margin-left: 8.33%;}
+    .col-4l5 {width: 33.33%; margin-right: 8.33%;}
+    .col-6 {width: 50%;}
+    .col-4r6 {width: 33.33%; margin-left: 16.66%;}
+    .col-4l6 {width: 33.33%; margin-right: 16.66%;}
+    .col-5r6 {width: 41.66%; margin-left: 8.33%;}
+    .col-5l6 {width: 41.66%; margin-right: 8.33%;}
+    .col-7 {width: 58.33%;}
+    .col-8 {width: 66.66%;}
+    .col-8c12 {width: 66.66%; margin: 0 16.66%;}
+    .col-8r12 {width: 66.66%; margin-left: 33.33%;}
+    .col-9 {width: 75%;}
+    .col-9r12 {width: 75%; margin-left: 25%;}
+    .col-10 {width: 83.33%;}
+    .col-10r12 {width: 83.33%; margin-left: 16.66%;}
+    .col-11 {width: 91.66%;}
+    .col-12 {width: 100%;}
+}
+@media only screen and (min-width:1000px) {
+	html {
+	background: #000 url(http://www.moonwards.com/img/tycho7color.png) no-repeat fixed 0 0;
+	background-size: 100%;
+	}
+}
+@media only screen and (max-width: 1000px) {
+	html {
+	background: #000 url(http://www.moonwards.com/img/tycho7color.png) no-repeat fixed 0 0;
+	background-size: 2000px;
+	font-size: 90% !important;
+	}
+}
+@media only screen and (max-width: 850px) {
+	html {
+	font-size: 80% !important;
+	}
+}
+@media only screen and (max-width: 700px) {
+	.tooltipT:hover span, .tooltipTML:hover span, .tooltipTL:hover span, .tooltipTMR:hover span, 
+	.tooltipTR:hover span, .tooltipL:hover span, .tooltipML:hover span, .tooltipR:hover span, 
+	.tooltipMR:hover span, .tooltipB:hover span, .tooltipBML:hover span, .tooltipBL:hover span, 
+	.tooltipBBL:hover span, .tooltipBMR:hover span, .tooltipBR:hover span, .tooltipBBR:hover span {
+		width: 280px;
+	}
+	.tooltipT:hover span {
+		left: -140px;
+	}
+	.tooltipTML:hover span {
+		left: -210px;
+	}
+	.tooltipTMR:hover span {
+		left: -70px;
+	}
+	.tooltipB:hover span {
+		left: -150px;
+	}
+	.tooltipBML:hover span {
+		left: -210px;
+	}
+	.tooltipBBL:hover span {
+		left: -240px;
+	}
+	.tooltipBMR:hover span {
+		left: -70px;
+	}
+}
+/*===========================================================================================================
+                                                 HEADER
+=============================================================================================================*/
+#logo {
+	width: 25%;
+	min-width: 250px;
+	position: absolute;
+	left: 3.4%;
+	top: 26px;	
+}
+header {
+	width: 100%;
+	content: "";
+	clear: both;
+	display: block;
+}
+
+/*============================================================================================================
+																LAYOUT TOOLS
+=============================================================================================================*/
+* {
+box-sizing: border-box;
+padding: 0;
+margin: 0;
+}
+.rowR div, .rowR h1, .rowR h2, .rowR h3 {
+	float: right;
+}
+
+.rowL div, .rowL h1, .rowL h2, .rowL h3 {
+	float: left;
+}
+.rowL:after, .rowR:after {
+	content: "";
+	clear: both;
+	display: block;
+}
+
+#container {
+	margin-top: 160px;
+	width: 100%;
+	clear: both;
+}
+button {
+border: none;
+outline: none;
+position: relative;
+}
+.numbers {
+background-color: rgba(200, 0, 200, 1);
+color: rgba(255, 255, 255, 1);
+padding: 4px;
+line-height: 0.6em;
+font-weight: 400;
+border-radius: 3px;
+border: none;
+outline: none;
+cursor: pointer;
+}
+.numbers:hover {
+	color: rgba(255,255,60,1);
+	background-color: rgba(200, 100, 50, 1);
+}
+.greennum {
+background-color: rgba(0,200, 50, 1);
+color: rgba(255, 255, 255, 1);
+padding: 4px;
+line-height: 0.6em;
+font-weight: 400;
+border-radius: 3px;
+border: none;
+outline: none;
+cursor: pointer;
+}
+.greennum:hover {
+	color: rgba(255,255,60,1);
+	background-color: rgba(0, 100, 150, 1);
+}
+.download {
+	color: yellow;
+	background-color: inherit;
+}
+
+.download:hover {
+	color: rgba(255,255,60,1);
+	background-color: rgba(50, 50, 0, 1)
+}
+
+.pix {
+	position: relative;
+	top: 0;
+	left: 0;
+}
+/*=============================================================================================================
+		 													ELEMENT ATTRIBUTES
+===============================================================================================================*/
+.darkYellow {
+	background-color: rgba(50, 50, 0, 0.7);
+	color: rgba(255, 255, 255, 1);
+	text-align: left;
+	vertical-align: top;
+}
+.black {
+	background-color: rgba(0, 0, 0, 0.6);
+	color: rgba(255, 255, 255, 1);
+	text-align: left;
+	vertical-align: top;
+	padding: 15px;
+}
+.black30 {
+	background-color: rgba(0, 0, 0, 0.3);
+	color: rgba(255, 255, 255, 1);
+	text-align: left;
+	vertical-align: top;
+	padding: 15px;
+}
+.blackX{
+	background-color: rgba(0, 0, 0, 0.6);
+	color: rgba(255, 255, 255, 1);
+	text-align: left;
+	vertical-align: top;
+}
+.roundLeft {
+	border-radius: 20px 0 0 20px;
+}
+.roundAll {
+	border-radius: 20px;
+}
+.roundAll img, .roundAll p, .roundAll object {
+	margin: 10px;
+}
+.yellow {
+	color: yellow;
+}
+.yellowLt{
+	color: rgba(255, 255, 90, 1);
+}
+.to-top {
+	border-radius: 10px;
+	line-height: 0.8em;
+	background-color: rgba(50, 50, 0, 0.7);
+	text-align: center;
+	font-weight: 600;
+}
+.floatL {
+	float: left;
+}
+.floatR {
+	float: right;
+}
+h3 {
+	border-radius: 30px;
+	background-color: rgba(1, 1, 1, 0.6);
+	color: rgba(255, 255, 255, 1);
+	font-weight: 400;
+	line-height: 1.2em;
+	padding: 5px 25px;
+	text-align: center;
+	margin: 0.5em 0;
+}
+h2 {
+	border-radius: 30px;
+	background-color: rgba(1, 1, 1, 0.6);
+	color: rgba(255, 255, 255, 1);
+	font-weight: 200;
+	font-size: 1.5em;
+	line-height: 0.9em;
+	text-align: center;
+	margin: 0.5em 0;	
+}
+h1 {
+	border-radius: 30px;
+	background-color: rgba(1, 1, 1, 0.6);
+	color: rgba(255, 255, 255, 1);
+	font-weight: 200;
+	font-size: 2em;
+	line-height: 1em;
+	text-align: center;
+	margin: 0.5em 0;
+}
+p {
+	padding: 5px 15px;
+}
+p.intro {
+	border-radius: 30px;
+	background-color: rgba(1, 1, 1, 0.6);
+	color: rgba(255, 255, 255, 1);
+	font-weight: 300;
+	line-height: 1.3em;
+	text-align: center;	
+	padding: 10px 10px 10px 15px;
+}
+p.click {
+	padding: 0;
+	font-weight: 300;
+	line-height: 1.3em;
+}
+.label {
+	border-radius: 20px;
+	background-color: rgba(0, 0, 0, 0.6);
+	color: rgba(255, 255, 0, 1);
+	text-align: center;
+	padding: 10px;
+	border: none;
+	outline: none;
+	margin: 5px 0;
+}
+
+table {
+	border-radius: 20px;
+	color: rgba(255, 255, 255, 1);
+	background-color: rgba(1, 1, 1, 0.6);
+}
+td {
+	padding: 10px;
+}
+.top {
+	border-radius: 20px 0;
+}
+th {
+	font-weight: 600;
+	color: rgba(255, 255, 0, 1);
+	text-align: center;
+	padding: 10px;
+}
+th .ll {
+	border-radius: 20px 0 0 0;
+}
+th .rr {
+	border-radius: 20px 0 0 0;
+}
+.odd {
+	font-weight: 400;
+	background-color: rgba(50, 50, 0, 0.7);
+	color: rgba(255, 255, 255, 1);
+	text-align: left;
+	vertical-align: top;
+}
+.oddL {
+	font-weight: 400;
+	background-color: rgba(50, 50, 50, 0.6);
+	color: rgba(255, 255, 0, 1);
+	text-align: right;
+}
+.even {
+	font-weight: 400;
+	background-color: rgba(50, 50, 50, 0.6);
+	color: rgba(255, 255, 255, 1);
+	text-align: left;
+	vertical-align: top;
+}
+.evenL {
+	font-weight: 400;
+	background-color: rgba(50, 50, 50, 0.6);
+	color: rgba(255, 255, 0, 1);
+	text-align: right;
+}
+tr .last {
+	border-radius: 0 0 20px 20px;
+}
+td .lastL {
+	border-radius: 20px;
+}
+ul.dark {
+	background-color: rgba(0, 0, 0, 0.3);
+	color: rgba(255, 255, 255, 1);
+	text-align: left;
+	vertical-align: top;
+	padding: 5px;
+}
+ul.dark  li {
+	margin: 7px 5px 7px 60px;
+}
+table ul {
+	background-color: transparent;
+}
+table ul li {
+	margin: 5px;
+}
+a {
+	text-decoration: none;
+	color: rgba(255, 200, 0, 1);
+}
+
+a:hover {
+	color: rgba(255,255,60,1);
+	background-color: rgba(50, 50, 0, 1)
+}
+.neutral {
+	color: inherit;
+	background-color: none;
+}
+img {
+ 	padding: 10px;
+ 	width: 100%;
+}
+.tooltip-img {
+	width: auto;
+	float: right;
+}
+.realsize {
+	width: auto;
+}
+/*==============================================================================
+								NAV
+================================================================================*/
+nav {
+	position: fixed;
+	top: -104px;
+	right: -10px;
+	background-color: #000;
+	width: 380px;
+	height: 135px;
+	border-bottom-left-radius: 65px;
+	border: 1px solid #ccc;
+	z-index: 20;
+  font-family: 'Titillium Web', sans-serif;
+}
+nav:hover {
+  background-color: rgba(50, 50, 0, 1);
+}
+nav a:hover {
+	background-color: rgba(0, 0, 0, 0);
+}
+nav ul:first-child {
+	font-weight: 600;
+	font-size: 16px;
+	position: fixed;
+	right: 15px;
+	top: 4px;
+	z-index: 21;
+	cursor: pointer;
+	padding: 0 25px;
+	white-space: nowrap;
+}
+nav ul:first-child li {
+  display: inline;
+  position: relative;
+  padding: 0 7px;
+}
+nav ul ul{
+  display: none;
+}
+nav li:hover ul {
+  display: block;
+  position: absolute;
+  top: 100%;
+  left: -10px;
+  background-color: rgba(50, 50, 0, 1);
+  font-size: 13px;
+}
+nav li:hover ul li {
+  display: block;
+  padding: 5px;
+}
+
+/* ==========================================================================
+   EXAMPLE Media Queries for Responsive Design.
+   These examples override the primary ('mobile first') styles.
+   Modify as content requires.
+   ========================================================================== */
+
+@media print,
+       (-webkit-min-device-pixel-ratio: 1.25),
+       (min-resolution: 1.25dppx),
+       (min-resolution: 120dpi) {
+    /* Style adjustments for high resolution devices */
+}
+
+/* ==========================================================================
+   Print styles.
+   Inlined to avoid the additional HTTP request:
+   http://www.phpied.com/delay-loading-your-print-css/
+   ========================================================================== */
+
+@media print {
+    *,
+    *:before,
+    *:after {
+        background: transparent !important;
+        color: #000 !important; /* Black prints faster:
+                                   http://www.sanbeiji.com/archives/953 */
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    a,
+    a:visited {
+        text-decoration: underline;
+    }
+
+    a[href]:after {
+        content: " (" attr(href) ")";
+    }
+
+    abbr[title]:after {
+        content: " (" attr(title) ")";
+    }
+
+    /*
+     * Don't show links that are fragment identifiers,
+     * or use the `javascript:` pseudo protocol
+     */
+
+    a[href^="#"]:after,
+    a[href^="javascript:"]:after {
+        content: "";
+    }
+
+    pre,
+    blockquote {
+        border: 1px solid #999;
+        page-break-inside: avoid;
+    }
+
+    /*
+     * Printing Tables:
+     * http://css-discuss.incutio.com/wiki/Printing_Tables
+     */
+
+    thead {
+        display: table-header-group;
+    }
+
+    tr,
+    img {
+        page-break-inside: avoid;
+    }
+
+    img {
+        max-width: 100% !important;
+    }
+
+    p,
+    h2,
+    h3 {
+        orphans: 3;
+        widows: 3;
+    }
+
+    h2,
+    h3 {
+        page-break-after: avoid;
+    }
+}
