@@ -7,4 +7,5 @@ It gives the issue new weight by giving people the knowledge they need to consid
 People arriving here interested in collaborating may be new to GitHub. 
 <a href="https://guides.github.com/activities/hello-world/">This Tutorial</a> and 
 <a href="https://guides.github.com/introduction/flow/?">this introduction</a> explain the main ideas well and don't take long. 
-If you haven't joined GitHub already, the sign-up area is a click away with the link in the top right corner of the page. 
+If you haven't joined GitHub already, the sign-up area is a click away with the link in the top right corner of the page. To 
+collaborate here, contact me through either <a href="http://moonwards.com/forum/">Lunatalks</a>, which is the forum for Moonwards, or in the Moonwards chat room, which is part of space.stackexchange.
