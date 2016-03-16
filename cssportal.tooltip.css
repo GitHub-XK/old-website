@@ -1,12 +1,7 @@
-.tooltipT, .tooltipTML, .tooltipTL, .tooltipTMR, .tooltipTR, .tooltipL,
-.tooltipML, .tooltipR, .tooltipMR, .tooltipB, .tooltipBML, .tooltipBL, .tooltipBBL, .tooltipBMR, 
-.tooltipBR, .tooltipBBR {
+div.pix button{
   position: absolute;
 }
-.tooltipT span, .tooltipTML span, .tooltipTL span, .tooltipTMR span, 
-.tooltipTR span, .tooltipL span, .tooltipML span, .tooltipR span, 
-.tooltipMR span, .tooltipB span, .tooltipBML span, .tooltipBL span, .tooltipBBL span, 
-.tooltipBMR span, .tooltipBR span, .tooltipBBR span {
+div.pix span {
   position: absolute;
   width: 0px;
   color: #FFFFFF;
@@ -27,7 +22,7 @@
   z-index: 10;
   width: 400px;
   }
-.tooltipT:hover span {
+.tooltipT:hover span{
   bottom: 16px;
   left: -200px;
 }
