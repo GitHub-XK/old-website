@@ -65,14 +65,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   					</li>
   				</ul>
   			</li>
-  			<li><a href="planning.html">Planning</a>
+  			<li><a href="planning.html">Plan</a>
   				<ul>
   					<li><a href="planning.html#equipment">Equipment</a></li>
   					<li><a href="planning.html#structures">Structures</a></li>
   					<li><a href="planning.html#environment">Environment</a></li>
   				</ul>
   			</li>
-  		  	<li><a href="about.html">Why</a>
+  			<li><a href="learn.html">Learn</a>
+  				<ul>
+  					<li><a href="learn.html#calculators">Calculators</li>
+  				</ul>
+  			<li><a href="about.html">Why</a>
   				<ul>
   					<li><a href="about.html#plans">Plans Today</a></li>
   					<li><a href="about.html#about">About Us</a></li>
@@ -1597,38 +1601,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 				Take over the world. No, just kidding. Mostly.
 			</p>
 		</div>
-</div>
+	</div>
 </div>  
-
-		  <script>
-
-        $(document).ready(function () {
-        		 
-        		$("[class*=seeMe]").hide();
-        		$("[id*=seeMe]").hide(); 
-        		$("#directory").click(function () {
-        			$(".seeMe").slideToggle("fast");
-        		});
-        		$("#directory").mouseenter(function () {
-        			$(this).css("background-color", "rgba(50, 50, 0, 1)");
-        			$(".seeMe").slideDown("fast");
-        		});    		      				
-        		$("#directory").mouseleave(function () {
-        			$(this).css("background-color", "rgba(0, 0, 0, 1)");
-        			$(".seeMe").slideUp("fast");
-        		});
-        		$("[id*=toSee]").on({
-        			mouseenter: function () {
-						$(this).css("background-color", "rgba(200, 100, 50, 1)");
-						},
-					mouseleave: function () {
-						$(this).css("background-color", "rgba(200, 0, 200, 1)");
-						},
-					click: function () {
-						$(this).css("background-color", "rgba(0, 0, 0, 1)");
-					}
-					});
-        });
-        </script>
-    </body>
+</body>
 </html>
