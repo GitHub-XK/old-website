@@ -538,7 +538,6 @@ nav ul:first-child {
 	top: 4px;
 	z-index: 21;
 	cursor: pointer;
-	padding: 0 25px;
 	white-space: nowrap;
 }
 nav ul:first-child li {
