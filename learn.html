@@ -22,19 +22,20 @@
 <link rel="manifest" href="/manifest.json">
 <meta name="msapplication-TileColor" content="#da532c">
 <meta name="msapplication-TileImage" content="/mstile-144x144.png">
-<meta name="theme-color" content="#ffffff">
+<meta name="theme-color" content="#000000">
+      <link rel="stylesheet" href="normalize.css">
+      <link rel="stylesheet" href="main.css">
+		<link rel="stylesheet" href="cssportal.tooltip.css">
+<link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,300,400italic,600,200'
+rel='stylesheet' type='text/css'>
 <style>
 	      .icons{
         position: absolute;
         margin-top: 60px;
         margin-left: -132px;
       }
+
 </style>
-        <link rel="stylesheet" href="normalize.css">
-        <link rel="stylesheet" href="main.css">
-<link rel="stylesheet" href="cssportal.tooltip.css">
-<link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,300,400italic,600,200'
-rel='stylesheet' type='text/css'>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.3.min.js"><\/script>')</script>
 <script src="js/plugins.js"></script>
@@ -45,65 +46,24 @@ rel='stylesheet' type='text/css'>
     </head>
     <body>
     <!-- Google Tag Manager -->
-<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-TN8NFC"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-TN8NFC');</script>
-<!-- 'End Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-TN8NFC"<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':<!-- 'End Google Tag Manager -->
         <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. 
             Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 	<header>
-	<a href="index.html" style="background-color:transparent;">
-	<img src="http://www.moonwards.com/img/MWLogo-for-black-bckgnd.svg" alt="Moonwards logo" id="logo">
-	</a>
-	  	<nav>
-	  	<div id="nav">
-  		<ul>
-  			<li><a href="index.html">the VMC</a>
-  				<ul>
-  					<li><a href="index.html#colony">Colony Phase 1</a>
-  					</li>
-  					<li><a href="index.html#mission1">Mission 1</a>
-  					</li>
-  					<li><a href="index.html#mission2">Mission 2</a>
-  					</li>
-  				</ul>
-  			</li>
-  			<li><a href="planning.html">Plan</a>
-  				<ul>
-  					<li><a href="planning.html#equipment">Equipment</a></li>
-  					<li><a href="planning.html#structures">Structures</a></li>
-  					<li><a href="planning.html#environment">Environment</a></li>
-  				</ul>
-  			</li>
-  			<li><a href="learn.html">Learn</a>
-  				<ul>
-  					<li><a href="learn.html#calculators">Calculators</a></li>
-  				</ul>
-  			<li><a href="about.html">Why</a>
-  				<ul>
-  					<li><a href="about.html#plans">Plans Today</a></li>
-  					<li><a href="about.html#about">About Us</a></li>
-  				</ul>
-  			</li>
-  			<li><a href="http://www.moonwards.com/forum/">Forum</a></li>
-  		</ul>
-  		</div>
-  	</nav>
+	<a href="index.html" style="background-color:transparent;">	  	<nav>
+	  	<div id="nav">  	</nav>
 	</header>
 <div id="container">
     <div class="rowR" id="calculators">
-        <div class="rowL">
-            <h2 class="col-4 col-m-5">Calculators</h2><br>
+            <h2 class="col-3 col-m-4">Calculators</h2>
+    </div>
+	<div class="rowR">
             <div class="black col-9 col-m-8">
-                <div class="black">
-                    <div class="darkYellow pix">
-                        <h3>The Rocket Equation</h3><br><br>
+                <div class="black col-3 col-m-3">
+                    <div class="darkYellow">
+                        <h3>The Rocket Equation</h3><br>
                         <p>Mass ratio:</p>
                         <input type="text" placeholder="Start mass divided by end mass" value="" id="massratioRE">
                         <p>Exhaust velocity: (m/s)</p>
@@ -115,15 +75,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     </div>
                 </div>
                 <br>
-                <div class="black">
-                    <div class="darkYellow pix">
-                        <h3>Suborbital Hop</h3><br><br>
+                <div class="black col-6 col-m-5">
+                    <div class="darkYellow">
+                        <h3>Suborbital Hop</h3>
                         <p>Initial location:</p>
-                        Latitude <input type="text" placeholder="(degrees)" value="" id="latitudeSH"><br>
+                        Latitude <input type="text" placeholder="(degrees)" value="" id="latitudeSH">
                         Longitude <input type="text" placeholder="(degrees)" value="" id="longitudeSH">
                         <p>Destination location:</p>
-                        Latitude <input type="text" placeholder="(degrees)" value="" id="destinationlatitudeSH"><br>
-                        Longitude <input type="text" placeholder="(degrees)" value="" id="destinationlongitudeSH"><br>
+                        Latitude <input type="text" placeholder="(degrees)" value="" id="destinationlatitudeSH">
+                        Longitude <input type="text" placeholder="(degrees)" value="" id="destinationlongitudeSH">
                         <div>
                             <img src="mapmini.gif" width="256" height="128">
                             <img src="icon.png" id="initialicon" width="9" height="9">
@@ -131,10 +91,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         </div>
                         <br><br>
                         <button onclick="subhop()">Calculate!</button><br>
-                        <p id="resultSH">.</p><br>
+                        <p id="resultSH">.</p>
                         <p>More about suborbital hops <a href="http://hopsblog-hop.blogspot.com/2015/08/lunar-pogo-hopper.html">here</a>, by Hop David.</p>
                     </div>
                 </div>
+                
                 <br>
                 <a href="http://www.wtfpl.net/">
                     <img src="http://www.wtfpl.net/wp-content/uploads/2012/12/wtfpl-badge-4.png" width="80" height="15" alt="WTFPL"/>
