@@ -101,34 +101,38 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <div class="rowL">
             <h2 class="col-4 col-m-5">Calculators</h2><br>
             <div class="black">
-                <div class="darkYellow pix">
-                    <h3>The Rocket Equation</h3><br>
-                    <p>Mass ratio:</p>
-                    <input type="text" placeholder="Start mass divided by end mass" value="" id="massratioRE">
-                    <p>Exhaust velocity: (m/s)</p>
-                    <input type="text" placeholder="Velocity of the rocket exhaust" value="" id="exhaustvelocityRE">
-                    <input type="checkbox" id="ispcheckboxRE">use Isp instead
-                    <br><br>
-                    <button onclick="rocket()">Calculate!</button><br>
-                    <p id="resultRE">.</p>
-                </div>
-                <div class="darkYellow pix">
-                    <h3>Suborbital Hop</h3><br>
-                    <p>Initial location:</p>
-                    Latitude <input type="text" placeholder="(degrees)" value="" id="latitudeSH">
-                    Longitude <input type="text" placeholder="(degrees)" value="" id="longitudeSH">
-                    <p>Destination location:</p>
-                    Latitude <input type="text" placeholder="(degrees)" value="" id="destinationlatitudeSH">
-                    Longitude <input type="text" placeholder="(degrees)" value="" id="destinationlongitudeSH"><br>
-                    <div>
-                        <img src="mapmini.gif" width="256" height="128">
-                        <img src="icon.png" id="initialicon" width="9" height="9">
-                        <img src="icon.png" id="destinationicon" width="9" height="9">
+                <div>
+                    <div class="darkYellow pix">
+                        <h3>The Rocket Equation</h3><br>
+                        <p>Mass ratio:</p>
+                        <input type="text" placeholder="Start mass divided by end mass" value="" id="massratioRE">
+                        <p>Exhaust velocity: (m/s)</p>
+                        <input type="text" placeholder="Velocity of the rocket exhaust" value="" id="exhaustvelocityRE">
+                        <input type="checkbox" id="ispcheckboxRE">use Isp instead
+                        <br><br>
+                        <button onclick="rocket()">Calculate!</button><br>
+                        <p id="resultRE">.</p>
                     </div>
-                    <br><br>
-                    <button onclick="subhop()">Calculate!</button><br>
-                    <p id="resultSH">.</p>
-                    <p>More about suborbital hops <a href="http://hopsblog-hop.blogspot.com/2015/08/lunar-pogo-hopper.html">here</a>, by Hop David.</p>
+                </div>
+                <div>
+                    <div class="darkYellow pix">
+                        <h3>Suborbital Hop</h3><br>
+                        <p>Initial location:</p>
+                        Latitude <input type="text" placeholder="(degrees)" value="" id="latitudeSH">
+                        Longitude <input type="text" placeholder="(degrees)" value="" id="longitudeSH">
+                        <p>Destination location:</p>
+                        Latitude <input type="text" placeholder="(degrees)" value="" id="destinationlatitudeSH">
+                        Longitude <input type="text" placeholder="(degrees)" value="" id="destinationlongitudeSH"><br>
+                        <div>
+                            <img src="mapmini.gif" width="256" height="128">
+                            <img src="icon.png" id="initialicon" width="9" height="9">
+                            <img src="icon.png" id="destinationicon" width="9" height="9">
+                        </div>
+                        <br><br>
+                        <button onclick="subhop()">Calculate!</button><br>
+                        <p id="resultSH">.</p>
+                        <p>More about suborbital hops <a href="http://hopsblog-hop.blogspot.com/2015/08/lunar-pogo-hopper.html">here</a>, by Hop David.</p>
+                    </div>
                 </div>
                 <br>
                 <a href="http://www.wtfpl.net/">
