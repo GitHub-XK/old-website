@@ -204,11 +204,11 @@ box-sizing: border-box;
 padding: 0;
 margin: 0;
 }
-.rowR div, .rowR h1, .rowR h2, .rowR h3 {
+.rowR div, .rowR h1, .rowR h2, .rowR h3, .floatR {
 	float: right;
 }
 
-.rowL div, .rowL h1, .rowL h2, .rowL h3 {
+.rowL div, .rowL h1, .rowL h2, .rowL h3, .floatL {
 	float: left;
 }
 .rowL:after, .rowR:after {
@@ -216,7 +216,13 @@ margin: 0;
 	clear: both;
 	display: block;
 }
-
+.noFloat {
+	display: block;
+	float: none !important;
+	position: relative;
+	top: 0;
+	left: 0;
+}
 #container {
 	margin-top: 160px;
 	width: 100%;
@@ -344,13 +350,6 @@ cursor: pointer;
 	background-color: rgba(50, 50, 0, 0.7);
 	text-align: center;
 	font-weight: 600;
-}
-.noFloat {
-	display: block;
-	float: none !important;
-	position: relative;
-	top: 0;
-	left: 0;
 }
 /*=============================================================================================================
 		 													ELEMENT ATTRIBUTES
