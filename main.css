@@ -345,14 +345,6 @@ cursor: pointer;
 	text-align: center;
 	font-weight: 600;
 }
-.floatL {
-	float: left;
-	display: inline-block;
-}
-.floatR {
-	float: right;
-	display: inline-block;
-}
 .noFloat {
 	display: block;
 	float: none;
@@ -360,7 +352,7 @@ cursor: pointer;
 /*=============================================================================================================
 		 													ELEMENT ATTRIBUTES
 ===============================================================================================================*/
-		h3 {
+		h3, h4 {
 			border-radius: 30px;
 			background-color: rgba(1, 1, 1, 0.6);
 			color: rgba(255, 255, 255, 1);
