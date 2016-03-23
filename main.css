@@ -222,6 +222,7 @@ margin: 0;
 	width: 100%;
 	clear: both;
 }
+/*--------------------------------------------------------------------------------------------------------*/
 button {
 border: none;
 outline: none;
@@ -319,6 +320,9 @@ cursor: pointer;
 	text-align: left;
 	vertical-align: top;
 }
+.pad15 {
+	padding: 15px;
+}
 .roundLeft {
 	border-radius: 20px 0 0 20px;
 }
@@ -343,9 +347,11 @@ cursor: pointer;
 }
 .floatL {
 	float: left;
+	display: inline-block;
 }
 .floatR {
 	float: right;
+	display: inline-block;
 }
 /*=============================================================================================================
 		 													ELEMENT ATTRIBUTES
