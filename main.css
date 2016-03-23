@@ -347,7 +347,10 @@ cursor: pointer;
 }
 .noFloat {
 	display: block;
-	float: none;
+	float: none !important;
+	position: relative;
+	top: 0;
+	left: 0;
 }
 /*=============================================================================================================
 		 													ELEMENT ATTRIBUTES
