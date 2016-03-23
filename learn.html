@@ -23,9 +23,9 @@
 <meta name="msapplication-TileColor" content="#da532c">
 <meta name="msapplication-TileImage" content="/mstile-144x144.png">
 <meta name="theme-color" content="#000000">
-      <link rel="stylesheet" href="normalize.css">
-      <link rel="stylesheet" href="main.css">
-		<link rel="stylesheet" href="cssportal.tooltip.css">
+      <link rel="stylesheet" href="css/normalize.css">
+      <link rel="stylesheet" href="css/main.css">
+		<link rel="stylesheet" href="css/cssportal.tooltip.css">
 <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,300,400italic,600,200'
 rel='stylesheet' type='text/css'>
 <style>
@@ -38,8 +38,7 @@ rel='stylesheet' type='text/css'>
 <script src="js/plugins.js"></script>
 <script src="js/main.js"></script>
 <script src="js/vendor/modernizr-2.8.3.min.js"></script>
-<script src="js/jquery.tooltipster.min.js"></script>
-<script src="js/jquery-ui.min.js"></script>
+<script async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
     </head>
     <body>
     <!-- Google Tag Manager -->
@@ -96,26 +95,35 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 	</header>
 <div id="container">
     <div class="rowR" id="calculators">
-            <h2 class="col-3 col-m-4">Calculators</h2>
+            <h2 class="col-3 col-m-4 yellow">Calculators</h2>
     </div>
+    <div class="floatR col-9 col-m-8">
+				<p class="black roundAll">We have begun a collection of calculators that illustrate important aspects of the physics 
+            of various undertakings in space. Getting a feel for how your equipment interacts with the environment 
+            is really central to designing life in space. We will expand and refine all these with time, making them 
+            more intuitive with graphics, combining them, and so on.</p>
+   </div>
+   </div>
 	<div class="rowR">
                 <div class="black roundAll">
                     <div class="darkYellow pad15 roundAll">
-                        <h4>The Rocket Equation</h4><br>
+                        <h4 class="yellow">The Rocket Equation</h4><br>
                         <p style="padding:0;">Mass ratio:</p>
-                        <input type="text" placeholder="Start mass divided by end mass" value="" id="massratioRE">
+                        <input type="text" title="Start mass divided by end mass"
+                        placeholder="Start mass divided by end mass" value="" id="massratioRE">
                         <p style="padding:0;">Exhaust velocity: (m/s)</p>
                         <input type="text" placeholder="Velocity of the rocket exhaust" value="" id="exhaustvelocityRE">
                         &nbsp;
-                        <input type="checkbox" id="ispcheckboxRE"> &nbsp; use Isp instead
+                        <input type="checkbox" id="ispcheckboxRE"> &nbsp; use I<sub>sp</sub> instead
                         <br><br>
                         <button onclick="rocket()">Calculate!</button><br>
+                        <script src="js/rocketEquation.js"></script>
                         <p style="padding:0;" id="resultRE">&nbsp;</p>
                     </div>
                 </div>
                 <div class="black roundAll">
                     <div class="darkYellow pad15 roundAll">
-                        <h4>Suborbital Hop</h4><br>
+                        <h4 class="yellow">Suborbital Hop</h4><br>
                         <p style="padding:0;">Initial location:</p>
                         <span>Latitude</span> <input type="text" placeholder="(degrees)" value="" id="latitudeSH">
                         <span>Longitude</span> <input type="text" placeholder="(degrees)" value="" id="longitudeSH">
@@ -133,6 +141,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         </div>
                         <br><br>
                         <button onclick="subhop()">Calculate!</button><br>
+                        <script src="js/subOrbitalHop.js"></script>
                         <p id="resultSH">&nbsp;</p>
                         <p>More about suborbital hops 
                         <a href="http://hopsblog-hop.blogspot.com/2015/08/lunar-pogo-hopper.html">here</a>, by Hop David.</p>
@@ -140,7 +149,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </div>
                 <div class="black roundAll">
                     <div class="darkYellow pad15 roundAll">
-                      <h4>Lunar Elevator</h4><br>
+                      <h4 class="yellow">Lunar Elevator</h4><br>
                         <p>Start distance: (distances are from the centre of the Moon towards Earth)</p>
                         <input type="text" placeholder="(km)" value="" id="start">
                         <input type="checkbox" id="surface">use lunar surface
@@ -154,6 +163,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <input type="checkbox" id="zylon">use Zylon
                         <br><br>
                         <button onclick="tether()">Calculate!</button>
+                        <script src="js/tether.js"></script>
                         <p id="resultLE">&nbsp;</p>
                         <p id="resultLE2">&nbsp;</p>
                     </div>
@@ -167,105 +177,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </div>
 </div>
 <script>
-//Just move the script to a sepparate file if you want.
-//Global stuff, here be dragons
-idIcon = 0;
-//A few values that are used a lot:
-g = 9.80665; //m/s^2
-moonRadius = 1738000; //m
-moonGparameter = 4904869590000; //G*M
-earthGparameter = 398600441890000; //G*m
-EMdistance = 384400000;
-eml1DistanceFromTheMoon = 58730214;
-//Common opperations:
-rad = function(degrees){ //for converting to radians
-  return degrees/180 * Math.PI;
-};
-toXYZ = function(long,lat){//transform coordinates from angular to cartesian
-  x = Math.cos(rad(long)) * Math.cos(rad(lat)) * moonRadius;
-  y = Math.sin(rad(long)) * Math.cos(rad(lat)) * moonRadius;
-  z = Math.sin(rad(lat)) * moonRadius;
-  return [x,y,z];
-};
-integralCall = function(dist,jst){
-  return - dist*dist/2 + dist * (1 - jst) - jst/Math.abs(dist) + (1 - jst)/(-Math.abs(dist - 1));
-};
-//main functions:
-rocket = function(){
-  var ispcheck = document.getElementById("ispcheckboxRE").checked;
-  var just = 1;
-  if(ispcheck){just = g};
-  var exhaust = Number(document.getElementById("exhaustvelocityRE").value);
-  var massratio = Number(document.getElementById("massratioRE").value);
-  var result = Math.log(massratio) * exhaust * just;
-  result = Math.round(result*100)/100;
-  document.getElementById("resultRE").innerHTML = "Delta-v: <b>" + result + " m/s</b>";
-};
-subhop = function(){
-//inputs
-  var longitude1 = (Number(document.getElementById("longitudeSH").value))%360; //connect to input forms or whatever
-    if(longitude1 < -180){longitude1 += 360}else if(longitude1 > 180){longitude1 -= 360};
-  var latitude1 = (Number(document.getElementById("latitudeSH").value))%360;
-  var longitude2 = (Number(document.getElementById("destinationlongitudeSH").value))%360;
-    if(longitude2 < -180){longitude2 += 360}else if(longitude2 > 180){longitude2 -= 360};
-  var latitude2 = (Number(document.getElementById("destinationlatitudeSH").value))%360;
-//main
-  var cords1 = toXYZ(longitude1,latitude1);
-  var cords2 = toXYZ(longitude2,latitude2);
-  var distance = Math.sqrt(Math.pow(cords1[0] - cords2[0],2) + Math.pow(cords1[1] - cords2[1],2) + Math.pow(cords1[2] - cords2[2],2));
-  var semimajor = moonRadius/2 + distance/4;
-//output
-  var totalDeltav = 2*Math.sqrt(moonGparameter * (2/moonRadius - 1/semimajor));
-  totalDeltav = Math.round(totalDeltav*100)/100;
-  document.getElementById("resultSH").innerHTML = "Delta-v: <b>" + totalDeltav + " m/s</b> ("+Math.round((totalDeltav/3359.84)*100)+"% of an orbital mission)";
-//optional:  distance (not implemented)
-//graphics:
-  var xcoord1 = (longitude1 - 180)*256/360 + 252;
-  var ycoord1 = (90 - latitude1)*128/180 - 4;
-  var xcoord2 = (longitude2 - 180)*256/360 + 252;
-  var ycoord2 = (90 - latitude2)*128/180 - 4;
-  document.getElementById("initialicon").style.left = xcoord1+"px";
-  document.getElementById("initialicon").style.top = ycoord1+"px";
-  document.getElementById("destinationicon").style.left = xcoord2+"px";
-  document.getElementById("destinationicon").style.top = ycoord2+"px";
-};
-tether = function(){
-  var surfacecheck = document.getElementById("surface").checked;
-  var eml1check = document.getElementById("eml1").checked;
-  var zyloncheck = document.getElementById("zylon").checked;
-  var startaltitude = Number(document.getElementById("start").value);
-  var endaltitude = Number(document.getElementById("end").value);
-  var strength = Number(document.getElementById("material").value);
-  if(surfacecheck){
-    startaltitude = moonRadius;
-    document.getElementById("start").value = moonRadius/1000;
-  }
-  else{
-    startaltitude = startaltitude * 1000;
-  };
-  if(eml1check){
-    endaltitude = eml1DistanceFromTheMoon;
-    document.getElementById("end").value = eml1DistanceFromTheMoon/1000;
-  }
-  else{
-    endaltitude = endaltitude * 1000;
-  };
-  if(zyloncheck){
-    strength = 3720000;
-    document.getElementById("material").value = 3720000;
-  }
-  var SCALEstart = startaltitude/EMdistance;
-  var SCALEend = endaltitude/EMdistance;
-  var jStMaSsRaTiO = moonGparameter/(moonGparameter + earthGparameter);
-  var firstPoint = integralCall(SCALEstart,jStMaSsRaTiO);
-  var secondPoint = integralCall(SCALEend,jStMaSsRaTiO);
-  var resultLE = (secondPoint - firstPoint) * (earthGparameter + moonGparameter)/EMdistance;
-  var resultLE2 = Math.pow(Math.E,resultLE/strength);
-  resultLE = Math.round(resultLE*100)/100;
-  resultLE2 = Math.round(resultLE2*1000)/1000;
-  document.getElementById("resultLE").innerHTML = "Acceleration potential: <b>"+resultLE+"</b> Yuri";
-  document.getElementById("resultLE2").innerHTML = "Taper ratio: <b>"+resultLE2+"</b>";
-};
+
+
 </script>
     </body>
 </html>
