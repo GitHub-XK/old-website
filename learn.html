@@ -1,4 +1,4 @@
-	<!doctype html>
+<!doctype html>
 <html class="no-js" lang="">
     <head>
         <meta charset="utf-8">
@@ -105,9 +105,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </div>
 	<div class="rowR">
             <div class="blackX col-9 col-m-8">
-                <div class="black floatL">
+                <div class="black">
                     <div class="darkYellow pad15">
-                        <h3>The Rocket Equation</h3><br>
+                        <h4>The Rocket Equation</h4><br>
                         <p style="padding:0;">Mass ratio:</p>
                         <input type="text" placeholder="Start mass divided by end mass" value="" id="massratioRE">
                         <p style="padding:0;">Exhaust velocity: (m/s)</p>
@@ -120,29 +120,31 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     </div>
                 </div>
                 <br>
-                <div class="black floatL">
+                <div class="black">
                     <div class="darkYellow pad15">
-                        <h3>Suborbital Hop</h3><br>
+                        <h4>Suborbital Hop</h4><br>
                         <p style="padding:0;">Initial location:</p>
-                        Latitude <input type="text" placeholder="(degrees)" value="" id="latitudeSH">
-                        Longitude <input type="text" placeholder="(degrees)" value="" id="longitudeSH">
+                        <span>Latitude</span> <input type="text" placeholder="(degrees)" value="" id="latitudeSH">
+                        <span>Longitude</span> <input type="text" placeholder="(degrees)" value="" id="longitudeSH">
                         <p style="padding:0;">Destination location:</p>
-                        Latitude <input type="text" placeholder="(degrees)" value="" id="destinationlatitudeSH">
-                        Longitude <input type="text" placeholder="(degrees)" value="" id="destinationlongitudeSH">
+                        <span>Latitude</span> <input type="text" placeholder="(degrees)" value="" id="destinationlatitudeSH">
+                        <span>Longitude</span> <input type="text" placeholder="(degrees)" value="" id="destinationlongitudeSH">
                         <br>
-                            <img class="realsize" src="mapmini.gif" width="256" height="128">
-                            <img class="realsize" src="icon.png" id="initialicon" width="9" height="9">
-                            <img class="realsize" src="icon.png" id="destinationicon" width="9" height="9">
+                            <img class="realsize" src="mapmini.gif">
+                            <img class="realsize icons" style="z-index: 2;"
+                            src="icon.png" id="initialicon">
+                            <img class="realsize icons" src="icon.png" id="destinationicon">
                         <br><br>
                         <button onclick="subhop()">Calculate!</button><br>
                         <p id="resultSH">.</p>
-                        <p>More about suborbital hops <a href="http://hopsblog-hop.blogspot.com/2015/08/lunar-pogo-hopper.html">here</a>, by Hop David.</p>
+                        <p>More about suborbital hops 
+                        <a href="http://hopsblog-hop.blogspot.com/2015/08/lunar-pogo-hopper.html">here</a>, by Hop David.</p>
                     </div>
                 </div>
                 <br>
-                <div class="black floatL">
+                <div class="black">
                     <div class="darkYellow pad15">
-                      <h3>Lunar Elevator</h3><br>
+                      <h4>Lunar Elevator</h4><br>
                         <p>Start distance: (distances are from the centre of the Moon towards Earth)</p>
                         <input type="text" placeholder="(km)" value="" id="start">
                         <input type="checkbox" id="surface">use lunar surface
@@ -162,8 +164,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </div>
             <div class="col-8 col-m-7">     
                 <a href="http://www.wtfpl.net/">
-                    <img class="realsize" src="http://www.wtfpl.net/wp-content/uploads/2012/12/wtfpl-badge-4.png" 
-                    width="80" height="15" alt="WTFPL"/>
+                    <img class="realsize" src="http://www.wtfpl.net/wp-content/uploads/2012/12/wtfpl-badge-4.png"  
+                   alt="WTFPL"/>
                 </a>
             </div>
         </div>
@@ -272,3 +274,5 @@ tether = function(){
 </script>
     </body>
 </html>
+Status API Training Shop Blog About
+© 2016 GitHub, Inc. Terms Privacy Security Contact Help
