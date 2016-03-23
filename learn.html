@@ -29,12 +29,14 @@
 <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,300,400italic,600,200'
 rel='stylesheet' type='text/css'>
 <style>
-	      .icons{
+	input, button {
+	color: black;
+	}
+	.icons{
         position: absolute;
         margin-top: 60px;
         margin-left: -132px;
       }
-
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.3.min.js"><\/script>')</script>
@@ -102,45 +104,43 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <h2 class="col-3 col-m-4">Calculators</h2>
     </div>
 	<div class="rowR">
-            <div class="black col-9 col-m-8">
-                <div class="black col-3 col-m-3">
-                    <div class="darkYellow">
+            <div class="blackX col-9 col-m-8">
+                <div class="blackX col-3 col-m-3">
+                    <div class="darkYellow" style="padding: 10px;">
                         <h3>The Rocket Equation</h3><br>
-                        <p>Mass ratio:</p>
+                        <p style="padding:0;">Mass ratio:</p>
                         <input type="text" placeholder="Start mass divided by end mass" value="" id="massratioRE">
-                        <p>Exhaust velocity: (m/s)</p>
+                        <p style="padding:0;">Exhaust velocity: (m/s)</p>
                         <input type="text" placeholder="Velocity of the rocket exhaust" value="" id="exhaustvelocityRE">
                         <input type="checkbox" id="ispcheckboxRE">use Isp instead
                         <br><br>
                         <button onclick="rocket()">Calculate!</button><br>
-                        <p id="resultRE">.</p>
+                        <p style="padding:0;" id="resultRE">.</p>
                     </div>
                 </div>
                 <br>
-                <div class="black col-6 col-m-5">
+                <div class="blackX col-6 col-m-5">
                     <div class="darkYellow">
-                        <h3>Suborbital Hop</h3>
-                        <p>Initial location:</p>
+                        <h3>Suborbital Hop</h3><br>
+                        <p style="padding:0;">Initial location:</p>
                         Latitude <input type="text" placeholder="(degrees)" value="" id="latitudeSH">
                         Longitude <input type="text" placeholder="(degrees)" value="" id="longitudeSH">
-                        <p>Destination location:</p>
+                        <p style="padding:0;">Destination location:</p>
                         Latitude <input type="text" placeholder="(degrees)" value="" id="destinationlatitudeSH">
                         Longitude <input type="text" placeholder="(degrees)" value="" id="destinationlongitudeSH">
-                        <div>
                             <img src="mapmini.gif" width="256" height="128">
                             <img src="icon.png" id="initialicon" width="9" height="9">
                             <img src="icon.png" id="destinationicon" width="9" height="9">
-                        </div>
                         <br><br>
                         <button onclick="subhop()">Calculate!</button><br>
                         <p id="resultSH">.</p>
                         <p>More about suborbital hops <a href="http://hopsblog-hop.blogspot.com/2015/08/lunar-pogo-hopper.html">here</a>, by Hop David.</p>
                     </div>
                 </div>
-                <div class="col-8 col-m-7"> 
-                <br>
+           <div class="col-8 col-m-7">     
                 <a href="http://www.wtfpl.net/">
-                    <img src="http://www.wtfpl.net/wp-content/uploads/2012/12/wtfpl-badge-4.png" width="80" height="15" alt="WTFPL"/>
+                    <img class="realsize" src="http://www.wtfpl.net/wp-content/uploads/2012/12/wtfpl-badge-4.png" 
+                    width="80" height="15" alt="WTFPL"/>
                 </a>
             </div>
         </div>
