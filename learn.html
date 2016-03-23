@@ -139,21 +139,47 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <p>More about suborbital hops <a href="http://hopsblog-hop.blogspot.com/2015/08/lunar-pogo-hopper.html">here</a>, by Hop David.</p>
                     </div>
                 </div>
-           <div class="col-8 col-m-7">     
+                <br>
+                <div class="black floatL">
+                    <div class="darkYellow pad15">
+                      <h3>Lunar Elevator</h3>
+                        <p>Start distance: (distances are from the centre of the Moon towards Earth)</p>
+                        <input type="text" placeholder="(km)" value="" id="start">
+                        <input type="checkbox" id="surface">use lunar surface
+                        <br>
+                        <p>End distance</p>
+                        <input type="text" placeholder="(km)" value="" id="end">
+                        <input type="checkbox" id="eml1">use EML1
+                        <br>
+                        <p>Material strength:</p>
+                        <input type="text" placeholder="(Yuri)" value="" id="material">
+                        <input type="checkbox" id="zylon">use Zylon
+                        <br>
+                        <button onclick="tether()">Calculate!</button>
+                        <p id="resultLE">.</p>
+                        <p id="resultLE2">.</p>
+                    </div>
+                </div>
+            <div class="col-8 col-m-7">     
                 <a href="http://www.wtfpl.net/">
                     <img class="realsize" src="http://www.wtfpl.net/wp-content/uploads/2012/12/wtfpl-badge-4.png" 
                     width="80" height="15" alt="WTFPL"/>
                 </a>
             </div>
         </div>
+    </div>
+</div>
 <script>
 //Just move the script to a sepparate file if you want.
 //Global stuff, here be dragons
 idIcon = 0;
-//A few values used a lot:
+//A few values that are used a lot:
 g = 9.80665; //m/s^2
 moonRadius = 1738000; //m
 moonGparameter = 4904869590000; //G*M
+earthGparameter = 398600441890000; //G*m
+EMdistance = 384400000;
+eml1DistanceFromTheMoon = 58730214;
 //Common opperations:
 rad = function(degrees){ //for converting to radians
   return degrees/180 * Math.PI;
@@ -163,6 +189,9 @@ toXYZ = function(long,lat){//transform coordinates from angular to cartesian
   y = Math.sin(rad(long)) * Math.cos(rad(lat)) * moonRadius;
   z = Math.sin(rad(lat)) * moonRadius;
   return [x,y,z];
+};
+integralCall = function(dist,jst){
+  return - dist*dist/2 + dist * (1 - jst) - jst/Math.abs(dist) + (1 - jst)/(-Math.abs(dist - 1));
 };
 //main functions:
 rocket = function(){
@@ -203,8 +232,40 @@ subhop = function(){
   document.getElementById("destinationicon").style.marginLeft = xcoord2+"px";
   document.getElementById("destinationicon").style.marginTop = ycoord2+"px";
 };
+tether = function(){
+  var surfacecheck = document.getElementById("surface").checked;
+  var eml1check = document.getElementById("eml1").checked;
+  var zyloncheck = document.getElementById("zylon").checked;
+  var startaltitude = Number(document.getElementById("start").value);
+  var endaltitude = Number(document.getElementById("end").value);
+  var strength = Number(document.getElementById("material").value);
+  if(surfacecheck){
+    startaltitude = moonRadius;
+  }
+  else{
+    startaltitude = startaltitude * 1000;
+  };
+  if(eml1check){
+    endaltitude = eml1DistanceFromTheMoon;
+  }
+  else{
+    endaltitude = endaltitude * 1000;
+  };
+  if(zyloncheck){
+    strength = 3720000;
+  }
+  var SCALEstart = startaltitude/EMdistance;
+  var SCALEend = endaltitude/EMdistance;
+  var jStMaSsRaTiO = moonGparameter/(moonGparameter + earthGparameter);
+  var firstPoint = integralCall(SCALEstart,jStMaSsRaTiO);
+  var secondPoint = integralCall(SCALEend,jStMaSsRaTiO);
+  var resultLE = (secondPoint - firstPoint) * (earthGparameter + moonGparameter)/EMdistance;
+  var resultLE2 = Math.pow(Math.E,resultLE/strength);
+  resultLE = Math.round(resultLE*100)/100;
+  resultLE2 = Math.round(resultLE2*1000)/1000;
+  document.getElementById("resultLE").innerHTML = "Acceleration potential: <b>"+resultLE+"</b> Yuri";
+  document.getElementById("resultLE2").innerHTML = "Taper ratio: <b>"+resultLE2+"</b>";
+};
 </script>
-    </div>
-</div>
     </body>
 </html>
