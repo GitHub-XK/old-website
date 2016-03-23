@@ -32,11 +32,6 @@ rel='stylesheet' type='text/css'>
 	input, button {
 	color: black;
 	}
-	.icons{
-        position: absolute;
-        margin-top: 60px;
-        margin-left: -132px;
-      }
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.3.min.js"><\/script>')</script>
@@ -128,10 +123,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <span>Latitude</span> <input type="text" placeholder="(degrees)" value="" id="destinationlatitudeSH">
                         <span>Longitude</span> <input type="text" placeholder="(degrees)" value="" id="destinationlongitudeSH">
                         <br>
+                        <div class="noFloat">
                             <img class="realsize" src="mapmini.gif">
-                            <img class="realsize icons" style="z-index: 2;margin-top: 64;margin-left: -128;"
+                            <img class="realsize icons" style="position: absolute; top: 54px; left: 118px;"
                             src="icon.png" id="initialicon">
-                            <img class="realsize icons" src="icon.png" id="destinationicon" style="margin-top: 64;margin-left: -128;">
+                            <img class="realsize icons" src="icon.png" 
+                            style="position: absolute; top: 54px; left: 118px;"
+                            id="destinationicon">
+                        </div>
                         <br><br>
                         <button onclick="subhop()">Calculate!</button><br>
                         <p id="resultSH">&nbsp;</p>
@@ -221,10 +220,10 @@ subhop = function(){
   document.getElementById("resultSH").innerHTML = "Delta-v: <b>" + totalDeltav + " m/s</b> ("+Math.round((totalDeltav/3359.84)*100)+"% of an orbital mission)";
 //optional:  distance (not implemented)
 //graphics:
-  var xcoord1 = (longitude1 - 180)*256/360 - 34;
-  var ycoord1 = (90 - latitude1)*128/180 + 5;
-  var xcoord2 = (longitude2 - 180)*256/360 - 34;
-  var ycoord2 = (90 - latitude2)*128/180 + 5;
+  var xcoord1 = (longitude1 - 180)*256/360 - 4;
+  var ycoord1 = (90 - latitude1)*128/180 - 4;
+  var xcoord2 = (longitude2 - 180)*256/360 - 4;
+  var ycoord2 = (90 - latitude2)*128/180 - 4;
   document.getElementById("initialicon").style.marginLeft = xcoord1+"px";
   document.getElementById("initialicon").style.marginTop = ycoord1+"px";
   document.getElementById("destinationicon").style.marginLeft = xcoord2+"px";
