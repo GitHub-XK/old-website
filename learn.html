@@ -220,10 +220,10 @@ subhop = function(){
   document.getElementById("resultSH").innerHTML = "Delta-v: <b>" + totalDeltav + " m/s</b> ("+Math.round((totalDeltav/3359.84)*100)+"% of an orbital mission)";
 //optional:  distance (not implemented)
 //graphics:
-  var xcoord1 = (longitude1 - 180)*256/360 - 4;
-  var ycoord1 = (90 - latitude1)*128/180 - 4;
-  var xcoord2 = (longitude2 - 180)*256/360 - 4;
-  var ycoord2 = (90 - latitude2)*128/180 - 4;
+  var xcoord1 = (longitude1 - 180)*256/360 + 128;
+  var ycoord1 = (90 - latitude1)*128/180 - 32;
+  var xcoord2 = (longitude2 - 180)*256/360 + 128;
+  var ycoord2 = (90 - latitude2)*128/180 - 32;
   document.getElementById("initialicon").style.marginLeft = xcoord1+"px";
   document.getElementById("initialicon").style.marginTop = ycoord1+"px";
   document.getElementById("destinationicon").style.marginLeft = xcoord2+"px";
