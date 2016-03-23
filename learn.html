@@ -105,32 +105,34 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </div>
 	<div class="rowR">
             <div class="blackX col-9 col-m-8">
-                <div class="blackX col-3 col-m-3">
-                    <div class="darkYellow" style="padding: 10px;">
+                <div class="black floatL">
+                    <div class="darkYellow pad15">
                         <h3>The Rocket Equation</h3><br>
                         <p style="padding:0;">Mass ratio:</p>
                         <input type="text" placeholder="Start mass divided by end mass" value="" id="massratioRE">
                         <p style="padding:0;">Exhaust velocity: (m/s)</p>
                         <input type="text" placeholder="Velocity of the rocket exhaust" value="" id="exhaustvelocityRE">
-                        <input type="checkbox" id="ispcheckboxRE">use Isp instead
+                        &nbsp;
+                        <input type="checkbox" id="ispcheckboxRE"> &nbsp; use Isp instead
                         <br><br>
                         <button onclick="rocket()">Calculate!</button><br>
                         <p style="padding:0;" id="resultRE">.</p>
                     </div>
                 </div>
                 <br>
-                <div class="blackX col-6 col-m-5">
-                    <div class="darkYellow">
+                <div class="black floatL">
+                    <div class="darkYellow pad15">
                         <h3>Suborbital Hop</h3><br>
                         <p style="padding:0;">Initial location:</p>
-                        Latitude <input type="text" placeholder="(degrees)" value="" id="latitudeSH">
+                        Latitude <input type="text" placeholder="(degrees)" value="" id="latitudeSH"><br>
                         Longitude <input type="text" placeholder="(degrees)" value="" id="longitudeSH">
                         <p style="padding:0;">Destination location:</p>
                         Latitude <input type="text" placeholder="(degrees)" value="" id="destinationlatitudeSH">
                         Longitude <input type="text" placeholder="(degrees)" value="" id="destinationlongitudeSH">
-                            <img src="mapmini.gif" width="256" height="128">
-                            <img src="icon.png" id="initialicon" width="9" height="9">
-                            <img src="icon.png" id="destinationicon" width="9" height="9">
+                        <br>
+                            <img class="realsize" src="mapmini.gif" width="256" height="128">
+                            <img class="realsize" src="icon.png" id="initialicon" width="9" height="9">
+                            <img class="realsize" src="icon.png" id="destinationicon" width="9" height="9">
                         <br><br>
                         <button onclick="subhop()">Calculate!</button><br>
                         <p id="resultSH">.</p>
