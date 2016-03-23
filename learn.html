@@ -241,18 +241,21 @@ tether = function(){
   var strength = Number(document.getElementById("material").value);
   if(surfacecheck){
     startaltitude = moonRadius;
+    document.getElementById("start").value = moonRadius/1000;
   }
   else{
     startaltitude = startaltitude * 1000;
   };
   if(eml1check){
     endaltitude = eml1DistanceFromTheMoon;
+    document.getElementById("end").value = eml1DistanceFromTheMoon/1000;
   }
   else{
     endaltitude = endaltitude * 1000;
   };
   if(zyloncheck){
     strength = 3720000;
+    document.getElementById("material").value = 3720000;
   }
   var SCALEstart = startaltitude/EMdistance;
   var SCALEend = endaltitude/EMdistance;
