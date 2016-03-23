@@ -224,10 +224,10 @@ subhop = function(){
   var ycoord1 = (90 - latitude1)*128/180 - 32;
   var xcoord2 = (longitude2 - 180)*256/360 + 128;
   var ycoord2 = (90 - latitude2)*128/180 - 32;
-  document.getElementById("initialicon").style.marginLeft = xcoord1+"px";
-  document.getElementById("initialicon").style.marginTop = ycoord1+"px";
-  document.getElementById("destinationicon").style.marginLeft = xcoord2+"px";
-  document.getElementById("destinationicon").style.marginTop = ycoord2+"px";
+  document.getElementById("initialicon").style.left = xcoord1+"px";
+  document.getElementById("initialicon").style.top = ycoord1+"px";
+  document.getElementById("destinationicon").style.left = xcoord2+"px";
+  document.getElementById("destinationicon").style.lop = ycoord2+"px";
 };
 tether = function(){
   var surfacecheck = document.getElementById("surface").checked;
