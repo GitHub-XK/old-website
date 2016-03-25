@@ -46,7 +46,8 @@ tether = function(){
   };
   var resultLE = integralCallInitializer(startaltitude,endaltitude);
   var resultLE2 = Math.pow(Math.E,resultLE/strength);
-  var warnings = "<b></b>";
+  var warnings = "";
+  /*
   if(Math.abs(startaltitude) < 1737000){
     warnings += "It seems like your elevator starts inside the Moon! Are you sure that is what you want? ";
   };
@@ -56,6 +57,7 @@ tether = function(){
   if(endaltitude > eml1DistanceFromTheMoon){
     warnings += "Your end altitude is beyond EML1! If you think that will give you sensible result, you are wrong. ";
   };
+  */
   resultLE = Math.round(resultoLE*100)/100;
   resultLE2 = Math.round(resultLE2*1000)/1000;
   document.getElementById("resultLE").innerHTML = "Acceleration potential: <b>"+resultLE+"</b> Yuri <br>"+warnings;
