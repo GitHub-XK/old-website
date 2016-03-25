@@ -54,6 +54,7 @@ tether = function(){
   resultLE2 = Math.round(resultLE2*1000)/1000;
   document.getElementById("resultLE").innerHTML = "Acceleration potential: <b>"+resultLE+"</b> Yuri";
   document.getElementById("resultLE2").innerHTML = "Taper ratio: <b>"+resultLE2+"</b>";
+  alert("trying to find where it fails");
   if(masscheck){
     var iter = 10000 //change to taste
         alert("debugging, remember to remove this from the final code");
