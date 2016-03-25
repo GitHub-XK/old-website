@@ -22,6 +22,7 @@ tether = function(){
   var surfacecheck = document.getElementById("surface").checked;
   var eml1check = document.getElementById("eml1").checked;
   var zyloncheck = document.getElementById("zylon").checked;
+  var masscheck = document.getElementById("tethermass").checked;
   var startaltitude = Number(document.getElementById("start").value);
   var endaltitude = Number(document.getElementById("end").value);
   var strength = Number(document.getElementById("material").value);
@@ -54,10 +55,8 @@ tether = function(){
   resultLE2 = Math.round(resultLE2*1000)/1000;
   document.getElementById("resultLE").innerHTML = "Acceleration potential: <b>"+resultLE+"</b> Yuri";
   document.getElementById("resultLE2").innerHTML = "Taper ratio: <b>"+resultLE2+"</b>";
-  alert("trying to find where it fails");
   if(masscheck){
     var iter = 10000 //change to taste
-        alert("debugging, remember to remove this from the final code");
     var step = (endaltitude - startaltitude)/iter;
     var payloadMass = Number(document.getElementById("payloadmass").value);
     var safety = Number(document.getElementById("safety").value);
