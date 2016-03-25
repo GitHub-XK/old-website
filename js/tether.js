@@ -43,17 +43,22 @@ tether = function(){
   if(zyloncheck){
     strength = 3720000;
     document.getElementById("material").value = 3720000;
-  }
-  var SCALEstart = startaltitude/EMdistance;
-  var SCALEend = endaltitude/EMdistance;
-  var jStMaSsRaTiO = moonGparameter/(moonGparameter + earthGparameter);
-  var firstPoint = integralCall(SCALEstart,jStMaSsRaTiO);
-  var secondPoint = integralCall(SCALEend,jStMaSsRaTiO);
+  };
   var resultLE = integralCallInitializer(startaltitude,endaltitude);
   var resultLE2 = Math.pow(Math.E,resultLE/strength);
-  resultLE = Math.round(resultLE*100)/100;
+  var warnings = "<b></b>";
+  if(Math.abs(startaltitude) < 1737000){
+    warnings += "It seems like your elevator starts inside the Moon! Are you sure that is what you want? ";
+  };
+  if(startaltitude > endaltitude){
+    warnings += "It seems like your star and end altitude values are wrong! Try to flip them. ";
+  };
+  if(endaltitude > eml1DistanceFromTheMoon){
+    warnings += "Your end altitude is beyond EML1! If you think that will give you sensible result, you are wrong. ";
+  };
+  resultLE = Math.round(resultoLE*100)/100;
   resultLE2 = Math.round(resultLE2*1000)/1000;
-  document.getElementById("resultLE").innerHTML = "Acceleration potential: <b>"+resultLE+"</b> Yuri";
+  document.getElementById("resultLE").innerHTML = "Acceleration potential: <b>"+resultLE+"</b> Yuri <br>"+warnings;
   document.getElementById("resultLE2").innerHTML = "Taper ratio: <b>"+resultLE2+"</b>";
   if(masscheck){
     var iter = 10000 //change to taste
