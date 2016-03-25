@@ -162,10 +162,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <input type="text" placeholder="(Yuri)" value="" id="material">
                         <input type="checkbox" id="zylon">use Zylon
                         <br><br>
+                        <input type="checkbox" id="tethermass">I want the mass of the elevator too!
+                        <p>Parameters required to calculate elevator mass:</p>
+                        <p>Payload mass:</p>
+                        <input type="text" placeholder="(kg)" value="" id="payloadmass">
+                        <p>Safety factor:</p>
+                        <input type="text" value="1.1" id="safety"><br><br>
                         <button onclick="tether()">Calculate!</button>
                         <script src="js/tether.js"></script>
                         <p id="resultLE">&nbsp;</p>
                         <p id="resultLE2">&nbsp;</p>
+                        <p id="resultLE3">&nbsp;</p>
                     </div>
                 </div>
         <!--not completed
