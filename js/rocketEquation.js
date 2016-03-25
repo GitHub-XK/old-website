@@ -17,9 +17,6 @@ toXYZ = function(long,lat){//transform coordinates from angular to cartesian
   z = Math.sin(rad(lat)) * moonRadius;
   return [x,y,z];
 };
-integralCall = function(dist,jst){
-  return - dist*dist/2 + dist * (1 - jst) - jst/Math.abs(dist) + (1 - jst)/(-Math.abs(dist - 1));
-};
 //main functions:
 rocket = function(){
   var ispcheck = document.getElementById("ispcheckboxRE").checked;
