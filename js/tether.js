@@ -15,6 +15,9 @@ integralCallInitializer = function(start,end){
   var secondPoint = integralCall(SCALEend,jStMaSsRaTiO);
   return (secondPoint - firstPoint) * (earthGparameter + moonGparameter)/EMdistance;
 };
+integralCall = function(dist,jst){
+  return - dist*dist/2 + dist * (1 - jst) - jst/Math.abs(dist) + (1 - jst)/(-Math.abs(dist - 1));
+};
 tether = function(){
   var surfacecheck = document.getElementById("surface").checked;
   var eml1check = document.getElementById("eml1").checked;
