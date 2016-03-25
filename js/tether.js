@@ -65,6 +65,7 @@ tether = function(){
       resultLE3 += step * maxLoadCrossSectionDensity * Math.pow(Math.E,integralCallInitializer(startaltitude,i)/strength);
     };
     resultLE3 = Math.round(resultLE3*100)/100;
+    alert(resultLE3+" debugging, remember to remove this from the final code");
     document.getElementById("resultLE3").innerHTML = "Elevator mass: <b>"+resultLE3+" kg</b>";
   };
 };
