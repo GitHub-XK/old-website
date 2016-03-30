@@ -132,6 +132,11 @@ textarea {
     .col-11 {width: 91.66%;}
     .col-12 {width: 100%;}
 }
+@media only screen and (min-width: 850px) {
+	nav {width: 580px;}
+	nav ul:first-child li {
+	    padding: 6px 20px;}
+}
 @media only screen and (min-width:1000px) {
 	html {
 	background: #000 url(http://www.moonwards.com/img/tycho7color.png) no-repeat fixed 0 0;
@@ -178,6 +183,7 @@ textarea {
 	.tooltipBMR:hover span {
 		left: -70px;
 	}
+	
 }
 /*===========================================================================================================
                                                  HEADER
@@ -247,7 +253,7 @@ cursor: pointer;
 }
 .numbers:hover, .numbers1:hover {
 	color: rgba(255,255,60,1);
-	background-color: rgba(200, 100, 50, 1);
+	background-color: rgba(250, 0, 250, 1);
 }
 .issues, .issues1 {
 background-color: rgba(100,0, 200, 1);
@@ -307,7 +313,7 @@ cursor: pointer;
 	vertical-align: top;
 }
 .black {
-	background-color: rgba(0, 0, 0, 0.6);
+	background-color: rgba(0, 0, 0, 0.7);
 	color: rgba(255, 255, 255, 1);
 	text-align: left;
 	vertical-align: top;
@@ -326,6 +332,14 @@ cursor: pointer;
 	text-align: left;
 	vertical-align: top;
 }
+.black85 {
+	background-color: rgba(0, 0, 0, 0.75);
+	color: rgba(255, 255, 255, 1);
+	text-align: left;
+	vertical-align: top;
+	}
+
+	
 .pad15 {
 	padding: 15px;
 }
@@ -346,7 +360,7 @@ cursor: pointer;
 }
 .to-top {
 	border-radius: 10px;
-	line-height: 0.8em;
+	line-height: 0.7em;
 	background-color: rgba(50, 50, 0, 0.7);
 	text-align: center;
 	font-weight: 600;
@@ -356,7 +370,7 @@ cursor: pointer;
 ===============================================================================================================*/
 		h3, h4 {
 			border-radius: 30px;
-			background-color: rgba(1, 1, 1, 0.6);
+			background-color: rgba(1, 1, 1, 0.7);
 			color: rgba(255, 255, 255, 1);
 			font-weight: 400;
 			line-height: 1.2em;
@@ -366,7 +380,7 @@ cursor: pointer;
 		}
 		h2 {
 			border-radius: 30px;
-			background-color: rgba(1, 1, 1, 0.6);
+			background-color: rgba(1, 1, 1, 0.7);
 			color: rgba(255, 255, 255, 1);
 			font-weight: 200;
 			font-size: 1.5em;
@@ -376,7 +390,7 @@ cursor: pointer;
 		}
 		h1 {
 			border-radius: 30px;
-			background-color: rgba(1, 1, 1, 0.6);
+			background-color: rgba(1, 1, 1, 0.7);
 			color: rgba(255, 255, 255, 1);
 			font-weight: 200;
 			font-size: 2em;
@@ -389,7 +403,7 @@ cursor: pointer;
 		}
 		p.intro {
 			border-radius: 30px;
-			background-color: rgba(1, 1, 1, 0.6);
+			background-color: rgba(1, 1, 1, 0.7);
 			color: rgba(255, 255, 255, 1);
 			font-weight: 300;
 			line-height: 1.3em;
@@ -403,7 +417,7 @@ cursor: pointer;
 		}
 		.label {
 			border-radius: 20px;
-			background-color: rgba(0, 0, 0, 0.6);
+			background-color: rgba(0, 0, 0, 0.7);
 			color: rgba(255, 255, 0, 1);
 			text-align: center;
 			padding: 10px;
@@ -420,7 +434,7 @@ cursor: pointer;
 table {
 	border-radius: 20px;
 	color: rgba(255, 255, 255, 1);
-	background-color: rgba(1, 1, 1, 0.6);
+	background-color: rgba(1, 1, 1, 0.7);
 }
 td {
 	padding: 10px;
@@ -531,9 +545,6 @@ nav {
 nav:hover {
   background-color: rgba(50, 50, 0, 1);
 }
-nav a:hover {
-	background-color: rgba(0, 0, 0, 0);
-}
 nav ul:first-child {
 	font-weight: 600;
 	font-size: 16px;
@@ -547,7 +558,7 @@ nav ul:first-child {
 nav ul:first-child li {
   display: inline;
   position: relative;
-  padding: 0 7px;
+  padding: 6px;
 }
 nav ul ul{
   display: none;
@@ -555,14 +566,14 @@ nav ul ul{
 nav li:hover ul {
   display: block;
   position: absolute;
-  top: 100%;
+  top: 30px;
   left: -10px;
   background-color: rgba(50, 50, 0, 1);
   font-size: 13px;
 }
 nav li:hover ul li {
   display: block;
-  padding: 5px;
+  padding: 6px 15px;
 }
 
 /* ==========================================================================
