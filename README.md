@@ -1,7 +1,8 @@
 # moonwards
-Moonwards is a project to build a highly detailed, realistic, virtual lunar colony that can be fully interacted with in a 3d digital environment. 
-It starts from now and goes step by step to the point when the Moon is both independent and a major economic force. It brings real space-faring alive in people's minds by showing them what it would be like in a way they can appreciate. It will build a 
-It gives the issue new weight by giving people the knowledge they need to consider what it would mean. 
+Moonwards is a project to build a virtual lunar colony with the highest possible scientific and technological realism, and all the detail needed to make it feel real for a user. 
+The colony's development will be traced from its origin to when the Moon is both independent and a major economic force. The goal is to bring space-faring alive in people's minds by showing them what it would be like through an intuitive medium. This is a prerequisite for considering the true importance of space exploration in the modern world. To bring home how great are the possibilities, how fundamentally different it is from our past, people need to have a feel for it.
+
+The planned development platform is <a href="https://unity3d.com/get-unity">Unity</a>. Models are being built in Blender. The website will be developed to include a series of JavaScript canvases that demonstrate the principles of space flight and living on the Moon. The project needs people who can develop or vet colony designs for accuracy and realism, create educational content for the website, build models, and create the game in Unity. 
 
 
 People arriving here interested in collaborating may be new to GitHub. 
