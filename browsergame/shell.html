@@ -1,0 +1,28 @@
+<!DOCTYPE htm>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+  </style>
+</head>
+<body bgcolor="#000000" style="color: #FF9900;">
+<h1>Moonwards <sub><i>The Game</i> <small>( hopefully no Copyright violated)</small></sub></h1>
+<p>(Crappy graphics by intention, to scare of non-nerds :p)</p>
+<p id="timing">0</p>
+<p>Start typing commands!</p>
+<input type="text" value="" id="command">
+<script>
+	//This is not an elegant solution, replacement pending (really bad code)
+	for (var i = 0; i < 20; i++){
+		document.write("<p id=\""+"c"+i+"\"></p>");
+	};
+</script>
+<!--Graphical test area, not implemented, because, who needs a GUI anyway?--->
+<div id="graf">
+</div>
+</body>
+<!---The following scripts are for handling basic events--->
+<script type="text/javascript" src="core.js"></script>
+<script type="text/javascript" src="scen.js"></script>
+<script type="text/javascript" src="eventchain.js"></script>
+</html>
