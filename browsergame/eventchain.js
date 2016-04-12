@@ -34,6 +34,9 @@ thepage = function(stuff){
 	else if(stuff[0] === "c"){
 	}
 	else if(stuff[0] === "d"){
+		if(stuff === "delta" | stuff === "deltav" | stuff === "delta-v" | stuff === "dv"){
+			simplePrint("Litterary \"change in velocity\", the limiting property of a spacecraft<br><br>Some values (m/s):<br><br>Earth-LEO: ~9500<br>LEO-LTO: 3120<br>LTO-LunarEscape: 140<br>LunarEscape-LMO: 680<br>LMO-Moon: 1720");
+		};
 	}
 	else if(stuff[0] === "e"){
 		if(stuff === "exit"){
@@ -51,7 +54,7 @@ thepage = function(stuff){
 	}
 	else if(stuff[0] === "i"){
 		if(stuff === "info"){
-			simplePrint("I Am So Meta Even This Acronym.");
+			simplePrint("I'm So Meta, Even This Acronym.");
 		};
 	}
 	else if(stuff[0] === "j"){
@@ -64,6 +67,9 @@ thepage = function(stuff){
 		};
 	}
 	else if(stuff[0] === "m"){
+		if(stuff === "moon"){
+			simplePrint("<img src=\"images/moon.gif\">");
+		};
 	}
 	else if(stuff[0] === "n"){
 	}
@@ -76,6 +82,9 @@ thepage = function(stuff){
 	else if(stuff[0] === "r"){
 	}
 	else if(stuff[0] === "s"){
+		if(stuff === "short"){
+			simplePrint("i for info<br>dv for delta-v");
+		};
 	}
 	else if(stuff[0] === "t"){
 	}

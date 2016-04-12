@@ -48,7 +48,7 @@ tolk = function(com){
 //		place = "build";
 		//parameter later
 	}
-	else if(com === "info"){
+	else if(com === "info" | com === "i"){
 		if(compara === ""){
 			printi("info about...");
 //			customPrompt = true;
