@@ -12,7 +12,7 @@ printi = function(stu){
 //		alert(queue);
 	}
 	else{
-		buzzy=1;
+		buzzy=1; //FIXME
 		c[0] = stu;
 		telluty = 0;
 		for(i = 0;i < stu.length;i++){
