@@ -3,7 +3,7 @@
   Documentation sucks!
 */
 customPrompt = false;
-list = ["about","budget","build","clear","documentation","help","info"];
+list = ["about","budget","build","clear","documentation","exit","help","info <thing>"];
 tolk = function(com){
 	compara = "";
 	var mello = 0;
@@ -44,17 +44,26 @@ tolk = function(com){
 	else if(com === "build"){
 
 		printi("Build a...");
-		customPrompt = true;
-		place = "build";
+//		customPrompt = true;
+//		place = "build";
 		//parameter later
 	}
 	else if(com === "info"){
-		printi("info about...");
-		customPrompt = true;
-		place = "info";
+		if(compara === ""){
+			printi("info about...");
+//			customPrompt = true;
+//			place = "info";
+		}
+		else{
+			//alert(compara);
+			thepage(compara);
+		};
 	}
 	else if(com === "documentation"){
 		simplePrint("PLEASE NO!<br><br>Filler<br>Filler<br>Filler...");
+	}
+	else if(com === "exit" | com === "quit"){
+		simplePrint("<a href=\"http://www.moonwards.com\">Exit the game and go back.</a>");//URL to main site
 	}
 	else{
 		printi("Unknown command, try \"help\"");
