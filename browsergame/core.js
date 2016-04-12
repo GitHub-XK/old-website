@@ -62,3 +62,20 @@ function trykk(e){
 		};
 	};
 };
+
+function lsTest(){
+    var test = 'test';
+    try {
+        localStorage.setItem(test, test);
+        localStorage.removeItem(test);
+        return true;
+    } catch(e) {
+        return false;
+    }
+}
+
+if(lsTest() === true){
+    // available
+}else{
+    alert("Ops! You do not have localStorage enabled! You can still play the game, but not make save files.");
+}

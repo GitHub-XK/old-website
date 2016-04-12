@@ -22,7 +22,7 @@
   tolk
 */
 customPrompt = false;
-list = ["about","budget","build","clear","documentation","exit","help","info <thing>"];
+list = ["about","budget","build","clear","documentation","exit","help","info <thing>","load","save"];
 tolk = function(com){
 	compara = "";
 	var mello = 0;
@@ -83,6 +83,12 @@ tolk = function(com){
 	else if(com === "exit" | com === "quit"){
 		simplePrint("<a href=\"http://www.moonwards.com\">Exit the game and go back.</a>");//URL to main site
 	}
+	else if(com === "save"){
+		localStorage.setItem(compara,whut); //no decided file format yet
+	};
+	else if(com === "load"){
+		localStorage.getItem(compara);
+	};
 	else{
 		printi("Unknown command, try \"help\"");
 	};
