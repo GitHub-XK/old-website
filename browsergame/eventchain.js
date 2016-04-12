@@ -8,27 +8,28 @@
   <call event>
 };
 
-logic "bombs"?
-
 */
 place="";
 success=1;
 budget=1000;
 storyfind = function(place){
 	if(place === "build"){
-		printi(command+" built!");//not really yet
+		printi(command+" built!");//not really buil yet
 	};
 };
 
-thepage = function(stuff){
+thepage = function(stuff){ //this is the giant info page function. Put stuff here.
 	if(stuff[0] === "a"){
 		if(stuff === "about"){
-			simplePrint("Command that prints the credits.");
+			simplePrint("Command that prints the credits.<br><img src=\"images/hoh.gif\">");
 		};
 	}
 	else if(stuff[0] === "b"){
 		if(stuff === "build"){
 			simplePrint("Command to construct something<br>Syntax: build <thing>");
+		}
+		else if(stuff === "budget"){
+			simplePrint("Role not decided yet");
 		};
 	}
 	else if(stuff[0] === "c"){
@@ -69,6 +70,7 @@ thepage = function(stuff){
 	else if(stuff[0] === "m"){
 		if(stuff === "moon"){
 			simplePrint("<img src=\"images/moon.gif\">");
+			simplePrint("All your Moon are belong to us!");
 		};
 	}
 	else if(stuff[0] === "n"){
@@ -78,6 +80,9 @@ thepage = function(stuff){
 	else if(stuff[0] === "p"){
 	}
 	else if(stuff[0] === "q"){
+		if(stuff === "quit"){
+			simplePrint("Identical to \"exit\"");
+		};
 	}
 	else if(stuff[0] === "r"){
 	}
@@ -87,6 +92,9 @@ thepage = function(stuff){
 		};
 	}
 	else if(stuff[0] === "t"){
+		if(stuff === "tilde"){
+			simplePrint("~");
+		};
 	}
 	else if(stuff[0] === "u"){
 	}
