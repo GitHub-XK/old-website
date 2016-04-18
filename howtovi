@@ -42,9 +42,11 @@ Undo
 u undoes the last command, U will 'fix a whole line', returning it to the state before you started altering it
 ctrl r to redo commands
 
-Paste
+Copy and Paste
 when you delete something it is stored (that's why you can undo) so it can be put somewhere else. 
 p is 'put', or 'paste', it will place the last thing deleted where the cursor is. When pasting lines it puts them on a new line below the current cursor location.
+v puts you in visual mode, in which you can highligt text by moving around the cursor
+y is 'yank', which functions like copy
 
 Editing Command Mode 
 r replaces the character under the cursor with the next character you type 
@@ -68,3 +70,8 @@ if you tack on /g at the end, that means global, and all instances will be repla
 :#,#s/old/new/g - change all instances in lines # through #
 :%s/old/new/g - change all instances in whole doc
 :%s/old/new/gc - find every instance, prompt with each with option to substitute or skip
+
+Execute external command 
+:! then the command, like ls, then enter
+
+
