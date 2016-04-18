@@ -1,9 +1,28 @@
 //tolkning og rammeverdiar
 /*reseved words:
-  Documentation sucks!
+  Documentation sucks! But here are some words you can not use (incomplete):
+
+  about
+  budget
+  build
+  c     <- I know, I know, bad habit.
+  com
+  compara
+  hjelper
+  list
+  mello
+  now
+  place
+  places
+  printi
+  simplePrint
+  storyfind
+  thepage
+  times
+  tolk
 */
 customPrompt = false;
-list = ["about","budget","build","clear","documentation","help","info"];
+list = ["about","budget","build","clear","documentation","exit","help","info <thing>","load","save"];
 tolk = function(com){
 	compara = "";
 	var mello = 0;
@@ -32,8 +51,7 @@ tolk = function(com){
 		printi(helper);
 	}
 	else if(com === "budget"){
-		printi("$$$ Currently not implemented :p "); //placeholder
-		printi("FIXME");
+		printi("Budget: "+budget+"<br>$$$ Currently not implemented :p "); //placeholder
 	}
 	else if(com === "about" | com === "credits"){
 		printi("Created by Sigvart Brendberg, 2016<br>\"My God! It is full of bugs!\"<br>\"You say good games can not be made with crappy code?\"<br>\"You are rigth!\"");
@@ -44,24 +62,42 @@ tolk = function(com){
 	else if(com === "build"){
 
 		printi("Build a...");
-		customPrompt = true;
-		place = "build";
+//		customPrompt = true;
+//		place = "build";
 		//parameter later
 	}
-	else if(com === "info"){
-		printi("info about...");
-		customPrompt = true;
-		place = "info";
+	else if(com === "info" | com === "i"){
+		if(compara === ""){
+			printi("info about...");
+//			customPrompt = true;
+//			place = "info";
+		}
+		else{
+			//alert(compara);
+			thepage(compara);
+		};
 	}
 	else if(com === "documentation"){
 		simplePrint("PLEASE NO!<br><br>Filler<br>Filler<br>Filler...");
 	}
+	else if(com === "exit" | com === "quit"){
+		simplePrint("<a href=\"http://www.moonwards.com\">Exit the game and go back.</a>");//URL to main site
+	}
+	else if(com === "save"){
+		localStorage.setItem(compara,whut); //no decided file format yet
+	};
+	else if(com === "load"){
+		localStorage.getItem(compara);
+	};
 	else{
 		printi("Unknown command, try \"help\"");
 	};
 };
 now = 0;
 times = setInterval(function(){
-now++;
-document.getElementById("timing").innerHTML = now;
+	now++;
+	document.getElementById("timing").innerHTML = now;
+	if(now%200 ===0){
+		budget += 1000;
+	};
 },1000);
