@@ -13,6 +13,7 @@ place="";
 success=1;
 budget=1000;
 growth = 1000;
+local = true;
 storyfind = function(place){
 	if(place === "build"){
 		printi(command+" built!");//not really buil yet
@@ -125,11 +126,11 @@ thepage = function(stuff){ //this is the giant info page function. Put stuff her
 
 //notifications:
 
-note = function(text){
-	document.getElementById("note").innerHTML = "Notification<br>"+text;
+note = function(text,duration){
+	document.getElementById("note").innerHTML = text;
 	setTimeout(function(){
 		document.getElementById("note").innerHTML = "";
-	},10000);
+	},duration);
 };
 
 printScience = function(){
@@ -158,8 +159,9 @@ science = function(){
 		if(RcryoProg === 100){
 			RcryoState = 2;
 			RcryoString = "<a onclick=\"Rcryo()\" style=\"color: #00ff00\">Cryogenic fuels</a>";
-			note("<a style=\"color: #00ff20\" onclick=\"tolk(\\\"rd\\\")\">Cryogenic fuels</a> research is completed.");
+			note("Notification:<br><a style=\"color: #00ff20\" onclick=\"tolk(\\\"rd\\\")\">Cryogenic fuels</a> research is completed.",10000);
 			Rcryo2State = 0;
+			technology[0]=true;
 		}
 		else{
 			RcryoString = "<a onclick=\"Rcryo()\" style=\"color: #0000ff\">Cryogenic fuels</a> <a style=\"color: #ff0000\">"+RcryoProg+"%</a>";
@@ -167,10 +169,12 @@ science = function(){
 	};
 	if(RnukeState === 1){
 		RnukeProg++;
+		nukeAccident("develop");
 		if(RnukeProg === 100){
 			RnukeState = 2;
 			RnukeString = "<a onclick=\"Rnuke()\" style=\"color: #00ff00\">Nuclear thermal rockets</a>";
-			note("<a style=\"color: #00ff20\" onclick=\"tolk(\\\"rd\\\")\">Nuclear thermal rockets</a> research is completed.");
+			note("Notification:<br><a style=\"color: #00ff20\" onclick=\"tolk(\\\"rd\\\")\">Nuclear thermal rockets</a> research is completed.",10000);
+			technology[1]=true;
 		}
 		else{
 			RnukeString = "<a onclick=\"Rnuke()\" style=\"color: #0000ff\">Nuclear thermal rockets</a> <a style=\"color: #ff0000\">"+RnukeProg+"%</a>";
@@ -181,7 +185,8 @@ science = function(){
 		if(Rcryo2Prog === 100){
 			Rcryo2State = 2;
 			Rcryo2String = "<a onclick=\"Rcryo2()\" style=\"color: #00ff00\">Cryogenic storage</a>";
-			note("<a style=\"color: #00ff20\" onclick=\"tolk(\\\"rd\\\")\">Cryogenic storage</a> research is completed.");
+			note("Notification:<br><a style=\"color: #00ff20\" onclick=\"tolk(\\\"rd\\\")\">Cryogenic storage</a> research is completed.",10000);
+			technology[3]=true;
 		}
 		else{
 			Rcryo2String = "<a onclick=\"Rcryo2()\" style=\"color: #0000ff\">Cryogenic storage</a> <a style=\"color: #ff0000\">"+Rcryo2Prog+"%</a>";
@@ -192,11 +197,28 @@ science = function(){
 		if(RrockProg === 100){
 			RrockState = 2;
 			RrockString = "<a onclick=\"Rrock()\" style=\"color: #00ff00\">Regolith melting</a>";
-			note("<a style=\"color: #00ff20\" onclick=\"tolk(\\\"rd\\\")\">Regolith melting</a> research is completed.");
+			note("Notification:<br><a style=\"color: #00ff20\" onclick=\"tolk(\\\"rd\\\")\">Regolith melting</a> research is completed.",10000);
+			RfibrState = 0;
+			technology[4]=true;
 		}
 		else{
 			RrockString = "<a onclick=\"Rrock()\" style=\"color: #0000ff\">Regolith melting</a> <a style=\"color: #ff0000\">"+RrockProg+"%</a>";
 		};
+	};
+	if(RfibrState === 1){
+		RfibrProg++;
+		if(RfibrProg === 100){
+			RfibrState = 2;
+			RfibrString = "<a onclick=\"fibr()\" style=\"color: #00ff00\">Basal fibre</a>";
+			note("Notification:<br><a style=\"color: #00ff20\" onclick=\"tolk(\\\"rd\\\")\">Basal fibre</a> research is completed.",10000);
+			technology[4]=true;
+		}
+		else{
+			RrockString = "<a onclick=\"Rrock()\" style=\"color: #0000ff\">Regolith melting</a> <a style=\"color: #ff0000\">"+RrockProg+"%</a>";
+		};
+	};
+	if(command === "rd"){
+		tolk("rd");
 	};
 };
 
@@ -219,6 +241,7 @@ RnukeProg = 0;
 RnukeString = "<a onclick=\"Rnuke()\" style=\"color: #aaaaaa\">Nuclear thermal rockets</a> Cost: 2000";
 Rnuke = function(){
 	if(RnukeState === 0){
+		nukeAccident("initi");
 		RnukeState = 1;
 		budget-=2000;
 		budgetFresh(-2000);
