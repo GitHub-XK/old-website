@@ -80,17 +80,20 @@ tolk = function(com){
 	else if(com === "exit" | com === "quit"){
 		simplePrint("<a href=\"http://www.moonwards.com\">Exit the game and go back.</a>");//URL to main site
 	}
-	else if(com === "save"){
+	else if(com === "save" && local === true){
 		alert("Savefiles are not implemented yet");
-		localStorage.setItem(compara,whut); //no decided file format yet
+		localStorage.setItem(compara,"whut"); //no decided file format yet
 	}
-	else if(com === "load"){
+	else if(com === "load" && local === true){
 		localStorage.getItem(compara);
+	}
+	else if(com === "nosave"){
+		local = false;
 	}
 	else if(com === "rd"){
 			clear();
 			printScience();
-			simplePrint("Key: <a style=\"color: #aaaaaa\">Innactive</a>, <a style=\"color: #0000ff\">In development</a>, <a style=\"color: #00ff20\">Complete</a>");
+			simplePrint("Key: <a style=\"color: #aaaaaa\">Innactive</a>, <a style=\"color: #0000ff\">In development</a>, <a style=\"color: #00ff20\">Complete</a><br>=========================<br>");
 			simplePrint("<b>Welcome to Research and Development!</b><br>Click to toggle different areas of research.");
 	}
 	else{
