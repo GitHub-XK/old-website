@@ -34,6 +34,7 @@ printi = function(stu){
 simplePrint = function(ting){
 	c[0] = ting;
 	document.getElementById("c0").innerHTML = ting;
+	fresh();
 };
 
 fresh = function(){
@@ -41,6 +42,13 @@ fresh = function(){
 		p(i,c[i-1]);
 	};
 	p(0,"");
+};
+
+clear = function(){
+	for (i=0;i<20;i++){
+		document.getElementById("c"+i).innerHTML = "";
+		c=["","","","","","","","","","","","","","","","","","","",""];
+	};
 };
 
 document.onkeypress = trykk;
