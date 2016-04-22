@@ -87,9 +87,9 @@ tolk = function(com){
 		localStorage.getItem(compara);
 	}
 	else if(com === "rd"){
-			simplePrint(RnukeString);
-			simplePrint(RcryoString);
-			simplePrint("<a style=\"color: #aaaaaa\">Innactive</a> <a style=\"color: #0000ff\">In development</a> <a style=\"color: #00ff00\">Complete</a>");
+			clear();
+			printScience();
+			simplePrint("<a style=\"color: #aaaaaa\">Innactive</a> <a style=\"color: #0000ff\">In development</a> <a style=\"color: #00ff20\">Complete</a>");
 			simplePrint("<b>Welcome to Research and Development!</b><br>Click to toggle different areas of research.");
 	}
 	else{
@@ -101,16 +101,21 @@ times = setInterval(function(){
 	now++;
 	document.getElementById("timing").innerHTML = now;
 	if(now%200 ===0){
-		budget += 1000;
-		budgetFresh();
+		budget += growth;
+		budgetFresh(growth);
 	};
-	if(now%10 === 0){
+	if(now%5 === 0){
 		science();
 	};
 },1000);
 
-budgetFresh = function(){
-	document.getElementById("budget").innerHTML = "Budget: <b><a style=\"color: #ff0000\">"+budget+"</a><b> (updated)";
+budgetFresh = function(change){
+	if(change < 0){
+		document.getElementById("budget").innerHTML = "Budget: <b><a style=\"color: #ff0000\">"+budget+"</a><b> <a style=\"color: #ff0000\">"+change+"</a>";
+	}
+	else{
+		document.getElementById("budget").innerHTML = "Budget: <b><a style=\"color: #ff0000\">"+budget+"</a><b> <a style=\"color: #00ff20\">+"+change+"</a>";
+	};
 	setTimeout(function(){
 		document.getElementById("budget").innerHTML = "Budget: <a style=\"color: #e02200\">"+budget+"</a>";
 	},500);
