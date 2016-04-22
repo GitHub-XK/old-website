@@ -75,6 +75,9 @@ thepage = function(stuff){ //this is the giant info page function. Put stuff her
 		};
 	}
 	else if(stuff[0] === "n"){
+		if(stuff === "ntr"){
+			simplePrint("Nuclear rocket engines. Has a higher Isp than chemical rockets.");
+		};
 	}
 	else if(stuff[0] === "o"){
 	}
@@ -86,8 +89,14 @@ thepage = function(stuff){ //this is the giant info page function. Put stuff her
 		};
 	}
 	else if(stuff[0] === "r"){
+		if(stuff === "rd"){
+			simplePrint("The Research and Development centre<br>Here new technology is invented.");
+		};
 	}
 	else if(stuff[0] === "s"){
+		if(stuff === "save"){
+			simplePrint("Creates a savefile in LocalStorage");
+		};
 		if(stuff === "short"){
 			simplePrint("i for info<br>dv for delta-v");
 		};
@@ -135,6 +144,9 @@ printScience = function(){
 		};
 		if(RcryoState != -1){
 			simplePrint(RcryoString);
+		};
+		if(RfibrState != -1){
+			simplePrint(RfibrString);
 		};
 };
 
@@ -244,3 +256,16 @@ Rcryo2 = function(){
 	};
 };
 
+RfibrState = -1;
+RfibrProg = 0;
+RfibrString = "<a onclick=\"Rfibr()\" style=\"color: #aaaaaa\">Basalt fibres</a> Cost: 2500";
+Rfibr = function(){
+	if(RfibrState === 0){
+		RfibrState = 1;
+		budget-=3000;
+		budgetFresh(-3000);
+		RfibrString = "<a onclick=\"Rfibr()\" style=\"color: #0000ff\">Basalt fibres</a> <a style=\"color: #ff0000\">"+RfibrProg+"%</a>";
+		clear();
+		tolk("rd");
+	};
+};
