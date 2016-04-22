@@ -112,3 +112,44 @@ thepage = function(stuff){ //this is the giant info page function. Put stuff her
 		printi("That was a weird character!");
 	};
 };
+
+//research:
+
+science = function(){
+	if(RcryoState === 1){
+		RcryoProg++;
+		RcryoString = "<a onclick=\"Rcryo()\" style=\"color: #0000ff\">Cryogenic fuels</a> <a style=\"color: #ff0000\">"+RcryoProg+"%</a>";
+	};
+	if(RnukeState === 1){
+		RnukeProg++;
+		RnukeString = "<a onclick=\"Rnuke()\" style=\"color: #0000ff\">Nuclear thermal rockets</a> <a style=\"color: #ff0000\">"+RnukeProg+"%</a>";
+	};
+};
+
+RcryoState = 0;
+RcryoProg = 0;
+RcryoString = "<a onclick=\"Rcryo()\" style=\"color: #aaaaaa\">Cryogenic fuels</a> Cost: 1000";
+Rcryo = function(){
+	if(RcryoState === 0){
+		RcryoState = 1;
+		budget-=1000;
+		budgetFresh();
+		RcryoString = "<a onclick=\"Rcryo()\" style=\"color: #0000ff\">Cryogenic fuels</a> <a style=\"color: #ff0000\">"+RcryoProg+"%</a>";
+		clear();
+		tolk("rd");
+	};
+};
+
+RnukeState = 0;
+RnukeProg = 0;
+RnukeString = "<a onclick=\"Rnuke()\" style=\"color: #aaaaaa\">Nuclear thermal rockets</a> Cost: 2000";
+Rnuke = function(){
+	if(RnukeState === 0){
+		RnukeState = 1;
+		budget-=2000;
+		budgetFresh();
+		RnukeString = "<a onclick=\"Rnuke()\" style=\"color: #0000ff\">Nuclear thermal rockets</a> <a style=\"color: #ff0000\">"+RnukeProg+"%</a>";
+		clear();
+		tolk("rd");
+	};
+};

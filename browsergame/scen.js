@@ -37,10 +37,7 @@ tolk = function(com){
 		com = com.slice(0,mello);
 	};
 	if (com === "clear"){
-		for (i=0;i<20;i++){
-			document.getElementById("c"+i).innerHTML = "";
-			c=["","","","","","","","","","","","","","","","","","","",""];
-		};
+		clear();
 	}
 	else if(com === "help"){
 //		printi("Currently not completely implemented :p"); //placeholder
@@ -85,10 +82,16 @@ tolk = function(com){
 	}
 	else if(com === "save"){
 		localStorage.setItem(compara,whut); //no decided file format yet
-	};
+	}
 	else if(com === "load"){
 		localStorage.getItem(compara);
-	};
+	}
+	else if(com === "rd"){
+			simplePrint(RnukeString);
+			simplePrint(RcryoString);
+			simplePrint("<a style=\"color: #aaaaaa\">Innactive</a> <a style=\"color: #0000ff\">In development</a> <a style=\"color: #00ff00\">Complete</a>");
+			simplePrint("<b>Welcome to Research and Development!</b><br>Click to toggle different areas of research.");
+	}
 	else{
 		printi("Unknown command, try \"help\"");
 	};
@@ -99,5 +102,16 @@ times = setInterval(function(){
 	document.getElementById("timing").innerHTML = now;
 	if(now%200 ===0){
 		budget += 1000;
+		budgetFresh();
+	};
+	if(now%10 === 0){
+		science();
 	};
 },1000);
+
+budgetFresh = function(){
+	document.getElementById("budget").innerHTML = "Budget: <b><a style=\"color: #ff0000\">"+budget+"</a><b> (updated)";
+	setTimeout(function(){
+		document.getElementById("budget").innerHTML = "Budget: <a style=\"color: #e02200\">"+budget+"</a>";
+	},500);
+};
