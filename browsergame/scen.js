@@ -22,7 +22,7 @@
   tolk
 */
 customPrompt = false;
-list = ["about","budget","build","clear","documentation","exit","help","info <thing>","load","save"];
+list = ["about","budget","build","clear","documentation","exit","help","info <thing>","load","location","rd","save"];
 tolk = function(com){
 	compara = "";
 	var mello = 0;
@@ -48,7 +48,7 @@ tolk = function(com){
 		printi(helper);
 	}
 	else if(com === "budget"){
-		printi("Budget: "+budget+"<br>$$$ Currently not implemented :p "); //placeholder
+		printi("Budget: "+budget); //placeholder
 	}
 	else if(com === "about" | com === "credits"){
 		printi("Created by Sigvart Brendberg, 2016<br>\"My God! It is full of bugs!\"<br>\"You say good games can not be made with crappy code?\"<br>\"You are rigth!\"");
@@ -86,6 +86,9 @@ tolk = function(com){
 	}
 	else if(com === "load" && local === true){
 		localStorage.getItem(compara);
+	}
+	else if(com === "location" | com === "l"){
+		Hlocation();
 	}
 	else if(com === "nosave"){
 		local = false;

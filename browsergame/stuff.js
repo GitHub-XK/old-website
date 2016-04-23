@@ -11,11 +11,16 @@ engines = [
 
 places = [
 //["id","display",[["con1","time","instant","time","spiral"],["con2","time","instant","time","spiral"]],"time","new"]
-["LEO","LEO",[["LTOlow",0,3120],[]]],
-["LTOlow","LTO",[["LEO",0,3120]],100,"LTOmiddle"],
-["LTOmiddle","LTO",[],400,"LTOhigh"],
-["LTOhigh","LTO",[["Lescape",0,140]],200,"LTOreturn"],
-["LTOreturn","Ops!",[],1400,"LTOlow"]
+[0,"LEO","Low Earth Orbit",[["LTOlow",0,3120],[]]],
+[0,"LTOlow","Lunar Transfer Orbit",[["LEO",0,3120]],100,"LTOmiddle"],
+[0,"LTOmiddle","Lunar Transfer Orbit",[],400,"LTOhigh"],
+[0,"LTOhigh","Lunar Transfer Orbit",[["Lescape",0,140]],200,"LTOreturn"],
+[0,"LTOreturn","Ops!",[],1400,"LTOlow"]
+];
+
+//crafts
+
+crafts = [
 ];
 
 //tech
