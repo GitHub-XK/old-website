@@ -68,6 +68,9 @@ thepage = function(stuff){ //this is the giant info page function. Put stuff her
 		if(stuff === "leo"){
 			simplePrint("Low Earth Orbit");
 		};
+		if(stuff === "location"){
+			simplePrint("Overview of where your spacecraft are.");
+		};
 	}
 	else if(stuff[0] === "m"){
 		if(stuff === "moon"){
@@ -99,7 +102,7 @@ thepage = function(stuff){ //this is the giant info page function. Put stuff her
 			simplePrint("Creates a savefile in LocalStorage");
 		};
 		if(stuff === "short"){
-			simplePrint("i for info<br>dv for delta-v");
+			simplePrint("i for info<br>dv for delta-v<br>l for location");
 		};
 	}
 	else if(stuff[0] === "t"){
@@ -291,4 +294,15 @@ Rfibr = function(){
 		clear();
 		tolk("rd");
 	};
+};
+
+
+
+//location
+
+Hlocation = function(){
+	clear();
+//	simplePrint("<a style=\"color: #0000c0\">Low Earth Orbit</a> <a style=\"color: #ff0000\">"+places[0][0]+"</a>");
+	simplePrint("<a style=\"color: #0000c0\">Lunar Transfer Orbit</a> <a style=\"color: #ff0000\">"+Number(places[4][0]+places[1][0]+places[2][0]+places[3][0])+"</a>");
+	simplePrint("<a style=\"color: #0000c0\">Low Earth Orbit</a> <a style=\"color: #ff0000\">"+places[0][0]+"</a>");
 };
