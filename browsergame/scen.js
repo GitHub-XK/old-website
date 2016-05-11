@@ -84,11 +84,21 @@ tolk = function(com){
 		alert("Savefiles are not implemented yet");
 		localStorage.setItem(compara,"whut"); //no decided file format yet
 	}
+	else if(com === "launch"){
+		listUpdate();
+		simplePrint("Available launchers:");
+		simplePrint(pending);
+		simplePrint("Pending payloads:");
+		printi("Welcome to mission control!");
+	}
 	else if(com === "load" && local === true){
 		localStorage.getItem(compara);
 	}
 	else if(com === "location" | com === "l"){
 		Hlocation();
+	}
+	else if(com === "man"){
+		printi("Manual pages use \"info\", not \"man\".");
 	}
 	else if(com === "nosave"){
 		local = false;
@@ -98,6 +108,14 @@ tolk = function(com){
 			printScience();
 			simplePrint("Key: <a style=\"color: #aaaaaa\">Innactive</a>, <a style=\"color: #0000ff\">In development</a>, <a style=\"color: #00ff20\">Complete</a><br>=========================<br>");
 			simplePrint("<b>Welcome to Research and Development!</b><br>Click to toggle different areas of research.");
+	}
+	else if(com === "shop"){
+		simplePrint("No stuff implemented yet");
+		printi("Here you can by stuff!");
+	}
+	else if(com === "time"){
+		//filler
+		printi("There is a scary counter...");
 	}
 	else{
 		printi("Unknown command, try \"help\"");
