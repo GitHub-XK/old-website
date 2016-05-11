@@ -65,6 +65,9 @@ thepage = function(stuff){ //this is the giant info page function. Put stuff her
 	else if(stuff[0] === "k"){
 	}
 	else if(stuff[0] === "l"){
+		if(stuff === "launch"){
+			simplePrint("Go here to launch a payload");
+		};
 		if(stuff === "leo"){
 			simplePrint("Low Earth Orbit");
 		};
@@ -296,8 +299,6 @@ Rfibr = function(){
 	};
 };
 
-
-
 //location
 
 Hlocation = function(){
@@ -305,4 +306,18 @@ Hlocation = function(){
 //	simplePrint("<a style=\"color: #0000c0\">Low Earth Orbit</a> <a style=\"color: #ff0000\">"+places[0][0]+"</a>");
 	simplePrint("<a style=\"color: #0000c0\">Lunar Transfer Orbit</a> <a style=\"color: #ff0000\">"+Number(places[4][0]+places[1][0]+places[2][0]+places[3][0])+"</a>");
 	simplePrint("<a style=\"color: #0000c0\">Low Earth Orbit</a> <a style=\"color: #ff0000\">"+places[0][0]+"</a>");
+};
+
+//launches
+
+listUpdate = function(){
+	if(pendingList.length === 0){
+		pending = "<a style=\"color: #ff0000\">No launch pending.</a>";
+	}
+	else{
+		pending = "";
+		for(i=0;i<pendingList.length;i++){
+			pending += "<a style=\"color: #0000b0\">"+pendingList[i][0]+". Mass = "+pendingList[i][1]+"kg</a><br>";
+		};
+	};
 };

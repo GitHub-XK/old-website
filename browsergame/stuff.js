@@ -69,5 +69,13 @@ nukeAccident = function(id){
 	}
 	else if(id === "secret"){
 		alert("And you are one of the good guys? :P");//FIXME
+		if(Math.random() > 0.6){
+			setTimout(function(){
+				note("Nuclear accident uncovered. You are in trouble.",10000);
+			},100000
+		};
 	};
 };
+
+pendingList = [];
+pending = "";
