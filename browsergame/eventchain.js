@@ -51,6 +51,9 @@ thepage = function(stuff){ //this is the giant info page function. Put stuff her
 	else if(stuff[0] === "g"){
 	}
 	else if(stuff[0] === "h"){
+		if(stuff === "heinlein"){
+			simplePrint("Wrote the book \"The Moon is a harsh mistress\".");
+		};
 		if(stuff === "help"){
 			simplePrint("Prints a list of commands");
 		};
@@ -309,7 +312,7 @@ Hlocation = function(){
 };
 
 //launches
-
+availableLaunchers = "";
 listUpdate = function(){
 	if(pendingList.length === 0){
 		pending = "<a style=\"color: #ff0000\">No launch pending.</a>";
@@ -319,5 +322,11 @@ listUpdate = function(){
 		for(i=0;i<pendingList.length;i++){
 			pending += "<a style=\"color: #0000b0\">"+pendingList[i][0]+". Mass = "+pendingList[i][1]+"kg</a><br>";
 		};
+	};
+	availableLaunchers = "";
+	for(var i=0;i<vehicles.length;i++){
+		availableLaunchers += "<a style=\"color:#0000ff\">\""+vehicles[i][1]+"\", ";
+		if(vehicles[i][4] != true){availableLaunchers += "not "};
+		availableLaunchers += "human rated. Capacity "+vehicles[i][2]+" cost "+vehicles[i][3]+"</a><br>";
 	};
 };
