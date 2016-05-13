@@ -23,7 +23,8 @@
   tolk
 */
 customPrompt = false;
-list = ["about","budget","build","clear","documentation","exit","help","info <thing>","load","location","rd","save"];
+list = ["about","budget","build","clear","documentation","exit","help","info <thing>","launch","load","location","rd","save","shop"];
+complete = "about<br>budget<br>build<br>clear<br>documentation<br>exit<br>help<br>info <thing><br>kim<br>launch<br>load<br>ls<br>location<br>quit<br>rd<br>save<br>shop";
 tolk = function(com){
 	compara = "";
 	var mello = 0;
@@ -100,6 +101,9 @@ tolk = function(com){
 	else if(com === "location" | com === "l"){
 		Hlocation();
 	}
+	else if(com === "ls"){
+		simplePrint(complete);
+	}
 	else if(com === "man"){
 		printi("Manual pages use \"info\", not \"man\".");
 	}
@@ -114,7 +118,7 @@ tolk = function(com){
 	}
 	else if(com === "shop"){
 		clear();
-		simplePrint("No stuff implemented yet");
+		simplePrint(storeString);
 		printi("Here you can by stuff!");
 	}
 	else if(com === "time"){

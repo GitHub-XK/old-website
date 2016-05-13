@@ -23,16 +23,6 @@ places = [
 crafts = [
 ];
 
-//tech
-
-technology =[
-0,//cryogenics
-0,//NTR
-0,//cryo2
-0,//rock
-0,//basalt
-0//capsule
-];
 
 //story
 
@@ -84,4 +74,36 @@ pending = "";
 vehicles = [
 //[availability,name,capacity,cost,human rating,safety,launches],
 [true,"Basic rocket",8000,500,false,0.9,0]
+];
+
+updateShop=function(){
+	for(var i=0;i<shopItems.length;i++){
+		if(shopItems[i][1] === false){
+			for(var j=0;technology[shopItems[i][2][j]];j++){
+				if(j === shopitems[i][2].length-1){
+					shopItems[i][1] = true;
+				};
+			};
+		};
+		if(shopItems[i][1]){
+			storeString += "<a>"+shopItems[i][0]+"</a><br>";
+		};
+	};
+};
+
+shopItems=[
+["Cryogenic upper stage",false,[0]]
+];
+
+storeString="";
+
+//tech
+
+technology =[
+0,//cryogenics
+0,//NTR
+0,//cryo2
+0,//rock
+0,//basalt
+0//capsule
 ];
