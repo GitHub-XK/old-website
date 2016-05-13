@@ -86,6 +86,7 @@ tolk = function(com){
 	}
 	else if(com === "launch"){
 		listUpdate();
+		simplePrint(availableLaunchers);
 		simplePrint("Available launchers:");
 		simplePrint(pending);
 		simplePrint("Pending payloads:");

@@ -72,10 +72,15 @@ nukeAccident = function(id){
 		if(Math.random() > 0.6){
 			setTimout(function(){
 				note("Nuclear accident uncovered. You are in trouble.",10000);
-			},100000
+			},100000);
 		};
 	};
 };
 
 pendingList = [];
 pending = "";
+
+vehicles = [
+//[availability,name,capacity,cost,human rating,safety,launches],
+[true,"Basic rocket",8000,500,false,0.9,0]
+];
