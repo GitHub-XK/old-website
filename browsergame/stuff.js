@@ -30,7 +30,8 @@ technology =[
 0,//NTR
 0,//cryo2
 0,//rock
-0//basalt
+0,//basalt
+0//capsule
 ];
 
 //story

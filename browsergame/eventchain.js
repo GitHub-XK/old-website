@@ -158,6 +158,9 @@ printScience = function(){
 		if(RfibrState != -1){
 			simplePrint(RfibrString);
 		};
+		if(RcapsState != -1){
+			simplePrint(RcapsString);
+		};
 };
 
 //research:
@@ -218,12 +221,24 @@ science = function(){
 		RfibrProg++;
 		if(RfibrProg === 100){
 			RfibrState = 2;
-			RfibrString = "<a onclick=\"fibr()\" style=\"color: #00ff00\">Basal fibre</a>";
-			note("Notification:<br><a style=\"color: #00ff20\" onclick=\"tolk(\\\"rd\\\")\">Basal fibre</a> research is completed.",10000);
-			technology[4]=true;
+			RfibrString = "<a onclick=\"Rfibr()\" style=\"color: #00ff00\">Basalt fibre</a>";
+			note("Notification:<br><a style=\"color: #00ff20\" onclick=\"tolk(\\\"rd\\\")\">Basalt fibre</a> research is completed.",10000);
+			technology[5]=true;
 		}
 		else{
-			RrockString = "<a onclick=\"Rrock()\" style=\"color: #0000ff\">Regolith melting</a> <a style=\"color: #ff0000\">"+RrockProg+"%</a>";
+			RfibrString = "<a onclick=\"Rfibr()\" style=\"color: #0000ff\">Basalt fibre</a> <a style=\"color: #ff0000\">"+RfibrProg+"%</a>";
+		};
+	};
+	if(RcapsState === 1){
+		RcapsProg++;
+		if(RcapsProg === 100){
+			RcapsState = 2;
+			RcapsString = "<a onclick=\"Rcaps()\" style=\"color: #00ff00\">Capsule development</a>";
+			note("Notification:<br><a style=\"color: #00ff20\" onclick=\"tolk(\\\"rd\\\")\">Capsule development</a> research is completed.",10000);
+			technology[6]=true;
+		}
+		else{
+			RcapsString = "<a onclick=\"Rcaps()\" style=\"color: #0000ff\">Capsule development</a> <a style=\"color: #ff0000\">"+RcapsProg+"%</a>";
 		};
 	};
 	if(command === "rd"){
@@ -255,6 +270,20 @@ Rnuke = function(){
 		budget-=2000;
 		budgetFresh(-2000);
 		RnukeString = "<a onclick=\"Rnuke()\" style=\"color: #0000ff\">Nuclear thermal rockets</a> <a style=\"color: #ff0000\">"+RnukeProg+"%</a>";
+		clear();
+		tolk("rd");
+	};
+};
+
+RcapsState = 0;
+RcapsProg = 0;
+RcapsString = "<a onclick=\"Rcaps()\" style=\"color: #aaaaaa\">Develop a human rated capsule</a> Cost: 1000";
+Rcaps = function(){
+	if(RcapsState === 0){
+		RcapsState = 1;
+		budget-=1000;
+		budgetFresh(-1000);
+		RcapsString = "<a onclick=\"Rcaps()\" style=\"color: #0000ff\">Develop a human rated capsule</a> <a style=\"color: #ff0000\">"+RcapsProg+"%</a>";
 		clear();
 		tolk("rd");
 	};
