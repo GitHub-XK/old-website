@@ -174,6 +174,7 @@ science = function(){
 			note("Notification:<br><a style=\"color: #00ff20\" onclick=\"tolk(\\\"rd\\\")\">Cryogenic fuels</a> research is completed.",10000);
 			Rcryo2State = 0;
 			technology[0]=true;
+			updateShop();
 		}
 		else{
 			RcryoString = "<a onclick=\"Rcryo()\" style=\"color: #0000ff\">Cryogenic fuels</a> <a style=\"color: #ff0000\">"+RcryoProg+"%</a>";
@@ -187,6 +188,7 @@ science = function(){
 			RnukeString = "<a onclick=\"Rnuke()\" style=\"color: #00ff00\">Nuclear thermal rockets</a>";
 			note("Notification:<br><a style=\"color: #00ff20\" onclick=\"tolk(\\\"rd\\\")\">Nuclear thermal rockets</a> research is completed.",10000);
 			technology[1]=true;
+			updateShop();
 		}
 		else{
 			RnukeString = "<a onclick=\"Rnuke()\" style=\"color: #0000ff\">Nuclear thermal rockets</a> <a style=\"color: #ff0000\">"+RnukeProg+"%</a>";
@@ -199,6 +201,7 @@ science = function(){
 			Rcryo2String = "<a onclick=\"Rcryo2()\" style=\"color: #00ff00\">Cryogenic storage</a>";
 			note("Notification:<br><a style=\"color: #00ff20\" onclick=\"tolk(\\\"rd\\\")\">Cryogenic storage</a> research is completed.",10000);
 			technology[3]=true;
+			updateShop();
 		}
 		else{
 			Rcryo2String = "<a onclick=\"Rcryo2()\" style=\"color: #0000ff\">Cryogenic storage</a> <a style=\"color: #ff0000\">"+Rcryo2Prog+"%</a>";
@@ -212,6 +215,7 @@ science = function(){
 			note("Notification:<br><a style=\"color: #00ff20\" onclick=\"tolk(\\\"rd\\\")\">Regolith melting</a> research is completed.",10000);
 			RfibrState = 0;
 			technology[4]=true;
+			updateShop();
 		}
 		else{
 			RrockString = "<a onclick=\"Rrock()\" style=\"color: #0000ff\">Regolith melting</a> <a style=\"color: #ff0000\">"+RrockProg+"%</a>";
@@ -224,6 +228,7 @@ science = function(){
 			RfibrString = "<a onclick=\"Rfibr()\" style=\"color: #00ff00\">Basalt fibre</a>";
 			note("Notification:<br><a style=\"color: #00ff20\" onclick=\"tolk(\\\"rd\\\")\">Basalt fibre</a> research is completed.",10000);
 			technology[5]=true;
+			updateShop();
 		}
 		else{
 			RfibrString = "<a onclick=\"Rfibr()\" style=\"color: #0000ff\">Basalt fibre</a> <a style=\"color: #ff0000\">"+RfibrProg+"%</a>";
@@ -236,6 +241,7 @@ science = function(){
 			RcapsString = "<a onclick=\"Rcaps()\" style=\"color: #00ff00\">Capsule development</a>";
 			note("Notification:<br><a style=\"color: #00ff20\" onclick=\"tolk(\\\"rd\\\")\">Capsule development</a> research is completed.",10000);
 			technology[6]=true;
+			updateShop();
 		}
 		else{
 			RcapsString = "<a onclick=\"Rcaps()\" style=\"color: #0000ff\">Capsule development</a> <a style=\"color: #ff0000\">"+RcapsProg+"%</a>";
