@@ -1,6 +1,7 @@
 //tolkning og rammeverdiar
 /*reseved words:
   Documentation sucks! But here are some words you can not use (incomplete):
+  As this is stand-alone, I do not really care about global variables
 
   about
   budget
@@ -85,6 +86,7 @@ tolk = function(com){
 		localStorage.setItem(compara,"whut"); //no decided file format yet
 	}
 	else if(com === "launch"){
+		clear();
 		listUpdate();
 		simplePrint(availableLaunchers);
 		simplePrint("Available launchers:");
@@ -111,6 +113,7 @@ tolk = function(com){
 			simplePrint("<b>Welcome to Research and Development!</b><br>Click to toggle different areas of research.");
 	}
 	else if(com === "shop"){
+		clear();
 		simplePrint("No stuff implemented yet");
 		printi("Here you can by stuff!");
 	}
@@ -126,9 +129,10 @@ now = 0;
 times = setInterval(function(){
 	now++;
 	document.getElementById("timing").innerHTML = now;
-	if(now%200 ===0){
+	if(now%100 ===0){
 		budget += growth;
 		budgetFresh(growth);
+		note("New budget",5000);
 	};
 	if(now%5 === 0){
 		science();
