@@ -1,38 +1,64 @@
-<!DOCTYPE htm>
+<!DOCTYPE html>
 <html>
 <head>
   <meta charset="UTF-8">
+<!--This game requires 6 files + media in order to work properly.
+if you have downloaded this game for offline use, be sure that you have got the following files:
+	"shell.html"
+	"tutorial.html"
+	"core.js"
+	"scen.js"
+	"eventchain.js"
+	"stuff.js"
+Media should be inside a folder named "images", and consist of the following files:
+	"hoh.gif"
+	"moon.gif"
+	"deltamap.jpg"  //created by Hollister David (I must remember to ask him for permission before release of the game.)
+	"TBD.mp3"	//game music. Not yet created, but I am planning to ask David Phan if he wants to compose something
+-->
   <style>
-.rtttrt{
-width: 200px;
+.fastforward{
+background: gray;
+width: 26px;
+color: blue;
+}
+.navbar{
+width: 150px;
+background: white;
+color: #0000ff;
+}
+.red{
+color: red;
+}
+.blue{
+color: blue;
 }
   </style>
 </head>
 <body bgcolor="#000000" style="color: #FF9900;">
-<h1>Moonwards <sub><i>The Game</i> <small>( hopefully no Copyright violated)</small></sub></h1>
+<h1>Moonwards<sub><i>The Game</i></sub></h1>
 <noscript>
-<p>If you are trying to play this game without JavaScript, you are having a bad problem and will not go to space today.</p>
-<p>However, consider allowing scripts here, the scripts are for nothing but the game, no trackers or anything. There is localStorage however, but that is for creating a savefile. The game works just as fine if you turn it off. Type "nosave" in the squacky to turn of localStorage usage.</p>
+  <p>If you are trying to play this game without JavaScript, you are having a bad problem and will not go to space today.</p>
+  <p>However, consider allowing scripts here, the scripts are for nothing but the game, no trackers or anything. There is localStorage however, but that is for creating a savefile. The game works just as fine if you turn off this feature. Type "nosave" in the command line to turn off localStorage usage.</p>
 </noscript>
 <p>If you are reading this paragraph, you have a development version of the game. Do not expect anything to work</p>
 <p style="float: right" id="note"></p>
 <p id="timing" style="color: #b09985">0</p>
+<p><a id="toggle1" class="fastforward" onclick="this.style.background='red';acceleration(1)"><b>></b></a> <a id="toggle2" class="fastforward" onclick="this.style.background='red';acceleration(5)"><b>>></b></a> <a id="toggle3" class="fastforward" onclick="this.style.background='red';acceleration(25)"><b>>>></b></a></p>
 <p id="budget">Budget: <a style="color: #e02200">1000</a></p>
-<p>Start typing commands!</p>
+<p>Start typing commands! (The command line is mostly redundant now, but is kept for debugging)</p>
 <input type="text" value="" id="command">
-<script>
-	//This is not an elegant solution, replacement pending (really bad code)
-	for (var i = 0; i < 20; i++){
-		document.write("<p id=\""+"c"+i+"\"></p>");
-	};
-</script>
-<!--Graphical test area, not implemented, because, who needs a GUI anyway?--->
-<div id="graf">
-</div>
-<p><div style="width:150px;background:white;color:#0000ff" onmouseover="this.style.background='gray';" onmouseout="this.style.background='white';" onclick="tolk('rd');command='rd'">R&D</div><div style="width:150px;background:white;color:#0000ff" onmouseover="this.style.background='gray';" onmouseout="this.style.background='white';" onclick="tolk('launch');command='launch'">Launch</div><div style="width:150px;background:white;color:#0000ff" onmouseover="this.style.background='gray';" onmouseout="this.style.background='white';" onclick="tolk('shop');command='shop'">Shop</p></div>
-<p><a href="tutorial.html">Need a quick tutorial?</a></p>
+<p id="c0"></p><p id="c1"></p><p id="c2"></p><p id="c3"></p><p id="c4"></p><p id="c5"></p><p id="c6"></p><p id="c7"></p><p id="c8"></p><p id="c9"></p><p id="c10"></p><p id="c11"></p><p id="c12"></p><p id="c13"></p><p id="c14"></p><p id="c15"></p><p id="c16"></p><p id="c17"></p><p id="c18"></p><p id="c19"></p>
+<div class="navbar" onmouseover="this.style.background='gray';" onmouseout="this.style.background='white';" onclick="science();tolk('rd');command='rd'">R&amp;D</div>
+<div class="navbar" onmouseover="this.style.background='gray';" onmouseout="this.style.background='white';" onclick="tolk('launch');command='launch'">Launch</div>
+<div class="navbar" onmouseover="this.style.background='gray';" onmouseout="this.style.background='white';" onclick="updateShop();tolk('shop');command='shop'">Shop</div>
+<div class="navbar" onmouseover="this.style.background='gray';" onmouseout="this.style.background='white';" onclick="tolk('location');command='location'">Locations</div>
+<p>
+  <a href="tutorial.html">Need a quick tutorial?</a>
+</p>
+<img src="images/hoh.gif" onclick="(tolk('about'))" onmouseover="this.style.transform='rotateZ(12deg)'" onmouseout="this.style.transform='rotateZ(0deg)'">
 </body>
-<!---The following scripts are for handling basic events--->
+<!--The following scripts are for handling basic events-->
 <script type="text/javascript" src="core.js"></script>
 <script type="text/javascript" src="scen.js"></script>
 <script type="text/javascript" src="eventchain.js"></script>

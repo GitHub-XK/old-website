@@ -7,12 +7,10 @@ var p = function(id,value) {
 buzzy = 0;queue=[];
 printi = function(stu){
 	if(buzzy){
-//		alert("Weird error, probably you use windows.");
 		queue.push(stu);
-//		alert(queue);
 	}
 	else{
-		buzzy=1; //FIXME
+		buzzy=1; //FIXME there may be some subtle bug in the queue. This is of medium priority, as it is in the core script
 		c[0] = stu;
 		telluty = 0;
 		for(i = 0;i < stu.length;i++){
@@ -62,7 +60,8 @@ function trykk(e){
 		simplePrint(">>"+command);
 		fresh();
 		if(customPrompt){
-			storyfind(place);
+			command = unfinished+command;
+			tolk(command);
 			customPrompt = false;
 		}
 		else{
@@ -77,13 +76,77 @@ function lsTest(){
         localStorage.setItem(test, test);
         localStorage.removeItem(test);
         return true;
-    } catch(e) {
-        return false;
     }
-}
+    catch(e) {
+        return false;
+    };
+};
 
 if(lsTest() === true){
     // available
-}else{
-    alert("Ops! You do not have localStorage enabled! You can still play the game, but not make save files.");
 }
+else{
+    alert("You do not have localStorage enabled! You can still play the game, but not make savefiles.");
+};
+
+clickableBlue = " onmouseover=\"this.style.background='#202040';\" onmouseout=\"this.style.background='black';\" ";
+editor = "style=\"position:absolute;left:20px;\"";
+
+acceleration = function(factor){
+if(factor===1){
+	document.getElementById("toggle2").style.background = "gray";
+	document.getElementById("toggle3").style.background = "gray";
+}
+else if(factor===5){
+	document.getElementById("toggle1").style.background = "gray";
+	document.getElementById("toggle3").style.background = "gray";
+}
+else{
+	document.getElementById("toggle1").style.background = "gray";
+	document.getElementById("toggle2").style.background = "gray";
+};
+clearInterval(times);
+times = setInterval(function(){
+	now++;
+	document.getElementById("timing").innerHTML = now;
+	if(now%100 ===0){
+		budget += growth;
+		budgetFresh(growth);
+		note("New budget",5000);
+	};
+	if(now%5 === 0){
+		science();
+		if(budget < 0){
+			budgetFresh(Math.ceil(0.01*budget));
+			budget += Math.ceil(0.01*budget);
+		};
+	};
+},1000/factor);
+};
+
+saveFunction = function(fileName){
+	alert("At the moment, savefiles only preserve your technology level and budget.");
+	saveString="";
+	for(var i = 0;i<technology.length;i++){
+		saveString += technology[i];
+	};
+	saveString += "b"+budget+"b";
+	localStorage.setItem(fileName,saveString);
+};
+
+loadFunction = function(fileName){
+	saveString = localStorage.getItem(fileName);
+	technologyTmp = [];
+	for(i=0;i<technology.length;i++){
+		technologyTmp.push(Number(saveString[i]));
+	};
+	technology = technologyTmp;
+	i++;
+	budget = "";
+	while(saveString[i] != "b"){
+		budget+=saveString[i];
+		i++;
+	};
+	budget = Number(budget);
+	document.getElementById("budget").innerHTML = "Budget: <a style=\"color: #e02200\">"+budget+"</a>";
+};

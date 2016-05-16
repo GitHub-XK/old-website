@@ -1,29 +1,6 @@
 //tolkning og rammeverdiar
-/*reseved words:
-  Documentation sucks! But here are some words you can not use (incomplete):
-  As this is stand-alone, I do not really care about global variables
-
-  about
-  budget
-  build
-  c     <- I know, I know, bad habit.
-  com
-  compara
-  hjelper
-  list
-  mello
-  now
-  place
-  places
-  printi
-  simplePrint
-  storyfind
-  thepage
-  times
-  tolk
-*/
 customPrompt = false;
-list = ["about","budget","build","clear","documentation","exit","help","info <thing>","launch","load","location","rd","save","shop"];
+list = ["about","budget","build","clear","exit","help","info <thing>","launch","load","location","rd","save","shop"];
 complete = "about<br>budget<br>build<br>clear<br>documentation<br>exit<br>help<br>info <thing><br>kim<br>launch<br>load<br>ls<br>location<br>quit<br>rd<br>save<br>shop";
 tolk = function(com){
 	compara = "";
@@ -42,7 +19,6 @@ tolk = function(com){
 		clear();
 	}
 	else if(com === "help"){
-//		printi("Currently not completely implemented :p"); //placeholder
 		helper="";
 		for(i=0;i<list.length;i++){
 			helper+=list[i]+"<br>";
@@ -50,29 +26,26 @@ tolk = function(com){
 		printi(helper);
 	}
 	else if(com === "budget"){
-		printi("Budget: "+budget); //placeholder
+		printi("Budget: "+budget);
 	}
 	else if(com === "about" | com === "credits"){
+		clear();
+		simplePrint("<img src=\"images/hoh.gif\"><a style=\"color: white\"> <i>Hoh productions</i></a>");
 		printi("Created by Sigvart Brendberg, 2016<br>\"My God! It is full of bugs!\"<br>\"You say good games can not be made with crappy code?\"<br>\"You are rigth!\"");
 	}
 	else if(com === "kim"){
 		printi("Thank you for the inspiration :)");
 	}
 	else if(com === "build"){
-
 		printi("Build a...");
-//		customPrompt = true;
-//		place = "build";
-		//parameter later
 	}
 	else if(com === "info" | com === "i"){
 		if(compara === ""){
 			printi("info about...");
-//			customPrompt = true;
-//			place = "info";
+			unfinished = "info ";
+			customPrompt=true;
 		}
 		else{
-			//alert(compara);
 			thepage(compara);
 		};
 	}
@@ -80,23 +53,22 @@ tolk = function(com){
 		simplePrint("PLEASE NO!<br><br>Filler<br>Filler<br>Filler...");
 	}
 	else if(com === "exit" | com === "quit"){
-		simplePrint("<a href=\"http://www.moonwards.com\">Exit the game and go back.</a>");//URL to main site
-	}
-	else if(com === "save" && local === true){
-		alert("Savefiles are not implemented yet");
-		localStorage.setItem(compara,"whut"); //no decided file format yet
+		simplePrint("<a href=\"https://www.moonwards.com\">Exit the game and go back to Moonwards.</a>");//URL to main site
 	}
 	else if(com === "launch"){
 		clear();
 		listUpdate();
+		simplePrint("<button style=\"color:#e0e0e0\" id=\"launchButton\" onclick=\"launch()\">Launch</button>");
 		simplePrint(availableLaunchers);
 		simplePrint("Available launchers:");
+		simplePrint("<a id=\"totalMass\" class=\"red\">Total mass:</a>");
 		simplePrint(pending);
-		simplePrint("Pending payloads:");
+		simplePrint("Pending payloads: (click to toggle)");
+		totalMass();
 		printi("Welcome to mission control!");
 	}
 	else if(com === "load" && local === true){
-		localStorage.getItem(compara);
+		loadFunction(prompt("Name:"));
 	}
 	else if(com === "location" | com === "l"){
 		Hlocation();
@@ -107,16 +79,24 @@ tolk = function(com){
 	else if(com === "man"){
 		printi("Manual pages use \"info\", not \"man\".");
 	}
+	else if(com === "minigame"){
+		clear();
+		simplePrint("<div style=\"background:#ff0000;width:512px;height:512px\"><img src=\"images/hoh.gif\" style=\"margin-left:40px;margin-top:20px\"></div>");
+		minigame();
+	}
 	else if(com === "nosave"){
 		local = false;
 	}
 	else if(com === "rd"){
 			clear();
 			printScience();
-			simplePrint("Key: <a style=\"color: #aaaaaa\">Innactive</a>, <a style=\"color: #0000ff\">In development</a>, <a style=\"color: #00ff20\">Complete</a><br>=========================<br>");
+			simplePrint("Key: <a style=\"color: #aaaaaa\">Available</a>, <a style=\"color: #0000ff\">In development</a>, <a style=\"color: #00ff20\">Complete</a><br>=========================<br>");
 			simplePrint("<b>Welcome to Research and Development!</b><br>Click to toggle different areas of research.");
 	}
-	else if(com === "shop"){
+	else if(com === "save" && local === true){
+		saveFunction(prompt("Name:"));
+	}
+	else if(com === "shop" | com === "store"){
 		clear();
 		simplePrint(storeString);
 		printi("Here you can by stuff!");
@@ -140,6 +120,10 @@ times = setInterval(function(){
 	};
 	if(now%5 === 0){
 		science();
+		if(budget < 0){
+			budgetFresh(Math.floor(0.01*budget));
+			budget += Math.floor(0.01*budget);
+		};
 	};
 },1000);
 
