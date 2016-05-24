@@ -1,3 +1,31 @@
+/**
+ *
+ *
+ * @licstart  The following is the entire license notice for the 
+ *  JavaScript code in this page.
+ *
+ * Copyright (C) 2016  Sigvart Brendberg
+ *
+ *
+ * The JavaScript code in this page is free software: you can
+ * redistribute it and/or modify it under the terms of the GNU
+ * General Public License (GNU GPL) as published by the Free Software
+ * Foundation, either version 3 of the License, or (at your option)
+ * any later version.  The code is distributed WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+ *
+ * As additional permission under GNU GPL version 3 section 7, you
+ * may distribute non-source (e.g., minimized or compacted) forms of
+ * that code without the copy of the GNU GPL normally required by
+ * section 4, provided you include this license notice and a URL
+ * through which recipients can access the Corresponding Source.
+ *
+ * @licend  The above is the entire license notice
+ * for the JavaScript code in this page.
+ *
+ */
+
 //stuffprops
 
 //locations:
@@ -22,7 +50,7 @@ placeLEO = function(){
 	placeLEOstring = "";
 	for(var i=0;i<crafts.length;i++){
 		if(crafts[i][1] === "LEO"){
-			placeLEOstring += "<a style=\"color:green\">\""+crafts[i][0]+"\"</a> has ";
+			placeLEOstring += "<a"+clickableBlue+"onclick=\"specificCraft("+i+")\" style=\"color:green\">\""+crafts[i][0]+"\"</a> has ";
 			if(crafts[i][5] != 0){
 				placeLEOstring += crafts[i][5]+" passengers, ";
 			}
@@ -49,7 +77,7 @@ placeLTO = function(){
 	placeLTOstring = "";
 	for(var i=0;i<crafts.length;i++){
 		if(crafts[i][1] === "LTOlow" | crafts[i][1] === "LTOmiddle" | crafts[i][1] === "LTOhigh"){
-			placeLTOstring += "<a style=\"color:green\">\""+crafts[i][0]+"\"</a> has ";
+			placeLTOstring += "<a"+clickableBlue+"onclick=\"specificCraft("+i+")\" style=\"color:green\">\""+crafts[i][0]+"\"</a> has ";
 			if(crafts[i][5] != 0){
 				placeLTOstring += crafts[i][5]+" passengers, ";
 			}
@@ -83,9 +111,11 @@ placemoon = function(){
 			else{
 				placemoonstring += "no passengers, ";
 			};
+			/*
 			if(crafts[i][6] != false){
 				placemoonstring += "is transporting a "+crafts[i][6]+", ";
 			};
+			*/
 			placemoonstring += "and has "+crafts[i][4]+"m/s delta-v remaining.<br>"
 		};
 	};
@@ -310,4 +340,9 @@ technology =[
 
 minigame = function(){
 	alert("There is no implementation of this minigame yet");
+};
+
+specificCraft = function(id){
+	clear();
+	simplePrint("<h4>\""+crafts[id][0]+"\"</h4><p>"+crafts[id][6]+"</p><br><br><a onclick=\"tolk('location');command='location'\" class=\"blue\""+clickableBlue+">Back</a>");
 };
