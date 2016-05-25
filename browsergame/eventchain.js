@@ -582,7 +582,7 @@ launch = function(){
 		if(tmpName === ""){
 			tmpName = "unnamed";
 		};
-		crafts.push([tmpName,"LEO",now+"",massToLaunch+"","\"No-clue\" ",0,[]]);
+		crafts.push([tmpName,"LEO",now+"",massToLaunch+"",1000,0,[]]);
 		for(var i=0;i<pendingList.length;i++){
 			if(pendingList[i][2]){
 				pendingList[i][2] = false;
