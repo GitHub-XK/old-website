@@ -33,7 +33,7 @@ complete = "about<br>budget<br>build<br>clear<br>documentation<br>exit<br>help<b
 tolk = function(com){
 	compara = "";
 	var mello = 0;
-	for(i=0;i<com.length;i++){
+	for(var i=0;i<com.length;i++){
 		if(com[i]===" "){
 			mello = i;
 			i = com.length;
@@ -48,7 +48,7 @@ tolk = function(com){
 	}
 	else if(com === "help"){
 		helper="";
-		for(i=0;i<list.length;i++){
+		for(var i=0;i<list.length;i++){
 			helper+=list[i]+"<br>";
 		};
 		printi(helper);

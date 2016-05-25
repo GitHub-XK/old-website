@@ -27,6 +27,7 @@
  */
 
 c = ["","","","","","","","","","","","","","","","","","","",""]; //wtf solution to escape the approaching deadline
+command = "";
 var p = function(id,value) {
 	c[id] = value;
 	document.getElementById("c"+id).innerHTML = value;
