@@ -46,6 +46,9 @@ tolk = function(com){
 	if (com === "clear"){
 		clear();
 	}
+	if (com === "cosmo" | com === "cosmonauts"){
+		cosmo();
+	}
 	else if(com === "help"){
 		helper="";
 		for(var i=0;i<list.length;i++){
