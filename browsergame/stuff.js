@@ -347,3 +347,18 @@ specificCraft = function(id){
 	clear();
 	simplePrint("<h4>\""+crafts[id][0]+"\"</h4><p>"+crafts[id][6]+"</p><br><br><a class=\"blue\">Navigation:</a><br><p id=\"navChoice\">No way to navigate</p><br><br><a onclick=\"tolk('location');command='location'\" class=\"blue\""+clickableBlue+">Back</a>");
 };
+
+//cosmonauts
+cosmonauts = [
+//[name,location,age,content?,[skills]]
+];
+
+cosmo = function(){
+	clear();
+	simplePrint("<a class=\"blue\""+clickableBlue+" onclick=\"recruit()\">Recruit</a>");
+	simplePrint("No people are involved in your space program");
+};
+
+recruit = function(){
+	alert("There are no available candidates, because this part of the program is not created yet.");
+};
