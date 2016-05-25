@@ -178,3 +178,20 @@ loadFunction = function(fileName){
 	budget = Number(budget);
 	document.getElementById("budget").innerHTML = "Budget: <a style=\"color: #e02200\">"+budget+"</a>";
 };
+
+commandToggled = false;
+togglerText = "Show command line";
+toggleCommand = function(){
+	if(commandToggled){
+		commandToggled = false;
+		commandModule = "";
+		togglerText = "Show command line";
+	}
+	else{
+		commandToggled = true;
+		commandModule = "<p>Start typing commands! (The command line is mostly redundant now, but is kept for debugging)</p><input type=\"text\" value=\"\" id=\"command\">";
+		togglerText = "Hide command line";
+	};
+	document.getElementById("hidden").innerHTML = commandModule;
+	document.getElementById("toggelino").innerHTML = togglerText;
+};
