@@ -335,7 +335,8 @@ technology =[
 0,//6 largetech
 0,//7 boosters
 0,//8 materials
-3//9 liquid
+3,//9 liquid
+3//10 high
 ];
 
 minigame = function(){
