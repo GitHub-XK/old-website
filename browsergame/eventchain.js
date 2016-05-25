@@ -175,6 +175,9 @@ note = function(text,duration){
 };
 
 printScience = function(){
+		if(technology[10] != 3){
+			simplePrint(RhighString);
+		};
 		if(technology[6] != 3){
 			simplePrint(RlargString);
 		};
@@ -294,6 +297,7 @@ science = function(){
 	else if(technology[5] === 1){
 		if(RcapsProg === 100){
 			technology[5] = 2;
+			technology[10] = 0;
 			RcapsString = "<a onclick=\"Rcaps()\" style=\"color: #00ff00\">Capsule development</a>";
 			note("Notification:<br><a style=\"color: #00ff20\" onclick=\"tolk('rd')\">Capsule development</a> research is completed.",10000);
 			updateShop();
@@ -370,6 +374,21 @@ science = function(){
 			RliquProg++;
 		};
 	};
+	if(technology[10] === 2){
+		RhighString = "<a onclick=\"Rhigh()\" style=\"color: #00ff00\">High-speed reentry</a>";
+	}
+	else if(technology[10] === 1){
+		if(RhighProg === 100){
+			technology[10] = 2;
+			RhighString = "<a onclick=\"Rhigh()\" style=\"color: #00ff00\">High-speed reentry</a>";
+			note("Notification:<br><a style=\"color: #00ff20\" onclick=\"tolk('rd')\">High-speed reentry</a> research is completed.",10000);
+			updateShop();
+		}
+		else{
+			RhighString = "<a onclick=\"Rhigh()\" style=\"color: #0000ff\">High-speed reentry</a> <a style=\"color: #ff0000\">"+RhighProg+"%</a>";
+			RhighProg++;
+		};
+	};
 	if(command === "rd"){
 		tolk("rd");
 	};
@@ -378,7 +397,7 @@ science = function(){
 //research modules
 
 RcryoProg = 0;
-RcryoString = "<a onclick=\"Rcryo()\" style=\"color: #aaaaaa\""+clickableBlue+">Cryogenic fuels</a> Cost: 1000";
+RcryoString = "<a onclick=\"Rcryo()\" style=\"color: #aaaaaa\""+clickableBlue+">Cryogenic fuels</a> Cost: 1000<br><a>Make use of more efficient fuels</a>";
 Rcryo = function(){
 	if(technology[0] === 0){
 		technology[0] = 1;
@@ -391,7 +410,7 @@ Rcryo = function(){
 };
 
 RnukeProg = 0;
-RnukeString = "<a onclick=\"Rnuke()\" style=\"color: #aaaaaa\""+clickableBlue+">Nuclear thermal rockets</a> Cost: 2000";
+RnukeString = "<a onclick=\"Rnuke()\" style=\"color: #aaaaaa\""+clickableBlue+">Nuclear thermal rockets</a> Cost: 2000<br><a>(Protip: try to not make it explode)</a>";
 Rnuke = function(){
 	if(technology[1] === 0){
 		nukeAccident("initi");
@@ -470,7 +489,7 @@ Rlarg = function(){
 };
 
 RboosProg = 0;
-RboosString = "<a onclick=\"Rboos()\" style=\"color: #aaaaaa\""+clickableBlue+">Solid rocket boosters</a> Cost: 500";
+RboosString = "<a onclick=\"Rboos()\" style=\"color: #aaaaaa\""+clickableBlue+">Solid rocket boosters</a> Cost: 500<br><a>There is only one solution: More boosters.</a>";
 Rboos = function(){
 	if(technology[7] === 0){
 		technology[7] = 1;
@@ -496,13 +515,26 @@ Rmate = function(){
 };
 
 RliquProg = 0;
-RliquString = "<a onclick=\"Rliqu()\" style=\"color: #aaaaaa\""+clickableBlue+">Liquid fuel boosters</a> Cost: 1200";
+RliquString = "<a onclick=\"Rliqu()\" style=\"color: #aaaaaa\""+clickableBlue+">Liquid fuel boosters</a> Cost: 1200<br><a>Upgrade your solid rocket boosters!</a>";
 Rliqu = function(){
 	if(technology[9] === 0){
 		technology[9] = 1;
 		budget-=1200;
 		budgetFresh(-1200);
 		RliquString = "<a onclick=\"Rliqu()\" style=\"color: #0000ff\">Liquid fuel boosters</a> <a style=\"color: #ff0000\">"+RliquProg+"%</a>";
+		clear();
+		tolk("rd");
+	};
+};
+
+RhighProg = 0;
+RhighString = "<a onclick=\"Rhigh()\" style=\"color: #aaaaaa\""+clickableBlue+">High-speed reentry</a> Cost: 1200<br><a>Make it possible to return from the Moon.</a>";
+Rhigh = function(){
+	if(technology[10] === 0){
+		technology[10] = 1;
+		budget-=1200;
+		budgetFresh(-1200);
+		RhighString = "<a onclick=\"Rhigh()\" style=\"color: #0000ff\">High-speed reentry</a> <a style=\"color: #ff0000\">"+RhighProg+"%</a>";
 		clear();
 		tolk("rd");
 	};
