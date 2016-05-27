@@ -387,18 +387,47 @@ specificCraft = function(id){
 	simplePrint("<h4>\""+crafts[id][0]+"\"</h4><p>"+crafts[id][6]+"</p><br><br><a class=\"blue\">Navigation:</a><br><p id=\"navChoice\">No way to navigate<br>"+navigationString+"</p><br><br><a onclick=\"tolk('location');command='location'\" class=\"blue\""+clickableBlue+">Back</a>");
 };
 
+mexicanGenerator = function(){
+	if(Math.random() > 0.5){
+		firstName = mexicanMale[Math.floor(Math.random()*mexicanMale.length)];
+	}
+	else{
+		firstName = mexicanFemale[Math.floor(Math.random()*mexicanFemale.length)];
+	};
+	var lastName = mexicanSurnames[Math.floor(Math.random()*mexicanSurnames.length)];
+	return firstName +" "+ lastName;
+};
+
+mexicanFemale = ["Victoria","Manuela","Teresa","Catarina","Maria","Consuela","Carmen","Margarita","Marissa","Ximena","Camila","Valeria","Daniela","Sofia","Regina","Renata","Valentina","Andrea","Natalia","Mariana","Fernanda","Guadelupe","Jimena","Esmeralda","Alejandra","Alondra","Isabella"];
+
+mexicanMale = ["Angel","Manuel","gerardo","Cesar","Lorenzo","Esteban","Eloy","Cristiano","Ramiro","Juan","Jose","Mario","Elias","Rodolfo","Aurelio","Edgar","Omar","Enrique","Jaime","Julio","Marcos","Pedro","Rafael","Antonio","Ricardo","Jorge","Noe","Alfonzo","Moises","Andres","Nicholoas","Roberto"];
+
+mexicanSurnames = ["Garcia","Garza","Martinez","Alvarez","Rodriguez","Romero","Lopez","Fernandez","Hernandez","Medina","Gonzales","Moreno","Perez","Mendoza","Sanchez","Herrera","Rivera","Soto","Ramirez","Jimenez","Torres","Vargas","Gonzales","Castro","Flores","Rodriquez","Diaz","Mendez","Gomez","Munoz","Ortiz","Santiago","Cruz","Pena","Morales","Guzman","Reyes","Salazar","Ramos","Aguilar","Ruiz","Delgado","Chavez","Valdez","Vasquez","Rios","Gutierrez","Vega","Castillo","Ortega","Espinoza","Nunez"];
+
 //cosmonauts
 cosmonauts = [
-//[name,location,age,content?,[skills]]
+//[name,recruitment status,location,age,content?,[skills]]  (recruitment status: 0=invisible, 1=recruited, 2=recruitable, 3=dead)
 ];
 
+for(var i=0;i<10;i++){
+	cosmonauts.push([mexicanGenerator(),2,"Mexico",Math.floor(Math.random()*20)+20,true,["untrained"]]);
+};
 cosmo = function(){
 	clear();
 	simplePrint("<a class=\"blue\""+clickableBlue+" onclick=\"recruit()\">Recruit</a>");
-	simplePrint("No people are involved in your space program");
+	cosmoString = "";
+	if(cosmonauts.length === 0){
+		cosmoString = "No people are involved in your space program";
+	}
+	else{
+		for(var i=0;i<cosmonauts.length;i++){
+			cosmoString += "\""+cosmonauts[i][0]+"\", age: "+cosmonauts[i][3]+"<br>";
+		};
+	};
+	simplePrint(cosmoString);
 };
 
 recruit = function(){
 	alert("There are no available candidates, because this part of the program is not created yet.");
-	simplePrint(cosmonauts);
+	//simplePrint(cosmonauts);
 };
