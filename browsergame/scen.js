@@ -145,16 +145,21 @@ now = 0;
 times = setInterval(function(){
 	now++;
 	document.getElementById("timing").innerHTML = now;
-	if(now%100 ===0){
-		budget += growth;
-		budgetFresh(growth);
-		note("New budget",5000);
-	};
 	if(now%5 === 0){
 		science();
 		if(budget < 0){
 			budgetFresh(Math.floor(0.01*budget));
 			budget += Math.floor(0.01*budget);
+		};
+		if(now%100 ===0){
+			budget += growth;
+			budgetFresh(growth);
+			note("New budget",5000);
+			if(now%200 ===0){
+				for(var i=0;i<cosmonauts.length;i++){
+					cosmonauts[i][3]++;
+				};
+			};
 		};
 	};
 },1000);
