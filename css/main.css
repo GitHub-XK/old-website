@@ -498,7 +498,7 @@ ul.dark {
 	padding: 5px;
 }
 ul.dark li {
-	padding-left: 7px;
+	margin-left: 10px;
 }
 table ul {
 	background-color: transparent;
