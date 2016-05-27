@@ -497,6 +497,9 @@ ul.dark {
 	vertical-align: top;
 	padding: 5px;
 }
+ul.dark li {
+	padding-left: 7px;
+}
 table ul {
 	background-color: transparent;
 }
