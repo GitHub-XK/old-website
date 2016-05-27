@@ -32,13 +32,13 @@
 
 places = [
 //["id","display",[["con1","time","instant","time","spiral"],["con2","time","instant","time","spiral"]],"time","new"]
-[1,"LEO","Low Earth Orbit",[["LTOlow",0,3120],["landed",5,0]],false],		//0
-[0,"LTOlow","Lunar Transfer Orbit",[["LEO",0,3120]],100,"LTOmiddle"],		//1
+[1,"LEO","Low Earth Orbit",[[1,0,3120],[7,5,0]],false],				//0
+[0,"LTOlow","Lunar Transfer Orbit",[[0,0,3120]],100,"LTOmiddle"],		//1
 [0,"LTOmiddle","Lunar Transfer Orbit",[],400,"LTOhigh"],			//2
-[0,"LTOhigh","Lunar Transfer Orbit",[["LMO",0,820]],200,"LTOreturn"],		//3
+[0,"LTOhigh","Lunar Transfer Orbit",[[5,0,820]],200,"LTOreturn"],		//3
 [0,"LTOreturn","Returning from the Moon",[],1400,"LTOlow"],			//4
-[0,"LMO","Lunar orbit",[["LTOreturn",0,820,200,1800],["moon",10,1720,false]]],	//5
-[0,"moon","On the Moon",[["LMO",10,1720,false],[]],false],			//6
+[0,"LMO","Lunar orbit",[[4,0,820,200,1800],[6,10,1720,false]]],			//5
+[0,"moon","On the Moon",[[5,10,1720,false],[]],false],				//6
 [0,"landed","Landed",[],5,"recovered"],						//7
 [0,"recovered","Recovered",[],false],						//8
 [0,"EML1","EML1",[],false],							//9
@@ -345,7 +345,18 @@ minigame = function(){
 
 specificCraft = function(id){
 	clear();
-	simplePrint("<h4>\""+crafts[id][0]+"\"</h4><p>"+crafts[id][6]+"</p><br><br><a class=\"blue\">Navigation:</a><br><p id=\"navChoice\">No way to navigate</p><br><br><a onclick=\"tolk('location');command='location'\" class=\"blue\""+clickableBlue+">Back</a>");
+	var tmpPlace = crafts[id][1];
+	var tmpPlace2 = -1;
+	for(var i=0;i<places.length;i++){
+		if(tmpPlace === places[i][1]){
+			tmpPlace2 = i;
+		};
+	};
+	var navigationString = "";
+	for(var i=0;i<places[tmpPlace2][3].length;i++){
+		navigationString += "<a"+clickableBlue+" onclick=\"alert('Not implemented')\">"+places[places[tmpPlace2][3][i][0]][2] + "</a> <a class=\"red\">"+places[tmpPlace2][3][i][2]+"</a> m/s<br>";
+	};
+	simplePrint("<h4>\""+crafts[id][0]+"\"</h4><p>"+crafts[id][6]+"</p><br><br><a class=\"blue\">Navigation:</a><br><p id=\"navChoice\">No way to navigate<br>"+navigationString+"</p><br><br><a onclick=\"tolk('location');command='location'\" class=\"blue\""+clickableBlue+">Back</a>");
 };
 
 //cosmonauts
@@ -361,4 +372,5 @@ cosmo = function(){
 
 recruit = function(){
 	alert("There are no available candidates, because this part of the program is not created yet.");
+	simplePrint(cosmonauts);
 };
