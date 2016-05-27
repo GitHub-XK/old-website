@@ -222,6 +222,10 @@ margin: 0;
 	clear: both;
 	display: block;
 }
+br.clearboth {
+	clear: both;
+	display: block;
+}
 .noFloat {
 	display: block;
 	float: none !important;
