@@ -99,6 +99,33 @@ placeLTO = function(){
 	printi("Lunar transfer orbit:");
 };
 
+placeLMOstring = "";
+placeLMO = function(){
+	placeLMOstring = "";
+	for(var i=0;i<crafts.length;i++){
+		if(crafts[i][1] === "LMO"){
+			placeLMOstring += "<a"+clickableBlue+"onclick=\"specificCraft("+i+")\" style=\"color:green\">\""+crafts[i][0]+"\"</a> has ";
+			if(crafts[i][5] != 0){
+				placeLMOstring += crafts[i][5]+" passengers, ";
+			}
+			else{
+				placeLMOstring += "no passengers, ";
+			};
+			if(crafts[i][6] != false){
+				placeLMOstring += "is transporting a "+crafts[i][6]+", ";
+			};
+			placeLMOstring += "and has "+crafts[i][4]+"m/s delta-v remaining.<br>"
+		};
+	};
+	clear();
+	if(placeLMOstring === ""){
+		placeLMOstring += "There are currenty no spacecraft in lunar orbit.";
+	};
+	placeLMOstring += "<br><br><a onclick=\"tolk('location');command='location'\" class=\"blue\""+clickableBlue+">Back</a>";
+	simplePrint(placeLMOstring);
+	printi("Lunar orbit:");
+};
+
 placemoonstring = "";
 placemoon = function(){
 	placemoonstring = "";
@@ -344,17 +371,18 @@ minigame = function(){
 };
 
 specificCraft = function(id){
+	speci = id; //need a global reference to interact in DOM
 	clear();
-	var tmpPlace = crafts[id][1];
-	var tmpPlace2 = -1;
+	tmpPlace = crafts[id][1];
+	tmpPlace2 = -1;
 	for(var i=0;i<places.length;i++){
 		if(tmpPlace === places[i][1]){
 			tmpPlace2 = i;
 		};
 	};
-	var navigationString = "";
+	navigationString = "";
 	for(var i=0;i<places[tmpPlace2][3].length;i++){
-		navigationString += "<a"+clickableBlue+" onclick=\"alert('Not implemented')\">"+places[places[tmpPlace2][3][i][0]][2] + "</a> <a class=\"red\">"+places[tmpPlace2][3][i][2]+"</a> m/s<br>";
+		navigationString += "<a"+clickableBlue+" onclick=\"crafts[speci][1]=places[places[tmpPlace2][3][i][0]][1];places[places[tmpPlace2][3][i][0]][0]++;places[tmpPlace2][0]--\">"+places[places[tmpPlace2][3][i][0]][2] + "</a> <a class=\"red\">"+places[tmpPlace2][3][i][2]+"</a> m/s<br>";
 	};
 	simplePrint("<h4>\""+crafts[id][0]+"\"</h4><p>"+crafts[id][6]+"</p><br><br><a class=\"blue\">Navigation:</a><br><p id=\"navChoice\">No way to navigate<br>"+navigationString+"</p><br><br><a onclick=\"tolk('location');command='location'\" class=\"blue\""+clickableBlue+">Back</a>");
 };
