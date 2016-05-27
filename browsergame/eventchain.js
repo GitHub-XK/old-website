@@ -545,6 +545,7 @@ Rhigh = function(){
 Hlocation = function(){
 	clear();
 	simplePrint("<a style=\"color: #0000c0\" onclick=\"placemoon()\""+clickableBlue+">On the Moon</a> <a style=\"color: #ff0000\">"+places[6][0]+"</a>");
+	simplePrint("<a style=\"color: #0000c0\" onclick=\"placeLMO()\""+clickableBlue+">Lunar orbit</a> <a style=\"color: #ff0000\">"+places[5][0]+"</a>");
 	simplePrint("<a style=\"color: #0000c0\" onclick=\"placeLTO()\""+clickableBlue+">Lunar Transfer Orbit</a> <a style=\"color: #ff0000\">"+Number(places[4][0]+places[1][0]+places[2][0]+places[3][0])+"</a>");
 	simplePrint("<a style=\"color: #0000c0\" onclick=\"placeLEO()\""+clickableBlue+">Low Earth Orbit</a> <a style=\"color: #ff0000\">"+places[0][0]+"</a>");
 	printi("Things you have in space:");
@@ -621,7 +622,7 @@ launch = function(){
 				pendingList[i][3] = false;
 			};
 			partID.push([pendingList[i][0]]+"");
-			crafts[crafts.length-1][6].push(uniqueListing);	//too buggy
+			crafts[crafts.length-1][6].push(uniqueListing);
 			uniqueListing++;
 		};
 		places[0][0]++;
