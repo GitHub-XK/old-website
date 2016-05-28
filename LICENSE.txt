@@ -10,7 +10,7 @@
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
 
-    For more information, see <http://www.gnu.org/licenses/gpl-3.0.en.html>.
+    For more information, see <http://www.gnu.org/licenses/licenses.html>.
  
  
  
