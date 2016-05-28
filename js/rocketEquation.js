@@ -45,7 +45,9 @@ rocket = function(){
   result = Math.round(result*100)/100;
   document.getElementById("resultRE").innerHTML = "Delta-v: <b>" + result + " m/s</b>";
   for(var i=0;i<comparissionTable.length;i++){
+      alert("debug1");
       if(comparissionTable[i][0] > result){
+                alert("debug2");
           document.getElementById("lessThan").innerHTML = "Less than "+comparissionTable[i][1]+" ("+comparissionTable[i][0]+" m/s)";
       };
       if(i != 0){
