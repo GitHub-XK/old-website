@@ -424,7 +424,7 @@ Rnuke = function(){
 };
 
 Rcryo2Prog = 0;
-Rcryo2String = "<a onclick=\"Rcryo2()\" style=\"color: #aaaaaa\""+clickableBlue+">Cryogenic storage</a> Cost: 2500";
+Rcryo2String = "<a onclick=\"Rcryo2()\" style=\"color: #aaaaaa\""+clickableBlue+">Cryogenic storage</a> Cost: 2500<br><a>Allow cryogenic fuels to be used in deep space</a>";
 Rcryo2 = function(){
 	if(technology[2] === 0){
 		technology[2] = 1;
@@ -437,7 +437,7 @@ Rcryo2 = function(){
 };
 
 RrockProg = 0;
-RrockString = "<a onclick=\"Rrock()\" style=\"color: #aaaaaa\""+clickableBlue+">Regolith melting</a> Cost: 1000";
+RrockString = "<a onclick=\"Rrock()\" style=\"color: #aaaaaa\""+clickableBlue+">Regolith melting</a> Cost: 1000<br><a>Let your base make its own building materials</a>";
 Rrock = function(){
 	if(technology[3] === 0){
 		technology[3] = 1;
@@ -463,7 +463,7 @@ Rfibr = function(){
 };
 
 RcapsProg = 0;
-RcapsString = "<a onclick=\"Rcaps()\" style=\"color: #aaaaaa\""+clickableBlue+">Develop a human rated capsule</a> Cost: 1000";
+RcapsString = "<a onclick=\"Rcaps()\" style=\"color: #aaaaaa\""+clickableBlue+">Develop a human rated capsule</a> Cost: 1000<br><a>A box. With people inside.</a>";
 Rcaps = function(){
 	if(technology[5] === 0){
 		technology[5] = 1;
@@ -476,7 +476,7 @@ Rcaps = function(){
 };
 
 RlargProg = 0;
-RlargString = "<a onclick=\"Rlarg()\" style=\"color: #aaaaaa\""+clickableBlue+">Heavy duty rocketry</a> Cost: 3000";
+RlargString = "<a onclick=\"Rlarg()\" style=\"color: #aaaaaa\""+clickableBlue+">Heavy duty rocketry</a> Cost: 3000<br><a>Go bigger and better</a>";
 Rlarg = function(){
 	if(technology[6] === 0){
 		technology[6] = 1;
@@ -502,7 +502,7 @@ Rboos = function(){
 };
 
 RmateProg = 0;
-RmateString = "<a onclick=\"Rmate()\" style=\"color: #aaaaaa\""+clickableBlue+">Better materials</a> Cost: 700";
+RmateString = "<a onclick=\"Rmate()\" style=\"color: #aaaaaa\""+clickableBlue+">Better materials</a> Cost: 700<br><a>This unlocks a lot of new research.</a>";
 Rmate = function(){
 	if(technology[8] === 0){
 		technology[8] = 1;
@@ -640,4 +640,11 @@ launch = function(){
 	else{
 		note("You must select a payload",5000);
 	};
+};
+
+techCanvasDraw = function(){
+	var canvas = document.getElementById("techCanvas");
+	var ctx = canvas.getContext("2d");
+	ctx.fillStyle = "#D0D0D0";
+	ctx.fillRect(0,0,400,300);
 };

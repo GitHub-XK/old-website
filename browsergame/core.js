@@ -28,6 +28,7 @@
 
 c = ["","","","","","","","","","","","","","","","","","","",""]; //wtf solution to escape the approaching deadline
 command = "";
+init = true;
 var p = function(id,value) {
 	c[id] = value;
 	document.getElementById("c"+id).innerHTML = value;
@@ -134,20 +135,33 @@ else{
 	document.getElementById("toggle1").style.background = "gray";
 	document.getElementById("toggle2").style.background = "gray";
 };
-clearInterval(times);
+if(init){
+	init = false;
+}
+else{
+	clearInterval(times);
+};
 times = setInterval(function(){
 	now++;
 	document.getElementById("timing").innerHTML = now;
-	if(now%100 ===0){
-		budget += growth;
-		budgetFresh(growth);
-		note("New budget",5000);
-	};
 	if(now%5 === 0){
 		science();
 		if(budget < 0){
 			budgetFresh(Math.ceil(0.01*budget));
 			budget += Math.ceil(0.01*budget);
+		};
+		if(now%100 < 2){
+			budget += growth;
+			budgetFresh(growth);
+			note("New budget",5000);
+			if(now%200 < 2){
+				for(var i=0;i<cosmonauts.length;i++){
+					cosmonauts[i][3]++;
+				};
+				if(command === "cosmo"){
+					tolk("cosmo");
+				};
+			};
 		};
 	};
 },1000/factor);
