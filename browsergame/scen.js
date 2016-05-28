@@ -121,9 +121,11 @@ tolk = function(com){
 	}
 	else if(com === "rd"){
 			clear();
+			simplePrint("<canvas id=\"techCanvas\" width=\"400\" height=\"300\"></canvas>");
 			printScience();
 			simplePrint("Key: <a style=\"color: #aaaaaa\">Available</a>, <a style=\"color: #0000ff\">In development</a>, <a style=\"color: #00ff20\">Complete</a><br>=========================<br>");
 			simplePrint("<b>Welcome to Research and Development!</b><br>Click to toggle different areas of research.");
+			techCanvasDraw();
 	}
 	else if(com === "save" && local === true){
 		saveFunction(prompt("Name:"));
@@ -142,27 +144,7 @@ tolk = function(com){
 	};
 };
 now = 0;
-times = setInterval(function(){
-	now++;
-	document.getElementById("timing").innerHTML = now;
-	if(now%5 === 0){
-		science();
-		if(budget < 0){
-			budgetFresh(Math.floor(0.01*budget));
-			budget += Math.floor(0.01*budget);
-		};
-		if(now%100 ===0){
-			budget += growth;
-			budgetFresh(growth);
-			note("New budget",5000);
-			if(now%200 ===0){
-				for(var i=0;i<cosmonauts.length;i++){
-					cosmonauts[i][3]++;
-				};
-			};
-		};
-	};
-},1000);
+acceleration(1);
 
 budgetFresh = function(change){
 	if(change < 0){
