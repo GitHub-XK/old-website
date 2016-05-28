@@ -44,4 +44,25 @@ rocket = function(){
   var result = Math.log(massratio) * exhaust * just;
   result = Math.round(result*100)/100;
   document.getElementById("resultRE").innerHTML = "Delta-v: <b>" + result + " m/s</b>";
+  for(var i=0;i<comparissionTable.length;i++){
+      if(comparissionTable[i][0] > result){
+          document.getElementById("lessThan").innerHTML = "Less than "+comparissionTable[i][1]+" ("+comparissionTable[i][0]+" m/s)";
+      };
+      if(i != 0){
+          document.getElementById("moreThan").innerHTML = "Less than "+comparissionTable[i-1][1]+" ("+comparissionTable[i-1][0]+" m/s)";
+      };
+      i=comparissionTable.length;
+  };
 };
+comparissionTable = [
+    [140,"the delta-v of a minimal lunar capture."],
+    [640,"from lunar orbit to EML1 or EML2."],
+    [680,"than to escape the Moon from lunar orbit."],
+    [820,"a return to Earth from lunar orbit."],
+    [1720,"needed to get into orbit from the  lunar surface."],
+    [3020,"from the surface of the Moon to a Mars transfer."]
+    [3120,"to reach lunar transfer orbit from LEO."],
+    [3600,"from the surface of Mars to orbit."],
+    [9400,"required to get into orbit."],
+    [11200,"Earth's escape velocity."]
+];
