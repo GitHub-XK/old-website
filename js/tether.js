@@ -90,4 +90,17 @@ tether = function(){
     resultLE3 = Math.round(resultLE3);
     document.getElementById("resultLE3").innerHTML = "Elevator mass: <b>"+resultLE3+" kg</b>";
   };
+  //Draw the tether graphics
+	var tetherCanvas = document.getElementById("tetherCanvas");
+	tetherCanvas.width = tetherCanvas.width;
+	var ctx = tetherCanvas.getContext("2d");
+	var visibleRadius = 325*moonRadius/endaltitude;
+	ctx.beginPath();
+	ctx.arc(50,50,visibleRadius,0,2*Math.PI);
+	ctx.stroke();
+	ctx.fillStyle = "#D0D0D0";
+	ctx.fill();
+	ctx.moveTo(375,50);
+	ctx.lineTo(50+325*startaltitude/endaltitude,50);
+	ctx.stroke();
 };
