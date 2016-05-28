@@ -44,9 +44,9 @@ rocket = function(){
   var result = Math.log(massratio) * exhaust * just;
   result = Math.round(result*100)/100;
   document.getElementById("resultRE").innerHTML = "Delta-v: <b>" + result + " m/s</b>";
-  for(var i=0;i<comparissionTable.length;i++){
+  for(i=0;i<comparissionTable.length;i++){
       if(i != 0){
-          document.getElementById("moreThan").innerHTML = "Less than "+comparissionTable[i-1][1]+" ("+comparissionTable[i-1][0]+" m/s)";
+          document.getElementById("moreThan").innerHTML = "More than "+comparissionTable[i-1][1]+" ("+comparissionTable[i-1][0]+" m/s)";
       };
       if(comparissionTable[i][0] > result){
           document.getElementById("lessThan").innerHTML = "Less than "+comparissionTable[i][1]+" ("+comparissionTable[i][0]+" m/s)";
