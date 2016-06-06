@@ -38,6 +38,15 @@ rel='stylesheet' type='text/css'>
 <script src="js/plugins.js"></script>
 <script src="js/main.js"></script>
 <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+<script type="text/x-mathjax-config">
+  //this is a script for making the single $ inline delimeter work. Stolen from here: http://tex.stackexchange.com/a/27656
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
 <script async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
     </head>
     <body>
@@ -93,6 +102,8 @@ rel='stylesheet' type='text/css'>
             of various undertakings in space. Getting a feel for how your equipment interacts with the environment 
             is really central to designing life in space. We will expand and refine all these with time, making them 
             more intuitive with graphics, combining them, and so on.</p>
+            <noscript><p>It seems like you do not have JavaScript enabled. If that is your intention, we are just telling you that the scripts on this site do not collect any data about you, and are only used for fonts and styling<br>
+            The calulators are also based on JavaScript, and they do not work without. They are free software under the terms of the GPL.</p></noscript>
    </div>
    </div>
 <br class="clearboth">
@@ -176,22 +187,44 @@ rel='stylesheet' type='text/css'>
     by <a href="https://sketchfab.com/briligg?utm_medium=embed&utm_source=website&utm_campain=share-popup" target="_blank" style="font-weight: bold; color: #1CAAD9;">briligg</a>
     on <a href="https://sketchfab.com?utm_medium=embed&utm_source=website&utm_campain=share-popup" target="_blank" style="font-weight: bold; color: #1CAAD9;">Sketchfab</a>
 </p>
+<a href="rotovator.html">Link to animated rotovator</a>
 
                 </div>
-        <!--not completed
                 <div class="black roundAll">
-                	<div class="darkYellow pad15 roundAll">
-                		<h4 class="yellow">Lunar Rotovator</h4><br>
-                		<div>
-                			<img src="blank.png" height="512">
-					<img id="moon" src="moon.png" height="128" style="position: absolute; top: 198px; left: 198px;">
-					<img id="tether" src="tether.png" style="position: absolute; top: 185px; left: 256px; transform: rotate(0deg);">
-					<img id="payload" src="payload.png" style="position: absolute; top: 316px; left: 256px;">
-                		</div>
-                		<script src="js/animationRotovator.js"></script>
-                	</div>
-                </div>
-         -->
+                    <div class="darkYellow pad15 roundAll">
+			<h3>A quick introduction to orbital mechanics</h3><br>
+			<h5>The basics:</h5>
+			<p>Navigation a spacecraft can best be understood as moving a heavy bowling ball. When it is up to speed, it continues to move, without anything pushing it. What requires effort is to change the direction it is moving, give it more speed, or slow it down. Coasting along is "free". The cost of a maneouver is the required <b>change in velocity</b>, commonly referred to as <b>Delta-v</b>.</p>
+			<p>An orbit is an example of coasting along for free. When in an orbit, a spacecraft does not use its thrusters, and gravity bends its path, most often to an ellipse. Thus, you can leave your spacecraft in an orbit for as long as you like.</p>
+			<p>However, when we want to change our spacecraft's orbit, we have to change our velocity, thus draining from our Delta-v budget. A spacecraft always has a limited amount of Delta-v, so making transfers between orbits as cheap as possible is a major considerations in  spacecraft navigation.</p>
+			<p>Every way of changing the velocity of a spacecraft is based upon the conservation of momentum. That is, if you take every object in a system, multiply their mass and velocity, and take their sum, the value you get is constant. That means throwing propellant in one direction causes something else in to move in the opposite direction in order to keep the momentum constant. That "something" is your spacecraft.</p>
+			<p>The obvious limitation should then be clear: We have a limited amount of propellant to trow away. Making the propellant go faster makes the required amount smaller, so that helps. This is the <b>exhaust velocity of the rocket</b>. Another measure for the exact same thing is <b>Isp</b> (specific impulse). That is just the exhaust velocity divided by the standard gravity at sea level (9.81 m/s²). Here is our first important equation, used to calculate Delta-v:
+$$\Delta v=v_e \cdot ln\left(\frac{m_{initial}}{m_{final}}\right)$$
+This is the Tsiolkovsky rocket equation. Tsiolkovsky figured out how rockets worked <i>before</i> planes where invented. Let us see how it works:<br>
+$v_e$ is the exhaust velocity<br>
+$m_{initial}$ is the mass of the entire spacecraft before you start the burn<br>
+$m_{final}$ is the mass of the spacecraft after the burn. $\frac{m_{initial}}{m_{final}}$ is often called the mass parameter.<br>
+$ln$ is the natural logarithm. You should have a button labelled that on your calculator.<br>
+A calculator implementation of this equation is at the top of this page.<br></p>
+			<h5>Propulsion:</h5>
+			<p>As it is desirable to have as high a exhaust velocity as possible, the goal of all kinds of rocket propulsion is to cram as much propellant into the propellant stream as physically possible</p>
+			<h6>Chemical rockets</h6>
+			<p>This is the most common way of rocket propulsion, and gets the energy from chemical reactions of fuel. The exhaust products also doubles as the reaction mass. The most common rocket fuels are kerosene like hydrocarbons and liquid oxygen. For higher performance, but at the cost of a more coplicated design, hydrogen can be used instead of kerosene. There are also many other fuels mostly focusing on easy to store and failproof engines. Solid rocket fuel is often used for boosters and does not offer a high performance, but has decent thrust.
+			</p>
+			<h6>Nuclear rockets</h6>
+			<p>The amount of energy that can be stored as chemical compounds is limited, and chemical rockets are also forced to use less than optimal exhaust products as reaction mass. In general, ligther molecules are better, but no chemical reaction that produces large amount energy also produce hydrogen gas. Nuclear engines bypass this issue by using a reactor to heat the flow of propellant, making use of hydrogen gas possible, this makes the exhaust velocity twice as large as chemical rockets. On the other hand, they often has lower thrust.
+			</p>
+			<h6>Ion engines</h6>
+			<p>TODO</p>
+			<h6>Solar sails</h6>
+			<p6>TODO</p>
+			<h5>Orbit terminology:</h5>
+			<img class="realsize" src="img/orbit.png" height="519">
+			<p>
+(How does the CSS layout work here? I can not figure it out.)
+			</p>
+		    </div>
+		</div>
             <div class="col-12 col-m-12">     
                 <a href="http://www.gnu.org/licenses/">
                 <p>All calculator scripts are released under GPL 3</p>
@@ -200,8 +233,6 @@ rel='stylesheet' type='text/css'>
     </div>
 </div>
 <script>
-
-
 </script>
     </body>
 </html>
