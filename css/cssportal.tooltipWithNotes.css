@@ -1,0 +1,101 @@
+/*-------------------------------------------------------------------------------
+This css makes the tooltips work, so all the numbered buttons on the images 
+show text when hovered over. It is based on the example at http://www.cssportal.com/blog/css-tooltips/
+The first declaration is so buttons can be placed precisely on top of an image. 
+Each button is given its position in a style statement added to it on the html files, 
+using percentages from top and left. The class pix was given position: relative in the 
+main css doc.
+--------------------------------------------------------------------------------*/
+div.pix button{
+  position: absolute;
+}
+/*-------------------------------------------------------------------------------------
+The next 2 declarations set up spans that are hidden unless the button is hovered 
+over. Then I set up a selection of tooltip classes so i could position the text 
+in the image well and try to prevent it running off the page. That is what all 
+the rest is for.
+-------------------------------------------------------------------------------*/
+div.pix span {
+  position: absolute;
+  width: 0px;
+  color: #FFFFFF;
+  height: auto;
+  line-height: 1.2em;
+  text-align: left;
+  visibility: hidden;
+  border-radius: 6px;
+}
+.tooltipT:hover span, .tooltipTML:hover span, .tooltipTL:hover span, .tooltipTMR:hover span, 
+.tooltipTR:hover span, .tooltipL:hover span, .tooltipML:hover span, .tooltipR:hover span, 
+.tooltipMR:hover span, .tooltipB:hover span, .tooltipBML:hover span, .tooltipBL:hover span, 
+.tooltipBBL:hover span, .tooltipBMR:hover span, .tooltipBR:hover span, .tooltipBBR:hover span {
+  visibility: visible;
+  background-color: rgba(30, 0,30, 1);
+  padding: 8px;
+  z-index: 10;
+  width: 400px;
+  }
+.tooltipT:hover span{
+  bottom: 16px;
+  left: -200px;
+}
+.tooltipTML:hover span {
+  bottom: 16px;
+  left: -300px;
+}
+.tooltipTL:hover span {
+  bottom: 16px;
+  right: -50%;
+}
+.tooltipTMR:hover span {
+  bottom: 16px;
+  left: -100px;
+}
+.tooltipTR:hover span {
+  bottom: 16px;
+  left: -50%;
+}
+.tooltipL:hover span {
+  right: 100%;
+  top: -180px;
+}
+.tooltipML:hover span {
+  right: 100%;
+  top: -90px;
+}
+.tooltipR:hover span {
+  left: 100%;
+  top: -180px;
+}
+.tooltipMR:hover span {
+  left: 100%;
+  top: -90px;
+}
+.tooltipB:hover span {
+  top: 16px;
+  left: -200px;
+}
+.tooltipBML:hover span {
+  top: 16px;
+  left: -300px;
+}
+.tooltipBL:hover span {
+  right: 100%;
+  top: -8px;
+}
+.tooltipBBL:hover span {
+  top: 16px;
+  left: -350px;
+}
+.tooltipBBR:hover span {
+  top: 16px;
+  left: -30px;
+}
+.tooltipBMR:hover span {
+  top: 16px;
+  left: -100px;
+}
+.tooltipBR:hover span {
+  left: 100%;
+  top: -8px;
+}
