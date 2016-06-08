@@ -138,11 +138,11 @@ placemoon = function(){
 			else{
 				placemoonstring += "no passengers, ";
 			};
-			/*
+			/* what is this one doing? I do not remember.
 			if(crafts[i][6] != false){
 				placemoonstring += "is transporting a "+crafts[i][6]+", ";
 			};
-			*/
+			*/ 
 			placemoonstring += "and has "+crafts[i][4]+"m/s delta-v remaining.<br>"
 		};
 	};
@@ -382,10 +382,12 @@ specificCraft = function(id){
 	};
 	navigationString = "";
 	for(var i=0;i<places[tmpPlace2][3].length;i++){
-		navigationString += "<a"+clickableBlue+" onclick=\"crafts[speci][1]=places[places[tmpPlace2][3][i][0]][1];places[places[tmpPlace2][3][i][0]][0]++;places[tmpPlace2][0]--\">"+places[places[tmpPlace2][3][i][0]][2] + "</a> <a class=\"red\">"+places[tmpPlace2][3][i][2]+"</a> m/s<br>";
+		navigationString += "<a"+clickableBlue+" onclick=\"crafts[speci][1]=places[places[tmpPlace2][3][i][0]][1];places[places[tmpPlace2][3][i][0]][0]++;places[tmpPlace2][0]--;note(crafts[speci][0]+' has transfered to '+places[places[tmpPlace2][3][i][0]][2],3000);tolk('location');command='location'\">"+places[places[tmpPlace2][3][i][0]][2] + "</a> <a class=\"red\">"+places[tmpPlace2][3][i][2]+"</a> m/s<br>";
 	};
 	simplePrint("<h4>\""+crafts[id][0]+"\"</h4><p>"+crafts[id][6]+"</p><br><br><a class=\"blue\">Navigation:</a><br><p id=\"navChoice\">No way to navigate<br>"+navigationString+"</p><br><br><a onclick=\"tolk('location');command='location'\" class=\"blue\""+clickableBlue+">Back</a>");
 };
+
+//this bit is a little fun, it generatres random names for the cosmonauts, and defaults to Mexico.
 
 mexicanGenerator = function(){
 	if(Math.random() > 0.5){
@@ -400,7 +402,7 @@ mexicanGenerator = function(){
 
 mexicanFemale = ["Victoria","Manuela","Teresa","Catarina","Maria","Consuela","Carmen","Margarita","Marissa","Ximena","Camila","Valeria","Daniela","Sofia","Regina","Renata","Valentina","Andrea","Natalia","Mariana","Fernanda","Guadelupe","Jimena","Esmeralda","Alejandra","Alondra","Isabella"];
 
-mexicanMale = ["Angel","Manuel","gerardo","Cesar","Lorenzo","Esteban","Eloy","Cristiano","Ramiro","Juan","Jose","Mario","Elias","Rodolfo","Aurelio","Edgar","Omar","Enrique","Jaime","Julio","Marcos","Pedro","Rafael","Antonio","Ricardo","Jorge","Noe","Alfonzo","Moises","Andres","Nicholoas","Roberto"];
+mexicanMale = ["Angel","Manuel","Gerardo","Cesar","Lorenzo","Esteban","Eloy","Cristiano","Ramiro","Juan","Jose","Mario","Elias","Rodolfo","Aurelio","Edgar","Omar","Enrique","Jaime","Julio","Marcos","Pedro","Rafael","Antonio","Ricardo","Jorge","Noe","Alfonzo","Moises","Andres","Nicholas","Roberto"];
 
 mexicanSurnames = ["Garcia","Garza","Martinez","Alvarez","Rodriguez","Romero","Lopez","Fernandez","Hernandez","Medina","Gonzales","Moreno","Perez","Mendoza","Sanchez","Herrera","Rivera","Soto","Ramirez","Jimenez","Torres","Vargas","Gonzales","Castro","Flores","Rodriquez","Diaz","Mendez","Gomez","Munoz","Ortiz","Santiago","Cruz","Pena","Morales","Guzman","Reyes","Salazar","Ramos","Aguilar","Ruiz","Delgado","Chavez","Valdez","Vasquez","Rios","Gutierrez","Vega","Castillo","Ortega","Espinoza","Nunez"];
 
@@ -409,25 +411,80 @@ cosmonauts = [
 //[name,recruitment status,location,age,content?,[skills]]  (recruitment status: 0=invisible, 1=recruited, 2=recruitable, 3=dead)
 ];
 
+//same format as above
+Rcosmonauts = [
+];
+
 for(var i=0;i<10;i++){
-	cosmonauts.push([mexicanGenerator(),2,"Mexico",Math.floor(Math.random()*20)+20,true,["untrained"]]);
+	cosmonauts.push([mexicanGenerator(),2,"Mexico",Math.floor(Math.random()*20)+20,true,["untrained"]]); //get ten random recruits to chose among.
 };
 cosmo = function(){
 	clear();
 	simplePrint("<a class=\"blue\""+clickableBlue+" onclick=\"recruit()\">Recruit</a>");
 	cosmoString = "";
+	RcosmoString = "";
+	cosmoHighlighting = [];
+	RcosmoHighlighting = [];
+	//generate lists:
 	if(cosmonauts.length === 0){
-		cosmoString = "No people are involved in your space program";
+		cosmoString = "No people are interested in your space program";
 	}
 	else{
 		for(var i=0;i<cosmonauts.length;i++){
-			cosmoString += "\""+cosmonauts[i][0]+"\", age: "+cosmonauts[i][3]+"<br>";
+			cosmoHighlighting.push(false);
+			cosmoString += "<a"+clickableBlue+"id='cosmo"+i+"' onclick='cosmoSelectionUpdate("+i+",false)'>\""+cosmonauts[i][0]+"\"</a>, age: "+cosmonauts[i][3]+"<br>";
+		};
+	};
+	if(Rcosmonauts.length === 0){
+		RcosmoString = "No people are recruited to your space program";
+	}
+	else{
+		for(var i=0;i<Rcosmonauts.length;i++){
+			RcosmoHighlighting.push(false);
+			RcosmoString += "<a"+clickableBlue+"id='Rcosmo"+i+"' onclick='cosmoSelectionUpdate("+i+",true)'>\""+Rcosmonauts[i][0]+"\"</a>, age: "+Rcosmonauts[i][3]+" <a style=\"color:#00ff00\""+clickableBlue+"onclick=\"cosmoDetails("+i+")\"id=\"details"+i+"\"></a><br>";
 		};
 	};
 	simplePrint(cosmoString);
+	simplePrint("<a style=\"color:#ff2200\">Available cosmonauts:</a>");
+	simplePrint(RcosmoString);
+	simplePrint("<a style=\"color:#ff2200\">Recruited cosmonauts:</a>");
+};
+
+cosmoSelectionUpdate = function(plass,logi){
+	if(logi){
+		if(RcosmoHighlighting[plass]){
+			RcosmoHighlighting[plass] = false;
+			document.getElementById("Rcosmo"+plass).style.color = "#FF9900";
+		}
+		else{
+			RcosmoHighlighting[plass] = true;
+			document.getElementById("Rcosmo"+plass).style.color = "#0000ff";
+			document.getElementById("details"+plass).innerHTML = "show details";
+		};
+	}
+	else{
+		if(cosmoHighlighting[plass]){
+			cosmoHighlighting[plass] = false;
+			document.getElementById("cosmo"+plass).style.color = "#FF9900";
+		}
+		else{
+			cosmoHighlighting[plass] = true;
+			document.getElementById("cosmo"+plass).style.color = "#0000ff";
+		};
+	};
 };
 
 recruit = function(){
-	alert("There are no available candidates, because this part of the program is not created yet.");
-	//simplePrint(cosmonauts);
+	for(var i=0;i<cosmoHighlighting.length;i++){
+		if(cosmoHighlighting[i]){
+			Rcosmonauts.push(cosmonauts[i]);
+			cosmonauts[i] = [mexicanGenerator(),2,"Mexico",Math.floor(Math.random()*20)+20,true,["untrained"]];//replace with a new random recruit
+		};
+	};
+	cosmo();
+};
+
+cosmoDetails = function(plass){
+	clear();
+	printi("nothing developed here yet");
 };
