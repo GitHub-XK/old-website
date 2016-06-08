@@ -642,6 +642,8 @@ launch = function(){
 	};
 };
 
+//R&D canvas below here
+
 techCanvasDraw = function(){
 	var canvas = document.getElementById("techCanvas");
 	var ctx = canvas.getContext("2d");
