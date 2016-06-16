@@ -153,6 +153,11 @@ everything with columns*/
 	font-size: 80% !important;
 	}
 }
+@media only screen and (min-width: 2100px) {
+	#container {
+	margin-top: 215px !important;
+	}
+}
 @media only screen and (max-width: 700px) {
 	.tooltipT:hover span, .tooltipTML:hover span, .tooltipTL:hover span, .tooltipTMR:hover span, 
 	.tooltipTR:hover span, .tooltipL:hover span, .tooltipML:hover span, .tooltipR:hover span, 
@@ -230,10 +235,6 @@ br.clearboth {
 	position: relative;
 	top: 0;
 	left: 0;
-}
-.centerit {
-	width: 50%;
-	margin: 0 auto;
 }
 #container {
 	margin-top: 160px;
@@ -350,7 +351,9 @@ cursor: pointer;
 	text-align: left;
 	vertical-align: top;
 	}
-
+.centertext {
+	text-align: center;
+}
 	
 .pad15 {
 	padding: 15px;
