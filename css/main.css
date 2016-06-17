@@ -297,12 +297,6 @@ cursor: pointer;
 	color: rgba(255,255,60,1);
 	background-color: rgba(50, 50, 0, 1)
 }
-
-.pix {
-	position: relative;
-	top: 0;
-	left: 0;
-}
 /* So spans display instead of the tooltip css being invoked*/
 .pix-alt {
 	position: relative;
@@ -529,6 +523,8 @@ table ul li {
 		.neutral {
 			color: inherit;
 			background-color: none;
+			position: relative;
+			display: inline;
 		}
 		img {
 		 	padding: 10px;
