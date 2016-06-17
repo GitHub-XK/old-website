@@ -1,3 +1,8 @@
+.pix {
+	position: relative;
+	top: 0;
+	left: 0;
+}
 div.pix button{
   position: absolute;
 }
@@ -16,7 +21,7 @@ div.pix span {
 .tooltipMR:hover span, .tooltipB:hover span, .tooltipBML:hover span, .tooltipBL:hover span, 
 .tooltipBBL:hover span, .tooltipBMR:hover span, .tooltipBR:hover span, .tooltipBBR:hover span {
   visibility: visible;
-  background-color: rgba(30, 0,30, 1);
+  background-color: rgba(30, 0, 30, 1);
   padding: 8px;
   z-index: 10;
   width: 400px;
