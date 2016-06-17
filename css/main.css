@@ -92,6 +92,7 @@ everything with columns*/
 		.col-m-5r6 {width: 41.66%; margin-left: 8.33%;}
 		.col-m-5l6 {width: 41.66%; margin-right: 8.33%;}
 		.col-m-7 {width: 58.33%;}
+		.col-m-7r8 {width: 58.33%; margin-left: 8.33%;}
 		.col-m-8 {width: 66.66%;}
 		.col-m-8c12 {width: 66.66%; margin: 0 16.66%;}
 		.col-m-8r12 {width: 66.66%; margin-left: 33.33%;}
@@ -124,6 +125,7 @@ everything with columns*/
     .col-5r6 {width: 41.66%; margin-left: 8.33%;}
     .col-5l6 {width: 41.66%; margin-right: 8.33%;}
     .col-7 {width: 58.33%;}
+    .col-7r8 {width: 58.33%; margin-left: 8.33%;}
     .col-8 {width: 66.66%;}
     .col-8c12 {width: 66.66%; margin: 0 16.66%;}
     .col-8r12 {width: 66.66%; margin-left: 33.33%;}
