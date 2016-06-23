@@ -191,7 +191,7 @@ loadFunction = function(fileName){
 		i++;
 	};
 	budget = Number(budget);
-	document.getElementById("budget").innerHTML = "Budget: <a style=\"color: #e02200\">"+budget+"</a>";
+	document.getElementById("budget").innerHTML = "Budget: <span style=\"color: #e02200\">"+budget+"</span>";
 };
 
 commandToggled = false;

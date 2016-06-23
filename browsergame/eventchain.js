@@ -214,116 +214,116 @@ printScience = function(){
 
 science = function(){
 	if(technology[0] === 2){
-		RcryoString = "<a onclick=\"Rcryo()\" style=\"color: #00ff00\">Cryogenic fuels</a>";
+		RcryoString = "<span onclick=\"Rcryo()\" style=\"color: #00ff00\">Cryogenic fuels</span>";
 	}
 	else if(technology[0] === 1){
 		if(RcryoProg === 100){
 			technology[0] = 2;
-			RcryoString = "<a onclick=\"Rcryo()\" style=\"color: #00ff00\">Cryogenic fuels</a>";
-			note("Notification:<br><a style=\"color: #00ff20\" onclick=\"tolk('rd')\">Cryogenic fuels</a> research is completed.",10000);
+			RcryoString = "<span onclick=\"Rcryo()\" style=\"color: #00ff00\">Cryogenic fuels</span>";
+			note("Notification:<br><span style=\"color: #00ff20\" onclick=\"tolk('rd')\">Cryogenic fuels</span> research is completed.",10000);
 			technology[2] = 0;
 			updateShop();
 		}
 		else{
-			RcryoString = "<a onclick=\"Rcryo()\" style=\"color: #0000ff\">Cryogenic fuels</a> <a style=\"color: #ff0000\">"+RcryoProg+"%</a>";
+			RcryoString = "<span onclick=\"Rcryo()\" style=\"color: #0000ff\">Cryogenic fuels</span> <span style=\"color: #ff0000\">"+RcryoProg+"%</span>";
 			RcryoProg++;
 		};
 	};
 	if(technology[1] === 2){
-		RnukeString = "<a onclick=\"Rnuke()\" style=\"color: #00ff00\">Nuclear thermal rockets</a>";
+		RnukeString = "<span onclick=\"Rnuke()\" style=\"color: #00ff00\">Nuclear thermal rockets</span>";
 	}
 	else if(technology[1] === 1){
 		nukeAccident("develop");
 		if(RnukeProg === 100){
 			technology[1] = 2;
-			RnukeString = "<a onclick=\"Rnuke()\" style=\"color: #00ff00\">Nuclear thermal rockets</a>";
-			note("Notification:<br><a style=\"color: #00ff20\" onclick=\"tolk('rd')\">Nuclear thermal rockets</a> research is completed.",10000);
+			RnukeString = "<span onclick=\"Rnuke()\" style=\"color: #00ff00\">Nuclear thermal rockets</span>";
+			note("Notification:<br><span style=\"color: #00ff20\" onclick=\"tolk('rd')\">Nuclear thermal rockets</span> research is completed.",10000);
 			updateShop();
 		}
 		else{
-			RnukeString = "<a onclick=\"Rnuke()\" style=\"color: #0000ff\">Nuclear thermal rockets</a> <a style=\"color: #ff0000\">"+RnukeProg+"%</a>";
+			RnukeString = "<span onclick=\"Rnuke()\" style=\"color: #0000ff\">Nuclear thermal rockets</span> <span style=\"color: #ff0000\">"+RnukeProg+"%</span>";
 			RnukeProg++;
 		};
 	};
 	if(technology[2] === 2){
-		Rcryo2String = "<a onclick=\"Rcryo2()\" style=\"color: #00ff00\">Cryogenic storage</a>";
+		Rcryo2String = "<span onclick=\"Rcryo2()\" style=\"color: #00ff00\">Cryogenic storage</span>";
 	}
 	else if(technology[2] === 1){
 		if(Rcryo2Prog === 100){
 			technology[2] = 2;
-			Rcryo2String = "<a onclick=\"Rcryo2()\" style=\"color: #00ff00\">Cryogenic storage</a>";
-			note("Notification:<br><a style=\"color: #00ff20\" onclick=\"tolk('rd')\">Cryogenic storage</a> research is completed.",10000);
+			Rcryo2String = "<span onclick=\"Rcryo2()\" style=\"color: #00ff00\">Cryogenic storage</span>";
+			note("Notification:<br><span style=\"color: #00ff20\" onclick=\"tolk('rd')\">Cryogenic storage</span> research is completed.",10000);
 			updateShop();
 		}
 		else{
-			Rcryo2String = "<a onclick=\"Rcryo2()\" style=\"color: #0000ff\">Cryogenic storage</a> <a style=\"color: #ff0000\">"+Rcryo2Prog+"%</a>";
+			Rcryo2String = "<span onclick=\"Rcryo2()\" style=\"color: #0000ff\">Cryogenic storage</span> <span style=\"color: #ff0000\">"+Rcryo2Prog+"%</span>";
 			Rcryo2Prog++;
 		};
 	};
 	if(technology[3] === 2){
-		RrockString = "<a onclick=\"Rrock()\" style=\"color: #00ff00\">Regolith melting</a>";
+		RrockString = "<span onclick=\"Rrock()\" style=\"color: #00ff00\">Regolith melting</span>";
 	}
 	else if(technology[3] === 1){
 		if(RrockProg === 100){
 			technology[3] = 2;
-			RrockString = "<a onclick=\"Rrock()\" style=\"color: #00ff00\">Regolith melting</a>";
-			note("Notification:<br><a style=\"color: #00ff20\" onclick=\"tolk('rd')\">Regolith melting</a> research is completed.",10000);
+			RrockString = "<span onclick=\"Rrock()\" style=\"color: #00ff00\">Regolith melting</span>";
+			note("Notification:<br><span style=\"color: #00ff20\" onclick=\"tolk('rd')\">Regolith melting</span> research is completed.",10000);
 			technology[4] = 0;
 			updateShop();
 		}
 		else{
-			RrockString = "<a onclick=\"Rrock()\" style=\"color: #0000ff\">Regolith melting</a> <a style=\"color: #ff0000\">"+RrockProg+"%</a>";
+			RrockString = "<span onclick=\"Rrock()\" style=\"color: #0000ff\">Regolith melting</span> <span style=\"color: #ff0000\">"+RrockProg+"%</span>";
 			RrockProg++;
 		};
 	};
 	if(technology[4] === 2){
-		RfibrString = "<a onclick=\"Rfibr()\" style=\"color: #00ff00\">Basalt fibres</a>";
+		RfibrString = "<span onclick=\"Rfibr()\" style=\"color: #00ff00\">Basalt fibres</span>";
 	}
 	else if(technology[4] === 1){
 		if(RfibrProg === 100){
 			technology[4] = 2;
-			RfibrString = "<a onclick=\"Rfibr()\" style=\"color: #00ff00\">Basalt fibres</a>";
-			note("Notification:<br><a style=\"color: #00ff20\" onclick=\"tolk('rd')\">Basalt fibres</a> research is completed.",10000);
+			RfibrString = "<span onclick=\"Rfibr()\" style=\"color: #00ff00\">Basalt fibres</span>";
+			note("Notification:<br><span style=\"color: #00ff20\" onclick=\"tolk('rd')\">Basalt fibres</span> research is completed.",10000);
 			updateShop();
 		}
 		else{
-			RfibrString = "<a onclick=\"Rfibr()\" style=\"color: #0000ff\">Basalt fibres</a> <a style=\"color: #ff0000\">"+RfibrProg+"%</a>";
+			RfibrString = "<span onclick=\"Rfibr()\" style=\"color: #0000ff\">Basalt fibres</span> <span style=\"color: #ff0000\">"+RfibrProg+"%</span>";
 			RfibrProg++;
 		};
 	};
 	if(technology[5] === 2){
-		RcapsString = "<a onclick=\"Rcaps()\" style=\"color: #00ff00\">Capsule development</a>";
+		RcapsString = "<span onclick=\"Rcaps()\" style=\"color: #00ff00\">Capsule development</span>";
 	}
 	else if(technology[5] === 1){
 		if(RcapsProg === 100){
 			technology[5] = 2;
 			technology[10] = 0;
-			RcapsString = "<a onclick=\"Rcaps()\" style=\"color: #00ff00\">Capsule development</a>";
-			note("Notification:<br><a style=\"color: #00ff20\" onclick=\"tolk('rd')\">Capsule development</a> research is completed.",10000);
+			RcapsString = "<span onclick=\"Rcaps()\" style=\"color: #00ff00\">Capsule development</span>";
+			note("Notification:<br><span style=\"color: #00ff20\" onclick=\"tolk('rd')\">Capsule development</span> research is completed.",10000);
 			updateShop();
 		}
 		else{
-			RcapsString = "<a onclick=\"Rcaps()\" style=\"color: #0000ff\">Capsule development</a> <a style=\"color: #ff0000\">"+RcapsProg+"%</a>";
+			RcapsString = "<span onclick=\"Rcaps()\" style=\"color: #0000ff\">Capsule development</span> <span style=\"color: #ff0000\">"+RcapsProg+"%</span>";
 			RcapsProg++;
 		};
 	};
 	if(technology[6] === 2){
-		RlargString = "<a onclick=\"Rlarg()\" style=\"color: #00ff00\">Heavy duty rocketry</a>";
+		RlargString = "<span onclick=\"Rlarg()\" style=\"color: #00ff00\">Heavy duty rocketry</span>";
 	}
 	else if(technology[6] === 1){
 		if(RlargProg === 100){
 			technology[6] = 2;
-			RlargString = "<a onclick=\"Rlarg()\" style=\"color: #00ff00\">Heavy duty rocketry</a>";
-			note("Notification:<br><a style=\"color: #00ff20\" onclick=\"tolk('rd')\">Heavy duty rocketry</a> research is completed.",10000);
+			RlargString = "<span onclick=\"Rlarg()\" style=\"color: #00ff00\">Heavy duty rocketry</span>";
+			note("Notification:<br><span style=\"color: #00ff20\" onclick=\"tolk('rd')\">Heavy duty rocketry</span> research is completed.",10000);
 			updateShop();
 		}
 		else{
-			RlargString = "<a onclick=\"Rlarg()\" style=\"color: #0000ff\">Heavy duty rocketry</a> <a style=\"color: #ff0000\">"+RlargProg+"%</a>";
+			RlargString = "<span onclick=\"Rlarg()\" style=\"color: #0000ff\">Heavy duty rocketry</span> <span style=\"color: #ff0000\">"+RlargProg+"%</span>";
 			RlargProg++;
 		};
 	};
 	if(technology[7] === 2){
-		RboosString = "<a onclick=\"Rboos()\" style=\"color: #00ff00\">Solid rocket boosters</a>";
+		RboosString = "<span onclick=\"Rboos()\" style=\"color: #00ff00\">Solid rocket boosters</span>";
 	}
 	else if(technology[7] === 1){
 		if(RboosProg === 100){
@@ -331,17 +331,17 @@ science = function(){
 			if(technology[8] === 2){
 				technology[9] = 0;
 			};
-			RboosString = "<a onclick=\"Rboos()\" style=\"color: #00ff00\">Solid rocket boosters</a>";
-			note("Notification:<br><a style=\"color: #00ff20\" onclick=\"tolk('rd')\">Solid rocket boosters</a> research is completed.",10000);
+			RboosString = "<span onclick=\"Rboos()\" style=\"color: #00ff00\">Solid rocket boosters</span>";
+			note("Notification:<br><span style=\"color: #00ff20\" onclick=\"tolk('rd')\">Solid rocket boosters</span> research is completed.",10000);
 			updateShop();
 		}
 		else{
-			RboosString = "<a onclick=\"Rboos()\" style=\"color: #0000ff\">Solid rocket boosters</a> <a style=\"color: #ff0000\">"+RboosProg+"%</a>";
+			RboosString = "<span onclick=\"Rboos()\" style=\"color: #0000ff\">Solid rocket boosters</span> <span style=\"color: #ff0000\">"+RboosProg+"%</span>";
 			RboosProg+=2;
 		};
 	};
 	if(technology[8] === 2){
-		RmateString = "<a onclick=\"Rmate()\" style=\"color: #00ff00\">Better materials</a>";
+		RmateString = "<span onclick=\"Rmate()\" style=\"color: #00ff00\">Better materials</span>";
 	}
 	else if(technology[8] === 1){
 		if(RmateProg === 100){
@@ -350,42 +350,42 @@ science = function(){
 			if(technology[7] === 2){
 				technology[9] = 0;
 			};
-			RmateString = "<a onclick=\"Rmate()\" style=\"color: #00ff00\">Better materials</a>";
-			note("Notification:<br><a style=\"color: #00ff20\" onclick=\"tolk('rd')\">Better materials</a> research is completed.",10000);
+			RmateString = "<span onclick=\"Rmate()\" style=\"color: #00ff00\">Better materials</span>";
+			note("Notification:<br><span style=\"color: #00ff20\" onclick=\"tolk('rd')\">Better materials</span> research is completed.",10000);
 			updateShop();
 		}
 		else{
-			RmateString = "<a onclick=\"Rmate()\" style=\"color: #0000ff\">Better materials</a> <a style=\"color: #ff0000\">"+RmateProg+"%</a>";
+			RmateString = "<span onclick=\"Rmate()\" style=\"color: #0000ff\">Better materials</span> <span style=\"color: #ff0000\">"+RmateProg+"%</span>";
 			RmateProg+=2;
 		};
 	};
 	if(technology[9] === 2){
-		RliquString = "<a onclick=\"Rliqu()\" style=\"color: #00ff00\">Liquid fuel boosters</a>";
+		RliquString = "<span onclick=\"Rliqu()\" style=\"color: #00ff00\">Liquid fuel boosters</span>";
 	}
 	else if(technology[9] === 1){
 		if(RliquProg === 100){
 			technology[9] = 2;
-			RliquString = "<a onclick=\"Rliqu()\" style=\"color: #00ff00\">Liquid fuel boosters</a>";
-			note("Notification:<br><a style=\"color: #00ff20\" onclick=\"tolk('rd')\">Liquid fuel boosters</a> research is completed.",10000);
+			RliquString = "<span onclick=\"Rliqu()\" style=\"color: #00ff00\">Liquid fuel boosters</span>";
+			note("Notification:<br><span style=\"color: #00ff20\" onclick=\"tolk('rd')\">Liquid fuel boosters</span> research is completed.",10000);
 			updateShop();
 		}
 		else{
-			RliquString = "<a onclick=\"Rliqu()\" style=\"color: #0000ff\">Liquid fuel boosters</a> <a style=\"color: #ff0000\">"+RliquProg+"%</a>";
+			RliquString = "<span onclick=\"Rliqu()\" style=\"color: #0000ff\">Liquid fuel boosters</span> <span style=\"color: #ff0000\">"+RliquProg+"%</span>";
 			RliquProg++;
 		};
 	};
 	if(technology[10] === 2){
-		RhighString = "<a onclick=\"Rhigh()\" style=\"color: #00ff00\">High-speed reentry</a>";
+		RhighString = "<span onclick=\"Rhigh()\" style=\"color: #00ff00\">High-speed reentry</span>";
 	}
 	else if(technology[10] === 1){
 		if(RhighProg === 100){
 			technology[10] = 2;
-			RhighString = "<a onclick=\"Rhigh()\" style=\"color: #00ff00\">High-speed reentry</a>";
-			note("Notification:<br><a style=\"color: #00ff20\" onclick=\"tolk('rd')\">High-speed reentry</a> research is completed.",10000);
+			RhighString = "<span onclick=\"Rhigh()\" style=\"color: #00ff00\">High-speed reentry</span>";
+			note("Notification:<br><span style=\"color: #00ff20\" onclick=\"tolk('rd')\">High-speed reentry</span> research is completed.",10000);
 			updateShop();
 		}
 		else{
-			RhighString = "<a onclick=\"Rhigh()\" style=\"color: #0000ff\">High-speed reentry</a> <a style=\"color: #ff0000\">"+RhighProg+"%</a>";
+			RhighString = "<span onclick=\"Rhigh()\" style=\"color: #0000ff\">High-speed reentry</span> <span style=\"color: #ff0000\">"+RhighProg+"%</span>";
 			RhighProg++;
 		};
 	};
@@ -397,144 +397,144 @@ science = function(){
 //research modules
 
 RcryoProg = 0;
-RcryoString = "<a onclick=\"Rcryo()\" style=\"color: #aaaaaa\""+clickableBlue+">Cryogenic fuels</a> Cost: 1000<br><a>Make use of more efficient fuels</a>";
+RcryoString = "<span onclick=\"Rcryo()\" style=\"color: #aaaaaa\""+clickableBlue+">Cryogenic fuels</span> Cost: 1000<br><span>Make use of more efficient fuels</span>";
 Rcryo = function(){
 	if(technology[0] === 0){
 		technology[0] = 1;
 		budget-=1000;
 		budgetFresh(-1000);
-		RcryoString = "<a onclick=\"Rcryo()\" style=\"color: #0000ff\">Cryogenic fuels</a> <a style=\"color: #ff0000\">"+RcryoProg+"%</a>";
+		RcryoString = "<span onclick=\"Rcryo()\" style=\"color: #0000ff\">Cryogenic fuels</span> <span style=\"color: #ff0000\">"+RcryoProg+"%</span>";
 		clear();
 		tolk("rd");
 	};
 };
 
 RnukeProg = 0;
-RnukeString = "<a onclick=\"Rnuke()\" style=\"color: #aaaaaa\""+clickableBlue+">Nuclear thermal rockets</a> Cost: 2000<br><a>(Protip: try to not make it explode)</a>";
+RnukeString = "<span onclick=\"Rnuke()\" style=\"color: #aaaaaa\""+clickableBlue+">Nuclear thermal rockets</span> Cost: 2000<br><span>(Protip: try to not make it explode)</span>";
 Rnuke = function(){
 	if(technology[1] === 0){
 		nukeAccident("initi");
 		technology[1] = 1;
 		budget-=2000;
 		budgetFresh(-2000);
-		RnukeString = "<a onclick=\"Rnuke()\" style=\"color: #0000ff\">Nuclear thermal rockets</a> <a style=\"color: #ff0000\">"+RnukeProg+"%</a>";
+		RnukeString = "<span onclick=\"Rnuke()\" style=\"color: #0000ff\">Nuclear thermal rockets</span> <span style=\"color: #ff0000\">"+RnukeProg+"%</span>";
 		clear();
 		tolk("rd");
 	};
 };
 
 Rcryo2Prog = 0;
-Rcryo2String = "<a onclick=\"Rcryo2()\" style=\"color: #aaaaaa\""+clickableBlue+">Cryogenic storage</a> Cost: 2500<br><a>Allow cryogenic fuels to be used in deep space</a>";
+Rcryo2String = "<span onclick=\"Rcryo2()\" style=\"color: #aaaaaa\""+clickableBlue+">Cryogenic storage</span> Cost: 2500<br><span>Allow cryogenic fuels to be used in deep space</span>";
 Rcryo2 = function(){
 	if(technology[2] === 0){
 		technology[2] = 1;
 		budget-=2500;
 		budgetFresh(-2500);
-		Rcryo2String = "<a onclick=\"Rcryo2()\" style=\"color: #0000ff\">Cryogenic storage</a> <a style=\"color: #ff0000\">"+Rcryo2Prog+"%</a>";
+		Rcryo2String = "<span onclick=\"Rcryo2()\" style=\"color: #0000ff\">Cryogenic storage</span> <span style=\"color: #ff0000\">"+Rcryo2Prog+"%</span>";
 		clear();
 		tolk("rd");
 	};
 };
 
 RrockProg = 0;
-RrockString = "<a onclick=\"Rrock()\" style=\"color: #aaaaaa\""+clickableBlue+">Regolith melting</a> Cost: 1000<br><a>Let your base make its own building materials</a>";
+RrockString = "<span onclick=\"Rrock()\" style=\"color: #aaaaaa\""+clickableBlue+">Regolith melting</span> Cost: 1000<br><span>Let your base make its own building materials</span>";
 Rrock = function(){
 	if(technology[3] === 0){
 		technology[3] = 1;
 		budget-=1000;
 		budgetFresh(-1000);
-		RrockString = "<a onclick=\"Rrock()\" style=\"color: #0000ff\">Regolith melting</a> <a style=\"color: #ff0000\">"+RrockProg+"%</a>";
+		RrockString = "<span onclick=\"Rrock()\" style=\"color: #0000ff\">Regolith melting</span> <span style=\"color: #ff0000\">"+RrockProg+"%</span>";
 		clear();
 		tolk("rd");
 	};
 };
 
 RfibrProg = 0;
-RfibrString = "<a onclick=\"Rfibr()\" style=\"color: #aaaaaa\""+clickableBlue+">Basalt fibres</a> Cost: 2500";
+RfibrString = "<span onclick=\"Rfibr()\" style=\"color: #aaaaaa\""+clickableBlue+">Basalt fibres</span> Cost: 2500";
 Rfibr = function(){
 	if(technology[4] === 0){
 		technology[4] = 1;
 		budget-=2500;
 		budgetFresh(-2500);
-		RfibrString = "<a onclick=\"Rfibr()\" style=\"color: #0000ff\">Basalt fibres</a> <a style=\"color: #ff0000\">"+RfibrProg+"%</a>";
+		RfibrString = "<span onclick=\"Rfibr()\" style=\"color: #0000ff\">Basalt fibres</span> <span style=\"color: #ff0000\">"+RfibrProg+"%</span>";
 		clear();
 		tolk("rd");
 	};
 };
 
 RcapsProg = 0;
-RcapsString = "<a onclick=\"Rcaps()\" style=\"color: #aaaaaa\""+clickableBlue+">Develop a human rated capsule</a> Cost: 1000<br><a>A box. With people inside.</a>";
+RcapsString = "<span onclick=\"Rcaps()\" style=\"color: #aaaaaa\""+clickableBlue+">Develop a human rated capsule</span> Cost: 1000<br><span>A box. With people inside.</span>";
 Rcaps = function(){
 	if(technology[5] === 0){
 		technology[5] = 1;
 		budget-=1000;
 		budgetFresh(-1000);
-		RcapsString = "<a onclick=\"Rcaps()\" style=\"color: #0000ff\">Develop a human rated capsule</a> <a style=\"color: #ff0000\">"+RcapsProg+"%</a>";
+		RcapsString = "<span onclick=\"Rcaps()\" style=\"color: #0000ff\">Develop a human rated capsule</span> <span style=\"color: #ff0000\">"+RcapsProg+"%</span>";
 		clear();
 		tolk("rd");
 	};
 };
 
 RlargProg = 0;
-RlargString = "<a onclick=\"Rlarg()\" style=\"color: #aaaaaa\""+clickableBlue+">Heavy duty rocketry</a> Cost: 3000<br><a>Go bigger and better</a>";
+RlargString = "<span onclick=\"Rlarg()\" style=\"color: #aaaaaa\""+clickableBlue+">Heavy duty rocketry</span> Cost: 3000<br><span>Go bigger and better</span>";
 Rlarg = function(){
 	if(technology[6] === 0){
 		technology[6] = 1;
 		budget-=3000;
 		budgetFresh(-3000);
-		RlargString = "<a onclick=\"Rlarg()\" style=\"color: #0000ff\">Heavy duty rocketry</a> <a style=\"color: #ff0000\">"+RlargProg+"%</a>";
+		RlargString = "<span onclick=\"Rlarg()\" style=\"color: #0000ff\">Heavy duty rocketry</span> <span style=\"color: #ff0000\">"+RlargProg+"%</span>";
 		clear();
 		tolk("rd");
 	};
 };
 
 RboosProg = 0;
-RboosString = "<a onclick=\"Rboos()\" style=\"color: #aaaaaa\""+clickableBlue+">Solid rocket boosters</a> Cost: 500<br><a>There is only one solution: More boosters.</a>";
+RboosString = "<span onclick=\"Rboos()\" style=\"color: #aaaaaa\""+clickableBlue+">Solid rocket boosters</span> Cost: 500<br><span>There is only one solution: More boosters.</span>";
 Rboos = function(){
 	if(technology[7] === 0){
 		technology[7] = 1;
 		budget-=500;
 		budgetFresh(-500);
-		RboosString = "<a onclick=\"Rboos()\" style=\"color: #0000ff\">Solid rocket boosters</a> <a style=\"color: #ff0000\">"+RboosProg+"%</a>";
+		RboosString = "<span onclick=\"Rboos()\" style=\"color: #0000ff\">Solid rocket boosters</span> <span style=\"color: #ff0000\">"+RboosProg+"%</span>";
 		clear();
 		tolk("rd");
 	};
 };
 
 RmateProg = 0;
-RmateString = "<a onclick=\"Rmate()\" style=\"color: #aaaaaa\""+clickableBlue+">Better materials</a> Cost: 700<br><a>This unlocks a lot of new research.</a>";
+RmateString = "<span onclick=\"Rmate()\" style=\"color: #aaaaaa\""+clickableBlue+">Better materials</span> Cost: 700<br><span>This unlocks a lot of new research.</span>";
 Rmate = function(){
 	if(technology[8] === 0){
 		technology[8] = 1;
 		budget-=700;
 		budgetFresh(-700);
-		RmateString = "<a onclick=\"Rmate()\" style=\"color: #0000ff\">Better materials</a> <a style=\"color: #ff0000\">"+RmateProg+"%</a>";
+		RmateString = "<span onclick=\"Rmate()\" style=\"color: #0000ff\">Better materials</span> <span style=\"color: #ff0000\">"+RmateProg+"%</span>";
 		clear();
 		tolk("rd");
 	};
 };
 
 RliquProg = 0;
-RliquString = "<a onclick=\"Rliqu()\" style=\"color: #aaaaaa\""+clickableBlue+">Liquid fuel boosters</a> Cost: 1200<br><a>Upgrade your solid rocket boosters!</a>";
+RliquString = "<span onclick=\"Rliqu()\" style=\"color: #aaaaaa\""+clickableBlue+">Liquid fuel boosters</span> Cost: 1200<br><span>Upgrade your solid rocket boosters!</span>";
 Rliqu = function(){
 	if(technology[9] === 0){
 		technology[9] = 1;
 		budget-=1200;
 		budgetFresh(-1200);
-		RliquString = "<a onclick=\"Rliqu()\" style=\"color: #0000ff\">Liquid fuel boosters</a> <a style=\"color: #ff0000\">"+RliquProg+"%</a>";
+		RliquString = "<span onclick=\"Rliqu()\" style=\"color: #0000ff\">Liquid fuel boosters</span> <span style=\"color: #ff0000\">"+RliquProg+"%</span>";
 		clear();
 		tolk("rd");
 	};
 };
 
 RhighProg = 0;
-RhighString = "<a onclick=\"Rhigh()\" style=\"color: #aaaaaa\""+clickableBlue+">High-speed reentry</a> Cost: 1200<br><a>Make it possible to return from the Moon.</a>";
+RhighString = "<span onclick=\"Rhigh()\" style=\"color: #aaaaaa\""+clickableBlue+">High-speed reentry</span> Cost: 1200<br><span>Make it possible to return from the Moon.</span>";
 Rhigh = function(){
 	if(technology[10] === 0){
 		technology[10] = 1;
 		budget-=1200;
 		budgetFresh(-1200);
-		RhighString = "<a onclick=\"Rhigh()\" style=\"color: #0000ff\">High-speed reentry</a> <a style=\"color: #ff0000\">"+RhighProg+"%</a>";
+		RhighString = "<span onclick=\"Rhigh()\" style=\"color: #0000ff\">High-speed reentry</span> <span style=\"color: #ff0000\">"+RhighProg+"%</span>";
 		clear();
 		tolk("rd");
 	};
@@ -544,10 +544,10 @@ Rhigh = function(){
 
 Hlocation = function(){
 	clear();
-	simplePrint("<a style=\"color: #0000c0\" onclick=\"placemoon()\""+clickableBlue+">On the Moon</a> <a style=\"color: #ff0000\">"+places[6][0]+"</a>");
-	simplePrint("<a style=\"color: #0000c0\" onclick=\"placeLMO()\""+clickableBlue+">Lunar orbit</a> <a style=\"color: #ff0000\">"+places[5][0]+"</a>");
-	simplePrint("<a style=\"color: #0000c0\" onclick=\"placeLTO()\""+clickableBlue+">Lunar Transfer Orbit</a> <a style=\"color: #ff0000\">"+Number(places[4][0]+places[1][0]+places[2][0]+places[3][0])+"</a>");
-	simplePrint("<a style=\"color: #0000c0\" onclick=\"placeLEO()\""+clickableBlue+">Low Earth Orbit</a> <a style=\"color: #ff0000\">"+places[0][0]+"</a>");
+	simplePrint("<span style=\"color: #0000c0\" onclick=\"placemoon()\""+clickableBlue+">On the Moon</span> <span style=\"color: #ff0000\">"+places[6][0]+"</span>");
+	simplePrint("<span style=\"color: #0000c0\" onclick=\"placeLMO()\""+clickableBlue+">Lunar orbit</span> <span style=\"color: #ff0000\">"+places[5][0]+"</span>");
+	simplePrint("<span style=\"color: #0000c0\" onclick=\"placeLTO()\""+clickableBlue+">Lunar Transfer Orbit</span> <span style=\"color: #ff0000\">"+Number(places[4][0]+places[1][0]+places[2][0]+places[3][0])+"</span>");
+	simplePrint("<span style=\"color: #0000c0\" onclick=\"placeLEO()\""+clickableBlue+">Low Earth Orbit</span> <span style=\"color: #ff0000\">"+places[0][0]+"</span>");
 	printi("Things you have in space:");
 };
 
@@ -555,20 +555,20 @@ Hlocation = function(){
 availableLaunchers = "";
 listUpdate = function(){
 	if(pendingList.length === 0){
-		pending = "<a style=\"color: #ff0000\">No launch pending.</a>";
+		pending = "<span style=\"color: #ff0000\">No launch pending.</span>";
 	}
 	else{
 		pending = "";
 		for(i=0;i<pendingList.length;i++){
 			if(pendingList[i][3]){
-				pending += "<a id=\"pending"+i+"\" onclick=\"pendingToggle("+i+")\" style=\"color: ";
+				pending += "<span id=\"pending"+i+"\" onclick=\"pendingToggle("+i+")\" style=\"color: ";
 				if(pendingList[i][2]){
 					pending += "#00ff00";
 				}
 				else{
 					pending += "#0000b0";
 				};
-				pending += "\""+clickableBlue+">"+pendingList[i][0]+". Mass = "+pendingList[i][1]+"kg</a><br>";
+				pending += "\""+clickableBlue+">"+pendingList[i][0]+". Mass = "+pendingList[i][1]+"kg</span><br>";
 			};
 		};
 	};
@@ -576,7 +576,7 @@ listUpdate = function(){
 	availableLaunchers = "";
 	for(var i=0;i<vehicles.length;i++){
 		if(vehicles[i][0]){
-			availableLaunchers += "<a id=\"launcher"+i+"\" onclick=\"launcherToggle("+i+")\" style=\"color:";
+			availableLaunchers += "<span id=\"launcher"+i+"\" onclick=\"launcherToggle("+i+")\" style=\"color:";
 			if(i === launcherToggled){
 				availableLaunchers += "#00ff00";
 			}
@@ -587,13 +587,13 @@ listUpdate = function(){
 			if(vehicles[i][4] != true){
 				availableLaunchers += "not "
 			};
-			availableLaunchers += "human rated. Capacity "+vehicles[i][2]+"</a><br>";
+			availableLaunchers += "human rated. Capacity "+vehicles[i][2]+"</span><br>";
 		};
 	};
 	if(availableLaunchers === ""){
-		availableLaunchers = "No configurations available. You need to buy some parts in the <a class='blue'"+clickableBlue+" onclick=\"updateShop();tolk('shop');command='shop'\">shop</a> first.<br>";
+		availableLaunchers = "No configurations available. You need to buy some parts in the <span class='blue'"+clickableBlue+" onclick=\"updateShop();tolk('shop');command='shop'\">shop</span> first.<br>";
 	};
-	availableLaunchers += "<a"+clickableBlue+" style=\"color:#00ff00\" onclick=\"launcherEditor()\"><br>Create your own configuration</a>";
+	availableLaunchers += "<span"+clickableBlue+" style=\"color:#00ff00\" onclick=\"launcherEditor()\"><br>Create your own configuration</span>";
 };
 
 launcherEditor = function(){
@@ -629,7 +629,7 @@ launch = function(){
 		alert("Here there is supposed to be a video or series of images of a launch.\nSorry to dissapoint you :(");//remove me
 		note("The launch was successfull!",5000);
 		clear();
-		simplePrint("Your craft has been launched. Go to <a class=\"blue\" "+clickableBlue+" onclick=\"tolk('location');command='location'\">Locations</a> to view it in orbit, or bo back to <a class=\"blue\" "+clickableBlue+" onclick=\"tolk('launch');command='launch'\">Launch</a>.<br>(This is so far things are developed, there is now just placed a placeholder in orbit.)");
+		simplePrint("Your craft has been launched. Go to <span class=\"blue\" "+clickableBlue+" onclick=\"tolk('location');command='location'\">Locations</span> to view it in orbit, or bo back to <span class=\"blue\" "+clickableBlue+" onclick=\"tolk('launch');command='launch'\">Launch</span>.<br>(This is so far things are developed, there is now just placed a placeholder in orbit.)");
 	}
 	else if(launcherToggled === -1){
 		note("You must select a launcher",5000);

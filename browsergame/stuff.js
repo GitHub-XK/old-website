@@ -50,7 +50,7 @@ placeLEO = function(){
 	placeLEOstring = "";
 	for(var i=0;i<crafts.length;i++){
 		if(crafts[i][1] === "LEO"){
-			placeLEOstring += "<a"+clickableBlue+"onclick=\"specificCraft("+i+")\" style=\"color:green\">\""+crafts[i][0]+"\"</a> has ";
+			placeLEOstring += "<span"+clickableBlue+"onclick=\"specificCraft("+i+")\" style=\"color:green\">\""+crafts[i][0]+"\"</span> has ";
 			if(crafts[i][5] != 0){
 				placeLEOstring += crafts[i][5]+" passengers, ";
 			}
@@ -67,7 +67,7 @@ placeLEO = function(){
 	if(placeLEOstring === ""){
 		placeLEOstring += "There are currenty no spacecraft in low Earth orbit.";
 	};
-	placeLEOstring += "<br><br><a onclick=\"tolk('location');command='location'\" class=\"blue\""+clickableBlue+">Back</a>";
+	placeLEOstring += "<br><br><span onclick=\"tolk('location');command='location'\" class=\"blue\""+clickableBlue+">Back</span>";
 	simplePrint(placeLEOstring);
 	printi("Low Earth orbit:");
 };

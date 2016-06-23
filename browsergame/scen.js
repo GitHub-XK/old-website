@@ -61,7 +61,7 @@ tolk = function(com){
 	}
 	else if(com === "about" | com === "credits"){
 		clear();
-		simplePrint("<img src=\"images/hoh.gif\"><a style=\"color: white\"> <i>Hoh productions</i></a>");
+		simplePrint("<img src=\"images/hoh.gif\"><span style=\"color: white\"> <i>Hoh productions</i></span>");
 		printi("Created by Sigvart Brendberg, 2016<br>\"My God! It is full of bugs!\"<br>\"You say good games can not be made with crappy code?\"<br>\"You are rigth!\"");
 	}
 	else if(com === "kim"){
@@ -92,7 +92,7 @@ tolk = function(com){
 		simplePrint("<button style=\"color:#e0e0e0\" id=\"launchButton\" onclick=\"launch()\">Launch</button>");
 		simplePrint(availableLaunchers);
 		simplePrint("Available launchers:");
-		simplePrint("<a id=\"totalMass\" class=\"red\">Total mass:</a>");
+		simplePrint("<span id=\"totalMass\" class=\"red\">Total mass:</span>");
 		simplePrint(pending);
 		simplePrint("Pending payloads: (click to toggle)");
 		totalMass();
@@ -123,7 +123,7 @@ tolk = function(com){
 			clear();
 			simplePrint("<canvas id=\"techCanvas\" width=\"400\" height=\"300\"></canvas>");
 			printScience();
-			simplePrint("Key: <a style=\"color: #aaaaaa\">Available</a>, <a style=\"color: #0000ff\">In development</a>, <a style=\"color: #00ff20\">Complete</a><br>=========================<br>");
+			simplePrint("Key: <span style=\"color: #aaaaaa\">Available</span>, <span style=\"color: #0000ff\">In development</span>, <a style=\"color: #00ff20\">Complete</a><br>=========================<br>");
 			simplePrint("<b>Welcome to Research and Development!</b><br>Click to toggle different areas of research.");
 			techCanvasDraw();
 	}
