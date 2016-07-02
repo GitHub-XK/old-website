@@ -215,11 +215,14 @@ box-sizing: border-box;
 padding: 0;
 margin: 0;
 }
-.rowR div, .rowR h1, .rowR h2, .rowR h3, .floatR {
+.rowR div, .rowR h1, .rowR h2, .rowR h3, .rowR h4, .floatR {
 	float: right;
 }
+.rowR h3, .rowR h4 {
+margin-right: 10px;
+}
 
-.rowL div, .rowL h1, .rowL h2, .rowL h3, .floatL {
+.rowL div, .rowL h1, .rowL h2, .rowL h3, .rowL h4, .floatL {
 	float: left;
 }
 .rowL:after, .rowR:after {
@@ -389,10 +392,10 @@ cursor: pointer;
 		h3, h4 {
 			font-weight: 300;
 			line-height: 1.2em;
+			font-size: 1em;
 		}
 		h1, h2 {
 			font-weight: 200;
-
 		}
 		h1, h2, h3{
 			border-radius: 30px;	
@@ -411,7 +414,7 @@ cursor: pointer;
 		h5, h6 {
 			color: yellow;
 			font-weight: 600;
-			padding: 5px 10px;
+			padding: 15px 10px 10px 10px;
 		}
 		h5 {
 			font-size: 1.1em;
@@ -687,8 +690,7 @@ nav li:hover ul li {
         widows: 3;
     }
 
-    h2,
-    h3 {
+    h2, h3 {
         page-break-after: avoid;
     }
 }
