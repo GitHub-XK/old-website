@@ -230,7 +230,7 @@ A calculator implementation of this equation is at the top of this page.<br></p>
 				<li><b>Semi-major axis:</b> The largest central radius of an ellipse. This is half the distance between the periapsis and apoapsis. Often shortened to $a$.</li>
 			</ul>
 			<br>
-			<h3>Let us then get started with the math!</h3>
+			<h5>Let us then get started with the math!</h5>
 			<p>We have a spacecraft orbiting in a circular orbit. What is its velocity?
 $$v=\sqrt{\frac{\mu}{r}}$$
 $v$ is of course the velocity. $\mu$ is the gravitational parameter. You would often see that as $GM$, which is the same thing. That is the mass of the object you are orbiting ($M$) multiplied with the gravitationa constant ($G=6.674 \cdot 10^{-11} \frac{m^3}{kg s^2}$).
@@ -246,7 +246,15 @@ $v$ is of course the velocity. $\mu$ is the gravitational parameter. You would o
 $$v=\sqrt{\mu \left(\frac{2}{r}-\frac{1}{a}\right)}$$
 $r$ is  here your current distance to the centre of the object you are orbiting, and $a$ is the semi-major axis that we just talked about. Notice that in the case of a circular orbit, $r=a$ so this equation simplifies back to $v=\sqrt{\frac{\mu}{r}}$
 			</p>
+			<h5>Example usage:</h5>
+			<p>We can already start to put the things we have learned together. Take a look at the figure below. Imagine you are orbiting in the blue orbit, and want to change to the red orbit:</p>
 			<img class="realsize" src="img/transfer.png">
+			<p>
+			What do you do? Well, take a look at the point where the orbits touh each other. Why are we in the blue orbit there, and not in the red one? After all, you can be in that location if you where in the red orbit too. Not everything is the same. What matters here is that you would have a different velocity, depending on what of the orbits you are in. Let us calculate that. We say $\mu = 1$ for simplicity:
+$$v_{blue}=\sqrt{\frac{1}{1}}=1$$
+$$v_{red}=\sqrt{1\left(\frac{2}{1}-\frac{1}{2}\right)}=1.225$$
+			</p>
+			<img class="realsize" src="img/difference.png">
 		    </div>
 		</div>
             <div class="col-12 col-m-12">     
