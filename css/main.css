@@ -352,10 +352,10 @@ cursor: pointer;
 	}
 .centertext {
 	text-align: center;
-}			line-height: 1.2em;
+}			
 	
 .pad15 {
-	padding: 15px;
+	padding: 15px !important;
 }
 .roundLeft {
 	border-radius: 20px 0 0 20px;
