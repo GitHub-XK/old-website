@@ -416,7 +416,7 @@ Rcosmonauts = [
 ];
 
 for(var i=0;i<10;i++){
-	cosmonauts.push([mexicanGenerator(),2,"Mexico",Math.floor(Math.random()*20)+20,true,["untrained"]]); //get ten random recruits to chose among.
+	cosmonauts.push([mexicanGenerator(),2,"Mexican",Math.floor(Math.random()*20)+20,true,["Still untrained"]]); //get ten random recruits to chose among.
 };
 cosmo = function(){
 	clear();
@@ -478,7 +478,7 @@ recruit = function(){
 	for(var i=0;i<cosmoHighlighting.length;i++){
 		if(cosmoHighlighting[i]){
 			Rcosmonauts.push(cosmonauts[i]);
-			cosmonauts[i] = [mexicanGenerator(),2,"Mexico",Math.floor(Math.random()*20)+20,true,["untrained"]];//replace with a new random recruit
+			cosmonauts[i] = [mexicanGenerator(),2,"Mexican",Math.floor(Math.random()*20)+20,true,["Still untrained"]];//replace with a new random recruit
 		};
 	};
 	cosmo();
@@ -486,5 +486,6 @@ recruit = function(){
 
 cosmoDetails = function(plass){
 	clear();
-	printi("nothing developed here yet");
+	simplePrint("<a class=\"blue\""+clickableBlue+" onclick=\"tolk('cosmo');command='cosmo'\">Back</a>");
+	printi(Rcosmonauts[plass][0]+"<br><br>Age: "+Rcosmonauts[plass][3]+"<br>Nationality: "+Rcosmonauts[plass][2]+"<br>Skills: "+Rcosmonauts[plass][5][0]);
 };
