@@ -12,6 +12,7 @@ if you have downloaded this game for offline use, be sure that you have got the 
 	"eventchain.js"
 	"stuff.js"
 Media should be inside a folder named "images", and consist of the following files:
+	"lalande.jpg"
 	"hoh.gif"
 	"moon.gif"
 	"deltamap.jpg"  //created by Hollister David (I must remember to ask him for permission before release of the game.)
@@ -34,9 +35,21 @@ color: red;
 .blue{
 color: blue;
 }
+html, body {
+    height: 97%;
+}
+.dynamic {
+    min-height: 40%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -90px;
+}
+.footer, .push {
+    height: 90px;
+}
   </style>
 </head>
-<body bgcolor="#000000" style="color: #FF9900;">
+<body bgcolor="#000000" style="color: #FF9900">
 <h1>Moonwards<sub><i>The Game</i></sub></h1>
 <noscript>
   <p>If you are trying to play this game without JavaScript, you are having a bad problem and will not go to space today.</p>
@@ -78,7 +91,8 @@ color: blue;
   <div class="navbar" onmouseover="this.style.background='gray';" onmouseout="this.style.background='white';" onclick="tolk('cosmo');command='cosmo'">Cosmonauts</div>
   <div class="navbar" onmouseover="this.style.background='gray';" onmouseout="this.style.background='white';" onclick="tolk('moon');command='moon'">The Moon</div>
 </div>
-<div id="controllers">
+<!--controllers-->
+<div>
   <p id="timing" style="color: #b09985">0</p>
   <p><span id="toggle1" class="fastforward" onclick="this.style.background='red';acceleration(1)"><b>></b></span> <span id="toggle2" class="fastforward" onclick="this.style.background='red';acceleration(5)"><b>>></b></span> <span id="toggle3" class="fastforward" onclick="this.style.background='red';acceleration(25)"><b>>>></b></span></p>
   <p id="budget">Budget: <span style="color: #e02200">1000</span></p>
@@ -86,12 +100,17 @@ color: blue;
   <span id="hidden"></span>
 </div>
 <br>
+<!--dynamic content-->
+<div class="dynamic">
 <p id="c0"></p><p id="c1"></p><p id="c2"></p><p id="c3"></p><p id="c4"></p><p id="c5"></p><p id="c6"></p><p id="c7"></p><p id="c8"></p><p id="c9"></p><p id="c10"></p><p id="c11"></p><p id="c12"></p><p id="c13"></p><p id="c14"></p><p id="c15"></p><p id="c16"></p><p id="c17"></p><p id="c18"></p><p id="c19"></p>
-<p>
-  <a href="tutorial.html">Do you need a quick tutorial?</a>
-</p>
-<img src="images/hoh.gif" onclick="(tolk('about'))" onmouseover="this.style.transform='rotateZ(12deg)'" onmouseout="this.style.transform='rotateZ(0deg)'">
-<p>All javaScript used on this page is free software, licensed under the GPL</p>
+  <div class="push"></div>
+</div>
+<!--footer-->
+<div class="footer">
+  <p><a href="tutorial.html">Do you need a quick tutorial?</a></p>
+  <img src="images/hoh.gif" onclick="(tolk('about'))" onmouseover="this.style.transform='rotateZ(12deg)'" onmouseout="this.style.transform='rotateZ(0deg)'">
+  <p>This game is free software, licensed under the <a href="https://www.gnu.org/licenses/gpl-3.0.html">General Public License, version 3</a></p>
+</div>
 </body>
 <!--The following scripts are for handling basic events-->
 <script type="text/javascript" src="core.js"></script>
