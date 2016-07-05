@@ -105,6 +105,7 @@ thepage = function(stuff){ //this is the giant info page function. Put stuff her
 	}
 	else if(stuff[0] === "m"){
 		if(stuff === "moon"){
+			simplePrint("Also the command to go directly to the Moon base.");
 			simplePrint("<img src=\"images/moon.gif\">");
 			simplePrint("All your Moon are belong to us!");
 		};
