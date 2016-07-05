@@ -29,7 +29,7 @@
 //tolkning og rammeverdiar
 customPrompt = false;
 list = ["about","budget","build","clear","exit","help","info <thing>","launch","load","location","rd","save","shop"];
-complete = "about<br>budget<br>build<br>clear<br>documentation<br>exit<br>help<br>info <thing><br>kim<br>launch<br>load<br>ls<br>location<br>quit<br>rd<br>save<br>shop";
+complete = "about<br>budget<br>build<br>clear<br>documentation<br>exit<br>help<br>info <thing><br>kim<br>launch<br>load<br>ls<br>location<br>moon<br>quit<br>rd<br>save<br>shop";
 tolk = function(com){
 	compara = "";
 	var mello = 0;
@@ -119,13 +119,19 @@ tolk = function(com){
 	else if(com === "nosave"){
 		local = false;
 	}
+	else if(com === "moon"){
+		clear();
+		document.getElementById("toggelino").style.display = "none";
+		document.getElementById("devWarning").style.display = "none";
+		simplePrint("<span style=\"color:#00FF00\"><h1>The Moon</h1><p>--You have no equipment on the Moon--</p><div id=\"moonmap\"><img src=\"images/lalande.jpg\"></div><br><p><i>\"We leave as we came and, God willing, as we shall return: with peace and hope for all mankind\"</i></p><p> - Gene Cernan, Apollo 17, Dec 19, 1972</p></span>");
+	}
 	else if(com === "rd"){
-			clear();
-			simplePrint("<canvas id=\"techCanvas\" width=\"400\" height=\"300\"></canvas>");
-			printScience();
-			simplePrint("Key: <span style=\"color: #aaaaaa\">Available</span>, <span style=\"color: #0000ff\">In development</span>, <a style=\"color: #00ff20\">Complete</a><br>=========================<br>");
-			simplePrint("<b>Welcome to Research and Development!</b><br>Click to toggle different areas of research.");
-			techCanvasDraw();
+		clear();
+		simplePrint("<canvas id=\"techCanvas\" width=\"400\" height=\"300\"></canvas>");
+		printScience();
+		simplePrint("Key: <span style=\"color: #aaaaaa\">Available</span>, <span style=\"color: #0000ff\">In development</span>, <a style=\"color: #00ff20\">Complete</a><br>=========================<br>");
+		simplePrint("<b>Welcome to Research and Development!</b><br>Click to toggle different areas of research.");
+		techCanvasDraw();
 	}
 	else if(com === "save" && local === true){
 		saveFunction(prompt("Name:"));
