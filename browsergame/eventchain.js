@@ -569,7 +569,11 @@ listUpdate = function(){
 				else{
 					pending += "#0000b0";
 				};
-				pending += "\""+clickableBlue+">"+pendingList[i][0]+". Mass = "+pendingList[i][1]+"kg</span><br>";
+				pending += "\""+clickableBlue+">"+pendingList[i][0]+". Mass = "+pendingList[i][1]+"kg </span>";
+				if(pendingList[i][4] > 0){
+					pending += "<span class=\"red\">chose a crew [0/"+pendingList[i][4]+"]</span>";
+				};
+				pending += "<br>";
 			};
 		};
 	};

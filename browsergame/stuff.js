@@ -217,8 +217,8 @@ nukeAccident = function(id){
 };
 
 pendingList = [
-//[name,mass,launch now?,visible?]
-["Dummy satellite",5000,false,true]
+//[name,mass,launch now?,visible?,crewnumber]
+["Dummy satellite",5000,false,true,0]
 ];
 pending = "";
 
@@ -323,19 +323,19 @@ updateShop=function(){
 };
 
 shopItems=[ //if you know what you are doing, you can change things in this array
-//syntax: [name,allowed?,[required tech],cost,number in stock,mass,payload?]
-["Cryogenic upper stage (small)",false,[0],250,0,15000,false],
-["Cryogenic upper stage (large)",false,[0,2,6],750,0,40000,false],
-["Nuclear upper stage",false,[0,2,6,1],1500,0,40000,false],
-["Basic rocket core",true,[],250,0,100000,false],
-["Basic upper stage",true,[],120,0,15000,false],
-["Regolith melter",false,[3],50,0,4000,true],
-["Basalt fibre factory",false,[4],100,0,6000,true],
-["Solid rocket boosters",false,[7],100,0,40000,false],
-["Capsule",false,[5],80,0,3000,true]
+//syntax: [name,allowed?,[required tech],cost,number in stock,mass,payload?,[crewsize]]
+["Cryogenic upper stage (small)",false,[0],250,0,15000,false,[0]],
+["Cryogenic upper stage (large)",false,[0,2,6],750,0,40000,false,[0]],
+["Nuclear upper stage",false,[0,2,6,1],1500,0,40000,false,[0]],
+["Basic rocket core",true,[],250,0,100000,false,[0]],
+["Basic upper stage",true,[],120,0,15000,false,[0]],
+["Regolith melter",false,[3],50,0,4000,true,[0]],
+["Basalt fibre factory",false,[4],100,0,6000,true,[0]],
+["Solid rocket boosters",false,[7],100,0,40000,false,[0]],
+["Capsule",false,[5],80,0,3000,true,[1]]
 ];
 
-storeString="Implementation missing";
+storeString="";
 
 buyFromStore = function(thing){
 	budget-=shopItems[thing][3];
@@ -343,7 +343,7 @@ buyFromStore = function(thing){
 	shopItems[thing][3]-=Math.floor(shopItems[thing][3]*0.01);
 	shopItems[thing][4]++;
 	if(shopItems[thing][6]){
-		pendingList.push([shopItems[thing][0],shopItems[thing][5],false,true]);
+		pendingList.push([shopItems[thing][0],shopItems[thing][5],false,true,shopItems[thing][7][0]]);
 	};
 	updateShop();
 	tolk("shop");
