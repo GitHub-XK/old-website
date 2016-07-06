@@ -155,6 +155,35 @@ placemoon = function(){
 	printi("On the Moon:");
 };
 
+placelandedstring = "";
+placelanded = function(){
+	placelandedstring = "";
+	for(var i=0;i<crafts.length;i++){
+		if(crafts[i][1] === "landed"){
+			placelandedstring += "<a style=\"color:green\">\""+crafts[i][0]+"\"</a> has ";
+			if(crafts[i][5] != 0){
+				placelandedstring += crafts[i][5]+" passengers, ";
+			}
+			else{
+				placelandedstring += "no passengers, ";
+			};
+			/* what is this one doing? I do not remember.
+			if(crafts[i][6] != false){
+				placelandedstring += "is transporting a "+crafts[i][6]+", ";
+			};
+			*/ 
+			placelandedstring += "and has "+crafts[i][4]+"m/s delta-v remaining.<br>"
+		};
+	};
+	clear();
+	if(placelandedstring === ""){
+		placelandedstring += "There are currenty no landed spacecraft.";
+	};
+	placelandedstring += "<br><br><a onclick=\"tolk('location');command='location'\" class=\"blue\""+clickableBlue+">Back</a>";
+	simplePrint(placelandedstring);
+	printi("On the Moon:");
+};
+
 //spacecraft
 
 crafts = [
@@ -371,7 +400,7 @@ minigame = function(){
 };
 
 specificCraft = function(id){
-	speci = id; //need a global reference to interact in DOM
+	speci = id; //need a global reference to interact with DOM
 	clear();
 	tmpPlace = crafts[id][1];
 	tmpPlace2 = -1;
@@ -382,7 +411,7 @@ specificCraft = function(id){
 	};
 	navigationString = "";
 	for(var i=0;i<places[tmpPlace2][3].length;i++){
-		navigationString += "<a"+clickableBlue+" onclick=\"crafts[speci][1]=places[places[tmpPlace2][3][i][0]][1];places[places[tmpPlace2][3][i][0]][0]++;places[tmpPlace2][0]--;note(crafts[speci][0]+' has transfered to '+places[places[tmpPlace2][3][i][0]][2],3000);tolk('location');command='location'\">"+places[places[tmpPlace2][3][i][0]][2] + "</a> <a class=\"red\">"+places[tmpPlace2][3][i][2]+"</a> m/s<br>";
+		navigationString += "<a"+clickableBlue+" onclick=\"crafts[speci][1]=places[places[tmpPlace2][3]["+i+"][0]][1];places[places[tmpPlace2][3]["+i+"][0]][0]++;places[tmpPlace2][0]--;note(crafts[speci][0]+' has transfered to '+places[places[tmpPlace2][3]["+i+"][0]][2],3000);tolk('location');command='location'\">"+places[places[tmpPlace2][3][i][0]][2] + "</a> <a class=\"red\">"+places[tmpPlace2][3][i][2]+"</a> m/s<br>";
 	};
 	simplePrint("<h4>\""+crafts[id][0]+"\"</h4><p>"+crafts[id][6]+"</p><br><br><a class=\"blue\">Navigation:</a><br><p id=\"navChoice\">No way to navigate<br>"+navigationString+"</p><br><br><a onclick=\"tolk('location');command='location'\" class=\"blue\""+clickableBlue+">Back</a>");
 };

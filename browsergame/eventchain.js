@@ -545,6 +545,7 @@ Rhigh = function(){
 
 Hlocation = function(){
 	clear();
+	simplePrint("<span style=\"color: #0000c0\" onclick=\"placelanded()\""+clickableBlue+">Landed</span> <span style=\"color: #ff0000\">"+places[6][0]+"</span>");
 	simplePrint("<span style=\"color: #0000c0\" onclick=\"placemoon()\""+clickableBlue+">On the Moon</span> <span style=\"color: #ff0000\">"+places[6][0]+"</span>");
 	simplePrint("<span style=\"color: #0000c0\" onclick=\"placeLMO()\""+clickableBlue+">Lunar orbit</span> <span style=\"color: #ff0000\">"+places[5][0]+"</span>");
 	simplePrint("<span style=\"color: #0000c0\" onclick=\"placeLTO()\""+clickableBlue+">Lunar Transfer Orbit</span> <span style=\"color: #ff0000\">"+Number(places[4][0]+places[1][0]+places[2][0]+places[3][0])+"</span>");
