@@ -18,7 +18,7 @@ You would need the four image files /img/moon.png, /img/blank.png, /img/tether.p
 <!--start GeoGebra code-->
 <script type="text/javascript" src="https://www.geogebra.org/scripts/deployggb.js"></script>
 <script type="text/javascript">
-    var applet1 = new GGBApplet({filename: "rotovator.ggb","showtoolbar":true}, true);
+    var applet1 = new GGBApplet({filename: "GeoGebra/rotovator.ggb","showtoolbar":true}, true);
     window.onload = function() {
         applet1.inject('applet_container1', 'preferHTML5');
     }
@@ -26,6 +26,10 @@ You would need the four image files /img/moon.png, /img/blank.png, /img/tether.p
 <div style="width:748px;height:397px;display:block" id="applet_container1"></div>
 <!--end GeoGebra code-->
 <script src="js/animationRotovator.js"></script>
+<script>
+	document.getElementById("applet_container1").style.width = screen.availWidth - 200 + "px";
+	document.getElementById("applet_container1").style.height = screen.availHeight - 200 + "px";
+</script>
 <br><br><br>
 </body>
 </html>
