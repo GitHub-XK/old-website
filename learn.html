@@ -143,6 +143,16 @@
                         <button onclick="subhop()">Calculate!</button><br>
                         <script src="js/subOrbitalHop.js"></script>
                         <p id="resultSH">&nbsp;</p>
+                        <!--geogebra applet-->
+                        <script type="text/javascript" src="https://www.geogebra.org/scripts/deployggb.js"></script>
+                        <script type="text/javascript">
+				var applet1 = new GGBApplet({filename: "GeoGebra/SuborbitalHop.ggb","showtoolbar":false}, true);
+				window.onload = function() {
+					applet1.inject('applet_container1', 'preferHTML5');
+				}
+			</script>
+			<div style="width:500px;height:350px;display:block" id="applet_container1"></div>
+                        <!--end geogebra applet-->
                         <p>More about suborbital hops 
                         <a href="http://hopsblog-hop.blogspot.com/2015/08/lunar-pogo-hopper.html">here</a>, by Hop David.</p>
                     </div>
