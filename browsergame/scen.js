@@ -26,7 +26,7 @@
  *
  */
 
-//tolkning og rammeverdiar
+//command interpretation and core values
 customPrompt = false;
 list = ["about","budget","build","clear","exit","help","info <thing>","launch","load","location","rd","save","shop"];
 complete = "about<br>budget<br>build<br>clear<br>documentation<br>exit<br>help<br>info <thing><br>kim<br>launch<br>load<br>ls<br>location<br>moon<br>quit<br>rd<br>save<br>shop";
@@ -123,7 +123,7 @@ tolk = function(com){
 		clear();
 		document.getElementById("toggelino").style.display = "none";
 		document.getElementById("devWarning").style.display = "none";
-		simplePrint("<span style=\"color:#00FF00\"><h1>The Moon</h1><p>--You have no equipment on the Moon--</p><div id=\"moonmap\"><img src=\"images/lalande.jpg\"></div><br><p><i>\"We leave as we came and, God willing, as we shall return: with peace and hope for all mankind\"</i></p><p> - Gene Cernan, Apollo 17, Dec 19, 1972</p></span>");
+		simplePrint("<span style=\"color:#00FF00\"><h1>The Moon</h1><p>--You have no equipment on the Moon--</p><div><div id=\"moonmap\"><img src=\"images/lalande.jpg\"><canvas id=\"moonCanvas\"></canvas></div></div><br><p><i>\"We leave as we came and, God willing, as we shall return: with peace and hope for all mankind\"</i></p><p> - Gene Cernan, Apollo 17, Dec 19, 1972</p></span>");
 	}
 	else if(com === "rd"){
 		clear();
@@ -154,12 +154,12 @@ acceleration(1);
 
 budgetFresh = function(change){
 	if(change < 0){
-		document.getElementById("budget").innerHTML = "Budget: <b><a style=\"color: #ff0000\">"+budget+"</a><b> <a style=\"color: #ff0000\">"+change+"</a>";
+		document.getElementById("budget").innerHTML = "Budget: <b><span style=\"color: #ff0000\">"+budget+"</span><b> <a style=\"color: #ff0000\">"+change+"</a>";
 	}
 	else{
-		document.getElementById("budget").innerHTML = "Budget: <b><a style=\"color: #ff0000\">"+budget+"</a><b> <a style=\"color: #00ff20\">+"+change+"</a>";
+		document.getElementById("budget").innerHTML = "Budget: <b><span style=\"color: #ff0000\">"+budget+"</span><b> <a style=\"color: #00ff20\">+"+change+"</a>";
 	};
 	setTimeout(function(){
-		document.getElementById("budget").innerHTML = "Budget: <a style=\"color: #e02200\">"+budget+"</a>";
+		document.getElementById("budget").innerHTML = "Budget: <span style=\"color: #e02200\">"+budget+"</span>";
 	},500);
 };

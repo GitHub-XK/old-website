@@ -204,7 +204,7 @@ toggleCommand = function(){
 	}
 	else{
 		commandToggled = true;
-		commandModule = "<p>Start typing commands! (The command line is mostly redundant now, but is kept for debugging)</p><input type=\"text\" value=\"\" id=\"command\">";
+		commandModule = "<p>Type some commands! (The command line is mostly redundant now, but is kept for debugging)</p><input type=\"text\" value=\"\" id=\"command\">";
 		togglerText = "Hide command line";
 	};
 	document.getElementById("hidden").innerHTML = commandModule;
