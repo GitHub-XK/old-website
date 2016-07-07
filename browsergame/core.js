@@ -123,60 +123,70 @@ clickableBlue = " onmouseover=\"this.style.background='#202040';\" onmouseout=\"
 editor = "style=\"position:absolute;left:20px;\"";
 
 acceleration = function(factor){
-if(factor===1){
-	document.getElementById("toggle2").style.background = "gray";
-	document.getElementById("toggle3").style.background = "gray";
-}
-else if(factor===5){
-	document.getElementById("toggle1").style.background = "gray";
-	document.getElementById("toggle3").style.background = "gray";
-}
-else{
-	document.getElementById("toggle1").style.background = "gray";
-	document.getElementById("toggle2").style.background = "gray";
-};
-if(init){
-	init = false;
-}
-else{
-	clearInterval(times);
-};
-times = setInterval(function(){
-	now++;
-	document.getElementById("timing").innerHTML = now;
-	if(now%5 === 0){
-		science();
-		if(budget < 0){
-			budgetFresh(Math.ceil(0.01*budget));
-			budget += Math.ceil(0.01*budget);
-		};
-		if(now%100 < 2){
-			budget += growth;
-			budgetFresh(growth);
-			note("New budget",5000);
-			if(now%200 < 2){
-				//make cosmonauts age and die
-				for(var i=0;i<cosmonauts.length;i++){
-					cosmonauts[i][3]++;
-					if(cosmonauts[i][3] > 60 && Math.random() < 0.04){
-						cosmonauts[i][1] = 3; //status = dead
-						note(cosmonauts[i][0]+" has died of old age",10000);
-					};
+	if(factor===1){
+		document.getElementById("toggle0").style.background = "gray";
+		document.getElementById("toggle2").style.background = "gray";
+		document.getElementById("toggle3").style.background = "gray";
+	}
+	else if(factor===5){
+		document.getElementById("toggle0").style.background = "gray";
+		document.getElementById("toggle1").style.background = "gray";
+		document.getElementById("toggle3").style.background = "gray";
+	}
+	else if(factor===0){
+		document.getElementById("toggle1").style.background = "gray";
+		document.getElementById("toggle2").style.background = "gray";
+		document.getElementById("toggle3").style.background = "gray";
+	}
+	else{
+		document.getElementById("toggle0").style.background = "gray";
+		document.getElementById("toggle1").style.background = "gray";
+		document.getElementById("toggle2").style.background = "gray";
+	};
+	if(init){
+		init = false;
+	}
+	else{
+		clearInterval(times);
+	};
+	if(factor != 0){
+		times = setInterval(function(){
+			now++;
+			document.getElementById("timing").innerHTML = now;
+			if(now%5 === 0){
+				science();
+				if(budget < 0){
+					budgetFresh(Math.ceil(0.01*budget));
+					budget += Math.ceil(0.01*budget);
 				};
-				for(var i=0;i<Rcosmonauts.length;i++){
-					Rcosmonauts[i][3]++;
-					if(Rcosmonauts[i][3] > 60 && Math.random() < 0.04){
-						Rcosmonauts[i][1] = 3; //status = dead
-						note(Rcosmonauts[i][0]+" has died of old age",10000);
+				if(now%100 < 2){
+					budget += growth;
+					budgetFresh(growth);
+					note("New budget",5000);
+					if(now%200 < 2){
+						//make cosmonauts age and die
+						for(var i=0;i<cosmonauts.length;i++){
+							cosmonauts[i][3]++;
+							if(cosmonauts[i][3] > 60 && Math.random() < 0.04){
+								cosmonauts[i][1] = 3; //status = dead
+								note(cosmonauts[i][0]+" has died of old age",10000);
+							};
+						};
+						for(var i=0;i<Rcosmonauts.length;i++){
+							Rcosmonauts[i][3]++;
+							if(Rcosmonauts[i][3] > 60 && Math.random() < 0.04){
+								Rcosmonauts[i][1] = 3; //status = dead
+								note(Rcosmonauts[i][0]+" has died of old age",10000);
+							};
+						};
+						if(command === "cosmo"){
+							tolk("cosmo");
+						};
 					};
-				};
-				if(command === "cosmo"){
-					tolk("cosmo");
 				};
 			};
-		};
+		},1000/factor);
 	};
-},1000/factor);
 };
 
 saveFunction = function(fileName){
