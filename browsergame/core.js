@@ -170,19 +170,10 @@ acceleration = function(factor){
 								cosmonauts[i][3]++;
 							};
 							if(cosmonauts[i][3] > 60 && Math.random() < 0.04){
-								cosmonauts[i][1] = 3; //status = dead
-								note(cosmonauts[i][0]+" has died of old age",10000);
+								cosmonauts[i][1] = 3; //status 3 = dead
+								note(cosmonauts[i][0]+" has died of old age",20000);
 							};
 						};
-/*
-						for(var i=0;i<Rcosmonauts.length;i++){
-							Rcosmonauts[i][3]++;
-							if(Rcosmonauts[i][3] > 60 && Math.random() < 0.04){
-								Rcosmonauts[i][1] = 3; //status = dead
-								note(Rcosmonauts[i][0]+" has died of old age",10000);
-							};
-						};
-*/
 						if(command === "cosmo"){
 							tolk("cosmo");
 						};

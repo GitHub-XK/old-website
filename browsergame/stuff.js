@@ -342,22 +342,22 @@ updateShop=function(){
 			};
 		};
 		if(shopItems[i][1]){
-			storeString += "<a onclick=\"buyFromStore("+i+")\" onmouseover=\"this.style.background='gray';document.getElementById('shopDetails').innerHTML = shopItems["+i+"][8];\" onmouseout=\"this.style.background='white';\">"+shopItems[i][0]+" </a><a class=\"red\">"+shopItems[i][3]+" </a><a class=\"blue\">"+shopItems[i][4]+"</a><br>";
+			storeString += "<a onclick=\"buyFromStore("+i+")\" onmouseover=\"this.style.background='gray';document.getElementById('shopDetails').innerHTML = shopItems["+i+"][8];\" onmouseout=\"this.style.background='#000000';\">"+shopItems[i][0]+" </a><a class=\"red\">"+shopItems[i][3]+" </a><a class=\"blue\">"+shopItems[i][4]+"</a><br>";
 		};
 	};
 };
 
 shopItems=[ //if you know what you are doing, you can change things in this array
 //syntax: [name,allowed?,[required tech],cost,number in stock,mass,payload?,[crewsize],details]
-["Cryogenic upper stage (small)",false,[0],250,0,15000,false,[0],"Mass: 15000<br>"],
-["Cryogenic upper stage (large)",false,[0,2,6],750,0,40000,false,[0],""],
-["Nuclear upper stage",false,[0,2,6,1],1500,0,40000,false,[0],""],
-["Basic rocket core",true,[],250,0,100000,false,[0],"Mass: 100000<br>"],
-["Basic upper stage",true,[],120,0,15000,false,[0],""],
+["Cryogenic upper stage (small)",false,[0],250,0,15000,false,[0],"Mass: 15000<br>A small but efficient upper stage burning LH2/LOX."],
+["Cryogenic upper stage (large)",false,[0,2,6],750,0,40000,false,[0],"Mass: 40000<br>"],
+["Nuclear upper stage",false,[0,2,6,1],1500,0,40000,false,[0],"Mass: 40000<br>Very efficient and mostly harmless."],
+["Basic rocket core",true,[],250,0,100000,false,[0],"Mass: 100000<br>Well, you have to start <i>somewhere</i>."],
+["Basic upper stage",true,[],120,0,15000,false,[0],"Mass: 15000<br>An engine attached to a fuel tank. What else do you need?"],
 ["Regolith melter",false,[3],50,0,4000,true,[0],""],
 ["Basalt fibre factory",false,[4],100,0,6000,true,[0],""],
 ["Solid rocket boosters",false,[7],100,0,40000,false,[0],""],
-["Capsule",false,[5],80,0,2500,true,[1],"Mass: 3000<br>Can carry one person only.<br><span class=\"blue\">7</span> of <span class=\"blue\">10<span> monkeys recommend this product."]
+["Capsule",false,[5],80,0,2500,true,[1],"Mass: 3000<br>Can only carry one person.<br><span class=\"blue\">7</span> of <span class=\"blue\">10</span> monkeys recommend this product."]
 ];
 
 storeString="";
