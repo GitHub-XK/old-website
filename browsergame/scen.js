@@ -61,6 +61,7 @@ tolk = function(com){
 	}
 	else if(com === "about" | com === "credits"){
 		clear();
+		//credits
 		simplePrint("<img src=\"images/hoh.gif\"><span style=\"color: white\"> <i>Hoh productions</i></span>");
 		printi("Created by Sigvart Brendberg, 2016<br>\"My God! It is full of bugs!\"<br>\"You say good games can not be made with crappy code?\"<br>\"You are rigth!\"");
 	}
@@ -89,6 +90,7 @@ tolk = function(com){
 	else if(com === "launch"){
 		clear();
 		listUpdate();
+		//launch button
 		simplePrint("<button style=\"color:#e0e0e0\" id=\"launchButton\" onclick=\"launch()\">Launch</button>");
 		simplePrint(availableLaunchers);
 		simplePrint("Available launchers:");
@@ -96,6 +98,7 @@ tolk = function(com){
 		simplePrint(pending);
 		simplePrint("Pending payloads: (click to toggle)");
 		totalMass();
+		//mission name input
 		simplePrint("<input type=\"text\" value=\"\" id=\"missionName\" placeholder=\"Mission name\">");
 		printi("Welcome to mission control!");
 	}
@@ -127,9 +130,12 @@ tolk = function(com){
 	}
 	else if(com === "rd"){
 		clear();
+		//Tech three container
 		simplePrint("<canvas id=\"techCanvas\" width=\"400\" height=\"300\"></canvas>");
 		printScience();
+		//Technology colour coding key
 		simplePrint("Key: <span style=\"color: #aaaaaa\">Available</span>, <span style=\"color: #0000ff\">In development</span>, <a style=\"color: #00ff20\">Complete</a><br>=========================<br>");
+		//R&D tab info
 		simplePrint("<b>Welcome to Research and Development!</b><br>Click to toggle different areas of research.");
 		techCanvasDraw();
 	}
@@ -138,6 +144,8 @@ tolk = function(com){
 	}
 	else if(com === "shop" | com === "store"){
 		clear();
+		//Show info about an item
+		simplePrint("<span id=\"shopDetails\"></span>");
 		simplePrint(storeString);
 		printi("Here you can by stuff!");
 	}
@@ -146,12 +154,14 @@ tolk = function(com){
 		printi("There is a scary counter...");
 	}
 	else{
+		//catch unrecognized input
 		printi("Unknown command, try \"help\"");
 	};
 };
 now = 0;
 acceleration(1);
 
+//function that displays a change in funds
 budgetFresh = function(change){
 	if(change < 0){
 		document.getElementById("budget").innerHTML = "Budget: <b><span style=\"color: #ff0000\">"+budget+"</span><b> <a style=\"color: #ff0000\">"+change+"</a>";

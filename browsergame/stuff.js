@@ -181,7 +181,7 @@ placelanded = function(){
 	};
 	placelandedstring += "<br><br><a onclick=\"tolk('location');command='location'\" class=\"blue\""+clickableBlue+">Back</a>";
 	simplePrint(placelandedstring);
-	printi("On the Moon:");
+	printi("Returned from space:");
 };
 
 //spacecraft
