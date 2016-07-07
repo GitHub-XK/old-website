@@ -166,12 +166,15 @@ acceleration = function(factor){
 					if(now%200 < 2){
 						//make cosmonauts age and die
 						for(var i=0;i<cosmonauts.length;i++){
-							cosmonauts[i][3]++;
+							if(cosmonauts[i][1] != 3){
+								cosmonauts[i][3]++;
+							};
 							if(cosmonauts[i][3] > 60 && Math.random() < 0.04){
 								cosmonauts[i][1] = 3; //status = dead
 								note(cosmonauts[i][0]+" has died of old age",10000);
 							};
 						};
+/*
 						for(var i=0;i<Rcosmonauts.length;i++){
 							Rcosmonauts[i][3]++;
 							if(Rcosmonauts[i][3] > 60 && Math.random() < 0.04){
@@ -179,6 +182,7 @@ acceleration = function(factor){
 								note(Rcosmonauts[i][0]+" has died of old age",10000);
 							};
 						};
+*/
 						if(command === "cosmo"){
 							tolk("cosmo");
 						};
