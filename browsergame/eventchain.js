@@ -397,6 +397,23 @@ science = function(){
 
 //research modules
 
+/* template: %is delimeter%
+
+R%techname%Prog = 0;
+R%techname%String = "<span onclick=\"R%techname%()\" style=\"color: #aaaaaa\""+clickableBlue+">%tech description%</span> Cost: %cost%<br><span>%tech longer description%</span>";
+R%techname% = function(){
+	if(technology[%tech id%] === 0){
+		technology[%tech id%] = 1;
+		budget-=%cost%;
+		budgetFresh(-%cost%);
+		R%techname%String = "<span onclick=\"R%techname%()\" style=\"color: #0000ff\">%tech description%</span> <span style=\"color: #ff0000\">"+R%techname%Prog+"%</span>";
+		clear();
+		tolk("rd");
+	};
+};
+
+*/
+
 RcryoProg = 0;
 RcryoString = "<span onclick=\"Rcryo()\" style=\"color: #aaaaaa\""+clickableBlue+">Cryogenic fuels</span> Cost: 1000<br><span>Make use of more efficient fuels</span>";
 Rcryo = function(){
@@ -635,6 +652,7 @@ launch = function(){
 		alert("Here there is supposed to be a video or series of images of a launch.\nSorry to dissapoint you :(");//remove me
 		note("The launch was successfull!",5000);
 		clear();
+		//prints what tabs to go to
 		simplePrint("Your craft has been launched. Go to <span class=\"blue\" "+clickableBlue+" onclick=\"tolk('location');command='location'\">Locations</span> to view it in orbit, or bo back to <span class=\"blue\" "+clickableBlue+" onclick=\"tolk('launch');command='launch'\">Launch</span>.<br>(This is so far things are developed, there is now just placed a placeholder in orbit.)");
 	}
 	else if(launcherToggled === -1){
