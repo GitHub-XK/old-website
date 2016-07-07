@@ -37,7 +37,7 @@ places = [
 [0,"LTOmiddle","Lunar Transfer Orbit",[],400,"LTOhigh"],			//2
 [0,"LTOhigh","Lunar Transfer Orbit",[[5,0,820]],200,"LTOreturn"],		//3
 [0,"LTOreturn","Returning from the Moon",[],1400,"LTOlow"],			//4
-[0,"LMO","Lunar orbit",[[4,0,820,200,1800],[6,10,1720,false]]],			//5
+[0,"LMO","Lunar orbit",[[4,0,820,200,1800],[6,10,1720,false]],false],		//5
 [0,"moon","On the Moon",[[5,10,1720,false],[]],false],				//6
 [0,"landed","Landed",[],5,"recovered"],						//7
 [0,"recovered","Recovered",[],false],						//8
@@ -57,7 +57,7 @@ placeLEO = function(){
 			else{
 				placeLEOstring += "no passengers, ";	
 			};
-			if(crafts[i][6] != false){
+			if(crafts[i][7]){
 				placeLEOstring += "is transporting a "+crafts[i][6]+", ";
 			};
 			placeLEOstring += "and has "+crafts[i][4]+"m/s delta-v remaining.<br>"
@@ -84,7 +84,7 @@ placeLTO = function(){
 			else{
 				placeLTOstring += "no passengers, ";
 			};
-			if(crafts[i][6] != false){
+			if(crafts[i][7]){
 				placeLTOstring += "is transporting a "+crafts[i][6]+", ";
 			};
 			placeLTOstring += "and has "+crafts[i][4]+"m/s delta-v remaining.<br>"
@@ -111,7 +111,7 @@ placeLMO = function(){
 			else{
 				placeLMOstring += "no passengers, ";
 			};
-			if(crafts[i][6] != false){
+			if(crafts[i][7]){
 				placeLMOstring += "is transporting a "+crafts[i][6]+", ";
 			};
 			placeLMOstring += "and has "+crafts[i][4]+"m/s delta-v remaining.<br>"
@@ -138,11 +138,9 @@ placemoon = function(){
 			else{
 				placemoonstring += "no passengers, ";
 			};
-			/* what is this one doing? I do not remember.
-			if(crafts[i][6] != false){
+			if(crafts[i][7]){
 				placemoonstring += "is transporting a "+crafts[i][6]+", ";
 			};
-			*/ 
 			placemoonstring += "and has "+crafts[i][4]+"m/s delta-v remaining.<br>"
 		};
 	};
@@ -167,11 +165,9 @@ placelanded = function(){
 			else{
 				placelandedstring += "no passengers, ";
 			};
-			/* what is this one doing? I do not remember.
-			if(crafts[i][6] != false){
+			if(crafts[i][7]){
 				placelandedstring += "is transporting a "+crafts[i][6]+", ";
 			};
-			*/ 
 			placelandedstring += "and has "+crafts[i][4]+"m/s delta-v remaining.<br>"
 		};
 	};
@@ -187,7 +183,7 @@ placelanded = function(){
 //spacecraft
 
 crafts = [
-//[name,location,timestamp,mass,delta-v,passengers,[part id]]
+//[name,location,timestamp,mass,delta-v,passengers,[part id],carry things?]
 ["Examplecraft I","LEO",0,8000,2000,0,[0]]
 ];
 
@@ -346,22 +342,22 @@ updateShop=function(){
 			};
 		};
 		if(shopItems[i][1]){
-			storeString += "<a onclick=\"buyFromStore("+i+")\""+clickableBlue+">"+shopItems[i][0]+" </a><a class=\"red\">"+shopItems[i][3]+" </a><a class=\"blue\">"+shopItems[i][4]+"</a><br>";
+			storeString += "<a onclick=\"buyFromStore("+i+")\" onmouseover=\"this.style.background='gray';document.getElementById('shopDetails').innerHTML = shopItems["+i+"][8];\" onmouseout=\"this.style.background='white';\">"+shopItems[i][0]+" </a><a class=\"red\">"+shopItems[i][3]+" </a><a class=\"blue\">"+shopItems[i][4]+"</a><br>";
 		};
 	};
 };
 
 shopItems=[ //if you know what you are doing, you can change things in this array
-//syntax: [name,allowed?,[required tech],cost,number in stock,mass,payload?,[crewsize]]
-["Cryogenic upper stage (small)",false,[0],250,0,15000,false,[0]],
-["Cryogenic upper stage (large)",false,[0,2,6],750,0,40000,false,[0]],
-["Nuclear upper stage",false,[0,2,6,1],1500,0,40000,false,[0]],
-["Basic rocket core",true,[],250,0,100000,false,[0]],
-["Basic upper stage",true,[],120,0,15000,false,[0]],
-["Regolith melter",false,[3],50,0,4000,true,[0]],
-["Basalt fibre factory",false,[4],100,0,6000,true,[0]],
-["Solid rocket boosters",false,[7],100,0,40000,false,[0]],
-["Capsule",false,[5],80,0,3000,true,[1]]
+//syntax: [name,allowed?,[required tech],cost,number in stock,mass,payload?,[crewsize],details]
+["Cryogenic upper stage (small)",false,[0],250,0,15000,false,[0],"Mass: 15000<br>"],
+["Cryogenic upper stage (large)",false,[0,2,6],750,0,40000,false,[0],""],
+["Nuclear upper stage",false,[0,2,6,1],1500,0,40000,false,[0],""],
+["Basic rocket core",true,[],250,0,100000,false,[0],"Mass: 100000<br>"],
+["Basic upper stage",true,[],120,0,15000,false,[0],""],
+["Regolith melter",false,[3],50,0,4000,true,[0],""],
+["Basalt fibre factory",false,[4],100,0,6000,true,[0],""],
+["Solid rocket boosters",false,[7],100,0,40000,false,[0],""],
+["Capsule",false,[5],80,0,2500,true,[1],"Mass: 3000<br>Can carry one person only.<br><span class=\"blue\">7</span> of <span class=\"blue\">10<span> monkeys recommend this product."]
 ];
 
 storeString="";
@@ -437,7 +433,7 @@ mexicanSurnames = ["Garcia","Garza","Martinez","Alvarez","Rodriguez","Romero","L
 
 //cosmonauts
 cosmonauts = [
-//[name,recruitment status,location,age,content?,[skills]]  (recruitment status: 0=invisible, 1=recruited, 2=recruitable, 3=dead)
+//[name 0,recruitment status 1,location 2,age 3,content? 4,[skills] 5]   (recruitment status: 0=invisible, 1=recruited, 2=recruitable, 3=dead)
 ];
 
 //same format as above
@@ -460,8 +456,10 @@ cosmo = function(){
 	}
 	else{
 		for(var i=0;i<cosmonauts.length;i++){
-			cosmoHighlighting.push(false);
-			cosmoString += "<a"+clickableBlue+"id='cosmo"+i+"' onclick='cosmoSelectionUpdate("+i+",false)'>\""+cosmonauts[i][0]+"\"</a>, age: "+cosmonauts[i][3]+"<br>";
+			if(cosmonauts[i][1] != 3){
+				cosmoHighlighting.push(false);
+				cosmoString += "<a"+clickableBlue+"id='cosmo"+i+"' onclick='cosmoSelectionUpdate("+i+",false)'>\""+cosmonauts[i][0]+"\"</a>, age: "+cosmonauts[i][3]+"<br>";
+			};
 		};
 	};
 	if(Rcosmonauts.length === 0){
@@ -469,8 +467,10 @@ cosmo = function(){
 	}
 	else{
 		for(var i=0;i<Rcosmonauts.length;i++){
-			RcosmoHighlighting.push(false);
-			RcosmoString += "<a"+clickableBlue+"id='Rcosmo"+i+"' onclick='cosmoSelectionUpdate("+i+",true)'>\""+Rcosmonauts[i][0]+"\"</a>, age: "+Rcosmonauts[i][3]+" <a style=\"color:#00ff00\""+clickableBlue+"onclick=\"cosmoDetails("+i+")\"id=\"details"+i+"\"></a><br>";
+			if(Rcosmonauts[i][1] != 3){
+				RcosmoHighlighting.push(false);
+				RcosmoString += "<a"+clickableBlue+"id='Rcosmo"+i+"' onclick='cosmoSelectionUpdate("+i+",true)'>\""+Rcosmonauts[i][0]+"\"</a>, age: "+Rcosmonauts[i][3]+" <a style=\"color:#00ff00\""+clickableBlue+"onclick=\"cosmoDetails("+i+")\"id=\"details"+i+"\"></a><br>";
+			};
 		};
 	};
 	simplePrint(cosmoString);
