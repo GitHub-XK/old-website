@@ -433,21 +433,21 @@ mexicanSurnames = ["Garcia","Garza","Martinez","Alvarez","Rodriguez","Romero","L
 
 //cosmonauts
 cosmonauts = [
-//[name 0,recruitment status 1,location 2,age 3,content? 4,[skills] 5]   (recruitment status: 0=invisible, 1=recruited, 2=recruitable, 3=dead)
+//[name 0,recruitment status 1,location 2,age 3,content? 4,[skills] 5,gender 6]   (recruitment status: 0=invisible, 1=recruited, 2=recruitable, 3=dead)
 ];
-
-//same format as above
+/*
 Rcosmonauts = [
 ];
+*/
 
 for(var i=0;i<10;i++){
 	cosmonauts.push([mexicanGenerator(),2,"Mexican",Math.floor(Math.random()*20)+20,true,["Still untrained"]]); //get ten random recruits to chose among.
 };
 cosmo = function(){
 	clear();
-	simplePrint("<a class=\"blue\""+clickableBlue+" onclick=\"recruit()\">Recruit</a>");
 	cosmoString = "";
 	RcosmoString = "";
+	DcosmoString = "";
 	cosmoHighlighting = [];
 	RcosmoHighlighting = [];
 	//generate lists:
@@ -457,14 +457,25 @@ cosmo = function(){
 	else{
 		for(var i=0;i<cosmonauts.length;i++){
 			if(cosmonauts[i][1] != 3){
-				cosmoHighlighting.push(false);
-				cosmoString += "<a"+clickableBlue+"id='cosmo"+i+"' onclick='cosmoSelectionUpdate("+i+",false)'>\""+cosmonauts[i][0]+"\"</a>, age: "+cosmonauts[i][3]+"<br>";
+				if(cosmonauts[i][1] === 2){ //test
+					cosmoHighlighting.push(false);
+					cosmoString += "<span"+clickableBlue+"id='cosmo"+i+"' onclick='cosmoSelectionUpdate("+i+",false)'>\""+cosmonauts[i][0]+"\"</span>, age: "+cosmonauts[i][3]+"<br>";
+				}
+				else{
+					RcosmoHighlighting.push(false);
+					RcosmoString += "<span"+clickableBlue+"id='Rcosmo"+i+"' onclick='cosmoSelectionUpdate("+i+",true)'>\""+cosmonauts[i][0]+"\"</span>, age: "+cosmonauts[i][3]+" <span style=\"color:#00ff00\""+clickableBlue+"onclick=\"cosmoDetails("+i+")\"id=\"details"+i+"\"></span><br>";
+				};
+			}
+			else{
+				DcosmoString += "<span style=\"color:#ffffff\">\""+cosmonauts[i][0]+"\", died from old age at "+cosmonauts[i][3]+".</span><br>";
 			};
 		};
 	};
+/*
 	if(Rcosmonauts.length === 0){
 		RcosmoString = "No people are recruited to your space program";
 	}
+
 	else{
 		for(var i=0;i<Rcosmonauts.length;i++){
 			if(Rcosmonauts[i][1] != 3){
@@ -473,6 +484,12 @@ cosmo = function(){
 			};
 		};
 	};
+*/
+	simplePrint(DcosmoString);
+	if(DcosmoString != ""){
+		simplePrint("<a style=\"color:#ff2200\">Dead cosmonauts:</a>");
+	};
+	simplePrint("<a class=\"blue\""+clickableBlue+" onclick=\"recruit()\">Recruit</a>");
 	simplePrint(cosmoString);
 	simplePrint("<a style=\"color:#ff2200\">Available cosmonauts:</a>");
 	simplePrint(RcosmoString);
@@ -506,8 +523,8 @@ cosmoSelectionUpdate = function(plass,logi){
 recruit = function(){
 	for(var i=0;i<cosmoHighlighting.length;i++){
 		if(cosmoHighlighting[i]){
-			Rcosmonauts.push(cosmonauts[i]);
-			cosmonauts[i] = [mexicanGenerator(),2,"Mexican",Math.floor(Math.random()*20)+20,true,["Still untrained"]];//replace with a new random recruit
+			cosmonauts[i][1] = 1;
+			cosmonauts.push([mexicanGenerator(),2,"Mexican",Math.floor(Math.random()*20)+20,true,["Still untrained"]]);//replace with a new random recruit
 		};
 	};
 	cosmo();
@@ -516,5 +533,5 @@ recruit = function(){
 cosmoDetails = function(plass){
 	clear();
 	simplePrint("<a class=\"blue\""+clickableBlue+" onclick=\"tolk('cosmo');command='cosmo'\">Back</a>");
-	printi(Rcosmonauts[plass][0]+"<br><br>Age: "+Rcosmonauts[plass][3]+"<br>Nationality: "+Rcosmonauts[plass][2]+"<br>Skills: "+Rcosmonauts[plass][5][0]);
+	printi(cosmonauts[plass][0]+"<br><br>Age: "+cosmonauts[plass][3]+"<br>Nationality: "+cosmonauts[plass][2]+"<br>Skills: "+cosmonauts[plass][5][0]);
 };
