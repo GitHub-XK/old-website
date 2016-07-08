@@ -214,10 +214,7 @@ printScience = function(){
 //research:
 
 science = function(){
-	if(technology[0] === 2){
-		RcryoString = "<span onclick=\"Rcryo()\" style=\"color: #00ff00\">Cryogenic fuels</span>";
-	}
-	else if(technology[0] === 1){
+	if(technology[0] === 1){
 		if(RcryoProg === 100){
 			technology[0] = 2;
 			RcryoString = "<span onclick=\"Rcryo()\" style=\"color: #00ff00\">Cryogenic fuels</span>";
@@ -230,10 +227,7 @@ science = function(){
 			RcryoProg++;
 		};
 	};
-	if(technology[1] === 2){
-		RnukeString = "<span onclick=\"Rnuke()\" style=\"color: #00ff00\">Nuclear thermal rockets</span>";
-	}
-	else if(technology[1] === 1){
+	if(technology[1] === 1){
 		nukeAccident("develop");
 		if(RnukeProg === 100){
 			technology[1] = 2;
@@ -246,10 +240,7 @@ science = function(){
 			RnukeProg++;
 		};
 	};
-	if(technology[2] === 2){
-		Rcryo2String = "<span onclick=\"Rcryo2()\" style=\"color: #00ff00\">Cryogenic storage</span>";
-	}
-	else if(technology[2] === 1){
+	if(technology[2] === 1){
 		if(Rcryo2Prog === 100){
 			technology[2] = 2;
 			Rcryo2String = "<span onclick=\"Rcryo2()\" style=\"color: #00ff00\">Cryogenic storage</span>";
@@ -261,10 +252,7 @@ science = function(){
 			Rcryo2Prog++;
 		};
 	};
-	if(technology[3] === 2){
-		RrockString = "<span onclick=\"Rrock()\" style=\"color: #00ff00\">Regolith melting</span>";
-	}
-	else if(technology[3] === 1){
+	if(technology[3] === 1){
 		if(RrockProg === 100){
 			technology[3] = 2;
 			RrockString = "<span onclick=\"Rrock()\" style=\"color: #00ff00\">Regolith melting</span>";
@@ -277,10 +265,7 @@ science = function(){
 			RrockProg++;
 		};
 	};
-	if(technology[4] === 2){
-		RfibrString = "<span onclick=\"Rfibr()\" style=\"color: #00ff00\">Basalt fibres</span>";
-	}
-	else if(technology[4] === 1){
+	if(technology[4] === 1){
 		if(RfibrProg === 100){
 			technology[4] = 2;
 			RfibrString = "<span onclick=\"Rfibr()\" style=\"color: #00ff00\">Basalt fibres</span>";
@@ -292,14 +277,11 @@ science = function(){
 			RfibrProg++;
 		};
 	};
-	if(technology[5] === 2){
-		RcapsString = "<span onclick=\"Rcaps()\" style=\"color: #00ff00\">Capsule development</span>";
-	}
-	else if(technology[5] === 1){
+	if(technology[5] === 1){
 		if(RcapsProg === 100){
 			technology[5] = 2;
 			technology[10] = 0;
-			RcapsString = "<span onclick=\"Rcaps()\" style=\"color: #00ff00\">Capsule development</span>";
+			RcapsString = "<span onclick=\"Rcaps()\" style=\"color: #00ff00\"><img src=\"images/capsuleIconGreen.png\">Capsule development</span>";
 			note("Notification:<br><span style=\"color: #00ff20\" onclick=\"tolk('rd')\">Capsule development</span> research is completed.",10000);
 			updateShop();
 		}
@@ -308,10 +290,7 @@ science = function(){
 			RcapsProg++;
 		};
 	};
-	if(technology[6] === 2){
-		RlargString = "<span onclick=\"Rlarg()\" style=\"color: #00ff00\">Heavy duty rocketry</span>";
-	}
-	else if(technology[6] === 1){
+	if(technology[6] === 1){
 		if(RlargProg === 100){
 			technology[6] = 2;
 			RlargString = "<span onclick=\"Rlarg()\" style=\"color: #00ff00\">Heavy duty rocketry</span>";
@@ -323,10 +302,7 @@ science = function(){
 			RlargProg++;
 		};
 	};
-	if(technology[7] === 2){
-		RboosString = "<span onclick=\"Rboos()\" style=\"color: #00ff00\">Solid rocket boosters</span>";
-	}
-	else if(technology[7] === 1){
+	if(technology[7] === 1){
 		if(RboosProg === 100){
 			technology[7] = 2;
 			if(technology[8] === 2){
@@ -341,10 +317,7 @@ science = function(){
 			RboosProg+=2;
 		};
 	};
-	if(technology[8] === 2){
-		RmateString = "<span onclick=\"Rmate()\" style=\"color: #00ff00\">Better materials</span>";
-	}
-	else if(technology[8] === 1){
+	if(technology[8] === 1){
 		if(RmateProg === 100){
 			technology[8] = 2;
 			technology[1] = 0;
@@ -360,10 +333,7 @@ science = function(){
 			RmateProg+=2;
 		};
 	};
-	if(technology[9] === 2){
-		RliquString = "<span onclick=\"Rliqu()\" style=\"color: #00ff00\">Liquid fuel boosters</span>";
-	}
-	else if(technology[9] === 1){
+	if(technology[9] === 1){
 		if(RliquProg === 100){
 			technology[9] = 2;
 			RliquString = "<span onclick=\"Rliqu()\" style=\"color: #00ff00\">Liquid fuel boosters</span>";
@@ -375,10 +345,7 @@ science = function(){
 			RliquProg++;
 		};
 	};
-	if(technology[10] === 2){
-		RhighString = "<span onclick=\"Rhigh()\" style=\"color: #00ff00\">High-speed reentry</span>";
-	}
-	else if(technology[10] === 1){
+	if(technology[10] === 1){
 		if(RhighProg === 100){
 			technology[10] = 2;
 			RhighString = "<span onclick=\"Rhigh()\" style=\"color: #00ff00\">High-speed reentry</span>";
@@ -481,7 +448,7 @@ Rfibr = function(){
 };
 
 RcapsProg = 0;
-RcapsString = "<span onclick=\"Rcaps()\" style=\"color: #aaaaaa\""+clickableBlue+">Develop a human rated capsule</span> Cost: 1000<br><span>A box. With people inside.</span>";
+RcapsString = "<span onclick=\"Rcaps()\" style=\"color: #aaaaaa\""+clickableBlue+"><img src=\"images/capsuleIconGray.png\"><br>Develop a human rated capsule</span> Cost: 1000<br><span>A box. With people inside.</span>";
 Rcaps = function(){
 	if(technology[5] === 0){
 		technology[5] = 1;
@@ -652,9 +619,10 @@ launch = function(){
 		alert("Here there is supposed to be a video or series of images of a launch.\nSorry to dissapoint you :(");//remove me
 		note("The launch was successfull!",5000);
 		clear();
-		//prints what tabs to go to
+		//prints what tabs to go to after a launch
 		simplePrint("Your craft has been launched. Go to <span class=\"blue\" "+clickableBlue+" onclick=\"tolk('location');command='location'\">Locations</span> to view it in orbit, or bo back to <span class=\"blue\" "+clickableBlue+" onclick=\"tolk('launch');command='launch'\">Launch</span>.<br>(This is so far things are developed, there is now just placed a placeholder in orbit.)");
 	}
+	//Detect various cases where you can not launch the rocket
 	else if(launcherToggled === -1){
 		note("You must select a launcher",5000);
 	}
