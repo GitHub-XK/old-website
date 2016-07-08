@@ -31,6 +31,7 @@ sudo echo "sudo rm remove-moongame" >> remove-moongame
 sudo echo "cd ~" >> remove-moongame
 sudo echo "echo 'game removed'" >> remove-moongame
 sudo chmod +x remove-moongame
+clear
 echo "The game can be started from the terminal by typing 'moongame'"
 echo "Remove the game by typing 'remove-moongame'"
 cd ~
