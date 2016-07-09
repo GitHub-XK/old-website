@@ -545,7 +545,7 @@ RsuitProg = 0;
 RsuitString = "<span onclick=\"Rsuit()\" style=\"color: #aaaaaa\""+clickableBlue+">EVA suits</span> Cost: 600<br><span>Make it possible to return from the Moon.</span>";
 Rsuit = function(){
 	if(technology[11] === 0){
-		technology[10] = 1;
+		technology[11] = 1;
 		budget-=600;
 		budgetFresh(-600);
 		RsuitString = "<span onclick=\"Rsuit()\" style=\"color: #0000ff\">EVA suits</span> <span style=\"color: #ff0000\">"+RsuitProg+"%</span>";
