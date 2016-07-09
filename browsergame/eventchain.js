@@ -176,6 +176,9 @@ note = function(text,duration){
 };
 
 printScience = function(){
+		if(technology[11] != 3){
+			simplePrint(RsuitString);
+		};
 		if(technology[10] != 3){
 			simplePrint(RhighString);
 		};
@@ -281,6 +284,7 @@ science = function(){
 		if(RcapsProg === 100){
 			technology[5] = 2;
 			technology[10] = 0;
+			technology[11] = 0;
 			RcapsString = "<span onclick=\"Rcaps()\" style=\"color: #00ff00\"><img src=\"images/capsuleIconGreen2.png\">Capsule development</span>";
 			note("Notification:<br><span style=\"color: #00ff20\" onclick=\"tolk('rd')\">Capsule development</span> research is completed.",10000);
 			updateShop();
@@ -355,6 +359,18 @@ science = function(){
 		else{
 			RhighString = "<span onclick=\"Rhigh()\" style=\"color: #0000ff\">High-speed reentry</span> <span style=\"color: #ff0000\">"+RhighProg+"%</span>";
 			RhighProg++;
+		};
+	};
+	if(technology[11] === 1){
+		if(RsuitProg === 100){
+			technology[11] = 2;
+			RsuitString = "<span onclick=\"Rsuit()\" style=\"color: #00ff00\">Eva suits</span>";
+			note("Notification:<br><span style=\"color: #00ff20\" onclick=\"tolk('rd')\">Eva suits</span> research is completed.",10000);
+			updateShop();
+		}
+		else{
+			RsuitString = "<span onclick=\"Rsuit()\" style=\"color: #0000ff\">Eva suits</span> <span style=\"color: #ff0000\">"+RsuitProg+"%</span>";
+			RsuitProg++;
 		};
 	};
 	if(command === "rd"){
@@ -520,6 +536,19 @@ Rhigh = function(){
 		budget-=1200;
 		budgetFresh(-1200);
 		RhighString = "<span onclick=\"Rhigh()\" style=\"color: #0000ff\">High-speed reentry</span> <span style=\"color: #ff0000\">"+RhighProg+"%</span>";
+		clear();
+		tolk("rd");
+	};
+};
+
+RsuitProg = 0;
+RsuitString = "<span onclick=\"Rsuit()\" style=\"color: #aaaaaa\""+clickableBlue+">EVA suits</span> Cost: 1200<br><span>Make it possible to return from the Moon.</span>";
+Rsuit = function(){
+	if(technology[10] === 0){
+		technology[10] = 1;
+		budget-=1200;
+		budgetFresh(-1200);
+		RsuitString = "<span onclick=\"Rsuit()\" style=\"color: #0000ff\">EVA suits</span> <span style=\"color: #ff0000\">"+RsuitProg+"%</span>";
 		clear();
 		tolk("rd");
 	};

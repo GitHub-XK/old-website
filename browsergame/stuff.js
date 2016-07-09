@@ -361,7 +361,8 @@ shopItems=[ //if you know what you are doing, you can change things in this arra
 ["Basalt fibre factory",false,[4],100,0,6000,true,[0],"",[],""],
 ["Solid rocket boosters",false,[7],100,0,40000,false,[0],"",[],"images/boosterIconGreen.png"],
 ["Capsule",false,[5],80,0,2500,true,[1],"Mass: 3000<br>Can only carry one person.<br><span class=\"blue\">7</span> of <span class=\"blue\">10</span> monkeys recommend this product.",[],"images/capsuleIconGreen2.png"],
-["Grapefruit",true,[],1,0,0.3,true,[0],"A grapefruit specifically developed for use in space.",[],""]
+["Grapefruit",true,[],1,0,0.3,true,[0],"A grapefruit specifically developed for use in space.",[],""],
+["EVA suit",false,[11],100,0,90,true,[1],"Asuit for extra vehicular activity in space.",[],""]
 ];
 
 storeString="";
@@ -392,7 +393,8 @@ technology =[
 0,//7 boosters
 0,//8 materials
 3,//9 liquid
-3//10 high
+3,//10 high
+3//11 EVA suits
 ];
 
 minigame = function(){
@@ -411,7 +413,7 @@ specificCraft = function(id){
 	};
 	navigationString = "";
 	for(var i=0;i<places[tmpPlace2][3].length;i++){
-		navigationString += "<a"+clickableBlue+" onclick=\"crafts[speci][1]=places[places[tmpPlace2][3]["+i+"][0]][1];places[places[tmpPlace2][3]["+i+"][0]][0]++;places[tmpPlace2][0]--;note(crafts[speci][0]+' has transfered to '+places[places[tmpPlace2][3]["+i+"][0]][2],3000);tolk('location');command='location'\">"+places[places[tmpPlace2][3][i][0]][2] + "</a> <a class=\"red\">"+places[tmpPlace2][3][i][2]+"</a> m/s<br>";
+		navigationString += "<a"+clickableBlue+" onclick=\"crafts[speci][1]=places[places[tmpPlace2][3]["+i+"][0]][1];places[places[tmpPlace2][3]["+i+"][0]][0]++;places[tmpPlace2][0]--;note(crafts[speci][0]+' has transfered to '+places[places[tmpPlace2][3]["+i+"][0]][2],3000);crafts[speci][2]=now;tolk('location');command='location'\">"+places[places[tmpPlace2][3][i][0]][2] + "</a> <a class=\"red\">"+places[tmpPlace2][3][i][2]+"</a> m/s<br>";
 	};
 	simplePrint("<h4>\""+crafts[id][0]+"\"</h4><p>"+crafts[id][6]+"</p><br><br><a class=\"blue\">Navigation:</a><br><p id=\"navChoice\">No way to navigate<br>"+navigationString+"</p><br><br><a onclick=\"tolk('location');command='location'\" class=\"blue\""+clickableBlue+">Back</a>");
 };
