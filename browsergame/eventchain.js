@@ -281,7 +281,7 @@ science = function(){
 		if(RcapsProg === 100){
 			technology[5] = 2;
 			technology[10] = 0;
-			RcapsString = "<span onclick=\"Rcaps()\" style=\"color: #00ff00\"><img src=\"images/capsuleIconGreen.png\">Capsule development</span>";
+			RcapsString = "<span onclick=\"Rcaps()\" style=\"color: #00ff00\"><img src=\"images/capsuleIconGreen2.png\">Capsule development</span>";
 			note("Notification:<br><span style=\"color: #00ff20\" onclick=\"tolk('rd')\">Capsule development</span> research is completed.",10000);
 			updateShop();
 		}
@@ -308,7 +308,7 @@ science = function(){
 			if(technology[8] === 2){
 				technology[9] = 0;
 			};
-			RboosString = "<span onclick=\"Rboos()\" style=\"color: #00ff00\">Solid rocket boosters</span>";
+			RboosString = "<span onclick=\"Rboos()\" style=\"color: #00ff00\"><img src=\"images/boosterIconGreen.png\">Solid rocket boosters</span>";
 			note("Notification:<br><span style=\"color: #00ff20\" onclick=\"tolk('rd')\">Solid rocket boosters</span> research is completed.",10000);
 			updateShop();
 		}
@@ -448,7 +448,7 @@ Rfibr = function(){
 };
 
 RcapsProg = 0;
-RcapsString = "<span onclick=\"Rcaps()\" style=\"color: #aaaaaa\""+clickableBlue+"><img src=\"images/capsuleIconGray.png\"><br>Develop a human rated capsule</span> Cost: 1000<br><span>A box. With people inside.</span>";
+RcapsString = "<span onclick=\"Rcaps()\" style=\"color: #aaaaaa\""+clickableBlue+"><img src=\"images/capsuleIconGray2.png\"><br>Develop a human rated capsule</span> Cost: 1000<br><span>A box. With people inside.</span>";
 Rcaps = function(){
 	if(technology[5] === 0){
 		technology[5] = 1;
@@ -474,7 +474,7 @@ Rlarg = function(){
 };
 
 RboosProg = 0;
-RboosString = "<span onclick=\"Rboos()\" style=\"color: #aaaaaa\""+clickableBlue+">Solid rocket boosters</span> Cost: 500<br><span>There is only one solution: More boosters.</span>";
+RboosString = "<span onclick=\"Rboos()\" style=\"color: #aaaaaa\""+clickableBlue+"><img src=\"images/boosterIcon.png\"><br>Solid rocket boosters</span> Cost: 500<br><span>There is only one solution: More boosters.</span>";
 Rboos = function(){
 	if(technology[7] === 0){
 		technology[7] = 1;
@@ -616,6 +616,7 @@ launch = function(){
 			uniqueListing++;
 		};
 		places[0][0]++;
+		simplePrint("<img src=\"images/launch.png\">");
 		alert("Here there is supposed to be a video or series of images of a launch.\nSorry to dissapoint you :(");//remove me
 		note("The launch was successfull!",5000);
 		clear();

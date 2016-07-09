@@ -130,6 +130,8 @@ tolk = function(com){
 	}
 	else if(com === "rd"){
 		clear();
+		document.getElementById("toggelino").style.display = "inline";
+		document.getElementById("devWarning").style.display = "inline";
 		//Tech three container
 		simplePrint("<canvas id=\"techCanvas\" width=\"400\" height=\"300\"></canvas>");
 		printScience();
