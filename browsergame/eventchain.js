@@ -352,7 +352,7 @@ science = function(){
 	if(technology[10] === 1){
 		if(RhighProg === 100){
 			technology[10] = 2;
-			RhighString = "<span style=\"color: #00ff00\">High-speed reentry</span>";
+			RhighString = "<span style=\"color: #00ff00\"><img src=\"images/reentryIconGreen.png\">High-speed reentry</span>";
 			note("Notification:<br><span style=\"color: #00ff20\" onclick=\"tolk('rd')\">High-speed reentry</span> research is completed.",10000);
 			updateShop();
 		}
@@ -529,7 +529,7 @@ Rliqu = function(){
 };
 
 RhighProg = 0;
-RhighString = "<span onclick=\"Rhigh()\" style=\"color: #aaaaaa\""+clickableBlue+">High-speed reentry</span> Cost: 1200<br><span>Make it possible to return from the Moon.</span>";
+RhighString = "<span onclick=\"Rhigh()\" style=\"color: #aaaaaa\""+clickableBlue+"><img src=\"images/reentryIcon.png\"><br>High-speed reentry</span> Cost: 1200<br><span>Make it possible to return from the Moon.</span>";
 Rhigh = function(){
 	if(technology[10] === 0){
 		technology[10] = 1;
