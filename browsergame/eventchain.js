@@ -234,7 +234,7 @@ science = function(){
 		nukeAccident("develop");
 		if(RnukeProg === 100){
 			technology[1] = 2;
-			RnukeString = "<span onclick=\"Rnuke()\" style=\"color: #00ff00\">Nuclear thermal rockets</span>";
+			RnukeString = "<span onclick=\"Rnuke()\" style=\"color: #00ff00\"><img src=\"images/nuclearIconGreen.png\">Nuclear thermal rockets</span>";
 			note("Notification:<br><span style=\"color: #00ff20\" onclick=\"tolk('rd')\">Nuclear thermal rockets</span> research is completed.",10000);
 			updateShop();
 		}
@@ -411,7 +411,7 @@ Rcryo = function(){
 };
 
 RnukeProg = 0;
-RnukeString = "<span onclick=\"Rnuke()\" style=\"color: #aaaaaa\""+clickableBlue+">Nuclear thermal rockets</span> Cost: 2000<br><span>(Protip: try to not make it explode)</span>";
+RnukeString = "<span onclick=\"Rnuke()\" style=\"color: #aaaaaa\""+clickableBlue+"><img src=\"images/nuclearIcon.png\"><br>Nuclear thermal rockets</span> Cost: 2000<br><span>(Protip: try to not make it explode)</span>";
 Rnuke = function(){
 	if(technology[1] === 0){
 		nukeAccident("initi");
