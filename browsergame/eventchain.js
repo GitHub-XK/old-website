@@ -220,7 +220,7 @@ science = function(){
 	if(technology[0] === 1){
 		if(RcryoProg === 100){
 			technology[0] = 2;
-			RcryoString = "<span onclick=\"Rcryo()\" style=\"color: #00ff00\">Cryogenic fuels</span>";
+			RcryoString = "<span style=\"color: #00ff00\">Cryogenic fuels</span>";
 			note("Notification:<br><span style=\"color: #00ff20\" onclick=\"tolk('rd')\">Cryogenic fuels</span> research is completed.",10000);
 			technology[2] = 0;
 			updateShop();
@@ -234,7 +234,7 @@ science = function(){
 		nukeAccident("develop");
 		if(RnukeProg === 100){
 			technology[1] = 2;
-			RnukeString = "<span onclick=\"Rnuke()\" style=\"color: #00ff00\"><img src=\"images/nuclearIconGreen.png\">Nuclear thermal rockets</span>";
+			RnukeString = "<span style=\"color: #00ff00\"><img src=\"images/nuclearIconGreen.png\">Nuclear thermal rockets</span>";
 			note("Notification:<br><span style=\"color: #00ff20\" onclick=\"tolk('rd')\">Nuclear thermal rockets</span> research is completed.",10000);
 			updateShop();
 		}
@@ -246,7 +246,7 @@ science = function(){
 	if(technology[2] === 1){
 		if(Rcryo2Prog === 100){
 			technology[2] = 2;
-			Rcryo2String = "<span onclick=\"Rcryo2()\" style=\"color: #00ff00\">Cryogenic storage</span>";
+			Rcryo2String = "<span style=\"color: #00ff00\">Cryogenic storage</span>";
 			note("Notification:<br><span style=\"color: #00ff20\" onclick=\"tolk('rd')\">Cryogenic storage</span> research is completed.",10000);
 			updateShop();
 		}
@@ -258,7 +258,7 @@ science = function(){
 	if(technology[3] === 1){
 		if(RrockProg === 100){
 			technology[3] = 2;
-			RrockString = "<span onclick=\"Rrock()\" style=\"color: #00ff00\">Regolith melting</span>";
+			RrockString = "<span style=\"color: #00ff00\">Regolith melting</span>";
 			note("Notification:<br><span style=\"color: #00ff20\" onclick=\"tolk('rd')\">Regolith melting</span> research is completed.",10000);
 			technology[4] = 0;
 			updateShop();
@@ -271,7 +271,7 @@ science = function(){
 	if(technology[4] === 1){
 		if(RfibrProg === 100){
 			technology[4] = 2;
-			RfibrString = "<span onclick=\"Rfibr()\" style=\"color: #00ff00\">Basalt fibres</span>";
+			RfibrString = "<span style=\"color: #00ff00\">Basalt fibres</span>";
 			note("Notification:<br><span style=\"color: #00ff20\" onclick=\"tolk('rd')\">Basalt fibres</span> research is completed.",10000);
 			updateShop();
 		}
@@ -285,7 +285,7 @@ science = function(){
 			technology[5] = 2;
 			technology[10] = 0;
 			technology[11] = 0;
-			RcapsString = "<span onclick=\"Rcaps()\" style=\"color: #00ff00\"><img src=\"images/capsuleIconGreen2.png\">Capsule development</span>";
+			RcapsString = "<span style=\"color: #00ff00\"><img src=\"images/capsuleIconGreen2.png\">Capsule development</span>";
 			note("Notification:<br><span style=\"color: #00ff20\" onclick=\"tolk('rd')\">Capsule development</span> research is completed.",10000);
 			updateShop();
 		}
@@ -297,7 +297,7 @@ science = function(){
 	if(technology[6] === 1){
 		if(RlargProg === 100){
 			technology[6] = 2;
-			RlargString = "<span onclick=\"Rlarg()\" style=\"color: #00ff00\">Heavy duty rocketry</span>";
+			RlargString = "<span style=\"color: #00ff00\">Heavy duty rocketry</span>";
 			note("Notification:<br><span style=\"color: #00ff20\" onclick=\"tolk('rd')\">Heavy duty rocketry</span> research is completed.",10000);
 			updateShop();
 		}
@@ -312,7 +312,7 @@ science = function(){
 			if(technology[8] === 2){
 				technology[9] = 0;
 			};
-			RboosString = "<span onclick=\"Rboos()\" style=\"color: #00ff00\"><img src=\"images/boosterIconGreen.png\">Solid rocket boosters</span>";
+			RboosString = "<span style=\"color: #00ff00\"><img src=\"images/boosterIconGreen.png\">Solid rocket boosters</span>";
 			note("Notification:<br><span style=\"color: #00ff20\" onclick=\"tolk('rd')\">Solid rocket boosters</span> research is completed.",10000);
 			updateShop();
 		}
@@ -328,7 +328,7 @@ science = function(){
 			if(technology[7] === 2){
 				technology[9] = 0;
 			};
-			RmateString = "<span onclick=\"Rmate()\" style=\"color: #00ff00\">Better materials</span>";
+			RmateString = "<span style=\"color: #00ff00\">Better materials</span>";
 			note("Notification:<br><span style=\"color: #00ff20\" onclick=\"tolk('rd')\">Better materials</span> research is completed.",10000);
 			updateShop();
 		}
@@ -340,7 +340,7 @@ science = function(){
 	if(technology[9] === 1){
 		if(RliquProg === 100){
 			technology[9] = 2;
-			RliquString = "<span onclick=\"Rliqu()\" style=\"color: #00ff00\">Liquid fuel boosters</span>";
+			RliquString = "<span style=\"color: #00ff00\">Liquid fuel boosters</span>";
 			note("Notification:<br><span style=\"color: #00ff20\" onclick=\"tolk('rd')\">Liquid fuel boosters</span> research is completed.",10000);
 			updateShop();
 		}
@@ -352,7 +352,7 @@ science = function(){
 	if(technology[10] === 1){
 		if(RhighProg === 100){
 			technology[10] = 2;
-			RhighString = "<span onclick=\"Rhigh()\" style=\"color: #00ff00\">High-speed reentry</span>";
+			RhighString = "<span style=\"color: #00ff00\">High-speed reentry</span>";
 			note("Notification:<br><span style=\"color: #00ff20\" onclick=\"tolk('rd')\">High-speed reentry</span> research is completed.",10000);
 			updateShop();
 		}
@@ -364,7 +364,7 @@ science = function(){
 	if(technology[11] === 1){
 		if(RsuitProg === 100){
 			technology[11] = 2;
-			RsuitString = "<span onclick=\"Rsuit()\" style=\"color: #00ff00\">Eva suits</span>";
+			RsuitString = "<span style=\"color: #00ff00\">Eva suits</span>";
 			note("Notification:<br><span style=\"color: #00ff20\" onclick=\"tolk('rd')\">Eva suits</span> research is completed.",10000);
 			updateShop();
 		}
@@ -542,12 +542,12 @@ Rhigh = function(){
 };
 
 RsuitProg = 0;
-RsuitString = "<span onclick=\"Rsuit()\" style=\"color: #aaaaaa\""+clickableBlue+">EVA suits</span> Cost: 1200<br><span>Make it possible to return from the Moon.</span>";
+RsuitString = "<span onclick=\"Rsuit()\" style=\"color: #aaaaaa\""+clickableBlue+">EVA suits</span> Cost: 600<br><span>Make it possible to return from the Moon.</span>";
 Rsuit = function(){
-	if(technology[10] === 0){
+	if(technology[11] === 0){
 		technology[10] = 1;
-		budget-=1200;
-		budgetFresh(-1200);
+		budget-=600;
+		budgetFresh(-600);
 		RsuitString = "<span onclick=\"Rsuit()\" style=\"color: #0000ff\">EVA suits</span> <span style=\"color: #ff0000\">"+RsuitProg+"%</span>";
 		clear();
 		tolk("rd");
