@@ -354,7 +354,7 @@ shopItems=[ //if you know what you are doing, you can change things in this arra
 //syntax: [name,allowed?,[required tech],cost,number in stock,mass,payload?,[crewsize],details,[props],icon]
 ["Cryogenic upper stage (small)",false,[0],250,0,15000,false,[0],"Mass: 15000<br>A small but efficient upper stage burning LH2/LOX.",[],""],
 ["Cryogenic upper stage (large)",false,[0,2,6],750,0,40000,false,[0],"Mass: 40000<br>",[],""],
-["Nuclear upper stage",false,[0,2,6,1],1500,0,40000,false,[0],"Mass: 40000<br>Very efficient and mostly harmless.",[],""],
+["Nuclear upper stage",false,[0,2,6,1],1500,0,40000,false,[0],"Mass: 40000<br>Very efficient and mostly harmless.",[],"images/nuclearIconGreen.png"],
 ["Basic rocket core",true,[],250,0,100000,false,[0],"Mass: 100000<br>Well, you have to start <i>somewhere</i>.",[],""],
 ["Basic upper stage",true,[],120,0,15000,false,[0],"Mass: 15000<br>An engine attached to a fuel tank. What else do you need?",[],""],
 ["Regolith melter",false,[3],50,0,4000,true,[0],"",[],""],
@@ -415,7 +415,7 @@ specificCraft = function(id){
 	for(var i=0;i<places[tmpPlace2][3].length;i++){
 		navigationString += "<a"+clickableBlue+" onclick=\"crafts[speci][1]=places[places[tmpPlace2][3]["+i+"][0]][1];places[places[tmpPlace2][3]["+i+"][0]][0]++;places[tmpPlace2][0]--;note(crafts[speci][0]+' has transfered to '+places[places[tmpPlace2][3]["+i+"][0]][2],3000);crafts[speci][2]=now;tolk('location');command='location'\">"+places[places[tmpPlace2][3][i][0]][2] + "</a> <a class=\"red\">"+places[tmpPlace2][3][i][2]+"</a> m/s<br>";
 	};
-	simplePrint("<h4>\""+crafts[id][0]+"\"</h4><p>"+crafts[id][6]+"</p><br><br><a class=\"blue\">Navigation:</a><br><p id=\"navChoice\">No way to navigate<br>"+navigationString+"</p><br><br><a onclick=\"tolk('location');command='location'\" class=\"blue\""+clickableBlue+">Back</a>");
+	simplePrint("<h4>\""+crafts[id][0]+"\"</h4><p>"+crafts[id][6]+"</p><br><br><a class=\"blue\">Navigation:</a><br><p id=\"navChoice\"><br>"+navigationString+"</p><br><br><a onclick=\"tolk('location');command='location'\" class=\"blue\""+clickableBlue+">Back</a>");
 };
 
 //this bit is a little fun, it generatres random names for the cosmonauts, and defaults to Mexico.
