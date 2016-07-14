@@ -30,6 +30,7 @@
 customPrompt = false;
 list = ["about","budget","build","clear","exit","help","info <thing>","launch","load","location","rd","save","shop"];
 complete = "about<br>budget<br>build<br>clear<br>documentation<br>exit<br>help<br>info <thing><br>kim<br>launch<br>load<br>ls<br>location<br>moon<br>quit<br>rd<br>save<br>shop";
+//check what command was entered
 tolk = function(com){
 	compara = "";
 	var mello = 0;
@@ -160,8 +161,6 @@ tolk = function(com){
 		printi("Unknown command, try \"help\"");
 	};
 };
-now = 0;
-acceleration(1);
 
 //function that displays a change in funds
 budgetFresh = function(change){

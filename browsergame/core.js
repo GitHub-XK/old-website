@@ -25,8 +25,8 @@
  * for the JavaScript code in this page.
  *
  */
-
-c = ["","","","","","","","","","","","","","","","","","","",""]; //wtf solution to escape the approaching deadline
+now = 0;
+c = ["","","","","","","","","","","","","","","","","","","",""]; //wtf solution to escape an approaching deadline
 command = "";
 init = true;
 var p = function(id,value) {
@@ -34,13 +34,14 @@ var p = function(id,value) {
 	document.getElementById("c"+id).innerHTML = value;
 };
 
-buzzy = 0;queue=[];
+buzzy = 0;
+queue = [];
 printi = function(stu){
 	if(buzzy){
 		queue.push(stu);
 	}
 	else{
-		buzzy=1; //FIXME there may be some subtle bug in the queue. This is of medium priority, as it is in the core script
+		buzzy=1; //FIXME there may be a subtle bug in the queue. This is of medium priority, as it is in the core script
 		c[0] = stu;
 		telluty = 0;
 		for(i = 0;i < stu.length;i++){
@@ -122,39 +123,25 @@ else{
 clickableBlue = " onmouseover=\"this.style.background='#202040';\" onmouseout=\"this.style.background='black';\" ";
 editor = "style=\"position:absolute;left:20px;\"";
 
+selectedTime = 1;
 acceleration = function(factor){
-	if(factor===1){
-		document.getElementById("toggle0").style.background = "gray";
-		document.getElementById("toggle2").style.background = "gray";
-		document.getElementById("toggle3").style.background = "gray";
-	}
-	else if(factor===5){
-		document.getElementById("toggle0").style.background = "gray";
-		document.getElementById("toggle1").style.background = "gray";
-		document.getElementById("toggle3").style.background = "gray";
-	}
-	else if(factor===0){
-		document.getElementById("toggle1").style.background = "gray";
-		document.getElementById("toggle2").style.background = "gray";
-		document.getElementById("toggle3").style.background = "gray";
-	}
-	else{
-		document.getElementById("toggle0").style.background = "gray";
-		document.getElementById("toggle1").style.background = "gray";
-		document.getElementById("toggle2").style.background = "gray";
-	};
+	document.getElementById("toggle"+selectedTime).style.background = "gray";
+	selectedTime = factor;
+	document.getElementById("toggle"+selectedTime).style.background = "red";
 	if(init){
 		init = false;
 	}
 	else{
 		clearInterval(times);
 	};
+	//set the "crontab"
 	if(factor != 0){
 		times = setInterval(function(){
 			now++;
 			document.getElementById("timing").innerHTML = now;
 			if(now%5 === 0){
 				science();
+				//applies the penalty for using too much money
 				if(budget < 0){
 					budgetFresh(Math.ceil(0.01*budget));
 					budget += Math.ceil(0.01*budget);
@@ -183,6 +170,7 @@ acceleration = function(factor){
 		},1000/factor);
 	};
 };
+acceleration(1);
 
 saveFunction = function(fileName){
 	alert("At the moment, savefiles only preserve your technology level and budget.");
@@ -190,7 +178,7 @@ saveFunction = function(fileName){
 	for(var i = 0;i<technology.length;i++){
 		saveString += technology[i];
 	};
-	saveString += "b"+budget+"b";
+	saveString += "b"+budget+"b"; //b is a delimeter
 	localStorage.setItem(fileName,saveString);
 };
 
