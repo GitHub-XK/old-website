@@ -328,7 +328,7 @@ science = function(){
 			if(technology[7] === 2){
 				technology[9] = 0;
 			};
-			RmateString = "<span style=\"color: #00ff00\">Better materials</span>";
+			RmateString = "<span style=\"color: #00ff00\"><img src=\"images/materialsIconGreen.png\">Better materials</span>";
 			note("Notification:<br><span style=\"color: #00ff20\" onclick=\"tolk('rd')\">Better materials</span> research is completed.",10000);
 			updateShop();
 		}
@@ -503,7 +503,7 @@ Rboos = function(){
 };
 
 RmateProg = 0;
-RmateString = "<span onclick=\"Rmate()\" style=\"color: #aaaaaa\""+clickableBlue+">Better materials</span> Cost: 700<br><span>This unlocks a lot of new research.</span>";
+RmateString = "<span onclick=\"Rmate()\" style=\"color: #aaaaaa\""+clickableBlue+"><img src=\"images/materialsIcon.png\"><br>Better materials</span> Cost: 700<br><span>This unlocks a lot of new research.</span>";
 Rmate = function(){
 	if(technology[8] === 0){
 		technology[8] = 1;
