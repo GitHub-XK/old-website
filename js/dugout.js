@@ -1,10 +1,14 @@
+//dimensions of the cuboid (in meters)
 var length = 50;
 var width = 30;
 var height = 15;
-var beamDensity = 3;
+//you are at the bottom of it, in the centre
+//
+var beamDensity = 3; //g/cm^3
 var beamWidth = 0.5;
 var beamHeight = 6;
 var beamGap = 0.75;
+//Do not edit after this point
 var results = [];
 /*
 draft:
@@ -93,5 +97,4 @@ for(i=0;i<simnumber;i++){
 	//alert(average);
 };
 average = average/simnumber;
-//alert("Rays getting more than 1000 g/cm^2 of shielding: "+missing/simnumber); wrong
 alert("Radiation compared to no beams: "+average*100+"%");
