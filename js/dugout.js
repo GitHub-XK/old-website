@@ -32,8 +32,8 @@ sideHit = function(){
 		sideEscape();
 	};
 };
-
-for(var i = 0; i<100;i++){ //do a bunch of test cases
+simnumber = 1000000;
+for(var i = 0; i<simnumber;i++){ //do a bunch of test cases
 	way = 0;
 //generate random beam
 	offsetX = Math.random()*(beamWidth+beamGap);
@@ -74,5 +74,24 @@ for(var i = 0; i<100;i++){ //do a bunch of test cases
 	};
 	way = way * (Math.sqrt(1+velY*velY));
 	results.push(way);
-	alert(results);
 };
+average = 0;
+missing=0;
+for(i=0;i<simnumber;i++){
+	if(results[i]*100*beamDensity < 150){
+		average += 9*results[i]*100*beamDensity/150;
+	}
+	else if(results[i]*100*beamDensity < 500){
+		average += ((9 - 1.33) * (1 - (results[i]*100*beamDensity - 150)/500)) + 1.33;
+	}
+	else if(results[i]*100*beamDensity < 1000){
+		average += 1.33 * (1 - (results[i]*100*beamDensity - 500)/1000);
+	}
+	else{
+		missing++;
+	};
+	//alert(average);
+};
+average = average/simnumber;
+//alert("Rays getting more than 1000 g/cm^2 of shielding: "+missing/simnumber); wrong
+alert("Radiation compared to no beams: "+average*100+"%");
