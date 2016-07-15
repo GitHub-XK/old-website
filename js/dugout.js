@@ -16,14 +16,15 @@ Case 5: ray hits side of beam, escaping through the side of it, continuing to 1 
 */
 
 sideEscape = function(){
-	if(offsetZ + beamGap/velX < beamHeight){ //emitted through side
+	if(offsetZ + beamGap/velX < beamHeight){ //emitted through the side
 		offsetZ += beamGap/velX;
 		sideHit();
 	};
 };
 
 sideHit = function(){
-	if(offsetZ + beamWidth/velX > beamHeight){ //escapes through bottom
+	if(offsetZ + beamWidth/velX > beamHeight){ //escapes through the bottom
+		way += Math.sqrt(beamHeight*beamHeight * (1 + velX));
 	}
 	else{
 		way += Math.sqrt(beamWidth*beamWidth * (1 + 1/velX));
@@ -38,8 +39,10 @@ for(var i = 0; i<100;i++){ //do a bunch of test cases
 	offsetX = Math.random()*(beamWidth+beamGap);
 	tryAgain = true;
 	while(tryAgain){
-		velX = 0; //? FIXME
-		velY = 0; //? FIXME
+		RA = Math.random()*Math.PI/2;
+		dec = Math.asin(Math.random());
+		velX = Math.sin(RA) * 1/Math.cos(dec);
+		velY = Math.cos(RA) * 1/Math.cos(dec);
 		if(height * velX < length/2 && height * velY < width/2){
 			tryAgain = false;
 		};
@@ -71,4 +74,5 @@ for(var i = 0; i<100;i++){ //do a bunch of test cases
 	};
 	way = way * (Math.sqrt(1+velY*velY));
 	results.push(way);
+	alert(results);
 };
