@@ -79,7 +79,7 @@ average = 0;
 missing=0;
 for(i=0;i<simnumber;i++){
 	if(results[i]*100*beamDensity < 150){
-		average += 9*results[i]*100*beamDensity/150;
+		average += 1 + 8*results[i]*100*beamDensity/150;
 	}
 	else if(results[i]*100*beamDensity < 500){
 		average += ((9 - 1.33) * (1 - (results[i]*100*beamDensity - 150)/500)) + 1.33;
