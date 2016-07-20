@@ -6,7 +6,6 @@ cd .moonwardsGame
 wget "https://raw.githubusercontent.com/briligg/moonwards/gh-pages/browsergame/core.js"
 wget "https://raw.githubusercontent.com/briligg/moonwards/gh-pages/browsergame/eventchain.js"
 wget "https://raw.githubusercontent.com/briligg/moonwards/gh-pages/browsergame/stuff.js"
-wget "https://raw.githubusercontent.com/briligg/moonwards/gh-pages/browsergame/scen.js"
 wget "https://raw.githubusercontent.com/briligg/moonwards/gh-pages/browsergame/shell.html"
 wget "https://raw.githubusercontent.com/briligg/moonwards/gh-pages/browsergame/tutorial.html"
 mkdir images
@@ -31,8 +30,6 @@ sudo echo "sudo rm remove-moongame" >> remove-moongame
 sudo echo "cd ~" >> remove-moongame
 sudo echo "echo 'game removed'" >> remove-moongame
 sudo chmod +x remove-moongame
-clear
-echo "All files located in .moonwardsGame"
 echo "The game can be started from the terminal by typing 'moongame'"
 echo "Remove the game by typing 'remove-moongame'"
 cd ~
