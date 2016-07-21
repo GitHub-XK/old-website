@@ -61,12 +61,6 @@ thepage = function(stuff){ //this is the giant info page function. Put stuff her
 			simplePrint("Prints a link to leave the game.");
 		};
 	}
-/*
-	else if(stuff[0] === "f"){
-	}
-	else if(stuff[0] === "g"){
-	}
-*/
 	else if(stuff[0] === "h"){
 		if(stuff === "heinlein"){
 			simplePrint("Wrote the book \"The Moon is a harsh mistress\".");
@@ -80,12 +74,6 @@ thepage = function(stuff){ //this is the giant info page function. Put stuff her
 			simplePrint("I'm So Meta, Even This Acronym.");
 		};
 	}
-/*
-	else if(stuff[0] === "j"){
-	}
-	else if(stuff[0] === "k"){
-	}
-*/
 	else if(stuff[0] === "l"){
 		if(stuff === "launch"){
 			simplePrint("Go here to launch a payload");
@@ -118,12 +106,6 @@ thepage = function(stuff){ //this is the giant info page function. Put stuff her
 			simplePrint("Nuclear rocket engines. Has a higher Isp than chemical rockets.");
 		};
 	}
-/*
-	else if(stuff[0] === "o"){
-	}
-	else if(stuff[0] === "p"){
-	}
-*/
 	else if(stuff[0] === "q"){
 		if(stuff === "quit"){
 			simplePrint("Identical to \"exit\"");
@@ -147,20 +129,6 @@ thepage = function(stuff){ //this is the giant info page function. Put stuff her
 			simplePrint("~");
 		};
 	}
-/*
-	else if(stuff[0] === "u"){
-	}
-	else if(stuff[0] === "v"){
-	}
-	else if(stuff[0] === "w"){
-	}
-	else if(stuff[0] === "x"){
-	}
-	else if(stuff[0] === "y"){
-	}
-	else if(stuff[0] === "z"){
-	}
-*/
 	else{
 		printi("That was an unknown character!");
 	};
@@ -175,381 +143,112 @@ note = function(text,duration){
 	},duration);
 };
 
+Rprog = [0,0,0,0,0,0,0,0,0,0,0,0]; //planed
+Runlock = [[2],[],[],[4],[],[10,11],[],[9],[1],[],[],[]];
+Rprice = [1000,2000,2500,1000,2500,1000,3000,500,700,1200,1200,600];
+Ricons=[
+"",
+"nuclearIcon",
+"",
+"",
+"",
+"capsuleIcon",
+"",
+"boosterIcon",
+"materialsIcon",
+"",
+"reentryIcon",
+""
+];
+Rcomments=[
+];
+RstringsFutureTemplate = [
+"Cryogenic fuels",
+"Nuclear thermal rockets",
+"Cryogenic storage",
+"Regolith melting",
+"Basalt fibres",
+"Capsule development",
+"Heavy duty rocketry",
+"Solid rocket boosters",
+"Better materials",
+"Liquid fuel boosters",
+"High-speed reentry",
+"Eva suits",
+];
+RstringsTemplate = [
+"Cryogenic fuels</span> Cost: 1000<br><span>Make use of more efficient fuels",
+"<img src=\"images/nuclearIcon.png\"><br>Nuclear thermal rockets</span> Cost: 2000<br><span>(Protip: try to not make it explode)",
+"Cryogenic storage</span> Cost: 2500<br><span>Allow cryogenic fuels to be used in deep space",
+"Regolith melting</span> Cost: 1000<br><span>Let your base make its own building materials",
+"Basalt fibres</span> Cost: 2500<br><span>Hightech stone age ahead.",
+"<img src=\"images/capsuleIcon.png\"><br>Develop a human rated capsule</span> Cost: 1000<br><span>A box. With people inside.",
+"Heavy duty rocketry</span> Cost: 3000<br><span>Go bigger and better",
+"<img src=\"images/boosterIcon.png\"><br>Solid rocket boosters</span> Cost: 500<br><span>There is only one solution: More boosters.",
+"<img src=\"images/materialsIcon.png\"><br>Better materials</span> Cost: 700<br><span>This unlocks a lot of new research.",
+"Liquid fuel boosters</span> Cost: 1200<br><span>Upgrade your solid rocket boosters!",
+"<img src=\"images/reentryIcon.png\"><br>High-speed reentry</span> Cost: 1200<br><span>Make it possible to return from the Moon.",
+"EVA suits</span> Cost: 600<br><span>Make it possible to return from the Moon."
+];
+Rstrings = [];
+for(var i=0;i<RstringsTemplate.length;i++){
+	Rstrings.push("<span onclick=\"Rfunction("+i+")\" style=\"color: #aaaaaa\""+clickableBlue+">"+RstringsTemplate[i]+"</span>");
+};
+Rnotes = [];
+RstringsFuture=[];
+for(var i=0;i<Ricons.length;i++){
+	var mogleg = "";
+	if(Ricons[i] != ""){
+		mogleg="<img src=\"images/"+Ricons[i]+"Green.png\">";
+	};
+	RstringsFuture.push(["<span onclick=\"Rfunctions("+i+")\" style=\"color: #0000ff\">"+RstringsFutureTemplate[i]+"</span> <span style=\"color: #ff0000\">"+Rprog[i]+"%</span>","<span style=\"color: #00ff00\">"+mogleg+RstringsFutureTemplate[i]+"</span>"]);
+	Rnotes.push("Notification:<br><span style=\"color: #00ff20\" onclick=\"tolk('rd')\">"+RstringsFutureTemplate[i]+"</span> research is completed.");
+};
+
+Rfunction = function(id){
+	if(technology[id] === 0){
+		technology[id] = 1;
+		budget-=Rprice[id];
+		budgetFresh(-Rprice[id]);
+		Rstrings[id] = RstringsFuture[id][0];
+		clear();
+		tolk("rd");
+		science();
+	};
+	if(id === 1){
+		nukeAccident("initi");
+	};
+};
+
 printScience = function(){
-		if(technology[11] != 3){
-			simplePrint(RsuitString);
+	for(var i=0;i<Rstrings.length;i++){
+		if(technology[i] != 3){
+			simplePrint(Rstrings[i]);
 		};
-		if(technology[10] != 3){
-			simplePrint(RhighString);
-		};
-		if(technology[6] != 3){
-			simplePrint(RlargString);
-		};
-		if(technology[2] != 3){
-			simplePrint(Rcryo2String);
-		};
-		if(technology[3] != 3){
-			simplePrint(RrockString);
-		};
-		if(technology[1] != 3){
-			simplePrint(RnukeString);
-		};
-		if(technology[0] != 3){
-			simplePrint(RcryoString);
-		};
-		if(technology[9] != 3){
-			simplePrint(RliquString);
-		};
-		if(technology[4] != 3){
-			simplePrint(RfibrString);
-		};
-		if(technology[8] != 3){
-			simplePrint(RmateString);
-		};
-		if(technology[7] != 3){
-			simplePrint(RboosString);
-		};
-		if(technology[5] != 3){
-			simplePrint(RcapsString);
-		};
+	};
 };
 
 //research:
 
 science = function(){
-	if(technology[0] === 1){
-		if(RcryoProg === 100){
-			technology[0] = 2;
-			RcryoString = "<span style=\"color: #00ff00\">Cryogenic fuels</span>";
-			note("Notification:<br><span style=\"color: #00ff20\" onclick=\"tolk('rd')\">Cryogenic fuels</span> research is completed.",10000);
-			technology[2] = 0;
-			updateShop();
-		}
-		else{
-			RcryoString = "<span onclick=\"Rcryo()\" style=\"color: #0000ff\">Cryogenic fuels</span> <span style=\"color: #ff0000\">"+RcryoProg+"%</span>";
-			RcryoProg++;
-		};
-	};
-	if(technology[1] === 1){
-		nukeAccident("develop");
-		if(RnukeProg === 100){
-			technology[1] = 2;
-			RnukeString = "<span style=\"color: #00ff00\"><img src=\"images/nuclearIconGreen.png\">Nuclear thermal rockets</span>";
-			note("Notification:<br><span style=\"color: #00ff20\" onclick=\"tolk('rd')\">Nuclear thermal rockets</span> research is completed.",10000);
-			updateShop();
-		}
-		else{
-			RnukeString = "<span onclick=\"Rnuke()\" style=\"color: #0000ff\">Nuclear thermal rockets</span> <span style=\"color: #ff0000\">"+RnukeProg+"%</span>";
-			RnukeProg++;
-		};
-	};
-	if(technology[2] === 1){
-		if(Rcryo2Prog === 100){
-			technology[2] = 2;
-			Rcryo2String = "<span style=\"color: #00ff00\">Cryogenic storage</span>";
-			note("Notification:<br><span style=\"color: #00ff20\" onclick=\"tolk('rd')\">Cryogenic storage</span> research is completed.",10000);
-			updateShop();
-		}
-		else{
-			Rcryo2String = "<span onclick=\"Rcryo2()\" style=\"color: #0000ff\">Cryogenic storage</span> <span style=\"color: #ff0000\">"+Rcryo2Prog+"%</span>";
-			Rcryo2Prog++;
-		};
-	};
-	if(technology[3] === 1){
-		if(RrockProg === 100){
-			technology[3] = 2;
-			RrockString = "<span style=\"color: #00ff00\">Regolith melting</span>";
-			note("Notification:<br><span style=\"color: #00ff20\" onclick=\"tolk('rd')\">Regolith melting</span> research is completed.",10000);
-			technology[4] = 0;
-			updateShop();
-		}
-		else{
-			RrockString = "<span onclick=\"Rrock()\" style=\"color: #0000ff\">Regolith melting</span> <span style=\"color: #ff0000\">"+RrockProg+"%</span>";
-			RrockProg++;
-		};
-	};
-	if(technology[4] === 1){
-		if(RfibrProg === 100){
-			technology[4] = 2;
-			RfibrString = "<span style=\"color: #00ff00\">Basalt fibres</span>";
-			note("Notification:<br><span style=\"color: #00ff20\" onclick=\"tolk('rd')\">Basalt fibres</span> research is completed.",10000);
-			updateShop();
-		}
-		else{
-			RfibrString = "<span onclick=\"Rfibr()\" style=\"color: #0000ff\">Basalt fibres</span> <span style=\"color: #ff0000\">"+RfibrProg+"%</span>";
-			RfibrProg++;
-		};
-	};
-	if(technology[5] === 1){
-		if(RcapsProg === 100){
-			technology[5] = 2;
-			technology[10] = 0;
-			technology[11] = 0;
-			RcapsString = "<span style=\"color: #00ff00\"><img src=\"images/capsuleIconGreen2.png\">Capsule development</span>";
-			note("Notification:<br><span style=\"color: #00ff20\" onclick=\"tolk('rd')\">Capsule development</span> research is completed.",10000);
-			updateShop();
-		}
-		else{
-			RcapsString = "<span onclick=\"Rcaps()\" style=\"color: #0000ff\">Capsule development</span> <span style=\"color: #ff0000\">"+RcapsProg+"%</span>";
-			RcapsProg++;
-		};
-	};
-	if(technology[6] === 1){
-		if(RlargProg === 100){
-			technology[6] = 2;
-			RlargString = "<span style=\"color: #00ff00\">Heavy duty rocketry</span>";
-			note("Notification:<br><span style=\"color: #00ff20\" onclick=\"tolk('rd')\">Heavy duty rocketry</span> research is completed.",10000);
-			updateShop();
-		}
-		else{
-			RlargString = "<span onclick=\"Rlarg()\" style=\"color: #0000ff\">Heavy duty rocketry</span> <span style=\"color: #ff0000\">"+RlargProg+"%</span>";
-			RlargProg++;
-		};
-	};
-	if(technology[7] === 1){
-		if(RboosProg === 100){
-			technology[7] = 2;
-			if(technology[8] === 2){
-				technology[9] = 0;
+	for(var i=0;i<technology.length;i++){
+		if(technology[i] === 1){
+			if(Rprog[i] === 100){
+				technology[i] = 2;
+				Rstrings[i] = RstringsFuture[i][1];
+				note(Rnotes[i],10000);
+				for(var j=0;j<Runlock[i].length;j++){
+					technology[Runlock[i][j]] = 0;
+				};
+				updateShop();
+			}
+			else{
+				Rstrings[i] = "<span onclick=\"Rfunction("+i+")\" style=\"color: #0000ff\">"+RstringsFutureTemplate[i]+"</span> <span style=\"color: #ff0000\">"+Rprog[i]+"%</span>";
+				Rprog[i]+=2;
 			};
-			RboosString = "<span style=\"color: #00ff00\"><img src=\"images/boosterIconGreen.png\">Solid rocket boosters</span>";
-			note("Notification:<br><span style=\"color: #00ff20\" onclick=\"tolk('rd')\">Solid rocket boosters</span> research is completed.",10000);
-			updateShop();
-		}
-		else{
-			RboosString = "<span onclick=\"Rboos()\" style=\"color: #0000ff\">Solid rocket boosters</span> <span style=\"color: #ff0000\">"+RboosProg+"%</span>";
-			RboosProg+=2;
-		};
-	};
-	if(technology[8] === 1){
-		if(RmateProg === 100){
-			technology[8] = 2;
-			technology[1] = 0;
-			if(technology[7] === 2){
-				technology[9] = 0;
-			};
-			RmateString = "<span style=\"color: #00ff00\"><img src=\"images/materialsIconGreen.png\">Better materials</span>";
-			note("Notification:<br><span style=\"color: #00ff20\" onclick=\"tolk('rd')\">Better materials</span> research is completed.",10000);
-			updateShop();
-		}
-		else{
-			RmateString = "<span onclick=\"Rmate()\" style=\"color: #0000ff\">Better materials</span> <span style=\"color: #ff0000\">"+RmateProg+"%</span>";
-			RmateProg+=2;
-		};
-	};
-	if(technology[9] === 1){
-		if(RliquProg === 100){
-			technology[9] = 2;
-			RliquString = "<span style=\"color: #00ff00\">Liquid fuel boosters</span>";
-			note("Notification:<br><span style=\"color: #00ff20\" onclick=\"tolk('rd')\">Liquid fuel boosters</span> research is completed.",10000);
-			updateShop();
-		}
-		else{
-			RliquString = "<span onclick=\"Rliqu()\" style=\"color: #0000ff\">Liquid fuel boosters</span> <span style=\"color: #ff0000\">"+RliquProg+"%</span>";
-			RliquProg++;
-		};
-	};
-	if(technology[10] === 1){
-		if(RhighProg === 100){
-			technology[10] = 2;
-			RhighString = "<span style=\"color: #00ff00\"><img src=\"images/reentryIconGreen.png\">High-speed reentry</span>";
-			note("Notification:<br><span style=\"color: #00ff20\" onclick=\"tolk('rd')\">High-speed reentry</span> research is completed.",10000);
-			updateShop();
-		}
-		else{
-			RhighString = "<span onclick=\"Rhigh()\" style=\"color: #0000ff\">High-speed reentry</span> <span style=\"color: #ff0000\">"+RhighProg+"%</span>";
-			RhighProg++;
-		};
-	};
-	if(technology[11] === 1){
-		if(RsuitProg === 100){
-			technology[11] = 2;
-			RsuitString = "<span style=\"color: #00ff00\">Eva suits</span>";
-			note("Notification:<br><span style=\"color: #00ff20\" onclick=\"tolk('rd')\">Eva suits</span> research is completed.",10000);
-			updateShop();
-		}
-		else{
-			RsuitString = "<span onclick=\"Rsuit()\" style=\"color: #0000ff\">Eva suits</span> <span style=\"color: #ff0000\">"+RsuitProg+"%</span>";
-			RsuitProg++;
 		};
 	};
 	if(command === "rd"){
-		tolk("rd");
-	};
-};
-
-//research modules
-
-/* template: %is delimeter%
-
-R%techname%Prog = 0;
-R%techname%String = "<span onclick=\"R%techname%()\" style=\"color: #aaaaaa\""+clickableBlue+">%tech description%</span> Cost: %cost%<br><span>%tech longer description%</span>";
-R%techname% = function(){
-	if(technology[%tech id%] === 0){
-		technology[%tech id%] = 1;
-		budget-=%cost%;
-		budgetFresh(-%cost%);
-		R%techname%String = "<span onclick=\"R%techname%()\" style=\"color: #0000ff\">%tech description%</span> <span style=\"color: #ff0000\">"+R%techname%Prog+"%</span>";
-		clear();
-		tolk("rd");
-	};
-};
-
-*/
-
-RcryoProg = 0;
-RcryoString = "<span onclick=\"Rcryo()\" style=\"color: #aaaaaa\""+clickableBlue+">Cryogenic fuels</span> Cost: 1000<br><span>Make use of more efficient fuels</span>";
-Rcryo = function(){
-	if(technology[0] === 0){
-		technology[0] = 1;
-		budget-=1000;
-		budgetFresh(-1000);
-		RcryoString = "<span onclick=\"Rcryo()\" style=\"color: #0000ff\">Cryogenic fuels</span> <span style=\"color: #ff0000\">"+RcryoProg+"%</span>";
-		clear();
-		tolk("rd");
-	};
-};
-
-RnukeProg = 0;
-RnukeString = "<span onclick=\"Rnuke()\" style=\"color: #aaaaaa\""+clickableBlue+"><img src=\"images/nuclearIcon.png\"><br>Nuclear thermal rockets</span> Cost: 2000<br><span>(Protip: try to not make it explode)</span>";
-Rnuke = function(){
-	if(technology[1] === 0){
-		nukeAccident("initi");
-		technology[1] = 1;
-		budget-=2000;
-		budgetFresh(-2000);
-		RnukeString = "<span onclick=\"Rnuke()\" style=\"color: #0000ff\">Nuclear thermal rockets</span> <span style=\"color: #ff0000\">"+RnukeProg+"%</span>";
-		clear();
-		tolk("rd");
-	};
-};
-
-Rcryo2Prog = 0;
-Rcryo2String = "<span onclick=\"Rcryo2()\" style=\"color: #aaaaaa\""+clickableBlue+">Cryogenic storage</span> Cost: 2500<br><span>Allow cryogenic fuels to be used in deep space</span>";
-Rcryo2 = function(){
-	if(technology[2] === 0){
-		technology[2] = 1;
-		budget-=2500;
-		budgetFresh(-2500);
-		Rcryo2String = "<span onclick=\"Rcryo2()\" style=\"color: #0000ff\">Cryogenic storage</span> <span style=\"color: #ff0000\">"+Rcryo2Prog+"%</span>";
-		clear();
-		tolk("rd");
-	};
-};
-
-RrockProg = 0;
-RrockString = "<span onclick=\"Rrock()\" style=\"color: #aaaaaa\""+clickableBlue+">Regolith melting</span> Cost: 1000<br><span>Let your base make its own building materials</span>";
-Rrock = function(){
-	if(technology[3] === 0){
-		technology[3] = 1;
-		budget-=1000;
-		budgetFresh(-1000);
-		RrockString = "<span onclick=\"Rrock()\" style=\"color: #0000ff\">Regolith melting</span> <span style=\"color: #ff0000\">"+RrockProg+"%</span>";
-		clear();
-		tolk("rd");
-	};
-};
-
-RfibrProg = 0;
-RfibrString = "<span onclick=\"Rfibr()\" style=\"color: #aaaaaa\""+clickableBlue+">Basalt fibres</span> Cost: 2500";
-Rfibr = function(){
-	if(technology[4] === 0){
-		technology[4] = 1;
-		budget-=2500;
-		budgetFresh(-2500);
-		RfibrString = "<span onclick=\"Rfibr()\" style=\"color: #0000ff\">Basalt fibres</span> <span style=\"color: #ff0000\">"+RfibrProg+"%</span>";
-		clear();
-		tolk("rd");
-	};
-};
-
-RcapsProg = 0;
-RcapsString = "<span onclick=\"Rcaps()\" style=\"color: #aaaaaa\""+clickableBlue+"><img src=\"images/capsuleIconGray2.png\"><br>Develop a human rated capsule</span> Cost: 1000<br><span>A box. With people inside.</span>";
-Rcaps = function(){
-	if(technology[5] === 0){
-		technology[5] = 1;
-		budget-=1000;
-		budgetFresh(-1000);
-		RcapsString = "<span onclick=\"Rcaps()\" style=\"color: #0000ff\">Develop a human rated capsule</span> <span style=\"color: #ff0000\">"+RcapsProg+"%</span>";
-		clear();
-		tolk("rd");
-	};
-};
-
-RlargProg = 0;
-RlargString = "<span onclick=\"Rlarg()\" style=\"color: #aaaaaa\""+clickableBlue+">Heavy duty rocketry</span> Cost: 3000<br><span>Go bigger and better</span>";
-Rlarg = function(){
-	if(technology[6] === 0){
-		technology[6] = 1;
-		budget-=3000;
-		budgetFresh(-3000);
-		RlargString = "<span onclick=\"Rlarg()\" style=\"color: #0000ff\">Heavy duty rocketry</span> <span style=\"color: #ff0000\">"+RlargProg+"%</span>";
-		clear();
-		tolk("rd");
-	};
-};
-
-RboosProg = 0;
-RboosString = "<span onclick=\"Rboos()\" style=\"color: #aaaaaa\""+clickableBlue+"><img src=\"images/boosterIcon.png\"><br>Solid rocket boosters</span> Cost: 500<br><span>There is only one solution: More boosters.</span>";
-Rboos = function(){
-	if(technology[7] === 0){
-		technology[7] = 1;
-		budget-=500;
-		budgetFresh(-500);
-		RboosString = "<span onclick=\"Rboos()\" style=\"color: #0000ff\">Solid rocket boosters</span> <span style=\"color: #ff0000\">"+RboosProg+"%</span>";
-		clear();
-		tolk("rd");
-	};
-};
-
-RmateProg = 0;
-RmateString = "<span onclick=\"Rmate()\" style=\"color: #aaaaaa\""+clickableBlue+"><img src=\"images/materialsIcon.png\"><br>Better materials</span> Cost: 700<br><span>This unlocks a lot of new research.</span>";
-Rmate = function(){
-	if(technology[8] === 0){
-		technology[8] = 1;
-		budget-=700;
-		budgetFresh(-700);
-		RmateString = "<span onclick=\"Rmate()\" style=\"color: #0000ff\">Better materials</span> <span style=\"color: #ff0000\">"+RmateProg+"%</span>";
-		clear();
-		tolk("rd");
-	};
-};
-
-RliquProg = 0;
-RliquString = "<span onclick=\"Rliqu()\" style=\"color: #aaaaaa\""+clickableBlue+">Liquid fuel boosters</span> Cost: 1200<br><span>Upgrade your solid rocket boosters!</span>";
-Rliqu = function(){
-	if(technology[9] === 0){
-		technology[9] = 1;
-		budget-=1200;
-		budgetFresh(-1200);
-		RliquString = "<span onclick=\"Rliqu()\" style=\"color: #0000ff\">Liquid fuel boosters</span> <span style=\"color: #ff0000\">"+RliquProg+"%</span>";
-		clear();
-		tolk("rd");
-	};
-};
-
-RhighProg = 0;
-RhighString = "<span onclick=\"Rhigh()\" style=\"color: #aaaaaa\""+clickableBlue+"><img src=\"images/reentryIcon.png\"><br>High-speed reentry</span> Cost: 1200<br><span>Make it possible to return from the Moon.</span>";
-Rhigh = function(){
-	if(technology[10] === 0){
-		technology[10] = 1;
-		budget-=1200;
-		budgetFresh(-1200);
-		RhighString = "<span onclick=\"Rhigh()\" style=\"color: #0000ff\">High-speed reentry</span> <span style=\"color: #ff0000\">"+RhighProg+"%</span>";
-		clear();
-		tolk("rd");
-	};
-};
-
-RsuitProg = 0;
-RsuitString = "<span onclick=\"Rsuit()\" style=\"color: #aaaaaa\""+clickableBlue+">EVA suits</span> Cost: 600<br><span>Make it possible to return from the Moon.</span>";
-Rsuit = function(){
-	if(technology[11] === 0){
-		technology[11] = 1;
-		budget-=600;
-		budgetFresh(-600);
-		RsuitString = "<span onclick=\"Rsuit()\" style=\"color: #0000ff\">EVA suits</span> <span style=\"color: #ff0000\">"+RsuitProg+"%</span>";
-		clear();
 		tolk("rd");
 	};
 };
@@ -671,4 +370,7 @@ techCanvasDraw = function(){
 	var ctx = canvas.getContext("2d");
 	ctx.fillStyle = "#D0D0D0";
 	ctx.fillRect(0,0,400,300);
+};
+
+moonGUI = function(){
 };
