@@ -62,10 +62,6 @@
   				<ul>
   					<li><a href="index.html#colony">Colony Phase 1</a>
   					</li>
-  					<li><a href="index.html#mission1">Mission 1</a>
-  					</li>
-  					<li><a href="index.html#mission2">Mission 2</a>
-  					</li>
   				</ul>
   			</li>
   			<li><a href="planning.html">Plan</a>
@@ -84,7 +80,11 @@
   					<li><a href="why.html#about">About Us</a></li>
   				</ul>
   			</li>
-  			<li><a href="http://www.moonwards.com/forum/">Forum</a></li>
+  			<li>Talk</li>
+  				<ul>
+  				<li><a href="http://moonwards1.blogspot.mx/" >Blog</a></li>
+  					<li><a href="http://www.moonwards.com/forum/">Forum</a></li>
+  				</ul>
   		</ul>
   		</div>
   	</nav>
@@ -199,7 +199,7 @@
                     <div class="darkYellow pad15 roundAll">
 			
 			<h5>The basics:</h5>
-			<p>Navigation a spacecraft can best be understood as moving a heavy bowling ball. When it is up to speed, 
+			<p><b>Navigation</b>: a spacecraft can best be understood as moving a heavy bowling ball. When it is up to speed, 
 			it continues to move, without anything pushing it. What requires effort is to change the direction it is moving, 
 			give it more speed, or slow it down. Coasting along is "free". The cost of a maneuver is the required 
 			<b>change in velocity</b>, commonly referred to as <b>Delta-v</b>.</p>
@@ -211,7 +211,7 @@
 			orbits as cheap as possible is a major considerations in  spacecraft navigation.</p>
 			<p>Every way of changing the velocity of a spacecraft is based upon the conservation of momentum. That is, 
 			if you take every object in a system, multiply their mass and velocity, and take their sum, the value you 
-			get is constant. That means throwing propellant in one direction causes something else in to move in the 
+			get is constant. That means throwing propellant in one direction causes something else to move in the 
 			opposite direction in order to keep the momentum constant. That "something" is your spacecraft.</p>
 			<p>The obvious limitation should then be clear: We have a limited amount of propellant to throw away. Making 
 			the propellant go faster makes the required amount smaller, so that helps. This is the <b>exhaust velocity 
@@ -229,18 +229,33 @@ $m_{final}$ is the mass of the spacecraft after the burn. $\frac{m_{initial}}{m_
 $ln$ is the natural logarithm. You should have a button labelled that on your calculator.<br>
 A calculator implementation of this equation is at the top of this page.<br></p>
 			<h5>Propulsion:</h5>
-			<p>As it is desirable to have as high a exhaust velocity as possible, the goal of all kinds of rocket propulsion is to cram as much propellant into the propellant stream as physically possible</p>
+			<p>As it is desirable to have as high a exhaust velocity as possible, the goal of all kinds of rocket propulsion is to cram 
+			as much propellant into the propellant stream as physically possible</p>
 			<h6>Chemical rockets</h6>
-			<p>This is the most common way of rocket propulsion, and gets the energy from chemical reactions of fuel. The exhaust products also doubles as the reaction mass. The most common rocket fuels are kerosene like hydrocarbons and liquid oxygen. For higher performance, but at the cost of a more coplicated design, hydrogen can be used instead of kerosene. There are also many other fuels mostly focusing on easy to store and failproof engines. Solid rocket fuel is often used for boosters and does not offer a high performance, but has decent thrust.
+			<p>This is the most common way of rocket propulsion, and gets the energy from chemical reactions of fuel. The exhaust 
+			products also double as the reaction mass. The most common rocket fuels are kerosene-like hydrocarbons and liquid oxygen. 
+			For higher performance, but at the cost of a more complicated design, hydrogen can be used instead of kerosene. 
+			There are also many other fuels mostly focusing on easy-to-store and fail-proof engines. Solid rocket fuel is often used 
+			for boosters and does not offer a high performance, but has decent thrust.
 			</p>
 			<h6>Nuclear rockets</h6>
-			<p>The amount of energy that can be stored as chemical compounds is limited, and chemical rockets are also forced to use less than optimal exhaust products as reaction mass. In general, ligther molecules are better, but no chemical reaction that produces large amount energy also produce hydrogen gas. Nuclear engines bypass this issue by using a reactor to heat the flow of propellant, making use of hydrogen gas possible, this makes the exhaust velocity twice as large as chemical rockets. On the other hand, they often has lower thrust.
+			<p>The amount of energy that can be stored as chemical compounds is limited, and chemical rockets are also forced to use 
+			less-than-optimal exhaust products as reaction mass. In general, lighter molecules are better, but no chemical reaction 
+			that produces large amounts of energy also produces hydrogen gas. Nuclear engines bypass this issue by using a reactor to 
+			heat the flow of propellant, making use of hydrogen gas possible, this makes the exhaust velocity twice as fast as chemical 
+			rockets. On the other hand, they often have lower thrust.
 			</p>
 			<h6>Ion engines</h6>
-			<p>If high thrust is not a concern, for instance when the maneuver can take weeks or months, ion engines can be used. They work by using magnetic or electrostatic forces to accelerate an ionized gas, causing it to reach a very high velocity. This type of engine uses a lot of electricity and the thrust is low, but the efficiency can be far better than both chemical and nuclear rocket engines. A possible use is a cargo craft slowly spiraling between the Moon and low Earth orbit.
+			<p>If high thrust is not a concern, for instance when the maneuver can take weeks or months, ion engines can be used. They 
+			work by using magnetic or electrostatic forces to accelerate an ionized gas, causing it to reach a very high velocity. 
+			This type of engine uses a lot of electricity and the thrust is low, but the efficiency can be far better than both chemical 
+			and nuclear rocket engines. A possible use is a cargo craft slowly spiraling between the Moon and low Earth orbit.
 			</p>
 			<h6>Solar sails</h6>
-			<p>It is technically not necessary to expand propellant. A solar sail uses the minuscule pressure light exerts when it hits something. If you have a very thin and large sail, this force can be used for transportation or station keeping ("hoovering"). The light can also be supplied by external lasers to increase performance, giving $6.67 \cdot 10^{-9} N/W$ for a reflective sail. Solar sails are direction sensitive as they can not tack directly towards the light source. 
+			<p>It is technically not necessary to expend propellant. A solar sail uses the minuscule pressure light exerts when it hits 
+			something. If you have a very thin and large sail, this force can be used for transportation or station-keeping ("hovering"). 
+			The light can also be supplied by external lasers to increase performance, giving $6.67 \cdot 10^{-9} N/W$ for a reflective 
+			sail. Solar sails are direction sensitive as they can not tack directly towards the light source. 
 			</p>
 			<h5>Orbit terminology:</h5>
 			<img class="realsize" src="img/orbit.png" height="519">
@@ -248,13 +263,15 @@ A calculator implementation of this equation is at the top of this page.<br></p>
 			<ul>
 				<li><b>Periapsis:</b> The point where the orbiting craft is <i>closest</i> to the object it orbits.</li>
 				<li><b>Apoapsis:</b> The point where the orbiting craft is <i>farthest</i> from the object it orbits.</li>
-				<li><b>Semi-major axis:</b> The largest central radius of an ellipse. This is half the distance between the periapsis and apoapsis. Often shortened to $a$.</li>
+				<li><b>Semi-major axis:</b> The largest central radius of an ellipse. This is half the distance between the 
+				periapsis and apoapsis. Often shortened to $a$.</li>
 			</ul>
 			<br>
 			<h5>Let us then get started with the math!</h5>
 			<p>We have a spacecraft orbiting in a circular orbit. What is its velocity?
 $$v=\sqrt{\frac{\mu}{r}}$$
-$v$ is of course the velocity. $\mu$ is the gravitational parameter. You would often see that as $GM$, which is the same thing. That is the mass of the object you are orbiting ($M$) multiplied with the gravitationa constant ($G=6.674 \cdot 10^{-11} \frac{m^3}{kg s^2}$).
+$v$ is of course the velocity. $\mu$ is the gravitational parameter. You would often see that as $GM$, which is the same 
+thing. That is the mass of the object you are orbiting ($M$) multiplied with the gravitational constant ($G=6.674 \cdot 10^{-11} \frac{m^3}{kg s^2}$).
 			</p>
 			<p>To save you some time:</p>
 			<ul>
@@ -262,16 +279,24 @@ $v$ is of course the velocity. $\mu$ is the gravitational parameter. You would o
 				<li>$\mu _{Moon}=4.9048695 \cdot 10^{12} \frac{m^3}{s^2}$</li>
 				<li>$\mu _{Sun}=1.32712440018 \cdot 10^{20} \frac{m^3}{s^2}$</li>
 			</ul>
-			<p>Using that information, we can calculate things like the orbital velocity in low Earth orbit: $\sqrt{\frac{\mu _{Earth}}{r_{LEO}}}=\sqrt{\frac{3.986 \cdot 10^{14} \frac{m^3}{s^2}}{6600000m}}=7771 \frac{m}{s}$</p>
-			<p>But wait a minute, not all orbits are circles! How can be calculate the orbital velocity in an elliptical oribt? Well, first of all, the velocity varies depending on where in the orbit you are, having a larger velocity in the periapsis than in the apoapsis. But there is an equation here to:
+			<p>Using that information, we can calculate things like the orbital velocity in low Earth orbit: 
+			$\sqrt{\frac{\mu _{Earth}}{r_{LEO}}}=\sqrt{\frac{3.986 \cdot 10^{14} \frac{m^3}{s^2}}{6600000m}}=7771 \frac{m}{s}$</p>
+			<p>But wait a minute, not all orbits are circles! How can be calculate the orbital velocity in an elliptical orbit? Well, 
+			first of all, the velocity varies depending on where in the orbit you are, having a larger velocity at the periapsis than 
+			at the apoapsis. But there is an equation here to:
 $$v=\sqrt{\mu \left(\frac{2}{r}-\frac{1}{a}\right)}$$
-$r$ is  here your current distance to the centre of the object you are orbiting, and $a$ is the semi-major axis that we just talked about. Notice that in the case of a circular orbit, $r=a$ so this equation simplifies back to $v=\sqrt{\frac{\mu}{r}}$
+$r$ is  here your current distance to the centre of the object you are orbiting, and $a$ is the semi-major axis that we just 
+talked about. Notice that in the case of a circular orbit, $r=a$ so this equation simplifies back to $v=\sqrt{\frac{\mu}{r}}$
 			</p>
 			<h5>Example usage:</h5>
-			<p>We can already start to put the things we have learned together. Take a look at the figure below. Imagine you are orbiting in the blue orbit, and want to change to the red orbit:</p>
+			<p>We can already start to put the things we have learned together. Take a look at the figure below. Imagine you are 
+			orbiting in the blue orbit, and want to change to the red orbit:</p>
 			<img class="realsize" src="img/transfer.png">
 			<p>
-			What do you do? Well, take a look at the point where the orbits touh each other. Why are we in the blue orbit there, and not in the red one? After all, you can be in that location if you where in the red orbit too. Not everything is the same. What matters here is that you would have a different velocity, depending on what of the orbits you are in. Let us calculate that. We say $\mu = 1$ for simplicity:
+			What do you do? Well, take a look at the point where the orbits touch each other. Why are we in the blue orbit there, 
+			and not in the red one? After all, you can be in that location if you where in the red orbit too. Not everything is 
+			the same. What matters here is that you would have a different velocity, depending on which of the orbits you are in. 
+			Let us calculate that. We say $\mu = 1$ for simplicity:
 $$v_{blue}=\sqrt{\frac{1}{1}}=1$$
 $$v_{red}=\sqrt{1\left(\frac{2}{1}-\frac{1}{2}\right)}=1.225$$
 			</p>
