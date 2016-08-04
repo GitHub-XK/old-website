@@ -195,7 +195,7 @@
                 </div>
         </div>
         <div class="rowL">
-           <h4 class="col-3 col-m-2">A quick introduction to orbital mechanics</h4>   
+           <h4 class="col-3 col-m-2" id="lessons">A quick introduction to orbital mechanics</h4>   
                 <div class="black col-9 col-m-10">
                     <div class="darkYellow pad15 roundAll">
 			
@@ -300,8 +300,38 @@ talked about. Notice that in the case of a circular orbit, $r=a$ so this equatio
 			Let us calculate that. We say $\mu = 1$ for simplicity:
 $$v_{blue}=\sqrt{\frac{1}{1}}=1$$
 $$v_{red}=\sqrt{1\left(\frac{2}{1}-\frac{1}{2}\right)}=1.225$$
+			Below is an illustration of the velocity vectors. The pink part is the $\Delta v$ we have to spend. Note that the difference is smallest when the vectors point in the same direction.
 			</p>
 			<img class="realsize" src="img/difference.png">
+			<h5>More math!</h5>
+			<p>
+			Let us take another look at the equation for velocity in an elliptical orbit:
+$$v=\sqrt{\mu \left(\frac{2}{r}-\frac{1}{a}\right)}$$
+			What happens if we tries to travel "to infinity"? We start at distance $r$, and travels to $a=\infty$:
+$$v=\sqrt{\mu \left(\frac{2}{r}-\frac{1}{\infty}\right)}$$
+			That simplifies to
+$$v=\sqrt{\mu \left(\frac{2}{r}-0\right)}$$
+			and that is equal to
+$$v_e=\sqrt{\frac{2\mu}{r}}$$
+			"$v_e$" is here short for "escape velocity". It turns out that travelling as far away as you would like has a limited cost. Of course, reaching infinity takes an ehm... infinite time... From this point, when I say infinity, I mean sufficiently far away.
+			</p>
+			<p>
+			You can also notice that the escape velocity at a given distance is $\sqrt{2}$ times larger than the orbital velocity of a circular orbit. $v_e = \sqrt{2}v_c$.
+			</p>
+			<h5>Beyond infinity</h5>
+			<p>
+			You have now seen 3 of the 4 different shapes an orbit can have, circular, elliptical and parabolic. The parabolic orbit is the one where we reach infinity.
+			The remaining orbit is the one shaped like a hyperbola. This one also reach infinity, like the parabola, but with a mayor difference:
+			In a parabolic orbit, we only "just reach infinity", that is, we are slowed down all the time by gravity, and the velocity is approaching zero as we get farther away.
+			That is not always what we want. For instance, if we only "just escape Earth", our relative velocity to it is zero, and that means we have the same orbit around the Sun as Earth!
+			In many cases, we want to have some extra velocity once we have escaped, for example for heading towards Mars, Jupiter, or for escaping the solar system entirely.
+			An example closer to home is when we escape the Moon for a return trip. We do not want to end up in the same orbit as the Moon, instead, we want to head back home.
+			</p>
+			<p>
+			How can we achieve that? The answer is naturally to get a velocity higher than the escape velocity. But how exactly does that relate to the final velocity we end up with once we have escaped?
+			Behold. The Pythagoras formula of orbital mechanics:
+			</p>
+			<img class="realsize" src="img/orbitalPythagoras.png">
 		    </div>
 		</div>
 		</div>
