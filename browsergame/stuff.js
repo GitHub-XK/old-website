@@ -597,7 +597,7 @@ technology = {
 	high:{
 		visibleName:"High-speed reentry",
 		status:3,
-		icon:"reentryIcon"
+		icon:"reentryIcon",
 		price:1200,
 		progress:0,
 		requires:["capsule"],
