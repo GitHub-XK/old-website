@@ -334,46 +334,177 @@ updateVehicles = function(){
 updateShop=function(){
 	storeString="";
 	for(var i=0;i<shopItems.length;i++){
-		if(shopItems[i][1] === false){
-			for(var j=0;technology[shopItems[i][2][j]] === 2;j++){
-				if(j === shopItems[i][2].length-1){
-					shopItems[i][1] = true;
+		if(shopItems[i].allowed === false){
+			for(var j=0;j<shopItems[i].required.length && technology[technology.list[shopItems[i].required[j]]].status === 2;j++){
+				if(j === shopItems[i].required.length-1){
+					shopItems[i].allowed = true;
 				};
 			};
 		};
-		if(shopItems[i][1]){
-			if(shopItems[i][10] != ""){
-				storeString += "<img src='"+shopItems[i][10]+"Green.png' width=\"16\" height=\"16\">";
+		if(shopItems[i].allowed){
+			if(shopItems[i].icon != ""){
+				storeString += "<img src='"+shopItems[i].icon+"Green.png' width=\"16\" height=\"16\">";
 			};
-			storeString += "<a onclick=\"buyFromStore("+i+")\" onmouseover=\"this.style.background='gray';document.getElementById('shopDetails').innerHTML = shopItems["+i+"][8];\" onmouseout=\"this.style.background='#000000';\">"+shopItems[i][0]+" </a><a class=\"red\">"+shopItems[i][3]+" </a><a class=\"blue\">"+shopItems[i][4]+"</a><br>";
+			storeString += "<a onclick=\"buyFromStore("+i+")\" onmouseover=\"this.style.background='gray';document.getElementById('shopDetails').innerHTML = shopItems["+i+"].details;\" onmouseout=\"this.style.background='#000000';\">"+shopItems[i].visibleName+" </a><a class=\"red\">"+shopItems[i].cost+" </a><a class=\"blue\">"+shopItems[i].number+"</a><br>";
 		};
 	};
 };
 
-shopItems=[ //if you know what you are doing, you can change things in this array
-//syntax: [name,allowed?,[required tech],cost,number in stock,mass,payload?,[crewsize],details,[props],icon]
-["Cryogenic upper stage (small)",false,[0],250,0,15000,false,[0],"Mass: 15000<br>A small but efficient upper stage burning LH2/LOX.",[],""],
-["Cryogenic upper stage (large)",false,[0,2,6],750,0,40000,false,[0],"Mass: 40000<br>",[],""],
-["Nuclear upper stage",false,[0,2,6,1],1500,0,40000,false,[0],"Mass: 40000<br>Very efficient and mostly harmless.",[],"images/nuclearIcon"],
-["Basic rocket core",true,[],250,0,100000,false,[0],"Mass: 100000<br>Well, you have to start <i>somewhere</i>.",[],""],
-["Basic upper stage",true,[],120,0,15000,false,[0],"Mass: 15000<br>An engine attached to a fuel tank. What else do you need?",[],""],
-["Regolith melter",false,[3],50,0,4000,true,[0],"",[],""],
-["Basalt fibre factory",false,[4],100,0,6000,true,[0],"",[],""],
-["Solid rocket boosters",false,[7],100,0,40000,false,[0],"",[],"images/boosterIcon"],
-["Capsule",false,[5],80,0,2500,true,[1],"Mass: 3000<br>Can only carry one person.<br><span class=\"blue\">7</span> of <span class=\"blue\">10</span> monkeys recommend this product.",[],"images/capsuleIcon"],
-["Grapefruit",true,[],1,0,0.3,true,[0],"A grapefruit specifically developed for use in space.",[],""],
-["EVA suit",false,[11],100,0,90,true,[1],"Asuit for extra vehicular activity in space.",[],""]
+shopItems = [ //if you know what you are doing, you can change things in this array
+{
+	visibleName:"Cryogenic upper stage (small)",
+	allowed:false,
+	required:[0],
+	cost:250,
+	number:0,
+	mass:15000,
+	payload:false,
+	crewsize:[0],
+	details:"Mass: 15000<br>A small but efficient upper stage burning LH2/LOX.",
+	props:[],
+	icon:""
+},
+{
+	visibleName:"Cryogenic upper stage (large)",
+	allowed:false,
+	required:[0,2,6],
+	cost:750,
+	number:0,
+	mass:40000,
+	payload:false,
+	crewsize:[0],
+	details:"Mass: 40000<br>",
+	props:[],
+	icon:""
+},
+{
+	visibleName:"Nuclear upper stage",
+	allowed:false,
+	required:[0,2,6,1],
+	cost:1500,
+	number:0,
+	mass:40000,
+	payload:false,
+	crewsize:[0],
+	details:"Mass: 40000<br>Very efficient and mostly harmless.",
+	props:[],
+	icon:"images/nuclearIcon"
+},
+{
+	visibleName:"Basic rocket core",
+	allowed:true,
+	required:[],
+	cost:250,
+	number:0,
+	mass:100000,
+	payload:false,
+	crewsize:[0],
+	details:"Mass: 100000<br>Well, you have to start <i>somewhere</i>.",
+	props:[],
+	icon:""
+},
+{
+	visibleName:"Basic upper stage",
+	allowed:true,
+	required:[],
+	cost:120,
+	number:0,
+	mass:15000,
+	payload:false,
+	crewsize:[0],
+	details:"Mass: 15000<br>An engine attached to a fuel tank. What else do you need?",
+	props:[],
+	icon:""
+},
+{
+	visibleName:"Regolith melter",
+	allowed:false,
+	required:[3],
+	cost:50,
+	number:0,
+	mass:4000,
+	payload:true,
+	crewsize:[0],
+	details:"",
+	props:[],
+	icon:""
+},
+{
+	visibleName:"Basalt fibre factory",
+	allowed:false,
+	required:[4],
+	cost:100,
+	number:0,
+	mass:6000,
+	payload:true,
+	crewsize:[0],
+	details:"",
+	props:[],
+	icon:""
+},
+{
+	visibleName:"Solid rocket boosters",
+	allowed:false,
+	required:[7],
+	cost:100,
+	number:0,
+	mass:40000,
+	payload:false,
+	crewsize:[0],
+	details:"",
+	props:[],
+	icon:"images/boosterIcon"
+},
+{
+	visibleName:"Capsule",
+	allowed:false,
+	required:[5],
+	cost:80,
+	number:0,
+	mass:2500,
+	payload:true,
+	crewsize:[1],
+	details:"Mass: 3000<br>Can only carry one person.<br><span class=\"blue\">7</span> of <span class=\"blue\">10</span> monkeys recommend this product.",
+	props:[],
+	icon:"images/capsuleIcon"
+},
+{
+	visibleName:"Grapefruit",
+	allowed:true,
+	required:[],
+	cost:1,
+	number:0,
+	mass:0.3,
+	payload:true,
+	crewsize:[0],
+	details:"A grapefruit specifically developed for use in space.",
+	props:[],
+	icon:""
+},
+{
+	visibleName:"EVA suit",
+	allowed:false,
+	required:[11],
+	cost:100,
+	number:0,
+	mass:90,
+	payload:true,
+	crewsize:[1],
+	details:"A suit for extra vehicular activity in space.",
+	props:[],
+	icon:""
+}
 ];
 
 storeString="";
 
 buyFromStore = function(thing){
-	budget-=shopItems[thing][3];
-	budgetFresh(-shopItems[thing][3]);
-	shopItems[thing][3]-=Math.floor(shopItems[thing][3]*0.01);
-	shopItems[thing][4]++;
-	if(shopItems[thing][6]){
-		pendingList.push([shopItems[thing][0],shopItems[thing][5],false,true,shopItems[thing][7][0]]);
+	budget-=shopItems[thing].cost;
+	budgetFresh(-shopItems[thing].cost);
+	shopItems[thing].cost-=Math.floor(shopItems[thing].cost*0.01);
+	shopItems[thing].number++;
+	if(shopItems[thing].payload){
+		pendingList.push([shopItems[thing].visibleName,shopItems[thing].mass,false,true,shopItems[thing].crewsize[0]]);
 	};
 	updateShop();
 	clear();
@@ -383,29 +514,112 @@ buyFromStore = function(thing){
 	command="shop";
 };
 
-//tech researched
-
-technology =[
-0,//0 cryogenics
-3,//1 NTR
-3,//2 cryo2
-0,//3 rock
-3,//4 basalt
-0,//5 capsule
-0,//6 largetech
-0,//7 boosters
-0,//8 materials
-3,//9 liquid
-3,//10 high
-3//11 EVA suits
-];
+technology = {
+	cryogenics:{
+		visibleName:"Cryogenic fuels",
+		status:0,
+		icon:"cryogenicsIcon",
+		price:1000,
+		progress:0,
+		comment:"Make use of more efficient fuels"
+	},
+	ntr:{
+		visibleName:"Nuclear thermal rockets",
+		status:3,
+		icon:"nuclearIcon",
+		price:2000,
+		progress:0,
+		requires:["materials","cryogenics"],
+		comment:"(Protip: try to not make it explode)"
+	},
+	cryo2:{
+		visibleName:"Cryogenic storage",
+		status:3,
+		price:2500,
+		progress:0,
+		requires:["cryogenics"],
+		comment:"Allow cryogenic fuels to be used in deep space"
+	},
+	rock:{
+		visibleName:"Regolith melting",
+		status:0,
+		price:1000,
+		progress:0,
+		comment:"Let your base make its own building materials"
+	},
+	basalt:{
+		visibleName:"Basalt fibres",
+		status:3,
+		price:2500,
+		progress:0,
+		requires:["rock"],
+		comment:"Hightech stone age ahead."
+	},
+	capsule:{
+		visibleName:"Capsule development",
+		status:0,
+		icon:"capsuleIcon",
+		price:1000,
+		progress:0,
+		comment:"A box. With people inside."
+	},
+	largetech:{
+		visibleName:"Heavy duty rocketry",
+		status:0,
+		price:3000,
+		progress:0,
+		requires:["materials"],
+		comment:"Go bigger and better"
+	},
+	boosters:{
+		visibleName:"Solid rocket boosters",
+		status:0,
+		icon:"boosterIcon",
+		price:500,
+		progress:0,
+		comment:"There is only one solution: More boosters."
+	},
+	materials:{
+		visibleName:"Better materials",
+		status:0,
+		price:700,
+		progress:0,
+		comment:"This unlocks a lot of new research."
+	},
+	liquid:{
+		visibleName:"Liquid fuel boosters",
+		status:3,
+		price:1200,
+		progress:0,
+		requires:["boosters"],
+		comment:"Upgrade your solid rocket boosters!"
+	},
+	high:{
+		visibleName:"High-speed reentry",
+		status:3,
+		icon:"reentryIcon",
+		price:1200,
+		progress:0,
+		requires:["capsule"],
+		comment:"Make it possible to return from the Moon."
+	},
+	evaSuits:{
+		visibleName:"Eva suits",
+		status:3,
+		price:600,
+		progress:0,
+		requires:["capsule"],
+		comment:"AKA capsule for one person"
+	},
+	list:["cryogenics","ntr","cryo2","rock","basalt","capsule","largetech","boosters","materials","liquid","high","evaSuits"]
+};
 
 minigame = function(){
 	alert("There is no implementation of this minigame yet");
 };
 
 specificCraft = function(id){
-	speci = id; //need a global reference to interact with DOM
+	speci = id; //needs a global reference to interact with DOM
 	clear();
 	tmpPlace = crafts[id][1];
 	tmpPlace2 = -1;

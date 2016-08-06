@@ -322,16 +322,16 @@ tolk = function(com){
 	}
 	else if(com === "rd"){
 		clear();
-		document.getElementById("toggelino").style.display = "inline";
-		document.getElementById("devWarning").style.display = "inline";
+		//document.getElementById("toggelino").style.display = "inline";
+		//document.getElementById("devWarning").style.display = "inline";
 		//Tech three container
-		simplePrint("<canvas id=\"techCanvas\" width=\"400\" height=\"300\"></canvas>");
+		//simplePrint("<canvas id=\"techCanvas\" width=\"400\" height=\"300\"></canvas>");
 		printScience();
 		//Technology colour coding key
 		simplePrint("Key: <span style=\"color: #aaaaaa\">Available</span>, <span style=\"color: #0000ff\">In development</span>, <a style=\"color: #00ff20\">Complete</a><br>=========================<br>");
 		//R&D tab info
 		simplePrint("<b>Welcome to Research and Development!</b><br>Click to toggle different areas of research.");
-		techCanvasDraw();
+		//techCanvasDraw();
 	}
 	else if(com === "save" && local === true){
 		saveFunction(prompt("Name:"));

@@ -143,74 +143,36 @@ note = function(text,duration){
 	},duration);
 };
 
-Rprog = [0,0,0,0,0,0,0,0,0,0,0,0]; //planed
-Runlock = [[2],[],[],[4],[],[10,11],[],[9],[1],[],[],[]];
-Rprice = [1000,2000,2500,1000,2500,1000,3000,500,700,1200,1200,600];
-Ricons=[
-"",
-"nuclearIcon",
-"",
-"",
-"",
-"capsuleIcon",
-"",
-"boosterIcon",
-"materialsIcon",
-"",
-"reentryIcon",
-""
-];
-Rcomments=[
-];
-RstringsFutureTemplate = [
-"Cryogenic fuels",
-"Nuclear thermal rockets",
-"Cryogenic storage",
-"Regolith melting",
-"Basalt fibres",
-"Capsule development",
-"Heavy duty rocketry",
-"Solid rocket boosters",
-"Better materials",
-"Liquid fuel boosters",
-"High-speed reentry",
-"Eva suits",
-];
-RstringsTemplate = [
-"Cryogenic fuels</span> Cost: 1000<br><span>Make use of more efficient fuels",
-"<img src=\"images/nuclearIcon.png\"><br>Nuclear thermal rockets</span> Cost: 2000<br><span>(Protip: try to not make it explode)",
-"Cryogenic storage</span> Cost: 2500<br><span>Allow cryogenic fuels to be used in deep space",
-"Regolith melting</span> Cost: 1000<br><span>Let your base make its own building materials",
-"Basalt fibres</span> Cost: 2500<br><span>Hightech stone age ahead.",
-"<img src=\"images/capsuleIcon.png\"><br>Develop a human rated capsule</span> Cost: 1000<br><span>A box. With people inside.",
-"Heavy duty rocketry</span> Cost: 3000<br><span>Go bigger and better",
-"<img src=\"images/boosterIcon.png\"><br>Solid rocket boosters</span> Cost: 500<br><span>There is only one solution: More boosters.",
-"<img src=\"images/materialsIcon.png\"><br>Better materials</span> Cost: 700<br><span>This unlocks a lot of new research.",
-"Liquid fuel boosters</span> Cost: 1200<br><span>Upgrade your solid rocket boosters!",
-"<img src=\"images/reentryIcon.png\"><br>High-speed reentry</span> Cost: 1200<br><span>Make it possible to return from the Moon.",
-"EVA suits</span> Cost: 600<br><span>Make it possible to return from the Moon."
-];
-Rstrings = [];
-for(var i=0;i<RstringsTemplate.length;i++){
-	Rstrings.push("<span onclick=\"Rfunction("+i+")\" style=\"color: #aaaaaa\""+clickableBlue+">"+RstringsTemplate[i]+"</span>");
-};
-Rnotes = [];
-RstringsFuture=[];
-for(var i=0;i<Ricons.length;i++){
-	var mogleg = "";
-	if(Ricons[i] != ""){
-		mogleg="<img src=\"images/"+Ricons[i]+"Green.png\">";
+for(var i=0;i<technology.list.length;i++){
+	var TMPname = technology.list[i];
+	if(technology[TMPname].icon != undefined){
+		technology[TMPname].Rstrings = "<span onclick=\"Rfunction("+i+")\" style=\"color: #aaaaaa\""+clickableBlue+">"+"<img src=\"images/"+technology[TMPname].icon+".png\"><br>"+technology[TMPname].visibleName+"</span> Cost: "+technology[TMPname].price+"<br><span>"+technology[TMPname].comment+"</span>";
+	}
+	else{
+		technology[TMPname].Rstrings = "<span onclick=\"Rfunction("+i+")\" style=\"color: #aaaaaa\""+clickableBlue+">"+"<br>"+technology[TMPname].visibleName+"</span> Cost: "+technology[TMPname].price+"<br><span>"+technology[TMPname].comment+"</span>";	
 	};
-	RstringsFuture.push(["<span onclick=\"Rfunctions("+i+")\" style=\"color: #0000ff\">"+RstringsFutureTemplate[i]+"</span> <span style=\"color: #ff0000\">"+Rprog[i]+"%</span>","<span style=\"color: #00ff00\">"+mogleg+RstringsFutureTemplate[i]+"</span>"]);
-	Rnotes.push("Notification:<br><span style=\"color: #00ff20\" onclick=\"tolk('rd')\">"+RstringsFutureTemplate[i]+"</span> research is completed.");
+};
+
+for(var i=0;i<technology.list.length;i++){
+	var TMPname = technology.list[i];
+	var mogleg = "";
+	if(technology[TMPname].icon != undefined){
+		mogleg="<img src=\"images/"+technology[TMPname].icon+"Green.png\">";
+	};
+	technology[TMPname].RstringsFuture = [
+		"<span onclick=\"Rfunction("+i+")\" style=\"color: #0000ff\">"+technology[TMPname].visibleName+"</span> <span style=\"color: #ff0000\">"+technology[TMPname].progress+"%</span>",
+		"<span style=\"color: #00ff00\">"+mogleg+technology[TMPname].visibleName+"</span>"
+	];
+	technology[TMPname].Rnotes = "Notification:<br><span style=\"color: #00ff20\" onclick=\"tolk('rd')\">"+technology[TMPname].visibleName+"</span> research is completed.";
 };
 
 Rfunction = function(id){
-	if(technology[id] === 0){
-		technology[id] = 1;
-		budget-=Rprice[id];
-		budgetFresh(-Rprice[id]);
-		Rstrings[id] = RstringsFuture[id][0];
+	var TMPname = technology.list[id];
+	if(technology[TMPname].status === 0){
+		technology[TMPname].status = 1;
+		budget-=technology[TMPname].price;
+		budgetFresh(-technology[TMPname].price);
+		technology[TMPname].Rstrings = technology[TMPname].RstringsFuture[0];
 		clear();
 		tolk("rd");
 		science();
@@ -221,9 +183,9 @@ Rfunction = function(id){
 };
 
 printScience = function(){
-	for(var i=0;i<Rstrings.length;i++){
-		if(technology[i] != 3){
-			simplePrint(Rstrings[i]);
+	for(var i=0;i<technology.list.length;i++){
+		if(technology[technology.list[i]].status != 3){
+			simplePrint(technology[technology.list[i]].Rstrings);
 		};
 	};
 };
@@ -231,20 +193,31 @@ printScience = function(){
 //research:
 
 science = function(){
-	for(var i=0;i<technology.length;i++){
-		if(technology[i] === 1){
-			if(Rprog[i] === 100){
-				technology[i] = 2;
-				Rstrings[i] = RstringsFuture[i][1];
-				note(Rnotes[i],10000);
-				for(var j=0;j<Runlock[i].length;j++){
-					technology[Runlock[i][j]] = 0;
+	for(var i = 0; i<technology.list.length; i++){
+		TMPname = technology.list[i];
+		if(technology[TMPname].status === 1){
+			if(technology[TMPname].progress === 100){
+				technology[TMPname].status = 2;
+				technology[TMPname].Rstrings = technology[TMPname].RstringsFuture[1];
+				note(technology[TMPname].Rnotes,10000);
+				for(var j = 0; j<technology.list.length; j++){
+					if(technology[technology.list[j]].status === 3){
+						possible = true;
+						for(var k = 0; k<technology[technology.list[j]].requires.length; k++){
+							if(technology[technology[technology.list[j]].requires[k]].status != 2){
+								possible = false;
+							};
+						};
+						if(possible){
+							technology[technology.list[j]].status = 0;
+						};
+					};
 				};
 				updateShop();
 			}
 			else{
-				Rstrings[i] = "<span onclick=\"Rfunction("+i+")\" style=\"color: #0000ff\">"+RstringsFutureTemplate[i]+"</span> <span style=\"color: #ff0000\">"+Rprog[i]+"%</span>";
-				Rprog[i]+=2;
+				technology[TMPname].Rstrings = "<span onclick=\"Rfunction("+i+")\" style=\"color: #0000ff\">"+technology[TMPname].visibleName+"</span> <span style=\"color: #ff0000\">"+technology[TMPname].progress+"%</span>";
+				technology[TMPname].progress += 2;
 			};
 		};
 	};
