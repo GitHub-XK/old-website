@@ -317,7 +317,7 @@ tolk = function(com){
 		clear();
 		document.getElementById("toggelino").style.display = "none";
 		document.getElementById("devWarning").style.display = "none";
-		simplePrint("<span style=\"color:#00FF00\"><h1>The Moon</h1><p>--You have no equipment on the Moon--</p><div><div id=\"moonmap\"><img src=\"images/lalande.jpg\"><canvas id=\"moonCanvas\" width=\"516\" height=\"516\"></canvas></div></div><br><p><i>\"We leave as we came and, God willing, as we shall return: with peace and hope for all mankind\"</i></p><p> - Gene Cernan, Apollo 17, Dec 19, 1972</p></span>");
+		simplePrint("<span style=\"color:#00FF00\"><h1>The Moon</h1><p>--You have no equipment on the Moon--</p><div><div id=\"moonmap\"><img id=\"moonMapImage\" src=\"images/lalande.jpg\" style=\"display:none\"><canvas id=\"moonCanvas\" width=\"700\" height=\"500\"></canvas></div></div><br><p><i>\"We leave as we came and, God willing, as we shall return: with peace and hope for all mankind\"</i></p><p> - Gene Cernan, Apollo 17, Dec 19, 1972</p></span>");
 		moonGUI();
 	}
 	else if(com === "rd"){

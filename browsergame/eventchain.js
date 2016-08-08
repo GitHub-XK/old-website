@@ -230,11 +230,9 @@ science = function(){
 
 Hlocation = function(){
 	clear();
-	simplePrint("<span style=\"color: #0000c0\" onclick=\"placelanded()\""+clickableBlue+">Landed</span> <span style=\"color: #ff0000\">"+places[6][0]+"</span>");
-	simplePrint("<span style=\"color: #0000c0\" onclick=\"placemoon()\""+clickableBlue+">On the Moon</span> <span style=\"color: #ff0000\">"+places[6][0]+"</span>");
-	simplePrint("<span style=\"color: #0000c0\" onclick=\"placeLMO()\""+clickableBlue+">Lunar orbit</span> <span style=\"color: #ff0000\">"+places[5][0]+"</span>");
-	simplePrint("<span style=\"color: #0000c0\" onclick=\"placeLTO()\""+clickableBlue+">Lunar Transfer Orbit</span> <span style=\"color: #ff0000\">"+Number(places[4][0]+places[1][0]+places[2][0]+places[3][0])+"</span>");
-	simplePrint("<span style=\"color: #0000c0\" onclick=\"placeLEO()\""+clickableBlue+">Low Earth Orbit</span> <span style=\"color: #ff0000\">"+places[0][0]+"</span>");
+	for(var i = 0;i<places.list.length;i++){
+		simplePrint("<span style=\"color: #0000c0\" onclick=\"placeF('"+places.list[i]+"')\""+clickableBlue+">"+places[places.list[i]].visibleName+"</span> <span style=\"color: #ff0000\">"+places[places.list[i]].number+"</span>");
+	};
 	printi("Things you have in space:");
 };
 
@@ -247,17 +245,17 @@ listUpdate = function(){
 	else{
 		pending = "";
 		for(i=0;i<pendingList.length;i++){
-			if(pendingList[i][3]){
+			if(pendingList[i].visible){
 				pending += "<span id=\"pending"+i+"\" onclick=\"pendingToggle("+i+")\" style=\"color: ";
-				if(pendingList[i][2]){
+				if(pendingList[i].ready){
 					pending += "#00ff00";
 				}
 				else{
 					pending += "#0000b0";
 				};
-				pending += "\""+clickableBlue+">"+pendingList[i][0]+". Mass = "+pendingList[i][1]+"kg </span>";
-				if(pendingList[i][4] > 0){
-					pending += "<span class=\"red\">chose a crew [0/"+pendingList[i][4]+"]</span>";
+				pending += "\""+clickableBlue+">"+pendingList[i].visibleName+". Mass = "+pendingList[i].mass+"kg </span>";
+				if(pendingList[i].crew > 0){
+					pending += "<span class=\"red\">chose a crew [0/"+pendingList[i].crew+"]</span>";
 				};
 				pending += "<br>";
 			};
@@ -266,7 +264,7 @@ listUpdate = function(){
 	updateVehicles();
 	availableLaunchers = "";
 	for(var i=0;i<vehicles.length;i++){
-		if(vehicles[i][0]){
+		if(vehicles[i].available){
 			availableLaunchers += "<span id=\"launcher"+i+"\" onclick=\"launcherToggle("+i+")\" style=\"color:";
 			if(i === launcherToggled){
 				availableLaunchers += "#00ff00";
@@ -274,11 +272,11 @@ listUpdate = function(){
 			else{
 				availableLaunchers += "#0000b0";
 			};
-			availableLaunchers += "\""+clickableBlue+">\""+vehicles[i][1]+"\", ";
-			if(vehicles[i][4] != true){
+			availableLaunchers += "\""+clickableBlue+">\""+vehicles[i].visibleName+"\", ";
+			if(vehicles[i].humanRated != true){
 				availableLaunchers += "not "
 			};
-			availableLaunchers += "human rated. Capacity "+vehicles[i][2]+"</span><br>";
+			availableLaunchers += "human rated. Capacity "+vehicles[i].capacity+"</span><br>";
 		};
 	};
 	if(availableLaunchers === ""){
@@ -299,24 +297,31 @@ saveConfiguration = function(){
 
 launch = function(){
 	if(readyToLaunch){
-		for(var i=0;i<vehicles[launcherToggled][7].length;i++){
-			shopItems[vehicles[launcherToggled][7][i]][4]--;
+		for(var i=0;i<vehicles[launcherToggled].parts.length;i++){
+			for(var j = 0;j<shopList.length;j++){
+				if(shopList[j] === vehicles[launcherToggled].parts[i]){
+					shopItems[j].number--;
+				};
+			};
 		};
 		var tmpName = document.getElementById("missionName").value;
 		if(tmpName === ""){
 			tmpName = "unnamed";
 		};
-		crafts.push([tmpName,"LEO",now+"",massToLaunch+"",1000,0,[]]);
-		for(var i=0;i<pendingList.length;i++){
-			if(pendingList[i][2]){
-				pendingList[i][2] = false;
-				pendingList[i][3] = false;
-			};
-			partID.push([pendingList[i][0]]+"");
-			crafts[crafts.length-1][6].push(uniqueListing);
-			uniqueListing++;
+		if(Math.random() > vehicles[launcherToggled].safety){
+			//alert("uhuh");
 		};
-		places[0][0]++;
+		craft.push({id:uniqueListing,visibleName:tmpName,location:"LEO",timeStamp:now,mass:massToLaunch,deltav:1000,crew:0,parts:[]});
+		for(var i=0;i<pendingList.length;i++){
+			if(pendingList[i].ready){
+				pendingList[i].ready = false;
+				pendingList[i].visible = false;
+			};
+			
+			craft[craft.length-1].parts.push({visibleName:pendingList[i].visibleName});
+		};
+		uniqueListing++;
+		places["LEO"].number++;
 		simplePrint("<img src=\"images/launch.png\">");
 		alert("Here there is supposed to be a video or series of images of a launch.\nSorry to dissapoint you :(");//remove me
 		note("The launch was successfull!",5000);
@@ -346,4 +351,13 @@ techCanvasDraw = function(){
 };
 
 moonGUI = function(){
+	drawingSurface = document.getElementById("moonCanvas");
+	offsetLeft = drawingSurface.offsetLeft;
+	offsetTop = drawingSurface.offsetTop;
+	ctx = drawingSurface.getContext("2d");
+	ctx.drawImage(document.getElementById("moonMapImage"),0,0);
+	ctx.fillStyle = "#FF9900";
+	ctx.fillRect(500,0,200,500);
+	ctx.fillStyle = "#555555";
+	ctx.fillRect(502,2,196,496);
 };
