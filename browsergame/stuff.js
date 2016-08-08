@@ -30,169 +30,187 @@
 
 //locations:
 
-places = [
-//["id","display",[["con1","time","instant","time","spiral"],["con2","time","instant","time","spiral"]],"time","new"]
-[1,"LEO","Low Earth Orbit",[[1,0,3120],[7,5,0]],false],				//0
-[0,"LTOlow","Lunar Transfer Orbit",[[0,0,3120]],100,"LTOmiddle"],		//1
-[0,"LTOmiddle","Lunar Transfer Orbit",[],400,"LTOhigh"],			//2
-[0,"LTOhigh","Lunar Transfer Orbit",[[5,0,820]],200,"LTOreturn"],		//3
-[0,"LTOreturn","Returning from the Moon",[],1400,"LTOlow"],			//4
-[0,"LMO","Lunar orbit",[[4,0,820,200,1800],[6,10,1720,false]],false],		//5
-[0,"moon","On the Moon",[[5,10,1720,false],[]],false],				//6
-[0,"landed","Landed",[],5,"recovered"],						//7
-[0,"recovered","Recovered",[],false],						//8
-[0,"EML1","EML1",[],false],							//9
-[0,"EML2","EML2",[],false]							//10
-];
-
-placeLEOstring = "";
-placeLEO = function(){
-	placeLEOstring = "";
-	for(var i=0;i<crafts.length;i++){
-		if(crafts[i][1] === "LEO"){
-			placeLEOstring += "<span"+clickableBlue+"onclick=\"specificCraft("+i+")\" style=\"color:green\">\""+crafts[i][0]+"\"</span> has ";
-			if(crafts[i][5] != 0){
-				placeLEOstring += crafts[i][5]+" passengers, ";
+places = {
+	LEO:{
+		number:1,
+		id:"LEO",
+		visibleName:"Low Earth Orbit",
+		string:"",
+		transfer:[
+			{
+				target:"LTOlow",
+				time:0,
+				deltav:3120
+			},
+			{
+				target:"landed",
+				time:5,
+				deltav:0
 			}
-			else{
-				placeLEOstring += "no passengers, ";	
-			};
-			if(crafts[i][7]){
-				placeLEOstring += "is transporting a "+crafts[i][6]+", ";
-			};
-			placeLEOstring += "and has "+crafts[i][4]+"m/s delta-v remaining.<br>"
-		};
-	};
-	clear();
-	if(placeLEOstring === ""){
-		placeLEOstring += "There are currenty no spacecraft in low Earth orbit.";
-	};
-	placeLEOstring += "<br><br><span onclick=\"tolk('location');command='location'\" class=\"blue\""+clickableBlue+">Back</span>";
-	simplePrint(placeLEOstring);
-	printi("Low Earth orbit:");
+		],
+	},
+	LTOlow:{
+		number:0,
+		id:"LTOlow",
+		visibleName:"Lunar Transfer Orbit",
+		string:"",
+		transfer:[
+			{
+				target:"LEO",
+				time:0,
+				deltav:3120
+			}
+		],
+		timeout:100,
+		destination:"LTOmiddle"
+	},
+	LTOmiddle:{
+		number:0,
+		id:"LTOmiddle",
+		visibleName:"Lunar Transfer Orbit",
+		string:"",
+		transfer:[],
+		timeout:400,
+		destination:"LTOhigh"
+	},
+	LTOhigh:{
+		number:0,
+		id:"LTOhigh",
+		visibleName:"Lunar Transfer Orbit",
+		string:"",
+		transfer:[
+			{
+				target:"LMO",
+				time:0,
+				deltav:820
+			}
+		],
+		timout:200,
+		destination:"LTOreturn"
+	},
+	LTOreturn:{
+		number:0,
+		id:"LTOreturn",
+		visibleName:"Returning from the Moon",
+		string:"",
+		transfer:[],
+		timeout:1400,
+		destination:"LTOlow"
+	},
+	LMO:{
+		number:0,
+		id:"LMO",
+		visibleName:"Lunar orbit",
+		string:"",
+		transfer:[
+			{
+				target:"LTOreturn",
+				time:0,
+				deltav:820,
+				spiralTime:200,
+				spiralDeltav:1800
+			},
+			{
+				target:"moon",
+				time:10,
+				deltav:1720
+			}
+		]
+	},
+	moon:{
+		number:0,
+		id:"moon",
+		visibleName:"On the Moon",
+		string:"",
+		transfer:[
+			{
+				target:"LMO",
+				time:10,
+				deltav:1720
+			}
+		]
+	},
+	landed:{
+		number:0,
+		id:"landed",
+		visibleName:"Landed",
+		string:"",
+		transfer:[],
+		timeout:5,
+		destination:"recovered"
+	},
+	recovered:{
+		number:0,
+		id:"recovered",
+		visibleName:"Recovered",
+		string:"",
+		transfer:[],
+	},
+	EML1:{
+		number:0,
+		id:"EML1",
+		visibleName:"EML1",
+		string:"",
+		transfer:[],
+	},
+	EML2:{
+		number:0,
+		id:"EML2",
+		visibleName:"EML2",
+		string:"",
+		transfer:[],
+	},
+	list:["LEO","moon","landed","LTOlow","LTOmiddle","LTOhigh"]
 };
 
-placeLTOstring = "";
-placeLTO = function(){
-	placeLTOstring = "";
-	for(var i=0;i<crafts.length;i++){
-		if(crafts[i][1] === "LTOlow" | crafts[i][1] === "LTOmiddle" | crafts[i][1] === "LTOhigh"){
-			placeLTOstring += "<a"+clickableBlue+"onclick=\"specificCraft("+i+")\" style=\"color:green\">\""+crafts[i][0]+"\"</a> has ";
-			if(crafts[i][5] != 0){
-				placeLTOstring += crafts[i][5]+" passengers, ";
+placeF = function(place){
+	places[place].string = "";
+	for(var i=0;i<craft.length;i++){
+		if(craft[i].location === place){
+			places[place].string += "<span"+clickableBlue+"onclick=\"specificCraft("+i+")\" style=\"color:green\">\""+craft[i].visibleName+"\"</span> has ";
+			if(craft[i].crew != 0){
+				places[place].string += craft[i].crew+" passengers, ";
 			}
 			else{
-				placeLTOstring += "no passengers, ";
+				places[place].string += "no passengers, ";	
 			};
-			if(crafts[i][7]){
-				placeLTOstring += "is transporting a "+crafts[i][6]+", ";
+/*
+			if(craft[i][7]){
+				places[place].string += "is transporting a "+craft[i][6]+", ";
 			};
-			placeLTOstring += "and has "+crafts[i][4]+"m/s delta-v remaining.<br>"
+*/
+			places[place].string += "and has "+craft[i].deltav+"m/s delta-v remaining.<br>"
 		};
 	};
 	clear();
-	if(placeLTOstring === ""){
-		placeLTOstring += "There are currenty no spacecraft in lunar transfer orbit.";
+	if(places[place].string === ""){
+		places[place].string = "There are currenty no spacecraft in "+places[place].visibleName;
 	};
-	placeLTOstring += "<br><br><a onclick=\"tolk('location');command='location'\" class=\"blue\""+clickableBlue+">Back</a>";
-	simplePrint(placeLTOstring);
-	printi("Lunar transfer orbit:");
-};
-
-placeLMOstring = "";
-placeLMO = function(){
-	placeLMOstring = "";
-	for(var i=0;i<crafts.length;i++){
-		if(crafts[i][1] === "LMO"){
-			placeLMOstring += "<a"+clickableBlue+"onclick=\"specificCraft("+i+")\" style=\"color:green\">\""+crafts[i][0]+"\"</a> has ";
-			if(crafts[i][5] != 0){
-				placeLMOstring += crafts[i][5]+" passengers, ";
-			}
-			else{
-				placeLMOstring += "no passengers, ";
-			};
-			if(crafts[i][7]){
-				placeLMOstring += "is transporting a "+crafts[i][6]+", ";
-			};
-			placeLMOstring += "and has "+crafts[i][4]+"m/s delta-v remaining.<br>"
-		};
-	};
-	clear();
-	if(placeLMOstring === ""){
-		placeLMOstring += "There are currenty no spacecraft in lunar orbit.";
-	};
-	placeLMOstring += "<br><br><a onclick=\"tolk('location');command='location'\" class=\"blue\""+clickableBlue+">Back</a>";
-	simplePrint(placeLMOstring);
-	printi("Lunar orbit:");
-};
-
-placemoonstring = "";
-placemoon = function(){
-	placemoonstring = "";
-	for(var i=0;i<crafts.length;i++){
-		if(crafts[i][1] === "moon"){
-			placemoonstring += "<a style=\"color:green\">\""+crafts[i][0]+"\"</a> has ";
-			if(crafts[i][5] != 0){
-				placemoonstring += crafts[i][5]+" passengers, ";
-			}
-			else{
-				placemoonstring += "no passengers, ";
-			};
-			if(crafts[i][7]){
-				placemoonstring += "is transporting a "+crafts[i][6]+", ";
-			};
-			placemoonstring += "and has "+crafts[i][4]+"m/s delta-v remaining.<br>"
-		};
-	};
-	clear();
-	if(placemoonstring === ""){
-		placemoonstring += "There are currenty no spacecraft on the Moon.";
-	};
-	placemoonstring += "<br><br><a onclick=\"tolk('location');command='location'\" class=\"blue\""+clickableBlue+">Back</a>";
-	simplePrint(placemoonstring);
-	printi("On the Moon:");
-};
-
-placelandedstring = "";
-placelanded = function(){
-	placelandedstring = "";
-	for(var i=0;i<crafts.length;i++){
-		if(crafts[i][1] === "landed"){
-			placelandedstring += "<a style=\"color:green\">\""+crafts[i][0]+"\"</a> has ";
-			if(crafts[i][5] != 0){
-				placelandedstring += crafts[i][5]+" passengers, ";
-			}
-			else{
-				placelandedstring += "no passengers, ";
-			};
-			if(crafts[i][7]){
-				placelandedstring += "is transporting a "+crafts[i][6]+", ";
-			};
-			placelandedstring += "and has "+crafts[i][4]+"m/s delta-v remaining.<br>"
-		};
-	};
-	clear();
-	if(placelandedstring === ""){
-		placelandedstring += "There are currenty no landed spacecraft.";
-	};
-	placelandedstring += "<br><br><a onclick=\"tolk('location');command='location'\" class=\"blue\""+clickableBlue+">Back</a>";
-	simplePrint(placelandedstring);
-	printi("Returned from space:");
+	places[place].string += "<br><br><span onclick=\"tolk('location');command='location'\" class=\"blue\""+clickableBlue+">Back</span>";
+	simplePrint(places[place].string);
+	printi(places[place].visibleName+":");
 };
 
 //spacecraft
 
-crafts = [
-//[name,location,timestamp,mass,delta-v,passengers,[part id],carry things?]
-["Examplecraft I","LEO",0,8000,2000,0,[0]]
+craft = [
+{
+	id:0,
+	visibleName:"Examplecraft I",
+	location:"LEO",
+	timeStamp:0,
+	mass:8000,
+	deltav:2000,
+	crew:0,
+	parts:[
+		{visibleName:"Dummy satelitte"},
+		{visibleName:"FuelTank",fuel:100,size:100},
+		{visibleName:"Engine",exhaustv:3000}
+	]
+}
 ];
 
 uniqueListing = 1;
-
-partID = [
-["Dummy satelitte"]
-];
-
 
 //story
 
@@ -243,18 +261,24 @@ nukeAccident = function(id){
 
 pendingList = [
 //[name,mass,launch now?,visible?,crewnumber]
-["Dummy satellite",5000,false,true,0]
+{
+	visibleName:"Dummy satellite",
+	mass:5000,
+	ready:false,
+	visible:true,
+	crew:0
+}
 ];
 pending = "";
 
 pendingToggle = function(id){
-	if(pendingList[id][2]){
+	if(pendingList[id].ready){
 		document.getElementById("pending"+id).style.color = "#0000b0";
-		pendingList[id][2] = false;	
+		pendingList[id].ready = false;	
 	}
 	else{
 		document.getElementById("pending"+id).style.color = "#00ff00";
-		pendingList[id][2] = true;
+		pendingList[id].ready = true;
 	};
 	totalMass();
 };
@@ -263,7 +287,7 @@ launcherToggled = -1;
 readyToLaunch = false;
 launcherToggle = function(id){
 	for(var i=0;i<vehicles.length;i++){
-		if(vehicles[i][0]){
+		if(vehicles[i].available){
 			document.getElementById("launcher"+i).style.color = "#0000b0";
 		};
 	};
@@ -275,7 +299,7 @@ launcherToggle = function(id){
 	else{
 		document.getElementById("launcher"+id).style.color = "#00ff00";
 		launcherToggled = Number(id);
-		if(vehicles[id][2] >= massToLaunch && massToLaunch > 0){
+		if(vehicles[id].capacity >= massToLaunch && massToLaunch > 0){
 			readyToLaunch = true;
 		}
 		else{
@@ -293,13 +317,13 @@ launcherToggle = function(id){
 totalMass = function(){
 	massToLaunch = 0;
 	for(var i=0;i<pendingList.length;i++){
-		if(pendingList[i][2]){
-			massToLaunch += pendingList[i][1];
+		if(pendingList[i].ready){
+			massToLaunch += pendingList[i].mass;
 		};
 	};
 	document.getElementById("totalMass").innerHTML = "Total mass: "+massToLaunch;
 	if(launcherToggled != -1){
-		if(vehicles[launcherToggled][2] >= massToLaunch && massToLaunch > 0){
+		if(vehicles[launcherToggled].capacity >= massToLaunch && massToLaunch > 0){
 			readyToLaunch = true;
 		}
 		else{
@@ -316,16 +340,47 @@ totalMass = function(){
 
 vehicles = [
 //[availability,name,capacity,cost,human rating,safety,launches,[parts]],
-[true,"Basic rocket",8000,500,false,0.9,0,[3,4]],
-[false,"Better rocket",15000,500,false,0.91,0,[3,0]]
+{
+	available:true,
+	visibleName:"Basic rocket",
+	capacity:8000,
+	cost:500,
+	humanRated:false,
+	safety:0.9,
+	launches:0,
+	parts:["Basic rocket core","Basic upper stage"]
+},
+{
+	available:false,
+	visibleName:"Better rocket",
+	capacity:15000,
+	cost:500,
+	humanRated:false,
+	safety:0.91,
+	launches:0,
+	parts:["Basic rocket core","Cryogenic upper stage (small)"]
+}
 ];
 
 updateVehicles = function(){
 	for(var i=0;i<vehicles.length;i++){
-		vehicles[i][0] = true;
-		for(var j=0;j<vehicles[i][7].length;j++){
-			if(shopItems[vehicles[i][7][j]][4] === 0){
-				vehicles[i][0] = false;
+		vehicles[i].available = true;
+		var framhald = true;
+		for(var j=0;j<vehicles[i].parts.length && framhald;j++){
+			for(var k=0;k<shopList.length && framhald;k++){
+				if(shopList[k] === vehicles[i].parts[j]){
+					if(shopItems[k].number === 0){
+						framhald = false;
+						vehicles[i].available = false;
+					}
+					else{
+						k=shopList.length;
+					};
+				}
+				else if(k === shopList.length-1){
+					framhald = false;
+					vehicles[i].available = false;
+				};
 			};
 		};
 	};
@@ -335,7 +390,7 @@ updateShop=function(){
 	storeString="";
 	for(var i=0;i<shopItems.length;i++){
 		if(shopItems[i].allowed === false){
-			for(var j=0;j<shopItems[i].required.length && technology[technology.list[shopItems[i].required[j]]].status === 2;j++){
+			for(var j=0;j<shopItems[i].required.length && technology[shopItems[i].required[j]].status === 2;j++){
 				if(j === shopItems[i].required.length-1){
 					shopItems[i].allowed = true;
 				};
@@ -354,40 +409,40 @@ shopItems = [ //if you know what you are doing, you can change things in this ar
 {
 	visibleName:"Cryogenic upper stage (small)",
 	allowed:false,
-	required:[0],
+	required:["cryogenics"],
 	cost:250,
 	number:0,
 	mass:15000,
 	payload:false,
 	crewsize:[0],
 	details:"Mass: 15000<br>A small but efficient upper stage burning LH2/LOX.",
-	props:[],
+	props:{},
 	icon:""
 },
 {
 	visibleName:"Cryogenic upper stage (large)",
 	allowed:false,
-	required:[0,2,6],
+	required:["cryogenics","cryo2","largetech"],
 	cost:750,
 	number:0,
 	mass:40000,
 	payload:false,
 	crewsize:[0],
 	details:"Mass: 40000<br>",
-	props:[],
+	props:{},
 	icon:""
 },
 {
 	visibleName:"Nuclear upper stage",
 	allowed:false,
-	required:[0,2,6,1],
+	required:["cryogenics","cryo2","largetech","ntr"],
 	cost:1500,
 	number:0,
 	mass:40000,
 	payload:false,
 	crewsize:[0],
 	details:"Mass: 40000<br>Very efficient and mostly harmless.",
-	props:[],
+	props:{},
 	icon:"images/nuclearIcon"
 },
 {
@@ -400,7 +455,7 @@ shopItems = [ //if you know what you are doing, you can change things in this ar
 	payload:false,
 	crewsize:[0],
 	details:"Mass: 100000<br>Well, you have to start <i>somewhere</i>.",
-	props:[],
+	props:{},
 	icon:""
 },
 {
@@ -413,59 +468,59 @@ shopItems = [ //if you know what you are doing, you can change things in this ar
 	payload:false,
 	crewsize:[0],
 	details:"Mass: 15000<br>An engine attached to a fuel tank. What else do you need?",
-	props:[],
+	props:{},
 	icon:""
 },
 {
 	visibleName:"Regolith melter",
 	allowed:false,
-	required:[3],
+	required:["rock"],
 	cost:50,
 	number:0,
 	mass:4000,
 	payload:true,
 	crewsize:[0],
 	details:"",
-	props:[],
+	props:{},
 	icon:""
 },
 {
 	visibleName:"Basalt fibre factory",
 	allowed:false,
-	required:[4],
+	required:["basalt"],
 	cost:100,
 	number:0,
 	mass:6000,
 	payload:true,
 	crewsize:[0],
 	details:"",
-	props:[],
+	props:{},
 	icon:""
 },
 {
 	visibleName:"Solid rocket boosters",
 	allowed:false,
-	required:[7],
+	required:["boosters"],
 	cost:100,
 	number:0,
 	mass:40000,
 	payload:false,
 	crewsize:[0],
 	details:"",
-	props:[],
+	props:{},
 	icon:"images/boosterIcon"
 },
 {
 	visibleName:"Capsule",
 	allowed:false,
-	required:[5],
+	required:["capsule"],
 	cost:80,
 	number:0,
 	mass:2500,
 	payload:true,
 	crewsize:[1],
 	details:"Mass: 3000<br>Can only carry one person.<br><span class=\"blue\">7</span> of <span class=\"blue\">10</span> monkeys recommend this product.",
-	props:[],
+	props:{},
 	icon:"images/capsuleIcon"
 },
 {
@@ -478,23 +533,44 @@ shopItems = [ //if you know what you are doing, you can change things in this ar
 	payload:true,
 	crewsize:[0],
 	details:"A grapefruit specifically developed for use in space.",
-	props:[],
+	props:{},
 	icon:""
 },
 {
 	visibleName:"EVA suit",
 	allowed:false,
-	required:[11],
+	required:["evaSuits"],
 	cost:100,
 	number:0,
 	mass:90,
 	payload:true,
 	crewsize:[1],
 	details:"A suit for extra vehicular activity in space.",
-	props:[],
+	props:{},
+	icon:""
+},
+{
+	visibleName:"Lunar lander",
+	allowed:false,
+	required:["lander"],
+	cost:1000,
+	number:0,
+	mass:8000,
+	payload:true,
+	crewsize:[1],
+	details:"It probably works!",
+	props:{
+		fuel:4000
+	},
+	capacity:2000,
 	icon:""
 }
 ];
+
+shopList = [];
+for(var i = 0;i<shopItems.length;i++){
+	shopList.push(shopItems[i].visibleName);
+};
 
 storeString="";
 
@@ -504,7 +580,15 @@ buyFromStore = function(thing){
 	shopItems[thing].cost-=Math.floor(shopItems[thing].cost*0.01);
 	shopItems[thing].number++;
 	if(shopItems[thing].payload){
-		pendingList.push([shopItems[thing].visibleName,shopItems[thing].mass,false,true,shopItems[thing].crewsize[0]]);
+		pendingList.push(
+			{
+				visibleName:shopItems[thing].visibleName,
+				mass:shopItems[thing].mass,
+				ready:false,
+				visible:true,
+				crew:shopItems[thing].crewsize[0]
+			}
+		);
 	};
 	updateShop();
 	clear();
@@ -611,7 +695,15 @@ technology = {
 		requires:["capsule"],
 		comment:"AKA capsule for one person"
 	},
-	list:["cryogenics","ntr","cryo2","rock","basalt","capsule","largetech","boosters","materials","liquid","high","evaSuits"]
+	lander:{
+		visibleName:"Lunar lander",
+		status:3,
+		price:1000,
+		progress:0,
+		requires:["capsule","materials"],
+		comment:"Get a contractor for the lunar lander"
+	},
+	list:["cryogenics","ntr","cryo2","rock","basalt","capsule","largetech","boosters","materials","liquid","high","evaSuits","lander"]
 };
 
 minigame = function(){
@@ -619,40 +711,153 @@ minigame = function(){
 };
 
 specificCraft = function(id){
-	speci = id; //needs a global reference to interact with DOM
 	clear();
-	tmpPlace = crafts[id][1];
-	tmpPlace2 = -1;
-	for(var i=0;i<places.length;i++){
-		if(tmpPlace === places[i][1]){
-			tmpPlace2 = i;
-		};
-	};
+	craft[id].location;
 	navigationString = "";
-	for(var i=0;i<places[tmpPlace2][3].length;i++){
-		navigationString += "<a"+clickableBlue+" onclick=\"crafts[speci][1]=places[places[tmpPlace2][3]["+i+"][0]][1];places[places[tmpPlace2][3]["+i+"][0]][0]++;places[tmpPlace2][0]--;note(crafts[speci][0]+' has transfered to '+places[places[tmpPlace2][3]["+i+"][0]][2],3000);crafts[speci][2]=now;tolk('location');command='location'\">"+places[places[tmpPlace2][3][i][0]][2] + "</a> <a class=\"red\">"+places[tmpPlace2][3][i][2]+"</a> m/s<br>";
+	for(var i=0;i<places[craft[id].location].transfer.length;i++){
+		navigationString += "<a"+clickableBlue+" onclick=\"places[craft["+id+"].location].number--;craft["+id+"].location=places[craft["+id+"].location].transfer["+i+"].target;places[craft["+id+"].location].number++;note(craft["+id+"].visibleName+' has transfered to '+craft["+id+"].location,3000);craft["+id+"].timeStamp=now;tolk('location');command='location'\">"+places[places[craft[id].location].transfer[i].target].visibleName+"</a> <a class=\"red\">"+places[craft[id].location].transfer[i].deltav+"</a> m/s<br>";
 	};
-	simplePrint("<h4>\""+crafts[id][0]+"\"</h4><p>"+crafts[id][6]+"</p><br><br><a class=\"blue\">Navigation:</a><br><p id=\"navChoice\"><br>"+navigationString+"</p><br><br><a onclick=\"tolk('location');command='location'\" class=\"blue\""+clickableBlue+">Back</a>");
+	navigationString += "<br><span>Parts:</span><br><br>";
+	for(var i=0;i<craft[id].parts.length;i++){
+		navigationString += craft[id].parts[i].visibleName+"<br>";
+	};
+	simplePrint("<p><em>\""+craft[id].visibleName+"\"</em></p><span style='color:#0000ff'>Delta-v: "+craft[id].deltav+"</span><br><span class=\"blue\">Navigation:</span><br><p id=\"navChoice\"><br>"+navigationString+"</p><br><br><a onclick=\"tolk('location');command='location'\" class=\"blue\""+clickableBlue+">Back</a>");
 };
 
 //this bit is a little fun, it generatres random names for the cosmonauts, and defaults to Mexico.
 
 mexicanGenerator = function(){
 	if(Math.random() > 0.5){
-		firstName = mexicanMale[Math.floor(Math.random()*mexicanMale.length)];
+		firstName = names.mexican.male[Math.floor(Math.random()*names.mexican.male.length)];
 	}
 	else{
-		firstName = mexicanFemale[Math.floor(Math.random()*mexicanFemale.length)];
+		firstName = names.mexican.female[Math.floor(Math.random()*names.mexican.female.length)];
 	};
-	var lastName = mexicanSurnames[Math.floor(Math.random()*mexicanSurnames.length)];
+	var lastName = names.mexican.surnames[Math.floor(Math.random()*names.mexican.surnames.length)];
 	return firstName +" "+ lastName;
 };
 
-mexicanFemale = ["Victoria","Manuela","Teresa","Catarina","Maria","Consuela","Carmen","Margarita","Marissa","Ximena","Camila","Valeria","Daniela","Sofia","Regina","Renata","Valentina","Andrea","Natalia","Mariana","Fernanda","Guadelupe","Jimena","Esmeralda","Alejandra","Alondra","Isabella"];
-
-mexicanMale = ["Angel","Manuel","Gerardo","Cesar","Lorenzo","Esteban","Eloy","Cristiano","Ramiro","Juan","Jose","Mario","Elias","Rodolfo","Aurelio","Edgar","Omar","Enrique","Jaime","Julio","Marcos","Pedro","Rafael","Antonio","Ricardo","Jorge","Noe","Alfonzo","Moises","Andres","Nicholas","Roberto"];
-
-mexicanSurnames = ["Garcia","Garza","Martinez","Alvarez","Rodriguez","Romero","Lopez","Fernandez","Hernandez","Medina","Gonzales","Moreno","Perez","Mendoza","Sanchez","Herrera","Rivera","Soto","Ramirez","Jimenez","Torres","Vargas","Gonzales","Castro","Flores","Rodriquez","Diaz","Mendez","Gomez","Munoz","Ortiz","Santiago","Cruz","Pena","Morales","Guzman","Reyes","Salazar","Ramos","Aguilar","Ruiz","Delgado","Chavez","Valdez","Vasquez","Rios","Gutierrez","Vega","Castillo","Ortega","Espinoza","Nunez"];
+names = {
+	mexican:{
+		female:[
+"Victoria",
+"Manuela",
+"Teresa",
+"Catarina",
+"Maria",
+"Consuela",
+"Carmen",
+"Margarita",
+"Marissa",
+"Ximena",
+"Camila",
+"Valeria",
+"Daniela",
+"Sofia",
+"Regina",
+"Renata",
+"Valentina",
+"Andrea",
+"Natalia",
+"Mariana",
+"Fernanda",
+"Guadelupe",
+"Jimena",
+"Esmeralda",
+"Alejandra",
+"Alondra",
+"Isabella"
+		],
+		male:[
+"Angel",
+"Manuel",
+"Gerardo",
+"Cesar",
+"Lorenzo",
+"Esteban",
+"Eloy",
+"Cristiano",
+"Ramiro",
+"Juan",
+"Jose",
+"Mario",
+"Elias",
+"Rodolfo",
+"Aurelio",
+"Edgar",
+"Omar",
+"Enrique",
+"Jaime",
+"Julio",
+"Marcos",
+"Pedro",
+"Rafael",
+"Antonio",
+"Ricardo",
+"Jorge",
+"Noe",
+"Alfonzo",
+"Moises",
+"Andres",
+"Nicholas",
+"Roberto"
+		],
+		surnames:[
+"Garcia",
+"Garza",
+"Martinez",
+"Alvarez",
+"Rodriguez",
+"Romero",
+"Lopez",
+"Fernandez",
+"Hernandez",
+"Medina",
+"Gonzales",
+"Moreno",
+"Perez",
+"Mendoza",
+"Sanchez",
+"Herrera",
+"Rivera",
+"Soto",
+"Ramirez",
+"Jimenez",
+"Torres",
+"Vargas",
+"Gonzales",
+"Castro",
+"Flores",
+"Rodriquez",
+"Diaz",
+"Mendez",
+"Gomez",
+"Munoz",
+"Ortiz",
+"Santiago",
+"Cruz",
+"Pena",
+"Morales",
+"Guzman",
+"Reyes",
+"Salazar",
+"Ramos",
+"Aguilar",
+"Ruiz",
+"Delgado",
+"Chavez",
+"Valdez",
+"Vasquez",
+"Rios",
+"Gutierrez",
+"Vega",
+"Castillo",
+"Ortega",
+"Espinoza",
+"Nunez"
+		]
+	}
+};
 
 //cosmonauts
 cosmonauts = [
@@ -747,7 +952,16 @@ recruit = function(){
 	for(var i=0;i<cosmoHighlighting.length;i++){
 		if(cosmoHighlighting[i]){
 			cosmonauts[i][1] = 1;
-			cosmonauts.push([mexicanGenerator(),2,"Mexican",Math.floor(Math.random()*20)+20,true,["Still untrained"]]);//replace with a new random recruit
+			cosmonauts.push(
+				[
+					mexicanGenerator(),
+					2,
+					"Mexican",
+					Math.floor(Math.random()*20)+20,
+					true,
+					["Still untrained"]
+				]
+			);//replace with a new random recruit
 		};
 	};
 	cosmo();
