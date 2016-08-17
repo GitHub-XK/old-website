@@ -191,6 +191,7 @@ function checkIfMove(event1){
 	alert("debug");
 	var move1Flagg = false;
 	var move2Flagg = false;
+	alert(toLongitude(event1.pageX-subOrbitalCanvas.offsetLeft)+","+longitude1+","+toLatitude(event1.pageY-subOrbitalCanvas.offsetTop)+","+latitude1);
 	if(Math.abs(toLongitude(event1.pageX-subOrbitalCanvas.offsetLeft)-longitude1) < 20 && Math.abs(toLatitude(event1.pageY-subOrbitalCanvas.offsetTop)-latitude1) < 20){
 		move1Flagg = true;
 	}
