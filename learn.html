@@ -189,10 +189,10 @@ toLatitude = function(position){
 subOrbitalCanvas.onmousedown = checkIfMove;
 function checkIfMove(event1){
 	var rect = subOrbitalCanvas.getBoundingClientRect();
-	alert("debug");
+//	alert("debug");
 	var move1Flagg = false;
 	var move2Flagg = false;
-	alert(toLongitude(event1.pageX-rect.left)+","+longitude1+","+toLatitude(event1.pageY-rect.top)+","+latitude1);
+//	alert(toLongitude(event1.pageX-rect.left)+","+longitude1+","+toLatitude(event1.pageY-rect.top)+","+latitude1);
 	if(Math.abs(toLongitude(event1.pageX-rect.left)-longitude1) < 20 && Math.abs(toLatitude(event1.pageY-rect.top)-latitude1) < 20){
 		move1Flagg = true;
 	}
