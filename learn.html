@@ -185,17 +185,18 @@ toLongitude = function(position){
 toLatitude = function(position){
 	return -90*(position-128)/128;
 };
-alert("readYdebug");
+//alert("readYdebug");
 subOrbitalCanvas.onmousedown = checkIfMove;
 function checkIfMove(event1){
+	var rect = subOrbitalCanvas.getBoundingClientRect();
 	alert("debug");
 	var move1Flagg = false;
 	var move2Flagg = false;
-	alert(toLongitude(event1.pageX-subOrbitalCanvas.offsetLeft)+","+longitude1+","+toLatitude(event1.pageY-subOrbitalCanvas.offsetTop)+","+latitude1);
-	if(Math.abs(toLongitude(event1.pageX-subOrbitalCanvas.offsetLeft)-longitude1) < 20 && Math.abs(toLatitude(event1.pageY-subOrbitalCanvas.offsetTop)-latitude1) < 20){
+	alert(toLongitude(event1.pageX-rect.left)+","+longitude1+","+toLatitude(event1.pageY-rect.top)+","+latitude1);
+	if(Math.abs(toLongitude(event1.pageX-rect.left)-longitude1) < 20 && Math.abs(toLatitude(event1.pageY-rect.top)-latitude1) < 20){
 		move1Flagg = true;
 	}
-	else if(Math.abs(toLongitude(event1.pageX-subOrbitalCanvas.offsetLeft)-longitude2) < 20 && Math.abs(toLatitude(event1.pageY-subOrbitalCanvas.offsetTop)-latitude2) < 20){
+	else if(Math.abs(toLongitude(event1.pageX-rect.left)-longitude2) < 20 && Math.abs(toLatitude(event1.pageY-rect.top)-latitude2) < 20){
 		move2Flagg = true;
 	};
 	if(move1Flagg || move2Flagg){
@@ -207,14 +208,14 @@ function checkIfMove(event1){
 		};
 		subOrbitalCanvas.onclick = fixPosition;
 		function handleMouseMove1(event){
-			longitude1 = toLongitude(event.pageX-subOrbitalCanvas.offsetLeft);
-			latitude1 = toLatitude(event.pageY-subOrbitalCanvas.offsetTop);
+			longitude1 = toLongitude(event.pageX-rect.left);
+			latitude1 = toLatitude(event.pageY-rect.top);
 			subDraw();
 			subHop();
 		};
 		function handleMouseMove2(event){
-			longitude2 = toLongitude(event.pageX-subOrbitalCanvas.offsetLeft);
-			latitude2 = toLatitude(event.pageY-subOrbitalCanvas.offsetTop);
+			longitude2 = toLongitude(event.pageX-rect.left);
+			latitude2 = toLatitude(event.pageY-rect.top);
 			subDraw();
 			subHop();
 		};
