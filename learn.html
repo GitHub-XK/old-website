@@ -192,7 +192,7 @@ function checkIfMove(event1){
 //	alert("debug");
 	var move1Flagg = false;
 	var move2Flagg = false;
-	alert((event1.pageX-window.pageXOffset)+","+rect.left+","+(event1.pageY-window.pageYOffset)+","+rect.top+",");
+//	alert((event1.pageX-window.pageXOffset)+","+rect.left+","+(event1.pageY-window.pageYOffset)+","+rect.top+",");
 	if(Math.abs(toLongitude(event1.pageX-window.pageXOffset-rect.left)-longitude1) < 20 && Math.abs(toLatitude(event1.pageY-window.pageYOffset-rect.top)-latitude1) < 20){
 		move1Flagg = true;
 	}
