@@ -185,8 +185,10 @@ toLongitude = function(position){
 toLatitude = function(position){
 	return -90*(position-128)/128;
 };
+alert("readYdebug");
 subOrbitalCanvas.onmousedown = checkIfMove;
 function checkIfMove(event1){
+	alert("debug");
 	var move1Flagg = false;
 	var move2Flagg = false;
 	if(Math.abs(toLongitude(event1.pageX-subOrbitalCanvas.offsetLeft)-longitude1) < 20 && Math.abs(toLatitude(event1.pageY-subOrbitalCanvas.offsetTop)-latitude1) < 20){
