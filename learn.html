@@ -128,7 +128,7 @@
 <p>Click and drag!</p>
 <div class="noFloat">
 	<img src="img/mapmini.jpg" style="display:none" width="512" height="256" id="moonMap">
-	<canvas id="subOrbitalCanvas" width="512" height="256"></canvas>
+	<canvas id="subOrbitalCanvas" width="512" height="256" onmouseover="document.body.cursor='move'" onmouseout="document.body.cursor='auto'"></canvas>
 </div>
 <p id="resultSH">&nbsp;</p>
 <script>
@@ -185,14 +185,11 @@ toLongitude = function(position){
 toLatitude = function(position){
 	return -90*(position-128)/128;
 };
-//alert("readYdebug");
 subOrbitalCanvas.onmousedown = checkIfMove;
 function checkIfMove(event1){
 	var rect = subOrbitalCanvas.getBoundingClientRect();
-//	alert("debug");
 	var move1Flagg = false;
 	var move2Flagg = false;
-//	alert((event1.pageX-window.pageXOffset)+","+rect.left+","+(event1.pageY-window.pageYOffset)+","+rect.top+",");
 	if(Math.abs(toLongitude(event1.pageX-window.pageXOffset-rect.left)-longitude1) < 20 && Math.abs(toLatitude(event1.pageY-window.pageYOffset-rect.top)-latitude1) < 20){
 		move1Flagg = true;
 	}
