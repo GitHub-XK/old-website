@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="svg4214"
+   height="64.432793"
+   width="120.00001"
+   version="1.1"
+   viewBox="0 0 119.36667 64.735627"
+   inkscape:version="0.91 r"
+   sodipodi:docname="NSS_logo1.svg">
+  <defs
+     id="defs14" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="2517"
+     inkscape:window-height="1056"
+     id="namedview12"
+     showgrid="false"
+     inkscape:zoom="4.6669048"
+     inkscape:cx="58.077157"
+     inkscape:cy="41.367005"
+     inkscape:window-x="43"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg4214"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+  <metadata
+     id="metadata4216">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <text
+     style="font-size:11.83628178px;font-family:Ubuntu;fill:#fcfcfc"
+     x="-1.8271792"
+     y="62.510406"
+     font-size="16px"
+     xml:space="preserve"
+     id="text4222"><tspan
+       x="-1.8271792"
+       y="62.510406"
+       id="tspan4224">National Space Society</tspan></text>
+  <path
+     style="fill:#2c549c"
+     inkscape:connector-curvature="0"
+     d="M 4.0549644,44.386055 C 15.151478,27.371401 23.288921,14.055584 25.508224,11.836281 30.316714,6.805862 37.344506,0.739767 48.441019,0.739767 58.057998,0.606609 70.634047,6.214048 73.593117,17.754422 67.231116,12.871956 66.195442,11.984235 60.277301,11.836281 49.180787,11.569965 42.78487,25.550245 31.267106,44.44258 Z"
+     id="path4226"
+     sodipodi:nodetypes="ccccccc" />
+  <g
+     style="fill:#fcfcfc"
+     transform="matrix(0.73976759,0,0,0.73976759,-168.52282,-362.98889)"
+     id="g4228">
+    <path
+       style="fill:#fcfcfc"
+       inkscape:connector-curvature="0"
+       d="m 320.10764,519.78472 c -0.18,-5.9 -4.99236,-9.78472 -9.89236,-10.78472 4,2.5 6.00764,6.5309 6.00764,10.7309 z m -11,0 0.16144,-10.10764 c 3.6,2.4 5.63854,6.60764 5.63854,10.10764 z m -12,0.008 c 0.18,-5.9 5.20764,-9.78472 10.10764,-10.78472 -4,2.5 -6.06146,6.5309 -6.06146,10.7309 z m 11,0 0.16144,-10.10764 c -3.6,2.4 -5.96146,6.60764 -5.96146,10.10764 z m 11.94618,1.2391 c -0.18,5.9 -5.15382,9.94618 -10.05382,10.94618 4,-2.5 6.1691,-6.8 6.1691,-11 z m -11,0 -0.10762,10.32292 c 3.6,-2.4 5.90764,-6.82292 5.90764,-10.32292 z m -12,-0.008 c 0.18,5.9 5.04618,9.94618 9.94618,10.94618 -4,-2.5 -5.9,-6.8 -5.9,-11 z m 11,0 -0.10762,10.32292 c -3.60002,-2.4 -5.69238,-6.82292 -5.69238,-10.32292 z"
+       id="path4230"
+       sodipodi:nodetypes="cccccccccccccccccccccccccccccccc" />
+  </g>
+  <path
+     style="fill:#c43c44"
+     inkscape:connector-curvature="0"
+     d="M 115.02011,0 C 103.92359,17.014654 95.786146,30.330471 93.566846,32.549774 88.758356,37.580193 81.730556,43.646288 70.634047,43.646288 61.017068,43.779446 48.441019,38.172007 45.481949,26.631633 51.84395,31.514099 52.879625,32.40182 58.797766,32.549774 69.894279,32.81609 76.449455,18.756181 87.728326,0.102733 Z"
+     id="path4232"
+     sodipodi:nodetypes="ccccccc" />
+</svg>
