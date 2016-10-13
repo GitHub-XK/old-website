@@ -64,18 +64,33 @@ textarea {
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
-/*------------------------------------------------------------------------------------
-All the classes below with 'col' in the name are for responsive layout by doing 
-everything with columns. The @media queries determine which col class is applied by 
-detecting the width of the browser window. Each div used for setting up the column 
-width thus needs two col classes, one for if the browser is less than 850px, and 
-one for if it is more. If it is less than 500px there are no columns and everything 
-stacks.
--------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------
+Responsive layout
+the divs that have text and media content all have a 'col-x' class. All such classes
+have a width that is a fraction of 12. col-1 is 1/12, col-w is 2/12, et cetera.
+The col divs will float to the left or right according 
+to the row div they are inside, and according to sets that add up to 12 or less. 
+If you want lots of space to the left or right, you might need to give each set of 
+col divs you want on one row their own row div 
+--------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------
+This first selector has syntax to select all selectors that include 'col-' in the name. 
+It pads each one with 15 pixels unless that selector says otherwise, and the same for 
+width. This kind of syntax takes lower priority than almost everything else. So, 
+there below where the col classes are each given a width, that overrides width of 100%. 
+--------------------------------------------------------------------------------------*/
 [class*="col-"] {
 	padding: 15px;
 	width: 100%;
 	}
+/*----------------------------------------------------------------------------------
+The first two @media queries determine which col class is applied by 
+detecting the width of the browser window. Each div used for setting up the column 
+width thus needs two col classes, one for if the browser is less than 850px, and 
+one for if it is more. If it is less than 500px, then these two @media selectors don't 
+apply, which means the general [class*="col-"] selector applies, width is always 100%, 
+and thus everything is optimized for very narrow screens.
+--------------------------------------------------------------------------------------*/
 @media only screen and (min-width: 500px) {
 		.col-m-1 {width: 8.33%;}
 		.col-m-2 {width: 16.66%;}
@@ -142,10 +157,14 @@ stacks.
     .col-12 {width: 100%;}
 }
 /*---------------------------------------------------------------------------------------
-The rest of the @media queries are to position the background image and reduce 
+Size the background image according to browser width. I didn't 
+bother making a smaller one for narrower screens as this comes up on large screens where the 
+browser window is resized, so why call two images.
+reduce 
 font-size and the width of the pop-up tooltips when the browser is too small to display 
 them well. In the case of the tooltips, some had to be repositioned as well so they 
-wouldn't run off the screen
+wouldn't run off the screen. The tooltips are mostly defined in their own css doc, called 
+cssportal.tooltip.css
 ----------------------------------------------------------------------------------- */
 @media only screen and (min-width:1000px) {
 	html {
@@ -159,12 +178,22 @@ wouldn't run off the screen
 	background-size: 2000px;
 	font-size: 90% !important;
 	}
+/*---------------------------------------------------------------------------------------
+The font-size declarations reduce text size on small browser windows for better layout. 
+This especially is important to keep the tooltips working, or they start spilling off 
+the screen.
+----------------------------------------------------------------------------------- */
 }
 @media only screen and (max-width: 850px) {
 	html {
 	font-size: 80% !important;
 	}
 }
+/*---------------------------------------------------------------------------------------
+Below screen widths of 700 px, the tooltips still spill off the screen even with smaller 
+text, so they are all made narrower here, and a few also had to be given new position 
+values.
+----------------------------------------------------------------------------------- */
 @media only screen and (max-width: 700px) {
 	.tooltipT:hover span, .tooltipTML:hover span, .tooltipTL:hover span, .tooltipTMR:hover span, 
 	.tooltipTR:hover span, .tooltipL:hover span, .tooltipML:hover span, .tooltipR:hover span, 
@@ -198,6 +227,10 @@ wouldn't run off the screen
 /*===========================================================================================================
                                                  HEADER
 =============================================================================================================*/
+/*The logo id is to keep the logo in the black area above the mountain of the background image, no matter the 
+screen size. So, the percentage values is to make it shrink as the screen size gets narrower, and the pixel values 
+are to make sure it doesn't get too small, or slide up behind the menu
+*/
 #logo {
 	width: 25%;
 	min-width: 250px;
@@ -216,14 +249,25 @@ header {
 																LAYOUT TOOLS
 =============================================================================================================*/
 /*----------------------------------------
-The first item is helpful to the layout because it means that the width of block-level items 
-is determined by subtracting pixels from their width for padding and borders, instead of adding it
+The * selector applies to everything. 
+'box-sizing: border-box;' means that the width of block-level items 
+is determined by subtracting pixels from their width to use for padding and borders, instead of adding it. 
+If that wasn't true the responsive layout system wouldn't work, because percentage widths would then have 
+padding and borders added on and together that would almost never neatly equal 100% of a given screen width. 
+Setting padding and margin values at 0 means that if a selector doesn't have those properties defined, then 
+they will be 0. But all other selectors are more specific, and the most specific selector is always the one that 
+takes precedence, so wherever those properties are defined, that value is the one that will be displayed.
 ----------------------------------------------*/
 * {
 box-sizing: border-box;
 padding: 0;
 margin: 0;
 }
+/*------------------------------------------------------------------------------------------------------
+All the divs with 'col-x' classes are nested in divs with 'rowX' classes that get them to align to 
+the right or the left. Then i named a class just for floating, as it is shorter just to give an html tag 
+that class, rather than styling it.
+----------------------------------------------------------------------------------------------------*/
 .rowR div, .rowR h1, .rowR h2, .rowR h3, .floatR {
 	float: right;
 }
@@ -232,11 +276,16 @@ margin: 0;
 	float: left;
 }
 /*---------------------------------------------------------------------------------------------
-The :after classes and the clearboth br are to prevent wrapping. The clearboth br was 
-necessary in order to put <p> elements with the iframes, instead of all the <p>'s being 
-pushed to the top of the div. I can't remember why i created noFloat but it was a 
-similar issue, having to do with getting the minimap on the Suborbital Hop calculator 
-working.
+The :after classes and the clearboth br are to prevent wrapping. The clearboth br 
+is sometimes faster than creating a new row. 
+
+It also gives a way to wrap text around 
+a media object and then create a new row of content below it. This possibly should be replaced 
+with completely consistent use of rows, if objects such as iframes and canvasses can be worked into 
+the responsive layout system here. Right now the sketchfab and youtube media come with widths, i should 
+test if i can give them col classes and that works. I had just assumed that because they come 
+bundled with their own JS code, i shouldn't mess with them. 
+
 --------------------------------------------------------------------------------------*/
 .rowL:after, .rowR:after {
 	content: "";
@@ -247,6 +296,12 @@ br.clearboth {
 	clear: both;
 	display: block;
 }
+/*---------------------------------------------------------------------------------------------
+I can't remember why i created noFloat but it had to do with getting the minimap on the 
+Suborbital Hop calculator working. The col width method breaks down with the forms and 
+canvasses of the Learn page, it might be better to do up a separate css doc just for that page because 
+it is sort of messy right now. It has no col classes and i fudged everything.
+----------------------------------------------------------------------------------- */
 .noFloat {
 	display: block;
 	float: none !important;
@@ -259,6 +314,8 @@ br.clearboth {
 	width: 100%;
 	clear: both;
 }
+/*---------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------- */
 button {
 border: none;
 outline: none;
