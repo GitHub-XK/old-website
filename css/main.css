@@ -64,8 +64,14 @@ textarea {
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
-/*All the classes below with 'col' in the name are for responsive layout by doing 
-everything with columns*/
+/*------------------------------------------------------------------------------------
+All the classes below with 'col' in the name are for responsive layout by doing 
+everything with columns. The @media queries determine which col class is applied by 
+detecting the width of the browser window. Each div used for setting up the column 
+width thus needs two col classes, one for if the browser is less than 850px, and 
+one for if it is more. If it is less than 500px there are no columns and everything 
+stacks.
+-------------------------------------------------------------------------------------*/
 [class*="col-"] {
 	padding: 15px;
 	width: 100%;
@@ -137,6 +143,12 @@ everything with columns*/
     .col-11 {width: 91.66%;}
     .col-12 {width: 100%;}
 }
+/*---------------------------------------------------------------------------------------
+The rest of the @media queries are to position the background image and reduce 
+font-size and the width of the pop-up tooltips when the browser is too small to display 
+them well. In the case of the tooltips, some had to be repositioned as well so they 
+wouldn't run off the screen
+----------------------------------------------------------------------------------- */
 @media only screen and (min-width:1000px) {
 	html {
 	background: #000 url(http://www.moonwards.com/img/tycho7color.png) no-repeat fixed 0 0;
@@ -210,6 +222,10 @@ header {
 /*============================================================================================================
 																LAYOUT TOOLS
 =============================================================================================================*/
+/*----------------------------------------
+The first item is helpful to the layout because it means that the width of block-level items 
+is determined by subtracting pixels from their width for padding and borders, instead of adding it
+----------------------------------------------*/
 * {
 box-sizing: border-box;
 padding: 0;
