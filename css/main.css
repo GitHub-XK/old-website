@@ -5,7 +5,7 @@
    ========================================================================== */
 
 html {
-    color: #ccc;
+    color: #fff;
     font-size: 1em;
     font-family: 'Titillium Web', sans-serif;
     background-color: #000;
@@ -62,18 +62,22 @@ textarea {
 }
 
 /* ==========================================================================
-   Author's custom styles
+   Author's custom styles - All that follows is licensed under GNU 3.0
    ========================================================================== */
 /*------------------------------------------------------------------------------------
-All the classes below with 'col' in the name are for responsive layout by doing 
-everything with columns. The @media queries determine which col class is applied by 
+All the classes below with 'col' in the name are for responsive layout. All content 
+is inside divs with 'col' classes, and thus have widths that are some fraction of 12 
+of the browser window.
+
+The @media queries determine which col class is applied by 
 detecting the width of the browser window. Each div used for setting up the column 
 width thus needs two col classes, one for if the browser is less than 850px, and 
 one for if it is more. If it is less than 500px, the first declaration below applies. 
 Its syntax selects everything that has "col-" as part of its name, and makes it span 
 the browser window, so all the divs will stack. 
 
-The padding 
+The padding applies unless a more specific selector takes priority, so is generally 
+there unless changed for some special case using one of the classes in the Layout section
 -------------------------------------------------------------------------------------*/
 [class*="col-"] {
 	padding: 15px;
@@ -147,10 +151,9 @@ The padding
     .col-12 {width: 100%;}
 }
 /*---------------------------------------------------------------------------------------
-The rest of the @media queries are to position the background image and reduce 
-font-size and the width of the pop-up tooltips when the browser is too small to display 
-them well. In the case of the tooltips, some had to be repositioned as well so they 
-wouldn't run off the screen
+The next three @media queries are to position the background image and reduce 
+font-size for smaller screens. Reduced font size is mostly necessary as otherwise the 
+tooltips run off the screen.
 ----------------------------------------------------------------------------------- */
 @media only screen and (min-width:1000px) {
 	html {
@@ -170,11 +173,21 @@ wouldn't run off the screen
 	font-size: 80% !important;
 	}
 }
+/*---------------------------------------------------------------------------------------
+On very wide screens the content overlaps the logo, so the below pushes it down. The 
+!important property is used where something is preventing the rule from taking priority, 
+and what that is either can't be found or can't be changed. It is a hack of last resort.
+----------------------------------------------------------------------------------- */
 @media only screen and (min-width: 2100px) {
 	#container {
 	margin-top: 215px !important;
 	}
 }
+/*---------------------------------------------------------------------------------------
+The tooltips have their own stylesheet, cssportal.tooltip.css. The following was added 
+in order to keep them on the screen when browser windows are very narrow. The tooltips 
+break down on screens below 500px. 
+----------------------------------------------------------------------------------- */
 @media only screen and (max-width: 700px) {
 	.tooltipT:hover span, .tooltipTML:hover span, .tooltipTL:hover span, .tooltipTMR:hover span, 
 	.tooltipTR:hover span, .tooltipL:hover span, .tooltipML:hover span, .tooltipR:hover span, 
@@ -208,6 +221,10 @@ wouldn't run off the screen
 /*===========================================================================================================
                                                  HEADER
 =============================================================================================================*/
+/*---------------------------------------------------------------------------------------
+The logo is made responsive with percentage for width and left position, kept below the nav 
+with number of pixels for top position, and has a minimum width for narrow screens so it remains visible
+----------------------------------------------------------------------------------- */
 #logo {
 	width: 25%;
 	min-width: 250px;
@@ -223,17 +240,29 @@ header {
 }
 
 /*============================================================================================================
-																LAYOUT TOOLS
+																GENERAL LAYOUT
 =============================================================================================================*/
 /*----------------------------------------
-The first item is helpful to the layout because it means that the width of block-level items 
-is determined by subtracting pixels from their width for padding and borders, instead of adding it
+The next declaration applies to all elements - an asterisk means that. Box-sizing: border-box means that 
+instead of padding and margins being added to the width and height of elements, it is subtracted from them. 
+If this wasn't the case, the col- classes wouldn't work because those divs would never be precisely some 
+fraction of 12 wide. Making the default padding and margin 0 is mostly to override default settings on some 
+browsers, so that if those properties haven't been defined for an element, you know what size it will be on any 
+browser.
 ----------------------------------------------*/
 * {
 box-sizing: border-box;
 padding: 0;
 margin: 0;
 }
+/*---------------------------------------------------------------------------------------
+The following is the other half of the responsive layout setup. All col divs are nested 
+inside row divs, so they will align to the left or right inside their row. The syntax 
+says 'all divs inside a rowR class, and all h1 inside a rowR class' and so on. Elements 
+p and img aren't listed because often it is better for them to be centered inside 
+their parent element, and as this rule applies to everything inside these classes, even 
+if they are nested many times, they can't be here.
+----------------------------------------------------------------------------------- */
 .rowR div, .rowR h1, .rowR h2, .rowR h3, .rowR h4, .floatR {
 	float: right;
 }
@@ -244,11 +273,23 @@ margin-right: 10px;
 .rowL div, .rowL h1, .rowL h2, .rowL h3, .rowL h4, .floatL {
 	float: left;
 }
+/*-------------------------------------------------------------------------------------
+Next is a standard hack to stop content wrapping around stuff above it. This way even if 
+there is space to fit the next div beside some previous ones in a row, it will 
+instead show on the next row.
+---------------------------------------------------------------------------------------*/
 .rowL:after, .rowR:after {
 	content: "";
 	clear: both;
 	display: block;
 }
+/*-------------------------------------------------------------------------------------
+Because of the use of forms on the Learn page, the responsive system doesn't work there. 
+So, br.clearboth is used to push inline or floating elements onto a new row. 
+The noFloat class was needed to make the 
+minimap stay put. In other spots br.clearboth turns out to be shorter than nesting divs in 
+rows, also.
+---------------------------------------------------------------------------------------*/
 br.clearboth {
 	clear: both;
 	display: block;
@@ -265,11 +306,22 @@ br.clearboth {
 	width: 100%;
 	clear: both;
 }
-/*--------------------------------------------------------------------------------------------------------*/
+/*=========================================================================================================
+													MARKER STYLING
+===========================================================================================================*/
+/*---------------------------------------------------------------------------------------
+To override the ugly default button formatting browsers do
+----------------------------------------------------------------------------------- */
 button {
 border: none;
 outline: none;
 }
+/*---------------------------------------------------------------------------------------
+Styling for the numbered markers in the images. Reduced line-height is needed to 
+eliminate space above and below characters in the buttons. Cursor: pointer means the 
+cursor changes the same way as when over a link, alerting people to extra 
+content. Button positioning is defined in the cssportal.tooltip.css stylesheet.
+----------------------------------------------------------------------------------- */
 .numbers, .numbers1 {
 background-color: rgba(200, 0, 200, 1);
 color: rgba(255, 255, 255, 1);
@@ -285,6 +337,9 @@ cursor: pointer;
 	color: rgba(255,255,60,1);
 	background-color: rgba(250, 0, 250, 1);
 }
+/*---------------------------------------------------------------------------------------
+The rest is not in use, it was for previous sections of the Plan page
+----------------------------------------------------------------------------------- */
 .issues, .issues1 {
 background-color: rgba(100,0, 200, 1);
 color: black;
@@ -321,7 +376,11 @@ cursor: pointer;
 	color: rgba(255,255,60,1);
 	background-color: rgba(50, 50, 0, 1)
 }
-/* So spans display instead of the tooltip css being invoked*/
+/*---------------------------------------------------------------------- 
+The following needs to be on the rare divs where spans and buttons are going to 
+be used, and you want to position them precisely, but you don't want them 
+to be only visible on hover or tap, as all such elements are in pix divs
+------------------------------------------------------------------*/
 .pix-alt {
 	position: relative;
 	top: 0;
@@ -330,47 +389,29 @@ cursor: pointer;
 /*=============================================================================================================
 		 													DIV ATTRIBUTES
 ===============================================================================================================*/
-.darkYellow {
-	background-color: rgba(50, 50, 0, 0.7);
-	color: rgba(255, 255, 255, 1);
+
+.darkYellow, .black, .black30, .black60, .pad15, .extrapad, {
 	text-align: left;
 	vertical-align: top;
+}
+.darkYellow {
+	background-color: rgba(50, 50, 0, 0.7);
 }
 .black {
 	background-color: rgba(0, 0, 0, 0.7);
-	color: rgba(255, 255, 255, 1);
-	text-align: left;
-	vertical-align: top;
-	padding: 15px;
 }
-.blackwide {
-	background-color: rgba(0, 0, 0, 0.7);
-	color: rgba(255, 255, 255, 1);
-	text-align: left;
-	vertical-align: top;
+.extrapad {
 	padding: 15px 20px 15px 30px;
 }
 .black30 {
 	background-color: rgba(0, 0, 0, 0.3);
-	color: rgba(255, 255, 255, 1);
-	text-align: left;
-	vertical-align: top;
-	padding: 15px;
 }
-.blackX{
+.black60{
 	background-color: rgba(0, 0, 0, 0.6);
-	color: rgba(255, 255, 255, 1);
-	text-align: left;
-	vertical-align: top;
 }
-.black85 {
-	background-color: rgba(0, 0, 0, 0.7);
-	color: rgba(255, 255, 255, 1);
-	text-align: left;
-	vertical-align: top;
-	}
 .centertext {
 	text-align: center;
+	vertical-align: top;
 }			
 	
 .pad15 {
@@ -382,6 +423,8 @@ cursor: pointer;
 .roundAll {
 	border-radius: 20px;
 }
+/*---------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------- */
 .roundAll img, .roundAll p, .roundAll object {
 	padding: 10px;
 }
@@ -560,12 +603,6 @@ table ul li {
 			color: rgba(255,255,60,1);
 			background-color: rgba(50, 50, 0, 1)
 		}
-		.neutral {
-			color: inherit;
-			background-color: none;
-			position: relative;
-			display: inline;
-		}
 		img {
 		 	padding: 10px;
 		 	width: 100%;
@@ -580,6 +617,16 @@ table ul li {
 /*==============================================================================
 								NAV
 ================================================================================*/
+/*---------------------------------------------------------------------------------------
+Getting the nav to display well has been tricky. To stop the menu text from getting too 
+close to the edges of its background in some situations it was finally necessary to just 
+give it a fixed width and the ul of the menu a fixed position.
+
+Its background is positioned to be partly 
+off screen and thus it looks like it only has a border on the bottom. The menu is wrapped 
+in a div called nav so that the text is positioned according to the edge of the screen, 
+not the edge of the nav which runs off it.
+----------------------------------------------------------------------------------- */
 nav {
 	position: fixed;
 	top: -104px;
@@ -598,6 +645,13 @@ nav:hover {
 nav ul, nav li {
 	margin: 0;
 }
+/*---------------------------------------------------------------------------------------
+The :first-child selector selects elements that are the first such element inside another 
+element, which is known as its parent. Here, it is used to make the first ul inside the 
+nav div have slightly larger text and fix the text's position a good distance from the 
+top and right side. There are cases where the two words of 'the VMC' display on two 
+lines if 'white-space: nowrap' isn't there
+----------------------------------------------------------------------------------- */
 nav ul:first-child {
 	font-weight: 600;
 	font-size: 16px;
@@ -608,14 +662,27 @@ nav ul:first-child {
 	cursor: pointer;
 	white-space: nowrap;
 }
+/*---------------------------------------------------------------------------------------
+What follows gets the li elements of the menu to display horizontally instead of 
+vertically (inline), spaces them out with padding, and makes their position relative 
+to the fixed parent ul.
+----------------------------------------------------------------------------------- */
 nav ul:first-child li {
   display: inline;
   position: relative;
   padding: 6px;
 }
+/*---------------------------------------------------------------------------------------
+Then the nested ul's don't display when the page loads...
+----------------------------------------------------------------------------------- */
 nav ul ul{
   display: none;
 }
+/*---------------------------------------------------------------------------------------
+...but only if the cursor is over them. They are placed under their menu item with 
+absolute positioning from the top of the parent element, and default indenting is 
+compensated for by putting in a negative left position.
+----------------------------------------------------------------------------------- */
 nav li:hover ul {
   display: block;
   position: absolute;
@@ -624,6 +691,9 @@ nav li:hover ul {
   background-color: rgba(50, 50, 0, 1);
   font-size: 13px;
 }
+/*---------------------------------------------------------------------------------------
+To override the inline styling above, the nested ul li's are given display: block
+----------------------------------------------------------------------------------- */
 nav li:hover ul li {
   display: block;
   padding: 6px 15px;
@@ -641,7 +711,9 @@ nav li:hover ul li {
        (min-resolution: 120dpi) {
     /* Style adjustments for high resolution devices */
 }
-
+/*---------------------------------------------------------------------------------------
+Beyond this point everything is the original HTML Boilerplate setup
+----------------------------------------------------------------------------------- */
 /* ==========================================================================
    Print styles.
    Inlined to avoid the additional HTTP request:
