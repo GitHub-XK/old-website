@@ -69,8 +69,11 @@ All the classes below with 'col' in the name are for responsive layout by doing
 everything with columns. The @media queries determine which col class is applied by 
 detecting the width of the browser window. Each div used for setting up the column 
 width thus needs two col classes, one for if the browser is less than 850px, and 
-one for if it is more. If it is less than 500px there are no columns and everything 
-stacks.
+one for if it is more. If it is less than 500px, the first declaration below applies. 
+Its syntax selects everything that has "col-" as part of its name, and makes it span 
+the browser window, so all the divs will stack. 
+
+The padding 
 -------------------------------------------------------------------------------------*/
 [class*="col-"] {
 	padding: 15px;
