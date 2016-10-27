@@ -26,7 +26,7 @@
 				width:
 					50%;
 			}
-			#result{
+			.bigGreen{
 				color:
 					#00C800;
 				font-size:
@@ -150,7 +150,7 @@
 						<td>
 							<form
 								id="form0"
-								onclick="formUpdate(0)"
+								onclick="formUpdate()"
 							>
 								<select
 									name="object"
@@ -216,7 +216,7 @@
 										type="text"
 										class="distance"
 										name="distance"
-										value="220"
+										value="220000"
 									>
 									m
 									<br>
@@ -238,7 +238,7 @@
 						<td>
 							<form
 								id="form1"
-								onclick="formUpdate(1)"
+								onclick="formUpdate()"
 							>
 								<select
 									name="object"
@@ -328,8 +328,14 @@
 					</tr>
 				</table>
 				<p
-					id="result"
-				>m/s</p>
+					class="bigGreen"
+				>
+					<span
+						id="result"
+					>
+					</span>
+					m/s
+				</p>
 				<p
 					id="guide"
 				></p>
@@ -862,9 +868,7 @@
 					)
 			];
 			var formUpdate
-			= function(
-				form
-			){
+			= function(){
 				var aero
 					= false;
 				var atmosphere
@@ -885,17 +889,37 @@
 				= "none";
 				document
 					.getElementById(
-						"alt" + form
+						"alt0"
+					)
+					.style
+					.visibility
+				= "hidden";
+				document
+					.getElementById(
+						"alt1"
 					)
 					.style
 					.visibility
 				= "hidden";
 				target[
-					form
+					0
 				]
 					.parent
 				= forms[
-					form
+					0
+				]
+					.elements
+					.object
+					.selectedOptions[
+						0
+					]
+					.value;
+				target[
+					1
+				]
+					.parent
+				= forms[
+					1
 				]
 					.elements
 					.object
@@ -905,7 +929,7 @@
 					.value;
 				if(
 					forms[
-						form
+						0
 					]
 						.elements
 						.location
@@ -913,14 +937,14 @@
 					=== "surface"
 				){
 					target[
-						form
+						0
 					]
 						.location
 					= "surface";
 					if(
 						space[
 							forms[
-								form
+								0
 							]
 								.elements
 								.object
@@ -931,61 +955,37 @@
 						]
 							.atmosphere
 					){
+						document
+							.getElementById(
+								"atmosphere"
+							)
+							.style
+							.display
+						= "inline";
 						if(
-							form
+							forms[
+								1
+							]
+								.elements
+								.brake
+								.checked
 						){
-							document
-								.getElementById(
-									"aero"
-								)
-								.style
-								.display
-							= "inline";
-							if(
-								forms[
-									0
-								]
-									.elements
-									.drag
-									.checked
-							){
-								atmosphere
-									= true
-							}
-						}
-						else{
-							document
-								.getElementById(
-									"atmosphere"
-								)
-								.style
-								.display
-							= "inline";
-							if(
-								forms[
-									1
-								]
-									.elements
-									.brake
-									.checked
-							){
-								aero
-									= true
-							}
+							aero
+								= true
 						}
 					}
 				}
 				else{
 					document
 						.getElementById(
-							"alt" + form
+							"alt0"
 						)
 						.style
 						.visibility
 					= "visible";
 					if(
 						forms[
-							form
+							0
 						]
 							.elements
 							.alt[
@@ -994,19 +994,19 @@
 							.checked
 					){
 						target[
-							form
+							0
 						]
 							.radius
 						= space[
 							target[
-								form
+								0
 							]
 								.parent
 						]
 							.radius
 						+ Number(
 							forms[
-								form
+								0
 							]
 								.elements
 								.distance
@@ -1015,12 +1015,113 @@
 					}
 					else{
 						target[
-							form
+							0
 						]
 							.radius
 						= Number(
 							forms[
-								form
+								0
+							]
+								.elements
+								.distance
+								.value
+						)
+					}
+				}
+				if(
+					forms[
+						1
+					]
+						.elements
+						.location
+						.value
+					=== "surface"
+				){
+					target[
+						1
+					]
+						.location
+					= "surface";
+					if(
+						space[
+							forms[
+								1
+							]
+								.elements
+								.object
+								.selectedOptions[
+									0
+								]
+								.value
+						]
+							.atmosphere
+					){
+						document
+							.getElementById(
+								"aero"
+							)
+							.style
+							.display
+						= "inline";
+						if(
+							forms[
+								1
+							]
+								.elements
+								.drag
+								.checked
+						){
+							atmosphere
+								= true
+						}
+					}
+				}
+				else{
+					document
+						.getElementById(
+							"alt1"
+						)
+						.style
+						.visibility
+					= "visible";
+					if(
+						forms[
+							1
+						]
+							.elements
+							.alt[
+								0
+							]
+							.checked
+					){
+						target[
+							1
+						]
+							.radius
+						= space[
+							target[
+								1
+							]
+								.parent
+						]
+							.radius
+						+ Number(
+							forms[
+								1
+							]
+								.elements
+								.distance
+								.value
+						)
+					}
+					else{
+						target[
+							1
+						]
+							.radius
+						= Number(
+							forms[
+								1
 							]
 								.elements
 								.distance
@@ -1032,7 +1133,11 @@
 				= locationLogic(
 					target
 				);
+				document.getElementById("result")
+					.innerHTML
+				= deltaV
 			}
+			formUpdate()
 		</script>
 	</body>
 </html>
