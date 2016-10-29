@@ -51,7 +51,7 @@ textarea {
 }
 
 /* ==========================================================================
-   Browser Upgrade Prompt
+   Browser Upgrade Prompt for IE8 and older, we rely a lot on HTML5
    ========================================================================== */
 
 .browserupgrade {
@@ -251,9 +251,9 @@ browsers, so that if those properties haven't been defined for an element, you k
 browser.
 ----------------------------------------------*/
 * {
-box-sizing: border-box;
-padding: 0;
-margin: 0;
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
 }
 /*---------------------------------------------------------------------------------------
 The following is the other half of the responsive layout setup. All col divs are nested 
@@ -267,7 +267,7 @@ if they are nested many times, they can't be here.
 	float: right;
 }
 .rowR h3, .rowR h4 {
-margin-right: 10px;
+	margin-right: 10px;
 }
 
 .rowL div, .rowL h1, .rowL h2, .rowL h3, .rowL h4, .floatL {
@@ -313,8 +313,8 @@ br.clearboth {
 To override the ugly default button formatting browsers do
 ----------------------------------------------------------------------------------- */
 button {
-border: none;
-outline: none;
+	border: none;
+	outline: none;
 }
 /*---------------------------------------------------------------------------------------
 Styling for the numbered markers in the images. Reduced line-height is needed to 
@@ -323,15 +323,15 @@ cursor changes the same way as when over a link, alerting people to extra
 content. Button positioning is defined in the cssportal.tooltip.css stylesheet.
 ----------------------------------------------------------------------------------- */
 .numbers, .numbers1 {
-background-color: rgba(200, 0, 200, 1);
-color: rgba(255, 255, 255, 1);
-padding: 4px;
-line-height: 0.6em;
-font-weight: 400;
-border-radius: 3px;
-border: none;
-outline: none;
-cursor: pointer;
+	background-color: rgba(200, 0, 200, 1);
+	color: rgba(255, 255, 255, 1);
+	padding: 4px;
+	line-height: 0.6em;
+	font-weight: 400;
+	border-radius: 3px;
+	border: none;
+	outline: none;
+	cursor: pointer;
 }
 .numbers:hover, .numbers1:hover {
 	color: rgba(255,255,60,1);
