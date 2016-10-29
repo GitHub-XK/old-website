@@ -171,6 +171,11 @@ var space
 									>
 										Mars
 									</option>
+									<option
+										value="sun"
+									>
+										Sun
+									</option>
 								</select>
 								<br>
 								<input
@@ -259,6 +264,11 @@ var space
 									>
 										Mars
 									</option>
+									<option
+										value="sun"
+									>
+										Sun
+									</option>
 								</select>
 								<br>
 								<input
@@ -272,7 +282,7 @@ var space
 								<input
 									type="radio"
 									name="location"
-									value="prbit"
+									value="orbit"
 								>
 								Orbit
 								<br>
@@ -384,18 +394,6 @@ var locationLogic
 				0
 			]
 				.location
-			=== trg[
-				1
-			]
-				.location
-		){
-			return 0
-		}
-		else if(
-			trg[
-				0
-			]
-				.location
 			=== "surface"
 		||
 			trg[
@@ -425,6 +423,15 @@ var locationLogic
 					.location
 				=== "surface"
 			){
+				if(
+					trg[
+						1
+					]
+						.location
+					=== "surface"
+				){
+					return 0
+				};
 				if(
 					atmosphere
 				){
@@ -875,13 +882,6 @@ var formUpdate
 		= false;
 	atmosphere
 		= false;
-	/*document
-		.getElementById(
-			"aero"
-		)
-		.style
-		.display
-	= "none";*/
 	document
 		.getElementById(
 			"atmosphere"
@@ -985,7 +985,6 @@ var formUpdate
 					.drag
 					.checked
 			){
-				//alert("wrong");//FIXME
 				atmosphere
 					= true
 			}
@@ -1121,7 +1120,7 @@ var formUpdate
 					.elements
 					.distance
 					.value
-			)
+			);
 		}
 		else{
 			target[
