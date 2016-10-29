@@ -240,7 +240,7 @@ header {
 }
 
 /*============================================================================================================
-																GENERAL LAYOUT
+						GENERAL LAYOUT
 =============================================================================================================*/
 /*----------------------------------------
 The next declaration applies to all elements - an asterisk means that. Box-sizing: border-box means that 
@@ -307,7 +307,7 @@ br.clearboth {
 	clear: both;
 }
 /*=========================================================================================================
-													MARKER STYLING
+					MARKER STYLING
 ===========================================================================================================*/
 /*---------------------------------------------------------------------------------------
 To override the ugly default button formatting browsers do
@@ -387,7 +387,7 @@ to be only visible on hover or tap, as all such elements are in pix divs
 	left: 0;
 }
 /*=============================================================================================================
-		 													DIV ATTRIBUTES
+							DIV ATTRIBUTES
 ===============================================================================================================*/
 
 .darkYellow, .black, .black30, .black60, .pad15, .extrapad, {
@@ -442,7 +442,7 @@ to be only visible on hover or tap, as all such elements are in pix divs
 	font-weight: 600;
 }
 /*=============================================================================================================
-		 													ELEMENT ATTRIBUTES
+							ELEMENT ATTRIBUTES
 ===============================================================================================================*/
 .details {
 	cursor: pointer;
@@ -628,13 +628,12 @@ in a div called nav so that the text is positioned according to the edge of the 
 not the edge of the nav which runs off it.
 ----------------------------------------------------------------------------------- */
 nav {
-	display: inline-block;
 	position: fixed;
 	top: -104px;
 	right: -10px;
 	background-color: #000;
-	/*width: 380px;*/
-	/*height: 135px;*/
+	width: 500px;
+	height: 135px;
 	border-bottom-left-radius: 65px;
 	border: 1px solid #ccc;
 	z-index: 20;
