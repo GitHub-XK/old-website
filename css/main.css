@@ -632,7 +632,7 @@ nav {
 	top: -104px;
 	right: -10px;
 	background-color: #000;
-	width: 380px;
+	/*width: 380px;*/
 	height: 135px;
 	border-bottom-left-radius: 65px;
 	border: 1px solid #ccc;
