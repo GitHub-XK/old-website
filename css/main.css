@@ -628,12 +628,13 @@ in a div called nav so that the text is positioned according to the edge of the 
 not the edge of the nav which runs off it.
 ----------------------------------------------------------------------------------- */
 nav {
+	display: inline-block;
 	position: fixed;
 	top: -104px;
 	right: -10px;
 	background-color: #000;
 	/*width: 380px;*/
-	height: 135px;
+	/*height: 135px;*/
 	border-bottom-left-radius: 65px;
 	border: 1px solid #ccc;
 	z-index: 20;
