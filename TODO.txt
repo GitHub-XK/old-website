@@ -1,0 +1,11 @@
+Hoh:
+
+-3D model thumbnailing
+-Why is main.css not updating on the server? //urgent
+-Fix tooltips so they do not create a void at the bottom of the page
+-Finish the transfer calculator
+-Make the old scripts less ugly
+-Create SVG illustrations for the learn page
+-Migrate favicons to /img
+-Add more to the learn page introduction to orb mec
+-Check if the new email is working
