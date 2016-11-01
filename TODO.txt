@@ -9,3 +9,4 @@ Hoh:
 -Migrate favicons to /img
 -Add more to the learn page introduction to orb mec
 -Check if the new email is working
+-Migrate navbar from absolute width
