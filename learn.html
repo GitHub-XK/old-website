@@ -1,6 +1,6 @@
 <!doctype html>
 <html class="no-js" lang="en">
-    <head>
+	<head>
 		<title>Moonwards</title>
 		<meta charset="utf-8">
 		<meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -138,11 +138,11 @@ The calculators are also based on JavaScript, and they do not work without it. T
 var subOrbitalCanvas = document.getElementById("subOrbitalCanvas");
 var subctx = subOrbitalCanvas.getContext("2d");
 var moonMap = document.getElementById("moonMap");
-var longitude1 = 55;
+var longitude1 =  55;
 var longitude2 = -20;
-var latitude1 = 20;
-var latitude2 = 60;
-var moonRadius = 1738000; //m
+var latitude1  =  20;
+var latitude2  =  60;
+var moonRadius =  1738000; //m
 var moonGparameter = 4904869590000; //G*M
 rad = function(degrees){ //for converting to radians
 	return degrees/180 * Math.PI;
@@ -228,64 +228,63 @@ function checkIfMove(event1){
 subDraw();
 subHop();
 </script>
-<p>More about suborbital hops <a href="http://hopsblog-hop.blogspot.com/2015/08/lunar-pogo-hopper.html">here</a></p>
+				<p>More about suborbital hops <a href="http://hopsblog-hop.blogspot.com/2015/08/lunar-pogo-hopper.html">here</a></p>
 <!--geogebra applet-->
-                        <script type="text/javascript" src="https://www.geogebra.org/scripts/deployggb.js"></script>
-                        <script type="text/javascript">
-				var applet1 = new GGBApplet({filename: "GeoGebra/suborbital.ggb","showtoolbar":false}, true);
-				window.onload = function() {
-					applet1.inject('applet_container1', 'preferHTML5');
-				}
-			</script>
-			<div style="width:500px;height:355px;display:block" id="applet_container1"></div>
+<script type="text/javascript" src="https://www.geogebra.org/scripts/deployggb.js"></script>
+<script type="text/javascript">
+var applet1 = new GGBApplet({filename: "GeoGebra/suborbital.ggb","showtoolbar":false}, true);
+window.onload = function(){
+	applet1.inject('applet_container1', 'preferHTML5');
+}
+</script>
+<div style="width:500px;height:355px;display:block" id="applet_container1"></div>
 <!--end geogebra applet-->
-                    </div>
-                </div>
-                <div class="black roundAll">
-                    <div class="darkYellow pad15 roundAll">
-                      <h3 class="yellow">Lunar Elevator</h3><br class="clearboth">
-                        <p>Start distance: (distances are from the centre of the Moon towards Earth)</p>
-                        <input type="text" placeholder="(km)" value="" id="start">
-                        <input type="checkbox" id="surface">use lunar surface
-                        <br>
-                        <p>End distance</p>
-                        <input type="text" placeholder="(km)" value="" id="end">
-                        <input type="checkbox" id="eml1">use EML1
-                        <br>
-                        <p>Material strength:</p>
-                        <input type="text" placeholder="(Yuri)" value="" id="material">
-                        <input type="checkbox" id="zylon">use Zylon
-                        <br><br>
-                        <input type="checkbox" id="tethermass"> I want the mass of the elevator too!
-                        <p>Parameters required to calculate elevator mass:</p>
-                        <p>Payload mass:</p>
-                        <input type="text" placeholder="(kg)" value="" id="payloadmass">
-                        <p>Safety factor:</p>
-                        <input type="text" value="1.1" id="safety"><br><br>
-                        <button onclick="tether()">Calculate!</button><br>
-			<canvas id="tetherCanvas" width="400" height="100"></canvas>
-                        <script src="js/tether.js"></script>
-                        <p id="resultLE">&nbsp;</p>
-                        <p id="resultLE2">&nbsp;</p>
-                        <p id="resultLE3">&nbsp;</p>
-                    </div>
-                </div>
+			</div>
+		</div>
+		<div class="black roundAll">
+			<div class="darkYellow pad15 roundAll">
+				<h3 class="yellow">Lunar Elevator</h3><br class="clearboth">
+				<p>Start distance: (distances are from the centre of the Moon towards Earth)</p>
+				<input type="text" placeholder="(km)" value="" id="start">
+				<input type="checkbox" id="surface">use lunar surface
+				<br>
+				<p>End distance</p>
+				<input type="text" placeholder="(km)" value="" id="end">
+				<input type="checkbox" id="eml1">use EML1
+				<br>
+				<p>Material strength:</p>
+				<input type="text" placeholder="(Yuri)" value="" id="material">
+				<input type="checkbox" id="zylon">use Zylon
+				<br><br>
+				<input type="checkbox" id="tethermass"> I want the mass of the elevator too!
+				<p>Parameters required to calculate elevator mass:</p>
+				<p>Payload mass:</p>
+				<input type="text" placeholder="(kg)" value="" id="payloadmass">
+				<p>Safety factor:</p>
+				<input type="text" value="1.1" id="safety"><br><br>
+				<button onclick="tether()">Calculate!</button><br>
+				<canvas id="tetherCanvas" width="400" height="100"></canvas>
+				<script src="js/tether.js"></script>
+				<p id="resultLE">&nbsp;</p>
+				<p id="resultLE2">&nbsp;</p>
+				<p id="resultLE3">&nbsp;</p>
+			</div>
+		</div>
 <!--No longer linking to the browser game. It is still online though.
 	<div class="black roundAll">
 		<a href="browsergame/shell.html"><img src="browsergame/images/link.png" alt="go to the browser game!"></a>
 	</div>
 -->
-			<div>
-				<a href="rotovator.html">
-					<img class="realsize" width="262" height="254" src="img/animatedRotovatorLink.png" alt="view the animations!">
-				</a>
-			</div>
+		<div>
+			<a href="rotovator.html">
+				<img class="realsize" width="262" height="254" src="img/animatedRotovatorLink.png" alt="view the animations!">
+			</a>
 		</div>
-		<div class="rowL">
-			<h4 class="col-3 col-m-2" id="lessons">A quick introduction to orbital mechanics</h4>
-			<div class="black col-9 col-m-10">
-				<div class="darkYellow pad15 roundAll">
-			
+	</div>
+	<div class="rowL">
+		<h4 class="col-3 col-m-2" id="lessons">A quick introduction to orbital mechanics</h4>
+		<div class="black col-9 col-m-10">
+			<div class="darkYellow pad15 roundAll">
 			<h5>The basics:</h5>
 			<p><b>Navigation</b>: a spacecraft can best be understood as moving a heavy bowling ball. When it is up to speed, 
 			it continues to move, without anything pushing it. What requires effort is to change the direction it is moving, 
@@ -421,9 +420,9 @@ $$v_e=\sqrt{\frac{2\mu}{r}}$$
 			<img class="realsize" src="img/orbitalPythagoras.png" width="415" height="257">
 			</div>
 		</div>
-		</div>
-		<div class="black col-9 col-m-10">
-			<div class="darkYellow pad15 roundAll">
+	</div>
+	<div class="black col-9 col-m-10">
+		<div class="darkYellow pad15 roundAll">
 			<p>[experimental] A gigantic list. Here are some numbers we have found useful during the development of the project.</p>
 			<details class="details">
 				<summary>List of numbers</summary>
@@ -436,14 +435,13 @@ $$v_e=\sqrt{\frac{2\mu}{r}}$$
 					</ul>
 				</details>
 			</details>
-			</div>
-		</div>
-		<div class="col-12 col-m-12">
-			<a href="http://www.gnu.org/licenses/">
-				<p>All calculator scripts are released under GPL 3</p>
-			</a>
 		</div>
 	</div>
+	<div class="col-12 col-m-12">
+		<a href="http://www.gnu.org/licenses/">
+			<p>All calculator scripts are released under GPL 3</p>
+		</a>
+	</div>
+</div>
 </body>
 </html>
-
