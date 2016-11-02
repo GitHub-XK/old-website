@@ -341,6 +341,7 @@ content. Button positioning is defined in the cssportal.tooltip.css stylesheet.
 .overlay1024 {
 	position: absolute;
 	margin-left: -1024px;
+	cursor: pointer;
 }
 /*---------------------------------------------------------------------------------------
 The rest is not in use, it was for previous sections of the Plan page
