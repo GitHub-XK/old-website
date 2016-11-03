@@ -109,9 +109,29 @@ var space = {
 			(origin.inc === target.inc && origin.asc === target.asc)
 		)//determine if the orbits are coplanar
 		{
+			if(origin.P === origin.A){//is the first orbit circular?
+				if(target.P === target.A){//is the second orbit circular too? Hohmann!
+					var hohmannCost = hohmann(gm,origin.P,target.P);
+					if(hohmannCost < deltaCost){//...unless a bi-elliptical transfer is still more efficient
+						deltaCost = hohmannCost
+					}
+				}
+				else{//The things below may or may not fail horribly
+					if(origin.P < target.A){
+						var bitangentialCost = vElli(gm,origin.P,origin.P,target.A) - vCirc(gm,origin.P) + vElli(gm,target.A,target.P,target.A) - vElli(gm,target.A,origin.P,target.A)
+					}
+					else{
+						var bitangentialCost = vCirc(gm,origin.P) - vElli(gm,origin.P,target.A,origin.P) - vElli(gm,target.A,target.P,target.A) + vElli(gm,target.A,target.A,origin.P)
+					}
+					if(bitangentialCost < deltaCost){//...unless a bi-elliptical transfer is still more efficient
+						deltaCost = hohmannCost
+					}
+				}
+			}
 		}
 		else{
 		}
+		return deltaCost
 	},
 	orbit:{
 		/*functions for orbits a {gm:,a:,A:,P:,inc:,asc:,arg:r,v:,vP:,vA:,ano:,e:,T:}
@@ -183,6 +203,11 @@ var space = {
 			if(orbit.A != undefined){
 				if(typeof(orbit.A) != "number"){//apoapsis must be a number
 					return false
+				}
+				if(orbit.r != undefined){
+					if(orbit.r > orbit.A){//orbital radius can not be larger than apoapsis
+						return false
+					}
 				}
 			}
 			if(orbit.P != undefined){
