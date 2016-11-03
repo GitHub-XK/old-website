@@ -169,9 +169,8 @@ var space = {
 					Below is a suboptimal strategy doing all of the plane change at periapsis
 					it is often better than the bi-elliptic aproach though
 					*/
-					var subOptimal = (
+					var subOptimal = undefined;
 						/*calculation here*/
-					);
 					if(subOptimal < deltaCost){
 						deltaCost = subOptimal
 					}
