@@ -128,6 +128,23 @@ var space = {
 					}
 				}
 			}
+			else if(target.P === target.A){
+					if(origin.A < target.P){
+						var bitangentialCost = vCirc(gm,target.P) - vElli(gm,target.P,origin.A,target.P) + vElli(gm,origin.A,origin.A,target.P) - vElli(gm,origin.A,origin.P,origin.A)
+					}
+					else{
+						var bitangentialCost = - vCirc(gm,target.P) + vElli(gm,target.P,target.P,origin.P) - vElli(gm,origin.P,target.P,origin.P) + vElli(gm,origin.P,origin.P,origin.A)
+					}
+					if(bitangentialCost < deltaCost){//...unless a bi-elliptical transfer is still more efficient
+						deltaCost = hohmannCost
+					}
+			}
+			else{
+			/*what is the optimal non-bi-elliptical transfer between two coplanar ellipses?
+			Is it bi-tangential? Question pending: http://space.stackexchange.com/q/16931/8693
+			*/
+				
+			}
 		}
 		else{
 		}
