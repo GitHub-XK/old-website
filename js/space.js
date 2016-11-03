@@ -128,7 +128,7 @@ var space = {
 					}
 				}
 			}
-			else if(target.P === target.A){
+			else if(target.P === target.A){//one elliptical, one circular
 					if(origin.A < target.P){
 						var bitangentialCost = vCirc(gm,target.P) - vElli(gm,target.P,origin.A,target.P) + vElli(gm,origin.A,origin.A,target.P) - vElli(gm,origin.A,origin.P,origin.A)
 					}
@@ -140,13 +140,49 @@ var space = {
 					}
 			}
 			else{
+				if(
+					(origin.arg === undefined && target.arg === undefined) ||
+					(origin.asc != undefined && target.asc != undefined && (target.arg + target.asc === origin.arg + origin.asc))
+				){//special case
+					if(origin.P === target.P){//guarantied to be better than bi-elliptical
+						deltaCost = Math.abs(vElli(gm,origin.P,origin.P,target.A) - vElli(gm,origin.P,origin.P,origin.A))
+					}
+					else if(origin.A === target.A){
+						deltaCost = Math.abs(vElli(gm,origin.A,origin.P,origin.A) - vElli(gm,origin.A,target.P,origin.A))
+					}
+					else{
+						//most likely a periapsis-apoapsis or apoapsis-periapsis solution. I have to prove that though
+					}
+				}
+				else{
 			/*what is the optimal non-bi-elliptical transfer between two coplanar ellipses?
 			Is it bi-tangential? Question pending: http://space.stackexchange.com/q/16931/8693
 			*/
-				
+				}
 			}
 		}
-		else{
+		else{//not coplanar
+			if(origin.P === origin.A){//the first orbit is circular
+				if(target.P === target.A){//both orbits are circular
+					/*potential for a small delta-v saving by splitting the plane change.
+					See http://space.stackexchange.com/q/12997/8693
+					Below is a suboptimal strategy doing all of the plane change at periapsis
+					it is often better than the bi-elliptic aproach though
+					*/
+					var subOptimal = (
+						/*calculation here*/
+					);
+					if(subOptimal < deltaCost){
+						deltaCost = subOptimal
+					}
+				}
+			}
+			else if(target.P === target.A){
+				//similar to the above subotimal algorithm
+			}
+			else{
+				//attempt apoapsis-apoapsis transfer. It is usually good enogh
+			}
 		}
 		return deltaCost
 	},
