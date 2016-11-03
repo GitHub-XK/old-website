@@ -25,7 +25,6 @@ included here
 ----------------------------------------------------------------------------------- */
 div.pix span {
   position: absolute;
-  width: 0px;
   color: #FFFFFF;
   height: auto;
   line-height: 1.2em;
