@@ -44,6 +44,24 @@ var space = {
 			parent:"sun"
 		}
 	},
+	mars:{
+		mass:6.4171e23,
+		gm:4.282837e13,
+		gravity:3.711,
+		radius:3389500,
+		polarRadius:3376200,
+		equatorRadius:3396200,
+		orbit:{
+			periapsis:206700000000,
+			apoapsis:249200000000,
+			radius:227939200000,//semi major axis
+			eccentricity:0.0934,
+			period:59354294,
+			speed:24077,//average
+			inclination:1.85,//degrees
+			parent:"sun"
+		}
+	},
 	moon:{
 		mass:7.342e22,
 		gm:4.9048695e12,
@@ -96,7 +114,7 @@ var space = {
 		}
 	},
 	orbit:{
-		/*functions for orbits a {gm:,a:,A:,P:,inc:,asc:,arg:r,v:,vP:,vA:,ano:,e:}
+		/*functions for orbits a {gm:,a:,A:,P:,inc:,asc:,arg:r,v:,vP:,vA:,ano:,e:,T:}
 			,where all properties are optional. The functions do as best they can.
 		*/
 		autocomplete:function(orbit){//deriving other properties from the existing ones.
@@ -143,6 +161,13 @@ var space = {
 				else if(def(orbit.A)){
 					if(def(orbit.P)){
 						newOrbit.e = (orbit.A - orbit.P)/(orbit.A + orbit.P)
+					}
+				}
+			};
+			if(!def(orbit.T)){
+				if(def(orbit.gm)){
+					if(def(orbit.a)){
+						newOrbit.T = 2*Math.PI*Math.sqrt(orbit.a*orbit.a*orbit.a/orbit.gm)
 					}
 				}
 			};
