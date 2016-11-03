@@ -338,9 +338,11 @@ content. Button positioning is defined in the cssportal.tooltip.css stylesheet.
 	background-color: rgba(250, 0, 250, 1);
 }
 /*3d model thumbnail overlays*/
-.overlay1024 {
-	position: absolute;
-	margin-left: -1024px;
+.overlay:hover {
+	border-style: solid;
+	border-width: 5px;
+	border-color: rgb(255,200,0);
+	border-radius: 5px;
 	cursor: pointer;
 }
 /*---------------------------------------------------------------------------------------
