@@ -600,26 +600,28 @@ table ul li {
 	margin: 5px;
 }
 /*=========================================================================================================*/
-		a {
-			text-decoration: none;
-			color: rgba(255, 200, 0, 1);
-		}
-		
-		a:hover {
-			color: rgba(255,255,60,1);
-			background-color: rgba(50, 50, 0, 1)
-		}
-		img {
-		 	padding: 10px;
-		 	width: 100%;
-		}
-		.tooltip-img {
-			width: auto;
-			float: right;
-		}
-		.realsize {
-			width: auto;
-		}
+a {
+	text-decoration: none;
+	color: rgba(255, 200, 0, 1);
+}
+a:hover {
+	color: rgba(255,255,60,1);
+	background-color: rgba(50, 50, 0, 1)
+}
+a.linkImage:hover {
+	background-color: initial;
+}
+img {
+	padding: 10px;
+	width: 100%;
+}
+.tooltip-img {
+	width: auto;
+	float: right;
+}
+.realsize {
+	width: auto;
+}
 /*==============================================================================
 								NAV
 ================================================================================*/
@@ -643,7 +645,7 @@ nav {
 	border-bottom-left-radius: 65px;
 	border: 1px solid #ccc;
 	z-index: 20;
-  font-family: 'Titillium Web', sans-serif;
+	font-family: 'Titillium Web', sans-serif;
 }
 nav:hover {
   background-color: rgba(50, 50, 0, 1);
@@ -674,15 +676,15 @@ vertically (inline), spaces them out with padding, and makes their position rela
 to the fixed parent ul.
 ----------------------------------------------------------------------------------- */
 nav ul:first-child li {
-  display: inline;
-  position: relative;
-  padding: 6px;
+	display: inline;
+	position: relative;
+	padding: 6px;
 }
 /*---------------------------------------------------------------------------------------
 Then the nested ul's don't display when the page loads...
 ----------------------------------------------------------------------------------- */
 nav ul ul{
-  display: none;
+	display: none;
 }
 /*---------------------------------------------------------------------------------------
 ...but only if the cursor is over them. They are placed under their menu item with 
@@ -690,21 +692,20 @@ absolute positioning from the top of the parent element, and default indenting i
 compensated for by putting in a negative left position.
 ----------------------------------------------------------------------------------- */
 nav li:hover ul {
-  display: block;
-  position: absolute;
-  top: 30px;
-  left: -10px;
-  background-color: rgba(50, 50, 0, 1);
-  font-size: 13px;
+	display: block;
+	position: absolute;
+	top: 30px;
+	left: -10px;
+	background-color: rgba(50, 50, 0, 1);
+	font-size: 13px;
 }
 /*---------------------------------------------------------------------------------------
 To override the inline styling above, the nested ul li's are given display: block
 ----------------------------------------------------------------------------------- */
 nav li:hover ul li {
-  display: block;
-  padding: 6px 15px;
+	display: block;
+	padding: 6px 15px;
 }
-
 /* ==========================================================================
    EXAMPLE Media Queries for Responsive Design.
    These examples override the primary ('mobile first') styles.
