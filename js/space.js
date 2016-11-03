@@ -126,24 +126,29 @@ var space = {
 			}
 			var newOrbit = JSON.parse(JSON.stringify(orbit));//object cloning
 			if(!def(orbit.a)){
-				if(def(orbit.P) && def(orbit.A){
-					newOrbit.a = (orbit.A + orbit.P)/2
+				if(def(orbit.P)){
+					if(def(orbit.A)){
+						newOrbit.a = (orbit.A + orbit.P)/2
+					}
+					else if(def(orbit.e)){
+						newOrbit.a = orbit.P/(1-orbit.e)
+					}
 				}
 			};
 			if(!def(orbit.A)){
-				if(def(orbit.a) && def(orbit.P){
+				if(def(orbit.a) && def(orbit.P)){
 					newOrbit.A = 2*orbit.a - orbit.P
 				}
 			};
 			if(!def(orbit.P)){
-				if(def(orbit.a) && def(orbit.A){
+				if(def(orbit.a) && def(orbit.A)){
 					newOrbit.A = 2*orbit.a - orbit.A
 				}
 			};
 			if(!def(orbit.v)){
 				if(def(orbit.gm)){
 					if(def(orbit.r)){
-						if(def(orbit.a) && def(orbit.A){
+						if(def(orbit.a) && def(orbit.A)){
 							newOrbit.v = vElli(orbit.gm,orbit.r,orbit.P,orbit.A)
 						}
 					}
@@ -176,16 +181,16 @@ var space = {
 		validate:function(orbit){
 		//Check if an orbit object contains errors. Do not let your queries depend on this, but it is useful for validating input
 			if(orbit.A != undefined){
-				if(typeof(orbit.A) != "number"){
+				if(typeof(orbit.A) != "number"){//apoapsis must be a number
 					return false
 				}
 			}
 			if(orbit.P != undefined){
-				if(typeof(orbit.P) != "number"){
+				if(typeof(orbit.P) != "number"){//periapsis must be a number
 					return false
 				}
 				if(orbit.A != undefined){
-					if(orbit.P > orbit.A){
+					if(orbit.P > orbit.A){//periapsis can not be larger than apoapsis
 						return false
 					}
 				}
