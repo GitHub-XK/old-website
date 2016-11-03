@@ -96,17 +96,17 @@ var space = {
 		}
 	},
 	orbit:{
-		/*functions for orbits a {gm:,a:,A:,P:,inc:,asc:,arg:r,v:,vP:,vA:,ano:}
+		/*functions for orbits a {gm:,a:,A:,P:,inc:,asc:,arg:r,v:,vP:,vA:,ano:,e:}
 			,where all properties are optional. The functions do as best they can.
 		*/
 		autocomplete:function(orbit){//deriving other properties from the existing ones.
 			var def = function(test){//shorthand for testing if a property is defined
-				if(test === udefined){
+				if(test === undefined){
 					return false
 				}
 				return true
 			}
-			var newOrbit = orbit;//FIXME, proper object cloning
+			var newOrbit = JSON.parse(JSON.stringify(orbit));//object cloning
 			if(!def(orbit.a)){
 				if(def(orbit.P) && def(orbit.A){
 					newOrbit.a = (orbit.A + orbit.P)/2
@@ -131,7 +131,41 @@ var space = {
 					}
 				}
 			};
+			if(!def(orbit.e)){
+				if(def(orbit.a)){
+					if(def(orbit.P)){
+						newOrbit.e = (orbit.a - orbit.P)/orbit.a
+					}
+					else if(def(orbit.A)){
+						newOrbit.e = (orbit.A - orbit.a)/orbit.a
+					}
+				}
+				else if(def(orbit.A)){
+					if(def(orbit.P)){
+						newOrbit.e = (orbit.A - orbit.P)/(orbit.A + orbit.P)
+					}
+				}
+			};
 			return newOrbit
+		},
+		validate:function(orbit){
+		//Check if an orbit object contains errors. Do not let your queries depend on this, but it is useful for validating input
+			if(orbit.A != undefined){
+				if(typeof(orbit.A) != "number"){
+					return false
+				}
+			}
+			if(orbit.P != undefined){
+				if(typeof(orbit.P) != "number"){
+					return false
+				}
+				if(orbit.A != undefined){
+					if(orbit.P > orbit.A){
+						return false
+					}
+				}
+			}
+			return true
 		}
 	}
 }
