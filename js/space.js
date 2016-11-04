@@ -42,7 +42,8 @@ var space = {
 			speed:29780,//average
 			inclination:0,//degrees
 			parent:"sun"
-		}
+		},
+		satellites:["moon"]
 	},
 	mars:{
 		mass:6.4171e23,
@@ -60,7 +61,8 @@ var space = {
 			speed:24077,//average
 			inclination:1.85,//degrees
 			parent:"sun"
-		}
+		},
+		satellites:["phobos","deimos"]
 	},
 	moon:{
 		mass:7.342e22,
@@ -78,7 +80,7 @@ var space = {
 			speed:1022,//average
 			inclination:5.145,//degrees
 			parent:"earth"
-		}
+		},
 	},
 	hohmann:function(gm,r,R){
 		return Math.abs(vCirc(gm,r) - vElli(gm,r,r,R))
@@ -220,6 +222,21 @@ var space = {
 					else if(def(orbit.e)){
 						newOrbit.a = orbit.P/(1-orbit.e)
 					}
+					else if(def(orbit.vP)){
+						if(def(orbit.vA)){
+							newOrbit.a = orbit.P*(1+orbit.vP/orbit.vA)/2
+						}
+					}
+				}
+				else if(def(orbit.e)){
+					if(def(orbit.A)){
+						newOrbit.a = orbit.A/(orbit.e+1)
+					}
+				}
+				else if(def(orbit.T)){
+					if(def(orbit.gm)){
+						newOrbit.a = Math.pow(orbit.gm*Math.pow(orbit.T/(2*Math.PI),2),1/3)
+					}
 				}
 			};
 			if(!def(orbit.A)){
@@ -292,6 +309,18 @@ var space = {
 					}
 				}
 			};
+			if(!def(orbit.vA)){
+				if(def(orbit.gm)){
+					if(def(orbit.A)){
+						if(def(orbit.P)){
+							newOrbit.vA = Math.sqrt(orbit.gm*(2/orbit.A - 2/(orbit.P+orbit.A)))
+						}
+						else if(def(orbit.a)){
+							newOrbit.vA = Math.sqrt(orbit.gm*(2/orbit.A - 1/orbit.a))
+						}
+					}
+				}
+			}
 			return newOrbit
 		},
 		validate:function(orbit){
