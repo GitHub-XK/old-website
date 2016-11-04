@@ -105,7 +105,7 @@ var space = {
 		};
 		if(
 			origin.inc === undefined ||
-			target.inc == undefined ||
+			target.inc === undefined ||
 			(origin.inc === target.inc && origin.asc === target.asc)
 		)//determine if the orbits are coplanar
 		{
@@ -162,6 +162,7 @@ var space = {
 			}
 		}
 		else{//not coplanar
+			var relativeInclination = undefined;//FIXME depends on the longitude of the ascending node
 			if(origin.P === origin.A){//the first orbit is circular
 				if(target.P === target.A){//both orbits are circular
 					/*potential for a small delta-v saving by splitting the plane change.
@@ -169,8 +170,22 @@ var space = {
 					Below is a suboptimal strategy doing all of the plane change at periapsis
 					it is often better than the bi-elliptic aproach though
 					*/
-					var subOptimal = undefined;
-						/*calculation here*/
+					if(origin.P < target.P){
+						var elliLow = vElli(gm,origin.P,origin.P,target.P);
+						var deltLow = Math.sqrt(
+							Math.pow(elliLow*Math.sin(relativeInclination),2) +
+							Math.pow(elliLow*Math.cos(relativeInclination)-vCirc(gm,origin.P),2)
+						);
+						var subOptimal = vCirc(gm,target.P) - vElli(gm,target.P,origin.P,target.P) + deltaLow;
+					}
+					else{
+						var elliLow = vElli(gm,target.P,target.P,origin.P);
+						var deltLow = Math.sqrt(
+							Math.pow(elliLow*Math.sin(relativeInclination),2) +
+							Math.pow(elliLow*Math.cos(relativeInclination)-vCirc(gm,target.P),2)
+						);
+						var subOptimal = vCirc(gm,origin.P) - vElli(gm,origin.P,targer.P,origin.P) + deltaLow;
+					}
 					if(subOptimal < deltaCost){
 						deltaCost = subOptimal
 					}
@@ -186,7 +201,7 @@ var space = {
 		return deltaCost
 	},
 	orbit:{
-		/*functions for orbits a {gm:,a:,A:,P:,inc:,asc:,arg:r,v:,vP:,vA:,ano:,e:,T:}
+		/*functions for orbits a {gm:,a:,A:,P:,inc:,asc:,arg:,r:,v:,vP:,vA:,ano:,e:,T:}
 			,where all properties are optional. The functions do as best they can.
 		*/
 		autocomplete:function(orbit){//deriving other properties from the existing ones.
@@ -245,6 +260,35 @@ var space = {
 				if(def(orbit.gm)){
 					if(def(orbit.a)){
 						newOrbit.T = 2*Math.PI*Math.sqrt(orbit.a*orbit.a*orbit.a/orbit.gm)
+					}
+				}
+			};
+			if(!def(orbit.vP)){
+				if(def(orbit.gm)){
+					if(def(orbit.P)){
+						if(def(orbit.A)){
+							newOrbit.vP = Math.sqrt(orbit.gm*(2/orbit.P - 2/(orbit.P+orbit.A)))
+						}
+						else if(def(orbit.a)){
+							newOrbit.vP = Math.sqrt(orbit.gm*(2/orbit.P - 1/orbit.a))
+						}
+					}
+				}
+				else if(def(orbit.vA)){
+					if(def(orbit.P)){
+						if(def(orbit.A)){
+							newOrbit.vP = orbit.vA*orbit.A/orbit.P
+						}
+						else if(def(orbit.a)){
+							newOrbit.vP = orbit.vA*(2*orbit.a-orbit.P)/orbit.P
+						}
+					}
+				}
+				else if(def(orbit.v)){
+					if(def(orbit.P)){
+						if(def(orbit.r)){
+							newOrbit.vP = orbit.v*orbit.r/orbit.P
+						}
 					}
 				}
 			};
