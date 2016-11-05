@@ -1,4 +1,4 @@
-/*
+>>>>>>>>>>/*
 The space object, a library for various calculators at moonwards.com
 GPL notice:
 @licstart
@@ -22,6 +22,9 @@ GPL notice:
 Info:
 
 DEVELOPMENT VERSION! Things may change or not work
+
+New versions of this library are pushed all the time WITHOUT TESTING. If this version crashes, try an earlie one.
+
 All units are metric and unprefixed, unless otherwise noted.
 
 */
@@ -98,111 +101,120 @@ var space = {
 	vDesc:function(gm,P,A){
 		return vEsc(gm,P) - vElli(gm,P,P,A)
 	},
-	optimalTransfer:function(gm,origin,target){
-		/*orbit object:{A:,P:,inc:,asc:,arg:}
-		A and P are mandatory, inc, asc and arg are optional*/
-		var deltaCost = vDesc(gm,origin.P,origin,A) + vDesc(gm,target.P,target.A);//you can always do an infinite apoapsis bi-elliptic transfer.
-		if(origin === target){//sometimes, we are lucky :P
-			return 0;
-		};
-		if(
-			origin.inc === undefined ||
-			target.inc === undefined ||
-			(origin.inc === target.inc && origin.asc === target.asc)
-		)//determine if the orbits are coplanar
-		{
-			if(origin.P === origin.A){//is the first orbit circular?
-				if(target.P === target.A){//is the second orbit circular too? Hohmann!
-					var hohmannCost = hohmann(gm,origin.P,target.P);
-					if(hohmannCost < deltaCost){//...unless a bi-elliptical transfer is still more efficient
-						deltaCost = hohmannCost
+	math:{
+		toXYZ:function(position){//transforms from angular to cartesion coordinates. position is an object holding longitude and latitude.
+			return{
+				x:Math.cos(position.longitude) * Math.cos(position.latitude),
+				y:Math.sin(position.longitude) * Math.cos(position.latitude),
+				z:Math.sin(position.latitude)
+			}
+		}
+	}
+	orbit:{
+		optimalTransfer:function(gm,origin,target){
+			/*orbit object:{A:,P:,inc:,asc:,arg:}
+			A and P are mandatory, inc, asc and arg are optional*/
+			var deltaCost = vDesc(gm,origin.P,origin,A) + vDesc(gm,target.P,target.A);//you can always do an infinite apoapsis bi-elliptic transfer.
+			if(origin === target){//sometimes, we are lucky :P
+				return 0;
+			};
+			if(
+				origin.inc === undefined ||
+				target.inc === undefined ||
+				(origin.inc === target.inc && origin.asc === target.asc)
+			)//determine if the orbits are coplanar
+			{
+				if(origin.P === origin.A){//is the first orbit circular?
+					if(target.P === target.A){//is the second orbit circular too? Hohmann!
+						var hohmannCost = hohmann(gm,origin.P,target.P);
+						if(hohmannCost < deltaCost){//...unless a bi-elliptical transfer is still more efficient
+							deltaCost = hohmannCost
+						}
+					}
+					else{//The things below may or may not fail horribly
+						if(origin.P < target.A){
+							var bitangentialCost = vElli(gm,origin.P,origin.P,target.A) - vCirc(gm,origin.P) + vElli(gm,target.A,target.P,target.A) - vElli(gm,target.A,origin.P,target.A)
+						}
+						else{
+							var bitangentialCost = vCirc(gm,origin.P) - vElli(gm,origin.P,target.A,origin.P) - vElli(gm,target.A,target.P,target.A) + vElli(gm,target.A,target.A,origin.P)
+						}
+						if(bitangentialCost < deltaCost){//...unless a bi-elliptical transfer is still more efficient
+							deltaCost = hohmannCost
+						}
 					}
 				}
-				else{//The things below may or may not fail horribly
-					if(origin.P < target.A){
-						var bitangentialCost = vElli(gm,origin.P,origin.P,target.A) - vCirc(gm,origin.P) + vElli(gm,target.A,target.P,target.A) - vElli(gm,target.A,origin.P,target.A)
-					}
-					else{
-						var bitangentialCost = vCirc(gm,origin.P) - vElli(gm,origin.P,target.A,origin.P) - vElli(gm,target.A,target.P,target.A) + vElli(gm,target.A,target.A,origin.P)
-					}
-					if(bitangentialCost < deltaCost){//...unless a bi-elliptical transfer is still more efficient
-						deltaCost = hohmannCost
-					}
-				}
-			}
-			else if(target.P === target.A){//one elliptical, one circular
-					if(origin.A < target.P){
-						var bitangentialCost = vCirc(gm,target.P) - vElli(gm,target.P,origin.A,target.P) + vElli(gm,origin.A,origin.A,target.P) - vElli(gm,origin.A,origin.P,origin.A)
-					}
-					else{
-						var bitangentialCost = - vCirc(gm,target.P) + vElli(gm,target.P,target.P,origin.P) - vElli(gm,origin.P,target.P,origin.P) + vElli(gm,origin.P,origin.P,origin.A)
-					}
-					if(bitangentialCost < deltaCost){//...unless a bi-elliptical transfer is still more efficient
-						deltaCost = hohmannCost
-					}
-			}
-			else{
-				if(
-					(origin.arg === undefined && target.arg === undefined) ||
-					(origin.asc != undefined && target.asc != undefined && (target.arg + target.asc === origin.arg + origin.asc))
-				){//special case
-					if(origin.P === target.P){//guarantied to be better than bi-elliptical
-						deltaCost = Math.abs(vElli(gm,origin.P,origin.P,target.A) - vElli(gm,origin.P,origin.P,origin.A))
-					}
-					else if(origin.A === target.A){
-						deltaCost = Math.abs(vElli(gm,origin.A,origin.P,origin.A) - vElli(gm,origin.A,target.P,origin.A))
-					}
-					else{
-						//most likely a periapsis-apoapsis or apoapsis-periapsis solution. I have to prove that though
-					}
+				else if(target.P === target.A){//one elliptical, one circular
+						if(origin.A < target.P){
+							var bitangentialCost = vCirc(gm,target.P) - vElli(gm,target.P,origin.A,target.P) + vElli(gm,origin.A,origin.A,target.P) - vElli(gm,origin.A,origin.P,origin.A)
+						}
+						else{
+							var bitangentialCost = - vCirc(gm,target.P) + vElli(gm,target.P,target.P,origin.P) - vElli(gm,origin.P,target.P,origin.P) + vElli(gm,origin.P,origin.P,origin.A)
+						}
+						if(bitangentialCost < deltaCost){//...unless a bi-elliptical transfer is still more efficient
+							deltaCost = hohmannCost
+						}
 				}
 				else{
-			/*what is the optimal non-bi-elliptical transfer between two coplanar ellipses?
-			Is it bi-tangential? Question pending: http://space.stackexchange.com/q/16931/8693
-			*/
-				}
-			}
-		}
-		else{//not coplanar
-			var relativeInclination = undefined;//FIXME depends on the longitude of the ascending node
-			if(origin.P === origin.A){//the first orbit is circular
-				if(target.P === target.A){//both orbits are circular
-					/*potential for a small delta-v saving by splitting the plane change.
-					See http://space.stackexchange.com/q/12997/8693
-					Below is a suboptimal strategy doing all of the plane change at periapsis
-					it is often better than the bi-elliptic aproach though
-					*/
-					if(origin.P < target.P){
-						var elliLow = vElli(gm,origin.P,origin.P,target.P);
-						var deltLow = Math.sqrt(
-							Math.pow(elliLow*Math.sin(relativeInclination),2) +
-							Math.pow(elliLow*Math.cos(relativeInclination)-vCirc(gm,origin.P),2)
-						);
-						var subOptimal = vCirc(gm,target.P) - vElli(gm,target.P,origin.P,target.P) + deltaLow;
+					if(
+						(origin.arg === undefined && target.arg === undefined) ||
+						(origin.asc != undefined && target.asc != undefined && (target.arg + target.asc === origin.arg + origin.asc))
+					){//special case
+						if(origin.P === target.P){//guarantied to be better than bi-elliptical
+							deltaCost = Math.abs(vElli(gm,origin.P,origin.P,target.A) - vElli(gm,origin.P,origin.P,origin.A))
+						}
+						else if(origin.A === target.A){
+							deltaCost = Math.abs(vElli(gm,origin.A,origin.P,origin.A) - vElli(gm,origin.A,target.P,origin.A))
+						}
+						else{
+							//most likely a periapsis-apoapsis or apoapsis-periapsis solution. I have to prove that though
+						}
 					}
 					else{
-						var elliLow = vElli(gm,target.P,target.P,origin.P);
-						var deltLow = Math.sqrt(
-							Math.pow(elliLow*Math.sin(relativeInclination),2) +
-							Math.pow(elliLow*Math.cos(relativeInclination)-vCirc(gm,target.P),2)
-						);
-						var subOptimal = vCirc(gm,origin.P) - vElli(gm,origin.P,targer.P,origin.P) + deltaLow;
-					}
-					if(subOptimal < deltaCost){
-						deltaCost = subOptimal
+				/*what is the optimal non-bi-elliptical transfer between two coplanar ellipses?
+				Is it bi-tangential? Question pending: http://space.stackexchange.com/q/16931/8693
+				*/
 					}
 				}
 			}
-			else if(target.P === target.A){
-				//similar to the above subotimal algorithm
+			else{//not coplanar
+				var relativeInclination = undefined;//FIXME depends on the longitude of the ascending node
+				if(origin.P === origin.A){//the first orbit is circular
+					if(target.P === target.A){//both orbits are circular
+						/*potential for a small delta-v saving by splitting the plane change.
+						See http://space.stackexchange.com/q/12997/8693
+						Below is a suboptimal strategy doing all of the plane change at periapsis
+						it is often better than the bi-elliptic aproach though
+						*/
+						if(origin.P < target.P){
+							var elliLow = vElli(gm,origin.P,origin.P,target.P);
+							var deltLow = Math.sqrt(
+								Math.pow(elliLow*Math.sin(relativeInclination),2) +
+								Math.pow(elliLow*Math.cos(relativeInclination)-vCirc(gm,origin.P),2)
+							);
+							var subOptimal = vCirc(gm,target.P) - vElli(gm,target.P,origin.P,target.P) + deltaLow;
+						}
+						else{
+							var elliLow = vElli(gm,target.P,target.P,origin.P);
+							var deltLow = Math.sqrt(
+								Math.pow(elliLow*Math.sin(relativeInclination),2) +
+								Math.pow(elliLow*Math.cos(relativeInclination)-vCirc(gm,target.P),2)
+							);
+							var subOptimal = vCirc(gm,origin.P) - vElli(gm,origin.P,targer.P,origin.P) + deltaLow;
+						}
+						if(subOptimal < deltaCost){
+							deltaCost = subOptimal
+						}
+					}
+				}
+				else if(target.P === target.A){
+					//similar to the above subotimal algorithm
+				}
+				else{
+					//attempt apoapsis-apoapsis transfer. It is usually good enogh
+				}
 			}
-			else{
-				//attempt apoapsis-apoapsis transfer. It is usually good enogh
-			}
-		}
-		return deltaCost
-	},
-	orbit:{
+			return deltaCost
+		},
 		/*functions for orbits a {gm:,a:,A:,P:,inc:,asc:,arg:,r:,v:,vP:,vA:,ano:,e:,T:}
 			,where all properties are optional. The functions do as best they can.
 		*/
