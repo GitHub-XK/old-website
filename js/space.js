@@ -1,4 +1,4 @@
->>>>>>>>>>/*
+/*
 The space object, a library for various calculators at moonwards.com
 GPL notice:
 @licstart
