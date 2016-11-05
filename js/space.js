@@ -86,8 +86,8 @@ var space = {
 		},
 	},
 	hohmann:function(gm,r,R){
-		return Math.abs(vCirc(gm,r) - vElli(gm,r,r,R))
-			+ Math.abs(vCirc(gm,R) - vElli(gm,R,r,R))
+		return Math.abs(space.vCirc(gm,r) - space.vElli(gm,r,r,R))
+			+ Math.abs(space.vCirc(gm,R) - space.vElli(gm,R,r,R))
 	},
 	vCirc:function(gm,r){
 		return Math.sqrt(gm/r)
@@ -99,7 +99,7 @@ var space = {
 		return Math.sqrt(2*gm/r)
 	},
 	vDesc:function(gm,P,A){
-		return vEsc(gm,P) - vElli(gm,P,P,A)
+		return space.vEsc(gm,P) - space.vElli(gm,P,P,A)
 	},
 	math:{
 		toXYZ:function(position){//transforms from angular to cartesion coordinates. position is an object holding longitude and latitude.
@@ -114,7 +114,7 @@ var space = {
 		optimalTransfer:function(gm,origin,target){
 			/*orbit object:{A:,P:,inc:,asc:,arg:}
 			A and P are mandatory, inc, asc and arg are optional*/
-			var deltaCost = vDesc(gm,origin.P,origin,A) + vDesc(gm,target.P,target.A);//you can always do an infinite apoapsis bi-elliptic transfer.
+			var deltaCost = space.vDesc(gm,origin.P,origin,A) + space.vDesc(gm,target.P,target.A);//you can always do an infinite apoapsis bi-elliptic transfer.
 			if(origin === target){//sometimes, we are lucky :P
 				return 0;
 			};
@@ -133,10 +133,10 @@ var space = {
 					}
 					else{//The things below may or may not fail horribly
 						if(origin.P < target.A){
-							var bitangentialCost = vElli(gm,origin.P,origin.P,target.A) - vCirc(gm,origin.P) + vElli(gm,target.A,target.P,target.A) - vElli(gm,target.A,origin.P,target.A)
+							var bitangentialCost = space.vElli(gm,origin.P,origin.P,target.A) - space.vCirc(gm,origin.P) + space.vElli(gm,target.A,target.P,target.A) - space.vElli(gm,target.A,origin.P,target.A)
 						}
 						else{
-							var bitangentialCost = vCirc(gm,origin.P) - vElli(gm,origin.P,target.A,origin.P) - vElli(gm,target.A,target.P,target.A) + vElli(gm,target.A,target.A,origin.P)
+							var bitangentialCost = space.vCirc(gm,origin.P) - space.vElli(gm,origin.P,target.A,origin.P) - space.vElli(gm,target.A,target.P,target.A) + space.vElli(gm,target.A,target.A,origin.P)
 						}
 						if(bitangentialCost < deltaCost){//...unless a bi-elliptical transfer is still more efficient
 							deltaCost = hohmannCost
@@ -145,10 +145,10 @@ var space = {
 				}
 				else if(target.P === target.A){//one elliptical, one circular
 						if(origin.A < target.P){
-							var bitangentialCost = vCirc(gm,target.P) - vElli(gm,target.P,origin.A,target.P) + vElli(gm,origin.A,origin.A,target.P) - vElli(gm,origin.A,origin.P,origin.A)
+							var bitangentialCost = space.vCirc(gm,target.P) - space.vElli(gm,target.P,origin.A,target.P) + space.vElli(gm,origin.A,origin.A,target.P) - space.vElli(gm,origin.A,origin.P,origin.A)
 						}
 						else{
-							var bitangentialCost = - vCirc(gm,target.P) + vElli(gm,target.P,target.P,origin.P) - vElli(gm,origin.P,target.P,origin.P) + vElli(gm,origin.P,origin.P,origin.A)
+							var bitangentialCost = - space.vCirc(gm,target.P) + space.vElli(gm,target.P,target.P,origin.P) - space.vElli(gm,origin.P,target.P,origin.P) + space.vElli(gm,origin.P,origin.P,origin.A)
 						}
 						if(bitangentialCost < deltaCost){//...unless a bi-elliptical transfer is still more efficient
 							deltaCost = hohmannCost
@@ -160,10 +160,10 @@ var space = {
 						(origin.asc != undefined && target.asc != undefined && (target.arg + target.asc === origin.arg + origin.asc))
 					){//special case
 						if(origin.P === target.P){//guarantied to be better than bi-elliptical
-							deltaCost = Math.abs(vElli(gm,origin.P,origin.P,target.A) - vElli(gm,origin.P,origin.P,origin.A))
+							deltaCost = Math.abs(space.vElli(gm,origin.P,origin.P,target.A) - space.vElli(gm,origin.P,origin.P,origin.A))
 						}
 						else if(origin.A === target.A){
-							deltaCost = Math.abs(vElli(gm,origin.A,origin.P,origin.A) - vElli(gm,origin.A,target.P,origin.A))
+							deltaCost = Math.abs(space.vElli(gm,origin.A,origin.P,origin.A) - space.vElli(gm,origin.A,target.P,origin.A))
 						}
 						else{
 							//most likely a periapsis-apoapsis or apoapsis-periapsis solution. I have to prove that though
@@ -186,20 +186,20 @@ var space = {
 						it is often better than the bi-elliptic aproach though
 						*/
 						if(origin.P < target.P){
-							var elliLow = vElli(gm,origin.P,origin.P,target.P);
+							var elliLow = space.vElli(gm,origin.P,origin.P,target.P);
 							var deltLow = Math.sqrt(
 								Math.pow(elliLow*Math.sin(relativeInclination),2) +
-								Math.pow(elliLow*Math.cos(relativeInclination)-vCirc(gm,origin.P),2)
+								Math.pow(elliLow*Math.cos(relativeInclination)-space.vCirc(gm,origin.P),2)
 							);
-							var subOptimal = vCirc(gm,target.P) - vElli(gm,target.P,origin.P,target.P) + deltaLow;
+							var subOptimal = space.vCirc(gm,target.P) - space.vElli(gm,target.P,origin.P,target.P) + deltaLow;
 						}
 						else{
-							var elliLow = vElli(gm,target.P,target.P,origin.P);
+							var elliLow = space.vElli(gm,target.P,target.P,origin.P);
 							var deltLow = Math.sqrt(
 								Math.pow(elliLow*Math.sin(relativeInclination),2) +
-								Math.pow(elliLow*Math.cos(relativeInclination)-vCirc(gm,target.P),2)
+								Math.pow(elliLow*Math.cos(relativeInclination)-space.vCirc(gm,target.P),2)
 							);
-							var subOptimal = vCirc(gm,origin.P) - vElli(gm,origin.P,targer.P,origin.P) + deltaLow;
+							var subOptimal = space.vCirc(gm,origin.P) - space.vElli(gm,origin.P,targer.P,origin.P) + deltaLow;
 						}
 						if(subOptimal < deltaCost){
 							deltaCost = subOptimal
