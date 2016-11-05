@@ -101,6 +101,75 @@ var space = {
 	vDesc:function(gm,P,A){
 		return space.vEsc(gm,P) - space.vElli(gm,P,P,A)
 	},
+	delta:{//json delta-v map
+		nodes:[
+			earthSurface:{
+				transfer:[
+					{
+						id:"earthLowOrbit",
+						cost:9400,
+						type:"high"
+					}
+				]
+			},
+			earthLowOrbit:{
+				transfer:[
+					{
+						id:"earth",
+						cost:0,
+						type:"aero"
+					},
+					{
+						id:"earth",
+						cost:7780,
+						type:"high"
+					},
+					{
+						id:"earthLowOrbitStationaryOrbitTransfer",
+						cost:2440,
+						type:"high"
+					}	
+				]
+			},
+			earthLowOrbitStationaryOrbitTransfer:{
+				transfer:[
+					{
+						id:"earthLowOrbit",
+						cost:0,
+						type:"aero"
+					},
+					{
+						id:"earthLowOrbit",
+						cost:2440,
+						type:"high"
+					},
+					{
+						id:"earthStationaryOrbit",
+						cost:1470,
+						type:"high"
+					}	
+				]	
+			},
+			earthStationaryOrbit:{
+				transfer:[
+					{
+						id:"earthLowOrbitStationaryOrbitTransfer",
+						cost:1470,
+						type:"high"
+					}
+				]
+			},
+			earthLowOrbitMoonTransfer:{
+				transfer:[
+					{
+						id:"earthLowOrbitStationaryOrbitTransfer",
+						cost:0,
+						type:"aero"
+					}
+				]
+			}
+		]
+	}
 	math:{
 		toXYZ:function(position){//transforms from angular to cartesion coordinates. position is an object holding longitude and latitude.
 			return{
@@ -215,7 +284,7 @@ var space = {
 			}
 			return deltaCost
 		},
-		/*functions for orbits a {gm:,a:,A:,P:,inc:,asc:,arg:,r:,v:,vP:,vA:,ano:,e:,T:}
+		/*functions for orbits a {gm:,a:,A:,P:,inc:,asc:,arg:,r:,v:,vP:,vA:,ano:,e:,T:,vV:,vH:}
 			,where all properties are optional. The functions do as best they can.
 		*/
 		autocomplete:function(orbit){//deriving other properties from the existing ones.
@@ -237,6 +306,15 @@ var space = {
 					else if(def(orbit.vP)){
 						if(def(orbit.vA)){
 							newOrbit.a = orbit.P*(1+orbit.vP/orbit.vA)/2
+						}
+					}
+					else if(def(orbit.v)){
+						if(def(orbit.r)){
+							if(orbit.r === orbit.P){
+								if(def(orbit.vA)){
+									newOrbit.a = orbit.P*(1+orbit.v/orbit.vA)/2
+								}
+							}
 						}
 					}
 				}
@@ -267,6 +345,11 @@ var space = {
 						if(def(orbit.a) && def(orbit.A)){
 							newOrbit.v = vElli(orbit.gm,orbit.r,orbit.P,orbit.A)
 						}
+					}
+				}
+				else if(def(orbit.vV)){
+					if(def(orbit.vH)){
+						newOrbit.v = Math.sqrt(orbit.vV*orbit.vV + orbit.vH*orbit.vH)
 					}
 				}
 			};
