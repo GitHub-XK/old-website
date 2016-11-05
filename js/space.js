@@ -105,67 +105,32 @@ var space = {
 		nodes:{
 			earthSurface:{
 				transfer:[
-					{
-						id:"earthLowOrbit",
-						cost:9400,
-						type:"high"
-					}
+					{id:"earthLowOrbit",cost:9400,type:"high"}
 				]
 			},
 			earthLowOrbit:{
 				transfer:[
-					{
-						id:"earth",
-						cost:0,
-						type:"aero"
-					},
-					{
-						id:"earth",
-						cost:7780,
-						type:"high"
-					},
-					{
-						id:"earthLowOrbitStationaryOrbitTransfer",
-						cost:2440,
-						type:"high"
-					}	
+					{id:"earth",cost:0,type:"aero"},
+					{id:"earth",cost:7780,type:"high"},
+					{id:"earthLowOrbitStationaryOrbitTransfer",cost:2440,type:"high"}	
 				]
 			},
 			earthLowOrbitStationaryOrbitTransfer:{
 				transfer:[
-					{
-						id:"earthLowOrbit",
-						cost:0,
-						type:"aero"
-					},
-					{
-						id:"earthLowOrbit",
-						cost:2440,
-						type:"high"
-					},
-					{
-						id:"earthStationaryOrbit",
-						cost:1470,
-						type:"high"
-					}	
+					{id:"earthLowOrbit",cost:0,type:"aero"},
+					{id:"earthLowOrbit",cost:2440,type:"high"},
+					{id:"earthStationaryOrbit",cost:1470,type:"high"}	
 				]	
 			},
 			earthStationaryOrbit:{
 				transfer:[
-					{
-						id:"earthLowOrbitStationaryOrbitTransfer",
-						cost:1470,
-						type:"high"
-					}
+					{id:"earthLowOrbitStationaryOrbitTransfer",cost:1470,type:"high"}
 				]
 			},
 			earthLowOrbitMoonTransfer:{
 				transfer:[
-					{
-						id:"earthLowOrbitStationaryOrbitTransfer",
-						cost:0,
-						type:"aero"
-					}
+					{id:"earthLowOrbitStationaryOrbitTransfer",cost:0,type:"aero"},
+					{id:"earthLowOrbitStationaryOrbitTransfer",cost:1470,type:"high"}
 				]
 			}
 		}
