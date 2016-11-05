@@ -178,7 +178,7 @@ var space = {
 				z:Math.sin(position.latitude)
 			}
 		}
-	}
+	},
 	orbit:{
 		optimalTransfer:function(gm,origin,target){
 			/*orbit object:{A:,P:,inc:,asc:,arg:}
