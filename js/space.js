@@ -102,7 +102,7 @@ var space = {
 		return space.vEsc(gm,P) - space.vElli(gm,P,P,A)
 	},
 	delta:{//json delta-v map
-		nodes:[
+		nodes:{
 			earthSurface:{
 				transfer:[
 					{
@@ -168,7 +168,7 @@ var space = {
 					}
 				]
 			}
-		]
+		}
 	}
 	math:{
 		toXYZ:function(position){//transforms from angular to cartesion coordinates. position is an object holding longitude and latitude.
