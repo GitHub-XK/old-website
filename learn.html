@@ -40,42 +40,42 @@ Please <a href="http://www.mozilla.org/en-US/firefox/new/">upgrade your browser<
 <![endif]-->
 <header>
 	<a href="index.html" style="background-color:transparent;">
-	<img src="img/MWLogo-for-black-bckgnd.svg" alt="Moonwards logo" id="logo">
+		<img src="img/MWLogo-for-black-bckgnd.svg" alt="Moonwards logo" id="logo">
 	</a>
 	<nav>
 		<div id="nav">
-		<ul>
-			<li><a href="index.html">The VMC</a>
-				<ul>
-					<li><a href="index.html#colony">Colony Phase 1</a>
-					</li>
-				</ul>
-			</li>
-			<li><a href="planning.html">Plan</a>
-				<ul>
-					<li><a href="planning.html#equipment">Equipment</a></li>
-					<li><a href="planning.html#structures">Structures</a></li>
-				</ul>
-			</li>
-			<li><a href="learn.html">Learn</a>
-				<ul>
-					<li><a href="learn.html#interactives">Interactives</a></li>
-					<li><a href="learn.html#lessons">Lessons</a></li>
-				</ul>
-			<li><a href="why.html">Why</a>
-				<ul>
-					<li><a href="why.html#about">About Us</a></li>
-				</ul>
-			</li>
-			<li><a href="http://moonwards1.blogspot.mx/">Talk</a>
-				<ul>
-				<li><a href="http://moonwards1.blogspot.mx/">Blog</a></li>
-					<li><a href="http://www.moonwards.com/forum/">Forum</a></li>
-				</ul>
-			</li>
-			<li><a href="https://realtimeboard.com/app/board/o9J_k0iGgz4=/">Whiteboard</a>
-			</li>
-		</ul>
+			<ul>
+				<li><a href="index.html">The VMC</a>
+					<ul>
+						<li><a href="index.html#colony">Colony Phase 1</a></li>
+					</ul>
+				</li>
+				<li><a href="planning.html">Plan</a>
+					<ul>
+						<li><a href="planning.html#equipment">Equipment</a></li>
+						<li><a href="planning.html#structures">Structures</a></li>
+					</ul>
+				</li>
+				<li><a href="learn.html">Learn</a>
+					<ul>
+						<li><a href="learn.html#interactives">Interactives</a></li>
+						<li><a href="learn.html#lessons">Lessons</a></li>
+					</ul>
+				<li><a href="why.html">Why</a>
+					<ul>
+						<li><a href="why.html#about">About Us</a></li>
+					</ul>
+				</li>
+				<li><a href="http://moonwards1.blogspot.mx/">Talk</a>
+					<ul>
+						<li><a href="http://moonwards1.blogspot.mx/">Blog</a></li>
+						<li><a href="http://www.moonwards.com/forum/">Forum</a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="https://realtimeboard.com/app/board/o9J_k0iGgz4=/">Whiteboard</a>
+				</li>
+			</ul>
 		</div>
 	</nav>
 </header>
@@ -84,13 +84,17 @@ Please <a href="http://www.mozilla.org/en-US/firefox/new/">upgrade your browser<
 		<h2 class="col-3 col-m-4 yellow">Interactives</h2>
 	</div>
 	<div class="floatR col-9 col-m-8">
-		<p class="black roundAll">We have begun a collection of tools that illustrate important aspects of the physics 
+		<p class="black roundAll">
+We have begun a collection of tools that illustrate important aspects of the physics 
 of various undertakings in space. Getting a feel for how your equipment interacts with the environment 
 is really central to designing life in space. We will expand and refine all these with time, making them 
-more intuitive with graphics, combining them, and so on.</p>
+more intuitive with graphics, combining them, and so on.
+		</p>
 		<noscript>
-			<p>It seems like you do not have JavaScript enabled. If that is by intent, we can inform you that all the scripts on this site are not tracing you, are only used for fonts and styling.<br>
-The calculators are also based on JavaScript, and they do not work without it. They are free software under the terms of the GPL.</p>
+			<p>
+It seems like you do not have JavaScript enabled. If that is by intent, we can inform you that all the scripts on this site are not tracing you, are only used for fonts and styling.<br>
+The calculators are also based on JavaScript, and they do not work without it. They are free software under the terms of the GPL.
+			</p>
 		</noscript>
 	</div>
 	<br class="clearboth">
@@ -121,7 +125,9 @@ The calculators are also based on JavaScript, and they do not work without it. T
 				</div>
 				<p id="resultSH">&nbsp;</p>
 				<script src="js/suborbital.js"></script>
-				<p>More about suborbital hops <a href="http://hopsblog-hop.blogspot.com/2015/08/lunar-pogo-hopper.html">here</a></p>
+				<p>
+					More about suborbital hops <a href="http://hopsblog-hop.blogspot.com/2015/08/lunar-pogo-hopper.html">here</a>
+				</p>
 <!--geogebra applet-->
 <script type="text/javascript" src="https://www.geogebra.org/scripts/deployggb.js"></script>
 <script type="text/javascript">
@@ -178,139 +184,177 @@ window.onload = function(){
 		<h4 class="col-3 col-m-2" id="lessons">A quick introduction to orbital mechanics</h4>
 		<div class="black col-9 col-m-10">
 			<div class="darkYellow pad15 roundAll">
-			<h5>The basics:</h5>
-			<p><b>Navigation</b>: a spacecraft can best be understood as moving a heavy bowling ball. When it is up to speed, 
-			it continues to move, without anything pushing it. What requires effort is to change the direction it is moving, 
-			give it more speed, or slow it down. Coasting along is "free". The cost of a maneuver is the required 
-			<b>change in velocity</b>, commonly referred to as <b>Delta-v</b>.</p>
-			<p>An orbit is an example of coasting along for free. When in an orbit, a spacecraft does not use its 
-			thrusters, and gravity bends its path, most often to an ellipse. Thus, you can leave your spacecraft in an 
-			orbit for as long as you like.</p>
-			<p>However, when we want to change our spacecraft's orbit, we have to change our velocity, thus draining 
-			from our Delta-v budget. A spacecraft always has a limited amount of Delta-v, so making transfers between 
-			orbits as cheap as possible is a major considerations in spacecraft navigation.</p>
-			<p>Every way of changing the velocity of a spacecraft is based upon the conservation of momentum. That is, 
-			if you take every object in a system, multiply their mass and velocity, and take their sum, the value you 
-			get is constant. That means throwing propellant in one direction causes something else to move in the 
-			opposite direction in order to keep the momentum constant. That "something" is your spacecraft.</p>
-			<p>The obvious limitation should then be clear: We have a limited amount of propellant to throw away. Making 
-			the propellant go faster makes the required amount smaller, so that helps. This is the <b>exhaust velocity 
-			of the rocket</b>. Another measure for the exact same thing is <b>Isp</b> (specific impulse). That is just 
-			the exhaust velocity divided by the standard gravity at sea level (9.81 m/s²). Here is our first important 
-			equation, used to calculate Delta-v:
-$$
-\Delta v=v_e \cdot ln\left(\frac{m_{initial}}{m_{final}}\right)
-%Seeing gibberish here instead of an equation? Seems like we screwed up. Please contact us 
-$$
+				<h5>The basics:</h5>
+				<p>
+<b>Navigation</b>: a spacecraft can best be understood as moving a heavy bowling ball. When it is up to speed, 
+it continues to move, without anything pushing it. What requires effort is to change the direction it is moving, 
+give it more speed, or slow it down. Coasting along is "free". The cost of a maneuver is the required 
+<b>change in velocity</b>, commonly referred to as <b>Delta-v</b>.
+				</p>
+				<p>
+An orbit is an example of coasting along for free. When in an orbit, a spacecraft does not use its 
+thrusters, and gravity bends its path, most often to an ellipse. 
+Thus, you can leave your spacecraft in an orbit for as long as you like.
+				</p>
+				<p>
+However, when we want to change our spacecraft's orbit, we have to change our velocity, thus draining 
+from our Delta-v budget. A spacecraft always has a limited amount of Delta-v, so making transfers between 
+orbits as cheap as possible is a major considerations in spacecraft navigation.
+				</p>
+				<p>
+Every way of changing the velocity of a spacecraft is based upon the conservation of momentum. That is, 
+if you take every object in a system, multiply their mass and velocity, and take their sum, the value you 
+get is constant. That means throwing propellant in one direction causes something else to move in the 
+opposite direction in order to keep the momentum constant. That "something" is your spacecraft.
+				</p>
+				<p>
+The obvious limitation should then be clear: We have a limited amount of propellant to throw away. Making 
+the propellant go faster makes the required amount smaller, so that helps. This is the <b>exhaust velocity 
+of the rocket</b>. Another measure for the exact same thing is <b>Isp</b> (specific impulse). That is just 
+the exhaust velocity divided by the standard gravity at sea level (9.81 m/s²). Here is our first important 
+equation, used to calculate Delta-v:
+<!--The following is Mathjax notation-->
+$$\Delta v=v_e \cdot ln\left(\frac{m_{initial}}{m_{final}}\right)
+%Seeing gibberish here instead of an equation? Seems like we screwed up. Please contact us $$
+
 This is the Tsiolkovsky rocket equation. Tsiolkovsky figured out how rockets worked <i>before</i> planes where invented. Let us see how it works:<br>
 $v_e$ is the exhaust velocity<br>
 $m_{initial}$ is the mass of the entire spacecraft before you start the burn<br>
 $m_{final}$ is the mass of the spacecraft after the burn. $\frac{m_{initial}}{m_{final}}$ is often called the mass parameter.<br>
 $ln$ is the natural logarithm. You should have a button labelled that on your calculator.<br>
-A calculator implementation of this equation is at the top of this page.<br></p>
-			<h5>Propulsion:</h5>
-			<p>As it is desirable to have as high a exhaust velocity as possible, the goal of all kinds of rocket propulsion is to cram 
-			as much propellant into the propellant stream as physically possible</p>
-			<h6>Chemical rockets</h6>
-			<p>This is the most common way of rocket propulsion, and gets the energy from chemical reactions of fuel. The exhaust 
-			products also double as the reaction mass. The most common rocket fuels are kerosene-like hydrocarbons and liquid oxygen. 
-			For higher performance, but at the cost of a more complicated design, hydrogen can be used instead of kerosene. 
-			There are also many other fuels mostly focusing on easy-to-store and fail-proof engines. Solid rocket fuel is often used 
-			for boosters and does not offer a high performance, but has decent thrust.
-			</p>
-			<h6>Nuclear rockets</h6>
-			<p>The amount of energy that can be stored as chemical compounds is limited, and chemical rockets are also forced to use 
-			less-than-optimal exhaust products as reaction mass. In general, lighter molecules are better, but no chemical reaction 
-			that produces large amounts of energy also produces hydrogen gas. Nuclear engines bypass this issue by using a reactor to 
-			heat the flow of propellant, making use of hydrogen gas possible, this makes the exhaust velocity twice as fast as chemical 
-			rockets. On the other hand, they often have lower thrust.
-			</p>
-			<h6>Ion engines</h6>
-			<p>If high thrust is not a concern, for instance when the maneuver can take weeks or months, ion engines can be used. They 
-			work by using magnetic or electrostatic forces to accelerate an ionized gas, causing it to reach a very high velocity. 
-			This type of engine uses a lot of electricity and the thrust is low, but the efficiency can be far better than both chemical 
-			and nuclear rocket engines. A possible use is a cargo craft slowly spiraling between the Moon and low Earth orbit.
-			</p>
-			<h6>Solar sails</h6>
-			<p>It is technically not necessary to expend propellant. A solar sail uses the minuscule pressure light exerts when it hits 
-			something. If you have a very thin and large sail, this force can be used for transportation or station-keeping ("hovering"). 
-			The light can also be supplied by external lasers to increase performance, giving $6.67 \cdot 10^{-9} N/W$ for a reflective 
-			sail. Solar sails are direction sensitive as they can not tack directly towards the light source. 
-			</p>
-			<h5>Orbit terminology:</h5>
-			<img class="realsize" src="img/orbit.png" height="519">
-			<p>The following terms are important when describing an orbit:</p>
-			<ul>
-				<li><b>Periapsis:</b> The point where the orbiting craft is <i>closest</i> to the object it orbits.</li>
-				<li><b>Apoapsis:</b> The point where the orbiting craft is <i>farthest</i> from the object it orbits.</li>
-				<li><b>Semi-major axis:</b> The largest central radius of an ellipse. This is half the distance between the 
-				periapsis and apoapsis. Often shortened to $a$.</li>
-			</ul>
-			<br>
-			<h5>Let us then get started with the math!</h5>
-			<p>We have a spacecraft orbiting in a circular orbit. What is its velocity?
+A calculator implementation of this equation is at the top of this page.<br>
+				</p>
+				<h5>Propulsion:</h5>
+				<p>
+As it is desirable to have as high a exhaust velocity as possible, the goal of all kinds of rocket propulsion is to cram 
+as much propellant into the propellant stream as physically possible
+				</p>
+				<h6>Chemical rockets</h6>
+				<p>
+This is the most common way of rocket propulsion, and gets the energy from chemical reactions of fuel. The exhaust 
+products also double as the reaction mass. The most common rocket fuels are kerosene-like hydrocarbons and liquid oxygen. 
+For higher performance, but at the cost of a more complicated design, hydrogen can be used instead of kerosene. 
+There are also many other fuels mostly focusing on easy-to-store and fail-proof engines. Solid rocket fuel is often used 
+for boosters and does not offer a high performance, but has decent thrust.
+				</p>
+				<h6>Nuclear rockets</h6>
+				<p>
+The amount of energy that can be stored as chemical compounds is limited, and chemical rockets are also forced to use 
+less-than-optimal exhaust products as reaction mass. In general, lighter molecules are better, but no chemical reaction 
+that produces large amounts of energy also produces hydrogen gas. Nuclear engines bypass this issue by using a reactor to 
+heat the flow of propellant, making use of hydrogen gas possible, this makes the exhaust velocity twice as fast as chemical rockets. 
+On the other hand, they often have lower thrust.
+				</p>
+				<h6>Ion engines</h6>
+				<p>
+If high thrust is not a concern, for instance when the maneuver can take weeks or months, ion engines can be used. They 
+work by using magnetic or electrostatic forces to accelerate an ionized gas, causing it to reach a very high velocity. 
+This type of engine uses a lot of electricity and the thrust is low, but the efficiency can be far better than both chemical 
+and nuclear rocket engines. A possible use is a cargo craft slowly spiraling between the Moon and low Earth orbit.
+				</p>
+				<h6>Solar sails</h6>
+				<p>
+It is technically not necessary to expend propellant. A solar sail uses the minuscule pressure light exerts when it hits 
+something. If you have a very thin and large sail, this force can be used for transportation or station-keeping ("hovering"). 
+The light can also be supplied by external lasers to increase performance, giving $6.67 \cdot 10^{-9} N/W$ for a reflective sail. 
+Solar sails are direction sensitive as they can not tack directly towards the light source. 
+				</p>
+				<h5>Orbit terminology:</h5>
+				<img class="realsize" src="img/orbit.png" height="519">
+				<p>
+The following terms are important when describing an orbit:
+				</p>
+				<ul>
+					<li><b>Periapsis:</b> The point where the orbiting craft is <i>closest</i> to the object it orbits.</li>
+					<li><b>Apoapsis:</b> The point where the orbiting craft is <i>farthest</i> from the object it orbits.</li>
+					<li><b>Semi-major axis:</b> The largest central radius of an ellipse. This is half the distance between the periapsis and apoapsis. Often shortened to $a$.</li>
+				</ul>
+				<br>
+				<h5>Let us then get started with the math!</h5>
+				<p>
+We have a spacecraft orbiting in a circular orbit. What is its velocity?
+
 $$v=\sqrt{\frac{\mu}{r}}$$
+
 $v$ is of course the velocity. $\mu$ is the gravitational parameter. You would often see that as $GM$, which is the same 
 thing. That is the mass of the object you are orbiting ($M$) multiplied with the gravitational constant ($G=6.674 \cdot 10^{-11} \frac{m^3}{kg s^2}$).
-			</p>
-			<p>To save you some time:</p>
-			<ul>
-				<li>$\mu _{Earth}=3.98600441 \cdot 10^{14} \frac{m^3}{s^2}$</li>
-				<li>$\mu _{Moon}=4.9048695 \cdot 10^{12} \frac{m^3}{s^2}$</li>
-				<li>$\mu _{Sun}=1.32712440018 \cdot 10^{20} \frac{m^3}{s^2}$</li>
-			</ul>
-			<p>Using that information, we can calculate things like the orbital velocity in low Earth orbit: 
-			$\sqrt{\frac{\mu _{Earth}}{r_{LEO}}}=\sqrt{\frac{3.986 \cdot 10^{14} \frac{m^3}{s^2}}{6600000m}}=7771 \frac{m}{s}$</p>
-			<p>But wait a minute, not all orbits are circles! How can be calculate the orbital velocity in an elliptical orbit? Well, 
-			first of all, the velocity varies depending on where in the orbit you are, having a larger velocity at the periapsis than 
-			at the apoapsis. But there is an equation here to:
+				</p>
+				<p>To save you some time:</p>
+				<ul>
+					<li>$\mu _{Earth}=3.98600441 \cdot 10^{14} \frac{m^3}{s^2}$</li>
+					<li>$\mu _{Moon}=4.9048695 \cdot 10^{12} \frac{m^3}{s^2}$</li>
+					<li>$\mu _{Sun}=1.32712440018 \cdot 10^{20} \frac{m^3}{s^2}$</li>
+				</ul>
+				<p>
+Using that information, we can calculate things like the orbital velocity in low Earth orbit: 
+$\sqrt{\frac{\mu _{Earth}}{r_{LEO}}}=\sqrt{\frac{3.986 \cdot 10^{14} \frac{m^3}{s^2}}{6600000m}}=7771 \frac{m}{s}$
+				</p>
+				<p>
+But wait a minute, not all orbits are circles! How can be calculate the orbital velocity in an elliptical orbit? Well, 
+first of all, the velocity varies depending on where in the orbit you are, having a larger velocity at the periapsis than 
+at the apoapsis. But there is an equation here to:
+
 $$v=\sqrt{\mu \left(\frac{2}{r}-\frac{1}{a}\right)}$$
+
 $r$ is here your current distance to the centre of the object you are orbiting, and $a$ is the semi-major axis that we just 
 talked about. Notice that in the case of a circular orbit, $r=a$ so this equation simplifies back to $v=\sqrt{\frac{\mu}{r}}$
-			</p>
-			<h5>Example usage:</h5>
-			<p>We can already start to put the things we have learned together. Take a look at the figure below. Imagine you are 
-			orbiting in the blue orbit, and want to change to the red orbit:</p>
-			<img class="realsize" src="img/transfer.png">
-			<p>
-			What do you do? Well, take a look at the point where the orbits touch each other. Why are we in the blue orbit there, 
-			and not in the red one? After all, you can be in that location if you where in the red orbit too. Not everything is 
-			the same. What matters here is that you would have a different velocity, depending on which of the orbits you are in. 
-			Let us calculate that. We say $\mu = 1$ for simplicity:
+				</p>
+				<h5>Example usage:</h5>
+				<p>
+We can already start to put the things we have learned together. Take a look at the figure below. Imagine you are 
+orbiting in the blue orbit, and want to change to the red orbit:
+				</p>
+				<img class="realsize" src="img/transfer.png">
+				<p>
+What do you do? Well, take a look at the point where the orbits touch each other. Why are we in the blue orbit there, 
+and not in the red one? After all, you can be in that location if you where in the red orbit too. Not everything is 
+the same. What matters here is that you would have a different velocity, depending on which of the orbits you are in. 
+Let us calculate that. We say $\mu = 1$ for simplicity:
+
 $$v_{blue}=\sqrt{\frac{1}{1}}=1$$
+
 $$v_{red}=\sqrt{1\left(\frac{2}{1}-\frac{1}{2}\right)}=1.225$$
-			Below is an illustration of the velocity vectors. The pink part is the $\Delta v$ we have to spend. Note that the difference is smallest when the vectors point in the same direction.
-			</p>
-			<img class="realsize" src="img/difference.png">
-			<h5>More math!</h5>
-			<p>
-			Let us take another look at the equation for velocity in an elliptical orbit:
+
+Below is an illustration of the velocity vectors. The pink part is the $\Delta v$ we have to spend. Note that the difference is smallest when the vectors point in the same direction.
+				</p>
+				<img class="realsize" src="img/difference.png">
+				<h5>More math!</h5>
+				<p>
+Let us take another look at the equation for velocity in an elliptical orbit:
+
 $$v=\sqrt{\mu \left(\frac{2}{r}-\frac{1}{a}\right)}$$
-			What happens if we tries to travel "to infinity"? We start at distance $r$, and travels to $a=\infty$:
+
+What happens if we tries to travel "to infinity"? We start at distance $r$, and travels to $a=\infty$:
+
 $$v=\sqrt{\mu \left(\frac{2}{r}-\frac{1}{\infty}\right)}$$
-			That simplifies to
+
+That simplifies to
+
 $$v=\sqrt{\mu \left(\frac{2}{r}-0\right)}$$
-			and that is equal to
+
+and that is equal to
+
 $$v_e=\sqrt{\frac{2\mu}{r}}$$
-			"$v_e$" is here short for "escape velocity". It turns out that travelling as far away as you would like has a limited cost. Of course, reaching infinity takes an ehm... infinite time... From this point, when I say infinity, I mean sufficiently far away.
-			</p>
-			<p>
-			You can also notice that the escape velocity at a given distance is $\sqrt{2}$ times larger than the orbital velocity of a circular orbit. $v_e = \sqrt{2}v_c$.
-			</p>
-			<h5>Beyond infinity</h5>
-			<p>
-			You have now seen 3 of the 4 different shapes an orbit can have, circular, elliptical and parabolic. The parabolic orbit is the one where we reach infinity.
-			The remaining orbit is the one shaped like a hyperbola. This one also reach infinity, like the parabola, but with a mayor difference:
-			In a parabolic orbit, we only "just reach infinity", that is, we are slowed down all the time by gravity, and the velocity is approaching zero as we get farther away.
-			That is not always what we want. For instance, if we only "just escape Earth", our relative velocity to it is zero, and that means we have the same orbit around the Sun as Earth!
-			In many cases, we want to have some extra velocity once we have escaped, for example for heading towards Mars, Jupiter, or for escaping the solar system entirely.
-			An example closer to home is when we escape the Moon for a return trip. We do not want to end up in the same orbit as the Moon, instead, we want to head back home.
-			</p>
-			<p>
-			How can we achieve that? The answer is naturally to get a velocity higher than the escape velocity. But how exactly does that relate to the final velocity we end up with once we have escaped?
-			Behold. The Pythagoras formula of orbital mechanics:
-			</p>
-			<img class="realsize" src="img/orbitalPythagoras.png" width="415" height="257">
+
+"$v_e$" is here short for "escape velocity". It turns out that travelling as far away as you would like has a limited cost. Of course, reaching infinity takes an ehm... infinite time... From this point, when I say infinity, I mean sufficiently far away.
+				</p>
+				<p>
+You can also notice that the escape velocity at a given distance is $\sqrt{2}$ times larger than the orbital velocity of a circular orbit. $v_e = \sqrt{2}v_c$.
+				</p>
+				<h5>Beyond infinity</h5>
+				<p>
+You have now seen 3 of the 4 different shapes an orbit can have, circular, elliptical and parabolic. The parabolic orbit is the one where we reach infinity.
+The remaining orbit is the one shaped like a hyperbola. This one also reach infinity, like the parabola, but with a mayor difference:
+In a parabolic orbit, we only "just reach infinity", that is, we are slowed down all the time by gravity, and the velocity is approaching zero as we get farther away.
+That is not always what we want. For instance, if we only "just escape Earth", our relative velocity to it is zero, and that means we have the same orbit around the Sun as Earth!
+In many cases, we want to have some extra velocity once we have escaped, for example for heading towards Mars, Jupiter, or for escaping the solar system entirely.
+An example closer to home is when we escape the Moon for a return trip. We do not want to end up in the same orbit as the Moon, instead, we want to head back home.
+				</p>
+				<p>
+How can we achieve that? The answer is naturally to get a velocity higher than the escape velocity. But how exactly does that relate to the final velocity we end up with once we have escaped?
+Behold. The Pythagoras formula of orbital mechanics:
+				</p>
+				<img class="realsize" src="img/orbitalPythagoras.png" width="415" height="257">
 			</div>
 		</div>
 	</div>
