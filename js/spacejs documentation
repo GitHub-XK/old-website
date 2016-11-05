@@ -1,0 +1,59 @@
+       __________    __________    __________    __________    __________                  ___    __________  
+      /  _______/\  /  ____   /\  /  ____   /\  /  _______/\  /  _______/\                /  /\  /  _______/\
+     /  /\______\/ /  /\__/  / / /  /\__/  / / /  /\______\/ /  /\______\/               /  / / /  /\______\/
+    /  /_/____    /  /_/_/  / / /  /_/_/  / / /  / /        /  /_/____                  /  / / /  /_/____
+   /______   /\  /  _______/ / /  ____   / / /  / /        /  _______/\         ___    /  / / /______   /\
+   \_____/  / / /  /\______\/ /  /\__/  / / /  / /        /  /\______\/        /  /\  /  / /  \_____/  / /
+ _______/  / / /  / /        /  / / /  / / /  /_/____    /  /_/____    ___    /  /_/_/  / / _______/  / /
+/_________/ / /__/ /        /__/ / /__/ / /_________/\  /_________/\  /__/\  /_________/ / /_________/ /
+\_________\/  \__\/         \__\/  \__\/  \_________\/  \_________\/  \__\/  \_________\/  \_________\/
+
+Latest update 2016.11.05 by Sigvart Brendberg
+
+Welcome to the space.js library documentation.
+
+Space.js provides some easy to use solutions to your everyday orbital mechanics problems.
+
+==Structure==
+
+Space.js is a single javascript object. Appart from the root variable named "space", space.js is not going to consume any part of the variable namespace.
+
+This is ment to be used as a script file. space.js is not suitable for json, as that format does not support functions.
+
+==The object==
+
+One of the things space.js is providing accurate numerical data on various planets and moons.
+
+This data con be accessed using the body in question as a property of the space object:
+
+    space.moon.mass
+
+At the moment, we have data on the following objects:
+
+    earth
+    moon
+    mars
+
+The following properies are defined:
+
+    mass
+    gm
+    gravity
+    radius
+    polarRadius
+    equatorRadius
+    orbit:{
+        periapsis
+        apoapsis
+        radius
+        eccentricity
+        period
+        speed
+        inclination
+        parent
+    }
+    satellites:[]
+
+==Functions==
+
+//TODO: autocomplete and optimalTransfer
