@@ -119,7 +119,8 @@ var space = {
 				transfer:[
 					{id:"earthLowOrbit",cost:0,type:"aero"},
 					{id:"earthLowOrbit",cost:2440,type:"high"},
-					{id:"earthStationaryOrbit",cost:1470,type:"high"}	
+					{id:"earthStationaryOrbit",cost:1470,type:"high"},
+					{id:"earthLowOrbitMoonTransfer",cost:680,type:"high"}
 				]	
 			},
 			earthStationaryOrbit:{
@@ -127,14 +128,36 @@ var space = {
 					{id:"earthLowOrbitStationaryOrbitTransfer",cost:1470,type:"high"}
 				]
 			},
+			earthStationaryOrbitMoonTransfer:{
+				transfer:[
+				]
+			},
 			earthLowOrbitMoonTransfer:{
 				transfer:[
 					{id:"earthLowOrbitStationaryOrbitTransfer",cost:0,type:"aero"},
-					{id:"earthLowOrbitStationaryOrbitTransfer",cost:1470,type:"high"}
+					{id:"earthLowOrbitStationaryOrbitTransfer",cost:680,type:"high"}
 				]
-			}
+			},
+			moonLowOrbit:{
+				transfer:[
+					{id:"moonSurface",cost:1720,type:"high"},
+					{id:"moonEscape",cost:680,type:"high"},
+					{id:"moonEscape",cost:1720,type:"low"}
+				]
+			},
+			moonEscape:{
+				transfer:[
+					{id:"moonLowOrbit",cost:680,type:"high"},
+					{id:"moonLowOrbit",cost:1720,type:"low"}
+				]
+			},
+			moonSurface:{
+				transfer:[
+					{id:"moonLowOrbit",cost:1720,type:"high"},
+				]
+			},
 		}
-	}
+	},
 	math:{
 		toXYZ:function(position){//transforms from angular to cartesion coordinates. position is an object holding longitude and latitude.
 			return{
