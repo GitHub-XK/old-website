@@ -11,6 +11,13 @@
 		<generator>handwritten</generator>
 		<webMaster>sigvart@moonwards.com</webMaster>
 		<item>
+			<title>Lalande map</title>
+			<link>http://www.moonwards.com/</link>
+			<description>Kim has finished composing an extremely detailed map of the Lalande crater. It is a huge file, but available at request.</description>
+			<pubDate>Mon, 07 Now 2016 19:50:00 GMT</pubDate>
+			<guid>item2</guid>
+		</item>
+		<item>
 			<title>3D models</title>
 			<link>http://www.moonwards.com/</link>
 			<description>We now have 3D content available. Blend4web and Sketchfab models are now viewable in your browser.</description>
