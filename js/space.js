@@ -104,13 +104,15 @@ var space = {
 	delta:{//json delta-v map
 		nodes:{
 			earthSurface:{
-				transfer:[
-					{id:"earthLowOrbit",cost:9400,type:"high"}
+				stable:true,
+				transfer:[//complete
+					{id:"earthLowOrbit",cost:9400,type:"high"}//"high" means high acceleration (chemical or nuclear) is needed
 				]
 			},
 			earthLowOrbit:{
+				stable:true,//friction ignored
 				transfer:[
-					{id:"earth",cost:0,type:"aero"},
+					{id:"earth",cost:0,type:"aero"},//"aero" requires aerobraking
 					{id:"earth",cost:7780,type:"high"},
 					{id:"earthLowOrbitStationaryOrbitTransfer",cost:2440,type:"high"}	
 				]
@@ -133,26 +135,36 @@ var space = {
 				]
 			},
 			earthLowOrbitMoonTransfer:{
+				stable:true,
 				transfer:[
 					{id:"earthLowOrbitStationaryOrbitTransfer",cost:0,type:"aero"},
 					{id:"earthLowOrbitStationaryOrbitTransfer",cost:680,type:"high"}
 				]
 			},
+			earthEscape:{
+				stable:false,
+				transfer:[
+					{id:"earthLowOrbitMoonTransfer",cost:90,type:"high"}
+				]
+			},
 			moonLowOrbit:{
+				stable:true,
 				transfer:[
 					{id:"moonSurface",cost:1720,type:"high"},
 					{id:"moonEscape",cost:680,type:"high"},
-					{id:"moonEscape",cost:1720,type:"low"}
+					{id:"moonEscape",cost:1720,type:"low"}//"low" can be performed by an ion engine
 				]
 			},
 			moonEscape:{
+				stable:false,
 				transfer:[
 					{id:"moonLowOrbit",cost:680,type:"high"},
 					{id:"moonLowOrbit",cost:1720,type:"low"}
 				]
 			},
 			moonSurface:{
-				transfer:[
+				stable:true,
+				transfer:[//complete
 					{id:"moonLowOrbit",cost:1720,type:"high"},
 				]
 			},
