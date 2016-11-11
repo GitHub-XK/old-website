@@ -36,6 +36,7 @@ var space = {
 		radius:6371000,
 		polarRadius:6356800,
 		equatorRadius:6378100,
+		stationaryOrbitRadius:42164000,
 		orbit:{
 			periapsis:147095000000,
 			apoapsis:152100000000,
@@ -144,7 +145,8 @@ var space = {
 			earthEscape:{
 				stable:false,
 				transfer:[
-					{id:"earthLowOrbitMoonTransfer",cost:90,type:"high"}
+					{id:"earthLowOrbitMoonTransfer",cost:90,type:"high"},
+					{id:"earthLowOrbit",cost:7770,type:"low"}
 				]
 			},
 			moonLowOrbit:{
@@ -363,6 +365,17 @@ var space = {
 					}
 				}
 			};
+			if(!def(orbit.vH)){
+				if(def(orbit.r)){
+					if(def(orbit.vP)){
+						if(def(orbit.P)){
+							if(orbit.P === orbit.r){
+								newOrbit.vH = orbit.vP
+							}
+						};
+					};
+				};
+			};
 			if(!def(orbit.r)){
 				if(def(orbit.x)){
 					if(def(orbit.y)){
@@ -371,6 +384,33 @@ var space = {
 						}
 						else if(orbit.inc === 0){
 							newOrbit.r = Math.sqrt(orbit.x*orbit.x +  orbit.y*orbit.y)
+						}
+					}
+				}
+			};
+			if(!def(orbit.x)){
+				if(def(orbit.y)){
+					if(def(orbit.z)){
+						if(def(orbit.r)){
+							newOrbit.x = Math.sqrt(orbit.r*orbit.r - orbit.y*orbit.y - orbit.z*orbit.z)
+						}
+					}
+				}
+			};
+			if(!def(orbit.y)){
+				if(def(orbit.x)){
+					if(def(orbit.z)){
+						if(def(orbit.r)){
+							newOrbit.y = Math.sqrt(orbit.r*orbit.r - orbit.x*orbit.x - orbit.z*orbit.z)
+						}
+					}
+				}
+			};
+			if(!def(orbit.z)){
+				if(def(orbit.y)){
+					if(def(orbit.x)){
+						if(def(orbit.r)){
+							newOrbit.z = Math.sqrt(orbit.r*orbit.r - orbit.y*orbit.y - orbit.x*orbit.x)
 						}
 					}
 				}
