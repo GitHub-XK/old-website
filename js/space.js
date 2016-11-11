@@ -103,6 +103,29 @@ var space = {
 		return space.vEsc(gm,P) - space.vElli(gm,P,P,A)
 	},
 	delta:{//json delta-v map
+		/*lowTransfer:function(origin,target,aero){//aero true/false
+		},*/
+		highTransfer:function(origin,target,aero){
+			if(space.delta.nodes[origin] === undefined || space.delta.nodes[target] === undefined){
+				return undefined
+			};
+			var visited = {};
+			var recursiveSearch = function(node,cost){
+				for(var i=0;i<space.delta.nodes[node].transfer.length;i++){
+					if(aero || space.delta.nodes[node].transfer[i].type != "aero"){
+						if(
+							visited[space.delta.nodes[node].transfer[i].id] === undefined
+							|| space.delta.nodes[node].transfer[i].cost + cost
+							< visited[space.delta.nodes[node].transfer[i].id]
+						){
+							visited[space.delta.nodes[node].transfer[i].id] === space.delta.nodes[node].transfer[i].cost;
+						}
+					}
+				};
+			};
+			recursiveSearch(origin,0);
+			return visited.target;
+		},
 		nodes:{
 			earthSurface:{
 				stable:true,
@@ -297,6 +320,7 @@ var space = {
 				return true
 			}
 			var newOrbit = JSON.parse(JSON.stringify(orbit));//object cloning
+//The tests below may look way more nested than needed. But thrust me, this is comming in handy later
 			if(!def(orbit.a)){
 				if(def(orbit.P)){
 					if(def(orbit.A)){
