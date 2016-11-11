@@ -284,7 +284,7 @@ var space = {
 			}
 			return deltaCost
 		},
-		/*functions for orbits a {gm:,a:,A:,P:,inc:,asc:,arg:,r:,v:,vP:,vA:,ano:,e:,T:,vV:,vH:}
+		/*functions for orbits a {gm:,a:,A:,P:,inc:,asc:,arg:,r:,v:,vP:,vA:,ano:,e:,T:,vV:,vH:x:,y:,z:,vx:,vy:,vz}
 			,where all properties are optional. The functions do as best they can.
 		*/
 		autocomplete:function(orbit){//deriving other properties from the existing ones.
@@ -350,6 +350,28 @@ var space = {
 				else if(def(orbit.vV)){
 					if(def(orbit.vH)){
 						newOrbit.v = Math.sqrt(orbit.vV*orbit.vV + orbit.vH*orbit.vH)
+					}
+				}
+				else if(def(orbit.vx)){
+					if(def(orbit.vy)){
+						if(def(orbit.vz)){
+							newOrbit.v = Math.sqrt(orbit.vx*orbit.vx + orbit.vy*orbit.vy + orbit.vz*orbit.vz)
+						}
+						else if(orbit.inc === 0){
+							newOrbit.v = Math.sqrt(orbit.vx*orbit.vx + orbit.vy*orbit.vy)
+						}
+					}
+				}
+			};
+			if(!def(orbit.r)){
+				if(def(orbit.x)){
+					if(def(orbit.y)){
+						if(def(orbit.z)){
+							newOrbit.r = Math.sqrt(orbit.x*orbit.x +  orbit.y*orbit.y + orbit.z*orbit.z)
+						}
+						else if(orbit.inc === 0){
+							newOrbit.r = Math.sqrt(orbit.x*orbit.x +  orbit.y*orbit.y)
+						}
 					}
 				}
 			};
@@ -429,7 +451,7 @@ var space = {
 						return false
 					}
 				}
-			}
+			};
 			if(orbit.P != undefined){
 				if(typeof(orbit.P) != "number"){//periapsis must be a number
 					return false
@@ -438,6 +460,14 @@ var space = {
 					if(orbit.P > orbit.A){//periapsis can not be larger than apoapsis
 						return false
 					}
+				}
+			};
+			if(orbit.z != undefined){
+				if(typeof(orbit.z) != "number"){
+					return false
+				}
+				if(orbit.inc === 0 && orbit.z != 0){
+					return false
 				}
 			}
 			return true
