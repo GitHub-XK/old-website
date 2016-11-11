@@ -33,7 +33,7 @@ MathJax.Hub.Config({
 			}
 		</style>
 	</head>
-<body onload="subDraw()">
+<body>
 <!--[if lt IE 8]>
 <p class="browserupgrade">You are using an <strong>outdated</strong> browser. 
 Please <a href="http://www.mozilla.org/en-US/firefox/new/">upgrade your browser</a> to improve your experience.</p>
@@ -124,10 +124,10 @@ The calculators are also based on JavaScript, and they do not work without it. T
 					<canvas id="subOrbitalCanvas" width="512" height="256" onmouseover="document.body.cursor='move'" onmouseout="document.body.cursor='auto'"></canvas>
 				</div>
 				<p id="resultSH">&nbsp;</p>
-				<script src="js/suborbital.js"></script>
 				<p>
 					More about suborbital hops <a href="http://hopsblog-hop.blogspot.com/2015/08/lunar-pogo-hopper.html">here</a>
 				</p>
+<script src="js/suborbital.js"></script>
 <!--geogebra applet-->
 <script type="text/javascript" src="https://www.geogebra.org/scripts/deployggb.js"></script>
 <script type="text/javascript">
