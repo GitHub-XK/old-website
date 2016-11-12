@@ -28,9 +28,38 @@ MathJax.Hub.Config({
 		<script async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 		<script src="js/space.js"></script>
 		<style>
-			input, button {
-				color:black;
-			}
+input, button {
+	color:black;
+}
+summary {
+	padding:10px;
+	background-color:#000000;
+}
+table {
+	cursor:auto;
+}
+details, table {
+	margin-left:35px;
+}
+td{
+	padding-left:20px;
+	padding-right:20px;
+}
+.orbit summary{
+	background-color:#002000;
+	border-radius: 20px;
+}
+.orbit {
+	background-color:#002000;
+	border-radius: 20px;
+}
+.code {
+	font-family:'Titillium Web', monospace;
+	color:blue;
+}
+h4 {
+	font-size:200%;
+}
 		</style>
 	</head>
 <body>
@@ -105,7 +134,7 @@ The calculators are also based on JavaScript, and they do not work without it. T
 				<p style="padding:0;">Mass ratio:</p>
 				<input type="text" title="Start mass divided by end mass" placeholder="Start mass divided by end mass" value="" id="massratioRE">
 				<p style="padding:0;">Exhaust velocity: (m/s)</p>
-				<input type="text" placeholder="Velocity of the rocket exhaust" value="" id="exhaustvelocityRE">&nbsp;
+				<input type="text" placeholder="Velocity of the rocket exhaust" value="" id="exhaustvelocityRE"><br>
 				<input type="checkbox" id="ispcheckboxRE"> &nbsp; use I<sub>sp</sub> instead
 				<br><br>
 				<button onclick="rocket()">Calculate!</button><br>
@@ -113,6 +142,9 @@ The calculators are also based on JavaScript, and they do not work without it. T
 				<p style="padding:0;" id="resultRE">&nbsp;</p>
 				<p style="padding:0;" id="moreThan"></p>
 				<p style="padding:0;" id="lessThan"></p>
+				<a href="rotovator.html" class="linkImage">
+					<img class="realsize" width="262" height="254" src="img/animatedRotovatorLink.png" alt="view the animations!">
+				</a>
 			</div>
 		</div>
 		<div class="black roundAll">
@@ -143,7 +175,7 @@ window.onload = function(){
 		<div class="black roundAll">
 			<div class="darkYellow pad15 roundAll">
 				<h3 class="yellow">Lunar Elevator</h3><br class="clearboth">
-				<p>Start distance: (distances are from the centre of the Moon towards Earth)</p>
+				<p>Start distance: (From the centre of the Moon towards Earth)</p>
 				<input type="text" placeholder="(km)" value="" id="start">
 				<input type="checkbox" id="surface">use lunar surface
 				<br>
@@ -174,13 +206,8 @@ window.onload = function(){
 		<a href="browsergame/shell.html"><img src="browsergame/images/link.png" alt="go to the browser game!"></a>
 	</div>
 -->
-		<div>
-			<a href="rotovator.html" class="linkImage">
-				<img class="realsize" width="262" height="254" src="img/animatedRotovatorLink.png" alt="view the animations!">
-			</a>
-		</div>
 	</div>
-	<div class="rowL">
+	<div class="rowL" style="margin-top:50px;">
 		<h4 class="col-3 col-m-2" id="lessons">A quick introduction to orbital mechanics</h4>
 		<div class="black col-9 col-m-10">
 			<div class="darkYellow pad15 roundAll">
@@ -358,34 +385,93 @@ Behold. The Pythagoras formula of orbital mechanics:
 			</div>
 		</div>
 	</div>
-	<div class="black col-9 col-m-10">
+	<div class="black col-9 floatR">
 		<div class="darkYellow pad15 roundAll">
-			<p>[experimental] A gigantic list. Here are some numbers we have found useful during the development of the project.</p>
+			<p>[Experimental!] A list of data. Here are some numbers we have found useful during the development of the project.</p>
+			<p>The data is also available from the open source "space.js" script, found at moonwards.com/js/space.js</p>
 			<details class="details">
 				<summary>List of numbers</summary>
 				<details>
 					<summary>The Moon</summary>
-					<ul>
-						<li>Mass:7.342 10^22 kg</li>
-						<li>Radius:1.7371 10^6 m</li>
-						<li>Gravitational prameter:4.9048695 10^12 kg^-1 m^3 s^2</li>
-					</ul>
+					<table>
+						<tr>
+							<th>Property</th><th>Value</th><th>Space.js access</th>
+						</tr>
+						<tr>
+							<td>Mass:</td><td>7.342 10<sup>22</sup> kg</td>
+							<td class="code">space.moon.mass</td>
+						</tr>
+						<tr>
+							<td>Radius:</td><td>1.7371 10<sup>6</sup> m</td>
+							<td class="code">space.moon.radius</td>
+						</tr>
+						<tr>
+							<td>Gravitational prameter:</td><td>4.9048695 10<sup>12</sup> kg<sup>-1</sup> m<sup>3</sup> s<sup>2</sup></td>
+							<td class="code">space.moon.gm</td>
+						</tr>
+					</table>
+					<details class="orbit">
+						<summary>Orbit:</summary>
+						<table>
+							<tr>
+								<th>Property</th><th>Value</th><th>Space.js access</th>
+							</tr>
+							<tr>
+								<td>Parent:</td><td>Earth</td>
+								<td class="code">space.moon.orbit.parent</td>
+							</tr>
+							<tr>
+								<td>Semi-major axis:</td><td></td>
+								<td class="code">space.moon.orbit.radius</td>
+							</tr>
+							<tr>
+								<td>Period:</td><td>2.360591 10<sup>6</sup> s</td>
+								<td class="code">space.moon.orbit.period</td>
+							</tr>
+						</table>
+					</details>
 				</details>
 				<details>
 					<summary>Earth</summary>
-					<ul>
-						<li>Mass:</li>
-						<li>Radius:</li>
-						<li>Gravitational prameter:3.986004418 10^14 kg^-1 m^3 s^2</li>
-					</ul>
+					<table>
+						<tr>
+							<th>Property</th><th>Value</th><th>Space.js access</th>
+						</tr>
+						<tr>
+							<td>Mass:</td><td></td>
+						</tr>
+						<tr>
+							<td>Radius:</td><td></td>
+						</tr>
+						<tr>
+							<td>Gravitational prameter:</td><td>3.986004418 10^14 kg^-1 m^3 s^2</td>
+						</tr>
+					</table>
+					<details class="orbit">
+						<summary>Orbit:</summary>
+						<table>
+							<tr>
+								<th>Property</th><th>Value</th><th>Space.js access</th>
+							</tr>
+							<tr>
+								<td>Parent:</td><td>Sun</td>
+							</tr>
+							<tr>
+								<td>Semi-major axis:</td><td></td>
+							</tr>
+							<tr>
+								<td>Period:</td><td></td>
+							</tr>
+						</table>
+					</details>
 				</details>
 			</details>
 		</div>
-	</div>
-	<div class="col-12 col-m-12">
-		<a href="http://www.gnu.org/licenses/">
-			<p>All calculator scripts are released under GPL 3</p>
-		</a>
+		<div class="col-12 col-m-12">
+			<a href="http://www.gnu.org/licenses/">
+				<p>All calculator scripts are released under GPL 3</p>
+			</a>
+		</div>
 	</div>
 </div>
 </body>
