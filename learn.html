@@ -7,9 +7,9 @@
 		<meta name="description" content="">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="theme-color" content="#000000">
-		<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
-		<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
-		<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+		<link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32">
+		<link rel="icon" type="image/png" href="favicon-96x96.png" sizes="96x96">
+		<link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16">
 		<link rel="stylesheet" href="css/normalize.css">
 		<link rel="stylesheet" href="css/main.css">
 		<link rel="stylesheet" href="css/cssportal.tooltip.css">
@@ -58,7 +58,7 @@ h4 {
 }
 .code {
 	font-family:'Titillium Web', monospace;
-	color:blue;
+	color:#5020FF;
 }
 .pad10 {
 	padding:10px;
@@ -367,14 +367,16 @@ and that is equal to
 
 $$v_e=\sqrt{\frac{2\mu}{r}}$$
 
-"$v_e$" is here short for "escape velocity". It turns out that travelling as far away as you would like has a limited cost. Of course, reaching infinity takes an ehm... infinite time... From this point, when I say infinity, I mean sufficiently far away.
+"$v_e$" is here short for "escape velocity". It turns out that travelling as far away as you would like has a limited cost.
+Of course, reaching infinity takes an ehm... infinite time... From this point, when I say infinity, I mean sufficiently far away.
 				</p>
 				<p>
 You can also notice that the escape velocity at a given distance is $\sqrt{2}$ times larger than the orbital velocity of a circular orbit. $v_e = \sqrt{2}v_c$.
 				</p>
 				<h5>Beyond infinity</h5>
 				<p>
-You have now seen 3 of the 4 different shapes an orbit can have, circular, elliptical and parabolic. The parabolic orbit is the one where we reach infinity.
+You have now seen 3 of the 4 different shapes an orbit can have, circular, elliptical and parabolic.
+The parabolic orbit is the one where we reach infinity.
 The remaining orbit is the one shaped like a hyperbola. This one also reach infinity, like the parabola, but with a mayor difference:
 In a parabolic orbit, we only "just reach infinity", that is, we are slowed down all the time by gravity, and the velocity is approaching zero as we get farther away.
 That is not always what we want. For instance, if we only "just escape Earth", our relative velocity to it is zero, and that means we have the same orbit around the Sun as Earth!
@@ -385,86 +387,125 @@ An example closer to home is when we escape the Moon for a return trip. We do no
 How can we achieve that? The answer is naturally to get a velocity higher than the escape velocity. But how exactly does that relate to the final velocity we end up with once we have escaped?
 Behold. The Pythagoras formula of orbital mechanics:
 				</p>
-				<img class="realsize" src="img/orbitalPythagoras.png" width="415" height="257">
+				<img class="realsize" src="img/orbitalPythagoras.png" width="415" height="257" alt="v² = v_escape² + v_infinity²">
+				<p>
+Example: Say we are in an orbit again around a mass with a $\mu$ of 1. Our distance is also 1. The escape velocity at this distance is then $\sqrt{2}$. Say then that we have an actual velocity larger than that, for instance $v=2$. In that case, we are going to escape. However, we are still going to be slowed down by gravity, so our final velocity when we have travelled far away is going to be lower than 2 for sure.
+
+$$v^2 = v_{\infty}^2 + v_{e}^2$$
+
+We have some of the numbers to plug in to this equation.
+
+$$2^2 = v_{\infty}^2 + \sqrt{2}^2$$
+
+We can rearrange that to get:
+
+$$v_{\infty}^2 = 2^2 - \sqrt{2}^2$$
+
+And then get our velocity "at infinity":
+
+$$v_{\infty}=\sqrt{2}$$
+				</p>
 			</div>
 		</div>
 	</div>
 	<div class="black col-9 floatR">
 		<div class="darkYellow pad15 roundAll">
 			<p>[Experimental!] A list of data. Here are some numbers we have found useful during the development of the project.</p>
-			<p>The data is also available from the open source "space.js" script, found at moonwards.com/js/space.js</p>
+			<p>The data is also available from the open source "space.js" script, found at <a href="http://moonwards.com/js/space.js">moonwards.com/js/space.js</a></p>
 			<details class="details">
 				<summary>List of numbers</summary>
-				<details>
-					<summary>The Moon</summary>
+				<details><summary>The Moon</summary>
 					<table>
 						<tr>
-							<th>Property</th><th>Value</th><th>Space.js access</th>
+							<th>Property</th>
+							<th>Value</th>
+							<th>Space.js access</th>
 						</tr>
 						<tr>
-							<td>Mass:</td><td>7.342 10<sup>22</sup> kg</td>
+							<td>Mass:</td>
+							<td>7.342 10<sup>22</sup> kg</td>
 							<td class="code">space.moon.mass</td>
 						</tr>
 						<tr>
-							<td>Radius:</td><td>1.7371 10<sup>6</sup> m</td>
+							<td>Radius:</td>
+							<td>1.7371 10<sup>6</sup> m</td>
 							<td class="code">space.moon.radius</td>
 						</tr>
 						<tr>
-							<td>Gravitational prameter:</td><td>4.9048695 10<sup>12</sup> kg<sup>-1</sup> m<sup>3</sup> s<sup>2</sup></td>
+							<td>Gravitational prameter:</td>
+							<td>4.9048695 10<sup>12</sup> kg<sup>-1</sup> m<sup>3</sup> s<sup>2</sup></td>
 							<td class="code">space.moon.gm</td>
 						</tr>
 					</table>
-					<details class="orbit">
-						<summary>Orbit:</summary>
+					<details class="orbit"><summary>Orbit:</summary>
 						<table>
 							<tr>
-								<th>Property</th><th>Value</th><th>Space.js access</th>
+								<th>Property</th>
+								<th>Value</th>
+								<th>Space.js access</th>
 							</tr>
 							<tr>
-								<td>Parent:</td><td>Earth</td>
+								<td>Parent:</td>
+								<td>Earth</td>
 								<td class="code">space.moon.orbit.parent</td>
 							</tr>
 							<tr>
-								<td>Semi-major axis:</td><td></td>
+								<td>Semi-major axis:</td>
+								<td>3.84399 10<sup>8</sup> m</td>
 								<td class="code">space.moon.orbit.radius</td>
 							</tr>
 							<tr>
-								<td>Period:</td><td>2.360591 10<sup>6</sup> s</td>
+								<td>Period:</td>
+								<td>2.360591 10<sup>6</sup> s</td>
 								<td class="code">space.moon.orbit.period</td>
 							</tr>
 						</table>
 					</details>
 				</details>
-				<details>
-					<summary>Earth</summary>
+				<details><summary>Earth</summary>
 					<table>
 						<tr>
-							<th>Property</th><th>Value</th><th>Space.js access</th>
+							<th>Property</th>
+							<th>Value</th>
+							<th>Space.js access</th>
 						</tr>
 						<tr>
-							<td>Mass:</td><td></td>
+							<td>Mass:</td>
+							<td>7.342 10<sup>22</sup> kg</td>
+							<td class="code">space.earth.mass</td>
 						</tr>
 						<tr>
-							<td>Radius:</td><td></td>
+							<td>Radius:</td>
+							<td>6.371 10<sup>6</sup> m</td>
+							<td class="code">space.earth.radius</td>
 						</tr>
 						<tr>
-							<td>Gravitational prameter:</td><td>3.986004418 10^14 kg^-1 m^3 s^2</td>
+							<td>Gravitational prameter:</td>
+							<td>3.986004418 10<sup>14</sup> kg<sup>-1</sup> m<sup>3</sup> s<sup>2</sup></td>
+							<td class="code">space.earth.gm</td>
 						</tr>
 					</table>
-					<details class="orbit">
-						<summary>Orbit:</summary>
+					<details class="orbit"><summary>Orbit:</summary>
 						<table>
 							<tr>
-								<th>Property</th><th>Value</th><th>Space.js access</th>
+								<th>Property</th>
+								<th>Value</th>
+								<th>Space.js access</th>
 							</tr>
 							<tr>
-								<td>Parent:</td><td>Sun</td>
+								<td>Parent:</td>
+								<td>Sun</td>
+								<td class="code">space.earth.orbit.parent</td>
 							</tr>
 							<tr>
-								<td>Semi-major axis:</td><td></td>
+								<td>Semi-major axis:</td>
+								<td>1.49598023 10<sup>11</sup> m</td>
+								<td class="code">space.earth.orbit.radius</td>
 							</tr>
 							<tr>
-								<td>Period:</td><td></td>
+								<td>Period:</td>
+								<td>3.155815 10<sup>7</sup> s</td>
+								<td class="code">space.earth.orbit.period</td>
 							</tr>
 						</table>
 					</details>
