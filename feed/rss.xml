@@ -5,11 +5,18 @@
 		<link>http://www.moonwards.com/</link>
 		<description>The Virtual Moon Colony project</description>
 		<language>en-us</language>
-		<pubDate>Mon, 07 Nov 2016 19:50:00 GMT</pubDate>
-		<lastBuildDate>Tue, 10 Jun 2003 09:41:01 GMT</lastBuildDate>
+		<pubDate>Sun, 13 Nov 2016 17:50:00 GMT</pubDate>
+		<lastBuildDate>Sun, 13 Nov 2016 17:50:01 GMT</lastBuildDate>
 		<docs>http://blogs.law.harvard.edu/tech/rss</docs>
 		<generator>handwritten</generator>
 		<webMaster>sigvart@moonwards.com</webMaster>
+		<item>
+			<title>3D models</title>
+			<link>http://www.moonwards.com/</link>
+			<description>We have changed how we display 3D models. This should speed up the load time of the main page by about an order of magnitude.</description>
+			<pubDate>Sun, 13 Nov 2016 17:50:01 GMT</pubDate>
+			<guid>item3</guid>
+		</item>
 		<item>
 			<title>Lalande map</title>
 			<link>http://www.moonwards.com/</link>
