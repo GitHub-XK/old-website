@@ -31,12 +31,7 @@ hr {
     padding: 0;
 }
 
-audio,
-canvas,
-iframe,
-img,
-svg,
-video {
+audio, canvas, iframe, img, svg, video {
     vertical-align: middle;
 }
 
@@ -112,7 +107,7 @@ there unless changed for some special case using one of the classes in the Layou
 		.col-m-9 {width: 75%;}
 		.col-m-9r12 {width: 75%; margin-left: 25%}
 		.col-m-10 {width: 83.33%;}
-		.col-m-10r12 {width: 83.33%; margin-left: 25%;}
+		.col-m-10r12 {width: 83.33%; margin-left: 16.66%;}
 		.col-m-11 {width: 91.66%;}
 		.col-m-12 {width: 100%;}
 }
@@ -166,11 +161,6 @@ tooltips run off the screen.
 	background: #000 url(../img/tycho7color.png) no-repeat fixed 0 0;
 	background-size: 2000px;
 	font-size: 90% !important;
-	}
-}
-@media only screen and (max-width: 850px) {
-	html {
-	font-size: 80% !important;
 	}
 }
 /*---------------------------------------------------------------------------------------
@@ -398,39 +388,39 @@ to be only visible on hover or tap, as all such elements are in pix divs
 							DIV ATTRIBUTES
 ===============================================================================================================*/
 
-.darkYellow, .black, .black30, .black60, .pad15, .extrapad, {
-	text-align: left;
-	vertical-align: top;
-}
-.darkYellow {
-	background-color: rgba(50, 50, 0, 0.7);
-}
-.black {
-	background-color: rgba(0, 0, 0, 0.7);
-}
-.extrapad {
-	padding: 15px 20px 15px 30px;
-}
-.black30 {
-	background-color: rgba(0, 0, 0, 0.3);
-}
-.black60{
-	background-color: rgba(0, 0, 0, 0.6);
-}
-.centertext {
-	text-align: center;
-	vertical-align: top;
-}			
-	
-.pad15 {
-	padding: 15px;
-}
-.roundLeft {
-	border-radius: 20px 0 0 20px;
-}
-.roundAll {
-	border-radius: 20px;
-}
+	.darkYellow, .black, .black30, .black60, .pad15, .extrapad, {
+		text-align: left;
+		vertical-align: top;
+	}
+	.darkYellow {
+		background-color: rgba(50, 50, 0, 0.7);
+	}
+	.black {
+		background-color: rgba(0, 0, 0, 0.7);
+	}
+	.extrapad {
+		padding: 15px 20px 15px 30px;
+	}
+	.black30 {
+		background-color: rgba(0, 0, 0, 0.3);
+	}
+	.black60{
+		background-color: rgba(0, 0, 0, 0.6);
+	}
+	.centertext {
+		text-align: center;
+		vertical-align: top;
+	}			
+		
+	.pad15 {
+		padding: 15px;
+	}
+	.roundLeft {
+		border-radius: 20px 0 0 20px;
+	}
+	.roundAll {
+		border-radius: 20px;
+	}
 /*---------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------- */
 .roundAll img, .roundAll p, .roundAll object {
@@ -452,24 +442,17 @@ to be only visible on hover or tap, as all such elements are in pix divs
 /*=============================================================================================================
 							ELEMENT ATTRIBUTES
 ===============================================================================================================*/
-details {
+.details {
 	cursor: pointer;
 }
-
 	h1, h2, h3, h4{
 			background-color: rgba(1, 1, 1, 0.7);
 			color: rgba(255, 255, 255, 1);
 			padding: 5px 25px;
 			text-align: center;
 			margin: 0.5em 0;
-		}
-		h3, h4 {
 			font-weight: 300;
 			line-height: 1.2em;
-			font-size: 1em;
-		}
-		h1, h2 {
-			font-weight: 200;
 		}
 		h1, h2, h3{
 			border-radius: 30px;	
@@ -482,7 +465,7 @@ details {
 			font-size: 1.5em;
 		}
 		h1 {
-			font-size: 2em;
+			font-size: 1.6em;
 			line-height: 1em;
 		}
 		h5, h6 {
