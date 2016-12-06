@@ -23,7 +23,7 @@ Info:
 
 DEVELOPMENT VERSION! Things may change or not work
 
-New versions of this library are pushed all the time WITHOUT TESTING. If this version crashes, try an earlie one.
+New versions of this library are pushed all the time WITHOUT TESTING. If this version crashes, try an earlier one.
 
 All units are metric and unprefixed, unless otherwise noted.
 
@@ -47,7 +47,10 @@ var space = {
 			inclination:0,//degrees
 			parent:"sun"
 		},
-		satellites:["moon"]
+		satellites:["moon"],
+		atmoshphere:{
+			heigth:100000,
+		}
 	},
 	mars:{
 		mass:6.4171e23,
@@ -71,7 +74,7 @@ var space = {
 	moon:{
 		mass:7.342e22,
 		gm:4.9048695e12,
-		gravity:1.62,
+		gravity:1.62,//acceleration at the surface
 		radius:1737100,
 		polarRadius:1736000,
 		equatorRadius:1738100,
@@ -102,97 +105,145 @@ var space = {
 	vDesc:function(gm,P,A){
 		return space.vEsc(gm,P) - space.vElli(gm,P,P,A)
 	},
-	delta:{//json delta-v map
-		/*lowTransfer:function(origin,target,aero){//aero true/false
-		},*/
-		highTransfer:function(origin,target,aero){
-			if(space.delta.nodes[origin] === undefined || space.delta.nodes[target] === undefined){
-				return undefined
-			};
-			var visited = {};
-			var recursiveSearch = function(node,cost){
-				for(var i=0;i<space.delta.nodes[node].transfer.length;i++){
-					if(aero || space.delta.nodes[node].transfer[i].type != "aero"){
-						if(
-							visited[space.delta.nodes[node].transfer[i].id] === undefined
-							|| space.delta.nodes[node].transfer[i].cost + cost
-							< visited[space.delta.nodes[node].transfer[i].id]
-						){
-							visited[space.delta.nodes[node].transfer[i].id] === space.delta.nodes[node].transfer[i].cost;
-						}
+	delta:{//refactored, api works different
+		nodeTransfer:function(place1,place2,aeroFlagg){//somewhat distracted when I wrote this, it is a little WTF. ESC-nodes only
+			if(place1 === place2)return 0;
+			var hirk1 = [place1];
+			var hirk2 = [place2];
+			for(var flagg = false;;){
+				for(var i=0;i<hirk2.length;i++){
+					if(hirk1[hirk1.length-1] === hirk2[i]){
+						hirk2 = hirk2.slice(0,++i);
+						flagg = true;
+						break
 					}
 				};
+				if(flagg)break;
+				hirk2.push(space[hirk2[hirk2.length-1]].orbit.parent);
+				for(var i=0;i<hirk1.length;i++){
+					if(hirk2[hirk2.length-1] === hirk1[i]){
+						hirk1 = hirk1.slice(0,++i);
+						flagg = true;
+						break
+					}
+				};
+				if(flagg)break;
+				hirk1.push(space[hirk1[hirk1.length-1]].orbit.parent);
 			};
-			recursiveSearch(origin,0);
-			return visited.target;
+			var hirSearch = function(node){
+				if(space[node].atmosphere === undefined){
+					var nodeEsc = vEsc(
+						space[node].gm,
+						space[node].radius
+					)
+				}
+				else{
+					var nodeEsc = vEsc(
+						space[node].gm,
+						space[node].radius + space[node].atmosphere.heigth
+					)
+				};
+				return Math.sqrt(
+					Math.pow(
+						vEsc(
+							space[space[node].orbit.parent].gm,
+							space[node].orbit.radius
+						),2
+					)/8
+					+ nodeEsc*nodeEsc
+				) - nodeEsc
+			};
+			var deltav = 0;
+			for(var i=hirk1.length-1;--i;){
+				deltav += hirSearch(hirk1.shift())
+			};
+			for(var i=hirk2.length-1;--i;){
+				if(!aeroFlagg || space[hirk2[0]].atmosphere === undefined)deltav += hirSearch(hirk2.shift())
+			};
+			if(hirk2.length === 1){
+				deltav += hirSearch(hirk1.shift())
+			}
+			else if(hirk1.length === 1 && hirk2.length === 2){//yes, this can acutally happen, consider an Earth c3=0 to deimos c3=0 transfer
+				if(!aeroFlagg || space[hirk2[0]].atmosphere === undefined)deltav += hirSearch(hirk2.shift())
+			}
+			else{
+				if(!aeroFlagg || space[hirk2[0]].atmosphere === undefined){
+					var nodeEsc1 = vEsc(
+						space[hirk1[0]].gm,
+						space[hirk1[0]].radius
+					);
+					var nodeEsc2 = vEsc(
+						space[hirk2[0]].gm,
+						space[hirk2[0]].radius
+					);
+					deltav += Math.min(
+						hirSearch(hirk1[0]) + hirSearch(hirk2[0]),
+						Math.sqrt(
+							space.vElli(
+								space[hirk1[1]].gm,
+								space[hirk1[0]].orbit.radius,
+								Math.max(space[hirk2[0]].orbit.radius,space[hirk1[0]].orbit.radius),
+								Math.min(space[hirk2[0]].orbit.radius,space[hirk1[0]].orbit.radius)
+							) + nodeEsc1*nodeEsc1
+						)-nodeEsc1 + Math.sqrt(
+							space.vElli(
+								space[hirk1[1]].gm,
+								space[hirk2[0]].orbit.radius,
+								Math.max(space[hirk2[0]].orbit.radius,space[hirk1[0]].orbit.radius),
+								Math.min(space[hirk2[0]].orbit.radius,space[hirk1[0]].orbit.radius)
+							) + nodeEsc2*nodeEsc2
+						)-nodeEsc2
+					)
+				}
+				else{
+					var nodeEsc1 = vEsc(
+						space[hirk1[0]].gm,
+						space[hirk1[0]].radius
+					);
+					deltav += Math.min(
+						hirSearch(hirk1[0]),
+						Math.sqrt(
+							Math.pow(
+								space.vElli(
+									space[hirk1[1]].gm,space[hirk1[0]].orbit.radius,
+									Math.max(space[hirk2[0]].orbit.radius,space[hirk1[0]].orbit.radius),
+									Math.min(space[hirk2[0]].orbit.radius,space[hirk1[0]].orbit.radius)
+								),2
+							) + nodeEsc1*nodeEsc1
+						) - nodeEsc1
+					)
+				}
+			};
+			return deltav
 		},
-		nodes:{
-			earthSurface:{
-				stable:true,
-				transfer:[//complete
-					{id:"earthLowOrbit",cost:9400,type:"high"}//"high" means high acceleration (chemical or nuclear) is needed
-				]
-			},
-			earthLowOrbit:{
-				stable:true,//friction ignored
-				transfer:[
-					{id:"earth",cost:0,type:"aero"},//"aero" requires aerobraking
-					{id:"earth",cost:7780,type:"high"},
-					{id:"earthLowOrbitStationaryOrbitTransfer",cost:2440,type:"high"}	
-				]
-			},
-			earthLowOrbitStationaryOrbitTransfer:{
-				transfer:[
-					{id:"earthLowOrbit",cost:0,type:"aero"},
-					{id:"earthLowOrbit",cost:2440,type:"high"},
-					{id:"earthStationaryOrbit",cost:1470,type:"high"},
-					{id:"earthLowOrbitMoonTransfer",cost:680,type:"high"}
-				]	
-			},
-			earthStationaryOrbit:{
-				transfer:[
-					{id:"earthLowOrbitStationaryOrbitTransfer",cost:1470,type:"high"}
-				]
-			},
-			earthStationaryOrbitMoonTransfer:{
-				transfer:[
-				]
-			},
-			earthLowOrbitMoonTransfer:{
-				stable:true,
-				transfer:[
-					{id:"earthLowOrbitStationaryOrbitTransfer",cost:0,type:"aero"},
-					{id:"earthLowOrbitStationaryOrbitTransfer",cost:680,type:"high"}
-				]
-			},
-			earthEscape:{
-				stable:false,
-				transfer:[
-					{id:"earthLowOrbitMoonTransfer",cost:90,type:"high"},
-					{id:"earthLowOrbit",cost:7770,type:"low"}
-				]
-			},
-			moonLowOrbit:{
-				stable:true,
-				transfer:[
-					{id:"moonSurface",cost:1720,type:"high"},
-					{id:"moonEscape",cost:680,type:"high"},
-					{id:"moonEscape",cost:1720,type:"low"}//"low" can be performed by an ion engine
-				]
-			},
-			moonEscape:{
-				stable:false,
-				transfer:[
-					{id:"moonLowOrbit",cost:680,type:"high"},
-					{id:"moonLowOrbit",cost:1720,type:"low"}
-				]
-			},
-			moonSurface:{
-				stable:true,
-				transfer:[//complete
-					{id:"moonLowOrbit",cost:1720,type:"high"},
-				]
-			},
+		sysTransfer:function(system,location1,location2,aeroFlagg){//location can be "low","escape","surface",or the name of a satellite
+			if(location1 === location2){
+				return 0
+			};
+			if(aeroFlagg && space[system].atmosphere != undefined){
+				if((location2 === "surface" || location2 === "low") && (location1 === "low" || location1 === "escape")){
+					return 0;
+				};
+			}
+			else{
+				if((location1 === "surface" && location2 === "low") || (location2 === "surface" && location1 === "low")){
+					return space.vCirc(space[system].gm,space[system].radius);
+				};
+				if((location1 === "surface" && location2 === "escape") || (location2 === "surface" && location1 === "escape")){
+					return space.vEsc(space[system].gm,space[system].radius);
+				};
+				if((location1 === "low" && location2 === "escape") || (location2 === "low" && location1 === "escape")){
+					return space.vEsc(space[system].gm,space[system].radius) * (Math.sqrt(2)-1);
+				};
+			};
+		},
+		transfer:function(system1,location1,system2,location2,aeroFlagg){//wrapper for sysTransfer and nodeTransfer
+			if(system1 === system2){
+				return space.delta.sysTransfer(system1,location1,location2,aeroFlagg)
+			}
+			else{
+				space.delta.nodeTransfer(system1,system2,aeroFlagg);//possibly wrong
+			};
 		}
 	},
 	math:{
@@ -208,7 +259,7 @@ var space = {
 		optimalTransfer:function(gm,origin,target){
 			/*orbit object:{A:,P:,inc:,asc:,arg:}
 			A and P are mandatory, inc, asc and arg are optional*/
-			var deltaCost = space.vDesc(gm,origin.P,origin,A) + space.vDesc(gm,target.P,target.A);//you can always do an infinite apoapsis bi-elliptic transfer.
+			var deltaCost = space.vDesc(gm,origin.P,origin,A) + space.vDesc(gm,target.P,target.A);//you can always do an apoapsis bi-elliptic transfer.
 			if(origin === target){//sometimes, we are lucky :P
 				return 0;
 			};
@@ -398,6 +449,11 @@ var space = {
 							}
 						};
 					};
+				}
+				else if(def(orbit.vV)){
+					if(def(orbit.v)){
+						newOrbit.vP = Math.sqrt(orbit.v*orbit.v - orbit.vH*orbit.vH);
+					};
 				};
 			};
 			if(!def(orbit.r)){
@@ -460,6 +516,11 @@ var space = {
 						newOrbit.T = 2*Math.PI*Math.sqrt(orbit.a*orbit.a*orbit.a/orbit.gm)
 					}
 				}
+				else if(def(orbit.e) && orbit.e === 0){
+					if(def(orbit.r) && def(orbit.v)){
+						newOrbit.T = Math.PI * 2 * orbit.r/orbit.v;
+					};
+				};
 			};
 			if(!def(orbit.vP)){
 				if(def(orbit.gm)){
