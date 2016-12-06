@@ -132,20 +132,20 @@ var space = {
 			};
 			var hirSearch = function(node){
 				if(space[node].atmosphere === undefined){
-					var nodeEsc = vEsc(
+					var nodeEsc = space.vEsc(
 						space[node].gm,
 						space[node].radius
 					)
 				}
 				else{
-					var nodeEsc = vEsc(
+					var nodeEsc = space.vEsc(
 						space[node].gm,
 						space[node].radius + space[node].atmosphere.heigth
 					)
 				};
 				return Math.sqrt(
 					Math.pow(
-						vEsc(
+						space.vEsc(
 							space[space[node].orbit.parent].gm,
 							space[node].orbit.radius
 						),2
@@ -167,12 +167,14 @@ var space = {
 				if(!aeroFlagg || space[hirk2[0]].atmosphere === undefined)deltav += hirSearch(hirk2.shift())
 			}
 			else{
+				var maxRadius = Math.max(space[hirk2[0]].orbit.radius,space[hirk1[0]].orbit.radius);
+				var minRadius = Math.min(space[hirk2[0]].orbit.radius,space[hirk1[0]].orbit.radius);
 				if(!aeroFlagg || space[hirk2[0]].atmosphere === undefined){
-					var nodeEsc1 = vEsc(
+					var nodeEsc1 = space.vEsc(
 						space[hirk1[0]].gm,
 						space[hirk1[0]].radius
 					);
-					var nodeEsc2 = vEsc(
+					var nodeEsc2 = space.vEsc(
 						space[hirk2[0]].gm,
 						space[hirk2[0]].radius
 					);
@@ -182,21 +184,22 @@ var space = {
 							space.vElli(
 								space[hirk1[1]].gm,
 								space[hirk1[0]].orbit.radius,
-								Math.max(space[hirk2[0]].orbit.radius,space[hirk1[0]].orbit.radius),
-								Math.min(space[hirk2[0]].orbit.radius,space[hirk1[0]].orbit.radius)
+								maxRadius,
+								minRadius
 							) + nodeEsc1*nodeEsc1
-						)-nodeEsc1 + Math.sqrt(
+						)-nodeEsc1
+						+ Math.sqrt(
 							space.vElli(
 								space[hirk1[1]].gm,
 								space[hirk2[0]].orbit.radius,
-								Math.max(space[hirk2[0]].orbit.radius,space[hirk1[0]].orbit.radius),
-								Math.min(space[hirk2[0]].orbit.radius,space[hirk1[0]].orbit.radius)
+								maxRadius,
+								minRadius
 							) + nodeEsc2*nodeEsc2
 						)-nodeEsc2
 					)
 				}
 				else{
-					var nodeEsc1 = vEsc(
+					var nodeEsc1 = space.vEsc(
 						space[hirk1[0]].gm,
 						space[hirk1[0]].radius
 					);
@@ -206,8 +209,8 @@ var space = {
 							Math.pow(
 								space.vElli(
 									space[hirk1[1]].gm,space[hirk1[0]].orbit.radius,
-									Math.max(space[hirk2[0]].orbit.radius,space[hirk1[0]].orbit.radius),
-									Math.min(space[hirk2[0]].orbit.radius,space[hirk1[0]].orbit.radius)
+									maxRadius,
+									minRadius
 								),2
 							) + nodeEsc1*nodeEsc1
 						) - nodeEsc1
