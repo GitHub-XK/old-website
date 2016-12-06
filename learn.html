@@ -169,12 +169,6 @@ The calculators are also based on JavaScript, and they do not work without it. T
 <script>setTimeout(function(){subDraw()},2000)</script>
 <!--geogebra applet-->
 <script type="text/javascript" src="https://www.geogebra.org/scripts/deployggb.js"></script>
-<script type="text/javascript">
-var applet1 = new GGBApplet({filename: "GeoGebra/suborbital.ggb","showtoolbar":false}, true);
-window.onload = function(){
-	applet1.inject('applet_container1', 'preferHTML5');
-}
-</script>
 <div style="width:500px;height:355px;display:block" id="applet_container1"></div>
 <!--end geogebra applet-->
 			</div>
@@ -294,7 +288,18 @@ The light can also be supplied by external lasers to increase performance, givin
 Solar sails are direction sensitive as they can not tack directly towards the light source. 
 				</p>
 				<h5>Orbit terminology:</h5>
-				<img class="realsize" src="img/orbit.png" height="519">
+				<!--<img class="realsize" src="img/orbit.png" height="519">-->
+<script type="text/javascript">
+var applet1 = new GGBApplet({filename: "GeoGebra/suborbital.ggb","showtoolbar":false}, true);
+var applet2 = new GGBApplet({filename: "GeoGebra/orbit.ggb","showtoolbar":false}, true);
+window.onload = function(){
+	applet1.inject('applet_container1', 'preferHTML5');
+	applet2.inject('applet_container2', 'preferHTML5');
+}
+</script>
+<div style="width:500px;height:500px;display:inline-block;margin-right:50%;margin-bottom:40px;" id="applet_container2">
+Applet not loading? <a href="img/orbit.png">Here is an image instead</a>
+</div><br>
 				<p>
 The following terms are important when describing an orbit:
 				</p>
