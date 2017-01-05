@@ -1,0 +1,698 @@
+/*! HTML5 Boilerplate v5.3.0 | MIT License | https://html5boilerplate.com/ */
+
+/*
+ * What follows is the result of much research on cross-browser styling.
+ * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,
+ * Kroc Camen, and the H5BP dev community and team.
+ */
+
+/* ==========================================================================
+   Base styles: opinionated defaults
+   ========================================================================== */
+
+html {
+    color: #fff;
+    font-size: 1em;
+    line-height: 1.4;
+    font-family: 'Titillium Web', sans-serif;
+    background-color: #000;
+}
+
+/*
+ * Remove text-shadow in selection highlight:
+ * https://twitter.com/miketaylr/status/12228805301
+ *
+ * These selection rule sets have to be separate.
+ * Customize the background color to match your design.
+ */
+
+::-moz-selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+::selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+/*
+ * A better looking default horizontal rule
+ */
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+
+/*
+ * Remove the gap between audio, canvas, iframes,
+ * images, videos and the bottom of their containers:
+ * https://github.com/h5bp/html5-boilerplate/issues/440
+ */
+
+audio,
+canvas,
+iframe,
+img,
+svg,
+video {
+    vertical-align: middle;
+}
+
+/*
+ * Remove default fieldset styles.
+ */
+
+fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+/*
+ * Allow only vertical resizing of textareas.
+ */
+
+textarea {
+    resize: vertical;
+}
+
+/* ==========================================================================
+   Browser Upgrade Prompt
+   ========================================================================== */
+
+.browserupgrade {
+    margin: 0.2em 0;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
+}
+
+/* ==========================================================================
+   Author's custom styles - All that follows is licensed under GNU 3.0
+   ========================================================================== */
+/*------------------------------------------------------------------------------------
+
+
+The @media queries determine which col class is applied by 
+detecting the width of the browser window. Each div used for setting up the column 
+width thus needs two col classes, one for if the browser is less than 900px, and 
+one for if it is more. If less, there can be 1 to 3 columns, and the narrowest
+option is 33%. If more there can be 1 to 4 columns and the narrowest option is 25%
+
+If it is less than 550px, the first declaration below applies. 
+
+The padding applies unless a more specific selector takes priority, so is generally 
+there unless changed for some special case using one of the classes in the Layout section
+-------------------------------------------------------------------------------------*/
+[class*="col-"], .full /* all classes with "col-" in the name, or called "full" */{
+	padding: 15px;
+	width: 100%;
+	}
+	
+@media only screen and (min-width: 900px) {
+.col-33 {width: 33.33%;}
+.col-50 {width: 50%;}
+.col-66 {width: 66.66%;}
+}
+/*---------------------------------------------------------------------------------------
+The next 2 @media queries position the background image and reduce 
+font-size for smaller screens. Reduced font is mostly necessary as otherwise the 
+tooltips run off the screen.
+----------------------------------------------------------------------------------- */
+@media only screen and (min-width:1000px) {
+	html {
+	background: #000 url(../img/tycho7new.png) no-repeat fixed 0 0;
+	background-size: 100%;
+	}
+}
+@media only screen and (max-width: 1000px) {
+	html {
+	background: #000 url(../img/tycho7new.png) no-repeat fixed 0 0;
+	background-size: 1600px;
+	font-size: 90% !important;
+	}
+}
+/*===========================================================================================================
+                                                 HEADER
+=============================================================================================================*/
+/*---------------------------------------------------------------------------------------
+The logo is made responsive with percentage for width and left position, kept below the nav 
+with number of pixels for top position, and has a minimum width for narrow screens so it remains visible
+----------------------------------------------------------------------------------- */
+#logo {
+	width: 25%;
+	min-width: 250px;
+	position: absolute;
+	left: 3.4%;
+	top: 26px;	
+}
+header {
+	width: 100%;
+	content: "";
+	clear: both;
+	display: block;
+}
+/*==============================================================================
+								NAV
+================================================================================*/
+/*---------------------------------------------------------------------------------------
+Getting the nav to display well has been tricky. To stop the menu text from getting too 
+close to the edges of its background in some situations it was finally necessary to just 
+give it a fixed width and the ul of the menu a fixed position.
+
+Its background is positioned to be partly 
+off screen and thus it looks like it only has a border on the bottom. The menu is wrapped 
+in a div called nav so that the text is positioned according to the edge of the screen, 
+not the edge of the nav which runs off it.
+----------------------------------------------------------------------------------- */
+nav {
+	position: fixed;
+	top: -104px;
+	right: -10px;
+	background-color: #000;
+	width: 500px;
+	height: 135px;
+	border-bottom-left-radius: 65px;
+	border: 1px solid #ccc;
+	z-index: 20;
+	font-family: 'Titillium Web', sans-serif;
+}
+nav:hover {
+  background-color: rgba(50, 50, 0, 1);
+}
+nav ul, nav li {
+	margin: 0;
+}
+/*---------------------------------------------------------------------------------------
+The :first-child selector selects elements that are the first such element inside another 
+element, which is known as its parent. Here, it is used to make the first ul inside the 
+nav div have slightly larger text and fix the text's position a good distance from the 
+top and right side. There are cases where the two words of 'the VMC' display on two 
+lines if 'white-space: nowrap' isn't there
+----------------------------------------------------------------------------------- */
+nav ul:first-child {
+	font-weight: 600;
+	font-size: 16px;
+	position: fixed;
+	right: 15px;
+	top: 4px;
+	z-index: 21;
+	cursor: pointer;
+	white-space: nowrap;
+}
+/*---------------------------------------------------------------------------------------
+What follows gets the li elements of the menu to display horizontally instead of 
+vertically (inline), spaces them out with padding, and makes their position relative 
+to the fixed parent ul.
+----------------------------------------------------------------------------------- */
+nav ul:first-child li {
+	display: inline;
+	position: relative;
+	padding: 6px;
+}
+/*---------------------------------------------------------------------------------------
+Then the nested ul's don't display when the page loads...
+----------------------------------------------------------------------------------- */
+nav ul ul{
+	display: none;
+}
+/*---------------------------------------------------------------------------------------
+...but only if the cursor is over them. They are placed under their menu item with 
+absolute positioning from the top of the parent element, and default indenting is 
+compensated for by putting in a negative left position.
+----------------------------------------------------------------------------------- */
+nav li:hover ul {
+	display: block;
+	position: absolute;
+	top: 30px;
+	left: -10px;
+	background-color: rgba(50, 50, 0, 1);
+	font-size: 13px;
+}
+/*---------------------------------------------------------------------------------------
+To override the inline styling above, the nested ul li's are given display: block
+----------------------------------------------------------------------------------- */
+nav li:hover ul li {
+	display: block;
+	padding: 6px 15px;
+}
+
+/*============================================================================================================
+						GENERAL LAYOUT
+=============================================================================================================*/
+/*----------------------------------------
+The next declaration applies to all elements - an asterisk means that. Box-sizing: border-box means that 
+instead of padding and margins being added to the width and height of elements, it is subtracted from them. 
+Making the default padding and margin 0 is mostly to override default settings on some 
+browsers, so that if those properties haven't been defined for an element, you know what size it will be on any 
+browser.
+----------------------------------------------*/
+* {
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+}
+
+/*---------------------------------------------------------------------------------------
+The following is the other half of the responsive layout setup. All col divs are nested 
+inside float divs, so they will align to the left or right inside their row. The syntax 
+says 'all divs inside a floatR class, and all h1 inside a floatR class' and so on. Elements 
+p and img aren't listed because often it is better for them to be centered inside 
+their parent element, and as this rule applies to everything inside these classes, even 
+if they are nested many times, they can't be here.
+
+TO PREVENT WRAPPING, USE THE BOILERPLATE CLEARFIX CLASS IN THE HELPER SECTION
+----------------------------------------------------------------------------------- */
+.floatR div, .floatR h1, .floatR h2, .floatR h3 {
+	float: right;
+}
+
+ .floatL div, .floatL h1, .floatL h2, .floatL h3 {
+	float: left;
+}
+/*-------------------------------------------------------------------------------------
+Because of the use of forms on the Learn page, the responsive system doesn't work there. 
+So, br.clearboth is used to push inline or floating elements onto a new row. 
+The noFloat class was needed to make the 
+minimap stay put. In other spots br.clearboth turns out to be shorter than nesting divs in 
+rows, also.
+---------------------------------------------------------------------------------------*/
+br.clearboth {
+	clear: both;
+	display: block;
+}
+.noFloat {
+	display: block;
+	float: none !important;
+	position: relative;
+	top: 0;
+	left: 0;
+}
+#container {
+	margin-top: 190px;
+	width: 100%;
+	clear: both;
+}
+
+/*=========================================================================================================
+					MARKER STYLING
+===========================================================================================================*/
+/*---------------------------------------------------------------------------------------
+To override the ugly default button formatting browsers do
+----------------------------------------------------------------------------------- */
+button {
+	border: none;
+	outline: none;
+}
+/*---------------------------------------------------------------------------------------
+Styling for the numbered markers in the images. Reduced line-height is needed to 
+eliminate space above and below characters in the buttons. Cursor: pointer means the 
+cursor changes the same way as when over a link, alerting people to extra 
+content. Button positioning is defined in the cssportal.tooltip.css stylesheet.
+----------------------------------------------------------------------------------- */
+.numbers, .numbers1 {
+	background-color: rgba(200, 0, 200, 1);
+	color: rgba(255, 255, 255, 1);
+	padding: 4px;
+	line-height: 0.6em;
+	font-weight: 400;
+	border-radius: 3px;
+	border: none;
+	outline: none;
+	cursor: pointer;
+}
+.numbers:hover, .numbers1:hover {
+	color: rgba(255,255,60,1);
+	background-color: rgba(250, 0, 250, 1);
+}
+/*3d model thumbnail overlays*/
+.overlay:hover {
+	border-style: solid;
+	border-width: 5px;
+	border-color: rgb(255,200,0);
+	border-radius: 5px;
+	cursor: pointer;
+}
+/*---------------------------------------------------------------------- 
+The following needs to be on the rare divs where spans and buttons are going to 
+be used, and you want to position them precisely, but you don't want them 
+to be only visible on hover or tap, as all such elements are in pix divs
+------------------------------------------------------------------*/
+.pix-alt {
+	position: relative;
+	top: 0;
+	left: 0;
+}
+/*=============================================================================================================
+							DIV ATTRIBUTES
+===============================================================================================================*/
+
+	.darkYellow, .black, .black30, .black60, .pad15, .extrapad, {
+		text-align: left;
+		vertical-align: top;
+	}
+	.darkYellow {
+		background-color: rgba(50, 50, 0, 0.7);
+	}
+	.black {
+		background-color: rgba(0, 0, 0, 0.7);
+	}
+	.extrapad {
+		padding: 15px 20px 15px 30px;
+	}
+	.black30 {
+		background-color: rgba(0, 0, 0, 0.3);
+	}
+	.black60{
+		background-color: rgba(0, 0, 0, 0.6);
+	}
+	.centertext {
+		text-align: center;
+		vertical-align: top;
+	}			
+		
+	.pad15 {
+		padding: 15px;
+	}
+	.roundLeft {
+		border-radius: 20px 0 0 20px;
+	}
+	.roundAll {
+		border-radius: 20px;
+	}
+/*---------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------- */
+.roundAll img, .roundAll p, .roundAll object {
+	padding: 10px;
+}
+.yellow {
+	color: yellow;
+}
+.yellowLt{
+	color: rgba(255, 255, 90, 1);
+}
+.to-top {
+	border-radius: 10px;
+	line-height: 0.7em;
+	background-color: rgba(50, 50, 0, 0.7);
+	text-align: center;
+	font-weight: 600;
+}
+/*=============================================================================================================
+							ELEMENT ATTRIBUTES
+===============================================================================================================*/
+details {
+	cursor: pointer;
+}
+	h1, h2, h3, h4{
+			background-color: rgba(1, 1, 1, 0.7);
+			color: rgba(255, 255, 255, 1);
+			padding: 5px 25px;
+			text-align: center;
+			margin: 0.5em 0;
+			font-weight: 300;
+			line-height: 1.2em;
+		}
+		h1, h2, h3{
+			border-radius: 30px;	
+		}
+		h4{
+			border-radius: 30px 0 0 30px;
+		}
+		h2 {
+			line-height: 0.9em;
+			font-size: 1.5em;
+		}
+		h1 {
+			font-size: 1.6em;
+			line-height: 1em;
+		}
+		h5, h6 {
+			color: yellow;
+			font-weight: 600;
+			padding: 15px 10px 10px 10px;
+		}
+		h5 {
+			font-size: 1.1em;
+			line-height: 1.2em;
+		}
+		h6 {
+			font-size: 1em;
+			line-height: 1.2em;
+		}
+		p {
+			padding: 5px 15px;
+		}
+		.intro {
+			border-radius: 30px;
+			background-color: rgba(1, 1, 1, 0.7);
+			color: rgba(255, 255, 255, 1);
+			font-weight: 300;
+			line-height: 1.3em;	
+			padding: 10px 10px 10px 15px
+		}
+		p.click {
+			padding: 0;
+			font-weight: 300;
+			line-height: 1.3em
+		}
+		.label {
+			border-radius: 20px;
+			background-color: rgba(0, 0, 0, 0.7);
+			color: rgba(255, 255, 0, 1);
+			text-align: center;
+			padding: 10px;
+			border: none;
+			outline: none;
+			margin: 5px 0
+		}
+		p.imgset {
+			display: inline;
+			font-size: 1.3em;
+			font-weight: 300
+		}
+
+a {
+	text-decoration: none;
+	color: rgba(255, 200, 0, 1)
+}
+a:hover {
+	color: rgba(255,255,60,1);
+	background-color: rgba(50, 50, 0, 1)
+}
+a.linkImage:hover {
+	background-color: initial;
+}
+img {
+	padding: 10px;
+	width: 100%
+}
+.tooltip-img {
+	width: auto;
+	float: right
+}
+.realsize {
+	width: auto
+}
+/*============================================================================
+							FeedEk
+==============================================================================*/
+.feedEkList {
+	width:90%; 
+	list-style:none outside none;
+	background-color:rgba(0, 0, 0, 0.7);  
+	padding:4px 6px; 
+	color:#fff;
+	}
+.feedEkList li {
+	border-bottom:1px solid #D3CAD7; 
+	padding:5px;
+	}
+.feedEkList li:last-child {
+	border-bottom:none;
+	}
+.itemTitle a {
+	font-weight:bold; 
+	}
+.itemTitle a:hover { 
+	text-decoration:underline 
+	}
+.itemDate {
+	font-size:11px;
+	color:#ccc
+	} 
+/* ==========================================================================
+   Helper classes
+   ========================================================================== */
+
+/*
+ * Hide visually and from screen readers
+ */
+
+.hidden {
+    display: none !important;
+}
+
+/*
+ * Hide only visually, but have it available for screen readers:
+ * http://snook.ca/archives/html_and_css/hiding-content-for-accessibility
+ */
+
+.visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+/*
+ * Extends the .visuallyhidden class to allow the element
+ * to be focusable when navigated to via the keyboard:
+ * https://www.drupal.org/node/897638
+ */
+
+.visuallyhidden.focusable:active,
+.visuallyhidden.focusable:focus {
+    clip: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    position: static;
+    width: auto;
+}
+
+/*
+ * Hide visually and from screen readers, but maintain layout
+ */
+
+.invisible {
+    visibility: hidden;
+}
+
+/*
+ * Clearfix: contain floats
+ *
+ * For modern browsers
+ * 1. The space content is one way to avoid an Opera bug when the
+ *    `contenteditable` attribute is included anywhere else in the document.
+ *    Otherwise it causes space to appear at the top and bottom of elements
+ *    that receive the `clearfix` class.
+ * 2. The use of `table` rather than `block` is only necessary if using
+ *    `:before` to contain the top-margins of child elements.
+ */
+
+.clearfix:before,
+.clearfix:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+/* ==========================================================================
+   EXAMPLE Media Queries for Responsive Design.
+   These examples override the primary ('mobile first') styles.
+   Modify as content requires.
+   ========================================================================== */
+
+@media only screen and (min-width: 35em) {
+    /* Style adjustments for viewports that meet the condition */
+}
+
+@media print,
+       (-webkit-min-device-pixel-ratio: 1.25),
+       (min-resolution: 1.25dppx),
+       (min-resolution: 120dpi) {
+    /* Style adjustments for high resolution devices */
+}
+
+/* ==========================================================================
+   Print styles.
+   Inlined to avoid the additional HTTP request:
+   http://www.phpied.com/delay-loading-your-print-css/
+   ========================================================================== */
+
+@media print {
+    *,
+    *:before,
+    *:after,
+    *:first-letter,
+    *:first-line {
+        background: transparent !important;
+        color: #000 !important; /* Black prints faster:
+                                   http://www.sanbeiji.com/archives/953 */
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    a,
+    a:visited {
+        text-decoration: underline;
+    }
+
+    a[href]:after {
+        content: " (" attr(href) ")";
+    }
+
+    abbr[title]:after {
+        content: " (" attr(title) ")";
+    }
+
+    /*
+     * Don't show links that are fragment identifiers,
+     * or use the `javascript:` pseudo protocol
+     */
+
+    a[href^="#"]:after,
+    a[href^="javascript:"]:after {
+        content: "";
+    }
+
+    pre,
+    blockquote {
+        border: 1px solid #999;
+        page-break-inside: avoid;
+    }
+
+    /*
+     * Printing Tables:
+     * http://css-discuss.incutio.com/wiki/Printing_Tables
+     */
+
+    thead {
+        display: table-header-group;
+    }
+
+    tr,
+    img {
+        page-break-inside: avoid;
+    }
+
+    img {
+        max-width: 100% !important;
+    }
+
+    p,
+    h2,
+    h3 {
+        orphans: 3;
+        widows: 3;
+    }
+
+    h2,
+    h3 {
+        page-break-after: avoid;
+    }
+}
