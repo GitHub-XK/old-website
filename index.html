@@ -113,7 +113,7 @@ The first colony shall be called Cernan's Promise.
                 display_no = 3; //set this number to number of last feed items to parse
 			
 
-		$.get('http://www.moonwards.com/feed/rss.xml', function (data) { //you'll change the URL here to the URL of your XML file
+		$.get('//www.moonwards.com/feed/rss.xml', function (data) { //you'll change the URL here to the URL of your XML file
                     atom_count = $(data).find("item").length;
 		    $(data).find("item").each(function () { 
 		        var el = $(this);
