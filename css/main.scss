@@ -1,15 +1,4 @@
-@mixin flexy {
-  display: flex;
-  display: -moz-flex;
-  display: -webkit-flex;
-  display: -ms-flex;
-}
-@mixin b-Radius {
-  border-radius: $radius;
-  -moz-border-radius: $radius;
-  -webkit-border-radius: $radius;
-  -ms-border-radius: $radius;
-}
+@import '_standard_mixins.scss';
 @import '_bubble.scss';
 
 $mainBkgd: rgba(50, 50, 0, 0.5);
@@ -17,9 +6,9 @@ $nestBkgd: rgba(10, 10, 10, 0.5);
 $noteBkgd: rgba(0, 0, 0, 0.3);
 $radius: 15px;
 $mainPad: 20px;
-$sidePad: 12px 0;
+$anchorColor: rgb(250, 200, 25);
 
-html, ul {
+html {
     color: #fff;
     font: 1em/1.4em 'Titillium Web', sans-serif;
     background: #000 url(https://www.moonwards.com/img/tycho7left.png) no-repeat fixed right 33px;
@@ -35,18 +24,29 @@ html, ul {
   body {
     background-size: 1600px;}
 }
+
 nav {
   width: 100%;
   position: fixed;
   top: 0;
 
-}
-
-nav ul {
+  ul {
   list-style-type: none;
+  padding: 0;
+  margin: 0;
+  background-color: #000;
+  }
+  a {
+  text-decoration: none;
+  font-weight: 300;
+  color: $anchorColor;
+  }
+  a:hover {
+    background-color: rgb(60, 60, 20);
+  }
 }
 
-nav ul:first-child {
+nav > ul {
   @include flexy;
   width: 100%;
   height: 33px;
@@ -56,30 +56,39 @@ nav ul:first-child {
 
 nav > ul li{
   font-size: 18px;
+  padding: 5px;
 }
-
-.dropdown li{
-  position: absolute;
-  top: 33px;
-  display: none;
-}
-.dropdown li:hover {
-  display: flex;
-
-
-}
-/*header {
+/* Make dropdown menus*/
+nav li > ul /*ul whose parent li is a descendent of nav*/{
   @include flexy;
   flex-direction: column;
-  justify-content: space-between;
+  display: none;
+}
 
-}*/
+nav  li:hover > ul /* Statement applies only to
+child ul, only when li is hovered */
+{
+  display: flex;
+}
+
 header section {
   @include flexy;
   flex-direction: row-reverse;
-  align-items: center;
-  justify-content: space-between;
+  align-items: stretch;
+  justify-content: space-around;
+  height: 250px;
+  margin: 40px 10px;
+}
 
+.sec1 {
+  flex: 3 0;
+}
+.sec2 {
+  flex: 2 1;
+  align-self: flex-end;
+    p {
+      width: 200px;
+    }
 }
 .mainDivs {
   background: $mainBkgd;
@@ -89,6 +98,11 @@ header section {
 .intro {
   font-size: 1.1em;
   line-height: 1.6em;
+}
+
+a {
+  text-decoration: none;
+
 }
 
 /*
