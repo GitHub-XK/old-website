@@ -1,16 +1,29 @@
-$high: 350px;
-$bkgd: rgba(100,100,0,0.4);
+$high: 75px;
+$bkgd: rgba(50,50,0,0.4);
 $b-rad: $high/2;
-$fonty: italic 1.2em/1.3em;
+$fonty: light 300i 1.2em/1.3em;
+
+[class*="bubble"] {
+  font: $fonty;
+  background: $bkgd;
+  border-radius: $b-rad;
+  display: flex;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
 
 .bubble {
   height: $high;
-  width: $high;
-  font: $fonty;
 }
-
+.bubble {
+  p {
+    padding: 15px;
+  }
+}
 .bubble-sm {
-  height: $high*0.66;
-  width: $high*0.66;
-  font: $fonty;
+
 }

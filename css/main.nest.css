@@ -1,14 +1,22 @@
+[class*="bubble"] {
+  font: italic 1.2em/1.3em;
+  background: rgba(50, 50, 0, 0.4);
+  border-radius: 37.5px;
+  display: flex;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center; }
+
 .bubble {
-  height: 350px;
-  width: 350px;
-  font: italic 1.2em/1.3em; }
+  height: 75px; }
 
-.bubble-sm {
-  height: 231px;
-  width: 231px;
-  font: italic 1.2em/1.3em; }
+.bubble p {
+  padding: 15px; }
 
-html, ul {
+html {
   color: #fff;
   font: 1em/1.4em 'Titillium Web', sans-serif;
   background: #000 url(https://www.moonwards.com/img/tycho7left.png) no-repeat fixed right 33px;
@@ -27,11 +35,19 @@ nav {
   width: 100%;
   position: fixed;
   top: 0; }
+  nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    background-color: #000; }
+  nav a {
+    text-decoration: none;
+    font-weight: 300;
+    color: #fac819; }
+  nav a:hover {
+    background-color: #3c3c14; }
 
-nav ul {
-  list-style-type: none; }
-
-nav ul:first-child {
+nav > ul {
   display: flex;
   display: -moz-flex;
   display: -webkit-flex;
@@ -42,30 +58,40 @@ nav ul:first-child {
   align-items: baseline; }
 
 nav > ul li {
-  font-size: 18px; }
+  font-size: 18px;
+  padding: 5px; }
 
-.dropdown li {
-  position: absolute;
-  top: 33px;
+/* Make dropdown menus*/
+nav li > ul {
+  display: flex;
+  display: -moz-flex;
+  display: -webkit-flex;
+  display: -ms-flex;
+  flex-direction: column;
   display: none; }
 
-.dropdown li:hover {
+nav li:hover > ul {
   display: flex; }
 
-/*header {
-  @include flexy;
-  flex-direction: column;
-  justify-content: space-between;
-
-}*/
 header section {
   display: flex;
   display: -moz-flex;
   display: -webkit-flex;
   display: -ms-flex;
   flex-direction: row-reverse;
-  align-items: center;
-  justify-content: space-between; }
+  align-items: stretch;
+  justify-content: space-around;
+  height: 250px;
+  margin: 40px 10px; }
+
+.sec1 {
+  flex: 3 0; }
+
+.sec2 {
+  flex: 2 1;
+  align-self: flex-end; }
+  .sec2 p {
+    width: 200px; }
 
 .mainDivs {
   background: rgba(50, 50, 0, 0.5);
@@ -77,6 +103,9 @@ header section {
 .intro {
   font-size: 1.1em;
   line-height: 1.6em; }
+
+a {
+  text-decoration: none; }
 
 /*
 Adapted from the tooltip design at http://www.cssportal.com/css-tooltip-generator/
