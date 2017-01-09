@@ -1,4 +1,4 @@
-$high: 150px;
+$high: 350px;
 $bkgd: rgba(100,100,0,0.4);
 $b-rad: $high/2;
 $fonty: italic 1.2em/1.3em;
@@ -10,7 +10,7 @@ $fonty: italic 1.2em/1.3em;
 }
 
 .bubble-sm {
-  height: $high-50;
-  width: $high-50;
+  height: $high*0.66;
+  width: $high*0.66;
   font: $fonty;
 }
