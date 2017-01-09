@@ -1,3 +1,13 @@
+.bubble {
+  height: 350px;
+  width: 350px;
+  font: italic 1.2em/1.3em; }
+
+.bubble-sm {
+  height: 231px;
+  width: 231px;
+  font: italic 1.2em/1.3em; }
+
 html, ul {
   color: #fff;
   font: 1em/1.4em 'Titillium Web', sans-serif;
@@ -14,31 +24,48 @@ html, ul {
     background-size: 1600px; } }
 
 nav {
-  position: fixed;
-  top: 0;
   width: 100%;
-  height: 36px; }
+  position: fixed;
+  top: 0; }
 
 nav ul {
+  list-style-type: none; }
+
+nav ul:first-child {
   display: flex;
   display: -moz-flex;
   display: -webkit-flex;
   display: -ms-flex;
   width: 100%;
   height: 33px;
-  list-style-type: none;
   justify-content: space-around;
-  align-items: flex-start; }
+  align-items: baseline; }
 
 nav > ul li {
-  font: 1.2em; }
+  font-size: 18px; }
 
-.dropdown {
+.dropdown li {
+  position: absolute;
+  top: 33px;
+  display: none; }
+
+.dropdown li:hover {
+  display: flex; }
+
+/*header {
+  @include flexy;
+  flex-direction: column;
+  justify-content: space-between;
+
+}*/
+header section {
   display: flex;
   display: -moz-flex;
   display: -webkit-flex;
   display: -ms-flex;
-  flex-direction: column; }
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: space-between; }
 
 .mainDivs {
   background: rgba(50, 50, 0, 0.5);
