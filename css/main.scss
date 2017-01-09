@@ -1,0 +1,192 @@
+@mixin flexy {
+  display: flex;
+  display: -moz-flex;
+  display: -webkit-flex;
+  display: -ms-flex;
+}
+@mixin b-Radius {
+  border-radius: $radius;
+  -moz-border-radius: $radius;
+  -webkit-border-radius: $radius;
+  -ms-border-radius: $radius;
+}
+@import '_bubble.scss';
+
+$mainBkgd: rgba(50, 50, 0, 0.5);
+$nestBkgd: rgba(10, 10, 10, 0.5);
+$noteBkgd: rgba(0, 0, 0, 0.3);
+$radius: 15px;
+$mainPad: 20px;
+$sidePad: 12px 0;
+
+html, ul {
+    color: #fff;
+    font: 1em/1.4em 'Titillium Web', sans-serif;
+    background: #000 url(https://www.moonwards.com/img/tycho7left.png) no-repeat fixed right 33px;
+    margin:0;
+    padding: 0;
+}
+@media only screen and (min-width: 1000px) {
+	body {
+  background-size: 100%;}
+}
+
+@media only screen and (max-width: 1000px) {
+  body {
+    background-size: 1600px;}
+}
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 36px;
+}
+nav ul {
+  @include flexy;
+  width: 100%;
+  height: 33px;
+	list-style-type: none;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+
+nav > ul li{
+  font-size: 1.2em;
+}
+
+.dropdown {
+  @include flexy;
+  flex-direction: column;
+}
+
+.mainDivs {
+  background: $mainBkgd;
+  @include b-Radius;
+}
+
+.intro {
+  font-size: 1.1em;
+  line-height: 1.6em;
+}
+
+/*
+Adapted from the tooltip design at http://www.cssportal.com/css-tooltip-generator/
+*/
+
+/*
+For the markers to be positioned, their parent element must also have a position. So
+they are all inside divs with the class pix that has a relative position but isn't moved
+out of its normal positioning.
+ */
+.pix {
+	position: relative;
+	top: 0;
+	left: 0;
+}
+
+/*
+To give all the buttons (the markers) the absolute position they need, all buttons
+within divs with class pix are given that.
+*/
+div.pix button{
+  position: absolute;
+}
+/*
+The spans contain the text of the tooltips, they are hidden on page load with
+visibility: hidden. Other properties that are the same for all of them are also
+included here
+*/
+div.pix span {
+  position: absolute;
+  color: #FFFFFF;
+  height: auto;
+  line-height: 1.2em;
+  text-align: left;
+  visibility: hidden;
+  border-radius: 6px;
+}
+/*
+And properties the same for all when they are displayed on hover are covered here.
+Also it is necessary to list all of the different versions of the tooltips, as there is
+no way to cover the general case of spans inside classes being hovered over, and then
+specify that they are visible in that case. So, one by one.
+*/
+.tooltipT:hover span, .tooltipTML:hover span, .tooltipTL:hover span, .tooltipTMR:hover span,
+.tooltipTR:hover span, .tooltipL:hover span, .tooltipML:hover span, .tooltipR:hover span,
+.tooltipMR:hover span, .tooltipB:hover span, .tooltipBML:hover span, .tooltipBL:hover span,
+.tooltipBBL:hover span, .tooltipBMR:hover span, .tooltipBR:hover span, .tooltipBBR:hover span {
+  visibility: visible;
+  background-color: rgba(30, 0, 30, 1);
+  padding: 8px;
+  z-index: 10;
+  width: 400px;
+  }
+ /*
+ All the rest is to create tooltips adapted to markers in different areas of their image and
+ different spots on the page, to keep them from running off the screen or blocking things
+ people will probably be looking at.
+*/
+.tooltipT:hover span{
+  bottom: 16px;
+  left: -200px;
+}
+.tooltipTML:hover span {
+  bottom: 16px;
+  left: -300px;
+}
+.tooltipTL:hover span {
+  bottom: 16px;
+  right: -50%;
+}
+.tooltipTMR:hover span {
+  bottom: 16px;
+  left: -100px;
+}
+.tooltipTR:hover span {
+  bottom: 16px;
+  left: -50%;
+}
+.tooltipL:hover span {
+  right: 100%;
+  top: -180px;
+}
+.tooltipML:hover span {
+  right: 100%;
+  top: -90px;
+}
+.tooltipR:hover span {
+  left: 100%;
+  top: -180px;
+}
+.tooltipMR:hover span {
+  left: 100%;
+  top: -90px;
+}
+.tooltipB:hover span {
+  top: 16px;
+  left: -200px;
+}
+.tooltipBML:hover span {
+  top: 16px;
+  left: -300px;
+}
+.tooltipBL:hover span {
+  right: 100%;
+  top: -8px;
+}
+.tooltipBBL:hover span {
+  top: 16px;
+  left: -350px;
+}
+.tooltipBBR:hover span {
+  top: 16px;
+  left: -30px;
+}
+.tooltipBMR:hover span {
+  top: 16px;
+  left: -100px;
+}
+.tooltipBR:hover span {
+  left: 100%;
+  top: -8px;
+}
