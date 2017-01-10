@@ -1,5 +1,4 @@
 @import '_standard_mixins.scss';
-@import '_bubble.scss';
 
 $mainBkgd: rgba(50, 50, 0, 0.5);
 $nestBkgd: rgba(10, 10, 10, 0.5);
@@ -7,6 +6,14 @@ $noteBkgd: rgba(0, 0, 0, 0.3);
 $radius: 15px;
 $mainPad: 20px;
 $anchorColor: rgb(250, 200, 25);
+$accentBkgd: rgba(0,0,0, 1);
+$accentBorder: 1px solid gray;
+$accentRad: 30px;
+$accentStyle: italic;
+$accentWeight: 200;
+$accentFsize:22px;
+$accentLnHt: 25px;
+
 
 html {
     color: #fff;
@@ -15,13 +22,15 @@ html {
     margin:0;
     padding: 0;
 }
-@media only screen and (min-width: 1000px) {
-	body {
-  background-size: 100%;}
+
+@media only screen and (min-width: 1350px) {
+	html {
+  background-size: 100% auto;
+  }
 }
 
-@media only screen and (max-width: 1000px) {
-  body {
+@media only screen and (max-width: 1350px) {
+  html {
     background-size: 1600px;}
 }
 
@@ -42,7 +51,7 @@ nav {
   color: $anchorColor;
   }
   a:hover {
-    background-color: rgb(60, 60, 20);
+    color: yellow;
   }
 }
 
@@ -56,6 +65,7 @@ nav > ul {
 
 nav > ul li{
   font-size: 18px;
+  font-weight: 300;
   padding: 5px;
 }
 /* Make dropdown menus*/
@@ -63,6 +73,11 @@ nav li > ul /*ul whose parent li is a descendent of nav*/{
   @include flexy;
   flex-direction: column;
   display: none;
+  border-radius: 15px;
+  border: 1px solid #666;
+  border-top: none;
+  padding: 10px;
+
 }
 
 nav  li:hover > ul /* Statement applies only to
@@ -71,24 +86,38 @@ child ul, only when li is hovered */
   display: flex;
 }
 
-header section {
+header {
   @include flexy;
-  flex-direction: row-reverse;
-  align-items: stretch;
+  flex-flow: row-reverse wrap;
   justify-content: space-around;
   height: 250px;
-  margin: 40px 10px;
+  padding-top: 50px;
 }
 
 .sec1 {
-  flex: 3 0;
+  flex-grow: 4;
+  min-width: 350px;
+  padding-right: 60px;
 }
 .sec2 {
-  flex: 2 1;
   align-self: flex-end;
+  flex-grow: 7;
+  @include flexy;
+flex-direction: row-reverse;
+justify-content: center;
     p {
-      width: 200px;
+      width: 40%;
+      min-width: 400px;
+      padding: 12px 25px;
+      text-align: right;
+      margin-right: 40px;
+      margin-bottom: 35px;
     }
+}
+section {
+  @include flexy;
+  margin: auto;
+
 }
 .mainDivs {
   background: $mainBkgd;
@@ -98,6 +127,16 @@ header section {
 .intro {
   font-size: 1.1em;
   line-height: 1.6em;
+}
+
+.accent {
+  font-style: $accentStyle;
+  font-weight: $accentWeight;
+  font-size: $accentFsize;
+  line-height: $accentLnHt;
+  background: $accentBkgd;
+  border-radius: $accentRad;
+  //border: $accentBorder;
 }
 
 a {
