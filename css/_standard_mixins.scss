@@ -4,9 +4,31 @@
   display: -webkit-flex;
   display: -ms-flex;
 }
-@mixin b-Radius {
-  border-radius: $radius;
-  -moz-border-radius: $radius;
-  -webkit-border-radius: $radius;
-  -ms-border-radius: $radius;
+@mixin b-RadiusOut {
+  border-radius: $outRadius;
+  -moz-border-radius: $outRadius;
+  -webkit-border-radius: $outRadius;
+  -ms-border-radius: $outRadius;
+}
+@mixin b-RadiusIn {
+  border-radius: $inRadius;
+  -moz-border-radius: $inRadius;
+  -webkit-border-radius: $inRadius;
+  -ms-border-radius: $inRadius;
+}
+
+@mixin linx ($link, $visit, $hover, $active) {
+  a {
+      color: $link;
+      &:visited {
+        color: $visit;
+      }
+      &:hover {
+        background-color: $hover;
+      }
+      &:active {
+        background-color: $active;
+      }
+      text-decoration: none;
+    }
 }
