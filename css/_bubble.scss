@@ -1,23 +1,24 @@
 $high: 75px;
 $bkgd: rgba(50,50,0,0.4);
 $b-rad: $high/2;
-$fonty: light 300i 1.2em/1.3em;
+$fontStyle: italic;
+$fontWeight: 300;
 
 [class*="bubble"] {
-  font: $fonty;
+  font-style: $fontStyle;
+  font-weight: $fontWeight;
   background: $bkgd;
   border-radius: $b-rad;
-  display: flex;
-  display: -webkit-flex;
-  display: -moz-flex;
-  display: -ms-flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+//  display: -webkit-flex;
+//  display: -moz-flex;
+//  display: -ms-flex;
+//  justify-content: center;
+//  align-items: center;
+//  text-align: center;
 }
 
 .bubble {
-  height: $high;
+//  height: $high;
 }
 .bubble {
   p {
