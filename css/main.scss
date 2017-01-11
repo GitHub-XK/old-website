@@ -11,7 +11,10 @@ and get rid of px.
 Incorporate media queries as part of
 elements that need to be responsive but should stack below
 a certain viewer width - there can be as many as you want,
-i was confused, they don't involve an http call.
+i was confused, they don't involve an http call. Sass allows
+media queries to be added as properties of a selector.
+
+Make mixins for all the webkit instances.
 
 Make a really good page that people with incompatible
 browsers are taken to, that sells the idea of upgrading,
@@ -37,19 +40,23 @@ Check out making Atom packages, hacking Atom, and Electron,
 so we can essentially create a custom CMS for Moonwards.
 */
 $outerBkgd: rgba(50, 50, 0, 0.5);
-$innerBkgd: rgba(10, 10, 10, 0.5);
+$innerBkgd: rgba(10, 10, 10, 0.7);
 $noteBkgd: rgba(0, 0, 0, 0.3);
+$sideBkgd: rgba(0, 0, 0, 0.7);
 $outRadius: 2rem;
 $inRadius: 1.5rem;
-$mainPad: 20px;
+$sideRadius: 1.5rem 0 0 1.5rem;
+$mainPad: 15px;
 $anchorColor: rgb(250, 200, 25);
-$accentBkgd: rgba(0,0,0, 1);
-$accentBorder: 1px solid gray;
-$accentRad: 30px;
+$accentBkgd: rgba(0,0,0, 0.7);
+$accentBorder: 8px solid black;
+$accentRad: 50px;
+$accentPad: 12px;
 $accentStyle: italic;
-$accentWeight: 200;
-$accentFsize:22px;
-$accentLnHt: 25px;
+$accentWeight: 300;
+$accentFsize:20px;
+$accentLnHt: 24px;
+$accentColor: rgb(150, 120, 50);
 
 
 html {
@@ -58,17 +65,13 @@ html {
     background: #000 url(https://www.moonwards.com/img/tycho7left.png) no-repeat fixed right 33px;
     margin:0;
     padding: 0;
+    background-size: 1600px;
+    @media only screen and (min-width: 1350px) {
+      background-size: 100% auto;
+      }
 }
-
-@media only screen and (min-width: 1350px) {
-	html {
-  background-size: 100% auto;
-  }
-}
-
-@media only screen and (max-width: 1350px) {
-  html {
-    background-size: 1600px;}
+body, ul {
+  margin: 0;
 }
 
 nav {
@@ -127,57 +130,69 @@ header {
   @include flexy;
   flex-flow: row-reverse wrap;
   justify-content: space-around;
-  height: 250px;
-  padding: 50px 0;
+  height: 290px;
+  padding: 20px 0;
 }
 
 .sec1 {
   flex-grow: 4;
-  min-width: 350px;
+  min-width: 400px;
   padding-right: 60px;
+  margin-top: 2vw;
+  @media only screen and (max-width: 1350px) {
+    flex-grow: 6;
+    margin-top: 6vw;
+  }
 }
 .sec2 {
   align-self: flex-end;
   flex-grow: 7;
   @include flexy;
-flex-direction: row-reverse;
-justify-content: center;
+  flex-direction: row-reverse;
+  justify-content: flex-start;
     p {
       width: 40%;
-      min-width: 400px;
-      padding: 12px 25px;
       text-align: right;
-      margin-right: 40px;
-      margin-bottom: 35px;
+      margin-right: 30px;
+      margin-bottom: 25px;
+      align-items: flex-start;
     }
 }
 .accent {
   font-style: $accentStyle;
   font-weight: $accentWeight;
   font-size: $accentFsize;
+  color: $accentColor;
   line-height: $accentLnHt;
   background: $accentBkgd;
   border-radius: $accentRad;
+  border: $accentBorder;
+  padding: $accentPad;
 }
 .container {
   @include flexy;
   @include linx(yellow,rgb(210, 238, 94),rgb(60, 60, 10),
-  rgb(60,60,10))
+  rgb(60,60,10));
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: stretch;
 }
+
 section {
   @include flexy;
   margin: auto;
-  padding: 15px;
-
+  padding: $mainPad;
+  min-width: 350px;
+  flex: 1;
 }
 .outerDiv {
   background-color: $outerBkgd;
-  @include b-RadiusOut;
+  @include RadiusOut;
 }
 
 .innerDiv {
   background-color: $innerBkgd;
-  @include b-RadiusIn;
+  @include RadiusIn;
   margin: 15px;
     p {
       padding: 12px;
@@ -190,12 +205,36 @@ section {
   line-height: 1.8em;
 }
 
-aside {
-
+aside{
+  min-width: 250px;
+  flex: 0.5;
+  margin-top: 60px;
+  @include flexy;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: stretch;
+}
+.sideDiv {
+  background-color: $sideBkgd;
+  border-radius: $sideRadius;
+  padding: $mainPad;
+}
+.framewrap {
+  position: relative;
+  height: 0;
+  overflow: hidden;
+    iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
 }
 
-
-a {
-  text-decoration: none;
-
+.frame16x9 {
+  padding-bottom: 56.25%;
+}
+.frame4x3 {
+  padding-bottom: 75%;
 }

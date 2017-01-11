@@ -128,7 +128,10 @@ and get rid of px.
 Incorporate media queries as part of
 elements that need to be responsive but should stack below
 a certain viewer width - there can be as many as you want,
-i was confused, they don't involve an http call.
+i was confused, they don't involve an http call. Sass allows
+media queries to be added as properties of a selector.
+
+Make mixins for all the webkit instances.
 
 Make a really good page that people with incompatible
 browsers are taken to, that sells the idea of upgrading,
@@ -158,15 +161,14 @@ html {
   font: 1rem/1.5rem 'Titillium Web', sans-serif;
   background: #000 url(https://www.moonwards.com/img/tycho7left.png) no-repeat fixed right 33px;
   margin: 0;
-  padding: 0; }
+  padding: 0;
+  background-size: 1600px; }
+  @media only screen and (min-width: 1350px) {
+    html {
+      background-size: 100% auto; } }
 
-@media only screen and (min-width: 1350px) {
-  html {
-    background-size: 100% auto; } }
-
-@media only screen and (max-width: 1350px) {
-  html {
-    background-size: 1600px; } }
+body, ul {
+  margin: 0; }
 
 nav {
   width: 100%;
@@ -222,13 +224,18 @@ header {
   display: -ms-flex;
   flex-flow: row-reverse wrap;
   justify-content: space-around;
-  height: 250px;
-  padding: 50px 0; }
+  height: 290px;
+  padding: 20px 0; }
 
 .sec1 {
   flex-grow: 4;
-  min-width: 350px;
-  padding-right: 60px; }
+  min-width: 400px;
+  padding-right: 60px;
+  margin-top: 2vw; }
+  @media only screen and (max-width: 1350px) {
+    .sec1 {
+      flex-grow: 6;
+      margin-top: 6vw; } }
 
 .sec2 {
   align-self: flex-end;
@@ -238,28 +245,33 @@ header {
   display: -webkit-flex;
   display: -ms-flex;
   flex-direction: row-reverse;
-  justify-content: center; }
+  justify-content: flex-start; }
   .sec2 p {
     width: 40%;
-    min-width: 400px;
-    padding: 12px 25px;
     text-align: right;
-    margin-right: 40px;
-    margin-bottom: 35px; }
+    margin-right: 30px;
+    margin-bottom: 25px;
+    align-items: flex-start; }
 
 .accent {
   font-style: italic;
-  font-weight: 200;
-  font-size: 22px;
-  line-height: 25px;
-  background: black;
-  border-radius: 30px; }
+  font-weight: 300;
+  font-size: 20px;
+  color: #967832;
+  line-height: 24px;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 50px;
+  border: 8px solid black;
+  padding: 12px; }
 
 .container {
   display: flex;
   display: -moz-flex;
   display: -webkit-flex;
-  display: -ms-flex; }
+  display: -ms-flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: stretch; }
   .container a {
     color: yellow;
     text-decoration: none; }
@@ -276,7 +288,9 @@ section {
   display: -webkit-flex;
   display: -ms-flex;
   margin: auto;
-  padding: 15px; }
+  padding: 15px;
+  min-width: 350px;
+  flex: 1; }
 
 .outerDiv {
   background-color: rgba(50, 50, 0, 0.5);
@@ -286,7 +300,7 @@ section {
   -ms-border-radius: 2rem; }
 
 .innerDiv {
-  background-color: rgba(10, 10, 10, 0.5);
+  background-color: rgba(10, 10, 10, 0.7);
   border-radius: 1.5rem;
   -moz-border-radius: 1.5rem;
   -webkit-border-radius: 1.5rem;
@@ -300,5 +314,36 @@ section {
   font-size: 1.1em;
   line-height: 1.8em; }
 
-a {
-  text-decoration: none; }
+aside {
+  min-width: 250px;
+  flex: 0.5;
+  margin-top: 60px;
+  display: flex;
+  display: -moz-flex;
+  display: -webkit-flex;
+  display: -ms-flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: stretch; }
+
+.sideDiv {
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 1.5rem 0 0 1.5rem;
+  padding: 15px; }
+
+.framewrap {
+  position: relative;
+  height: 0;
+  overflow: hidden; }
+  .framewrap iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; }
+
+.frame16x9 {
+  padding-bottom: 56.25%; }
+
+.frame4x3 {
+  padding-bottom: 75%; }
