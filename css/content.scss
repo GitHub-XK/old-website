@@ -1,0 +1,224 @@
+@import '_standard_mixins.scss';
+
+$outerBkgd: rgba(50, 50, 0, 0.5);
+$innerBkgd: rgba(10, 10, 10, 0.6);
+$noteBkgd: rgba(0, 0, 0, 0.3);
+$sideBkgd: rgba(0, 0, 0, 0.7);
+$outRadius: 2rem;
+$inRadius: 1.5rem;
+$sideRadius: 1.5rem 0 0 1.5rem;
+$mainPad: 15px;
+$anchorColor: rgb(250, 200, 25);
+$accentBkgd: rgba(0,0,0, 0.7);
+$accentBorder: 8px solid black;
+$accentRad: 50px;
+$accentPad: 12px;
+$accentStyle: italic;
+$accentWeight: 300;
+$accentFsize:20px;
+$accentLnHt: 24px;
+$accentColor: rgb(150, 120, 50);
+$headingColor: rgb(145, 140, 45);
+
+
+html {
+    color: rgb(247,247,220);
+    font: 1rem/1.5rem 'Titillium Web', sans-serif;
+    background: #000 url(https://www.moonwards.com/img/tycho-mod.png) no-repeat fixed right 250px;
+    margin:0;
+    padding: 0;
+    background-size: 1600px;
+    @media only screen and (min-width: 1350px) {
+      background-size: 100% auto;
+      }
+}
+body, ul {
+  margin: 0;
+}
+
+nav {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 20;
+
+  ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  background-color: #000;
+  }
+  a {
+  text-decoration: none;
+  font-weight: 300;
+  color: $anchorColor;
+  }
+  a:hover {
+    color: yellow;
+  }
+}
+
+nav > ul {
+  @include flexy;
+  width: 100%;
+  height: 33px;
+  justify-content: space-around;
+  align-items: baseline;
+}
+
+nav > ul li{
+  font-size: 18px;
+  font-weight: 300;
+  padding: 5px;
+}
+/* Make dropdown menus*/
+nav li > ul /*ul whose parent li is a descendent of nav*/{
+  @include flexy;
+  flex-direction: column;
+  display: none;
+  border-radius: 15px;
+  border: 1px solid #666;
+  border-top: none;
+  padding: 10px;
+
+}
+
+nav  li:hover > ul /* Statement applies only to
+child ul, only when li is hovered */
+{
+  display: flex;
+}
+
+header {
+  @include flexy;
+  flex-flow: row-reverse wrap;
+  justify-content: space-around;
+  height: 200px;
+  padding: 20px 0;
+}
+
+.sec1 {
+  flex-grow: 3;
+  min-width: 200px;
+  padding-right: 40px;
+  margin-top: 2vw;
+  @media only screen and (max-width: 1350px) {
+    flex-grow: 4;
+    margin-top: 5vw;
+  }
+}
+.sec2 {
+  align-self: flex-end;
+  flex-grow: 10;
+  @include flexy;
+  flex-direction: row-reverse;
+  justify-content: flex-start;
+    p {
+      width: 40%;
+      text-align: right;
+      margin-right: 30px;
+      margin-bottom: 25px;
+      align-items: flex-start;
+    }
+}
+.accent {
+  font-style: $accentStyle;
+  font-weight: $accentWeight;
+  font-size: $accentFsize;
+  color: $accentColor;
+  line-height: $accentLnHt;
+  background: $accentBkgd;
+  border-radius: $accentRad;
+  border: $accentBorder;
+  padding: $accentPad;
+}
+.container {
+  @include flexy;
+  @include linx(yellow,rgb(210, 238, 94),rgb(60, 60, 10),
+  rgb(60,60,10));
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: stretch;
+}
+
+section {
+  @include flexy;
+  padding: $mainPad;
+  min-width: 350px;
+  flex: 1;
+  margin-top: 3vw;
+  margin-left: 6vw;
+}
+.outerDiv {
+  background-color: $outerBkgd;
+  @include RadiusOut;
+}
+
+.innerDiv {
+  background-color: $innerBkgd;
+  @include RadiusIn;
+  @include flexy;
+  flex-flow: column nowrap;
+  align-items: flex-end;
+  margin: 15px;
+    p {
+      padding: 6px 18px 8px 15px;
+    }
+}
+
+.intro {
+  font-size: 1rem;
+  line-height: 1.6em;
+  text-align: right;
+}
+
+aside{
+  min-width: 250px;
+  flex: 0.5;
+  margin-top: 5vw;
+  @include flexy;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: stretch;
+}
+.sideDiv {
+  background-color: $sideBkgd;
+  border-radius: $sideRadius;
+  padding: $mainPad;
+}
+.framewrap {
+  position: relative;
+  height: 0;
+  overflow: hidden;
+    iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+}
+
+.frame16x9 {
+  padding-bottom: 56.25%;
+}
+.frame4x3 {
+  padding-bottom: 75%;
+}
+
+h1 {
+  color: $headingColor;
+  font-weight: 300;
+  font-style: italic;
+  font-size: 24px;
+  line-height: 28px;
+  align-self: center;
+  padding: 15px 0 0 45px;
+  border-bottom: 1px solid $headingColor;
+}
+
+.byline {
+  border-top: 1px solid $headingColor;
+  margin-right: 20px;
+  letter-spacing: 2px;
+}
