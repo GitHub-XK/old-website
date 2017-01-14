@@ -5,6 +5,10 @@ that includes all the variables below, and mixins for the
 main elements of our layout. The current _standard_mixins
 partial will be converted to that.
 
+Actually, probably it would be best to follow the
+recommendations in the DevTips videos:
+https://www.youtube.com/watch?v=GTBaQ2DcGUk
+
 Incorporate rem for sizing
 and get rid of px.
 
@@ -40,7 +44,7 @@ Check out making Atom packages, hacking Atom, and Electron,
 so we can essentially create a custom CMS for Moonwards.
 */
 $outerBkgd: rgba(50, 50, 0, 0.5);
-$innerBkgd: rgba(10, 10, 10, 0.7);
+$innerBkgd: rgba(10, 10, 10, 0.6);
 $noteBkgd: rgba(0, 0, 0, 0.3);
 $sideBkgd: rgba(0, 0, 0, 0.7);
 $outRadius: 2rem;
@@ -57,12 +61,13 @@ $accentWeight: 300;
 $accentFsize:20px;
 $accentLnHt: 24px;
 $accentColor: rgb(150, 120, 50);
+$headingColor: rgb(145, 140, 45);
 
 
 html {
-    color: #fff;
+    color: rgb(247,247,220);
     font: 1rem/1.5rem 'Titillium Web', sans-serif;
-    background: #000 url(https://www.moonwards.com/img/tycho7left.png) no-repeat fixed right 33px;
+    background: #000 url(https://www.moonwards.com/img/tycho-mod.png) no-repeat fixed right 250px;
     margin:0;
     padding: 0;
     background-size: 1600px;
@@ -78,6 +83,7 @@ nav {
   width: 100%;
   position: fixed;
   top: 0;
+  z-index: 20;
 
   ul {
   list-style-type: none;
@@ -145,7 +151,7 @@ header {
   }
 }
 .sec2 {
-  align-self: flex-end;
+  align-self: center;
   flex-grow: 7;
   @include flexy;
   flex-direction: row-reverse;
@@ -180,10 +186,11 @@ header {
 
 section {
   @include flexy;
-  margin: auto;
   padding: $mainPad;
   min-width: 350px;
   flex: 1;
+  margin-top: 3vw;
+  margin-left: 6vw;
 }
 .outerDiv {
   background-color: $outerBkgd;
@@ -193,22 +200,25 @@ section {
 .innerDiv {
   background-color: $innerBkgd;
   @include RadiusIn;
+  @include flexy;
+  flex-flow: column nowrap;
+  align-items: flex-end;
   margin: 15px;
     p {
-      padding: 12px;
-      margin: 12px;
+      padding: 6px 18px 8px 15px;
     }
 }
 
 .intro {
-  font-size: 1.1em;
-  line-height: 1.8em;
+  font-size: 1rem;
+  line-height: 1.6em;
+  text-align: right;
 }
 
 aside{
   min-width: 250px;
   flex: 0.5;
-  margin-top: 60px;
+  margin-top: 5vw;
   @include flexy;
   flex-flow: column nowrap;
   justify-content: flex-start;
@@ -237,4 +247,21 @@ aside{
 }
 .frame4x3 {
   padding-bottom: 75%;
+}
+
+h1 {
+  color: $headingColor;
+  font-weight: 300;
+  font-style: italic;
+  font-size: 24px;
+  line-height: 28px;
+  align-self: center;
+  padding: 15px 0 0 45px;
+  border-bottom: 1px solid $headingColor;
+}
+
+.byline {
+  border-top: 1px solid $headingColor;
+  margin-right: 20px;
+  letter-spacing: 2px;
 }
