@@ -122,6 +122,10 @@ that includes all the variables below, and mixins for the
 main elements of our layout. The current _standard_mixins
 partial will be converted to that.
 
+Actually, probably it would be best to follow the
+recommendations in the DevTips videos:
+https://www.youtube.com/watch?v=GTBaQ2DcGUk
+
 Incorporate rem for sizing
 and get rid of px.
 
@@ -157,9 +161,9 @@ Check out making Atom packages, hacking Atom, and Electron,
 so we can essentially create a custom CMS for Moonwards.
 */
 html {
-  color: #fff;
+  color: #f7f7dc;
   font: 1rem/1.5rem 'Titillium Web', sans-serif;
-  background: #000 url(https://www.moonwards.com/img/tycho7left.png) no-repeat fixed right 33px;
+  background: #000 url(https://www.moonwards.com/img/tycho-mod.png) no-repeat fixed right 250px;
   margin: 0;
   padding: 0;
   background-size: 1600px; }
@@ -173,7 +177,8 @@ body, ul {
 nav {
   width: 100%;
   position: fixed;
-  top: 0; }
+  top: 0;
+  z-index: 20; }
   nav ul {
     list-style-type: none;
     padding: 0;
@@ -238,7 +243,7 @@ header {
       margin-top: 6vw; } }
 
 .sec2 {
-  align-self: flex-end;
+  align-self: center;
   flex-grow: 7;
   display: flex;
   display: -moz-flex;
@@ -287,10 +292,11 @@ section {
   display: -moz-flex;
   display: -webkit-flex;
   display: -ms-flex;
-  margin: auto;
   padding: 15px;
   min-width: 350px;
-  flex: 1; }
+  flex: 1;
+  margin-top: 3vw;
+  margin-left: 6vw; }
 
 .outerDiv {
   background-color: rgba(50, 50, 0, 0.5);
@@ -300,24 +306,30 @@ section {
   -ms-border-radius: 2rem; }
 
 .innerDiv {
-  background-color: rgba(10, 10, 10, 0.7);
+  background-color: rgba(10, 10, 10, 0.6);
   border-radius: 1.5rem;
   -moz-border-radius: 1.5rem;
   -webkit-border-radius: 1.5rem;
   -ms-border-radius: 1.5rem;
+  display: flex;
+  display: -moz-flex;
+  display: -webkit-flex;
+  display: -ms-flex;
+  flex-flow: column nowrap;
+  align-items: flex-end;
   margin: 15px; }
   .innerDiv p {
-    padding: 12px;
-    margin: 12px; }
+    padding: 6px 18px 8px 15px; }
 
 .intro {
-  font-size: 1.1em;
-  line-height: 1.8em; }
+  font-size: 1rem;
+  line-height: 1.6em;
+  text-align: right; }
 
 aside {
   min-width: 250px;
   flex: 0.5;
-  margin-top: 60px;
+  margin-top: 5vw;
   display: flex;
   display: -moz-flex;
   display: -webkit-flex;
@@ -347,3 +359,18 @@ aside {
 
 .frame4x3 {
   padding-bottom: 75%; }
+
+h1 {
+  color: #918c2d;
+  font-weight: 300;
+  font-style: italic;
+  font-size: 24px;
+  line-height: 28px;
+  align-self: center;
+  padding: 15px 0 0 45px;
+  border-bottom: 1px solid #918c2d; }
+
+.byline {
+  border-top: 1px solid #918c2d;
+  margin-right: 20px;
+  letter-spacing: 2px; }
