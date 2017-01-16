@@ -31,7 +31,6 @@ nav {
   width: 100%;
   position: fixed;
   top: 0;
-  //z-index: 20;
 
   ul {
   list-style-type: none;
@@ -85,7 +84,7 @@ header {
   align-items: center;
   align-content: flex-start;
   padding: 35px 0;
-  border: 2px dashed yellow; }
+ }
 
 #logo {
   flex: 0 0 40%;
