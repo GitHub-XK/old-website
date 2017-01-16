@@ -58,8 +58,7 @@ header {
   justify-content: space-around;
   align-items: center;
   align-content: flex-start;
-  padding: 35px 0;
-  border: 2px dashed yellow; }
+  padding: 35px 0; }
 
 #logo {
   flex: 0 0 40%; }

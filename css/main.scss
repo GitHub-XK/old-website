@@ -9,22 +9,13 @@ $inRadius: 1.5rem;
 $sideRadius: 1.5rem 0 0 1.5rem;
 $mainPad: 15px;
 $anchorColor: rgb(250, 200, 25);
-$accentBkgd: rgba(0,0,0, 0.7);
-$accentBorder: 8px solid black;
-$accentRad: 50px;
-$accentPad: 12px;
-$accentStyle: italic;
-$accentWeight: 300;
-$accentFsize:20px;
-$accentLnHt: 24px;
-$accentColor: rgb(150, 120, 50);
 $headingColor: rgb(145, 140, 45);
 
 
 html {
     color: rgb(247,247,220);
     font: 1rem/1.5rem 'Titillium Web', sans-serif;
-    background: #000 url(https://www.moonwards.com/img/tycho-mod.png) no-repeat fixed right 250px;
+    background: #000 url(http://www.moonwards.com/img/tycho-mod.png) no-repeat fixed right 250px;
     margin:0;
     padding: 0;
     background-size: 1600px;
@@ -40,7 +31,7 @@ nav {
   width: 100%;
   position: fixed;
   top: 0;
-  z-index: 20;
+  //z-index: 20;
 
   ul {
   list-style-type: none;
@@ -91,47 +82,27 @@ header {
   display: flex;
   flex-flow: row-reverse wrap;
   justify-content: space-around;
-  height: 360px;
-  padding: 20px 0;
+  align-items: center;
+  align-content: flex-start;
+  padding: 35px 0;
+ }
+
+#logo {
+  flex: 0 0 40%;
 }
 
-.sec1 {
-  flex: 4 2 0;
-  min-width: 400px;
-  padding-right: 6vw;
-  padding-left: 3vw;
-  margin-top: 2vw;
-  @media only screen and (max-width: 1350px) {
-    flex: 6 1 0;
-    margin-top: 6vw;
-  }
+#note {
+  flex: 0 0 20%;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 20px;
+  color: #967832;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 50px;
+  border: 8px solid black;
+  padding: 12px;
 }
-.sec2 {
-  align-self: center;
-  flex: 7 0 0;
-  min-width: 180px;
-  display: flex;
-  flex-direction: row-reverse;
-  justify-content: flex-start;
-    p {
-      width: 40%;
-      text-align: right;
-      margin-right: 30px;
-      margin-bottom: 25px;
-      align-items: flex-start;
-    }
-}
-.accent {
-  font-style: $accentStyle;
-  font-weight: $accentWeight;
-  font-size: $accentFsize;
-  color: $accentColor;
-  line-height: $accentLnHt;
-  background: $accentBkgd;
-  border-radius: $accentRad;
-  border: $accentBorder;
-  padding: $accentPad;
-}
+
 .container {
   display: flex;
   @include linx(yellow,rgb(210, 238, 94),rgb(60, 60, 10),
@@ -144,11 +115,9 @@ header {
 section {
   display: flex;
   padding: $mainPad;
-  min-width: 350px;
   flex: 1 0 350px;
   margin-top: 3vw;
   margin-left: 6vw;
-  //height: 100%;
 }
 .outerDiv {
   background-color: $outerBkgd;
@@ -169,14 +138,12 @@ section {
 
 .intro {
   font-size: 1rem;
-  line-height: 1.6em;
+  line-height: 1.6rem;
   text-align: right;
 }
 
 aside{
-  min-width: 250px;
-  flex: 0.5 0 ;
-  margin-top: 5vw;
+  flex: 0.5 0 250px;
   display: flex;
   flex-flow: column nowrap;
   justify-content: flex-start;
