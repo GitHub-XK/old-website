@@ -1,48 +1,5 @@
-@import '_standard_mixins.scss';
-@import '_tooltip.scss';
-/*TODO: Put all layout elements in a _layout.scss partial -
-that includes all the variables below, and mixins for the
-main elements of our layout. The current _standard_mixins
-partial will be converted to that.
+@import '_layout.scss';
 
-Actually, probably it would be best to follow the
-recommendations in the DevTips videos:
-https://www.youtube.com/watch?v=GTBaQ2DcGUk
-
-Incorporate rem for sizing
-and get rid of px.
-
-Incorporate media queries as part of
-elements that need to be responsive but should stack below
-a certain viewer width - there can be as many as you want,
-i was confused, they don't involve an http call. Sass allows
-media queries to be added as properties of a selector.
-
-Make mixins for all the webkit instances.
-
-Make a really good page that people with incompatible
-browsers are taken to, that sells the idea of upgrading,
-and also explains why and has a link to a basic site
-if they absolutely won't or can't.
-
-Add variables and maybe mixins to the _tooltip partial.
-
-Solve:
-  Comment sections, in-house, fully-featured
-  Twitter feed in sidebar that isn't obnoxious
-  RSS feed generator
-  Getting rid of Sketchfab - Three.js canvasses?
-  YouTube channel - replace on the site with Vimeo?
-
-Create reading list, codepens, and video that explains the
-way the css and html works, so others can easily maintain
-or add to it.
-
-Check out Jade and see if the html should also be adapted.
-
-Check out making Atom packages, hacking Atom, and Electron,
-so we can essentially create a custom CMS for Moonwards.
-*/
 $outerBkgd: rgba(50, 50, 0, 0.5);
 $innerBkgd: rgba(10, 10, 10, 0.6);
 $noteBkgd: rgba(0, 0, 0, 0.3);
@@ -102,11 +59,11 @@ nav {
 }
 
 nav > ul {
-  @include flexy;
-  width: 100%;
-  height: 33px;
+  display: flex;
   justify-content: space-around;
   align-items: baseline;
+  width: 100%;
+  height: 33px;
 }
 
 nav > ul li{
@@ -116,44 +73,44 @@ nav > ul li{
 }
 /* Make dropdown menus*/
 nav li > ul /*ul whose parent li is a descendent of nav*/{
-  @include flexy;
-  flex-direction: column;
   display: none;
   border-radius: 15px;
   border: 1px solid #666;
   border-top: none;
   padding: 10px;
-
 }
 
 nav  li:hover > ul /* Statement applies only to
 child ul, only when li is hovered */
 {
   display: flex;
+  flex-direction: column;
 }
 
 header {
-  @include flexy;
+  display: flex;
   flex-flow: row-reverse wrap;
   justify-content: space-around;
-  height: 290px;
+  height: 360px;
   padding: 20px 0;
 }
 
 .sec1 {
-  flex-grow: 4;
+  flex: 4 2 0;
   min-width: 400px;
-  padding-right: 60px;
+  padding-right: 6vw;
+  padding-left: 3vw;
   margin-top: 2vw;
   @media only screen and (max-width: 1350px) {
-    flex-grow: 6;
+    flex: 6 1 0;
     margin-top: 6vw;
   }
 }
 .sec2 {
   align-self: center;
-  flex-grow: 7;
-  @include flexy;
+  flex: 7 0 0;
+  min-width: 180px;
+  display: flex;
   flex-direction: row-reverse;
   justify-content: flex-start;
     p {
@@ -176,7 +133,7 @@ header {
   padding: $accentPad;
 }
 .container {
-  @include flexy;
+  display: flex;
   @include linx(yellow,rgb(210, 238, 94),rgb(60, 60, 10),
   rgb(60,60,10));
   flex-wrap: wrap;
@@ -185,12 +142,13 @@ header {
 }
 
 section {
-  @include flexy;
+  display: flex;
   padding: $mainPad;
   min-width: 350px;
-  flex: 1;
+  flex: 1 0 350px;
   margin-top: 3vw;
   margin-left: 6vw;
+  //height: 100%;
 }
 .outerDiv {
   background-color: $outerBkgd;
@@ -200,7 +158,7 @@ section {
 .innerDiv {
   background-color: $innerBkgd;
   @include RadiusIn;
-  @include flexy;
+  display: flex;
   flex-flow: column nowrap;
   align-items: flex-end;
   margin: 15px;
@@ -217,9 +175,9 @@ section {
 
 aside{
   min-width: 250px;
-  flex: 0.5;
+  flex: 0.5 0 ;
   margin-top: 5vw;
-  @include flexy;
+  display: flex;
   flex-flow: column nowrap;
   justify-content: flex-start;
   align-items: stretch;
