@@ -79,20 +79,23 @@ child ul, only when li is hovered */
 }
 
 header {
+  width: 100%;
   display: flex;
   flex-flow: row-reverse wrap;
   justify-content: space-around;
   align-items: center;
-  align-content: flex-start;
-  padding: 35px 0;
+  padding: 65px 0;
  }
 
-#logo {
+#Logo {
   flex: 0 0 40%;
+  @media only screen and (min-width: 1350px) {
+    flex: 0 0 25%;
+  }
 }
 
 #note {
-  flex: 0 0 20%;
+  flex: 0 0 40%;
   font-style: italic;
   font-weight: 300;
   font-size: 20px;
@@ -101,6 +104,11 @@ header {
   border-radius: 50px;
   border: 8px solid black;
   padding: 12px;
+  text-align: right;
+    p {
+      width: 50%;
+      margin-left: auto;
+    }
 }
 
 .container {
