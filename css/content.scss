@@ -71,7 +71,7 @@ header {
   justify-content: flex-start;
   align-items: center;
   align-content: flex-start;
-  padding: 35px 0;
+  padding: 35px 0 0 0;
   width: 100%;
  }
 
@@ -124,10 +124,8 @@ section {
     }
 }
 
-
-
 aside{
-  flex: 0.5 0 0;
+  flex: 0 1 250px;
   margin-top: 5vw;
   display: flex;
   flex-flow: column nowrap;
@@ -138,6 +136,9 @@ aside{
   background-color: $sideBkgd;
   border-radius: $sideRadius;
   padding: $mainPad;
+    img{
+      width: auto;
+    }
 }
 .framewrap {
   position: relative;
