@@ -59,8 +59,7 @@ header {
   align-items: center;
   align-content: flex-start;
   padding: 35px 0;
-  width: 100%;
-  height: 350px; }
+  width: 100%; }
 
 #Logo {
   flex: 1 1 250px;
