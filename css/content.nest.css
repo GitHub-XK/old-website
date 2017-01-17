@@ -1,3 +1,30 @@
+/*All color, text styling, and visual touches*/
+h1 {
+  color: #918c2d;
+  font-weight: 300;
+  font-style: italic;
+  font-size: 24px;
+  line-height: 28px;
+  align-self: center;
+  padding: 15px 0 15px 45px;
+  border-bottom: 1px solid #918c2d; }
+
+h2 {
+  color: #918c2d;
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 24px;
+  align-self: flex-end;
+  padding: 5px 20px 12px 45px;
+  border-bottom: 1px solid #918c2d; }
+
+figcaption {
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  line-height: 1.1rem;
+  text-align: right;
+  width: 90%; }
+
 html {
   color: #f7f7dc;
   font: 1rem/1.5rem 'Titillium Web', sans-serif;
@@ -9,7 +36,7 @@ html {
     html {
       background-size: 100% auto; } }
 
-body, ul {
+body, ul, figure {
   margin: 0; }
 
 nav {
@@ -93,9 +120,13 @@ header {
 section {
   display: flex;
   padding: 15px;
-  flex: 1 0 350px;
+  flex: 3 0 350px;
   margin-top: 3vw;
   margin-left: 6vw; }
+  section img {
+    padding: 10px; }
+  section .gallery {
+    padding: 10px; }
 
 .outerDiv {
   background-color: rgba(50, 50, 0, 0.5);
@@ -118,19 +149,23 @@ section {
     padding: 6px 18px 8px 15px; }
 
 aside {
-  flex: 0 1 250px;
+  flex: 1 1 300px;
   margin-top: 5vw;
   display: flex;
   flex-flow: column nowrap;
   justify-content: flex-start;
   align-items: stretch; }
+  @media only screen and (min-width: 1700px) {
+    aside {
+      flex: 2 0 400px; } }
 
 .sideDiv {
   background-color: rgba(0, 0, 0, 0.7);
   border-radius: 1.5rem 0 0 1.5rem;
   padding: 15px; }
   .sideDiv img {
-    width: auto; }
+    width: 90%;
+    border: 1px solid #918c2d; }
 
 .framewrap {
   position: relative;
@@ -148,16 +183,6 @@ aside {
 
 .frame4x3 {
   padding-bottom: 75%; }
-
-h1 {
-  color: #918c2d;
-  font-weight: 300;
-  font-style: italic;
-  font-size: 24px;
-  line-height: 28px;
-  align-self: center;
-  padding: 15px 0 0 45px;
-  border-bottom: 1px solid #918c2d; }
 
 .byline {
   border-top: 1px solid #918c2d;
