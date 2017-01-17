@@ -1,3 +1,5 @@
+/*All color, text styling, and visual touches*/
+
 $outerBkgd: rgba(50, 50, 0, 0.5);
 $innerBkgd: rgba(10, 10, 10, 0.6);
 $noteBkgd: rgba(0, 0, 0, 0.3);
@@ -9,6 +11,35 @@ $mainPad: 15px;
 $anchorColor: rgb(250, 200, 25);
 $headingColor: rgb(145, 140, 45);
 $introRadius: 0 1.5rem 1.5rem 0;
+$figcapSize: 0.8rem;
+
+h1 {
+  color: $headingColor;
+  font-weight: 300;
+  font-style: italic;
+  font-size: 24px;
+  line-height: 28px;
+  align-self: center;
+  padding: 15px 0 15px 45px;
+  border-bottom: 1px solid $headingColor; }
+
+h2 {
+  color: $headingColor;
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 24px;
+  align-self: flex-end;
+  padding: 5px 20px 12px 45px;
+  border-bottom: 1px solid $headingColor;
+}
+figcaption {
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  line-height: 1.1rem;
+  text-align: right;
+  width: 90%;
+}
+
 @mixin RadiusOut {
   border-radius: $outRadius;
   -moz-border-radius: $outRadius;
