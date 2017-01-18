@@ -106,7 +106,7 @@ header {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
-  align-items: stretch; }
+  align-items: flex-start; }
   .container a {
     color: yellow;
     text-decoration: none; }
