@@ -106,12 +106,7 @@ section {
   flex: 3 0 350px;
   margin-top: 3vw;
   margin-left: 6vw;
-    img {
-      padding: 10px;
-    }
-    .thumbs {
-      padding: 10px;
-    }
+
 }
 .outerDiv {
   background-color: $outerBkgd;
@@ -128,6 +123,16 @@ section {
     p {
       padding: 6px 18px 8px 15px;
     }
+}
+
+.thumbs {
+  padding: 10px;
+  display: flex;
+  flex-flow: row wrap;
+  img {
+    padding: 10px;
+    flex: 0 1 auto;
+  }
 }
 
 aside{
@@ -149,6 +154,25 @@ aside{
       width: 90%;
       border: 1px solid $headingColor;
     }
+}
+
+.container_SF_iframe {
+  @include linx(yellow,rgb(210, 238, 94),rgb(60, 60, 10),
+  rgb(60,60,10));
+  width: 100%;
+}
+
+.SF-Div {
+  background-color: $sideBkgd;
+  @include RadiusIn;
+  padding: 15px;
+}
+
+.SF-caption {
+  background-color: $sideBkgd;
+  padding: 25px;
+  margin-top: -75px;
+
 }
 .framewrap {
   position: relative;
