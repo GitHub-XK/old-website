@@ -189,15 +189,6 @@ aside {
   line-height: 1.1rem;
   text-align: right; }
 
-.sidePairBottomSF {
-  background-color: rgba(0, 0, 0, 0.7);
-  border-radius: 0 0 0 1.5rem;
-  padding: 100 15px 15px 15px;
-  font-size: 0.8rem;
-  letter-spacing: 1px;
-  line-height: 1.1rem;
-  text-align: right; }
-
 .container_SF_iframe {
   width: 100%; }
   .container_SF_iframe a {
@@ -217,11 +208,6 @@ aside {
   -webkit-border-radius: 1.5rem;
   -ms-border-radius: 1.5rem;
   padding: 15px; }
-
-.SF-caption {
-  background-color: rgba(0, 0, 0, 0.7);
-  padding: 25px;
-  margin-top: -75px; }
 
 .framewrap {
   position: relative;

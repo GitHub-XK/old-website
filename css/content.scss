@@ -176,16 +176,6 @@ aside{
   text-align: right;
 }
 
-.sidePairBottomSF {
-  background-color: $sideBkgd;
-  border-radius: 0 0 0 1.5rem;
-  padding: 100 15px 15px 15px;
-  font-size: 0.8rem;
-  letter-spacing: 1px;
-  line-height: 1.1rem;
-  text-align: right;
-}
-
 .container_SF_iframe {
   @include linx(yellow,rgb(210, 238, 94),rgb(60, 60, 10),
   rgb(60,60,10));
@@ -198,12 +188,6 @@ aside{
   padding: 15px;
 }
 
-.SF-caption {
-  background-color: $sideBkgd;
-  padding: 25px;
-  margin-top: -75px;
-
-}
 .framewrap {
   position: relative;
   height: 0;
