@@ -207,7 +207,8 @@ aside {
   -moz-border-radius: 1.5rem;
   -webkit-border-radius: 1.5rem;
   -ms-border-radius: 1.5rem;
-  padding: 15px; }
+  padding: 15px;
+  margin-bottom: 30px; }
 
 .framewrap {
   position: relative;
