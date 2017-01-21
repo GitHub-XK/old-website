@@ -91,7 +91,6 @@ header {
   flex: 3 0 40vw;
 }
 
-
 .container {
   display: flex;
   @include linx(yellow,rgb(210, 238, 94),rgb(60, 60, 10),
@@ -107,7 +106,6 @@ section {
   flex: 3 0 350px;
   margin-top: 3vw;
   margin-left: 6vw;
-
 }
 .outerDiv {
   background-color: $outerBkgd;
@@ -125,14 +123,38 @@ section {
       padding: 6px 18px 0 15px;
     }
 }
-
-.thumbs {
-  padding: 10px;
+.pixHeader {
+  background-color: $innerBkgd;
+  border-radius: 15px 15px 0 0;
+  margin: 15px 15px 0 15px;
+}
+.pixWrap {
+  background-color: $innerBkgd;
+  border-radius: 0 0 15px 15px;
   display: flex;
   flex-flow: row wrap;
+  align-items: center;
+  margin: 0 15px 15px 15px;
+}
+
+div .gallery {
+  flex: auto;
+  width: 500px;
+  margin: 2vw;
   img {
-    padding: 10px;
-    flex: 0 1 auto;
+    width: 100%;
+    height: auto;
+  }
+}
+
+.thumbs {
+  margin: 1vw;
+  flex: auto;
+  width: 150px;
+  align-items: center;
+  img {
+    width: 100%;
+    height: auto;
   }
 }
 

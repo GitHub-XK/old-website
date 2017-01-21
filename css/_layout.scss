@@ -32,6 +32,17 @@ h2 {
   padding: 5px 20px 12px 45px;
   border-bottom: 1px solid $headingColor;
 }
+h3 {
+  color: $headingColor;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  align-self: flex-end;
+  padding: 5px 20px 0 45px;
+  margin: 0;
+  border-bottom: 1px solid $headingColor;
+}
+
 figcaption {
   font-size: 0.8rem;
   letter-spacing: 1px;

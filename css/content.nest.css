@@ -18,6 +18,16 @@ h2 {
   padding: 5px 20px 12px 45px;
   border-bottom: 1px solid #918c2d; }
 
+h3 {
+  color: #918c2d;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  align-self: flex-end;
+  padding: 5px 20px 0 45px;
+  margin: 0;
+  border-bottom: 1px solid #918c2d; }
+
 figcaption {
   font-size: 0.8rem;
   letter-spacing: 1px;
@@ -145,13 +155,35 @@ section {
   .innerDiv p {
     padding: 6px 18px 0 15px; }
 
-.thumbs {
-  padding: 10px;
+.pixHeader {
+  background-color: rgba(10, 10, 10, 0.6);
+  border-radius: 15px 15px 0 0;
+  margin: 15px 15px 0 15px; }
+
+.pixWrap {
+  background-color: rgba(10, 10, 10, 0.6);
+  border-radius: 0 0 15px 15px;
   display: flex;
-  flex-flow: row wrap; }
+  flex-flow: row wrap;
+  align-items: center;
+  margin: 0 15px 15px 15px; }
+
+div .gallery {
+  flex: auto;
+  width: 500px;
+  margin: 2vw; }
+  div .gallery img {
+    width: 100%;
+    height: auto; }
+
+.thumbs {
+  margin: 1vw;
+  flex: auto;
+  width: 150px;
+  align-items: center; }
   .thumbs img {
-    padding: 10px;
-    flex: 0 1 auto; }
+    width: 100%;
+    height: auto; }
 
 aside {
   flex: 1 1 300px;
