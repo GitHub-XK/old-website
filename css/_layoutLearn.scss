@@ -15,7 +15,7 @@ $figcapSize: 0.8rem;
 
 h1 {
   color: $headingColor;
-  font-weight: 300;
+  font-weight: 400;
   font-style: italic;
   font-size: 24px;
   line-height: 28px;
@@ -25,12 +25,22 @@ h1 {
 
 h2 {
   color: $headingColor;
-  font-weight: 300;
+  font-weight: 400;
   font-size: 20px;
   line-height: 24px;
   align-self: flex-end;
   padding: 5px 20px 12px 45px;
   border-bottom: 1px solid $headingColor;
+}
+
+h5 {
+  color: $headingColor;
+  font-weight: 400;
+  line-height: 20px;
+  font-size: 18px;
+  padding: 4px 20px;
+  margin: 20px 0 5px 0;
+  align-self: center;
 }
 
 figcaption {
@@ -50,6 +60,9 @@ input[type="text"] {
   padding-bottom: 0;
 }
 
+ul {
+  padding: 2vw 2vw 2vw 4vw;
+}
 @mixin RadiusOut {
   border-radius: $outRadius;
   -moz-border-radius: $outRadius;
