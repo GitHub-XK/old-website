@@ -1,0 +1,209 @@
+@import '_layoutLearn.scss';
+
+html {
+    color: rgb(247,247,220);
+    font: 1rem/1.5rem 'Titillium Web', sans-serif;
+    background: #000 url(http://www.moonwards.com/img/tycho-mod.png) no-repeat fixed right 250px;
+    margin:0;
+    padding: 0;
+    background-size: 1600px;
+    @media only screen and (min-width: 1350px) {
+      background-size: 100% auto;
+      }
+}
+body, ul, figure {
+  margin: 0;
+}
+
+nav {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 20;
+
+  ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  background-color: #000;
+  }
+  a {
+  text-decoration: none;
+  font-weight: 300;
+  color: $anchorColor;
+  }
+  a:hover {
+    color: yellow;
+  }
+}
+
+nav > ul {
+  display: flex;
+  justify-content: space-around;
+  align-items: baseline;
+  width: 100%;
+  height: 33px;
+}
+
+nav > ul li{
+  font-size: 18px;
+  font-weight: 300;
+  padding: 5px;
+}
+/* Make dropdown menus*/
+nav li > ul /*ul whose parent li is a descendent of nav*/{
+  display: none;
+  border-radius: 15px;
+  border: 1px solid #666;
+  border-top: none;
+  padding: 10px;
+}
+
+nav  li:hover > ul /* Statement applies only to
+child ul, only when li is hovered */
+{
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  display: flex;
+  flex-flow: row-reverse;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: flex-start;
+  padding: 35px 0 0 0;
+  width: 100%;
+ }
+
+#Logo {
+  flex: 1 1 250px;
+  padding: 10vw;
+}
+.intro {
+  font-size: 1rem;
+  line-height: 1.6rem;
+  text-align: right;
+  background: $outerBkgd;
+  border-radius: $introRadius;
+  padding: 20px;
+  margin-left: auto;
+  flex: 3 0 40vw;
+}
+
+
+section {
+  display: flex;
+  @include linx(yellow,rgb(210, 238, 94),rgb(60, 60, 10),
+  rgb(60,60,10));
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 90%;
+}
+
+.outerDiv {
+  background-color: $outerBkgd;
+  @include RadiusOut;
+}
+
+.innerDiv {
+  background-color: $innerBkgd;
+  @include RadiusIn;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: flex-end;
+  margin: 15px;
+    p {
+      padding: 6px 18px 0 15px;
+    }
+  }
+.wide {
+  img {
+    align-self: center;
+  }
+}
+.imgResize {
+    flex: auto;
+    align-self: center;
+      img {
+        width: 90%;
+        height: auto;
+
+      }
+    }
+
+.thumbs {
+  padding: 10px;
+  display: flex;
+  flex-flow: row wrap;
+  img {
+    padding: 10px;
+    flex: 0 1 auto;
+  }
+}
+
+aside{
+  flex: 2 0 150px;
+  margin-top: 5vw;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: stretch;
+  @media only screen and (min-width: 1700px) {
+    flex: 2 0 400px;
+  }
+}
+.sideDiv {
+  background-color: $sideBkgd;
+  border-radius: $sideRadius;
+  padding: $mainPad;
+    img{
+      width: 90%;
+      border: 1px solid $headingColor;
+    }
+}
+
+.sidePairTop {
+  background-color: $sideBkgd;
+  border-radius: 1.5rem 0 0 0;
+  padding: $mainPad;
+    img{
+      width: 90%;
+      border: 1px solid $headingColor;
+    }
+}
+.sidePairBottom {
+  background-color: $sideBkgd;
+  border-radius: 0 0 0 1.5rem;
+  padding: 0 15px 15px 15px;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  line-height: 1.1rem;
+  text-align: right;
+}
+
+.framewrap {
+  position: relative;
+  height: 0;
+  overflow: hidden;
+    iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+}
+
+.frame16x9 {
+  padding-bottom: 56.25%;
+}
+.frame4x3 {
+  padding-bottom: 75%;
+}
+
+
+ul {
+  padding: 2vw 2vw 2vw 4vw;
+}
