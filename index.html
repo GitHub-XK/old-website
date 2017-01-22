@@ -14,9 +14,8 @@
 		<link rel="icon" type="image/png" href="favicon-96x96.png" sizes="96x96">
 		<link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16">
 		<link rel="stylesheet" href="css/main.nest.css">
-<link href="https://fonts.googleapis.com/css?family=Titillium+Web:200,200i,300,300i,400,400i,600" rel="stylesheet">		<script src="js/modernizr-2.8.3.min.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Titillium+Web:200,200i,300,300i,400,400i,600" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="js/modernizr-2.8.3.min.js"></script>
 	</head>
 <body>
 	<!--[if lt IE 9]>
@@ -69,6 +68,7 @@
   						<ul>
   							<li><a href="project.html#chart">Chart</a></li>
 								<li><a href="http://moonwards1.blogspot.com/">Blog</a></li>
+								<li><a href="http://www.moonwards.com/forum/">Forum</a></li>
   						</ul>
   					</li>
   					<li><a href="learn.html">Learn</a>
@@ -178,50 +178,50 @@ If you can't see our RSS feed, you need to enable Javascript
 
 
 <script>
-                atom_no = 0; //we'll use this as our counter
-		feed_text = ''; //we'll use this variable to build our innerHTML for complete RSS feed
-                display_no = 3; //set this number to number of last feed items to parse
+atom_no = 0; //we'll use this as our counter
+feed_text = ''; //we'll use this variable to build our innerHTML for complete RSS feed
+display_no = 3; //set this number to number of last feed items to parse
 
 
-		$.get('//www.moonwards.com/feed/rss.xml', function (data) { //you'll change the URL here to the URL of your XML file
-                    atom_count = $(data).find("item").length;
-		    $(data).find("item").each(function () {
-		        var el = $(this);
+$.get('//www.moonwards.com/feed/rss.xml', function (data) { //you'll change the URL here to the URL of your XML file
+		atom_count = $(data).find("item").length;
+$(data).find("item").each(function () {
+var el = $(this);
 
-			atom_no = atom_no + 1; //increase counter for each item found
+atom_no = atom_no + 1; //increase counter for each item found
 
-			if (display_no > $(data).find("item").length - atom_no) {
-		        atom_text = ''; //we'll use this variable to build our innerHTML for each RSS feed item
+if (atom_no <= display_no) { //if you want reversed order, put here "if (atom_no > $(data).find("item").length - display_no)"
+		atom_text = ''; //we'll use this variable to build our innerHTML for each RSS feed item
 
-			//now we start building our atom HTML
-			//first by checking if "guid" is defined, and if not we'll generate our element ID with our counter, otherwise use "guid"
+//now we start building our atom HTML
+//first by checking if "guid" is defined, and if not we'll generate our element ID with our counter, otherwise use "guid"
 
-			atom_guid = el.find("guid").text();
-                        if (atom_guid) {
-				atom = '<p id="' + el.find("guid").text() + '" class="atom">';
+atom_guid = el.find("guid").text();
+						if (atom_guid) {
+		atom = '<p id="' + el.find("guid").text() + '" class="atom">';
 
-			} else {
-				atom = '<p id="xitem' + atom_no + '" class="atom">';
-			}
-			atom = atom + '<span class="datetime">' + el.find("pubDate").text() + '</span>';
-			atom_link = el.find("link").text(); //we'll use this to wrap a link around the title, if link exists
-			if (atom_link) {
-				atom = atom + '<span class="title"><a href="' + atom_link + '">' + el.find("title").text() + '</a></span>';
-			} else {
-				atom = atom + '<span class="title">' + el.find("title").text() + '</span>';
-			}
-			atom = atom + '<span class="description">' + el.find("description").text() + '</span>';
-			atom = atom + '</p>';
+} else {
+		atom = '<p id="xitem' + atom_no + '" class="atom">';
+}
+atom = atom + '<span class="datetime">' + el.find("pubDate").text() + '</span>';
+atom_link = el.find("link").text(); //we'll use this to wrap a link around the title, if link exists
+if (atom_link) {
+		atom = atom + '<br/><span class="title"><a href="' + atom_link + '">' + el.find("title").text() + ': </a></span>';
+} else {
+		atom = atom + ' : <br/><span class="title">' + el.find("title").text() + '</span>';
+}
+atom = atom + '<span class="description">' + el.find("description").text() + '</span>';
+atom = atom + '</p>';
 
-			//if you want reversed order, just say "feed_text = atom + feed_text;"
-			feed_text = feed_text + atom;
-			}
+//if you want reversed order, just say "feed_text = atom + feed_text;"
+feed_text = feed_text + atom;
+}
 
-		    });
+});
 
-			$("#RSS-feed").html(feed_text);
+$("#RSS-feed").html(feed_text);
 
-		});
+});
 </script>
 <script>
 

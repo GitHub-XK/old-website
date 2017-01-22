@@ -18,6 +18,16 @@ h2 {
   padding: 5px 20px 12px 45px;
   border-bottom: 1px solid #918c2d; }
 
+h3 {
+  color: #918c2d;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  align-self: flex-end;
+  padding: 5px 20px 0 45px;
+  margin: 0;
+  border-bottom: 1px solid #918c2d; }
+
 figcaption {
   font-size: 0.8rem;
   letter-spacing: 1px;
@@ -199,3 +209,10 @@ h1 {
   border-top: 1px solid #918c2d;
   margin-right: 20px;
   letter-spacing: 2px; }
+
+.datetime {
+  color: #888;
+  font-size: 12px; }
+
+.title {
+  padding: 0 5px; }

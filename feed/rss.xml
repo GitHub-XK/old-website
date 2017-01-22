@@ -11,6 +11,24 @@
 		<generator>handwritten</generator>
 		<webMaster>sigvart@moonwards.com</webMaster>
 		<item>
+			<title>You gotta advertise </title>
+			<link>http://www.moonwards.com/ </link>
+			<description>Our first banner ad, on
+				&lt;a href="http://www.thespaceshow.com/"&gt;The Space Show&lt;/a&gt; will
+			start showing up next week. Next, we conquer the world.</description>
+			<pubDate>Sat, 21 Jan 2017 17:53:01 GMT </pubDate>
+			<guid>item5</guid>
+		</item>
+		<item>
+			<title>Revamped site </title>
+			<link>http://www.moonwards.com/ </link>
+			<description>The website has been completely redone. Find many
+			new models and new content. New sections will be added in the next
+		weeks.</description>
+			<pubDate>Sat, 21 Jan 2017 17:50:01 GMT </pubDate>
+			<guid>item4</guid>
+		</item>
+		<item>
 			<title>3D models</title>
 			<link>http://www.moonwards.com/</link>
 			<description>We have changed how we display 3D models. This should speed up the load time of the main page by about an order of magnitude.</description>
