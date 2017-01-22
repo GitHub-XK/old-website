@@ -117,7 +117,8 @@ header {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
-  align-items: flex-start; }
+  align-items: flex-start;
+  width: 100%; }
   .container a {
     color: yellow;
     text-decoration: none; }
@@ -132,8 +133,20 @@ section {
   display: flex;
   padding: 15px;
   flex: 3 0 350px;
+  flex-direction: column;
   margin-top: 3vw;
   margin-left: 6vw; }
+
+aside {
+  flex: 1 1 300px;
+  margin-top: 5vw;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: stretch; }
+  @media only screen and (min-width: 1700px) {
+    aside {
+      flex: 2 0 400px; } }
 
 .outerDiv {
   background-color: rgba(50, 50, 0, 0.5);
@@ -155,12 +168,18 @@ section {
   .innerDiv p {
     padding: 6px 18px 0 15px; }
 
+.pixWrap {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  margin: 15px; }
+
 .pixHeader {
   background-color: rgba(10, 10, 10, 0.6);
   border-radius: 15px 15px 0 0;
   margin: 15px 15px 0 15px; }
 
-.pixWrap {
+.pixBody {
   background-color: rgba(10, 10, 10, 0.6);
   border-radius: 0 0 15px 15px;
   display: flex;
@@ -176,25 +195,13 @@ div .gallery {
     width: 100%;
     height: auto; }
 
-.thumbs {
+.pix {
   margin: 1vw;
   flex: auto;
-  width: 150px;
   align-items: center; }
-  .thumbs img {
+  .pix img {
     width: 100%;
     height: auto; }
-
-aside {
-  flex: 1 1 300px;
-  margin-top: 5vw;
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: flex-start;
-  align-items: stretch; }
-  @media only screen and (min-width: 1700px) {
-    aside {
-      flex: 2 0 400px; } }
 
 .sideDiv {
   background-color: rgba(0, 0, 0, 0.7);
