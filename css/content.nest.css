@@ -15,16 +15,17 @@ h2 {
   font-size: 20px;
   line-height: 24px;
   align-self: flex-end;
-  padding: 5px 20px 12px 45px;
+  padding: 15px 20px 12px 45px;
+  margin: 0;
   border-bottom: 1px solid #918c2d; }
 
 h3 {
   color: #918c2d;
   font-weight: 400;
   font-size: 18px;
-  line-height: 22px;
+  line-height: 24px;
   align-self: flex-end;
-  padding: 5px 20px 0 45px;
+  padding: 15px 4vw 0 8vw;
   margin: 0;
   border-bottom: 1px solid #918c2d; }
 
@@ -107,7 +108,7 @@ header {
   font-size: 1rem;
   line-height: 1.6rem;
   text-align: right;
-  background: rgba(50, 50, 0, 0.5);
+  background: rgba(50, 50, 0, 0.6);
   border-radius: 0 1.5rem 1.5rem 0;
   padding: 20px;
   margin-left: auto;
@@ -149,7 +150,7 @@ aside {
       flex: 2 0 400px; } }
 
 .outerDiv {
-  background-color: rgba(50, 50, 0, 0.5);
+  background-color: rgba(50, 50, 0, 0.6);
   border-radius: 2rem;
   -moz-border-radius: 2rem;
   -webkit-border-radius: 2rem;
@@ -173,6 +174,9 @@ aside {
   flex-flow: row wrap;
   align-items: center;
   margin: 15px; }
+  .pixWrap p {
+    margin-top: 5px;
+    padding-bottom: 10px; }
 
 .pixHeader {
   background-color: rgba(10, 10, 10, 0.6);

@@ -9,7 +9,6 @@ https://www.youtube.com/watch?v=GTBaQ2DcGUk
 Figure out if Bourbon is really convenient for this
 project and how to use it properly.
 
-- Why aren't the new favicons loading?
 
 - The Sketchfab models need a better way to put captions
 under them.
