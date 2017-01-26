@@ -142,6 +142,10 @@ aside{
   flex-flow: row wrap;
   align-items: center;
   margin: 15px;
+    p {
+      margin-top: 5px;
+      padding-bottom: 10px;
+    }
 }
 .pixHeader {
   background-color: $innerBkgd;
