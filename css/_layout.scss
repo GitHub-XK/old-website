@@ -52,23 +52,38 @@ figcaption {
   width: 90%;
 }
 
+.note {
+  font-weight: 600;
+  font-size: 0.6rem;
+  color: yellow;
+}
+
+ .note:hover {
+   background-color: rgb(60,60,10);
+   cursor: pointer;
+ }
+
+ .tooltip_templates {
+   display: none;
+ }
+
 @mixin RadiusOut {
-  border-radius: $outRadius;
   -moz-border-radius: $outRadius;
   -webkit-border-radius: $outRadius;
   -ms-border-radius: $outRadius;
+  border-radius: $outRadius;
 }
 @mixin RadiusIn {
-  border-radius: $inRadius;
   -moz-border-radius: $inRadius;
   -webkit-border-radius: $inRadius;
   -ms-border-radius: $inRadius;
+  border-radius: $inRadius;
 }
 @mixin RadiusSide {
-  border-radius: $sideRadius;
   -moz-border-radius: $sideRadius;
   -webkit-border-radius: $sideRadius;
   -ms-border-radius: $sideRadius;
+  border-radius: $sideRadius;
 }
 
 @mixin linx ($link, $visit, $hover, $active) {
