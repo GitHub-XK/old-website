@@ -139,6 +139,7 @@ p {
 						</p>
 				</div>
 			</header>
+<div class="container">
 		<noscript>
 			<p>
 It seems like you do not have JavaScript enabled. If that is by intent, we can inform you that all the scripts on this site are not tracing you, are only used for fonts and styling.<br>
@@ -168,34 +169,34 @@ The calculators are also based on JavaScript, and they do not work without it. T
 
 			<div class="outerDiv">
 				<div class="innerDiv">
-				<h2>Lunar Elevator</h2>
-				<p>Start distance: (From the centre of the Moon towards Earth)</p>
-				<input type="text" placeholder="(km)" value="" id="start">
-				<p style="padding-top: 5px; margin-top: 0;"><input type="checkbox" id="surface">use lunar surface</p>
-				<p>End distance</p>
-				<input type="text" placeholder="(km)" value="" id="end">
-				<p style="padding-top: 5px; margin-top: 0;"><input type="checkbox" id="eml1">use EML1</p>
-				<p>Material strength:</p>
-				<input type="text" placeholder="(Yuri)" value="" id="material">
-				<p style="padding-top: 5px; margin-top: 0;"><input type="checkbox" id="zylon">use Zylon</p>
-				<p><input type="checkbox" id="tethermass"> I want the mass of
-					the elevator too!</p>
-				<p>Parameters required to calculate elevator mass:</p>
-				<p style="padding-bottom: 5px;margin-bottom: 0;">Payload mass:</p>
-				<input type="text" placeholder="(kg)" value="" id="payloadmass">
-				<p style="padding-bottom: 5px;margin-bottom: 0;">Safety factor:</p>
-				<input type="text" value="1.1" id="safety">
-				<button onclick="tether()">Calculate!</button>
-				<canvas id="tetherCanvas" width="400" height="100"></canvas>
-				<script src="js/tether.js"></script>
-				<p id="resultLE">&nbsp;</p>
-				<p id="resultLE2">&nbsp;</p>
-				<p id="resultLE3">&nbsp;</p>
+					<h2>Lunar Elevator</h2>
+					<p>Start distance: (From the centre of the Moon towards Earth)</p>
+					<input type="text" placeholder="(km)" value="" id="start">
+					<p style="padding-top: 5px; margin-top: 0;"><input type="checkbox" id="surface">use lunar surface</p>
+					<p>End distance</p>
+					<input type="text" placeholder="(km)" value="" id="end">
+					<p style="padding-top: 5px; margin-top: 0;"><input type="checkbox" id="eml1">use EML1</p>
+					<p>Material strength:</p>
+					<input type="text" placeholder="(Yuri)" value="" id="material">
+					<p style="padding-top: 5px; margin-top: 0;"><input type="checkbox" id="zylon">use Zylon</p>
+					<p><input type="checkbox" id="tethermass"> I want the mass of
+						the elevator too!</p>
+					<p>Parameters required to calculate elevator mass:</p>
+					<p style="padding-bottom: 5px;margin-bottom: 0;">Payload mass:</p>
+					<input type="text" placeholder="(kg)" value="" id="payloadmass">
+					<p style="padding-bottom: 5px;margin-bottom: 0;">Safety factor:</p>
+					<input type="text" value="1.1" id="safety">
+					<button onclick="tether()">Calculate!</button>
+					<canvas id="tetherCanvas" width="400" height="100"></canvas>
+					<script src="js/tether.js"></script>
+					<p id="resultLE">&nbsp;</p>
+					<p id="resultLE2">&nbsp;</p>
+					<p id="resultLE3">&nbsp;</p>
 			</div>
 		</div>
 
 		<div class="outerDiv">
-			<div class="innerDiv" style="flex: 0 1 250px;">
+			<div class="innerDiv">
 				<h2>The Rocket Equation</h2>
 				<p style="padding-bottom: 5px;margin-bottom: 0;">Mass ratio:</p>
 				<input type="text" title="Start mass divided by end mass" placeholder="Start mass divided by end mass" value="" id="massratioRE">
@@ -216,12 +217,13 @@ The calculators are also based on JavaScript, and they do not work without it. T
 			</div>
 		</div>
 	</section>
-
+</div>
 <!--No longer linking to the browser game. It is still online though.
 	<div class="black roundAll">
 		<a href="browsergame/shell.html"><img src="browsergame/images/link.png" alt="go to the browser game!"></a>
 	</div>
 -->
+<div class="container">
 <section id="lessons">
 	<div class="outerDiv">
 		<div class="innerDiv wide">
@@ -354,7 +356,6 @@ The calculators are also based on JavaScript, and they do not work without it. T
 				</p>
 			</div>
 		</div>
-	</div>
 	<div class="outerDiv">
 		<div class="innerDiv">
 			<p>[Experimental!] A list of data. Here are some numbers we have found useful during the development of the project.</p>

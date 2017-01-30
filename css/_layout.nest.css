@@ -35,3 +35,15 @@ figcaption {
   line-height: 1.1rem;
   text-align: right;
   width: 90%; }
+
+.note {
+  font-weight: 600;
+  font-size: 0.6rem;
+  color: yellow; }
+
+.note:hover {
+  background-color: #3c3c0a;
+  cursor: pointer; }
+
+.tooltip_templates {
+  display: none; }
