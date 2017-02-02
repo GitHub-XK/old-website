@@ -43,13 +43,29 @@ figcaption {
 
 .note:hover {
   background-color: #3c3c0a;
-  cursor: pointer; }
+  cursor: help; }
 
 .tooltip_templates {
   display: none; }
 
-.tooltipStyle a {
-  color: yellow; }
+summary {
+  outline: none; }
+
+table {
+  border-collapse: collapse;
+  border: 1px solid #50500f;
+  font-size: 0.8rem; }
+
+th, td {
+  padding: 5px 10px;
+  border: 1px solid #50500f; }
+
+th {
+  background: rgba(50, 50, 0, 0.6);
+  letter-spacing: 1px; }
+
+tr:nth-child(2n) {
+  background: rgba(50, 50, 0, 0.6); }
 
 /* This is the core CSS of Tooltipster */
 /* GENERAL STRUCTURE RULES (do not edit this section) */
@@ -609,3 +625,28 @@ ul {
   border-top: 1px solid #918c2d;
   margin-right: 20px;
   letter-spacing: 2px; }
+
+details, summary {
+  display: block; }
+
+details.details_shim_closed > * {
+  display: none; }
+
+details.details_shim_closed > summary {
+  display: block; }
+
+details.details_shim_open > summary {
+  display: block; }
+
+details.details_shim_closed > summary:before {
+  display: inline-block;
+  content: "\25b6";
+  padding: 0 0.1em;
+  margin-right: 0.4em;
+  font-size: 0.9em; }
+
+details.details_shim_open > summary:before {
+  display: inline-block;
+  content: "\25bc";
+  padding: 0;
+  margin-right: 0.35em; }

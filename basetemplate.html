@@ -16,9 +16,11 @@
 		 <script type="text/javascript" src="js/tooltipster.bundle.min.js"></script>
 		 <script>
         $(document).ready(function() {
-            $('.tooltip').tooltipster();
-        });
+					$('.tooltip').tooltipster({
+					 interactive: true
+					});        });
     </script>
+		<script type="text/javascript" src="js/details-shim.min.js"></script>
 	</head>
 <body>
 	<!--[if lt IE 9]>
@@ -114,6 +116,31 @@
 	<aside>
 	</aside>
 </div>
-
+<div>
+	<p>some text
+<sup class="note tooltip" data-tooltip-content="#id-name">
+[1]</sup>
+</p>
+</div>
+<div class="tooltip_templates">
+<span id="id-name">
+<p>
+stuff
+</p>
+</span>
+</div>
+<div>
+	<p>Testing for the details tag
+	</p>
+	<details>
+		<summary>What always appears</summary>
+		<p>This part only appears if the little arrow beside the summary
+			is clicked.
+		</p>
+		<p>There can be as much content in here as you like, of any
+			'flow content', and there can be nested details tags too.
+		</p>
+	</details>
+</div>
 </body>
 </html>
