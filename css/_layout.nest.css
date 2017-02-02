@@ -43,7 +43,26 @@ figcaption {
 
 .note:hover {
   background-color: #3c3c0a;
-  cursor: pointer; }
+  cursor: help; }
 
 .tooltip_templates {
   display: none; }
+
+summary {
+  outline: none; }
+
+table {
+  border-collapse: collapse;
+  border: 1px solid #50500f;
+  font-size: 0.8rem; }
+
+th, td {
+  padding: 5px 10px;
+  border: 1px solid #50500f; }
+
+th {
+  background: rgba(50, 50, 0, 0.6);
+  letter-spacing: 1px; }
+
+tr:nth-child(2n) {
+  background: rgba(50, 50, 0, 0.6); }

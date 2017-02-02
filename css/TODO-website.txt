@@ -1,15 +1,21 @@
-Organize CSS -
-  * add all webkit prefixes
-  * break things up into modular partials
-
 the recommendations in this Devtip video might
 be a good organizational template:
 https://www.youtube.com/watch?v=GTBaQ2DcGUk
 
-Figure out if Bourbon is really convenient for this
-project and how to use it properly.
+
+Also convert to Jade, and create final versions of everything
+that is in pure SASS and jade. Bourbon would indeed be
+convenient, i just have to mess with it a bit in a test page,
+then i can put it in the pages too.
+
+Use Details and Summary Tags to nest material compactly, and use 
+the Details-shim js to handle problems with IE.
+
+Convert the menu to the 'mega-menu' format:
+http://codepen.io/reap705/pen/NqgNKv
 
 
+ERRORS AND GAPS TO FIX:
 - The Sketchfab models need a better way to put captions
 under them.
 
