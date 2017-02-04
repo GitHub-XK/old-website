@@ -1,0 +1,113 @@
+/*All color, text styling, visual touches, and basic doc styles*/
+
+html
+  margin: 0
+  color: rgb(247,247,220)
+  font: 1rem/1.5rem 'Titillium Web', sans-serif
+  background: #000 url(http://www.moonwards.com/img/tycho-mod.png) no-repeat fixed right 250px
+  padding: 0
+  background-size: 1600px
+  @media only screen and (min-width:1350px)
+    background-size: 100% auto
+
+body,
+ul,
+figure
+  margin: 0
+
+a
+  text-decoration: none
+  color: $link
+  &:visited
+    color: $aVisited
+  &:hover
+    background-color: $aHoverBk
+  &:active
+    background-color: $aHoverBk
+
+
+h1
+  color: $headingColor
+  font-weight: 300
+  font-style: italic
+  font-size: 24px
+  line-height: 28px
+  +align-self(center)
+  padding: 15px 0 15px 45px
+  border-bottom: 1px solid $headingColor
+
+h2
+  color: $headingColor
+  font-weight: 300
+  font-size: 20px
+  line-height: 24px
+  +align-self(flex-end)
+  padding: 15px 20px 12px 45px
+  margin: 0
+  border-bottom: 1px solid $headingColor
+
+h3
+  color: $headingColor
+  font-weight: 400
+  font-size: 18px
+  line-height: 24px
+  +align-self(flex-end)
+  padding: 15px 4vw 0 8vw
+  margin: 0
+  border-bottom: 1px solid $headingColor
+
+h5
+  color: $headingColor
+  font-weight: 400
+  line-height: 20px
+  font-size: 18px
+  padding: 4px 20px
+  margin: 20px 0 5px 0
+  +align-self(center)
+
+
+figcaption
+  font-size: 0.8rem
+  letter-spacing: 1px
+  line-height: 1.1rem
+  text-align: right
+  width: 90%
+
+ul
+  padding: 2vw 2vw 2vw 4vw
+
+
+.byline
+  border-top: 1px solid $headingColor
+  margin-right: 20px
+  letter-spacing: 2px
+
+.note
+  font-weight: 600
+  font-size: 0.6rem
+  color: yellow
+  &:hover
+    background-color: rgb(60,60,10)
+    cursor: help
+
+/*This hides Tooltipster tooltips until hovered
+.tooltip_templates
+  display: none
+
+@mixin RadiusOut
+  -moz-border-radius: $outRadius
+  -webkit-border-radius: $outRadius
+  -ms-border-radius: $outRadius
+  border-radius: $outRadius
+
+@mixin RadiusIn
+  -moz-border-radius: $inRadius
+  -webkit-border-radius: $inRadius
+  -ms-border-radius: $inRadius
+  border-radius: $inRadius
+
+@mixin RadiusSide
+  -moz-border-radius: $sideRadius
+  -webkit-border-radius: $sideRadius
+  -ms-border-radius: $sideRadius
+  border-radius: $sideRadius

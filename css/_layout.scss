@@ -70,6 +70,10 @@ figcaption {
 
 summary {
   outline: none;
+  cursor: help;
+}
+summary:hover {
+  background-color: rgb(60, 60, 10);
 }
 
  table {
