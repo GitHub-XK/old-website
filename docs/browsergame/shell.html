@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Browsergame</title>
+  <meta charset="UTF-8">
+<!--This game requires 5 files + media in order to work properly.
+if you have downloaded this game for offline use, be sure that you have got the following files:
+	"shell.html"
+	"tutorial.html"
+	"core.js"
+	"eventchain.js"
+	"stuff.js"
+Media should be inside a folder named "images", and consist of the following files:
+	"lalande.jpg"
+	"hoh.gif"
+	"moon.gif"
+	"deltamap.jpg"  //created by Hollister David (I must remember to ask him for permission before release of the game.)
+	"TBD.mp3"	//game music. Not yet created, but I am planning to ask David Phan if he wants to compose something
+
+If you are running Linux:
+
+You can save some time by downloading this install script: https://raw.githubusercontent.com/briligg/moonwards/gh-pages/browsergame/install.sh
+Make it executable, and run it with sudo to make an offline install.
+
+-->
+  <style>
+.fastforward{
+	background: gray;
+	width: 26px;
+	color: blue;
+}
+.navbar{
+	width: 150px;
+	background: white;
+	color: #0000ff;
+}
+.red{
+	color: red;
+}
+.blue{
+	color: blue;
+}
+html, body {
+	height: 97%;
+}
+.dynamic {
+	min-height: 40%;
+	height: auto !important;
+	height: 100%;
+	margin: 0 auto -90px;
+}
+.footer, .push {
+	height: 90px;
+}
+  </style>
+</head>
+<body bgcolor="#000000" style="color: #FF9900">
+<h1>Moonwards<sub><i>The Game</i></sub></h1>
+<noscript>
+  <p>If you are trying to play this game without JavaScript, you are having a bad problem and will not go to space today.</p>
+  <p>However, consider allowing scripts here, the scripts are for nothing but the game, no trackers or anything. There is localStorage however, but that is for creating a savefile. The game works just as fine if you turn off this feature. Type "nosave" in the command line to turn off localStorage usage.</p>
+</noscript>
+        <script>
+        /*    
+        @licstart  The following is the entire license notice for the 
+        JavaScript code in this page.
+
+        Copyright (C) 2016 Sigvart Brendberg
+
+        The JavaScript code in this page is free software: you can
+        redistribute it and/or modify it under the terms of the GNU
+        General Public License (GNU GPL) as published by the Free Software
+        Foundation, either version 3 of the License, or (at your option)
+        any later version.  The code is distributed WITHOUT ANY WARRANTY;
+        without even the implied warranty of MERCHANTABILITY or FITNESS
+        FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+        As additional permission under GNU GPL version 3 section 7, you
+        may distribute non-source (e.g., minimized or compacted) forms of
+        that code without the copy of the GNU GPL normally required by
+        section 4, provided you include this license notice and a URL
+        through which recipients can access the Corresponding Source.   
+
+
+        @licend  The above is the entire license notice
+        for the JavaScript code in this page.
+        */
+        </script>
+<p id="devWarning">If you are reading this paragraph, you have a development version of the game.<br>Do not expect anything to work</p>
+<p style="float: right" id="note"></p>
+<p style="float: right" id="toolsMenu"></p>
+<div id="navigation" style="float:left;padding-right:20px">
+  <div class="navbar" onmouseover="this.style.background='gray';" onmouseout="this.style.background='white';" onclick="science();tolk('rd');command='rd'">R&amp;D</div>
+  <div class="navbar" onmouseover="this.style.background='gray';" onmouseout="this.style.background='white';" onclick="tolk('launch');command='launch'">Launch</div>
+  <div class="navbar" onmouseover="this.style.background='gray';" onmouseout="this.style.background='white';" onclick="updateShop();tolk('shop');command='shop'">Shop</div>
+  <div class="navbar" onmouseover="this.style.background='gray';" onmouseout="this.style.background='white';" onclick="tolk('location');command='location'">Locations</div>
+  <div class="navbar" onmouseover="this.style.background='gray';" onmouseout="this.style.background='white';" onclick="tolk('cosmo');command='cosmo'">Cosmonauts</div>
+  <div class="navbar" onmouseover="this.style.background='gray';" onmouseout="this.style.background='white';" onclick="tolk('moon');command='moon'">The Moon</div>
+</div>
+<!--controllers-->
+<div>
+  <p id="timing" style="color: #b09985">0</p>
+  <p><span id="toggle0" class="fastforward" onclick="acceleration(0)"><b>||</b></span> <span id="toggle1" class="fastforward" onclick="acceleration(1)"><b>></b></span> <span id="toggle5" class="fastforward" onclick="acceleration(5)"><b>>></b></span> <span id="toggle25" class="fastforward" onclick="acceleration(25)"><b>>>></b></span></p>
+  <p id="budget">Budget: <span style="color: #e02200">1000</span></p>
+  <span id="toggelino" onclick="toggleCommand()" class="blue" onmouseover="this.style.background='#202040';" onmouseout="this.style.background='black';">Show command line</span>
+  <span id="hidden"></span>
+</div>
+<br>
+<!--dynamic content-->
+<div class="dynamic">
+<p id="c0">Welcome to the browsergame!<br><br>Here, the goal is to build a base on the Moon.<br>To accomplish that, you must research new technology, buy hardware, and navigate through space.<br>You have a lot of things to manage, each one available from the white menu.</p><p id="c1"></p><p id="c2"></p><p id="c3"></p><p id="c4"></p><p id="c5"></p><p id="c6"></p><p id="c7"></p><p id="c8"></p><p id="c9"></p><p id="c10"></p><p id="c11"></p><p id="c12"></p><p id="c13"></p><p id="c14"></p><p id="c15"></p><p id="c16"></p><p id="c17"></p><p id="c18"></p><p id="c19"></p>
+  <div class="push"></div>
+</div>
+<!--footer-->
+<div class="footer">
+  <p><a href="tutorial.html">Do you need a quick tutorial?</a></p>
+  <img src="images/hoh.gif" onclick="(tolk('about'))" onmouseover="this.style.transform='rotateZ(12deg)'" onmouseout="this.style.transform='rotateZ(0deg)'">
+  <p>This game is free software, licensed under the <a href="https://www.gnu.org/licenses/gpl-3.0.html">General Public License, version 3</a></p>
+</div>
+<!--The following scripts are for handling basic events-->
+<script type="text/javascript" src="core.js"></script>
+<script type="text/javascript" src="stuff.js"></script>
+<script type="text/javascript" src="eventchain.js"></script>
+</body>
+</html>
