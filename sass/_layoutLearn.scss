@@ -1,0 +1,90 @@
+/*All color, text styling, and visual touches*/
+
+$outerBkgd: rgba(50, 50, 0, 0.6);
+$innerBkgd: rgba(10, 10, 10, 0.8);
+$noteBkgd: rgba(0, 0, 0, 0.3);
+$sideBkgd: rgba(0, 0, 0, 0.7);
+$outRadius: 2rem;
+$inRadius: 1.5rem;
+$sideRadius: 1.5rem 0 0 1.5rem;
+$mainPad: 15px;
+$anchorColor: rgb(250, 200, 25);
+$headingColor: rgb(145, 140, 45);
+$introRadius: 0 1.5rem 1.5rem 0;
+$figcapSize: 0.8rem;
+
+h1 {
+  color: $headingColor;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 24px;
+  line-height: 28px;
+  align-self: center;
+  padding: 15px 0 15px 45px;
+  border-bottom: 1px solid $headingColor; }
+
+h2 {
+  color: $headingColor;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  align-self: flex-end;
+  padding: 5px 20px 12px 45px;
+  border-bottom: 1px solid $headingColor;
+}
+
+h5 {
+  color: $headingColor;
+  font-weight: 400;
+  line-height: 20px;
+  font-size: 18px;
+  padding: 4px 20px;
+  margin: 20px 0 5px 0;
+  align-self: center;
+}
+
+figcaption {
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  line-height: 1.1rem;
+  text-align: right;
+  width: 90%;
+}
+
+ul {
+  padding: 2vw 2vw 2vw 4vw;
+}
+@mixin RadiusOut {
+  border-radius: $outRadius;
+  -moz-border-radius: $outRadius;
+  -webkit-border-radius: $outRadius;
+  -ms-border-radius: $outRadius;
+}
+@mixin RadiusIn {
+  border-radius: $inRadius;
+  -moz-border-radius: $inRadius;
+  -webkit-border-radius: $inRadius;
+  -ms-border-radius: $inRadius;
+}
+@mixin RadiusSide {
+  border-radius: $sideRadius;
+  -moz-border-radius: $sideRadius;
+  -webkit-border-radius: $sideRadius;
+  -ms-border-radius: $sideRadius;
+}
+
+@mixin linx ($link, $visit, $hover, $active) {
+  a {
+      color: $link;
+      &:visited {
+        color: $visit;
+      }
+      &:hover {
+        background-color: $hover;
+      }
+      &:active {
+        background-color: $active;
+      }
+      text-decoration: none;
+    }
+}
