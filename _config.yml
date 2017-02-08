@@ -1,1 +1,4 @@
 destination: docs
+exclude: archive, graphics, webplayer, browsergame, blend4web,
+details-shim-master, blenderstuff, working,
+LICENSE.txt, README.md, TODO.txt, basetemplate.html
