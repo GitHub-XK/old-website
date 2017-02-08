@@ -390,7 +390,7 @@ aside {
   -ms-flex-align: end;
   margin: 15px; }
   .innerDiv p {
-    width: calc(100% - 3rem);
+    padding: 0.5rem 1.2rem;
     -webkit-align-self: center;
     -moz-align-self: center;
     align-self: center;
@@ -1001,18 +1001,28 @@ ul.tabs {
   -webkit-flex-flow: row nowrap;
   -moz-flex-flow: row nowrap;
   flex-flow: row nowrap;
-  margin: 1rem 0 0 0;
+  margin: 1rem 0 0.3rem 0;
   list-style-type: none;
   height: 2rem;
-  color: #fac819;
   font-size: 1.1rem;
-  font-weight: 300; }
+  font-weight: 400; }
 
-.tabs li {
+.tabs li a {
   padding: 0.5rem 1.2rem 0.5rem 1.2rem;
-  background-color: rgba(10, 10, 10, 0.6);
+  background-color: rgba(15, 10, 0, 0.4);
+  color: #96912d;
   border-radius: 1.2rem 1.2rem 0 0;
-  margin: 0.3rem 0.3rem 0.5rem 0.3rem; }
+  margin: 0.3rem 0.3rem 0.5rem 0.3rem;
+  letter-spacing: 2px; }
+  .tabs li a:hover {
+    background-color: black;
+    color: yellow; }
+  .tabs li a:focus, .tabs li a .active {
+    background-color: rgba(10, 10, 10, 0.6);
+    color: #fac819; }
 
 .under-tabs {
   margin-top: 0; }
+
+.tabcontent {
+  display: none; }
