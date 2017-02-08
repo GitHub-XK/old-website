@@ -3,18 +3,29 @@ ul.tabs
   +align-items(center)
   +justify-content(flex-start)
   +flex-flow(row nowrap)
-  margin: 1rem 0 0 0
+  margin: 1rem 0 0.3rem 0
   list-style-type: none
   height: 2rem
-  color: $navAnchor
   font-size: 1.1rem
-  font-weight: 300
+  font-weight: 400
 
-.tabs li
+.tabs li a
   padding: 0.5rem 1.2rem 0.5rem 1.2rem
-  background-color: $innerBkgd
+  background-color: $tabBkgd
+  color: $headingColor
   border-radius: 1.2rem 1.2rem 0 0
   margin: 0.3rem 0.3rem 0.5rem 0.3rem
+  letter-spacing: 2px
+  &:hover
+    background-color: black
+    color: $navAHover
+  &:focus, .active
+    background-color: $innerBkgd
+    color: $navAnchor
+
 
 .under-tabs
   margin-top: 0
+
+.tabcontent
+  display: none

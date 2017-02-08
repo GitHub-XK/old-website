@@ -13,11 +13,16 @@ and space travel."
 	<section>
 			<div class="outerDiv">
     <ul class="tabs">
-     <li>Intro</li>
-     <li>Blog</li>
-     <li>Comments</li>
+     <li><a href="javascript:void(0)" class="tabheads"
+         onclick="openContent(event,'intro')"
+         id="defaultOpen">Intro</a></li>
+     <li><a href="javascript:void(0)" class="tabheads"
+         onclick="openContent(event,'blog')">Blog</a></li>
+     <li><a href="javascript:void(0)" class="tabheads"
+         onclick="openContent(event,'comments')">Comments</a></li>
     </ul>
-				<div class="innerDiv under-tabs">
+				<div class="innerDiv under-tabs tabcontent"
+     id="intro">
 					<h1>Realistic Lunar Colony, Coming Online</h1>
 					<p>
 							This project is building a series of virtual colonies on the Moon. They will be
@@ -79,9 +84,15 @@ and space travel."
 			</p>
 			</div>
 		</div>
+  <div class="tabcontent" id="blog">
+	   <iframe src="blogMain.html"></iframe>
+  </div>
+  <div class="tabcontent" id="comments">
+    Comment section!!!
+  </div>
 	</section>
 {%include asideMain.html%}
-
+</div>
 <div class="container">
 	<section>
 		<div class="outerDiv">
@@ -99,3 +110,4 @@ and space travel."
 </div>
 
 {%include RSSparserMiha.html%}
+{% include TabJS.html%}
