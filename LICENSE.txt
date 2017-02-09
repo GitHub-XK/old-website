@@ -1,5 +1,16 @@
- All files in this repository are Copyright 2016 Kim Holder. 
+ All files in this repository EXCEPT the Moonwards logo files, which are:
+   MWLogo-for-black-bckgnd.png,
+   MWLogo-for-black-bckgnd.svg,
+   MoonwardsLogo2015-inkscape.svg, and
+   MoonwardsLogoMasterNew.svg
+ are Copyright 2016 Kim Holder under the 
+ GNU General Public License version 3, which is reproduced under the Summary.
+ The Moonwards logo files listed above are solely owned by Kim Holder, and 
+ may not be used for any purpose without prior written permission issued 
+ by an email originating at kim@moonwards.com.
  
+ -------------------------------------------------------------------------
+ SUMMARY: 
  These files are free: you can redistribute them and/or modify
     them under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
@@ -11,7 +22,7 @@
     GNU General Public License for more details.
 
     For more information, see <http://www.gnu.org/licenses/licenses.html>.
- 
+ ---------------------------------------------------------------------------
  
  
                     GNU GENERAL PUBLIC LICENSE
