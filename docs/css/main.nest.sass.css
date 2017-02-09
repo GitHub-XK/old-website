@@ -10,9 +10,7 @@ html {
     html {
       background-size: 100% auto; } }
 
-body,
-ul,
-figure {
+body, ul, figure {
   margin: 0; }
 
 a {
@@ -36,6 +34,7 @@ h1 {
   align-self: center;
   -ms-flex-item-align: center;
   padding: 15px 0 15px 45px;
+  margin: 0;
   border-bottom: 1px solid #96912d; }
 
 h2 {
@@ -357,14 +356,14 @@ aside {
       flex: 2 0 400px; } }
 
 .outerDiv {
-  background-color: rgba(50, 50, 0, 0.6);
+  background-color: rgba(50, 50, 0, 0.7);
   -moz-border-radius: 2rem;
   -webkit-border-radius: 2rem;
   -ms-border-radius: 2rem;
   border-radius: 2rem; }
 
 .innerDiv {
-  background-color: rgba(10, 10, 10, 0.6);
+  background-color: rgba(10, 10, 10, 0.7);
   -moz-border-radius: 1.5rem;
   -webkit-border-radius: 1.5rem;
   -ms-border-radius: 1.5rem;
@@ -391,6 +390,7 @@ aside {
   margin: 15px; }
   .innerDiv p {
     padding: 0.5rem 1.2rem;
+    margin: 0;
     -webkit-align-self: center;
     -moz-align-self: center;
     align-self: center;
@@ -422,12 +422,12 @@ aside {
     padding: 10px; }
 
 .pixHeader {
-  background-color: rgba(10, 10, 10, 0.6);
+  background-color: rgba(10, 10, 10, 0.7);
   border-radius: 15px 15px 0 0;
   margin: 15px 15px 0 15px; }
 
 .pixBody {
-  background-color: rgba(10, 10, 10, 0.6);
+  background-color: rgba(10, 10, 10, 0.7);
   border-radius: 0 0 15px 15px;
   display: -webkit-box;
   display: -moz-box;
@@ -543,108 +543,6 @@ div .gallery {
   letter-spacing: 1px;
   line-height: 1.1rem;
   text-align: right; }
-
-/*All color, text styling, visual touches, and basic doc styles*/
-html {
-  margin: 0;
-  color: #f7f7dc;
-  font: 1rem/1.5rem 'Titillium Web', sans-serif;
-  background: #000 url(http://www.moonwards.com/img/tycho-mod.png) no-repeat fixed right 250px;
-  padding: 0;
-  background-size: 1600px; }
-  @media only screen and (min-width: 1350px) {
-    html {
-      background-size: 100% auto; } }
-
-body,
-ul,
-figure {
-  margin: 0; }
-
-a {
-  text-decoration: none;
-  color: yellow; }
-  a:visited {
-    color: #beee32; }
-  a:hover {
-    background-color: #3c3c0a; }
-  a:active {
-    background-color: #3c3c0a; }
-
-h1 {
-  color: #96912d;
-  font-weight: 300;
-  font-style: italic;
-  font-size: 24px;
-  line-height: 28px;
-  -webkit-align-self: center;
-  -moz-align-self: center;
-  align-self: center;
-  -ms-flex-item-align: center;
-  padding: 15px 0 15px 45px;
-  border-bottom: 1px solid #96912d; }
-
-h2 {
-  color: #96912d;
-  font-weight: 300;
-  font-size: 20px;
-  line-height: 24px;
-  -webkit-align-self: flex-end;
-  -moz-align-self: flex-end;
-  align-self: flex-end;
-  -ms-flex-item-align: end;
-  padding: 15px 20px 12px 45px;
-  margin: 0;
-  border-bottom: 1px solid #96912d; }
-
-h3 {
-  color: #96912d;
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 24px;
-  -webkit-align-self: flex-end;
-  -moz-align-self: flex-end;
-  align-self: flex-end;
-  -ms-flex-item-align: end;
-  padding: 15px 4vw 0 8vw;
-  margin: 0;
-  border-bottom: 1px solid #96912d; }
-
-h5 {
-  color: #96912d;
-  font-weight: 400;
-  line-height: 20px;
-  font-size: 18px;
-  padding: 4px 20px;
-  margin: 20px 0 5px 0;
-  -webkit-align-self: center;
-  -moz-align-self: center;
-  align-self: center;
-  -ms-flex-item-align: center; }
-
-figcaption {
-  font-size: 0.8rem;
-  letter-spacing: 1px;
-  line-height: 1.1rem;
-  text-align: right;
-  width: 90%; }
-
-.byline {
-  border-top: 1px solid #96912d;
-  margin-right: 20px;
-  letter-spacing: 2px; }
-
-.note {
-  font-weight: 600;
-  font-size: 0.6rem;
-  color: yellow; }
-  .note:hover {
-    background-color: #3c3c0a;
-    cursor: help; }
-
-/*This hides Tooltipster tooltips until hovered */
-.tooltip_templates {
-  display: none; }
 
 /* This is the core CSS of Tooltipster */
 .tooltipster-base {
@@ -966,11 +864,11 @@ th, td {
   border: 1px solid #50500f; }
 
 th {
-  background: rgba(50, 50, 0, 0.6);
+  background: rgba(50, 50, 0, 0.7);
   letter-spacing: 1px; }
 
 tr:nth-child(2n) {
-  background: rgba(50, 50, 0, 0.6); }
+  background: rgba(50, 50, 0, 0.7); }
 
 ul.tabs {
   display: -webkit-box;
@@ -1009,7 +907,7 @@ ul.tabs {
 
 .tabs li a {
   padding: 0.5rem 1.2rem 0.5rem 1.2rem;
-  background-color: rgba(15, 10, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.4);
   color: #96912d;
   border-radius: 1.2rem 1.2rem 0 0;
   margin: 0.3rem 0.3rem 0.5rem 0.3rem;
@@ -1018,7 +916,7 @@ ul.tabs {
     background-color: black;
     color: yellow; }
   .tabs li a:focus, .tabs li a .active {
-    background-color: rgba(10, 10, 10, 0.6);
+    background-color: rgba(10, 10, 10, 0.7);
     color: #fac819; }
 
 .under-tabs {
