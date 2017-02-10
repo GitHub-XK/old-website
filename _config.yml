@@ -1,14 +1,31 @@
+defaults:
+  -
+    scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "default"
+      stylesheet: "css/content.nest.sass.css"
+  -
+    scope:
+      path: ""
+      type: "posts"
+    value:
+      layout: "post"
+
 destination: docs
 exclude:
-- archive
-- graphics
-- webplayer
-- browsergame
-- blend4web
-- details-shim-master
-- blenderstuff
-- working
-- LICENSE.txt
-- README.md
-- TODO.txt
-- basetemplate.html
+  - archive
+  - graphics
+  - webplayer
+  - browsergame
+  - blend4web
+  - details-shim-master
+  - blenderstuff
+  - working
+  - LICENSE.txt
+  - README.md
+  - TODO.txt
+  - basetemplate.html
+markdown: kramdown
+url: "https://www.moonwards.com/"

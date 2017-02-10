@@ -15,4 +15,4 @@ document.getElementsByClassName('tabheads');
 'block';
   evt.currentTarget.className += ' active';
 }
-document.getElementById('defaultOpen').click();
+document.getElementById('defaultOpen').click()
