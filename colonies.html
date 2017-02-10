@@ -1,10 +1,11 @@
 ---
 layout: content
-title: Moon colonies
+title: Moon colony Sites and Structures
 stylesheet: "css/content.nest.sass.css"
-description: "Siting of polar colony at Peary Crater, and equatorial colony at
-Lalande Crater, for best use of lunar resources for construction. Layout and
-infrastructure of the Moon settlements and lunar city."
+description: "Sites and structure of the virtual lunar colonies.
+Lalande Crater colony uses rich mineral deposits there,
+Peary Crater gets the water frozen in the pole's permanent shadow,
+Orbital colonies offer tether transport and mine asteroids."
 headline: "The Colonies"
 intro: "To settle the Moon you have to find the right place, set up
 the right transport, and pursue the right business. All of these
@@ -14,7 +15,6 @@ would be too much resistance from people who don't understand
 the risks and benefits of the technology involved. Consistent,
 ongoing high investment changes the possibilities and the best path."
 ---
-
 
 	<div class="container" id="lalande">
 		<section>
@@ -99,25 +99,8 @@ ongoing high investment changes the possibilities and the best path."
 		</section>
 {% include asideColoniesLalande.html%}
 	</div>
-	<div class="container_SF_iframe">
-		<div class="SF-Div">
-			<h2>Interactive 3d models</h2>
-			Click the play arrow to load the 3d models
-			below. Check out the controls at the bottom
-			of the model window - especially the bar to click through the
-			annotations, and the double arrows in the corner to make it
-			full screen.<br><br>
-			These models are in development, both in what is in them, and in how it
-			is presented. They go through spurts of changes, which should become
-			more frequent and dramatic with time. Right now they are at a pretty early
-			stage.
-		</div>
-		<section>
-			<div class="SF-Div">
-				We'd like to know what you think - comment section coming...
-			</div>
-		</section>
-	</div>
+{% include colonyModelsLalande.html%}
+<!--The above include has the include for the comments section -->
 	<div class="container" id="peary">
 		<section>
 			<div class="outerDiv">
@@ -248,5 +231,3 @@ ongoing high investment changes the possibilities and the best path."
 				</div>
 			</section>
 		</div>
-</body>
-</html>
