@@ -1,30 +1,43 @@
-.container
-  margin-left: 10%
-  width: 70%
-  max-width: 1000px
-  background-color: $tabBkgd
-  position: relative
-  p
-    padding: 15px
-
-header
-  background-color: #000
-  background-image: url("http://www.moonwards.com/img/BlogHeaderOpt.svg") no-repeat fixed center
-  background-size: contain
-  position: absolute
-  top: 33px
-  width: 100%
-  p
-    padding: 8rem
-
-section
-  padding: $mainPad
-  margin-top: 3rem
-  margin-left: 4rem
-
 body, ul, figure
   margin: 0
 
+
+header
+  background-color: #000
+  background-image: url("http://www.moonwards.com/img/BlogHeaderOpt.svg")
+  border-top: 1px solid $aHoverBk
+  border-bottom: 1px solid $aHoverBk
+  margin-top: 33px
+  width: 100%
+  p
+    box-sizing: border-box
+    width: 70%
+    margin: 2rem auto
+    color: $headingColor
+    font-weight: 300
+    font-size: 1.1rem
+    line-height: 1.5rem
+    letter-spacing: 2px
+    background-color: rgba(0, 0, 0, 0.9)
+    border-radius: 2rem
+    border: 1px solid $aHoverBk
+    padding: 1rem 2rem
+
+.container
+  margin-left: 10%
+  margin-top: 2rem
+  width: 70%
+  max-width: 1000px
+  background-color: rgba(0,0,0,0.7)
+  p
+    padding: 15px
+  figure
+    display: block
+    width: 80%
+    border: 1px solid $aHoverBk
+    margin: auto
+    img
+      width: 100%
 a
   text-decoration: none
   color: $linx
