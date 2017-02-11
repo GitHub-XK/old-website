@@ -1,0 +1,113 @@
+header
+  background-color: #000
+  background-image: url("http://www.moonwards.com/img/BlogHeaderOpt.svg") no-repeat fixed center
+  background-size: contain
+  margin-top: 33px
+  width: 100%
+  p
+    padding: 8rem
+
+.container
+  margin-left: 10%
+  width: 70%
+  max-width: 1000px
+  background-color: $tabBkgd
+
+section
+  padding: $mainPad
+  margin-top: 3rem
+  margin-left: 4rem
+
+body, ul, figure
+  margin: 0
+
+a
+  text-decoration: none
+  color: $linx
+  &:visited
+    color: $aVisited
+  &:hover
+    background-color: $aHoverBk
+  &:active
+    background-color: $aHoverBk
+
+
+h1
+  color: $headingColor
+  font-weight: 300
+  font-style: italic
+  font-size: 24px
+  line-height: 28px
+  padding: 15px 0 15px 45px
+  margin: 0
+  border-bottom: 1px solid $headingColor
+
+h2
+  color: $headingColor
+  font-weight: 300
+  font-size: 20px
+  line-height: 24px
+  padding: 15px 20px 12px 45px
+  margin: 0
+  border-bottom: 1px solid $headingColor
+
+h3
+  color: $headingColor
+  font-weight: 400
+  font-size: 18px
+  line-height: 24px
+  padding: 15px 4vw 0 8vw
+  margin: 0
+  border-bottom: 1px solid $headingColor
+
+h5
+  color: $headingColor
+  font-weight: 400
+  line-height: 20px
+  font-size: 18px
+  padding: 4px 20px
+  margin: 20px 0 5px 0
+
+
+figcaption
+  font-size: 0.8rem
+  letter-spacing: 1px
+  line-height: 1.1rem
+  text-align: right
+  width: 90%
+
+
+.byline
+  border-top: 1px solid $headingColor
+  margin-right: 20px
+  letter-spacing: 2px
+
+.note
+  font-weight: 600
+  font-size: 0.6rem
+  color: yellow
+  &:hover
+    background-color: rgb(60,60,10)
+    cursor: help
+
+/*This hides Tooltipster tooltips until hovered
+.tooltip_templates
+  display: none
+
+@mixin RadiusOut
+  -moz-border-radius: $outRadius
+  -webkit-border-radius: $outRadius
+  -ms-border-radius: $outRadius
+  border-radius: $outRadius
+
+@mixin RadiusIn
+  -moz-border-radius: $inRadius
+  -webkit-border-radius: $inRadius
+  -ms-border-radius: $inRadius
+  border-radius: $inRadius
+
+@mixin RadiusSide
+  -moz-border-radius: $sideRadius
+  -webkit-border-radius: $sideRadius
+  -ms-border-radius: $sideRadius
+  border-radius: $sideRadius

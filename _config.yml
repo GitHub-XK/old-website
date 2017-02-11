@@ -10,8 +10,9 @@ defaults:
     scope:
       path: ""
       type: "posts"
-    value:
+    values:
       layout: "post"
+      stylesheet: "css/posts.nest.sass.css"
 
 destination: docs
 exclude:
