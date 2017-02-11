@@ -9,32 +9,45 @@ html {
     html {
       background-size: 100% auto; } }
 
-.container {
-  margin-left: 10%;
-  width: 70%;
-  max-width: 1000px;
-  background-color: rgba(0, 0, 0, 0.4);
-  position: relative; }
-  .container p {
-    padding: 15px; }
+body, ul, figure {
+  margin: 0; }
 
 header {
   background-color: #000;
-  background-image: url("http://www.moonwards.com/img/BlogHeaderOpt.svg") no-repeat fixed center;
-  background-size: contain;
-  position: absolute;
-  top: 33px;
+  background-image: url("http://www.moonwards.com/img/BlogHeaderOpt.svg");
+  border-top: 1px solid #3c3c0a;
+  border-bottom: 1px solid #3c3c0a;
+  margin-top: 33px;
   width: 100%; }
   header p {
-    padding: 8rem; }
+    box-sizing: border-box;
+    width: 70%;
+    margin: 2rem auto;
+    color: #96912d;
+    font-weight: 300;
+    font-size: 1.1rem;
+    line-height: 1.5rem;
+    letter-spacing: 2px;
+    background-color: rgba(0, 0, 0, 0.9);
+    border-radius: 2rem;
+    border: 1px solid #3c3c0a;
+    padding: 1rem 2rem; }
 
-section {
-  padding: 1rem;
-  margin-top: 3rem;
-  margin-left: 4rem; }
-
-body, ul, figure {
-  margin: 0; }
+.container {
+  margin-left: 10%;
+  margin-top: 2rem;
+  width: 70%;
+  max-width: 1000px;
+  background-color: rgba(0, 0, 0, 0.7); }
+  .container p {
+    padding: 15px; }
+  .container figure {
+    display: block;
+    width: 80%;
+    border: 1px solid #3c3c0a;
+    margin: auto; }
+    .container figure img {
+      width: 100%; }
 
 a {
   text-decoration: none;
