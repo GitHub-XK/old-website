@@ -544,6 +544,46 @@ div .gallery {
   line-height: 1.1rem;
   text-align: right; }
 
+.container_SF_iframe {
+  width: 100%; }
+
+.SF-Div {
+  background-color: rgba(0, 0, 0, 0.7);
+  -moz-border-radius: 1.5rem;
+  -webkit-border-radius: 1.5rem;
+  -ms-border-radius: 1.5rem;
+  border-radius: 1.5rem;
+  padding: 15px;
+  margin-bottom: 30px; }
+
+.framewrap {
+  position: relative;
+  height: 0;
+  overflow: hidden; }
+  .framewrap iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; }
+
+.frame16x9 {
+  padding-bottom: 56.25%; }
+
+.frame4x3 {
+  padding-bottom: 75%; }
+
+p.atom {
+  margin: 0.4rem 1.5rem;
+  padding: 0.4rem 0;
+  border-bottom: 1px solid #888; }
+  p.atom .datetime {
+    color: #999;
+    font-size: 0.8rem; }
+  p.atom .title {
+    letter-spacing: 1px;
+    padding: 0 0.2rem; }
+
 /* This is the core CSS of Tooltipster */
 .tooltipster-base {
   display: flex;
