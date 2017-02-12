@@ -29,3 +29,5 @@ exclude:
   - basetemplate.html
 markdown: kramdown
 url: "https://www.moonwards.com/"
+collections:
+ rss:
