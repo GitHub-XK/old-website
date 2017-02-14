@@ -1,13 +1,7 @@
 html {
   margin: 0;
   color: #f7f7dc;
-  font: 1rem/1.5rem 'Titillium Web', sans-serif;
-  background: #000 url(http://www.moonwards.com/img/tycho-mod.png) no-repeat fixed right 250px;
-  padding: 0;
-  background-size: 1600px; }
-  @media only screen and (min-width: 1350px) {
-    html {
-      background-size: 100% auto; } }
+  font: 1rem/1.5rem 'Titillium Web', sans-serif; }
 
 body, ul, figure {
   margin: 0; }
@@ -17,7 +11,6 @@ header {
   background-image: url("http://www.moonwards.com/img/BlogHeaderOpt.svg");
   border-top: 1px solid #3c3c0a;
   border-bottom: 1px solid #3c3c0a;
-  margin-top: 33px;
   width: 100%; }
   header p {
     box-sizing: border-box;
@@ -34,10 +27,9 @@ header {
     padding: 1rem 2rem; }
 
 .container {
-  margin-left: 10%;
+  margin-left: 4%;
   margin-top: 2rem;
-  width: 70%;
-  max-width: 1000px;
+  width: 90%;
   background-color: rgba(0, 0, 0, 0.7); }
   .container p {
     padding: 15px; }
@@ -48,6 +40,13 @@ header {
     margin: auto; }
     .container figure img {
       width: 100%; }
+    .container figure figcaption {
+      font-size: 0.8rem;
+      letter-spacing: 1px;
+      line-height: 1.1rem;
+      text-align: right;
+      width: 90%;
+      background: rgba(50, 50, 0, 0.7); }
 
 a {
   text-decoration: none;
@@ -95,13 +94,6 @@ h5 {
   padding: 4px 20px;
   margin: 20px 0 5px 0; }
 
-figcaption {
-  font-size: 0.8rem;
-  letter-spacing: 1px;
-  line-height: 1.1rem;
-  text-align: right;
-  width: 90%; }
-
 .byline {
   border-top: 1px solid #96912d;
   margin-right: 20px;
@@ -118,107 +110,6 @@ figcaption {
 /*This hides Tooltipster tooltips until hovered */
 .tooltip_templates {
   display: none; }
-
-nav {
-  width: 100%;
-  position: fixed;
-  top: 0;
-  z-index: 20; }
-  nav ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    background-color: #000; }
-  nav a {
-    text-decoration: none;
-    font-weight: 300;
-    color: #fac819; }
-    nav a:visited {
-      color: #fac819; }
-    nav a:hover {
-      color: yellow;
-      background-color: inherit; }
-    nav a:active {
-      color: yellow;
-      background-color: inherit; }
-
-nav > ul {
-  display: -webkit-box;
-  display: -moz-box;
-  display: box;
-  display: -webkit-flex;
-  display: -moz-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: baseline;
-  -moz-box-align: baseline;
-  box-align: baseline;
-  -webkit-align-items: baseline;
-  -moz-align-items: baseline;
-  -ms-align-items: baseline;
-  -o-align-items: baseline;
-  align-items: baseline;
-  -ms-flex-align: baseline;
-  -webkit-box-pack: distribute;
-  -moz-box-pack: distribute;
-  box-pack: distribute;
-  -webkit-justify-content: space-around;
-  -moz-justify-content: space-around;
-  -ms-justify-content: space-around;
-  -o-justify-content: space-around;
-  justify-content: space-around;
-  -ms-flex-pack: distribute;
-  -webkit-flex-flow: row nowrap;
-  -moz-flex-flow: row nowrap;
-  flex-flow: row nowrap;
-  width: 100%;
-  height: 33px; }
-
-nav > ul li {
-  font-size: 18px;
-  font-weight: 300;
-  padding: 5px; }
-
-/* Make dropdown menus:
-  ul that is a CHILD of li which is a DESCENDENT of nav */
-nav li > ul {
-  display: none;
-  border-radius: 15px;
-  border: 1px solid #666;
-  border-top: none;
-  padding: 10px; }
-
-/* Statement applies only to
-  child ul, only when li is hovered */
-nav li:hover > ul {
-  display: -webkit-box;
-  display: -moz-box;
-  display: box;
-  display: -webkit-flex;
-  display: -moz-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: stretch;
-  -moz-box-align: stretch;
-  box-align: stretch;
-  -webkit-align-items: stretch;
-  -moz-align-items: stretch;
-  -ms-align-items: stretch;
-  -o-align-items: stretch;
-  align-items: stretch;
-  -ms-flex-align: stretch;
-  -webkit-box-pack: start;
-  -moz-box-pack: start;
-  box-pack: start;
-  -webkit-justify-content: flex-start;
-  -moz-justify-content: flex-start;
-  -ms-justify-content: flex-start;
-  -o-justify-content: flex-start;
-  justify-content: flex-start;
-  -ms-flex-pack: start;
-  -webkit-flex-flow: column nowrap;
-  -moz-flex-flow: column nowrap;
-  flex-flow: column nowrap; }
 
 /* This is the core CSS of Tooltipster */
 .tooltipster-base {
