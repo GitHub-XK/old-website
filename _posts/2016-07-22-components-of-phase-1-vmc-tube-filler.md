@@ -1,0 +1,23 @@
+---
+layout: post
+title: 'Components of Phase 1 VMC - the Tube Filler '
+date: '2016-07-22T12:19:00.003-07:00'
+author: kim holder
+tags:
+modified_time: '2016-07-22T12:23:38.863-07:00'
+thumbnail: https://1.bp.blogspot.com/-VMVSgSzbMD8/V5JyomNGSQI/AAAAAAAAWF8/97gYSBb4G3sVMgPg4V8ehJIwkZ-3qzqAgCK4B/s72-c/201510052013265612d9e682f62.jpg
+blogger_id: tag:blogger.com,1999:blog-2741304674651227490.post-8575139263570810415
+blogger_orig_url: http://moonwards1.blogspot.com/2016/07/components-of-phase-1-vmc-tube-filler.html
+---
+
+(Note: the following is one of various posts that were copied here from the Moonwards.com forum for the sake of preserving the early days of the project. It was originally posted there on Oct 5th, 2015)
+
+!<http://www.moonwards.com/forum/images/uploaded/201510052013265612d9e682f62.jpg>
+
+Okay, now that i've written the explanation of the dome under construction image that precedes this, this gizmo is already outdated. It's fine for when the dome wall is almost vertical, but as it curves inwards it becomes increasingly problematic. Which means the tubes should really be troughs, and the rods going across them should really be 3 pieces that are fused together when installed to form a sort of H shape, with angles created between the crossbar and the two outer rods that conforms to the angle of the dome at that height. Hm. I wonder if i have time to rebuild this. I'm a lot better at Blender than i was when i made it.
+
+Anyhow, some of the principles still hold. The crane delivers loads of loose regolith to this moving trough placing mechanism. Fabric is dispensed from rolls on the front, welded together into one sheet as it rolls out using a gizmo at the front. Since it is made of basalt, welding the fabric is just a matter of two plates at just the right temperature pressing the cloth together as it passes through it, then cooling it so it is stable as it passes on. A spool of basalt cord is used to stitch the sides of the trough together. The vibrating drum won't really work because this trough is going to continuously get wider as the dome gets higher and the angles get closer to horizontal. Tampers usually work with a vibrating plate anyhow. So the system needs two or three of those, and they need to be on rails so they can travel back and forth across the width of the trough. That means boulders will need to be fused to this thing so its center of mass is in the right place and it is stable as it rolls along. And it will need to telescope to be ever wider as trough width widens with height.
+
+Also a second rolling contraption will be needed i think. One that does detail work with the reinforcing rods after the filler passes. It needs to ensure that the joints between rods are strong, by reinforcing them with lava gobs, and it can add cross-bracing rods, forming Xs on the inner and outer facades between the Hs that traverse the thickness of the walls.
+
+I complain a lot that i'm not getting things done as fast as i want to. This is a good example of why.
