@@ -12,7 +12,7 @@ blogger_orig_url: http://moonwards1.blogspot.com/2016/07/components-of-phase-1-v
 
 (Note: the following is one of various posts that were copied here from the Moonwards.com forum for the sake of preserving the early days of the project. It was originally posted there on Oct 5th, 2015)
 
-!<http://www.moonwards.com/forum/images/uploaded/201510052013265612d9e682f62.jpg>
+!(http://www.moonwards.com/forum/images/uploaded/201510052013265612d9e682f62.jpg)
 
 Okay, now that i've written the explanation of the dome under construction image that precedes this, this gizmo is already outdated. It's fine for when the dome wall is almost vertical, but as it curves inwards it becomes increasingly problematic. Which means the tubes should really be troughs, and the rods going across them should really be 3 pieces that are fused together when installed to form a sort of H shape, with angles created between the crossbar and the two outer rods that conforms to the angle of the dome at that height. Hm. I wonder if i have time to rebuild this. I'm a lot better at Blender than i was when i made it.
 

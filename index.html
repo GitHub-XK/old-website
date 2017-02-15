@@ -8,6 +8,8 @@ on the Moon, the challenges and opportunities of low gravity, hard vacuum,
 high radiation, intense sun, large temperature swings, and the substances
 of the Moon."
 ---
+
+
 {%include headerMain.html%}
 <div class="container">
 	<section>
@@ -83,11 +85,14 @@ of the Moon."
 				 </p>
 			</div>
 	  <div class="innerDiv under-tabs tabcontent" id="blog">
-		   <iframe src="blogMain.html" width="100%" style="border:none;" id="iFrameResizer0"></iframe>
-     <script type="text/javascript" src="js/iframeResizer.min.js"></script>
+		   <iframe class="goodHeight" src="blogMain.html" width="100%" style="border:none;"></iframe>
+     <!--<script>var iframes = iFrameResize(null, '#iFrameResizer0');</script>-->
 	  </div>
-	  <div class="tabcontent" id="comments">
-	    Comment section!!!
+	  <div class="innerDiv under-tabs tabcontent" id="comments">
+     <h1>This will take some work...</h1>
+	    <p>It could be a little tricky. There is a way to set up comments without using a service like Disqus. It's an open-source package known as <a href="https://staticman.net/demo">Static Man</a>. The demo video makes it look easy, but if my experience of the last month is any guide, it is not as easy as they make it sound... <br><br>But it would mean that the 'rights' to those comments are not ceded to Disqus, and there is no need to pay in order to avoid included advertising, and there is no tracking. I just have to see if it can be made easy to comment without registering, but on the other hand keep the teeming hordes of comment spammers at bay.
+     </p>
+    <br>
 	  </div>
  	</div>
 	</section>
@@ -96,3 +101,4 @@ of the Moon."
 </div>
 {%include RSSparserMiha.html%}
 {% include TabJS.html%}
+ <!--<script type="text/javascript" src="js/iframeResizer.min.js"></script>-->

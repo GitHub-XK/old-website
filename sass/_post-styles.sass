@@ -28,10 +28,11 @@ header
     padding: 1rem 2rem
 
 .container
+  margin-top: 30px
   margin-left: 4%
-  margin-top: 2rem
   width: 90%
   background-color: rgba(0,0,0,0.7)
+  position: relative
   p
     padding: 15px
   figure
@@ -48,6 +49,26 @@ header
       text-align: right
       width: 90%
       background: $outerBkgd
+
+.back
+  position: absolute
+  right: 6%
+  background-color: $innerBkgd
+  width: 140px
+  height: 30px
+  a
+    margin-left: 20px
+    letter-spacing: 2px
+    padding: 0 3px
+    color: $navAnchor
+    &:visited
+      color: $navAnchor
+    &:hover
+      color: $linx
+    &:active
+      color: $aVisited
+
+
 a
   text-decoration: none
   color: $linx

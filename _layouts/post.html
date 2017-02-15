@@ -9,8 +9,9 @@
 		<meta name="description" content="{{page.description}}">
 		<link rel="stylesheet" href="http://www.moonwards.com/css/posts.nest.sass.css">
 <link href="https://fonts.googleapis.com/css?family=Titillium+Web:200,200i,300,300i,400,400i,600" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script type="text/javascript" src="http://www.moonwards.com/js/tooltipster.bundle.min.js"></script>
-<script type="text/javascript" src="js/iframeResizer.contentWindow.min.js"></script>
+<!--<script type="text/javascript" src="js/iframeResizer.contentWindow.min.js"></script>-->
 <script>
 	 $(document).ready(function() {
 			 $('.tooltip').tooltipster({
@@ -27,9 +28,11 @@
      technical and economic merit?
    </p>
 	</header>
+ <div class="back"><a href="https://www.moonwards.com/blogMain.html">Blog Index</a></div>
 <div class="container">
  <h1>{{page.title}}</h1>
 {{content | remove: 'end-excerpt'}}
 </div>
+<div class="back"><a href="https://www.moonwards.com/blogMain.html">Blog Index</a></div>
 </body>
 </html>
