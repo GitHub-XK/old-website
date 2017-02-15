@@ -10,7 +10,7 @@ blogger_id: tag:blogger.com,1999:blog-2741304674651227490.post-14587101625724555
 blogger_orig_url: http://moonwards1.blogspot.com/2016/07/components-of-phase-1-vmc-lava-maker.html
 ---
 
-\(Note: the following is one of various posts that were copied here from the Moonwards.com forum for the sake of preserving the early days of the project. It was originally posted there on Oct 5th, 2015\)
+(Note: the following is one of various posts that were copied here from the Moonwards.com forum for the sake of preserving the early days of the project. It was originally posted there on Oct 5th, 2015)
 
 !(https://2.bp.blogspot.com/-ynfaUbAKzQQ/V5JzS_UmJkI/AAAAAAAAWGI/VTWyku2b2zQlK5EWaD-7q5Dst23wEouQgCK4B/s400/201510052058325612e478df361.jpg)
 

@@ -27,10 +27,11 @@ header {
     padding: 1rem 2rem; }
 
 .container {
+  margin-top: 30px;
   margin-left: 4%;
-  margin-top: 2rem;
   width: 90%;
-  background-color: rgba(0, 0, 0, 0.7); }
+  background-color: rgba(0, 0, 0, 0.7);
+  position: relative; }
   .container p {
     padding: 15px; }
   .container figure {
@@ -47,6 +48,24 @@ header {
       text-align: right;
       width: 90%;
       background: rgba(50, 50, 0, 0.7); }
+
+.back {
+  position: absolute;
+  right: 6%;
+  background-color: rgba(10, 10, 10, 0.7);
+  width: 140px;
+  height: 30px; }
+  .back a {
+    margin-left: 20px;
+    letter-spacing: 2px;
+    padding: 0 3px;
+    color: #fac819; }
+    .back a:visited {
+      color: #fac819; }
+    .back a:hover {
+      color: yellow; }
+    .back a:active {
+      color: #beee32; }
 
 a {
   text-decoration: none;
