@@ -1,16 +1,15 @@
 Hoh:
 
--Change b4w model from link to iframe
--3D model thumbnailing
--Fix tooltips so they do not create a void at the bottom of the page //partly fixed with css
 -Finish the transfer calculator
 -Make the old scripts less ugly
 -Create SVG illustrations for the learn page
 -Migrate favicons to /img
 -Add more to the learn page introduction to orb mec
--Check if the new email is working
--Migrate navbar from absolute width
 
 SOLVED:
 
 -Why is main.css not updating on the server? //urgent
+-Change b4w model from link to iframe //fixed, no longer relevant
+-3D model thumbnailing //done, no longer relevant
+-Fix tooltips so they do not create a void at the bottom of the page //partly fixed with css, no longer relevant with new page
+-Migrate navbar from absolute width //no longer relevant
