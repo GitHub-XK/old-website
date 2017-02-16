@@ -9,8 +9,7 @@ thumbnail: https://3.bp.blogspot.com/-jNvKKfQBmmA/V5J4-IfGXqI/AAAAAAAAWHY/xg-7IW
 blogger_id: tag:blogger.com,1999:blog-2741304674651227490.post-5394155603976935834
 blogger_orig_url: http://moonwards1.blogspot.com/2016/07/components-of-phase-1-vmc-dome-builder.html
 ---
-
-(Note: the following is one of various posts that were copied here from the Moonwards.com forum for the sake of preserving the early days of the project. It was originally posted there on Oct 9th, 2015)
+(Originally posted on site forum Oct 9th, 2015)
 
 The thing about building a dome out of a spiraling trough of fabric filled with tamped regolith is that the width of each level has to change, as does the radius of the open span. The Tube Filler i posted before might not be unreasonable for vertical walls - i mean, of course it is a highly simplified sketch, but i think all the basic steps are there. So, instead of building a new model that would work for a dome, i could have simply substituted an architectural design with vertical walls. I have two i want to draw up anyhow. For that matter, i've considered two alternate methods for building a dome, as well. But no, i wanted to finish what i started.
 

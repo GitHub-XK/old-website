@@ -9,22 +9,17 @@ blogger_id: tag:blogger.com,1999:blog-2741304674651227490.post-84742821758490892
 blogger_orig_url: http://moonwards1.blogspot.com/2016/07/big-picture.html
 ---
 
-\(Note: the following is one of various posts that were copied here from the Moonwards.com forum for the sake of preserving the early days of the project. It was originally posted there on Oct 27th, 2015. The first part was a post by **Joe Strout**, of the [High Frontier](http://highfrontier.com/) space colonization game, and then follows my response.\)
+(Note: the following is one of various posts that were copied here from the Moonwards.com forum for the sake of preserving the early days of the project. It was originally posted there on Oct 27th, 2015. The first part was a post by **Joe Strout**, of the [High Frontier](http://highfrontier.com/) space colonization game, and then follows my response.
 
->I apologize if this is explained somewhere, and I missed >it.
+> I apologize if this is explained somewhere, and I missed it. I'm very impressed with the quality of what's going on here, and fully supportive of the goal as I understand it. But I'm a little vague on exactly what that goal is.
 >
->I'm very impressed with the quality of what's going on >here, and fully supportive of the goal as I understand >it. But I'm a little vague on exactly what that goal
->is.
+> Can you expand on the objective & plan there? What will this game be like? Who will create it?
 >
->I see that you're designing an expandable base near >Lalande crater. You also talk about making a virtual >base that people can play with, I guess as a computer >game.
+> And, are there further objectives beyond the game? E.g., >would we be advocating this lunar plan to major >governments or large corporations, the way Robert Zubrin has been pushing his Mars Direct plan for many years?
 >
->Can you expand on the objective &amp; plan there? What >will this game be like? Who will create it?
+> I guess I'm just looking for a little clarification as >to what we're trying to do here, and how we intend to >accomplish it.
 >
->And, are there further objectives beyond the game? E.g., >would we be advocating this lunar plan to major >governments or large corporations, the way Robert Zubrin >has been pushing his Mars Direct plan for many years?
->
->I guess I'm just looking for a little clarification as >to what we're trying to do here, and how we intend to >accomplish it.
->
->Thanks, - Joe
+> Thanks, - Joe
 
 Heya Joe - i'm sorry, i didn't see this entry until just now. I've been taking it easy this week after a few months of rather intense work. Normally i keep the forum open in a tab all the time, but not this week.
 
