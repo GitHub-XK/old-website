@@ -1,18 +1,6 @@
-/*All color, text styling, visual touches, and basic doc styles*/
-html {
-  margin: 0;
-  color: #f7f7dc;
-  font: 1rem/1.5rem 'Titillium Web', sans-serif;
-  background: #000 url(http://www.moonwards.com/img/tycho-mod.png) no-repeat fixed right 250px;
-  padding: 0;
-  background-size: 1600px; }
-  @media only screen and (min-width: 1350px) {
-    html {
-      background-size: 100% auto; } }
-
-body,
-ul,
-figure {
+@charset "UTF-8";
+/*All color, text styling, visual touches, and basic doc styles */
+body, ul, figure {
   margin: 0; }
 
 a {
@@ -36,6 +24,7 @@ h1 {
   align-self: center;
   -ms-flex-item-align: center;
   padding: 15px 0 15px 45px;
+  margin: 0;
   border-bottom: 1px solid #96912d; }
 
 h2 {
@@ -82,9 +71,6 @@ figcaption {
   line-height: 1.1rem;
   text-align: right;
   width: 90%; }
-
-ul {
-  padding: 2vw 2vw 2vw 4vw; }
 
 .byline {
   border-top: 1px solid #96912d;
@@ -164,7 +150,7 @@ nav > ul li {
   padding: 5px; }
 
 /* Make dropdown menus:
-  ul that is a CHILD of li which is a DESCENDENT of nav */
+ * ul that is a CHILD of li which is a DESCENDENT of nav */
 nav li > ul {
   display: none;
   border-radius: 15px;
@@ -173,7 +159,7 @@ nav li > ul {
   padding: 10px; }
 
 /* Statement applies only to
-  child ul, only when li is hovered */
+ * child ul, only when li is hovered */
 nav li:hover > ul {
   display: -webkit-box;
   display: -moz-box;
@@ -261,7 +247,7 @@ header {
   font-size: 1rem;
   line-height: 1.6rem;
   text-align: right;
-  background: rgba(50, 50, 0, 0.6);
+  background: rgba(50, 50, 0, 0.7);
   border-radius: 0 1.5rem 1.5rem 0;
   padding: 2rem 3rem 2rem 2rem;
   margin-left: auto; }
@@ -345,14 +331,14 @@ aside {
       flex: 2 0 400px; } }
 
 .outerDiv {
-  background-color: rgba(50, 50, 0, 0.6);
+  background-color: rgba(50, 50, 0, 0.7);
   -moz-border-radius: 2rem;
   -webkit-border-radius: 2rem;
   -ms-border-radius: 2rem;
   border-radius: 2rem; }
 
 .innerDiv {
-  background-color: rgba(10, 10, 10, 0.6);
+  background-color: rgba(10, 10, 10, 0.7);
   -moz-border-radius: 1.5rem;
   -webkit-border-radius: 1.5rem;
   -ms-border-radius: 1.5rem;
@@ -410,12 +396,12 @@ aside {
     padding: 10px; }
 
 .pixHeader {
-  background-color: rgba(10, 10, 10, 0.6);
+  background-color: rgba(10, 10, 10, 0.7);
   border-radius: 15px 15px 0 0;
   margin: 15px 15px 0 15px; }
 
 .pixBody {
-  background-color: rgba(10, 10, 10, 0.6);
+  background-color: rgba(10, 10, 10, 0.7);
   border-radius: 0 0 15px 15px;
   display: -webkit-box;
   display: -moz-box;
@@ -677,7 +663,6 @@ div .gallery {
     opacity: 0; }
   100% {
     opacity: 1; } }
-
 .tooltipster-update-fade {
   animation: tooltipster-fading 200ms; }
 
@@ -688,7 +673,6 @@ div .gallery {
     transform: rotate(2deg); }
   100% {
     transform: rotate(0); } }
-
 .tooltipster-update-rotate {
   animation: tooltipster-rotating 600ms; }
 
@@ -697,7 +681,6 @@ div .gallery {
     transform: scale(1.1); }
   100% {
     transform: scale(1); } }
-
 .tooltipster-update-scale {
   animation: tooltipster-scaling 600ms; }
 
@@ -823,14 +806,14 @@ details.details_shim_open > summary {
 
 details.details_shim_closed > summary:before {
   display: inline-block;
-  content: "\25b6";
+  content: "▶";
   padding: 0 0.1em;
   margin-right: 0.4em;
   font-size: 0.9em; }
 
 details.details_shim_open > summary:before {
   display: inline-block;
-  content: "\25bc";
+  content: "▼";
   padding: 0;
   margin-right: 0.35em; }
 
@@ -852,11 +835,11 @@ th, td {
   border: 1px solid #50500f; }
 
 th {
-  background: rgba(50, 50, 0, 0.6);
+  background: rgba(50, 50, 0, 0.7);
   letter-spacing: 1px; }
 
 tr:nth-child(2n) {
-  background: rgba(50, 50, 0, 0.6); }
+  background: rgba(50, 50, 0, 0.7); }
 
 .container_SF_iframe {
   width: 100%; }
@@ -887,6 +870,19 @@ tr:nth-child(2n) {
 .frame4x3 {
   padding-bottom: 75%; }
 
+@media (min-height: 1000px) {
+  .goodHeight {
+    height: 950px; } }
+@media (min-height: 900px) {
+  .goodHeight {
+    height: 850px; } }
+@media (min-height: 800px) {
+  .goodHeight {
+    height: 750px; } }
+@media (min-height: 700px) {
+  .goodHeight {
+    height: 650px; } }
+
 input, button {
   padding: 5px;
   margin-right: 1rem; }
@@ -894,3 +890,5 @@ input, button {
 input[type="text"] {
   margin-bottom: 0;
   padding-bottom: 0; }
+
+/*# sourceMappingURL=learn.nest.sass.css.map */
