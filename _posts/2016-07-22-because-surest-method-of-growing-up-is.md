@@ -9,7 +9,7 @@ blogger_id: tag:blogger.com,1999:blog-2741304674651227490.post-48694015787931163
 blogger_orig_url: http://moonwards1.blogspot.com/2016/07/because-surest-method-of-growing-up-is.html
 ---
 
-\(Note: the following is one of various posts that were copied here from the [Moonwards](http://moonwards.com/) forum for the sake of preserving the early days of the project. It was originally posted there on Dec 13th, 2015.\)  
+(Originally posted on site forum Dec 13th, 2015.)  
 
 Let's say you have enough infrastructure on the Moon to fabricate really good mirrors, small motors, and pivoting joints in bulk. And you make 10 km2 of mirrors and set them up outside so you can very accurately point them. That's 12 GW of sunlight to throw around, accounting for some inefficiency in the mirrors - if your target is at a small angle to the sun from the mirror's position. At a 90 degree angle it would only be 8.5 GW.
 
