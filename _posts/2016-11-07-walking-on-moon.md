@@ -17,7 +17,7 @@ I highly recommend the modelling of craters as a pleasant pass time. If you enjo
 
 The LOLA laser altimeter on the Lunar Reconnaissance Orbiter is an exquisitely accurate instrument - attached to a probe moving at orbital speed that has no way to precisely calculate its position. Thus, the fact is LOLA topographical data is very coarse and full of artifacts. Step one is correcting those.
 
-<figure><img href="https://www.moonwards.com/img/LalandeLOLA.jpg" /></figure>
+<figure><img href="https://www.moonwards.com/img/LalandeLOLA.jpg"></figure>
 
 No, there aren't actually any ruler-straight lines cutting through this crater, or any pancake-flat mesas on its rim. In fact the LOLA data was only good for establishing some base-line reference points at key spots where one could be confident the data was accurate. It is mostly useful for large scale stuff. I was grateful a friend had passed it along to me though. I undid the imaginary mountains and gullies by hand until a very rough but basically accurate shape was created.
 
@@ -29,11 +29,11 @@ Once i appreciated this, there ensued many days of painstaking warping of the sh
 
 Step 3 is to take the final image and use it to refine the rough LOLA model. This is where you will really appreciate having your highly detailed and accurate image to work from. You can paste it onto the surface of the rough 3d model and line it up in good registration with it, then sculpt straight up and down where the image indicates rises and slopes. A supplementary reference from the side is really useful here. The [Apollo photographs](http://www.lpi.usra.edu/resources/apollo/) from orbit are pure gold at this stage. This one a friend found for me is one of my all-time favorite pictures:
 
-<figure><img src="https://www.moonwards.com/img/Apollo16-fromSouth-allLalande.jpg" /></figure>
+<figure><img src="https://www.moonwards.com/img/Apollo16-fromSouth-allLalande.jpg"></figure>
 
 For now i have recreated only the main contours of Lalande. I look forward to quietly adding detail when i have time, or when i feel a need to ruminate for a while. All sorts of things are happening within it. Why do a series of domes well up across the crater floor? What about these things that look like burst bubbles as large as one of those domes - is that an indication the domes could be hollow? (Edit Dec 6: Paul Spudis thinks that is highly unlikely, and that the blister shapes found on the floors of young craters are probably caused by large chunks of ejecta protruding from the surface of the melt.) This thing looks like an old lava vent - could that be what it is? That long sinuous crease in the floor, leading away from a large secondary crater - why did that form? Could there be a lava tube underneath the surface there? There are large areas of scree on the steep upper crater slopes - will there be lots of clean chunks of bedrock in those fields? Why is the northern spur of the central mountain so covered in boulders, and in particular on its western slopes? Walking around in the 3d model stimulates speculation...
 
-<figure><img  src="https://www.moonwards.com/img/LalandeMontage.jpg" />
+<figure><img  src="https://www.moonwards.com/img/LalandeMontage.jpg"></figure>
 
 So now i need to update the 3d model on the website, which right now is an old, less accurate model. The crater walls are very steep near the rim, it took me a while to get that right, and still it is only done for the patch below the site of the colony. And then i can move on to putting in sketches of all the infrastructure planned for further out, to have a general overview of the project. Which should be much more fun. I did a short fly-through video of part of that model, there will be better ones later when i get the hang of it more.
 
@@ -43,6 +43,6 @@ I have promised myself i will spend no more than 2 weeks completing the rough dr
 
 P.S. The final image i created was 40,000 pixels square. Here is a tiny version of it:
 
-<figure><img src="https://www.moonwards.com/img/LalandeMasterImage-2048.jpg" /></figure>
+<figure><img src="https://www.moonwards.com/img/LalandeMasterImage-800.jpg"></figure>
 
 (Edited Nov 8 to properly give kudos to Quickmap.)
