@@ -9,75 +9,73 @@ high radiation, intense sun, large temperature swings, and the substances
 of the Moon."
 ---
 
-			<header>
-				<div id="Logo">
-					<img src="img/MWLogo-for-black-bckgnd.svg" alt="Moonwards">
-				</div>
-				<div class="intro">
-						<h1>Interactives</h1>
-						<p>We have begun a collection of tools that illustrate important aspects of the physics
-						of various undertakings in space. Getting a feel for how your equipment interacts with the environment
-						is really central to designing life in space. We will expand and refine all these with time, making them
-						more intuitive with graphics, combining them, and so on.
-						</p>
-				</div>
-			</header>
+<header>
+	<div id="Logo">
+		<img src="img/MWLogo-for-black-bckgnd.svg" alt="Moonwards">
+	</div>
+	<div class="intro">
+		<h1>Interactives</h1>
+		<p>We have begun a collection of tools that illustrate important aspects of the physics
+			of various undertakings in space. Getting a feel for how your equipment interacts with the environment
+			is really central to designing life in space. We will expand and refine all these with time, making them
+			more intuitive with graphics, combining them, and so on.
+		</p>
+	</div>
+</header>
 <div class="container">
-		<noscript>
-			<p>
-It seems like you do not have JavaScript enabled. If that is by intent, we can inform you that all the scripts on this site are not tracing you, are only used for fonts and styling.<br>
-The calculators are also based on JavaScript, and they do not work without it. They are free software under the terms of the GPL.
-			</p>
-		</noscript>
-		<section id="interactives">
-
+	<section id="interactives">
 		<div class="outerDiv">
 			<div class="innerDiv">
 				<h2>Suborbital Hop</h2>
 				<p>Click and drag!</p>
 					<img src="img/mapmini.jpg" style="display:none" width="512" height="256" id="moonMap">
-					<canvas id="subOrbitalCanvas" width="512" height="256" onmouseover="document.body.cursor='move'" onmouseout="document.body.cursor='auto'"></canvas>
+					<canvas id="subOrbitalCanvas" width="512" height="256"
+						onmouseover="document.body.cursor='move'"
+						onmouseout="document.body.cursor='auto'">
+					</canvas>
 				<p id="resultSH">&nbsp;</p>
 				<p>
 					More about suborbital hops <a href="http://hopsblog-hop.blogspot.com/2015/08/lunar-pogo-hopper.html">here</a>
 				</p>
-<script src="js/suborbital.js"></script>
-<script>setTimeout(function(){subDraw()},2000)</script>
-<!--geogebra applet-->
-<script type="text/javascript" src="https://www.geogebra.org/scripts/deployggb.js"></script>
-<div style="width:500px;height:355px;display:block" id="applet_container1"></div>
-<!--end geogebra applet-->
+				<script src="js/suborbital.js"></script>
+				<script>
+					setTimeout(function(){subDraw()},2000)
+				</script>
+				<!--geogebra applet-->
+					<script async type="text/javascript" src="https://www.geogebra.org/scripts/deployggb.js"></script>
+					<div style="width:500px;height:355px;display:block" id="applet_container1"></div>
+				<!--end geogebra applet-->
+			</div>
+		</div><!--end outer div-->
+		<div class="outerDiv">
+			<div class="innerDiv">
+				<h2>Lunar Elevator</h2>
+				<p>Start distance: (From the centre of the Moon towards Earth)</p>
+				<input type="text" placeholder="(km)" value="" id="start">
+				<p style="padding-top: 5px; margin-top: 0;"></p>
+				<input type="checkbox" id="surface">use lunar surface
+				<p>End distance</p>
+				<input type="text" placeholder="(km)" value="" id="end">
+				<p style="padding-top: 5px; margin-top: 0;"></p>
+				<input type="checkbox" id="eml1">use EML1
+				<p>Material strength:</p>
+				<input type="text" placeholder="(Yuri)" value="" id="material">
+				<p style="padding-top: 5px; margin-top: 0;"></p>
+				<input type="checkbox" id="zylon">use Zylon
+				<input type="checkbox" id="tethermass"> I want the mass of the elevator too!
+				<p>Parameters required to calculate elevator mass:</p>
+				<p style="padding-bottom: 5px;margin-bottom: 0;">Payload mass:</p>
+				<input type="text" placeholder="(kg)" value="" id="payloadmass">
+				<p style="padding-bottom: 5px;margin-bottom: 0;">Safety factor:</p>
+				<input type="text" value="1.1" id="safety">
+				<button onclick="tether()">Calculate!</button>
+				<canvas id="tetherCanvas" width="400" height="100"></canvas>
+				<script src="js/tether.js"></script>
+				<p id="resultLE">&nbsp;</p>
+				<p id="resultLE2">&nbsp;</p>
+				<p id="resultLE3">&nbsp;</p>
 			</div>
 		</div>
-
-			<div class="outerDiv">
-				<div class="innerDiv">
-					<h2>Lunar Elevator</h2>
-					<p>Start distance: (From the centre of the Moon towards Earth)</p>
-					<input type="text" placeholder="(km)" value="" id="start">
-					<p style="padding-top: 5px; margin-top: 0;"><input type="checkbox" id="surface">use lunar surface</p>
-					<p>End distance</p>
-					<input type="text" placeholder="(km)" value="" id="end">
-					<p style="padding-top: 5px; margin-top: 0;"><input type="checkbox" id="eml1">use EML1</p>
-					<p>Material strength:</p>
-					<input type="text" placeholder="(Yuri)" value="" id="material">
-					<p style="padding-top: 5px; margin-top: 0;"><input type="checkbox" id="zylon">use Zylon</p>
-					<p><input type="checkbox" id="tethermass"> I want the mass of
-						the elevator too!</p>
-					<p>Parameters required to calculate elevator mass:</p>
-					<p style="padding-bottom: 5px;margin-bottom: 0;">Payload mass:</p>
-					<input type="text" placeholder="(kg)" value="" id="payloadmass">
-					<p style="padding-bottom: 5px;margin-bottom: 0;">Safety factor:</p>
-					<input type="text" value="1.1" id="safety">
-					<button onclick="tether()">Calculate!</button>
-					<canvas id="tetherCanvas" width="400" height="100"></canvas>
-					<script src="js/tether.js"></script>
-					<p id="resultLE">&nbsp;</p>
-					<p id="resultLE2">&nbsp;</p>
-					<p id="resultLE3">&nbsp;</p>
-			</div>
-		</div>
-
 		<div class="outerDiv">
 			<div class="innerDiv">
 				<h2>The Rocket Equation</h2>
@@ -95,7 +93,8 @@ The calculators are also based on JavaScript, and they do not work without it. T
 				<p id="lessThan"></p>
 				<div class="imgResize">
 					<a href="rotovator.html">
-						<img src="img/RotovatorCanvasLink.png"></a>
+						<img src="img/RotovatorCanvasLink.png">
+					</a>
 				</div>
 			</div>
 		</div>
