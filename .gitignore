@@ -3,3 +3,5 @@
 *.swp
 # map files
 *.map
+Gemfile
+Gemfile.lock
