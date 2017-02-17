@@ -1,5 +1,5 @@
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en-US">
 	<head>
 		<title>{{page.title}}</title>
@@ -8,31 +8,35 @@
 		<meta name="theme-color" content="#ffffff">
 		<meta name="description" content="{{page.description}}">
 		<link rel="stylesheet" href="http://www.moonwards.com/css/posts.nest.sass.css">
-<link href="https://fonts.googleapis.com/css?family=Titillium+Web:200,200i,300,300i,400,400i,600" rel="stylesheet">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script type="text/javascript" src="http://www.moonwards.com/js/tooltipster.bundle.min.js"></script>
-<!--<script type="text/javascript" src="js/iframeResizer.contentWindow.min.js"></script>-->
-<script>
-	 $(document).ready(function() {
-			 $('.tooltip').tooltipster({
-				interactive: true
-			});
-	 });
-</script>
+		<link href="https://fonts.googleapis.com/css?family=Titillium+Web:200,200i,300,300i,400,400i,600" rel="stylesheet">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<script type="text/javascript" src="http://www.moonwards.com/js/tooltipster.bundle.min.js"></script>
+		<!--<script type="text/javascript" src="js/iframeResizer.contentWindow.min.js"></script>-->
+		<script>
+$(document).ready(function() {
+	 $('.tooltip').tooltipster({
+		interactive: true
+	});
+});
+		</script>
 	</head>
 <body>
 	<header>
-   <p>
+		<p>
      What if a group of nations was determined to
      colonize the Moon, and they based their decisions only on
      technical and economic merit?
-   </p>
+		</p>
 	</header>
- <div class="back"><a href="https://www.moonwards.com/blogMain.html">Blog Index</a></div>
-<div class="container">
- <h1>{{page.title}}</h1>
+	<div class="back">
+		<a href="https://www.moonwards.com/blogMain.html">Blog Index</a>
+	</div>
+	<div class="container">
+		<h1>{{page.title}}</h1>
 {{content | remove: 'end-excerpt'}}
-</div>
-<div class="back"><a href="https://www.moonwards.com/blogMain.html">Blog Index</a></div>
+	</div>
+	<div class="back">
+		<a href="https://www.moonwards.com/blogMain.html">Blog Index</a>
+	</div>
 </body>
 </html>

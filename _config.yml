@@ -18,7 +18,6 @@ exclude:
   - archive
   - graphics
   - webplayer
-  - browsergame
   - blend4web
   - details-shim-master
   - blenderstuff
