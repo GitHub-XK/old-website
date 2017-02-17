@@ -5,3 +5,5 @@
 *.map
 Gemfile
 Gemfile.lock
+docs/*
+sass/.sass-cache
