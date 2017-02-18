@@ -16,3 +16,21 @@ $figcapSize: 0.8rem
 $linx: yellow
 $aVisited: rgb(190,238,50)
 $aHoverBk: rgb(60,60,10)
+
+@mixin RadiusOut
+  -moz-border-radius: $outRadius
+  -webkit-border-radius: $outRadius
+  -ms-border-radius: $outRadius
+  border-radius: $outRadius
+
+@mixin RadiusIn
+  -moz-border-radius: $inRadius
+  -webkit-border-radius: $inRadius
+  -ms-border-radius: $inRadius
+  border-radius: $inRadius
+
+@mixin RadiusSide
+  -moz-border-radius: $sideRadius
+  -webkit-border-radius: $sideRadius
+  -ms-border-radius: $sideRadius
+  border-radius: $sideRadius
