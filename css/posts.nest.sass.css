@@ -1,8 +1,7 @@
-@charset "UTF-8";
 html {
   margin: 0;
   color: #f7f7dc;
-  font: 1rem/1.5rem "Titillium Web", sans-serif; }
+  font: 1rem/1.5rem 'Titillium Web', sans-serif; }
 
 body, ul, figure {
   margin: 0; }
@@ -124,6 +123,14 @@ h5 {
   font-size: 0.6rem;
   color: yellow; }
   .note:hover {
+    background-color: #3c3c0a;
+    cursor: help; }
+
+.note-inline {
+  font-weight: 400;
+  font-size: 1rem;
+  color: yellow; }
+  .note-inline:hover {
     background-color: #3c3c0a;
     cursor: help; }
 
@@ -276,6 +283,7 @@ h5 {
     opacity: 0; }
   100% {
     opacity: 1; } }
+
 .tooltipster-update-fade {
   animation: tooltipster-fading 200ms; }
 
@@ -286,6 +294,7 @@ h5 {
     transform: rotate(2deg); }
   100% {
     transform: rotate(0); } }
+
 .tooltipster-update-rotate {
   animation: tooltipster-rotating 600ms; }
 
@@ -294,6 +303,7 @@ h5 {
     transform: scale(1.1); }
   100% {
     transform: scale(1); } }
+
 .tooltipster-update-scale {
   animation: tooltipster-scaling 600ms; }
 
@@ -419,14 +429,14 @@ details.details_shim_open > summary {
 
 details.details_shim_closed > summary:before {
   display: inline-block;
-  content: "▶";
+  content: "\25b6";
   padding: 0 0.1em;
   margin-right: 0.4em;
   font-size: 0.9em; }
 
 details.details_shim_open > summary:before {
   display: inline-block;
-  content: "▼";
+  content: "\25bc";
   padding: 0;
   margin-right: 0.35em; }
 

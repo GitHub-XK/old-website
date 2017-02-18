@@ -95,6 +95,14 @@ figcaption {
     background-color: #3c3c0a;
     cursor: help; }
 
+.note-inline {
+  font-weight: 400;
+  font-size: 1rem;
+  color: yellow; }
+  .note-inline:hover {
+    background-color: #3c3c0a;
+    cursor: help; }
+
 /*This hides Tooltipster tooltips until hovered */
 .tooltip_templates {
   display: none; }
