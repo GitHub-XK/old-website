@@ -17,8 +17,6 @@ destination: docs
 exclude:
   - archive
   - graphics
-  - webplayer
-  - blend4web
   - details-shim-master
   - blenderstuff
   - working
