@@ -48,11 +48,13 @@ nav li > ul
   border: 1px solid #666
   border-top: none
   padding: 10px
+  text-align: center
+  margin: 0
 
 /* Statement applies only to
   child ul, only when li is hovered
 nav  li:hover > ul
   +display(flex)
-  +align-items(stretch)
-  +justify-content(center)
+  +align-items(flex-start)
+  +justify-content(flex-start)
   +flex-flow(column nowrap)

@@ -193,7 +193,9 @@ nav li > ul {
   border-radius: 15px;
   border: 1px solid #666;
   border-top: none;
-  padding: 10px; }
+  padding: 10px;
+  text-align: center;
+  margin: 0; }
 
 /* Statement applies only to
   child ul, only when li is hovered */
@@ -205,15 +207,15 @@ nav li:hover > ul {
   display: -moz-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: stretch;
-  -moz-box-align: stretch;
-  box-align: stretch;
-  -webkit-align-items: stretch;
-  -moz-align-items: stretch;
-  -ms-align-items: stretch;
-  -o-align-items: stretch;
-  align-items: stretch;
-  -ms-flex-align: stretch;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  box-align: center;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  -o-align-items: center;
+  align-items: center;
+  -ms-flex-align: center;
   -webkit-box-pack: center;
   -moz-box-pack: center;
   box-pack: center;
