@@ -19,9 +19,9 @@ section
 section .learn
   +display(flex)
   +flex(0 1 350px)
-  flex-flow: row wrap
-  justify-content: flex-start
-  align-items: flex-start
+  +flex-flow(row wrap)
+  +justify-content(flex-start)
+  +align-items(flex-start)
   width: 90%
 
 aside
@@ -128,3 +128,27 @@ div .gallery
   letter-spacing: 1px
   line-height: 1.1rem
   text-align: right
+
+.columnSet
+  +display(flex)
+  +flex-flow(row nowrap)
+  +justify-content(center)
+  +align-items(stretch)
+  width: 90%
+  margin: auto
+  border-bottom: 1px solid $darkAccent
+  section:nth-child(odd)
+    background-color: $outerBkgd
+  section:nth-child(even)
+    background-color: $innerBkgd
+  @media only screen and (max-width: 650px)
+    +flex-flow(column nowrap)
+
+.underHeader
+  margin-top: 3rem
+
+.column
+  +flex(1 1 30%)
+  box-sizing: border-box
+  margin: 0
+  padding: 15px

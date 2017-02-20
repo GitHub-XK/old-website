@@ -1,21 +1,25 @@
 ul.tabs
   +display(flex)
   +align-items(center)
-  +justify-content(flex-start)
+  +justify-content(center)
   +flex-flow(row nowrap)
-  margin: 1rem 0 0.3rem 0
+  margin: 1rem 0 0.5rem 0
   list-style-type: none
   height: 2rem
   font-size: 1.1rem
   font-weight: 400
+  padding: 0
 
 .tabs li a
   padding: 0.5rem 1.2rem 0.5rem 1.2rem
   background-color: $tabBkgd
   color: $headingColor
-  border-radius: 1.2rem 1.2rem 0 0
+  border-radius: 1.2rem
   margin: 0.3rem 0.3rem 0.5rem 0.3rem
   letter-spacing: 2px
+  &:visited
+    color: $headingColor
+    background-color: $tabBkgd
   &:hover
     background-color: black
     color: $navAHover
