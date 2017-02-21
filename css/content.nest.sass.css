@@ -666,11 +666,13 @@ div .gallery {
   align-items: stretch;
   -ms-flex-align: stretch;
   width: 90%;
-  margin: auto;
-  border-bottom: 1px solid #50500f; }
-  .columnSet section:nth-child(odd) {
+  margin: 0 auto;
+  padding: 0;
+  background-color: rgba(50, 50, 0, 0.4);
+  border-bottom: 3px solid black; }
+  .columnSet article:nth-child(odd) {
     background-color: rgba(50, 50, 0, 0.7); }
-  .columnSet section:nth-child(even) {
+  .columnSet article:nth-child(even) {
     background-color: rgba(10, 10, 10, 0.7); }
   @media only screen and (max-width: 650px) {
     .columnSet {
