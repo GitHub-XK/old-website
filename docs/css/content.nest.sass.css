@@ -680,9 +680,6 @@ div .gallery {
       -moz-flex-flow: column nowrap;
       flex-flow: column nowrap; } }
 
-.underHeader {
-  margin-top: 3rem; }
-
 .column {
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
@@ -1025,8 +1022,36 @@ th {
 tr:nth-child(2n) {
   background: rgba(50, 50, 0, 0.7); }
 
-.container_SF_iframe {
-  width: 100%; }
+.frameContainer {
+  display: -webkit-box;
+  display: -moz-box;
+  display: box;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-flow: column nowrap;
+  -moz-flex-flow: column nowrap;
+  flex-flow: column nowrap;
+  -webkit-box-pack: start;
+  -moz-box-pack: start;
+  box-pack: start;
+  -webkit-justify-content: flex-start;
+  -moz-justify-content: flex-start;
+  -ms-justify-content: flex-start;
+  -o-justify-content: flex-start;
+  justify-content: flex-start;
+  -ms-flex-pack: start;
+  -webkit-box-align: stretch;
+  -moz-box-align: stretch;
+  box-align: stretch;
+  -webkit-align-items: stretch;
+  -moz-align-items: stretch;
+  -ms-align-items: stretch;
+  -o-align-items: stretch;
+  align-items: stretch;
+  -ms-flex-align: stretch;
+  width: 90%; }
 
 .SF-Div {
   background-color: rgba(0, 0, 0, 0.7);
@@ -1037,6 +1062,22 @@ tr:nth-child(2n) {
   padding: 15px;
   margin-bottom: 30px; }
 
+.framePairTop {
+  box-sizing: border-box;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 1.5rem 1.5rem 0 0;
+  padding: 1rem; }
+
+.framePairBottom {
+  box-sizing: border-box;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 0 0 1.5rem 1.5rem;
+  padding: 0 15px 15px 15px;
+  letter-spacing: 1px;
+  line-height: 1.1rem;
+  text-align: right;
+  margin-bottom: 20px; }
+
 .framewrap {
   position: relative;
   height: 0;
@@ -1046,7 +1087,8 @@ tr:nth-child(2n) {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%; }
+    height: 100%;
+    border: 1px solid #73730f; }
 
 .frame16x9 {
   padding-bottom: 56.25%; }
@@ -1069,6 +1111,10 @@ tr:nth-child(2n) {
 @media (min-height: 700px) {
   .goodHeight {
     height: 650px; } }
+
+@media (min-height: 600px) {
+  .goodHeight {
+    height: 550px; } }
 
 input, button {
   padding: 5px;
