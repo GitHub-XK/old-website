@@ -1,5 +1,9 @@
-.container_SF_iframe
-  width: 100%
+.frameContainer
+  +display(flex)
+  +flex-flow(column nowrap)
+  +justify-content(flex-start)
+  +align-items(stretch)
+  width: 90%
 
 
 .SF-Div
@@ -8,6 +12,21 @@
   padding: 15px
   margin-bottom: 30px
 
+.framePairTop
+  box-sizing: border-box
+  background-color: $sideBkgd
+  border-radius: 1.5rem 1.5rem 0 0
+  padding: $mainPad
+
+.framePairBottom
+  box-sizing: border-box
+  background-color: $sideBkgd
+  border-radius: 0 0 1.5rem 1.5rem
+  padding: 0 15px 15px 15px
+  letter-spacing: 1px
+  line-height: 1.1rem
+  text-align: right
+  margin-bottom: 20px
 
 .framewrap
   position: relative
@@ -19,8 +38,7 @@
     left: 0
     width: 100%
     height: 100%
-
-
+    border: 1px solid $lightAccent
 
 .frame16x9
   padding-bottom: 56.25%
@@ -37,3 +55,5 @@
     height: 750px
   @media (min-height: 700px)
     height: 650px
+  @media (min-height: 600px)
+    height: 550px
