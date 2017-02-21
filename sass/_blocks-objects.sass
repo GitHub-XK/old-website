@@ -135,17 +135,18 @@ div .gallery
   +justify-content(center)
   +align-items(stretch)
   width: 90%
-  margin: auto
-  border-bottom: 1px solid $darkAccent
-  section:nth-child(odd)
+  margin: 0 auto
+  padding: 0
+  background-color: rgba(50,50, 0, 0.4)
+  border-bottom: 3px solid black
+  article:nth-child(odd)
     background-color: $outerBkgd
-  section:nth-child(even)
+  article:nth-child(even)
     background-color: $innerBkgd
   @media only screen and (max-width: 650px)
     +flex-flow(column nowrap)
 
-.underHeader
-  margin-top: 3rem
+
 
 .column
   +flex(1 1 30%)
