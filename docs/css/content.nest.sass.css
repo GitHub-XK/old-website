@@ -668,13 +668,13 @@ div .gallery {
   width: 90%;
   margin: 0 auto;
   padding: 0;
-  background-color: rgba(50, 50, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.6);
   border-bottom: 3px solid black; }
   .columnSet article:nth-child(odd) {
     background-color: rgba(50, 50, 0, 0.7); }
   .columnSet article:nth-child(even) {
     background-color: rgba(10, 10, 10, 0.7); }
-  @media only screen and (max-width: 650px) {
+  @media only screen and (max-width: 1000px) {
     .columnSet {
       -webkit-flex-flow: column nowrap;
       -moz-flex-flow: column nowrap;
