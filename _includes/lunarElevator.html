@@ -1,0 +1,29 @@
+		<div class="outerDiv">
+			<div class="innerDiv">
+				<h2>Lunar Elevator</h2>
+				<p>Start distance: (From the centre of the Moon towards Earth)</p>
+				<input type="text" placeholder="(km)" value="" id="start">
+				<p class="formBuffer"></p>
+				<input type="checkbox" id="surface">use lunar surface
+				<p>End distance</p>
+				<input type="text" placeholder="(km)" value="" id="end">
+				<p class="formBuffer"></p>
+				<input type="checkbox" id="eml1">use EML1
+				<p>Material strength:</p>
+				<input type="text" placeholder="(Yuri)" value="" id="material">
+				<p class="formBuffer"></p>
+				<input type="checkbox" id="zylon">use Zylon
+				<input type="checkbox" id="tethermass"> I want the mass of the elevator too!
+				<p>Parameters required to calculate elevator mass:</p>
+				<p class="formBuffer">Payload mass:</p>
+				<input type="text" placeholder="(kg)" value="" id="payloadmass">
+				<p class="formBuffer">Safety factor:</p>
+				<input type="text" value="1.1" id="safety">
+				<button onclick="tether()">Calculate!</button>
+				<canvas id="tetherCanvas" width="400" height="100"></canvas>
+				<script src="js/tether.js"></script>
+				<p id="resultLE">&nbsp;</p>
+				<p id="resultLE2">&nbsp;</p>
+				<p id="resultLE3">&nbsp;</p>
+			</div>
+		</div>

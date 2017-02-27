@@ -26,57 +26,10 @@ of the Moon."
 	<section id="tryit">
 		<div class="outerDiv">
 			<div class="innerDiv">
-				<h2>Suborbital Hop</h2>
-				<p>Click and drag!</p>
-					<img src="img/mapmini.jpg" style="display:none" width="512" height="256" id="moonMap">
-					<canvas id="subOrbitalCanvas" width="512" height="256"
-						onmouseover="document.body.cursor='move'"
-						onmouseout="document.body.cursor='auto'">
-					</canvas>
-				<p id="resultSH">&nbsp;</p>
-				<p>
-					More about suborbital hops <a href="http://hopsblog-hop.blogspot.com/2015/08/lunar-pogo-hopper.html">here</a>
-				</p>
-				<script src="js/suborbital.js"></script>
-				<script>
-setTimeout(function(){subDraw()},2000)
-				</script>
-				<!--geogebra applet-->
-				<script type="text/javascript" src="https://www.geogebra.org/scripts/deployggb.js"></script>
-				<div id="applet_container1">
-				</div>
-				<!--end geogebra applet-->
+{%include suborbital.html%}
 			</div>
 		</div><!--end outer div-->
-		<div class="outerDiv">
-			<div class="innerDiv">
-				<h2>Lunar Elevator</h2>
-				<p>Start distance: (From the centre of the Moon towards Earth)</p>
-				<input type="text" placeholder="(km)" value="" id="start">
-				<p style="padding-top: 5px; margin-top: 0;"></p>
-				<input type="checkbox" id="surface">use lunar surface
-				<p>End distance</p>
-				<input type="text" placeholder="(km)" value="" id="end">
-				<p style="padding-top: 5px; margin-top: 0;"></p>
-				<input type="checkbox" id="eml1">use EML1
-				<p>Material strength:</p>
-				<input type="text" placeholder="(Yuri)" value="" id="material">
-				<p style="padding-top: 5px; margin-top: 0;"></p>
-				<input type="checkbox" id="zylon">use Zylon
-				<input type="checkbox" id="tethermass"> I want the mass of the elevator too!
-				<p>Parameters required to calculate elevator mass:</p>
-				<p style="padding-bottom: 5px;margin-bottom: 0;">Payload mass:</p>
-				<input type="text" placeholder="(kg)" value="" id="payloadmass">
-				<p style="padding-bottom: 5px;margin-bottom: 0;">Safety factor:</p>
-				<input type="text" value="1.1" id="safety">
-				<button onclick="tether()">Calculate!</button>
-				<canvas id="tetherCanvas" width="400" height="100"></canvas>
-				<script src="js/tether.js"></script>
-				<p id="resultLE">&nbsp;</p>
-				<p id="resultLE2">&nbsp;</p>
-				<p id="resultLE3">&nbsp;</p>
-			</div>
-		</div>
+{%include lunarElevator.html%}
 		<div class="outerDiv">
 			<div class="innerDiv">
 				<h2>The Rocket Equation</h2>
@@ -107,12 +60,22 @@ setTimeout(function(){subDraw()},2000)
 		<div class="innerDiv wide">
 			<h2>A quick introduction to orbital mechanics</h2>
 			<script type="text/javascript">
-var applet1 = new GGBApplet({filename: "GeoGebra/suborbital.ggb","showtoolbar":false}, true);
-var applet2 = new GGBApplet({filename: "GeoGebra/orbit.ggb","showtoolbar":false}, true);
-window.onload = function(){
-	applet1.inject('applet_container1', 'preferHTML5');
-	applet2.inject('applet_container2', 'preferHTML5');
-}
+				var applet1 = new GGBApplet(
+					{
+						filename:"GeoGebra/suborbital.ggb",
+						"showtoolbar":false
+					},true
+				);
+				var applet2 = new GGBApplet(
+					{
+						filename:"GeoGebra/orbit.ggb",
+						"showtoolbar":false
+					},true
+				);
+				window.onload = function(){
+					applet1.inject('applet_container1','preferHTML5');
+					applet2.inject('applet_container2','preferHTML5');
+				}
 			</script>
 			<div id="applet_container2">
 				Applet not loading? <a href="img/orbit.png">Here is an image instead</a>
@@ -129,9 +92,7 @@ window.onload = function(){
 				<h5>Let us then get started with the math!</h5>
 				<p>
 					We have a spacecraft orbiting in a circular orbit. What is its velocity?
-
-					$$v=\sqrt{\frac{\mu}{r}}$$
-
+						$$v=\sqrt{\frac{\mu}{r}}$$
 					$v$ is of course the velocity. $\mu$ is the gravitational parameter. You would often see that as $GM$, which is the same
 					thing. That is the mass of the object you are orbiting ($M$) multiplied with the gravitational constant ($G=6.674 \cdot 10^{-11} \frac{m^3}{kg s^2}$).
 				</p>
@@ -149,9 +110,7 @@ window.onload = function(){
 					But wait a minute, not all orbits are circles! How can be calculate the orbital velocity in an elliptical orbit? Well,
 					first of all, the velocity varies depending on where in the orbit you are, having a larger velocity at the periapsis than
 					at the apoapsis. But there is an equation here to:
-
-					$$v=\sqrt{\mu \left(\frac{2}{r}-\frac{1}{a}\right)}$$
-
+						$$v=\sqrt{\mu \left(\frac{2}{r}-\frac{1}{a}\right)}$$
 					$r$ is here your current distance to the centre of the object you are orbiting, and $a$ is the semi-major axis that we just
 					talked about. Notice that in the case of a circular orbit, $r=a$ so this equation simplifies back to $v=\sqrt{\frac{\mu}{r}}$
 				</p>
@@ -166,32 +125,21 @@ window.onload = function(){
 					and not in the red one? After all, you can be in that location if you where in the red orbit too. Not everything is
 					the same. What matters here is that you would have a different velocity, depending on which of the orbits you are in.
 					Let us calculate that. We say $\mu = 1$ for simplicity:
-
-					$$v_{blue}=\sqrt{\frac{1}{1}}=1$$
-
-					$$v_{red}=\sqrt{1\left(\frac{2}{1}-\frac{1}{2}\right)}=1.225$$
-
+						$$v_{blue}=\sqrt{\frac{1}{1}}=1$$
+						$$v_{red}=\sqrt{1\left(\frac{2}{1}-\frac{1}{2}\right)}=1.225$$
 					Below is an illustration of the velocity vectors. The pink part is the $\Delta v$ we have to spend. Note that the difference is smallest when the vectors point in the same direction.
 				</p>
 				<img src="img/difference.png">
 				<h5>More math!</h5>
 				<p>
 					Let us take another look at the equation for velocity in an elliptical orbit:
-
-					$$v=\sqrt{\mu \left(\frac{2}{r}-\frac{1}{a}\right)}$$
-
+						$$v=\sqrt{\mu \left(\frac{2}{r}-\frac{1}{a}\right)}$$
 					What happens if we tries to travel "to infinity"? We start at distance $r$, and travels to $a=\infty$:
-
-					$$v=\sqrt{\mu \left(\frac{2}{r}-\frac{1}{\infty}\right)}$$
-
+						$$v=\sqrt{\mu \left(\frac{2}{r}-\frac{1}{\infty}\right)}$$
 					That simplifies to
-
-					$$v=\sqrt{\mu \left(\frac{2}{r}-0\right)}$$
-
+						$$v=\sqrt{\mu \left(\frac{2}{r}-0\right)}$$
 					and that is equal to
-
-					$$v_e=\sqrt{\frac{2\mu}{r}}$$
-
+						$$v_e=\sqrt{\frac{2\mu}{r}}$$
 					"$v_e$" is here short for "escape velocity". It turns out that travelling as far away as you would like has a limited cost.
 					Of course, reaching infinity takes an ehm... infinite time... From this point, when I say infinity, I mean sufficiently far away.
 				</p>
@@ -211,136 +159,27 @@ window.onload = function(){
 				<p>
 					How can we achieve that? The answer is naturally to get a velocity higher than the escape velocity. But how exactly does that relate to the final velocity we end up with once we have escaped?
 					Behold. The Pythagoras formula of orbital mechanics:
-									</p>
-									<img class="realsize" src="img/orbitalPythagoras.png" width="415" height="257" alt="v² = v_escape² + v_infinity²">
-									<p>
+				</p>
+				<img class="realsize" src="img/orbitalPythagoras.png" width="415" height="257" alt="v² = v_escape² + v_infinity²">
+				<p>
 					Example: Say we are in an orbit again around a mass with a $\mu$ of 1. Our distance is also 1. The escape velocity at this distance is then $\sqrt{2}$. Say then that we have an actual velocity larger than that, for instance $v=2$. In that case, we are going to escape. However, we are still going to be slowed down by gravity, so our final velocity when we have travelled far away is going to be lower than 2 for sure.
-
-					$$v^2 = v_{\infty}^2 + v_{e}^2$$
-
+						$$v^2 = v_{\infty}^2 + v_{e}^2$$
 					We have some of the numbers to plug in to this equation.
-
-					$$2^2 = v_{\infty}^2 + \sqrt{2}^2$$
-
+						$$2^2 = v_{\infty}^2 + \sqrt{2}^2$$
 					We can rearrange that to get:
-
-					$$v_{\infty}^2 = 2^2 - \sqrt{2}^2$$
-
+						$$v_{\infty}^2 = 2^2 - \sqrt{2}^2$$
 					And then get our velocity "at infinity":
-
-					$$v_{\infty}=\sqrt{2}$$
+						$$v_{\infty}=\sqrt{2}$$
 				</p>
 			</div>
 		</div>
 	<div class="outerDiv">
-		<div class="innerDiv">
-			<p>[Experimental!] A list of data. Here are some numbers we have found useful during the development of the project.</p>
-			<p>The data is also available from the open source "space.js" script, found at <a href="http://moonwards.com/js/space.js">moonwards.com/js/space.js</a></p>
-			<details class="details">
-				<summary>List of numbers</summary>
-				<details><summary>The Moon</summary>
-					<table>
-						<tr>
-							<th>Property</th>
-							<th>Value</th>
-							<th>Space.js access</th>
-						</tr>
-						<tr>
-							<td>Mass:</td>
-							<td>7.342 10<sup>22</sup> kg</td>
-							<td class="code">space.moon.mass</td>
-						</tr>
-						<tr>
-							<td>Radius:</td>
-							<td>1.7371 10<sup>6</sup> m</td>
-							<td class="code">space.moon.radius</td>
-						</tr>
-						<tr>
-							<td>Gravitational prameter:</td>
-							<td>4.9048695 10<sup>12</sup> kg<sup>-1</sup> m<sup>3</sup> s<sup>2</sup></td>
-							<td class="code">space.moon.gm</td>
-						</tr>
-					</table>
-					<details class="orbit"><summary>Orbit:</summary>
-						<table>
-							<tr>
-								<th>Property</th>
-								<th>Value</th>
-								<th>Space.js access</th>
-							</tr>
-							<tr>
-								<td>Parent:</td>
-								<td>Earth</td>
-								<td class="code">space.moon.orbit.parent</td>
-							</tr>
-							<tr>
-								<td>Semi-major axis:</td>
-								<td>3.84399 10<sup>8</sup> m</td>
-								<td class="code">space.moon.orbit.radius</td>
-							</tr>
-							<tr>
-								<td>Period:</td>
-								<td>2.360591 10<sup>6</sup> s</td>
-								<td class="code">space.moon.orbit.period</td>
-							</tr>
-						</table>
-					</details>
-				</details>
-				<details><summary>Earth</summary>
-					<table>
-						<tr>
-							<th>Property</th>
-							<th>Value</th>
-							<th>Space.js access</th>
-						</tr>
-						<tr>
-							<td>Mass:</td>
-							<td>7.342 10<sup>22</sup> kg</td>
-							<td class="code">space.earth.mass</td>
-						</tr>
-						<tr>
-							<td>Radius:</td>
-							<td>6.371 10<sup>6</sup> m</td>
-							<td class="code">space.earth.radius</td>
-						</tr>
-						<tr>
-							<td>Gravitational prameter:</td>
-							<td>3.986004418 10<sup>14</sup> kg<sup>-1</sup> m<sup>3</sup> s<sup>2</sup></td>
-							<td class="code">space.earth.gm</td>
-						</tr>
-					</table>
-					<details class="orbit"><summary>Orbit:</summary>
-						<table>
-							<tr>
-								<th>Property</th>
-								<th>Value</th>
-								<th>Space.js access</th>
-							</tr>
-							<tr>
-								<td>Parent:</td>
-								<td>Sun</td>
-								<td class="code">space.earth.orbit.parent</td>
-							</tr>
-							<tr>
-								<td>Semi-major axis:</td>
-								<td>1.49598023 10<sup>11</sup> m</td>
-								<td class="code">space.earth.orbit.radius</td>
-							</tr>
-							<tr>
-								<td>Period:</td>
-								<td>3.155815 10<sup>7</sup> s</td>
-								<td class="code">space.earth.orbit.period</td>
-							</tr>
-						</table>
-					</details>
-				</details>
-			</details>
-		</div>
+{%include spaceJStable.html%}
 		<div class="innerDiv">
 			<a href="http://www.gnu.org/licenses/">
-				<p>All calculator scripts are released under GPL 3</p>
+				<p>All calculator scripts are released under the GPL version 3</p>
 			</a>
-		</div>
+		</div><!--change to <footer>?-->
 	</div>
 </section>
 </div><!--end container-->

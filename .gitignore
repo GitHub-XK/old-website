@@ -1,8 +1,14 @@
 # Temporary Files #
 *~
 *.swp
-# map files
+# stuff used by jekyll or something #
 Gemfile
 Gemfile.lock
-docs/*
+# tmp sass #
 sass/.sass-cache
+# finished site #
+docs/*
+# compiled css #
+css/*
+# just in case #
+skynet/*
