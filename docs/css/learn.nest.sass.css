@@ -452,6 +452,15 @@ aside {
   -o-align-items: center;
   align-items: center;
   -ms-flex-align: center;
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  box-pack: center;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  -o-justify-content: center;
+  justify-content: center;
+  -ms-flex-pack: center;
   margin: 15px; }
   .pixWrap p {
     margin: 5px;
@@ -494,17 +503,21 @@ aside {
   -moz-flex: auto;
   -ms-flex: auto;
   flex: auto;
-  -webkit-box-align: center;
-  -moz-box-align: center;
-  box-align: center;
-  -webkit-align-items: center;
-  -moz-align-items: center;
-  -ms-align-items: center;
-  -o-align-items: center;
-  align-items: center;
-  -ms-flex-align: center;
   border: 1px solid #50500f; }
   .pix img {
+    width: 100%;
+    height: auto; }
+
+.pixCenter {
+  -webkit-box-flex: 0;
+  -moz-box-flex: 0;
+  box-flex: 0;
+  -webkit-flex: 0 1 400px;
+  -moz-flex: 0 1 400px;
+  -ms-flex: 0 1 400px;
+  flex: 0 1 400px;
+  border: 1px solid #50500f; }
+  .pixCenter img {
     width: 100%;
     height: auto; }
 

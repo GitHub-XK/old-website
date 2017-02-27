@@ -47,6 +47,7 @@ aside
   +display(flex)
   +flex-flow(row wrap)
   +align-items(center)
+  +justify-content(center)
   margin: 15px
   p
     margin: 5px
@@ -67,7 +68,13 @@ aside
 
 .pix
   +flex(auto)
-  +align-items(center)
+  border: 1px solid $darkAccent
+  img
+    width: 100%
+    height: auto
+
+.pixCenter
+  +flex(0 1 400px)
   border: 1px solid $darkAccent
   img
     width: 100%
