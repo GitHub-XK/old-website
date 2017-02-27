@@ -7,8 +7,8 @@ Gemfile.lock
 # tmp sass #
 sass/.sass-cache
 # finished site #
-docs/
+# docs/
 # compiled css #
-css/
+# css/
 # just in case #
 skynet/
