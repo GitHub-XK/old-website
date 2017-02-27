@@ -304,8 +304,6 @@ header {
   margin-left: auto; }
 
 /*Block level elements, and non-text objects */
-/*hoh asks: is this file intentionally commented out?*/
-/* */
 .container {
   width: 94%;
   margin: auto; }
@@ -406,24 +404,15 @@ aside {
   -webkit-flex-flow: column nowrap;
   -moz-flex-flow: column nowrap;
   flex-flow: column nowrap;
-  -webkit-box-align: flex-endcenter;
-  -moz-box-align: flex-endcenter;
-  box-align: flex-endcenter;
-  -webkit-align-items: flex-endcenter;
-  -moz-align-items: flex-endcenter;
-  -ms-align-items: flex-endcenter;
-  -o-align-items: flex-endcenter;
-  align-items: flex-endcenter;
-  -ms-flex-align: flex-endcenter;
-  -webkit-box-pack: center;
-  -moz-box-pack: center;
-  box-pack: center;
-  -webkit-justify-content: center;
-  -moz-justify-content: center;
-  -ms-justify-content: center;
-  -o-justify-content: center;
-  justify-content: center;
-  -ms-flex-pack: center;
+  -webkit-box-align: end;
+  -moz-box-align: end;
+  box-align: end;
+  -webkit-align-items: flex-end;
+  -moz-align-items: flex-end;
+  -ms-align-items: flex-end;
+  -o-align-items: flex-end;
+  align-items: flex-end;
+  -ms-flex-align: end;
   margin: 15px; }
   .innerDiv p {
     width: calc(100% - 3rem);

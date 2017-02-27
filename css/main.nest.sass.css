@@ -1,7 +1,8 @@
+@charset "UTF-8";
 html {
   margin: 0;
   color: #f7f7dc;
-  font: 1rem/1.6rem 'Titillium Web', sans-serif;
+  font: 1rem/1.6rem "Titillium Web", sans-serif;
   background: #000 url(http://www.moonwards.com/img/tycho-mod.png) no-repeat fixed right 250px;
   padding: 0;
   background-size: 1600px; }
@@ -9,7 +10,7 @@ html {
     html {
       background-size: 100% auto; } }
 
-/*All color, text styling, visual touches, and basic doc styles*/
+/*All color, text styling, visual touches, and basic doc styles */
 body, ul, figure {
   margin: 0; }
 
@@ -187,7 +188,7 @@ nav > ul > li {
   padding: 5px; }
 
 /* Make dropdown menus:
-  ul that is a CHILD of li which is a DESCENDENT of nav */
+ * ul that is a CHILD of li which is a DESCENDENT of nav */
 nav li > ul {
   display: none;
   border-radius: 15px;
@@ -210,7 +211,7 @@ nav li > ul li {
   padding: 5px; }
 
 /* Statement applies only to
-  child ul, only when li is hovered */
+ * child ul, only when li is hovered */
 nav li:hover > ul {
   display: -webkit-box;
   display: -moz-box;
@@ -760,19 +761,15 @@ div .gallery {
 @media (min-height: 1000px) {
   .goodHeight {
     height: 950px; } }
-
 @media (min-height: 900px) {
   .goodHeight {
     height: 850px; } }
-
 @media (min-height: 800px) {
   .goodHeight {
     height: 750px; } }
-
 @media (min-height: 700px) {
   .goodHeight {
     height: 650px; } }
-
 @media (min-height: 600px) {
   .goodHeight {
     height: 550px; } }
@@ -937,7 +934,6 @@ p.atom {
     opacity: 0; }
   100% {
     opacity: 1; } }
-
 .tooltipster-update-fade {
   animation: tooltipster-fading 200ms; }
 
@@ -948,7 +944,6 @@ p.atom {
     transform: rotate(2deg); }
   100% {
     transform: rotate(0); } }
-
 .tooltipster-update-rotate {
   animation: tooltipster-rotating 600ms; }
 
@@ -957,7 +952,6 @@ p.atom {
     transform: scale(1.1); }
   100% {
     transform: scale(1); } }
-
 .tooltipster-update-scale {
   animation: tooltipster-scaling 600ms; }
 
@@ -1083,14 +1077,14 @@ details.details_shim_open > summary {
 
 details.details_shim_closed > summary:before {
   display: inline-block;
-  content: "\25b6";
+  content: "▶";
   padding: 0 0.1em;
   margin-right: 0.4em;
   font-size: 0.9em; }
 
 details.details_shim_open > summary:before {
   display: inline-block;
-  content: "\25bc";
+  content: "▼";
   padding: 0;
   margin-right: 0.35em; }
 
