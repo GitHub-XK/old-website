@@ -1,0 +1,127 @@
+       __________    __________    __________    __________    __________                  ___    __________  
+      /  _______/\  /  ____   /\  /  ____   /\  /  _______/\  /  _______/\                /  /\  /  _______/\
+     /  /\______\/ /  /\__/  / / /  /\__/  / / /  /\______\/ /  /\______\/               /  / / /  /\______\/
+    /  /_/____    /  /_/_/  / / /  /_/_/  / / /  / /        /  /_/____                  /  / / /  /_/____
+   /______   /\  /  _______/ / /  ____   / / /  / /        /  _______/\         ___    /  / / /______   /\
+   \_____/  / / /  /\______\/ /  /\__/  / / /  / /        /  /\______\/        /  /\  /  / /  \_____/  / /
+ _______/  / / /  / /        /  / / /  / / /  /_/____    /  /_/____    ___    /  /_/_/  / / _______/  / /
+/_________/ / /__/ /        /__/ / /__/ / /_________/\  /_________/\  /__/\  /_________/ / /_________/ /
+\_________\/  \__\/         \__\/  \__\/  \_________\/  \_________\/  \__\/  \_________\/  \_________\/
+
+Latest update 2016.11.05 by Sigvart Brendberg
+
+Welcome to the space.js library documentation.
+
+Space.js provides some easy to use solutions to your everyday orbital mechanics problems.
+
+==Structure==
+
+Space.js is a single javascript object. Appart from the root variable named "space", space.js is not going to consume any part of the variable namespace.
+
+This is ment to be used as a script file. space.js is not suitable for json, as that format does not support functions.
+
+==Data library==
+
+One of the things space.js provides is accurate numerical data on various planets and moons.
+
+This data con be accessed using the body in question as a property of the space object:
+
+    space.moon.mass
+
+!WARNING, the data library may be migrated to its own property in the futue, and may then be accessed like 	space.data.moon.mass
+
+All planets and moons are properties of the space object, written in lower case.
+
+At the moment, we have data on the following objects:
+
+    earth
+    moon
+    mars
+
+The following properies are defined:
+
+    mass
+    gm
+    gravity
+    radius
+    polarRadius
+    equatorRadius
+    orbit:{
+        periapsis
+        apoapsis
+        radius
+        eccentricity
+        period
+        speed
+        inclination
+        parent
+    }
+    satellites:[]
+
+==Orbital functions==
+
+The space object contains a few orbit primitives. These are:
+
+	hohmann(gm,r,R)
+		returns the cost of a hohman transfer
+
+	vCirc(gm,r){
+		returns the velocity of a circular orbit
+
+	vElli(gm,r,P,A){
+		returns the velocity of an elliptic orbit, at a given radius
+
+	vEsc(gm,r){
+		returns the escape velocity at a given radius
+
+	vDesc(gm,P,A){
+		returns the remaining velocity needed to reach escape velocity
+
+These are all just shorthand notations for reletively simple calculations, they are just ment to save time.
+
+**the orbit property**
+
+space.orbit contains functions for much more sophisticated orbital calculations than the primitives.
+The basic structure you are going to use the functions on is an "orbit object".
+
+ANY PROPERTY OF AN ORBIT OBJECT IS OPTIONAL:
+
+gm	gravitational parameter
+a	semi-major axis
+A	apoapsis distance
+P	periapsis distance
+inc	inclination
+asc	ascension
+arg	argument of periapsis
+r	radius
+v	velocity
+vP	velocity at periapsis
+vA	velocity at apoapsis
+ano	true anomaly
+e	eccentricity
+T	orbital period
+vV	vertical velocity
+vH:	horisontal velocity
+
+Functions operation on an orbit object will try as best as they can to work with missing data. If a property is not required, it is simply ignored
+That said, the standard complete notation of an orbit is standardized to:
+
+gm A P inc asc arg ano
+
+Orbital mechanics notation is a true horror story, nobody are using the same parameters to describe an orbit.
+	WE SUPPORT ALL OF THEM! 	(if your particular favorite is not supported, please contact us)
+
+Here is the thing: nobody can remember all the complicated procedures for converting from one notation system to another.
+Therefore, we have the autocomplere function. Use it like this:
+
+	myOrbit = space.orbit.autocomplete(myOrbit);
+
+What does it do?
+say for instace that you have defined 'A' and 'P' for your orbit. Then autocomplete is going to calculate the 'a' as that is possible.
+
+EVERY PROPERTY THAT CAN BE CALCULATED FROM YOUR PARAMETERS IS CALCULATED.
+
+
+
+
+//TODO: optimalTransfer and verification

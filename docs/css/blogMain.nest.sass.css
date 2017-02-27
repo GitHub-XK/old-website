@@ -1,0 +1,97 @@
+html {
+  margin: 0;
+  color: #f7f7dc;
+  font: 1rem/1.5rem "Titillium Web", sans-serif; }
+
+header {
+  background-color: #000;
+  background-image: url("http://www.moonwards.com/img/BlogHeaderOpt.svg");
+  border-top: 1px solid #3c3c0a;
+  border-bottom: 1px solid #3c3c0a;
+  width: 100%; }
+  header p {
+    box-sizing: border-box;
+    width: 90%;
+    margin-left: 1rem;
+    margin-bottom: 0;
+    color: #96912d;
+    font-weight: 300;
+    font-size: 1.1rem;
+    line-height: 1.4rem;
+    letter-spacing: 2px;
+    background-color: rgba(0, 0, 0, 0.9);
+    border-radius: 1rem;
+    padding: 0.5rem 2rem; }
+  header p:first-child {
+    border-radius: 2rem;
+    border: 1px solid #3c3c0a;
+    padding: 1rem 2rem;
+    line-height: 1.5rem;
+    width: 70%;
+    margin: 2rem auto; }
+
+body {
+  background-color: #000; }
+
+.container {
+  margin-left: 3%;
+  background-color: rgba(0, 0, 0, 0.8); }
+
+figure {
+  display: block;
+  width: 80%;
+  border: 1px solid #50500f;
+  margin: auto; }
+  figure img {
+    width: 100%; }
+  figure figcaption {
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    line-height: 1.1rem;
+    text-align: right;
+    width: 90%;
+    background: rgba(50, 50, 0, 0.7); }
+
+a {
+  text-decoration: none;
+  color: yellow; }
+  a:visited {
+    color: #beee32; }
+  a:hover {
+    background-color: #3c3c0a; }
+  a:active {
+    background-color: #3c3c0a; }
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 7px 15px; }
+
+h1 {
+  color: #96912d;
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 24px;
+  padding: 15px 20px 12px 45px;
+  margin: 0;
+  border-bottom: 1px solid #96912d; }
+
+h2 {
+  color: #96912d;
+  font-weight: 300;
+  font-style: italic;
+  font-size: 20px;
+  line-height: 22px;
+  margin: auto;
+  padding: 15px 0 15px 30px;
+  margin: 0; }
+
+h3 {
+  color: #96912d;
+  font-weight: 300;
+  font-style: italic;
+  font-size: 18px;
+  line-height: 20px;
+  margin: auto;
+  padding: 15px 0 15px 45px;
+  margin: 0; }

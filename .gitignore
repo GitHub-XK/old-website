@@ -6,9 +6,4 @@ Gemfile
 Gemfile.lock
 # tmp sass #
 sass/.sass-cache
-# finished site #
-docs/
-# compiled css #
-css/
-# just in case #
-skynet/
+.gitignore
