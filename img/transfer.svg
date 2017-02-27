@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<svg viewBox="0 0 700 500">
+	<circle
+		cx="150"
+		cy="250"
+		r="5"
+		fill="black"/>
+	<circle
+		cx="350"
+		cy="250"
+		r="3"
+		fill="black"/>
+	<line
+		x1="50"
+		x2="150"
+		y1="250"
+		y2="250"
+		stroke="black"
+		/>
+	<line
+		x1="350"
+		x2="650"
+		y1="250"
+		y2="250"
+		stroke="black"
+		/>
+	<circle
+		cx="150"
+		cy="250"
+		r="100"
+		fill="none"
+		stroke-width="3"
+		stroke="blue"/>
+	<ellipse
+		cx="350"
+		cy="250"
+		rx="300"
+		ry="200"
+		stroke-width="3"
+		stroke="red"
+		fill="none"/>
+	<g font-family="Verdana" text-anchor="start" font-size="15">
+		<text x="85" y="240">r = 1</text>
+		<text x="470" y="240">a = 2</text>
+	</g>
+</svg>
