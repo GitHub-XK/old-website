@@ -1,7 +1,7 @@
 html {
   margin: 0;
   color: #f7f7dc;
-  font: 1rem/1.5rem 'Titillium Web', sans-serif;
+  font: 1rem/1.6rem 'Titillium Web', sans-serif;
   background: #000 url(http://www.moonwards.com/img/tycho-mod.png) no-repeat fixed right 250px;
   padding: 0;
   background-size: 1600px; }
@@ -478,7 +478,7 @@ aside {
   -o-align-items: flex-end;
   align-items: flex-end;
   -ms-flex-align: end;
-  background-color: rgba(10, 10, 10, 0.7);
+  background-color: rgba(50, 50, 50, 0.7);
   margin: 15px; }
   .innerDiv p {
     padding: 0.5rem 1.2rem;
@@ -514,12 +514,12 @@ aside {
     padding: 10px; }
 
 .pixHeader {
-  background-color: rgba(10, 10, 10, 0.7);
+  background-color: rgba(50, 50, 50, 0.7);
   border-radius: 15px 15px 0 0;
   margin: 15px 15px 0 15px; }
 
 .pixBody {
-  background-color: rgba(10, 10, 10, 0.7);
+  background-color: rgba(50, 50, 50, 0.7);
   border-radius: 0 0 15px 15px;
   display: -webkit-box;
   display: -moz-box;
@@ -673,7 +673,7 @@ div .gallery {
   .columnSet article:nth-child(odd) {
     background-color: rgba(50, 50, 0, 0.7); }
   .columnSet article:nth-child(even) {
-    background-color: rgba(10, 10, 10, 0.7); }
+    background-color: rgba(50, 50, 50, 0.7); }
   @media only screen and (max-width: 1000px) {
     .columnSet {
       -webkit-flex-flow: column nowrap;
