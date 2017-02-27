@@ -1,4 +1,6 @@
 /*Block level elements, and non-text objects
+/*hoh asks: is this file intentionally commented out?*/
+/*
 
 .container
   width: 94%
@@ -33,11 +35,13 @@ aside
   +RadiusIn
   +display(flex)
   +flex-flow(column nowrap)
-  +align-items(flex-end)
+  +align-items(flex-endcenter)
+  +justify-content(center)
   margin: 15px
   p
     width: calc(100% - 3rem)
     +align-self(center)
+
 
 .pixWrap
   +display(flex)
@@ -62,7 +66,6 @@ aside
   margin: 0 15px 15px 15px
 
 .pix
-  margin: 15px
   +flex(auto)
   +align-items(center)
   border: 1px solid $darkAccent
