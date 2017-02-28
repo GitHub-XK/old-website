@@ -200,6 +200,73 @@ var engines =
 		"diameter":2.1,
 		"burnTime":500,
 		"country":"US"
+	},
+	{
+		"source":"https://en.wikipedia.org/wiki/RD-107",
+		"name":"RD-107",
+		"isp":313,
+		"thrustVacuum":1000000,
+		"ispGround":256,
+		"thrustGround":810000,
+		"fuel":"Kerosene",
+		"oxidizer":"LOX",
+		"mass":1190,
+		"height":2.865,
+		"diameter":1.85,
+		"country":"Russia"
+	},
+	{
+		"source":"https://en.wikipedia.org/wiki/RD-107",
+		"name":"RD-107A",
+		"isp":320.2,
+		"thrustVacuum":1020000,
+		"ispGround":263.3,
+		"thrustGround":839000,
+		"fuel":"Kerosene",
+		"oxidizer":"LOX",
+		"mass":1190,
+		"height":2.865,
+		"diameter":1.85,
+		"country":"Russia"
+	},
+	{
+		"source":"https://en.wikipedia.org/wiki/RD-107#Versions",
+		"name":"RD-108A",
+		"isp":320.6,
+		"thrustVacuum":921860,
+		"ispGround":257.7,
+		"thrustGround":792410,
+		"fuel":"Kerosene",
+		"oxidizer":"LOX",
+		"mass":1190,
+		"height":2.865,
+		"diameter":1.95,
+		"country":"Russia"
+	},
+	{
+		"source":"https://en.wikipedia.org/wiki/RD-0124",
+		"name":"RD-0124",
+		"isp":359,
+		"thrustVacuum":294300,
+		"fuel":"Kerosene",
+		"oxidizer":"LOX",
+		"mass":572,
+		"height":1.575,
+		"diameter":2.4,
+		"country":"Russia"
+	},
+	{
+		"source":"https://en.wikipedia.org/wiki/S5.92",
+		"name":"S5.92",
+		"isp":327,
+		"thrustVacuum":19610,
+		"fuel":"UDMH",
+		"oxidizer":"N2O4",
+		"mass":75,
+		"burnTime":2000,
+		"height":1.028,
+		"diameter":0.838,
+		"country":"Russia"
 	}
 ],
 "stages":[
