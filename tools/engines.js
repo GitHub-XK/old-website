@@ -2,7 +2,7 @@ var engines =
 {
 "engines":[
 	{
-		"source":"russianspaceweb.com/rd0146.html",
+		"source":"http://russianspaceweb.com/rd0146.html",
 		"name":"Pratt & Whitney Rocketdune",
 		"isp":451,
 		"thrustVacuum":97900,
@@ -13,7 +13,7 @@ var engines =
 		"mass":243
 	},
 	{
-		"source":"russianspaceweb.com/rd0146.html",
+		"source":"http://russianspaceweb.com/rd0146.html",
 		"name":"KBKhA",
 		"isp":463,
 		"thrustVacuum":98100,
@@ -25,7 +25,7 @@ var engines =
 		"mass":242
 	},
 	{
-		"source":"russianspaceweb.com/rd0146.html",
+		"source":"http://russianspaceweb.com/rd0146.html",
 		"name":"RL10A-4-1",
 		"isp":451,
 		"thrustVacuum":99200,
@@ -39,7 +39,7 @@ var engines =
 		"mass":168
 	},
 	{
-		"source":"russianspaceweb.com/rd253.html",
+		"source":"http://russianspaceweb.com/rd253.html",
 		"name":"RD-253",
 		"isp":316,
 		"ispGround":285,
@@ -51,7 +51,7 @@ var engines =
 		"mass":1080
 	},
 	{
-		"source":"russianspaceweb.com/rd253.html",
+		"source":"http://russianspaceweb.com/rd253.html",
 		"name":"RD-275",
 		"isp":316,
 		"ispGround":287,
@@ -63,7 +63,7 @@ var engines =
 		"mass":1080
 	},
 	{
-		"source":"russianspaceweb.com/rd0210.html",
+		"source":"http://russianspaceweb.com/rd0210.html",
 		"name":"RD-0210",
 		"isp":326.5,
 		"thrustVacuum":"59.36tons",
@@ -74,7 +74,7 @@ var engines =
 		"burnTime":230
 	},
 	{
-		"source":"russianspaceweb.com/nk33.html",
+		"source":"http://russianspaceweb.com/nk33.html",
 		"name":"NK-33",
 		"isp":331,
 		"thrustVacuum":"167tons",
@@ -87,19 +87,19 @@ var engines =
 		"burnTime":600
 	},
 	{
-		"source":"briz-m.html",
+		"source":"http://russianspaceweb.com/briz-m.html",
 		"name":"14D30",
 		"isp":328,
 		"thrustVacuum":19630,
 		"oxidizer":"N2O4",
 		"fuel":"UDMH",
-		"height":1150,
+		"height":1.150,
 		"mass":95,
 		"burnTime":3200,
 		"restart":8
 	},
 	{
-		"source":"en.wikipedia.org/wiki/Space_Shuttle_main_engine",
+		"source":"http://en.wikipedia.org/wiki/Space_Shuttle_main_engine",
 		"name":"Space Shuttle main engine",
 		"isp":452.3,
 		"ispGround":366,
@@ -108,7 +108,7 @@ var engines =
 		"fuel":"LH2",
 		"oxidizer":"LOX",
 		"mass":3500,
-		"height":4300
+		"height":4.300
 	},
 	{
 		"source":"http://russianspaceweb.com/rd170.html",
@@ -120,12 +120,12 @@ var engines =
 		"fuel":"Kerosene",
 		"oxidizer":"LOX",
 		"mass":9300,
-		"height":4015
+		"height":4.015
 	}
 ],
 "stages":[
 	{
-		"source":"russianspaceweb.com/fregat.html",
+		"source":"http://russianspaceweb.com/fregat.html",
 		"name":"Fregat-M",
 		"mass":6170,
 		"dryMass":920,

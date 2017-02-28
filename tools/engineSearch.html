@@ -13,7 +13,7 @@ var update = function(){
 	var maxMass = Number(document.getElementById("mass").value);
 	var minThrust = Number(document.getElementById("thrust").value)*1000;//kilo newtons
 	var minVelocity = Number(document.getElementById("velocity").value);
-	var out = "<tr><th>Name</th><th>Mass</th><th>Isp</th><th>Thrust V</th><th>Thrust SL</th><th>Fuel</th><th>Oxidizer</th><th>Length</th><th>Country</th></tr>";
+	var out = "<tr><th>Name</th><th>Mass (kg)</th><th>Isp (s)</th><th>Thrust V (kN)</th><th>Thrust SL (kN)</th><th>Fuel</th><th>Oxidizer</th><th>Length (m)</th><th>Country</th></tr>";
 	var foundFlag = false;
 	for(var i=0;i<engines.length;i++){
 		if(
@@ -22,8 +22,8 @@ var update = function(){
 			&& engines[i].isp > minVelocity
 		){
 			foundFlag = true;
-			out += "<tr><td>"+engines[i].name+"</td><td>"+engines[i].isp+"</td><td>"+engines[i].mass+"</td><td>"+engines[i].thrustVacuum+"</td><td>";
-			if(engines[i].thrustGround){out += engines[i].thrustGround};
+			out += "<tr><td><a href='"+engines[i].source+"'>"+engines[i].name+"</a></td><td>"+engines[i].isp+"</td><td>"+engines[i].mass+"</td><td>"+engines[i].thrustVacuum/1000+"</td><td>";
+			if(engines[i].thrustGround){out += engines[i].thrustGround/1000};
 			out += "</td><td>";
 			if(engines[i].fuel){out += engines[i].fuel};
 			out += "</td><td>";
@@ -127,13 +127,13 @@ body{
 	<tbody id="list">
 		<tr>
 			<th>Name</th>
-			<th>Mass</th>
-			<th>Isp</th>
-			<th>Thrust V</th>
-			<th>Thrust SL</th>
+			<th>Mass (kg)</th>
+			<th>Isp (s)</th>
+			<th>Thrust V (kN)</th>
+			<th>Thrust SL (kN)</th>
 			<th>Fuel</th>
 			<th>Oxidizer</th>
-			<th>Length</th>
+			<th>Length (m)</th>
 			<th>Country</th>
 		</tr>
 	</tbody>
