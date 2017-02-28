@@ -6,6 +6,7 @@ Gemfile
 Gemfile.lock
 # tmp sass #
 docs/
-css/
+docs/learn.html
+css/*
 sass/.sass-cache
 .gitignore
