@@ -1,8 +1,7 @@
-@charset "UTF-8";
 html {
   margin: 0;
   color: #f7f7dc;
-  font: 1rem/1.6rem "Titillium Web", sans-serif;
+  font: 1rem/1.6rem 'Titillium Web', sans-serif;
   background: #000 url(http://www.moonwards.com/img/tycho-mod.png) no-repeat fixed right 250px;
   padding: 0;
   background-size: 1600px; }
@@ -10,7 +9,7 @@ html {
     html {
       background-size: 100% auto; } }
 
-/*All color, text styling, visual touches, and basic doc styles */
+/*All color, text styling, visual touches, and basic doc styles*/
 body, ul, figure {
   margin: 0; }
 
@@ -188,7 +187,7 @@ nav > ul > li {
   padding: 5px; }
 
 /* Make dropdown menus:
- * ul that is a CHILD of li which is a DESCENDENT of nav */
+  ul that is a CHILD of li which is a DESCENDENT of nav */
 nav li > ul {
   display: none;
   border-radius: 15px;
@@ -211,7 +210,7 @@ nav li > ul li {
   padding: 5px; }
 
 /* Statement applies only to
- * child ul, only when li is hovered */
+  child ul, only when li is hovered */
 nav li:hover > ul {
   display: -webkit-box;
   display: -moz-box;
@@ -461,24 +460,24 @@ aside {
   -webkit-flex-flow: column nowrap;
   -moz-flex-flow: column nowrap;
   flex-flow: column nowrap;
-  -webkit-box-align: end;
-  -moz-box-align: end;
-  box-align: end;
-  -webkit-align-items: flex-end;
-  -moz-align-items: flex-end;
-  -ms-align-items: flex-end;
-  -o-align-items: flex-end;
-  align-items: flex-end;
-  -ms-flex-align: end;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  box-align: center;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  -o-align-items: center;
+  align-items: center;
+  -ms-flex-align: center;
   background-color: rgba(50, 50, 50, 0.7);
   margin: 15px; }
   .innerDiv p {
     padding: 0.5rem 1.2rem;
     margin: 0;
-    -webkit-align-self: center;
-    -moz-align-self: center;
-    align-self: center;
-    -ms-flex-item-align: center; }
+    -webkit-align-self: flex-start;
+    -moz-align-self: flex-start;
+    align-self: flex-start;
+    -ms-flex-item-align: start; }
 
 .pixWrap {
   display: -webkit-box;
@@ -761,15 +760,19 @@ div .gallery {
 @media (min-height: 1000px) {
   .goodHeight {
     height: 950px; } }
+
 @media (min-height: 900px) {
   .goodHeight {
     height: 850px; } }
+
 @media (min-height: 800px) {
   .goodHeight {
     height: 750px; } }
+
 @media (min-height: 700px) {
   .goodHeight {
     height: 650px; } }
+
 @media (min-height: 600px) {
   .goodHeight {
     height: 550px; } }
@@ -934,6 +937,7 @@ p.atom {
     opacity: 0; }
   100% {
     opacity: 1; } }
+
 .tooltipster-update-fade {
   animation: tooltipster-fading 200ms; }
 
@@ -944,6 +948,7 @@ p.atom {
     transform: rotate(2deg); }
   100% {
     transform: rotate(0); } }
+
 .tooltipster-update-rotate {
   animation: tooltipster-rotating 600ms; }
 
@@ -952,6 +957,7 @@ p.atom {
     transform: scale(1.1); }
   100% {
     transform: scale(1); } }
+
 .tooltipster-update-scale {
   animation: tooltipster-scaling 600ms; }
 
@@ -1077,14 +1083,14 @@ details.details_shim_open > summary {
 
 details.details_shim_closed > summary:before {
   display: inline-block;
-  content: "▶";
+  content: "\25b6";
   padding: 0 0.1em;
   margin-right: 0.4em;
   font-size: 0.9em; }
 
 details.details_shim_open > summary:before {
   display: inline-block;
-  content: "▼";
+  content: "\25bc";
   padding: 0;
   margin-right: 0.35em; }
 
@@ -1111,6 +1117,9 @@ th {
 
 tr:nth-child(2n) {
   background: rgba(50, 50, 0, 0.7); }
+
+tr:nth-child(odd) {
+  background: rgba(50, 50, 50, 0.7); }
 
 ul.tabs {
   display: -webkit-box;
