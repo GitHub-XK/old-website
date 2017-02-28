@@ -1,0 +1,122 @@
+/*Block level elements, and non-text objects
+/*hoh asks: is this file intentionally commented out?*/
+/*
+
+.container
+  width: 94%
+  margin: auto
+
+
+section
+  +display(flex)
+  +flex-flow(row wrap)
+  +justify-content(flex-start)
+  +align-items(flex-start)
+  margin-right: auto
+  margin-bottom: 4rem
+
+aside
+  +flex(1 1 300px)
+  margin-top: 4rem
+  +display(flex)
+  +flex-flow(column nowrap)
+  +justify-content(flex-start)
+  +align-items(stretch)
+  @media only screen and (min-width: 1700px)
+    flex: 2 0 400px
+
+.outerDiv
+  background-color: $outerBkgd
+  +RadiusOut
+
+
+.innerDiv
+  +display(flex)
+  +flex-flow(column nowrap)
+  +align-items(flex-end)
+  +justify-content(center)
+  margin: 15px
+  p, img
+    +align-self(center)
+  p
+    width: calc(100% - 3rem)
+
+
+
+.pixWrap
+  +display(flex)
+  +flex-flow(row wrap)
+  +align-items(center)
+  +justify-content(center)
+  margin: 15px
+  p
+    margin: 5px
+    padding: 10px
+
+.pixHeader
+  background-color: $innerBkgd
+  border-radius: 15px 15px 0 0
+  margin: 15px 15px 0 15px
+
+.pixBody
+  background-color: $innerBkgd
+  border-radius: 0 0 15px 15px
+  +display(flex)
+  +flex-flow(row wrap)
+  +align-items(center)
+  margin: 0 15px 15px 15px
+
+.pix
+  +flex(auto)
+  border: 1px solid $darkAccent
+  img
+    width: 100%
+    height: auto
+
+div .gallery
+  +flex(auto)
+  width: 500px
+  margin: 20px
+  img
+    width: 100%
+    height: auto
+
+.imgResize
+  +flex(auto)
+  +align-self(center)
+  img
+    width: 90%
+    height: auto
+
+.thumbs
+  padding: 10px
+  +display(flex)
+  +flex-flow(row wrap)
+  img
+    padding: 10px
+    flex: 0 1 auto
+
+.sideDiv
+  background-color: $sideBkgd
+  border-radius: $sideRadius
+  padding: $mainPad
+  img
+    width: 90%
+    border: 1px solid $lightAccent
+
+.sidePairTop
+  background-color: $sideBkgd
+  border-radius: 1.5rem 0 0 0
+  padding: $mainPad
+  img
+    width: 90%
+    border: 1px solid $lightAccent
+
+.sidePairBottom
+  background-color: $sideBkgd
+  border-radius: 0 0 0 1.5rem
+  padding: 0 15px 15px 15px
+  font-size: 0.8rem
+  letter-spacing: 1px
+  line-height: 1.1rem
+  text-align: right
