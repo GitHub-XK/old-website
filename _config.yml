@@ -27,6 +27,7 @@ exclude:
   - extractor.py
   - Gemfile
   - Gemfile.lock
+  - engines.sh
 markdown: kramdown
 url: "https://www.moonwards.com"
 excerpt_separator: end-excerpt

@@ -1,4 +1,4 @@
-complete : main.nest.sass.css learn.nest.sass.css blogMain.nest.sass.css posts.nest.sass.css content.nest.sass.css 404css.nets.sass.css _data/planets.yml
+complete : main.nest.sass.css learn.nest.sass.css blogMain.nest.sass.css posts.nest.sass.css content.nest.sass.css 404css.nets.sass.css _data/planets.yml tools/engines.js
 	jekyll build
 
 main.nest.sass.css : sass/main.sass
@@ -14,5 +14,8 @@ content.nest.sass.css : sass/content.sass
 404css.nets.sass.css : sass/404css.sass
 	sass sass/404css.sass css/404css.nest.sass.css --sourcemap=none
 
-_data/planets.yml: json/planets.json
+_data/planets.yml : json/planets.json
 	python3 extractor.py
+
+tools/engines.js : json/engines.json
+	./engines.sh
