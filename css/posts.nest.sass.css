@@ -492,3 +492,6 @@ th {
 
 tr:nth-child(2n) {
   background: rgba(50, 50, 0, 0.7); }
+
+tr:nth-child(odd) {
+  background: rgba(50, 50, 50, 0.7); }
