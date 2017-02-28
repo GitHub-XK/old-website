@@ -4,8 +4,7 @@ layout: null
 <div class="innerDiv">
 	<p>[Experimental!] A list of data. Here are some numbers we have found useful during the development of the project.</p>
 	<p>The data is also available in json format, found at <a href="http://moonwards.com/json/">moonwards.com/json/</a></p>
-	<details class="details">
-		<summary>List of numbers</summary>
+		<h3>List of numbers</h3>
 {% for planet in site.data.planets %}
 		<details>
 			<summary>{{planet.name}}</summary>
@@ -49,5 +48,4 @@ layout: null
 			</details>
 		</details>
 {% endfor %}
-	</details>
 </div>

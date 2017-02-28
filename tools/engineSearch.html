@@ -3,23 +3,8 @@
 <head>
 	<meta charset="utf-8">
 	<title>Engine Search</title>
+	<script src="engines.js"></script>
 	<script>
-function loadJSON(callback){   
-	var xobj = new XMLHttpRequest();
-	xobj.overrideMimeType("application/json");
-	xobj.open('GET','../json/engines.json',true);
-	xobj.onreadystatechange = function () {
-		if(xobj.readyState == 4 && xobj.status == "200"){
-			callback(xobj.responseText);
-		}
-	};
-	xobj.send(null);  
-};
-function init(){
-	loadJSON(function(response){
-		engines = JSON.parse(response).engines;
-	});
-};init();
 var change = function(target,value){
 	document.getElementById(target).value = value;
 };
