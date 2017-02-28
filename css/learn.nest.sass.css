@@ -406,15 +406,15 @@ aside {
   -webkit-flex-flow: column nowrap;
   -moz-flex-flow: column nowrap;
   flex-flow: column nowrap;
-  -webkit-box-align: flex-endcenter;
-  -moz-box-align: flex-endcenter;
-  box-align: flex-endcenter;
-  -webkit-align-items: flex-endcenter;
-  -moz-align-items: flex-endcenter;
-  -ms-align-items: flex-endcenter;
-  -o-align-items: flex-endcenter;
-  align-items: flex-endcenter;
-  -ms-flex-align: flex-endcenter;
+  -webkit-box-align: end;
+  -moz-box-align: end;
+  box-align: end;
+  -webkit-align-items: flex-end;
+  -moz-align-items: flex-end;
+  -ms-align-items: flex-end;
+  -o-align-items: flex-end;
+  align-items: flex-end;
+  -ms-flex-align: end;
   -webkit-box-pack: center;
   -moz-box-pack: center;
   box-pack: center;
@@ -425,12 +425,13 @@ aside {
   justify-content: center;
   -ms-flex-pack: center;
   margin: 15px; }
-  .innerDiv p {
-    width: calc(100% - 3rem);
+  .innerDiv p, .innerDiv img {
     -webkit-align-self: center;
     -moz-align-self: center;
     align-self: center;
     -ms-flex-item-align: center; }
+  .innerDiv p {
+    width: calc(100% - 3rem); }
 
 .pixWrap {
   display: -webkit-box;
