@@ -6,9 +6,9 @@ layout: null
 	<p>The data is also available in json format, found at <a href="http://moonwards.com/json/">moonwards.com/json/</a></p>
 	<details class="details">
 		<summary>List of numbers</summary>
-{% for data in site.data %}
+{% for planet in site.data.planets %}
 		<details>
-			<summary>{{data.name}}</summary>
+			<summary>{{planet.name}}</summary>
 			<table>
 				<tr>
 					<th>Property</th>
@@ -16,15 +16,15 @@ layout: null
 				</tr>
 				<tr>
 					<td>Mass:</td>
-					<td>{{data.mass}} kg</td>
+					<td>{{planet.mass}} kg</td>
 				</tr>
 				<tr>
 					<td>Radius:</td>
-					<td>{{data.radius}} m</td>
+					<td>{{planet.radius}} m</td>
 				</tr>
 				<tr>
 					<td>Gravitational prameter:</td>
-					<td>{{data.gm}} kg<sup>-1</sup> m<sup>3</sup> s<sup>2</sup></td>
+					<td>{{planet.gm}} kg<sup>-1</sup> m<sup>3</sup> s<sup>2</sup></td>
 				</tr>
 			</table>
 			<details class="orbit"><summary>Orbit:</summary>
@@ -35,15 +35,15 @@ layout: null
 					</tr>
 					<tr>
 						<td>Parent:</td>
-						<td>{{data.parent}}</td>
+						<td>{{planet.parent}}</td>
 					</tr>
 					<tr>
 						<td>Semi-major axis:</td>
-						<td>{{data.semiMajor}} m</td>
+						<td>{{planet.semiMajor}} m</td>
 					</tr>
 					<tr>
 						<td>Period:</td>
-						<td>{{data.period}} s</td>
+						<td>{{planet.period}} s</td>
 					</tr>
 				</table>
 			</details>

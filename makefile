@@ -1,5 +1,5 @@
 complete : main.nest.sass.css learn.nest.sass.css blogMain.nest.sass.css posts.nest.sass.css content.nest.sass.css 404css.nets.sass.css
-	jekyll build
+	python3 extractor.py && jekyll build
 
 main.nest.sass.css : sass/main.sass
 	sass sass/main.sass css/main.nest.sass.css --sourcemap=none
