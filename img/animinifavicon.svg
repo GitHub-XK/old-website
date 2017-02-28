@@ -8,18 +8,23 @@
 	<g fill="#f6e300">
 		<circle cx="55" cy="35" r="0">
 			<animate attributeName="r" attributeType="XML" begin="4s" dur="1s" fill="freeze" from="0" to="6.75" />
+			<animate attributeName="fill" attributeType="XML" begin="4s" dur="1s" fill="freeze" from="#000000" to="#f6e300" />
 		</circle>
 		<circle cx="91" cy="46" r="0">
 			<animate attributeName="r" attributeType="XML" begin="5s" dur="1s" fill="freeze" from="0" to="5" />
+			<animate attributeName="fill" attributeType="XML" begin="5s" dur="1s" fill="freeze" from="#000000" to="#f6e300" />
 		</circle>
 		<circle cx="69" cy="68" r="0">
 			<animate attributeName="r" attributeType="XML" begin="4.5s" dur="1s" fill="freeze" from="0" to="9.25" />
+			<animate attributeName="fill" attributeType="XML" begin="4.5s" dur="1s" fill="freeze" from="#000000" to="#f6e300" />
 		</circle>
 		<circle cx="103" cy="70" r="0">
 			<animate attributeName="r" attributeType="XML" begin="5.5s" dur="1s" fill="freeze" from="0" to="8.5" />
+			<animate attributeName="fill" attributeType="XML" begin="5.5s" dur="1s" fill="freeze" from="#000000" to="#f6e300" />
 		</circle>
 		<circle cx="51" cy="87.5" r="0">
-			<animate attributeName="r" attributeType="XML" begin="6s" dur="1s" fill="freeze" from="0" to="8" />
+			<animate attributeName="r" attributeType="XML" begin="5.8s" dur="1s" fill="freeze" from="0" to="8" />
+			<animate attributeName="fill" attributeType="XML" begin="5.8s" dur="1s" fill="freeze" from="#000000" to="#f6e300" />
 		</circle>
 	</g>
 	<ellipse cx="62.5" cy="62.5" ry="60" rx="60" fill="#ede9d8">
