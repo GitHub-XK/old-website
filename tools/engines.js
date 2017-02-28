@@ -369,6 +369,46 @@ var engines =
 		"diameter":1.58,
 		"burnTime":800,
 		"country":"Russia"
+	},
+	{
+		"source":"https://en.wikipedia.org/wiki/Aerojet_Rocketdyne_RL10",
+		"name":"RL10",
+		"isp":465.5,
+		"thrustVacuum":110000,
+		"fuel":"LH2",
+		"oxidizer":"LOX",
+		"mass":277,
+		"height":4.14,
+		"diameter":2.13,
+		"burnTime":700,
+		"country":"US"
+	},
+	{
+		"source":"https://en.wikipedia.org/wiki/RD-0120",
+		"name":"RD-0120",
+		"isp":455,
+		"thrustVacuum":1961300,
+		"ispGround":353.2,
+		"thrustGround":1526000,
+		"fuel":"LH2",
+		"oxidizer":"LOX",
+		"mass":3450,
+		"height":4.55,
+		"diameter":2.42,
+		"burnTime":500,
+		"country":"Russia"
+	},
+	{
+		"source":"https://en.wikipedia.org/wiki/CE-7.5",
+		"name":"CE-7.5",
+		"isp":454,
+		"thrustVacuum":73500,
+		"fuel":"LH2",
+		"oxidizer":"LOX",
+		"mass":435,
+		"height":2.14,
+		"diameter":1.56,
+		"country":"India"
 	}
 ],
 "stages":[
