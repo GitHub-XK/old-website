@@ -5,5 +5,7 @@
 Gemfile
 Gemfile.lock
 # tmp sass #
+docs/
+css/
 sass/.sass-cache
 .gitignore
