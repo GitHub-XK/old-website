@@ -1,5 +1,5 @@
-complete : main.nest.sass.css learn.nest.sass.css blogMain.nest.sass.css posts.nest.sass.css content.nest.sass.css 404css.nets.sass.css
-	python3 extractor.py && jekyll build
+complete : main.nest.sass.css learn.nest.sass.css blogMain.nest.sass.css posts.nest.sass.css content.nest.sass.css 404css.nets.sass.css _data/planets.yml
+	jekyll build
 
 main.nest.sass.css : sass/main.sass
 	sass sass/main.sass css/main.nest.sass.css --sourcemap=none
@@ -13,3 +13,6 @@ content.nest.sass.css : sass/content.sass
 	sass sass/content.sass css/content.nest.sass.css --sourcemap=none
 404css.nets.sass.css : sass/404css.sass
 	sass sass/404css.sass css/404css.nest.sass.css --sourcemap=none
+
+_data/planets.yml: json/planets.json
+	python3 extractor.py

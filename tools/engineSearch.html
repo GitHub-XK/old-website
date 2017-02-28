@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Engine Search</title>
+	<script>
+function loadJSON(callback){   
+	var xobj = new XMLHttpRequest();
+	xobj.overrideMimeType("application/json");
+	xobj.open('GET','../json/engines.json',true);
+	xobj.onreadystatechange = function () {
+		if(xobj.readyState == 4 && xobj.status == "200"){
+			callback(xobj.responseText);
+		}
+	};
+	xobj.send(null);  
+};
+function init(){
+	loadJSON(function(response){
+		engines = JSON.parse(response).engines;
+	});
+};init();
+var change = function(target,value){
+	document.getElementById(target).value = value;
+};
+var update = function(){
+	var maxMass = Number(document.getElementById("mass").value);
+	var minThrust = Number(document.getElementById("thrust").value);
+	var minVelocity = Number(document.getElementById("velocity").value);
+	var out = "<tr><th>Name</th><th>Mass</th><th>Isp</th><th>Thrust V</th><th>Thrust SL</th><th>Fuel</th><th>Oxidizer</th><th>Length</th><th>Country</th></tr>";
+	for(var i=0;i<engines.length;i++){
+		if(engines[i].mass < maxMass && engines[i].thrustVacuum > minThrust && engines[i].isp > minVelocity){
+			out += "<tr><td>"+engines[i].name+"</td><td>"+engines[i].mass+"</td><td>"+engines[i].thrustVacuum+"</td><td>";
+			if(engines[i].thrustGround){out += engines[i].thrustGround};
+			out += "</td><td>";
+			if(engines[i].fuel){out += engines[i].fuel};
+			out += "</td><td>";
+			if(engines[i].oxidizer){out += engines[i].oxidizer};
+			out += "</td><td>";
+			if(engines[i].height){out += engines[i].height};
+			out += "</td><td>";
+			if(engines[i].country){out += engines[i].country};
+			out += "</td></tr>";
+		};
+	};
+	document.getElementById("list").innerHTML = out;
+};
+	</script>
+	<style>
+th{
+	text-align:left;
+	font-size:110%;
+}
+td,th{
+	padding:3px;
+	border-left-style:solid;
+	border-top-style:solid;
+	border-width:1px;
+	border-color:#000000;
+}
+tr{
+	background-color:#DDDDDD;
+}
+tr:nth-child(2n+1){
+	background-color:initial;
+}
+table{
+	box-shadow:4px 4px 3px #888888;
+}
+	</style>
+</head>
+<body>
+<h1>Engine Search</h1>
+<div>
+	<p>Max engine mass:</p>
+	<input type="range" id="massSlider"
+		min="0" max="20000" step="1" value="1000"
+		oninput="change('mass',this.value)">
+	<input type="text" id="mass"
+		value="1000"
+		oninput="change('massSlider',this.value)">kg
+	<p>Min engine thrust:</p>
+	<input type="range" id="thrustSlider"
+		min="0" max="5000" step="1" value="50"
+		oninput="change('thrust',this.value)">
+	<input type="text" id="thrust"
+		value="50"
+		oninput="change('thrustSlider',this.value)">kN
+	<p>Min specific Impulse:</p>
+	<input type="range" id="velocitySlider"
+		min="0" max="10000" step="1" value="300"
+		oninput="change('velocity',this.value)">
+	<input type="text" id="velocity"
+		value="300"
+		oninput="change('velocitySlider',this.value)">s
+	<br>
+	<button onclick="update()">Update</button>
+</div>
+<hr>
+<table>
+	<tbody id="list">
+		<tr>
+			<th>Name</th>
+			<th>Mass</th>
+			<th>Isp</th>
+			<th>Thrust V</th>
+			<th>Thrust SL</th>
+			<th>Fuel</th>
+			<th>Oxidizer</th>
+			<th>Length</th>
+			<th>Country</th>
+		</tr>
+	</tbody>
+</table>
+</body>
+</html>
