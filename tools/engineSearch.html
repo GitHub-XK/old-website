@@ -13,7 +13,7 @@ var update = function(){
 	var maxMass = Number(document.getElementById("mass").value);
 	var minThrust = Number(document.getElementById("thrust").value)*1000;//kilo newtons
 	var minVelocity = Number(document.getElementById("velocity").value);
-	var out = "<tr><th>Name</th><th>Mass (kg)</th><th>Isp (s)</th><th>Thrust(kN)</th><th>Isp SL(s)</th><th>Thrust SL (kN)</th><th>Fuel</th><th>Oxidizer</th><th>Length (m)</th><th>Country</th></tr>";
+	var out = "<tr><th>Name</th><th>Mass (kg)</th><th>Isp (s)</th><th>Thrust (kN)</th><th>Isp SL (s)</th><th>Thrust SL (kN)</th><th>Fuel</th><th>Oxidizer</th><th>Length (m)</th><th>Country</th></tr>";
 	var foundFlag = false;
 	for(var i=0;i<engines.length;i++){
 		if(
@@ -115,7 +115,7 @@ body{
 		oninput="change('thrustSlider',this.value)">kN
 	<p>Min specific Impulse:</p>
 	<input type="range" id="velocitySlider"
-		min="0" max="10000" step="1" value="300"
+		min="0" max="2000" step="1" value="300"
 		oninput="change('velocity',this.value)">
 	<input type="text" id="velocity"
 		value="300"
@@ -131,8 +131,8 @@ body{
 			<th>Name</th>
 			<th>Mass (kg)</th>
 			<th>Isp (s)</th>
-			<th>Thrust(kN)</th>
-			<th>Isp SL(s)</th>
+			<th>Thrust (kN)</th>
+			<th>Isp SL (s)</th>
 			<th>Thrust SL (kN)</th>
 			<th>Fuel</th>
 			<th>Oxidizer</th>
