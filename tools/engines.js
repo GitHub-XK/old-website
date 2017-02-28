@@ -10,7 +10,8 @@ var engines =
 		"fuel":"LH2",
 		"mixtureRatio":6,
 		"restart":"multiple",
-		"mass":243
+		"mass":243,
+		"country":"US"
 	},
 	{
 		"source":"http://russianspaceweb.com/rd0146.html",
@@ -22,7 +23,8 @@ var engines =
 		"burnTime":1100,
 		"restart":5,
 		"height":2.2,
-		"mass":242
+		"mass":242,
+		"country":"Russia"
 	},
 	{
 		"source":"http://russianspaceweb.com/rd0146.html",
@@ -36,7 +38,8 @@ var engines =
 		"restart":"multiple",
 		"TW":60.53,
 		"height":2.286,
-		"mass":168
+		"mass":168,
+		"country":"Russia"
 	},
 	{
 		"source":"http://russianspaceweb.com/rd253.html",
@@ -48,7 +51,8 @@ var engines =
 		"oxidizer":"N2O4",
 		"fuel":"UDMH",
 		"height":3,
-		"mass":1080
+		"mass":1080,
+		"country":"Russia"
 	},
 	{
 		"source":"http://russianspaceweb.com/rd253.html",
@@ -60,7 +64,8 @@ var engines =
 		"oxidizer":"N2O4",
 		"fuel":"UDMH",
 		"height":3.05,
-		"mass":1080
+		"mass":1080,
+		"country":"Russia"
 	},
 	{
 		"source":"http://russianspaceweb.com/rd0210.html",
@@ -71,7 +76,8 @@ var engines =
 		"fuel":"UDMH",
 		"height":2.327,
 		"mass":1080,
-		"burnTime":230
+		"burnTime":230,
+		"country":"Russia"
 	},
 	{
 		"source":"http://russianspaceweb.com/nk33.html",
@@ -84,7 +90,8 @@ var engines =
 		"fuel":"kerosene",
 		"height":3.705,
 		"mass":1222,
-		"burnTime":600
+		"burnTime":600,
+		"country":"Russia"
 	},
 	{
 		"source":"http://russianspaceweb.com/briz-m.html",
@@ -96,7 +103,8 @@ var engines =
 		"height":1.150,
 		"mass":95,
 		"burnTime":3200,
-		"restart":8
+		"restart":8,
+		"country":"Russia"
 	},
 	{
 		"source":"http://en.wikipedia.org/wiki/Space_Shuttle_main_engine",
@@ -121,7 +129,8 @@ var engines =
 		"fuel":"Kerosene",
 		"oxidizer":"LOX",
 		"mass":9300,
-		"height":4.015
+		"height":4.015,
+		"country":"Russia"
 	},
 	{
 		"source":"http://www.astronautix.com/r/rd-0410.html",
@@ -279,6 +288,86 @@ var engines =
 		"burnTime":250,
 		"height":1.575,
 		"diameter":2.24,
+		"country":"Russia"
+	},
+	{
+		"source":"https://en.wikipedia.org/wiki/Merlin_(rocket_engine_family)",
+		"name":"Merlin 1D",
+		"isp":311,
+		"thrustVacuum":914000,
+		"ispGround":282,
+		"thrustGround":845000,
+		"fuel":"Kerosene",
+		"oxidizer":"LOX",
+		"mass":470,
+		"country":"US"
+	},
+	{
+		"source":"https://en.wikipedia.org/wiki/Merlin_(rocket_engine_family)#Merlin_1C",
+		"name":"Merlin 1C",
+		"isp":304.8,
+		"thrustVacuum":480000,
+		"ispGround":275,
+		"thrustGround":420000,
+		"fuel":"Kerosene",
+		"oxidizer":"LOX",
+		"mass":630,
+		"height":2.92,
+		"country":"US"
+	},
+	{
+		"source":"https://en.wikipedia.org/wiki/Deep_Space_1#NSTAR_ion_engine",
+		"name":"NSTAR",
+		"isp":3100,
+		"thrustVacuum":0.092,
+		"fuel":"Xenon",
+		"oxidizer":"Electric",
+		"mass":8.2,
+		"country":"US"
+	},
+	{
+		"source":"https://en.wikipedia.org/wiki/PPS-1350",
+		"name":"PPS-1350",
+		"isp":1650,
+		"thrustVacuum":0.088,
+		"fuel":"Xenon",
+		"oxidizer":"Electric",
+		"mass":5.3,
+		"country":"France/Russia"
+	},
+	{
+		"source":"https://en.wikipedia.org/wiki/SPT-100",
+		"name":"SPT-100",
+		"isp":1500,
+		"thrustVacuum":0.083,
+		"fuel":"Xenon",
+		"oxidizer":"Electric",
+		"mass":3.5,
+		"country":"Russia"
+	},
+	{
+		"source":"https://en.wikipedia.org/wiki/Vinci_(rocket_engine)",
+		"name":"Vinci",
+		"isp":465,
+		"thrustVacuum":180000,
+		"fuel":"LH2",
+		"oxidizer":"LOX",
+		"mass":550,
+		"height":4.2,
+		"diameter":2.15,
+		"country":"France"
+	},
+	{
+		"source":"https://en.wikipedia.org/wiki/KVD-1",
+		"name":"KVD-1",
+		"isp":462,
+		"thrustVacuum":69600,
+		"fuel":"LH2",
+		"oxidizer":"LOX",
+		"mass":282,
+		"height":2.14,
+		"diameter":1.58,
+		"burnTime":800,
 		"country":"Russia"
 	}
 ],
