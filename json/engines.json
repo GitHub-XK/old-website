@@ -1,4 +1,3 @@
-var engines =
 {
 "engines":[
 	{
@@ -174,6 +173,16 @@ var engines =
 		"height":4.46,
 		"diameter":1.24,
 		"burnTime":1200,
+		"country":"US"
+	},
+	{
+		"source":"http://www.astronautix.com/n/nervantr.html",
+		"name":"Nerva NTR",
+		"isp":925,
+		"thrustVacuum":333400,
+		"fuel":"LH2",
+		"oxidizer":"Nuclear",
+		"mass":8500,
 		"country":"US"
 	}
 ],
