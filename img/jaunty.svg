@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="125" height="125" viewBox="0 0 125 125">
+	<circle cx="62.5" cy="62.5" r="62.5"/>
+	<path d="M62.5 2.5A60 60 0 0 0 52.1 121.5A50 62.5 0 0 1 62.5 2.5" fill="#ede9d8"/>
+	<g fill="#f6e300">
+		<circle cx="55" cy="35" r="6.75"/>
+		<circle cx="91" cy="46" r="5"/>
+		<circle cx="69" cy="68" r="9.25"/>
+		<circle cx="103" cy="70" r="8.5"/>
+		<circle cx="51" cy="87.5" r="8"/>
+	</g>
+</svg>
