@@ -175,6 +175,31 @@ var engines =
 		"diameter":1.24,
 		"burnTime":1200,
 		"country":"US"
+	},
+	{
+		"source":"http://www.astronautix.com/n/nervantr.html",
+		"name":"Nerva NTR",
+		"isp":925,
+		"thrustVacuum":333400,
+		"fuel":"LH2",
+		"oxidizer":"Nuclear",
+		"mass":8500,
+		"country":"US"
+	},
+	{
+		"source":"https://en.wikipedia.org/wiki/Rocketdyne_J-2",
+		"name":"Rocketdyne J-2",
+		"isp":432,
+		"thrustVacuum":1033100,
+		"ispGround":200,
+		"thrustGround":486200,
+		"fuel":"LH2",
+		"oxidizer":"LOX",
+		"mass":1788.1,
+		"height":3.4,
+		"diameter":2.1,
+		"burnTime":500,
+		"country":"US"
 	}
 ],
 "stages":[
