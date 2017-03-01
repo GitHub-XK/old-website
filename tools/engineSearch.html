@@ -13,7 +13,7 @@ var update = function(){
 	var maxMass = Number(document.getElementById("mass").value);
 	var minThrust = Number(document.getElementById("thrust").value)*1000;//kilo newtons
 	var minVelocity = Number(document.getElementById("velocity").value);
-	var out = "<tr><th>Name</th><th>Mass (kg)</th><th>Isp (s)</th><th>Thrust V (kN)</th><th>Thrust SL (kN)</th><th>Fuel</th><th>Oxidizer</th><th>Length (m)</th><th>Country</th></tr>";
+	var out = "<tr><th>Name</th><th>Mass (kg)</th><th>Isp (s)</th><th>Thrust (kN)</th><th>Isp SL (s)</th><th>Thrust SL (kN)</th><th>Fuel</th><th>Oxidizer</th><th>Length (m)</th><th>Country</th></tr>";
 	var foundFlag = false;
 	for(var i=0;i<engines.length;i++){
 		if(
@@ -22,7 +22,9 @@ var update = function(){
 			&& engines[i].isp > minVelocity
 		){
 			foundFlag = true;
-			out += "<tr><td><a href='"+engines[i].source+"'>"+engines[i].name+"</a></td><td>"+engines[i].isp+"</td><td>"+engines[i].mass+"</td><td>"+engines[i].thrustVacuum/1000+"</td><td>";
+			out += "<tr><td><a href='"+engines[i].source+"'>"+engines[i].name+"</a></td><td>"+engines[i].mass+"</td><td>"+engines[i].isp+"</td><td>"+engines[i].thrustVacuum/1000+"</td><td>";
+			if(engines[i].ispGround){out += engines[i].ispGround};
+			out += "</td><td>";
 			if(engines[i].thrustGround){out += engines[i].thrustGround/1000};
 			out += "</td><td>";
 			if(engines[i].fuel){out += engines[i].fuel};
@@ -99,7 +101,7 @@ body{
 <div class="container">
 	<p>Max engine mass:</p>
 	<input type="range" id="massSlider"
-		min="0" max="20000" step="1" value="1000"
+		min="10" max="20000" step="1" value="1000"
 		oninput="change('mass',this.value)">
 	<input type="text" id="mass"
 		value="1000"
@@ -113,7 +115,7 @@ body{
 		oninput="change('thrustSlider',this.value)">kN
 	<p>Min specific Impulse:</p>
 	<input type="range" id="velocitySlider"
-		min="0" max="10000" step="1" value="300"
+		min="0" max="2000" step="1" value="300"
 		oninput="change('velocity',this.value)">
 	<input type="text" id="velocity"
 		value="300"
@@ -129,7 +131,8 @@ body{
 			<th>Name</th>
 			<th>Mass (kg)</th>
 			<th>Isp (s)</th>
-			<th>Thrust V (kN)</th>
+			<th>Thrust (kN)</th>
+			<th>Isp SL (s)</th>
 			<th>Thrust SL (kN)</th>
 			<th>Fuel</th>
 			<th>Oxidizer</th>
@@ -138,6 +141,25 @@ body{
 		</tr>
 	</tbody>
 </table>
+<hr>
+<h2>Draw graph</h2>
+<p style="color:red">Under construction</p>
+<div class="container">
+	Plot:
+	<br>
+	<input type="radio" name="plotType" value="0" checked>Mass - Thrust<br>
+	<input type="radio" name="plotType" value="1">Mass - Isp<br>
+	<input type="radio" name="plotType" value="2">Isp Thrust<br>
+	<br>
+	Size:
+	<br>
+	<input type="radio" name="plotSize" value="512" checked>512 x 512<br>
+	<input type="radio" name="plotSize" value="1024">1024 x 1024<br>
+	<input type="radio" name="plotSize" value="2048">2048 x 2048<br>
+	<br>
+	<button onclick="draw()">Draw</button>
+</div><br>
+<canvas id="plot"></canvas>
 </div>
 </body>
 </html>
