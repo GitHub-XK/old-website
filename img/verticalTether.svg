@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="600" height="600" viewBox="0 0 600 600">
 	<rect x="0" y="0" width="100%" height="100%" fill="black"/>
-	<circle cx="300" cy="300" r="80" fill="grey" stroke="white" stroke-width="10"/>
+	<circle cx="300" cy="300" r="72" fill="grey" stroke="white" stroke-width="10"/>
 	<circle cx="300" cy="300" r="180" fill="none" stroke="white" stroke-width="1"/>
 	<g>
 		<line x1="410" y1="300" x2="590" y2="300" stroke-width="2" stroke="white"/>
@@ -10,31 +10,33 @@
 			attributeName="transform"
 			attributeType="XML"
 			type="rotate"
-			values="0 300 300;360 300 300"
-			dur="5s"
-			repeatCount="indefinite"/>
+			values="0 300 300;1080 300 300"
+			dur="15s"
+			begin="0s"/>
 	</g>
 	<g>
 		<g>
 		<g>
 			<g>
-				<rect x="380" y="295" width="10" height="10" fill="grey"/>
-				<rect x="370" y="295" width="10" height="10" fill="red"/>
-			<!--<circle cx="380" cy="300" r="10" fill="red" stroke-width="2" stroke="white"/>-->
+				<rect x="380" y="295" width="10" height="10" fill="blue"/>
+				<rect x="371" y="295" width="10" height="10" fill="blue">
+					<animate attributeName="fill" attributeType="XML" begin="3s" dur="1s" fill="freeze" from="blue" to="red" />
+					<animate attributeName="fill" attributeType="XML" begin="6s" dur="1s" fill="freeze" from="red" to="blue" />
+				</rect>
 				<animateTransform
 					attributeName="transform"
 					attributeType="XML"
 					type="rotate"
 					values="0 380 320;40 380 320;110 380 320"
 					dur="1s"
-					begin="4.1s"
+					begin="4.2s"
 					fill="freeze" 
 				/>
 				<animateTransform
 					attributeName="transform"
 					attributeType="XML"
 					type="rotate"
-					values="110 380 320;20 380 305"
+					values="110 380 320;15 380 305"
 					dur="1s"
 					begin="6s"
 					fill="freeze"
@@ -44,9 +46,18 @@
 				attributeName="transform"
 				attributeType="XML"
 				type="translate"
-				values="0 0;-2 10"
-				dur="0.2s"
-				begin="5.1s"
+				values="0 0;20 25"
+				dur="1s"
+				begin="6s"
+				fill="freeze" 
+			/>
+			<animateTransform
+				attributeName="transform"
+				attributeType="XML"
+				type="translate"
+				values="20 25;350 110"
+				dur="5s"
+				begin="8s"
 				fill="freeze" 
 			/>
 		</g>
@@ -54,9 +65,9 @@
 				attributeName="transform"
 				attributeType="XML"
 				type="rotate"
-				values="0 300 300;360 300 300"
-				dur="5s"
-				begin="5.3s"
+				values="0 300 300;720 300 300"
+				dur="10s"
+				begin="5.2s"
 				fill="freeze" 
 			/>
 		</g>
