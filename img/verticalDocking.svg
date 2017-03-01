@@ -20,7 +20,6 @@
 			<g>
 				<rect x="380" y="295" width="10" height="10" fill="grey"/>
 				<rect x="370" y="295" width="10" height="10" fill="red"/>
-			<!--<circle cx="380" cy="300" r="10" fill="red" stroke-width="2" stroke="white"/>-->
 				<animateTransform
 					attributeName="transform"
 					attributeType="XML"
@@ -30,21 +29,12 @@
 					begin="4.1s"
 					fill="freeze" 
 				/>
-				<animateTransform
-					attributeName="transform"
-					attributeType="XML"
-					type="rotate"
-					values="110 380 320;20 380 305"
-					dur="1s"
-					begin="6s"
-					fill="freeze"
-				/>
 			</g>
 			<animateTransform
 				attributeName="transform"
 				attributeType="XML"
 				type="translate"
-				values="0 0;-2 10"
+				values="0 0;-0.5 2;-2 10"
 				dur="0.2s"
 				begin="5.1s"
 				fill="freeze" 
@@ -57,7 +47,7 @@
 				values="0 300 300;360 300 300"
 				dur="5s"
 				begin="5.3s"
-				fill="freeze" 
+				repeatCount="indefinite"
 			/>
 		</g>
 	</g>
