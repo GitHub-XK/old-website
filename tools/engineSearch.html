@@ -101,7 +101,7 @@ body{
 <div class="container">
 	<p>Max engine mass:</p>
 	<input type="range" id="massSlider"
-		min="0" max="20000" step="1" value="1000"
+		min="10" max="20000" step="1" value="1000"
 		oninput="change('mass',this.value)">
 	<input type="text" id="mass"
 		value="1000"
@@ -141,6 +141,25 @@ body{
 		</tr>
 	</tbody>
 </table>
+<hr>
+<h2>Draw graph</h2>
+<p style="color:red">Under construction</p>
+<div class="container">
+	Plot:
+	<br>
+	<input type="radio" name="plotType" value="0" checked>Mass - Thrust<br>
+	<input type="radio" name="plotType" value="1">Mass - Isp<br>
+	<input type="radio" name="plotType" value="2">Isp Thrust<br>
+	<br>
+	Size:
+	<br>
+	<input type="radio" name="plotSize" value="512" checked>512 x 512<br>
+	<input type="radio" name="plotSize" value="1024">1024 x 1024<br>
+	<input type="radio" name="plotSize" value="2048">2048 x 2048<br>
+	<br>
+	<button onclick="draw()">Draw</button>
+</div><br>
+<canvas id="plot"></canvas>
 </div>
 </body>
 </html>
