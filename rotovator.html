@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+<h1>Lunar Rotovator</h1>
+<h3>SVG animation</h3>
+<img src="img/rotovator.svg">
+<p>SVG animations are not supported in IE and Edge. <a href="rotovator_old.html">Here</a> is an ugly javascript version.</p>
+<h3>GeoGebra animation:</h3>
+<p>Here is an applet you can play around with. Click, drag and zoom to change your view.</p>
+<!--start GeoGebra code-->
+<script type="text/javascript" src="https://www.geogebra.org/scripts/deployggb.js"></script>
+<script type="text/javascript">
+    var applet1 = new GGBApplet({filename: "GeoGebra/rotovator.ggb","showtoolbar":true}, true);
+    window.onload = function() {
+        applet1.inject('applet_container1', 'preferHTML5');
+    }
+</script>
+<div style="width:748px;height:397px;display:block" id="applet_container1"></div>
+<!--end GeoGebra code-->
+<script>
+	document.getElementById("applet_container1").style.width = Math.round(screen.availWidth * 0.85) + "px";
+	document.getElementById("applet_container1").style.height = Math.round(screen.availHeight * 0.85) + "px";
+</script>
+</body>
+</html>
