@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+#tether{
+	transform-origin:50% 50%;
+	animation-name:tether;
+	animation-duration:5s;
+	animation-iteration-count:infinite;
+	animation-timing-function:linear;
+}
+@keyframes tether{
+	100%{
+		transform:rotate(360deg);
+	}
+}
+#craft{
+	transform-origin:63.3% 50%;
+	animation-name:craft;
+	animation-timing-function:linear;
+	animation-fill-mode:forwards;
+	animation-duration:10s;
+	animation-iteration-count:infinite;
+}
+@keyframes craft{
+	0%{
+		transform:rotate(45deg);
+	}
+	50%{
+		transform:rotate(45deg);
+	}
+	60%{
+		transform:rotate(125deg);
+	}
+	90%{
+		transform:rotate(125deg);
+	}
+	90.1%{
+		transform:rotate(305deg);
+	}
+	100%{
+		transform:rotate(305deg);
+	}
+}
+#engine{
+	animation-name:engine;
+	animation-fill-mode:forwards;
+	animation-duration:10s;
+	animation-iteration-count:infinite;
+}
+@keyframes engine{
+	0%{
+		fill:blue;
+	}
+	40%{
+		fill:blue;
+	}
+	55%{
+		fill:red;
+	}
+	70%{
+		fill:blue;
+	}
+	90%{
+		fill:blue;
+	}
+	95%{
+		fill:red;
+	}
+	100%{
+		fill:blue;
+	}
+}
+#trajectory{
+	animation-name:trajectory;
+	animation-timing-function:linear;
+	animation-fill-mode:forwards;
+	animation-duration:10s;
+	animation-iteration-count:infinite;
+}
+@keyframes trajectory{
+	0%{
+		transform:translate(0px,0px);
+	}
+	50%{
+		transform:translate(0px,0px);
+	}
+	52%{
+		transform:translate(12px,3px);
+	}
+	53.5%{
+		transform:translate(22px,15px);
+	}
+	54%{
+		transform:translate(24px,16px);
+	}
+	55%{
+		transform:translate(25px,24px);
+	}
+	57.5%{
+		transform:translate(24px,42px);
+	}
+	90%{
+		transform:translate(24px,42px);
+	}
+	92.5%{
+		transform:translate(25px,24px);
+	}
+	93.5%{
+		transform:translate(24px,16px);
+	}
+	94%{
+		transform:translate(22px,15px);
+	}
+	95.5%{
+		transform:translate(12px,3px);
+	}
+	97.5%{
+		transform:translate(0px,0px);
+	}
+	100%{
+		transform:translate(0px,0px);
+	}
+}
+#orbit{
+	transform-origin:50% 50%;
+	animation-name:orbit;
+	animation-timing-function:linear;
+	animation-fill-mode:forwards;
+	animation-duration:10s;
+	animation-iteration-count:infinite;
+}
+@keyframes orbit{
+	0%{
+		transform:rotate(0deg);
+	}
+	53.5%{
+		transform:rotate(0deg);
+	}
+	97.5%{
+		transform:rotate(318deg);
+	}
+	100%{
+		transform:rotate(318deg);
+	}
+}
+</style>
+</head>
+<body>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="600" height="600" viewBox="0 0 600 600">
+	<rect x="0" y="0" width="100%" height="100%" fill="black"/>
+	<circle cx="300" cy="300" r="72" fill="grey" stroke="white" stroke-width="10"/>
+	<circle cx="300" cy="300" r="180" fill="none" stroke="grey" stroke-width="1"/>
+	<g id="tether">
+		<line x1="405" y1="300" x2="590" y2="300" stroke-width="2" stroke="white"/>
+		<circle cx="480" cy="300" r="5" fill="white"/>
+	</g>
+	<g id="orbit">
+		<g id="trajectory">
+			<g id="craft">
+				<rect x="380" y="295" width="10" height="10" fill="blue"/>
+				<rect id="engine" x="371" y="295" width="10" height="10" fill="blue"/>
+			</g>
+		</g>
+	</g>
+</svg>
+</body>
+</html>
