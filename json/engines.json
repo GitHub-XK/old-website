@@ -408,6 +408,49 @@
 		"height":2.14,
 		"diameter":1.56,
 		"country":"India"
+	},
+	{
+		"source":"https://en.wikipedia.org/wiki/Rocketdyne_F-1",
+		"name":"F-1",
+		"isp":304,
+		"thrustVacuum":7770000,
+		"ispGround":263,
+		"thrustGround":6770000,
+		"fuel":"Kerosene",
+		"oxidizer":"LOX",
+		"burnTime":165,
+		"mass":8400,
+		"height":5.8,
+		"diameter":3.7,
+		"country":"US"
+	},
+	{
+		"source":"https://en.wikipedia.org/wiki/RD-263",
+		"name":"RD-263",
+		"isp":318,
+		"thrustVacuum":1130000,
+		"ispGround":293,
+		"thrustGround":1040000,
+		"fuel":"UDMH",
+		"oxidizer":"N2O4",
+		"mass":870,
+		"height":2.15,
+		"diameter":1.08,
+		"country":"Russia"
+	},
+	{
+		"source":"https://en.wikipedia.org/wiki/RD-263",
+		"name":"RD-268",
+		"isp":318.5,
+		"thrustVacuum":1240000,
+		"ispGround":295.6,
+		"thrustGround":1130000,
+		"fuel":"UDMH",
+		"oxidizer":"N2O4",
+		"mass":770,
+		"height":2.15,
+		"diameter":1.083,
+		"country":"Russia"
 	}
 ],
 "stages":[
