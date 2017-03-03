@@ -1,0 +1,19 @@
+---
+needs: deployGGB
+---
+<p>Drag the points around to interact with the model:</p>
+<!--start GeoGebra code-->
+<script type="text/javascript" src="https://www.geogebra.org/scripts/deployggb.js"></script>
+<script type="text/javascript">
+	var applet = new GGBApplet({filename: "GeoGebra/bi-tan.ggb","showtoolbar":false}, true);
+	window.onload = function() {
+		applet.inject('applet_container1', 'preferHTML5');
+	};
+	function colorChange(){
+		var applet = document.ggbApplet;
+		applet.evalCommand("SetBackgroundColor[Maroon]");
+	};
+</script>
+<div style="width:90%;height:70%px;display:block" id="applet_container1"></div>
+<!--end GeoGebra code-->
+<p>The empty focus of the transfer orbit, P, is on the part of the hyperbola not going through the intersections between the origin and target orbit. The hyperbola has A and B as foci</p>

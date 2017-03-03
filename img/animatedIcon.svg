@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="125" height="125" viewBox="0 0 125 125">
 	<circle cx="62.5" cy="62.5" r="62.5"/>
-	<path d="M62.5 2.5A60 60 0 0 0 62.5 122.5z" fill="#ede9d8" id="p1"/>
+	<path d="m62.5 2.5a60 60 0 0 0 0 120z" fill="#ede9d8" id="p1"/>
 	<ellipse cx="62.5" cy="62.5" ry="60" rx="0" fill="black">
 		<animate attributeName="rx" attributeType="XML" begin="2s" dur="1.33s" fill="freeze" from="0" to="40" />
 	</ellipse>

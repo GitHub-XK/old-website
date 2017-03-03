@@ -9,10 +9,14 @@
 <!--start GeoGebra code-->
 	<script type="text/javascript" src="https://www.geogebra.org/scripts/deployggb.js"></script>
 	<script type="text/javascript">
-		var applet1 = new GGBApplet({filename: "GeoGebra/bi-tan.ggb","showtoolbar":false}, true);
+		var applet = new GGBApplet({filename: "GeoGebra/bi-tan.ggb","showtoolbar":false}, true);
 		window.onload = function() {
-			applet1.inject('applet_container1', 'preferHTML5');
-		}
+			applet.inject('applet_container1', 'preferHTML5');
+		};
+		function colorChange(){
+			var applet = document.ggbApplet;
+			applet.evalCommand("SetBackgroundColor[Maroon]");
+		};
 	</script>
 	<div style="width:90%;height:70%px;display:block" id="applet_container1"></div>
 <!--end GeoGebra code-->
