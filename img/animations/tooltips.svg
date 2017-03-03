@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" viewBox="0 0 750 604">
+	<image width="750" height="640" href="../Apollo16full750.jpg"/>
+	<g id="a" transform="translate(420 220)">
+		<rect x="0" y="0" width="25" height="25" fill="blue" stroke="white" stroke-width="4">
+			<animate attributeName="fill" attributeType="XML" begin="mouseover" dur="0.2s" fill="freeze" to="green"/>
+			<set attributeName="fill" attributeType="XML" begin="mouseout" fill="freeze" to="blue"/>
+		</rect>
+		<text pointer-events="none" x="7" y="18" fill="white">1</text>
+		<g visibility="hidden">
+			<rect x="-250" y="50" width="550" height="100" fill="black" stroke="white" stroke-width="4"/>
+			<text x="-225" y="100" fill="white" font-size="30">Lol, this is a crater of something</text>
+			<set attributeName="visibility" attributeType="XML" begin="a.mouseover" fill="freeze" to="visible"/>
+			<set attributeName="visibility" attributeType="XML" begin="a.mouseout" fill="freeze" to="hidden"/>
+		</g>
+	</g>
+</svg>
