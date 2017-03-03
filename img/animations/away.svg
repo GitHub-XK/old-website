@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" viewBox="0 0 100 100">
+	<rect x="0" y="0" width="100%" height="100%" fill="black"/>
+	<circle cx="50" cy="50" r="5" fill="yellow" stroke="white" stroke-width="1"/>
+	<circle cx="50" cy="50" r="20" fill="none" stroke="white" stroke-width="0.1"/>
+	<circle cx="50" cy="50" r="40" fill="none" stroke="white" stroke-width="0.1"/>
+	<ellipse cx="60" cy="50" rx="30" ry="28.3" fill="none" stroke="white" stroke-width="0.1"/>
+	<circle cx="30" cy="50" r="2" fill="blue">
+		<animateTransform attributeName="transform" type="rotate" begin="start.click" attributeType="XML" dur="9.185s" values="0 50 50;331 50 50" fill="freeze"/>
+	</circle>
+	<circle cx="10" cy="50" r="2" fill="red" transform="rotate(63 50 50)">
+		<animateTransform attributeName="transform" type="rotate" begin="start.click" attributeType="XML" dur="9.185s" values="63 50 50;180 50 50" fill="freeze"/>
+	</circle>
+	<g transform="translate(30 50)">
+		<circle cx="0" cy="0" r="1" fill="pink">
+			<animateMotion id="a" path="m0 0A30 28.3 0 0 1 11.6 -22.34" begin="start.click" dur="1.837s"/>
+			<animateMotion id="b" path="m11.6 -22.34A30 28.3 0 0 1 30 -28.3" begin="a.end" dur="1.837s"/>
+			<animateMotion id="c" path="m30 -28.3A30 28.3 0 0 1 46.24 -23.78" begin="b.end" dur="1.837s"/>
+			<animateMotion id="d" path="m46.24 -23.78A30 28.3 0 0 1 56.61 -13.06" begin="c.end" dur="1.837s"/>
+			<animateMotion path="m56.61 -13.06A30 28.3 0 0 1 60 0" begin="d.end" dur="1.837s" fill="freeze"/>
+		</circle>
+	</g>
+	<g id="start">
+		<rect x="9" y="5.2" width="15" height="6" fill="#00FF00" stroke="white">
+			<set attributeName="fill" attributeType="XML" begin="mouseover" to="#00A000"/>
+			<set attributeName="fill" attributeType="XML" begin="mouseout" to="#00D000"/>
+		</rect>
+		<text pointer-events="none" x="10" y="10" fill="white" font-size="5">Start</text>
+	</g>
+</svg>
