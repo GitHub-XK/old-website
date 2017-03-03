@@ -13,7 +13,7 @@
 			type="rotate"
 			from="180 50 50"
 			to="360 50 50"
-			begin="0s"
+			begin="1s"
 			dur="1s"
 			fill="freeze"/>
 	</g>

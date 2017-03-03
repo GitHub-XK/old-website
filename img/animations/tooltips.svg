@@ -9,7 +9,7 @@
 		<text pointer-events="none" x="7" y="18" fill="white">1</text>
 		<g  fill-opacity="0.0">
 			<rect x="-250" y="50" width="550" height="100" fill="black"/>
-			<text x="-225" y="110" fill="white" font-size="30">Lol, this is a crater of something</text>
+			<text x="-225" y="110" fill="white" font-size="30">Lol, this is a crater or something</text>
 			<animate attributeName="fill-opacity" attributeType="XML" begin="a.mouseover" dur="0.5s" fill="freeze" to="1.0"/>
 			<animate attributeName="fill-opacity" attributeType="XML" begin="a.mouseout" dur="0.5s" fill="freeze" to="0.0"/>
 		</g>

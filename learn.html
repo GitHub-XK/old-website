@@ -127,9 +127,46 @@ of the Moon."
 				Let us calculate that. We say $\mu = 1$ for simplicity:
 					$$v_{blue}=\sqrt{\frac{1}{1}}=1$$
 					$$v_{red}=\sqrt{1\left(\frac{2}{1}-\frac{1}{2}\right)}=1.225$$
-				Below is an illustration of the velocity vectors. The pink part is the $\Delta v$ we have to spend. Note that the difference is smallest when the vectors point in the same direction.
+				Below is an illustration of the velocity vectors. The pink part is the $\Delta v$ we have to spend. Note that the difference is 				smallest when the vectors point in the same direction.
 			</p>
-			<img src="img/difference.png">
+			<img src="img/difference.png" alt="comparission of vectors">
+			<h5>Hohmann transfer orbits</h5>
+			<p>
+				A very common type of orbital transfer is between two circular orbits with different radius. The most efficient transfer is almost 					always an elliptical orbit touching both cirles. Below is an illustration. Click "start" to view an animation.
+			</p>
+			<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="50%" viewBox="0 0 100 100">
+				<rect x="0" y="0" width="100%" height="100%" fill="black"/>
+				<circle cx="50" cy="50" r="5" fill="yellow" stroke="white" stroke-width="1"/>
+				<circle cx="50" cy="50" r="20" fill="none" stroke="white" stroke-width="0.1"/>
+				<circle cx="50" cy="50" r="40" fill="none" stroke="white" stroke-width="0.1"/>
+				<ellipse cx="60" cy="50" rx="30" ry="28.3" fill="none" stroke="white" stroke-width="0.1"/>
+				<circle cx="30" cy="50" r="2" fill="blue">
+					<animateTransform attributeName="transform" type="rotate" begin="svgstart.click" attributeType="XML" dur="9.185s" values="0 50 50;331 50 50" fill="freeze"/>
+				</circle>
+				<circle cx="10" cy="50" r="2" fill="red" transform="rotate(63 50 50)">
+					<animateTransform attributeName="transform" type="rotate" begin="svgstart.click" attributeType="XML" dur="9.185s" values="63 50 50;180 50 50" fill="freeze"/>
+				</circle>
+				<g transform="translate(30 50)">
+					<circle cx="0" cy="0" r="1" fill="pink">
+						<animateMotion id="svga" path="m0 0A30 28.3 0 0 1 11.6 -22.34" begin="svgstart.click" dur="1.837s"/>
+						<animateMotion id="svgb" path="m11.6 -22.34A30 28.3 0 0 1 30 -28.3" begin="svga.end" dur="1.837s"/>
+						<animateMotion id="svgc" path="m30 -28.3A30 28.3 0 0 1 46.24 -23.78" begin="svgb.end" dur="1.837s"/>
+						<animateMotion id="svgd" path="m46.24 -23.78A30 28.3 0 0 1 56.61 -13.06" begin="svgc.end" dur="1.837s"/>
+						<animateMotion path="m56.61 -13.06A30 28.3 0 0 1 60 0" begin="svgd.end" dur="1.837s" fill="freeze"/>
+					</circle>
+				</g>
+				<g id="svgstart">
+					<rect x="9" y="5.2" width="15" height="6" fill="#00FF00" stroke="white">
+						<set attributeName="fill" attributeType="XML" begin="mouseover" to="#00A000"/>
+						<set attributeName="fill" attributeType="XML" begin="mouseout" to="#00D000"/>
+					</rect>
+					<text pointer-events="none" x="10" y="10" fill="white" font-size="5">Start</text>
+				</g>
+			</svg>
+			<p>
+				The $\Delta v$ cost would be the elliptical velocity at periapsis minus the velocity of the smaller circle, 
+				plus the velocity of the greater circle minus the elliptical velocity at apoapsis.
+			</p>
 			<h5>More math!</h5>
 			<p>
 				Let us take another look at the equation for velocity in an elliptical orbit:
@@ -144,16 +181,20 @@ of the Moon."
 				Of course, reaching infinity takes an ehm... infinite time... From this point, when I say infinity, I mean sufficiently far away.
 			</p>
 			<p>
-				You can also notice that the escape velocity at a given distance is $\sqrt{2}$ times larger than the orbital velocity of a circular orbit. $v_e = \sqrt{2}v_c$.
+				You can also notice that the escape velocity at a given distance is $\sqrt{2}$ times larger than the orbital velocity of a 					circular orbit. $v_e = \sqrt{2}v_c$.
 			</p>
 			<h5>Beyond infinity</h5>
 			<p>
 				You have now seen 3 of the 4 different shapes an orbit can have, circular, elliptical and parabolic.
 				The parabolic orbit is the one where we reach infinity.
-				The remaining orbit is the one shaped like a hyperbola. This one also reach infinity, like the parabola, but with a mayor difference:
-				In a parabolic orbit, we only "just reach infinity", that is, we are slowed down all the time by gravity, and the velocity is approaching zero as we get farther away.
-				That is not always what we want. For instance, if we only "just escape Earth", our relative velocity to it is zero, and that means we have the same orbit around the Sun as Earth!
-				In many cases, we want to have some extra velocity once we have escaped, for example for heading towards Mars, Jupiter, or for escaping the solar system entirely.
+				The remaining orbit is the one shaped like a hyperbola. 
+				This one also reach infinity, like the parabola, but with a mayor difference:
+				In a parabolic orbit, we only "just reach infinity", that is, we are slowed down all the time by gravity, and the velocity is 					approaching zero as we get farther away.
+				That is not always what we want. 
+				For instance, if we only "just escape Earth", 
+				our relative velocity to it is zero, and that means we have the same orbit around the Sun as Earth!
+				In many cases, we want to have some extra velocity once we have escaped, 
+				for example for heading towards Mars, Jupiter, or for escaping the solar system entirely.
 				An example closer to home is when we escape the Moon for a return trip. We do not want to end up in the same orbit as the Moon, instead, we want to head back home.
 			</p>
 			<p>
