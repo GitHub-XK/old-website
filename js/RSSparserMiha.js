@@ -1,4 +1,3 @@
-<script>
 atom_no = 0; //we'll use this as our counter
 feed_text = ''; //we'll use this variable to build our innerHTML for complete RSS feed
 display_no = 3; //set this number to number of last feed items to parse
@@ -43,4 +42,3 @@ $.get('//www.moonwards.com/feed/rss.xml', function (data) { //you'll change the 
   $("#RSS-feed").html(feed_text);
 
 });
-</script>
