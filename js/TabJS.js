@@ -1,4 +1,3 @@
-<script>
 function openContent (evt, contentType) {
   var i, tabcontent, tabheads;
   tabcontent =
@@ -17,4 +16,3 @@ document.getElementsByClassName('tabheads');
   evt.currentTarget.className += ' active';
 }
 document.getElementById('defaultOpen').click();
-</script>
