@@ -25,9 +25,8 @@ exclude:
   - TODO.txt
   - basetemplate.html
   - extractor.py
-  - Gemfile
-  - Gemfile.lock
   - engines.sh
+  - sass
 markdown: kramdown
 url: "https://www.moonwards.com"
 excerpt_separator: end-excerpt
