@@ -3,6 +3,6 @@
 *.swp
 # stuff used by jekyll or something #
 # tmp sass #
-docs/
+moonwards.com/
 css/
 .sass-cache
