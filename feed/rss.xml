@@ -11,7 +11,7 @@ layout: null
 		<category>space exploration</category>
 		<language>en-us</language>
 		<pubDate>Sun, 13 Nov 2016 17:50:00 GMT</pubDate>
-		<lastBuildDate>Sun, 13 Nov 2016 17:50:01 GMT</lastBuildDate><!--This one needs a loop using data from the last rss post-->
+		<lastBuildDate>{{site.rss.last.pubDate | append: ' 00:00:00 CST' }}</lastBuildDate>
 		<docs>http://blogs.law.harvard.edu/tech/rss</docs>
 		<webMaster>kim@moonwards.com</webMaster>
 		{% for rss in site.rss reversed %}
