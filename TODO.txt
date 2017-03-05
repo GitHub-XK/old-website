@@ -1,10 +1,10 @@
 Hoh:
 
--Finish the transfer calculator
--Make the old scripts less ugly
--Create SVG illustrations for the learn page
--Migrate favicons to /img
+-Finish the transfer calculator (low priority)
+-Migrate favicons to /img (low priority, maybe not)
 -Add more to the learn page introduction to orb mec
+-Embed youtube video somehow to avoid overhead
+-Test fakesmile in IE
 
 SOLVED:
 
