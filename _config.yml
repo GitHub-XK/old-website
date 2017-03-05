@@ -27,6 +27,8 @@ exclude:
   - extractor.py
   - engines.sh
   - sass
+  - directoryStructure
+  - makefile
 markdown: kramdown
 url: "https://www.moonwards.com"
 excerpt_separator: end-excerpt
