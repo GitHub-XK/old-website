@@ -50,8 +50,9 @@ nav li > ul
   padding: 10px
   text-align: center
   margin: 0
+  width: 90vw
 
-nav li > ul li
+nav > li > ul li
   +flex(1 1 auto)
   font-size: 18px
   font-weight: 300
@@ -64,4 +65,4 @@ nav  li:hover > ul
   +display(flex)
   +align-items(flex-start)
   +justify-content(flex-start)
-  +flex-flow(column nowrap)
+  +flex-flow(row wrap)
