@@ -1,8 +1,28 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<title>Engine Search</title>
+---
+layout: toolTemplate
+title: Engine Search
+---
+th{
+	text-align:left;
+	font-size:110%;
+}
+td,th{
+	padding:3px;
+	border-left-style:solid;
+	border-top-style:solid;
+	border-width:1px;
+	border-color:#000000;
+}
+tr{
+	background-color:#DDDDDD;
+}
+tr:nth-child(2n+1){
+	background-color:initial;
+}
+table{
+	box-shadow:4px 4px 3px #888888;
+}
+	</style>
 	<script src="engines.js"></script>
 	<script>
 engines = engines.engines;//this may look silly, but there are also stage data in the file, not used at the moment.
@@ -98,55 +118,6 @@ var draw = function(){
 	//so the plot has to be scaled.
 };
 	</script>
-	<style>
-th{
-	text-align:left;
-	font-size:110%;
-}
-td,th{
-	padding:3px;
-	border-left-style:solid;
-	border-top-style:solid;
-	border-width:1px;
-	border-color:#000000;
-}
-tr{
-	background-color:#DDDDDD;
-}
-tr:nth-child(2n+1){
-	background-color:initial;
-}
-table{
-	box-shadow:4px 4px 3px #888888;
-}
-body{
-	font-family:Arial,Helvetica,sans-serif;
-	background-color:#202030;
-}
-.wrapper{
-	margin-left:5%;
-	margin-right:5%;
-	padding:20px;
-}
-.container{
-	display:inline-block;
-	-webkit-border-radius:10px;
-	-moz-border-radius:10px;
-	border-radius:10px;
-	border-style:solid;
-	border-width:1px;
-	border-color:black;
-	padding:10px;
-	margin:5px;
-}
-#main{
-	background-color:#F6F6F0;
-	-webkit-border-radius:10px;
-	-moz-border-radius:10px;
-	border-radius:10px;
-	box-shadow:5px 5px 4px #000000;
-}
-	</style>
 </head>
 <body>
 <div class="wrapper" id="main">
