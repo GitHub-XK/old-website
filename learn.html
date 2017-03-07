@@ -26,33 +26,13 @@ of the Moon."
 	<section id="tryit">
 		<div class="outerDiv">
 			<div class="innerDiv">
-{%include_relative _includes/learn/suborbital.html%}
+				{%include_relative _includes/learn/suborbital.html%}
 			</div>
-		</div><!--end outer div-->
-{%include_relative _includes/learn/lunarElevator.html%}
+		</div>
+				{%include_relative _includes/learn/lunarElevator.html%}
 		<div class="outerDiv">
 			<div class="innerDiv">
-				<h2>The Rocket Equation</h2>
-				<p class="frameBuffer">Mass ratio:</p>
-				<input
-					type="text"
-					title="Start mass divided by end mass"
-					placeholder="Start mass divided by end mass"
-					value=""
-					id="massratioRE">
-				<p class="frameBuffer">Exhaust velocity: (m/s)</p>
-				<input
-					type="text"
-					placeholder="Velocity of the rocket exhaust"
-					value=""
-					id="exhaustvelocityRE">
-				<p>
-					<input type="checkbox" id="ispcheckboxRE"> use I<sub>sp</sub> instead
-				</p>
-				<button onclick="rocket()">Calculate!</button><br>
-				<p id="resultRE">&nbsp;</p>
-				<p id="moreThan"></p>
-				<p id="lessThan"></p>
+				{%include_relative _includes/learn/rocketEquation.html%}
 			</div>
 		</div>
 		<div class="outerDiv">
@@ -60,7 +40,7 @@ of the Moon."
 				<h2>Rotovators</h2>
 				<div class="imgResize">
 					<a href="rotovator.html">
-						<img src="img/RotovatorCanvasLink.png">
+						<img src="img/RotovatorCanvasLink.png" alt="link to rotovator page">
 					</a>
 				</div>
 			</div>
@@ -215,12 +195,19 @@ of the Moon."
 		</div>
 	</div>
 	<div class="outerDiv">
-{%include_relative _includes/learn/spaceJStableGenerated.html%}
+		{%include_relative _includes/learn/spaceJStableGenerated.html%}
 		<div class="innerDiv">
 			<a href="http://www.gnu.org/licenses/">
 				<p>All calculator scripts are released under the GPL version 3</p>
 			</a>
-		</div><!--change to <footer>?-->
+		</div>
+	</div>
+</section>
+<section id="rockets">
+	<div class="outerDiv">
+		<div class="innerDiv wide">
+			<h2>Delta-v: The core idea of rockets</h2>
+		</div>
 	</div>
 </section>
 </div><!--end container-->
