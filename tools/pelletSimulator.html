@@ -10,7 +10,7 @@ title: Pellet Simulator
 			<div class="container">
 				<form id="controls">
 					<input name="physics" type="text" value="200">Physics frames per second<br>
-					<input name="frameSize" type="text" value="60">Time per frame<br>
+					<input name="simSpeed" type="text" value="60">Time per second<br>
 					<input name="graphics" type="text" value="10">Physics frames per graphic frame<br>
 					Origin of coordinate system<input name="origin" type="radio" value="earth">Earth <input name="origin" type="radio" value="moon" checked> Moon.
 					<input name="radius" type="text">Radius (km)<br>
@@ -29,6 +29,7 @@ title: Pellet Simulator
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 var fps;
+var deltaTime;
 var pellets = [];
 var oldPosi = [];
 function update(){
@@ -36,7 +37,8 @@ function update(){
 	var gnum = function(field){
 		return Number(form[field].value);
 	};
-	fps = Math.floor(gnum("physics")/gnum("graphics"));
+	fps = Math.floor(gnum("graphics")*1000/gnum("physics"));
+	deltaTime = Math.floor(gnum("physics")/gnum("graphics"))*gnum("graphics")*gnum("simSpeed");
 	pellets = [];
 	var velocity0 = gnum("velocity0");
 	var velocity1 = gnum("velocity1");
@@ -53,8 +55,8 @@ function update(){
 	for(var i = 0;i < gnum("pellets");i++){
 		var pellet = {};
 		var velocity = velocity0 + (velocity1 - velocity0)*i/(gnum("pellets")-1);
-		pellet.vx = Math.cos(direction) * velocity;
-		pellet.vx = Math.sin(direction) * velocity;
+		pellet.vx = Math.cos(direction + argument) * velocity;
+		pellet.vx = Math.sin(direction + argument) * velocity;
 		pellet.y = y;
 		pellet.x = x;
 		oldPosu.push([x,y]);
@@ -73,6 +75,10 @@ function update(){
 	)
 };
 function physics(){
+	for(var i=0;i<pellets.length;i++){
+		pellets[i].x += pellets[i].vx*deltaTime;
+		pellets[i].y += pellets[i].vy*deltaTime;
+	};
 };
 function pause(){
 };
