@@ -25,14 +25,14 @@ nav a
   &:active
     color: $navAHover
 
-li ul
+nav li ul
   background-color: $aHoverBk
   list-style-type: none
 
-li ul a
+nav li ul a
   padding: 0.1rem 0.3rem 0.3rem 0.3rem
 
-li ul a:hover
+nav li ul a:hover
   background-color: transparent
 
 nav > ul > li
@@ -51,20 +51,20 @@ nav > ul > li:nth-child(1)
 
 nav > ul > li:nth-child(2)
   left: 25%
-  ul
+  > ul
     position: relative
     left: -25%
 
 nav > ul > li:nth-child(3)
   left: 50%
-  ul
+  > ul
     position: relative
     left: -50%
 
 
 nav > ul > li:nth-child(4)
   left: 75%
-  ul
+  > ul
     position: relative
     left: -75%
 
@@ -98,6 +98,6 @@ nav > ul > li > ul > li
 
 nav > ul > li > ul > li ul
   padding: 0 0.6rem 0.6rem 0.2rem
-  font-size: 0.9em
+  font-size: 0.85em
   letter-spacing: 0.1rem
   border-left: 2px solid $darkAccent
