@@ -1,5 +1,22 @@
 {
-"planets":["sun","venus","earth","moon","mars"],
+"index":["sun","mercury","venus","earth","moon","mars"],
+"sun":{
+	"mass":1.98855e30,
+	"gm":1.32712440018e20,
+	"radius":695700000,
+	"orbit":{
+		"children":[
+			"mercury","venus","earth","mars",
+			"vesta","pallas","ceres",
+			"jupiter","saturn","uranus","neptune",
+			"pluto","eris"
+		]
+	}
+},
+"mercury":{
+	"gm":2.2032e13,
+	"radius":2439700
+},
 "venus":{
 	"mass":4.8675e24,
 	"gm":3.24859e14,
@@ -34,7 +51,16 @@
 			"Ne":0.000007
 		}
 	},
-	"orbit":{}
+	"orbit":{
+		"periapsis":null,
+		"apoapsis":null,
+		"semiMajor":null,
+		"eccentricity":null,
+		"period":null,
+		"speed":null,
+		"inclination":null,
+		"parent":"sun"
+	}
 },
 "earth":{
 	"mass":7.342e24,
@@ -126,8 +152,89 @@
 		"speed":29780,
 		"inclination":0,
 		"parent":"sun",
-		"children":["moon"]
+		"children":["moon"],
+		"nodes":{
+			"surface":{
+				"transfer":[
+					{
+						"target":"lowOrbit",
+						"cost":9500
+					}
+				]
+			},
+			"lowOrbit":{
+				"transfer":[
+					{
+						"target":"moonTransfer",
+						"cost":3120
+					},
+					{
+						"target":"escape",
+						"cost":null
+					},
+					{
+						"target":"surface",
+						"cost":7770,
+						"air":true
+					}
+				]
+			},
+			"escape":{
+				"transfer":[
+					{
+						"target":"moonTransfer",
+						"cost":0
+					},
+					{
+						"target":"lowOrbit",
+						"cost":null,
+						"air":true
+					}
+				]
+			},
+			"moonTransfer":{
+				"transfer":[
+					{
+						"target":"lowOrbit",
+						"cost":3120,
+						"air":true
+					},
+					{
+						"target":"escape",
+						"cost":null
+					}
+				],
+				"external":{
+					"system":"moon",
+					"name":"earthTransfer"
+				}
+			}
+		}
 	}
+},
+"moon":{
+	"mass":7.342e22,
+	"gm":4.9048695e12,
+	"gravity":1.62,
+	"radius":1737100,
+	"polarRadius":1736000,
+	"equatorRadius":1738100,
+	"orbit":{
+		"periapsis":362600000,
+		"apoapsis":405400000,
+		"semiMajor":384399000,
+		"eccentricity":0.0549,
+		"period":2360591,
+		"speed":1022,
+		"inclination":5.145,
+		"parent":"earth",
+		"nodes":{
+			"lowOrbit":{},
+			"earthTransfer":{},
+			"escape":{}
+		}
+	},
+	"atmosphere":false
 },
 "mars":{
 	"mass":6.4171e23,
@@ -169,30 +276,24 @@
 		}
 	}
 },
-"moon":{
-	"mass":7.342e22,
-	"gm":4.9048695e12,
-	"gravity":1.62,
-	"radius":1737100,
-	"polarRadius":1736000,
-	"equatorRadius":1738100,
+"phobos":{
 	"orbit":{
-		"periapsis":362600000,
-		"apoapsis":405400000,
-		"semiMajor":384399000,
-		"eccentricity":0.0549,
-		"period":2360591,
-		"speed":1022,
-		"inclination":5.145,
-		"parent":"earth"
-	}
+		"nodes":{
+			"lowOrbit":{},
+			"escape":{},
+			"deimosTransfer":{},
+			"marsTransfer":{}
+		}
+	},
+	"atmosphere":false
 },
-"sun":{
-	"mass":1.98855e30,
-	"gm":1.32712440018e20,
-	"radius":695700000,
+"deimos":{
 	"orbit":{
-		"children":["earth","mars"]
-	}
+	},
+	"atmosphere":false
+},
+"ceres":{
+	"gm":6.26325e10,
+	"radius":473000
 }
 }
