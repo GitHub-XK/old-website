@@ -1,5 +1,4 @@
 {
-"index":["sun","mercury","venus","earth","moon","mars"],
 "sun":{
 	"mass":1.98855e30,
 	"gm":1.32712440018e20,
@@ -14,8 +13,22 @@
 	}
 },
 "mercury":{
+	"mass":3.3011e23,
 	"gm":2.2032e13,
-	"radius":2439700
+	"radius":2439700,
+	"atmosphere":false,
+	"orbit":{
+		"periapsis":46001200000,
+		"apoapsis":69816900000,
+		"semiMajor":57909050000,
+		"eccentricity":0.205630,
+		"period":7600521.6,
+		"speed":47362,
+		"inclination":7.005,
+		"ascending":48.331,
+		"argument":29.124,
+		"parent":"sun"
+	}
 },
 "venus":{
 	"mass":4.8675e24,
@@ -52,13 +65,15 @@
 		}
 	},
 	"orbit":{
-		"periapsis":null,
-		"apoapsis":null,
-		"semiMajor":null,
-		"eccentricity":null,
-		"period":null,
-		"speed":null,
-		"inclination":null,
+		"periapsis":10747700000,
+		"apoapsis":108939000000,
+		"semiMajor":108208000000,
+		"eccentricity":0.006772,
+		"period":19414166.4,
+		"speed":35020,
+		"inclination":3.39458,
+		"ascending":76.68,
+		"argument":54.884,
 		"parent":"sun"
 	}
 },
@@ -170,7 +185,7 @@
 					},
 					{
 						"target":"escape",
-						"cost":null
+						"cost":3210
 					},
 					{
 						"target":"surface",
@@ -183,11 +198,12 @@
 				"transfer":[
 					{
 						"target":"moonTransfer",
-						"cost":0
+						"cost":90,
+						"air":true
 					},
 					{
 						"target":"lowOrbit",
-						"cost":null,
+						"cost":3210,
 						"air":true
 					}
 				]
@@ -201,7 +217,7 @@
 					},
 					{
 						"target":"escape",
-						"cost":null
+						"cost":90
 					}
 				],
 				"external":{
@@ -229,9 +245,46 @@
 		"inclination":5.145,
 		"parent":"earth",
 		"nodes":{
-			"lowOrbit":{},
-			"earthTransfer":{},
-			"escape":{}
+			"surface":{
+				"transfer":[
+					{
+						"target":"lowOrbit",
+						"cost":1720
+					}
+				]
+			},
+			"lowOrbit":{
+				"transfer":[
+					{
+						"target":"surface",
+						"cost":1720
+					}
+				]
+			},
+			"earthTransfer":{
+				"transfer":[
+					{
+						"target":"escape",
+						"cost":140
+					}
+				],
+				"external":{
+					"system":"earth",
+					"name":"moonTransfer"
+				}
+			},
+			"escape":{
+				"transfer":[
+					{
+						"target":"lowOrbit",
+						"cost":680
+					},
+					{
+						"target":"earthTransfer",
+						"cost":140
+					},
+				]
+			}
 		}
 	},
 	"atmosphere":false
@@ -252,7 +305,14 @@
 		"speed":24077,
 		"inclination":1.85,
 		"parent":"sun",
-		"children":["phobos","deimos"]
+		"children":["phobos","deimos"],
+		"nodes":{
+			"surface":{},
+			"lowOrbit":{},
+			"phobosTransfer":{},
+			"deimosTransfer":{},
+			"escape":{}
+		}
 	},
 	"atmosphere":{
 		"layers":[
@@ -277,23 +337,80 @@
 	}
 },
 "phobos":{
+	"radius":11266.7,
+	"boxModel":[27000,22000,18000],
+	"mass":1.0659e16,
+	"area":1548.3e6,
+	"volume":5783.61e9,
+	"density":1876,
+	"gravity":0.0057,
 	"orbit":{
+		"periapsis":9234420,
+		"apoapsis":9517580,
+		"semiMajor":9376000,
+		"eccentricity":0.0151,
+		"period":27553.844,
+		"speed":2138,
+		"inclination":26.04,
 		"nodes":{
 			"lowOrbit":{},
 			"escape":{},
-			"deimosTransfer":{},
+			"deimosTransfer":{
+				"external":{
+					"system":"deimos",
+					"name":"phobosTransfer"
+				}
+			},
 			"marsTransfer":{}
 		}
 	},
 	"atmosphere":false
 },
 "deimos":{
+	"radius":6200,
+	"boxModel":[15000,12200,11000],
+	"mass":1.4762e15,
+	"area":495.1548e6,
+	"volume":999.78e9,
+	"density":1471,
+	"gravity":0.00306,
 	"orbit":{
+		"periapsis":23455500,
+		"apoapsis":23470900,
+		"semiMajor":23463200,
+		"eccentricity":0.00033,
+		"period":109123.2,
+		"speed":1351.3,
+		"inclination":27.58,
+		"nodes":{
+			"lowOrbit":{},
+			"escape":{},
+			"phobosTransfer":{
+				"external":{
+					"system":"phobos",
+					"name":"deimosTransfer"
+				}
+			},
+			"marsTransfer":{}
+		}
 	},
 	"atmosphere":false
 },
 "ceres":{
 	"gm":6.26325e10,
 	"radius":473000
+},
+"pallas":{},
+"vesta":{},
+"jupiter":{},
+"saturn":{},
+"uranus":{},
+"neptune":{},
+"pluto":{},
+"eris":{},
+"META":{
+	"author":"Sigvart Brendberg",
+	"updated":2017,
+	"url":"http://moonwards.com/json/planets.json"
 }
 }
