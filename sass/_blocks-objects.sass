@@ -7,22 +7,29 @@
   +align-items(flex-start)
   width: 100%
 
+.containerLearn
+  width: 94%
+  margin: auto
 
 section
   +display(flex)
   +flex(3 0 350px)
-  +flex-direction(column)
+  +flex-flow(column nowrap)
   padding: $mainPad
   margin-top: 3rem
   margin-left: 2rem
 
-section .learn
+section.calc
   +display(flex)
-  +flex(0 1 350px)
   +flex-flow(row wrap)
   +justify-content(flex-start)
   +align-items(flex-start)
-  width: 90%
+  +flex(0 1 0)
+  margin-right: auto
+  margin-bottom: 4rem
+
+.wide
+  +flex(1 1 900px)
 
 aside
   +flex(1 1 300px)
@@ -54,6 +61,19 @@ aside
     padding: 0.5rem 1.2rem
     margin: 0
     +align-self(flex-start)
+
+.calcDiv
+  +RadiusIn
+  +display(flex)
+  +flex-flow(column nowrap)
+  +align-items(flex-end)
+  +justify-content(center)
+  background-color: $innerBkgd
+  margin: 15px
+  p, img
+    +align-self(center)
+  p
+    width: calc(100% - 3rem)
 
 .pixWrap
   +display(flex)
