@@ -1,5 +1,6 @@
 {
 "sun":{
+	"type":"star",
 	"mass":1.98855e30,
 	"gm":1.32712440018e20,
 	"radius":695700000,
@@ -13,6 +14,7 @@
 	}
 },
 "mercury":{
+	"type":"terrestrial planet",
 	"mass":3.3011e23,
 	"gm":2.2032e13,
 	"radius":2439700,
@@ -31,10 +33,19 @@
 	}
 },
 "venus":{
+	"type":"terrestrial planet",
 	"mass":4.8675e24,
 	"gm":3.24859e14,
 	"gravity":8.87,
 	"radius":6051800,
+	"area":4.6023e14,
+	"volume":9.2843e20,
+	"density":5243,
+	"sideralPeriod":-20997360,
+	"rotationVelocity":1.81,
+	"axialTilt":177.36,
+	"poleAsc":272.76,
+	"poleDec":67.16,
 	"atmosphere":{
 		"ceiling":100000,
 		"layers":[
@@ -78,6 +89,7 @@
 	}
 },
 "earth":{
+	"type":"terrestrial planet",
 	"mass":7.342e24,
 	"gm":3.986004418e14,
 	"gravity":9.807,
@@ -177,6 +189,7 @@
 		"ascending":-11.26064,
 		"argument":114.20783,
 		"parent":"sun",
+		"satellites":1,
 		"children":["moon"],
 		"nodes":{
 			"surface":{
@@ -240,6 +253,7 @@
 	}
 },
 "moon":{
+	"type":"moon",
 	"mass":7.342e22,
 	"gm":4.9048695e12,
 	"gravity":1.62,
@@ -308,6 +322,7 @@
 	"atmosphere":false
 },
 "mars":{
+	"type":"terrestrial planet",
 	"mass":6.4171e23,
 	"gm":4.282837e13,
 	"gravity":3.711,
@@ -328,6 +343,7 @@
 		"ascending":49.558,
 		"argument":286.502,
 		"parent":"sun",
+		"satellites":2,
 		"children":["phobos","deimos"],
 		"nodes":{
 			"surface":{
@@ -375,6 +391,7 @@
 	}
 },
 "phobos":{
+	"type":"moon",
 	"radius":11266.7,
 	"boxModel":[27000,22000,18000],
 	"mass":1.0659e16,
@@ -405,6 +422,7 @@
 	"atmosphere":false
 },
 "deimos":{
+	"type":"moon",
 	"radius":6200,
 	"boxModel":[15000,12200,11000],
 	"mass":1.4762e15,
@@ -435,17 +453,122 @@
 	"atmosphere":false
 },
 "ceres":{
+	"type":"dwarf planet",
 	"gm":6.26325e10,
-	"radius":473000
+	"radius":473000,
+	"boxModel":[965200,961200,891200],
+	"area":2770000e6,
+	"volume":421000000e9,
+	"mass":9.393e20,
+	"density":2161,
+	"gravity":0.28,
+	"sideralPeriod":32667.012,
+	"rotationVelocity":92.61,
+	"axialTilt":4,
+	"poleAsc":294.18,
+	"poleDec":66.764,
+	"orbit":{
+		"periapsis":382620000000,
+		"apoapsis":445410000000,
+		"semiMajor":414010000000,
+		"eccentricity":0.075823,
+		"period":145292832,
+		"speed":17905,
+		"inclination":10.593,
+		"ascending":80.3293,
+		"argument":72.522
+	}
 },
-"pallas":{},
-"vesta":{},
-"jupiter":{},
-"saturn":{},
-"uranus":{},
-"neptune":{},
-"pluto":{},
-"eris":{},
+"pallas":{
+	"type":"asteroid"
+},
+"vesta":{
+	"type":"asteroid"
+},
+"jupiter":{
+	"type":"gas planet",
+	"gm":1.26686534e17,
+	"radius":69911000,
+	"polarRadius":66854000,
+	"equatorRadius":71492000,
+	"area":6.1419e16,
+	"volume":1.4313e24,
+	"mass":1.8986e27,
+	"density":1326,
+	"gravity":24.79,
+	"sideralPeriod":35730,
+	"rotationVelocity":12600,
+	"axialTilt":3.13,
+	"poleAsc":268.057,
+	"poleDec":64.496,
+	"atmosphere":{
+		"composition":{
+			"H2":0.898,
+			"He":0.102,
+			"CH4":0.003,
+			"NH3":0.00026,
+			"C2H6":0.000006,
+			"H2O":0.000004
+		}
+	},
+	"orbit":{
+		"periapsis":740550000000,
+		"apoapsis":816040000000,
+		"semiMajor":778299000000,
+		"eccentricity":0.048498,
+		"period":374335776,
+		"speed":13070,
+		"inclination":1.303,
+		"ascending":100.464,
+		"argument":273.867,
+		"parent":"sun",
+		"satellites":67,
+		"children":["io","europa","ganymede","callisto"]
+	}
+},
+"saturn":{
+	"type":"gas planet",
+	"gm":3.7931187e16,
+	"orbit":{
+		"parent":"sun",
+		"children":["mimas","encheladus","tethys","dione","rhea","titan","hyperion","phoebe"]
+	}
+},
+"uranus":{
+	"type":"gas planet",
+	"gm":5.793939e15,
+	"orbit":{
+		"parent":"sun",
+		"children":["titania","oberon","umbriel","ariel","miranda"]
+	}
+},
+"neptune":{
+	"type":"gas planet",
+	"gm":6.836529e15,
+	"orbit":{
+		"parent":"sun",
+		"children":["triton","proteus","nereid"]
+	}
+},
+"pluto":{
+	"type":"dwarf planet",
+	"gm":8.71e11,
+	"orbit":{
+		"parent":"sun",
+		"satellites":5,
+		"children":["charon","nix","hydra"]
+	}
+},
+"charon":{
+	"type":"moon",
+	"orbit":{
+		"parent":"pluto"
+	}
+},
+"eris":{
+	"type":"dwarf planet",
+	"gm":1.108e12
+},
 "META":{
 	"author":"Sigvart Brendberg",
 	"updated":2017,
