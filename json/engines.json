@@ -451,6 +451,70 @@
 		"height":2.15,
 		"diameter":1.083,
 		"country":"Russia"
+	},
+	{
+		"source":"https://en.wikipedia.org/wiki/YF-100",
+		"name":"YF-100",
+		"isp":335,
+		"thrustVacuum":1340000,
+		"ispGround":300,
+		"thrustGround":1200000,
+		"fuel":"kerosene",
+		"oxidizer":"LOX",
+		"diameter":1.338,
+		"burnTime":155,
+		"throttle":0.65,
+		"country":"China"
+	},
+	{
+		"source":"https://en.wikipedia.org/wiki/Vulcain",
+		"name":"Vulcain",
+		"isp":431,
+		"thrustVacuum":1140000,
+		"fuel":"LH2",
+		"oxidizer":"LOX",
+		"diameter":1.76,
+		"height":3.05,
+		"mass":1300,
+		"country":"France"
+	},
+	{
+		"source":"https://en.wikipedia.org/wiki/Vulcain",
+		"name":"Vulcain 2",
+		"isp":429,
+		"thrustVacuum":1359000,
+		"fuel":"LH2",
+		"oxidizer":"LOX",
+		"diameter":1.76,
+		"height":2.09,
+		"mass":1800,
+		"country":"France"
+	},
+	{
+		"source":"https://en.wikipedia.org/wiki/LE-7",
+		"name":"LE-7",
+		"isp":446,
+		"thrustVacuum":1078000,
+		"ispGround":349,
+		"thrustGround":843500,
+		"fuel":"LH2",
+		"oxidizer":"LOX",
+		"height":3.4,
+		"mass":1714,
+		"country":"Japan"
+	},
+	{
+		"source":"https://en.wikipedia.org/wiki/YF-75",
+		"name":"YF-75",
+		"isp":438,
+		"thrustVacuum":78450,
+		"fuel":"LH2",
+		"oxidizer":"LOX",
+		"height":2.8,
+		"diameter":1.5,
+		"burnTime":470,
+		"mass":550,
+		"country":"China"
 	}
 ],
 "stages":[

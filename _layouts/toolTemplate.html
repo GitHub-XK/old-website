@@ -2,11 +2,15 @@
 <html lang="en-US">
 	<head>
 		<title>{{page.title}}</title>
-		{%include commonHeadElements.html%}
-		<link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16">
-		<link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32">
-		<link rel="icon" type="image/png" href="favicon-96x96.png" sizes="96x96">
-		<link rel="icon" type="image/svg+xml" href="img/animatedIcon.svg"><!--svg icon in Firefox, ignored in other browsers-->
+		<meta charset="utf-8">
+		<meta http-equiv="x-ua-compatible" content="IE=edge, chrome=1">
+		<meta name="theme-color" content="#ffffff">
+		<meta name="description" content="{{page.description}}">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="icon" type="image/png" href="../favicon-16x16.png" sizes="16x16">
+		<link rel="icon" type="image/png" href="../favicon-32x32.png" sizes="32x32">
+		<link rel="icon" type="image/png" href="../favicon-96x96.png" sizes="96x96">
+		<link rel="icon" type="image/svg+xml" href="../img/animatedIcon.svg"><!--svg icon in Firefox, ignored in other browsers-->
 		<style>
 body{
 	font-family:Arial,Helvetica,sans-serif;
@@ -35,6 +39,35 @@ body{
 	border-radius:10px;
 	box-shadow:5px 5px 4px #000000;
 }
+th{
+	text-align:left;
+	font-size:110%;
+}
+td,th{
+	padding:3px;
+	border-left-style:solid;
+	border-top-style:solid;
+	border-width:1px;
+	border-color:#000000;
+}
+tr{
+	background-color:#DDDDDD;
+}
+tr:nth-child(2n+1){
+	background-color:initial;
+}
+table{
+	box-shadow:4px 4px 3px #888888;
+}
+canvas{
+	border-style:solid;
+	border-width:1px;
+	border-color:black;
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+	border-radius:4px;
+}
+	</style>
 		{{content}}
 	</body>
 </html>

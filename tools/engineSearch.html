@@ -2,27 +2,6 @@
 layout: toolTemplate
 title: Engine Search
 ---
-th{
-	text-align:left;
-	font-size:110%;
-}
-td,th{
-	padding:3px;
-	border-left-style:solid;
-	border-top-style:solid;
-	border-width:1px;
-	border-color:#000000;
-}
-tr{
-	background-color:#DDDDDD;
-}
-tr:nth-child(2n+1){
-	background-color:initial;
-}
-table{
-	box-shadow:4px 4px 3px #888888;
-}
-	</style>
 	<script src="engines.js"></script>
 	<script>
 engines = engines.engines;//this may look silly, but there are also stage data in the file, not used at the moment.
@@ -77,7 +56,15 @@ var draw = function(){
 	var smallestY;
 	var largestX;
 	var largestY;
+	var xunit;
+	var yunit;
+	var xlabel;
+	var ylabel;
 	if(plotType === 0){
+		xunit = "kg";
+		yunit = "N";
+		xlabel = "Mass";
+		ylabel = "Thrust";
 		smallestX = largestX = engines[foundIndex[0]].mass;
 		smallestY = largestY = engines[foundIndex[0]].thrustVacuum;
 		for(var i=0;i<foundIndex.length;i++){
@@ -86,6 +73,10 @@ var draw = function(){
 		};
 	}
 	else if(plotType === 1){
+		xunit = "kg";
+		yunit = "s";
+		xlabel = "Mass";
+		ylabel = "Isp";
 		smallestX = largestX = engines[foundIndex[0]].mass;
 		smallestY = largestY = engines[foundIndex[0]].isp;
 		for(var i=0;i<foundIndex.length;i++){
@@ -94,6 +85,10 @@ var draw = function(){
 		};
 	}
 	else{
+		xunit = "s";
+		yunit = "N";
+		xlabel = "Isp";
+		ylabel = "Thrust";
 		smallestX = largestX = engines[foundIndex[0]].isp;
 		smallestY = largestY = engines[foundIndex[0]].thrustVacuum;
 		for(var i=0;i<foundIndex.length;i++){
@@ -115,7 +110,58 @@ var draw = function(){
 			largestY = yaxis[i];
 		};
 	};
-	//so the plot has to be scaled.
+	if(plotInfo.normalize.checked){
+		smallestX = 0;
+		smallestY = 0;
+	};
+	ctx = plot.getContext("2d");
+	ctx.fillStyle = "#D0D0D0";
+	ctx.rect(0,0,plotSize,plotSize);
+	ctx.fill();
+	ctx.fillStyle = "blue";
+	ctx.strokeStyle = "black";
+	ctx.font="10px Monospace";
+	var axisMargin = 50;
+	var edgeMargin = 40;
+	ctx.beginPath();
+	ctx.moveTo(axisMargin-5,plotSize-axisMargin);
+	ctx.lineTo(plotSize-edgeMargin,plotSize-axisMargin);
+
+	ctx.moveTo(axisMargin,plotSize-axisMargin+5);
+	ctx.lineTo(axisMargin,edgeMargin);
+
+	ctx.moveTo(axisMargin-5,edgeMargin);
+	ctx.lineTo(axisMargin+5,edgeMargin);
+
+	ctx.moveTo(plotSize-edgeMargin,plotSize-axisMargin+5);
+	ctx.lineTo(plotSize-edgeMargin,plotSize-axisMargin-5);
+	ctx.stroke();
+	for(var i=0;i<xaxis.length;i++){
+		ctx.beginPath();
+		var xpos = axisMargin + (plotSize - axisMargin - edgeMargin) * (xaxis[i] - smallestX)/(largestX - smallestX);
+		var ypos = plotSize-axisMargin - (plotSize - axisMargin -edgeMargin) * (yaxis[i] - smallestY)/( largestY - smallestY);
+		ctx.arc(
+			xpos,
+			ypos,
+			5,0,2*Math.PI);
+		ctx.fill();
+		ctx.fillText(engines[foundIndex[i]].name,xpos+10,ypos);
+	};
+	ctx.fillStyle = "black";
+	if(largestY > 10000 && yunit === "N"){
+		smallestY /= 1000;
+		largestY /= 1000;
+		yunit = "kN";
+	}
+	ctx.fillText(largestY + " " + yunit,10,35);
+	ctx.fillText(smallestY + " " + yunit,10,plotSize-axisMargin-5);
+	ctx.fillText(smallestX + " " + xunit,30,plotSize-axisMargin+15);
+	ctx.fillText(largestX + " " + xunit,plotSize-50,plotSize-axisMargin+15);
+	ctx.font="20px Monospace";
+	ctx.fillText(xlabel,plotSize/2,plotSize-axisMargin+25);
+	ctx.rotate(-Math.PI/2);
+	ctx.fillText(ylabel,-plotSize/2,axisMargin-10);
+	
 };
 	</script>
 </head>
@@ -167,20 +213,19 @@ var draw = function(){
 </table>
 <hr>
 <h2>Draw graph</h2>
-<p style="color:red">Under construction</p>
 <div class="container">
 	Plot:
 	<br>
 	<form id="plotInfo">
 		<input type="radio" name="plotType" value="0" checked>Mass - Thrust<br>
 		<input type="radio" name="plotType" value="1">Mass - Isp<br>
-		<input type="radio" name="plotType" value="2">Isp Thrust<br>
+		<input type="radio" name="plotType" value="2">Isp - Thrust<br>
 		<br>
 		Size:
 		<br>
 		<input type="radio" name="plotSize" value="512" checked>512 x 512<br>
-		<input type="radio" name="plotSize" value="1024">1024 x 1024<br>
-		<input type="radio" name="plotSize" value="2048">2048 x 2048<br>
+		<input type="radio" name="plotSize" value="1024">1024 x 1024<br><br>
+		<input type="checkbox" name="normalize">Start axis at 0.
 	</form>
 	<br>
 	<button onclick="draw()">Draw</button>
