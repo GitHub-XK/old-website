@@ -6,7 +6,7 @@ with open("json/planets.json") as data_file:
 	data = json.load(data_file)
 f = open("_data/planets.yml","w")
 try:
-	for planets in data["index"]:
+	for planets in ["sun","earth","moon","mars"]:
 		f.write("- name: "+planets+"\n")
 		if "mass" in data[planets]:
 			f.write("  mass: "+str(data[planets]["mass"])+"\n")
