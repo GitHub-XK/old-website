@@ -17,8 +17,10 @@ try:
 		if "orbit" in data[planets]:	
 			if "parent" in data[planets]["orbit"]:
 				f.write("  parent: "+data[planets]["orbit"]["parent"]+"\n")
-			f.write("  semiMajor: "+str(data[planets]["orbit"]["semiMajor"])+"\n")
-			f.write("  period: "+str(data[planets]["orbit"]["period"])+"\n")
+			if "semiMajor" in data[planets]["orbit"]:
+				f.write("  semiMajor: "+str(data[planets]["orbit"]["semiMajor"])+"\n")
+			if "period" in data[planets]["orbit"]:
+				f.write("  period: "+str(data[planets]["orbit"]["period"])+"\n")
 		else:
 			f.write("  parent: NaN\n")
 			f.write("  semiMajor: NaN\n")
