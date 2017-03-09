@@ -248,6 +248,12 @@
 					"system":"moon",
 					"name":"earthTransfer"
 				}
+			},
+			"marsTransfer":{
+				"external":{
+					"system":"mars",
+					"name":"earthTransfer"
+				}
 			}
 		}
 	}
@@ -363,9 +369,25 @@
 					}
 				]
 			},
-			"phobosTransfer":{},
-			"deimosTransfer":{},
-			"escape":{}
+			"phobosTransfer":{
+				"external":{
+					"system":"phobos",
+					"name":"marsTransfer"
+				}
+			},
+			"deimosTransfer":{
+				"external":{
+					"system":"deimos",
+					"name":"marsTransfer"
+				}
+			},
+			"escape":{},
+			"earthTransfer":{
+				"external":{
+					"system":"earth",
+					"name":"marsTransfer"
+				}
+			}
 		}
 	},
 	"atmosphere":{
