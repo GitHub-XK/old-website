@@ -321,6 +321,7 @@ var engines =
 		"isp":3100,
 		"thrustVacuum":0.092,
 		"fuel":"Xenon",
+		"power":2300,
 		"oxidizer":"Electric",
 		"mass":8.2,
 		"country":"US"
@@ -344,6 +345,28 @@ var engines =
 		"oxidizer":"Electric",
 		"mass":3.5,
 		"country":"Russia"
+	},
+	{
+		"source":"https://en.wikipedia.org/wiki/NEXT_(ion_thruster)",
+		"name":"NEXT",
+		"isp":4190,
+		"thrustVacuum":0.236,
+		"power":6900,
+		"fuel":"Xenon",
+		"oxidizer":"Electric",
+		"mass":3.5,
+		"country":"US"
+	},
+	{
+		"source":"https://ntrs.nasa.gov/archive/nasa/casi.ntrs.nasa.gov/20040139476.pdf",
+		"name":"HiPEP",
+		"isp":9620,
+		"thrustVacuum":0.67,
+		"power":39300,
+		"fuel":"Xenon",
+		"oxidizer":"Electric",
+		"mass":30,
+		"country":"US"
 	},
 	{
 		"source":"https://en.wikipedia.org/wiki/Vinci_(rocket_engine)",
