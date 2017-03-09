@@ -1,10 +1,51 @@
 {
-"planets":["sun","venus","earth","moon","mars"],
+"sun":{
+	"type":"star",
+	"mass":1.98855e30,
+	"gm":1.32712440018e20,
+	"radius":695700000,
+	"orbit":{
+		"children":[
+			"mercury","venus","earth","mars",
+			"vesta","pallas","ceres",
+			"jupiter","saturn","uranus","neptune",
+			"pluto","eris"
+		]
+	}
+},
+"mercury":{
+	"type":"terrestrial planet",
+	"mass":3.3011e23,
+	"gm":2.2032e13,
+	"radius":2439700,
+	"atmosphere":false,
+	"orbit":{
+		"periapsis":46001200000,
+		"apoapsis":69816900000,
+		"semiMajor":57909050000,
+		"eccentricity":0.205630,
+		"period":7600521.6,
+		"speed":47362,
+		"inclination":7.005,
+		"ascending":48.331,
+		"argument":29.124,
+		"parent":"sun"
+	}
+},
 "venus":{
+	"type":"terrestrial planet",
 	"mass":4.8675e24,
 	"gm":3.24859e14,
 	"gravity":8.87,
 	"radius":6051800,
+	"area":4.6023e14,
+	"volume":9.2843e20,
+	"density":5243,
+	"sideralPeriod":-20997360,
+	"rotationVelocity":1.81,
+	"axialTilt":177.36,
+	"poleAsc":272.76,
+	"poleDec":67.16,
 	"atmosphere":{
 		"ceiling":100000,
 		"layers":[
@@ -34,15 +75,35 @@
 			"Ne":0.000007
 		}
 	},
-	"orbit":{}
+	"orbit":{
+		"periapsis":10747700000,
+		"apoapsis":108939000000,
+		"semiMajor":108208000000,
+		"eccentricity":0.006772,
+		"period":19414166.4,
+		"speed":35020,
+		"inclination":3.39458,
+		"ascending":76.68,
+		"argument":54.884,
+		"parent":"sun"
+	}
 },
 "earth":{
+	"type":"terrestrial planet",
 	"mass":7.342e24,
 	"gm":3.986004418e14,
 	"gravity":9.807,
 	"radius":6371000,
 	"polarRadius":6356800,
 	"equatorRadius":6378100,
+	"area":510072000e6,
+	"volume":1.08321e21,
+	"density":5514,
+	"sideralPeriod":86164.10035,
+	"synodicPeriod":86400,
+	"rotationVelocity":465.1,
+	"axialTilt":23.4392811,
+	"axialTiltEcliptic":23.4392811,
 	"stationaryOrbitRadius":42164000,
 	"atmosphere":{
 		"ceiling":100000,
@@ -125,17 +186,152 @@
 		"period":31558150,
 		"speed":29780,
 		"inclination":0,
+		"ascending":-11.26064,
+		"argument":114.20783,
 		"parent":"sun",
-		"children":["moon"]
+		"satellites":1,
+		"children":["moon"],
+		"nodes":{
+			"surface":{
+				"transfer":[
+					{
+						"target":"lowOrbit",
+						"cost":9500
+					}
+				]
+			},
+			"lowOrbit":{
+				"altitude":250000,
+				"transfer":[
+					{
+						"target":"moonTransfer",
+						"cost":3120
+					},
+					{
+						"target":"escape",
+						"cost":3210
+					},
+					{
+						"target":"surface",
+						"cost":7770,
+						"air":true
+					}
+				]
+			},
+			"escape":{
+				"transfer":[
+					{
+						"target":"moonTransfer",
+						"cost":90,
+						"air":true
+					},
+					{
+						"target":"lowOrbit",
+						"cost":3210,
+						"air":true
+					}
+				]
+			},
+			"moonTransfer":{
+				"transfer":[
+					{
+						"target":"lowOrbit",
+						"cost":3120,
+						"air":true
+					},
+					{
+						"target":"escape",
+						"cost":90
+					}
+				],
+				"external":{
+					"system":"moon",
+					"name":"earthTransfer"
+				}
+			}
+		}
 	}
 },
+"moon":{
+	"type":"moon",
+	"mass":7.342e22,
+	"gm":4.9048695e12,
+	"gravity":1.62,
+	"radius":1737100,
+	"polarRadius":1736000,
+	"equatorRadius":1738100,
+	"area":3.793e13,
+	"volume":2.1958e19,
+	"density":3344,
+	"sideralRotation":2360591.5104,
+	"rotationVelocity":4.627,
+	"axialTilt":6.687,
+	"axialTiltEcliptic":1.5424,
+	"orbit":{
+		"periapsis":362600000,
+		"apoapsis":405400000,
+		"semiMajor":384399000,
+		"eccentricity":0.0549,
+		"period":2360591,
+		"speed":1022,
+		"inclination":5.145,
+		"parent":"earth",
+		"nodes":{
+			"surface":{
+				"transfer":[
+					{
+						"target":"lowOrbit",
+						"cost":1720
+					}
+				]
+			},
+			"lowOrbit":{
+				"transfer":[
+					{
+						"target":"surface",
+						"cost":1720
+					}
+				]
+			},
+			"earthTransfer":{
+				"transfer":[
+					{
+						"target":"escape",
+						"cost":140
+					}
+				],
+				"external":{
+					"system":"earth",
+					"name":"moonTransfer"
+				}
+			},
+			"escape":{
+				"transfer":[
+					{
+						"target":"lowOrbit",
+						"cost":680
+					},
+					{
+						"target":"earthTransfer",
+						"cost":140
+					}
+				]
+			}
+		}
+	},
+	"atmosphere":false
+},
 "mars":{
+	"type":"terrestrial planet",
 	"mass":6.4171e23,
 	"gm":4.282837e13,
 	"gravity":3.711,
 	"radius":3389500,
 	"polarRadius":3376200,
 	"equatorRadius":3396200,
+	"volume":1.6318e20,
+	"area":144798500e6,
+	"density":3933.5,
 	"orbit":{
 		"periapsis":206700000000,
 		"apoapsis":249200000000,
@@ -144,8 +340,33 @@
 		"period":59354294,
 		"speed":24077,
 		"inclination":1.85,
+		"ascending":49.558,
+		"argument":286.502,
 		"parent":"sun",
-		"children":["phobos","deimos"]
+		"satellites":2,
+		"children":["phobos","deimos"],
+		"nodes":{
+			"surface":{
+				"transfer":[
+					{
+						"target":"lowOrbit",
+						"cost":3600
+					}
+				]
+			},
+			"lowOrbit":{
+				"transfer":[
+					{
+						"target":"surface",
+						"cost":null,
+						"air":true
+					}
+				]
+			},
+			"phobosTransfer":{},
+			"deimosTransfer":{},
+			"escape":{}
+		}
 	},
 	"atmosphere":{
 		"layers":[
@@ -169,30 +390,188 @@
 		}
 	}
 },
-"moon":{
-	"mass":7.342e22,
-	"gm":4.9048695e12,
-	"gravity":1.62,
-	"radius":1737100,
-	"polarRadius":1736000,
-	"equatorRadius":1738100,
+"phobos":{
+	"type":"moon",
+	"radius":11266.7,
+	"boxModel":[27000,22000,18000],
+	"mass":1.0659e16,
+	"area":1548.3e6,
+	"volume":5783.61e9,
+	"density":1876,
+	"gravity":0.0057,
 	"orbit":{
-		"periapsis":362600000,
-		"apoapsis":405400000,
-		"semiMajor":384399000,
-		"eccentricity":0.0549,
-		"period":2360591,
-		"speed":1022,
-		"inclination":5.145,
-		"parent":"earth"
+		"periapsis":9234420,
+		"apoapsis":9517580,
+		"semiMajor":9376000,
+		"eccentricity":0.0151,
+		"period":27553.844,
+		"speed":2138,
+		"inclination":26.04,
+		"nodes":{
+			"lowOrbit":{},
+			"escape":{},
+			"deimosTransfer":{
+				"external":{
+					"system":"deimos",
+					"name":"phobosTransfer"
+				}
+			},
+			"marsTransfer":{}
+		}
+	},
+	"atmosphere":false
+},
+"deimos":{
+	"type":"moon",
+	"radius":6200,
+	"boxModel":[15000,12200,11000],
+	"mass":1.4762e15,
+	"area":495.1548e6,
+	"volume":999.78e9,
+	"density":1471,
+	"gravity":0.00306,
+	"orbit":{
+		"periapsis":23455500,
+		"apoapsis":23470900,
+		"semiMajor":23463200,
+		"eccentricity":0.00033,
+		"period":109123.2,
+		"speed":1351.3,
+		"inclination":27.58,
+		"nodes":{
+			"lowOrbit":{},
+			"escape":{},
+			"phobosTransfer":{
+				"external":{
+					"system":"phobos",
+					"name":"deimosTransfer"
+				}
+			},
+			"marsTransfer":{}
+		}
+	},
+	"atmosphere":false
+},
+"ceres":{
+	"type":"dwarf planet",
+	"gm":6.26325e10,
+	"radius":473000,
+	"boxModel":[965200,961200,891200],
+	"area":2770000e6,
+	"volume":421000000e9,
+	"mass":9.393e20,
+	"density":2161,
+	"gravity":0.28,
+	"sideralPeriod":32667.012,
+	"rotationVelocity":92.61,
+	"axialTilt":4,
+	"poleAsc":294.18,
+	"poleDec":66.764,
+	"orbit":{
+		"periapsis":382620000000,
+		"apoapsis":445410000000,
+		"semiMajor":414010000000,
+		"eccentricity":0.075823,
+		"period":145292832,
+		"speed":17905,
+		"inclination":10.593,
+		"ascending":80.3293,
+		"argument":72.522
 	}
 },
-"sun":{
-	"mass":1.98855e30,
-	"gm":1.32712440018e20,
-	"radius":695700000,
+"pallas":{
+	"type":"asteroid"
+},
+"vesta":{
+	"type":"asteroid"
+},
+"jupiter":{
+	"type":"gas planet",
+	"gm":1.26686534e17,
+	"radius":69911000,
+	"polarRadius":66854000,
+	"equatorRadius":71492000,
+	"area":6.1419e16,
+	"volume":1.4313e24,
+	"mass":1.8986e27,
+	"density":1326,
+	"gravity":24.79,
+	"sideralPeriod":35730,
+	"rotationVelocity":12600,
+	"axialTilt":3.13,
+	"poleAsc":268.057,
+	"poleDec":64.496,
+	"atmosphere":{
+		"composition":{
+			"H2":0.898,
+			"He":0.102,
+			"CH4":0.003,
+			"NH3":0.00026,
+			"C2H6":0.000006,
+			"H2O":0.000004
+		}
+	},
 	"orbit":{
-		"children":["earth","mars"]
+		"periapsis":740550000000,
+		"apoapsis":816040000000,
+		"semiMajor":778299000000,
+		"eccentricity":0.048498,
+		"period":374335776,
+		"speed":13070,
+		"inclination":1.303,
+		"ascending":100.464,
+		"argument":273.867,
+		"parent":"sun",
+		"satellites":67,
+		"children":["io","europa","ganymede","callisto"]
 	}
+},
+"saturn":{
+	"type":"gas planet",
+	"gm":3.7931187e16,
+	"orbit":{
+		"parent":"sun",
+		"children":["mimas","encheladus","tethys","dione","rhea","titan","hyperion","phoebe"]
+	}
+},
+"uranus":{
+	"type":"gas planet",
+	"gm":5.793939e15,
+	"orbit":{
+		"parent":"sun",
+		"children":["titania","oberon","umbriel","ariel","miranda"]
+	}
+},
+"neptune":{
+	"type":"gas planet",
+	"gm":6.836529e15,
+	"orbit":{
+		"parent":"sun",
+		"children":["triton","proteus","nereid"]
+	}
+},
+"pluto":{
+	"type":"dwarf planet",
+	"gm":8.71e11,
+	"orbit":{
+		"parent":"sun",
+		"satellites":5,
+		"children":["charon","nix","hydra"]
+	}
+},
+"charon":{
+	"type":"moon",
+	"orbit":{
+		"parent":"pluto"
+	}
+},
+"eris":{
+	"type":"dwarf planet",
+	"gm":1.108e12
+},
+"META":{
+	"author":"Sigvart Brendberg",
+	"updated":2017,
+	"url":"http://moonwards.com/json/planets.json"
 }
 }

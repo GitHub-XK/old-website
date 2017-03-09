@@ -1,0 +1,22 @@
+				<script src="js/rocketEquation.js"></script>
+				<h2>The Rocket Equation</h2>
+				<p class="frameBuffer">Mass ratio:</p>
+				<input
+					type="text"
+					title="Start mass divided by end mass"
+					placeholder="Start mass divided by end mass"
+					value=""
+					id="massratioRE">
+				<p class="frameBuffer">Exhaust velocity: (m/s)</p>
+				<input
+					type="text"
+					placeholder="Velocity of the rocket exhaust"
+					value=""
+					id="exhaustvelocityRE">
+				<p>
+					<input type="checkbox" id="ispcheckboxRE"> use I<sub>sp</sub> instead
+				</p>
+				<button onclick="rocket()">Calculate!</button><br>
+				<p id="resultRE">&nbsp;</p>
+				<p id="moreThan"></p>
+				<p id="lessThan"></p>
