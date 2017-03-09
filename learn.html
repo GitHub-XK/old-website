@@ -22,21 +22,25 @@ of the Moon."
 		</p>
 	</div>
 </header>
-<div class="container">
-	<section id="tryit">
+<div class="containerLearn">
+	<section class="calc" id="tryit">
 		<div class="outerDiv">
-			<div class="innerDiv">
+			<div class="calcDiv">
 				{%include_relative _includes/learn/suborbital.html%}
 			</div>
 		</div>
+    <div class="outerDiv" id="LunarElevator">
+    	<div class="calcDiv">
 				{%include_relative _includes/learn/lunarElevator.html%}
+    	</div>
+    </div>
 		<div class="outerDiv">
-			<div class="innerDiv">
+			<div class="calcDiv">
 				{%include_relative _includes/learn/rocketEquation.html%}
 			</div>
 		</div>
 		<div class="outerDiv">
-			<div class="innerDiv">
+			<div class="calcDiv">
 				<h2>Rotovators</h2>
 				<div class="imgResize">
 					<a href="rotovator.html">
@@ -48,9 +52,9 @@ of the Moon."
 	</section>
 </div>
 <div class="container">
-<section id="lessons">
+<section class="wide" id="lessons">
 	<div class="outerDiv">
-		<div class="innerDiv wide">
+		<div class="innerDiv">
 			<h2>A quick introduction to orbital mechanics</h2>
 			<p>
 				Orbital motion? That is just what happens when gravity is the only force that applies. In space, which mostly consists of space, things are seldom touching each other. As gravity is the only way objects then interact, orbital mechanics becomes the tool of choice to analyse what is going on.
@@ -181,7 +185,7 @@ of the Moon."
 				How can we achieve that? The answer is naturally to get a velocity higher than the escape velocity. But how exactly does that relate to the final velocity we end up with once we have escaped?
 				Behold. The Pythagoras formula of orbital mechanics:
 			</p>
-			<img src="img/orbitalPythagoras.png" alt="v² = v_escape² + v_infinity²">
+			<img src="img/orbitalPythagoras.png" alt="v² = v_escape² + v_infinity²" width="50%">
 			<p>
 				Example: Say we are in an orbit again around a mass with a $\mu$ of 1. Our distance is also 1. The escape velocity at this distance is then $\sqrt{2}$. Say then that we have an actual velocity larger than that, for instance $v=2$. In that case, we are going to escape. However, we are still going to be slowed down by gravity, so our final velocity when we have travelled far away is going to be lower than 2 for sure.
 					$$v^2 = v_{\infty}^2 + v_{e}^2$$
@@ -205,7 +209,7 @@ of the Moon."
 </section>
 <section id="rockets">
 	<div class="outerDiv">
-		<div class="innerDiv wide">
+		<div class="innerDiv">
 			<h2>Delta-v: The core idea of rockets</h2>
 		</div>
 	</div>
