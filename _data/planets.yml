@@ -2,9 +2,3 @@
   mass: 1.98855e+30
   radius: 695700000
   gm: 1.32712440018e+20
-  parent: NaN
-  semiMajor: NaN
-  period: NaN
-- name: mercury
-  radius: 2439700
-  gm: 22032000000000.0
