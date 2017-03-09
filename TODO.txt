@@ -5,6 +5,8 @@ Hoh:
 -Add more to the learn page introduction to orb mec
 -Embed youtube video somehow to avoid overhead
 -Test fakesmile in IE
+-Plot engines in engine list
+-Get pellet graphics
 
 SOLVED:
 
