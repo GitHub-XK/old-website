@@ -1,78 +1,85 @@
 <div class="sidePairTop">
-  <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="600" height="600" viewBox="0 0 600 600">
-  	<rect x="0" y="0" width="100%" height="100%" fill="black"/>
-  	<circle cx="300" cy="300" r="72" fill="grey" stroke="white" stroke-width="10"/>
-  	<circle cx="300" cy="300" r="180" fill="none" stroke="white" stroke-width="1"/>
-  	<g>
-  		<line x1="410" y1="300" x2="590" y2="300" stroke-width="2" stroke="white"/>
-  		<circle cx="480" cy="300" r="5" fill="white"/>
-  		<animateTransform
-  			attributeName="transform"
-  			attributeType="XML"
-  			type="rotate"
-  			values="0 300 300;1080 300 300"
-  			dur="15s"
-  			begin="0s"/>
-  	</g>
-  	<g>
-  		<g>
-  		<g>
-  			<g>
-  				<rect x="380" y="295" width="10" height="10" fill="blue"/>
-  				<rect x="371" y="295" width="10" height="10" fill="blue">
-  					<animate attributeName="fill" attributeType="XML" begin="3s" dur="1s" fill="freeze" from="blue" to="red" />
-  					<animate attributeName="fill" attributeType="XML" begin="6s" dur="1s" fill="freeze" from="red" to="blue" />
-  				</rect>
-  				<animateTransform
-  					attributeName="transform"
-  					attributeType="XML"
-  					type="rotate"
-  					values="0 380 320;40 380 320;110 380 320"
-  					dur="1s"
-  					begin="4.2s"
-  					fill="freeze"
-  				/>
-  				<animateTransform
-  					attributeName="transform"
-  					attributeType="XML"
-  					type="rotate"
-  					values="110 380 320;15 380 305"
-  					dur="1s"
-  					begin="6s"
-  					fill="freeze"
-  				/>
-  			</g>
-  			<animateTransform
-  				attributeName="transform"
-  				attributeType="XML"
-  				type="translate"
-  				values="0 0;20 25"
-  				dur="1s"
-  				begin="6s"
-  				fill="freeze"
-  			/>
-  			<animateTransform
-  				attributeName="transform"
-  				attributeType="XML"
-  				type="translate"
-  				values="20 25;350 110"
-  				dur="5s"
-  				begin="8s"
-  				fill="freeze"
-  			/>
-  		</g>
-  			<animateTransform
-  				attributeName="transform"
-  				attributeType="XML"
-  				type="rotate"
-  				values="0 300 300;720 300 300"
-  				dur="10s"
-  				begin="5.2s"
-  				fill="freeze"
-  			/>
-  		</g>
-  	</g>
- 	<image src="img/verticalTether.gif" xlink:href="">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="600" height="600" viewBox="0 0 600 600">
+	<rect x="0" y="0" width="100%" height="100%" fill="black"/>
+	<circle cx="300" cy="300" r="72" fill="grey" stroke="white" stroke-width="10"/>
+	<circle cx="300" cy="300" r="180" fill="none" stroke="grey" stroke-width="1"/>
+	<g>
+		<line x1="410" y1="300" x2="590" y2="300" stroke-width="2" stroke="white"/>
+		<circle cx="480" cy="300" r="5" fill="white"/>
+		<animateTransform
+			attributeName="transform"
+			attributeType="XML"
+			type="rotate"
+			values="0 300 300;1080 300 300"
+			dur="15s"
+			begin="start.click+0s"/>
+	</g>
+	<g>
+		<g>
+		<g>
+			<g>
+				<rect x="380" y="295" width="10" height="10" fill="blue"/>
+				<rect x="371" y="295" width="10" height="10" fill="blue">
+					<animate attributeName="fill" attributeType="XML" begin="start.click+3s" dur="1s" fill="freeze" from="blue" to="red" />
+					<animate attributeName="fill" attributeType="XML" begin="start.click+6s" dur="1s" fill="freeze" from="red" to="blue" />
+				</rect>
+				<animateTransform
+					attributeName="transform"
+					attributeType="XML"
+					type="rotate"
+					values="0 380 320;40 380 320;110 380 320"
+					dur="1s"
+					begin="start.click+4.2s"
+					fill="freeze" 
+				/>
+				<animateTransform
+					attributeName="transform"
+					attributeType="XML"
+					type="rotate"
+					values="110 380 320;15 380 305"
+					dur="1s"
+					begin="start.click+6s"
+					fill="freeze"
+				/>
+			</g>
+			<animateTransform
+				attributeName="transform"
+				attributeType="XML"
+				type="translate"
+				values="0 0;20 25"
+				dur="1s"
+				begin="start.click+6s"
+				fill="freeze" 
+			/>
+			<animateTransform
+				attributeName="transform"
+				attributeType="XML"
+				type="translate"
+				values="20 25;350 110"
+				dur="5s"
+				begin="start.click+8s"
+				fill="freeze" 
+			/>
+		</g>
+			<animateTransform
+				attributeName="transform"
+				attributeType="XML"
+				type="rotate"
+				values="0 300 300;720 300 300"
+				dur="10s"
+				begin="start.click+5.2s"
+				fill="freeze" 
+			/>
+		</g>
+	</g>
+	<g id="start">
+		<rect x="10" y="10" width="90" height="25" fill="#00FF00" stroke="white">
+			<set attributeName="fill" attributeType="XML" begin="mouseover" to="#00A000"/>
+			<set attributeName="fill" attributeType="XML" begin="mouseout" to="#00D000"/>
+		</rect>
+		<text pointer-events="none" x="15" y="30" fill="white" font-size="20">Restart</text>
+	</g>
+ 	<image src="img/verticalTether.gif" xlink:href=""/>
 </svg>
 </div>
 <div class="sidePairBottom">
