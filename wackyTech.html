@@ -32,7 +32,7 @@ MathJax.Hub.Config({
 				<li>Usage of ion thrusters in the Earth-Moon system | <span style="color:green">mentioned but not explained</span></li>
 				<li>"The numbers" | debatable data | <span style="color:orange">raw idea</span></li>
 				<li>C3=0 manifolds | pure two-body zero energy transfers | <span style="color:red">Magic</span></li>
-				<li>Density impulse | why mercury is good for you | <span style="color:orange">raw idea</span></li>
+				<li><a href="#mercuryIsGoodForYou">Mercury is good for you</a>| Density impulse | <span style="color:orange">raw idea</span></li>
 			</ul>
 		</div>
 	</section>
@@ -111,7 +111,7 @@ $$\Delta v = \ln \left(\frac{2000 kg}{1000 kg}\right) \cdot 4042\frac{m}{s} = 28
 What? Water is <i>better</i> than hydrogen? The reason is that the second setup has a lot more propellant than the first one. That does not matter if we are launching from the ground as mass if free there. But mass is obviously not free in for instace LEO, in fact it is very expensive. That means a high density is a good thing at the beginning of the mission, but after a while only exhaust velocity is important. Exhaust velocity is of course also important at the beginning as well, so we are looking at a quantity, <b>density impulse</b>. Density impulse is propellant density multiplied by exhaust velocity. As the mission progresses, density impulse becomes less important and only exhaust velocity matters.
 			<p>
 			<p>
-There is a tradeoff point in the mission where we should switch from water to hydrogen, or even multiple such points for water-ammonia, ammonia-methane etc. The fascinating calculations about density impulse tradeoffs are discussed in "Why mercury is good for you", but as this article is not yet written I can only provide a link to a Stack Echange question in the absence of it: <a href="https://space.stackexchange.com/questions/13454/is-it-possible-to-use-zinc-powder-as-a-ntr-propellant">Is-it-possible-to-use-zinc-powder-as-a-ntr-propellant?</a>
+There is a tradeoff point in the mission where we should switch from water to hydrogen, or even multiple such points for water-ammonia, ammonia-methane etc. The fascinating calculations about density impulse tradeoffs are discussed in "Mercury is good for you", but as this article is not yet written I can only provide a link to a Stack Echange question in the absence of it: <a href="https://space.stackexchange.com/questions/13454/is-it-possible-to-use-zinc-powder-as-a-ntr-propellant">Is-it-possible-to-use-zinc-powder-as-a-ntr-propellant?</a>
 			</p>
 			<h3>Nuclear propellant reference</h3>
 			<p>Exhaust velocity may vary slightly from the listed value</p>
@@ -119,7 +119,7 @@ There is a tradeoff point in the mission where we should switch from water to hy
 				<tbody>
 					<tr>
 						<th>Propellant:</th>
-						<th>$V_ex$:</th>
+						<th>$V_e$:</th>
 						<th>$\rho$:</th>
 					</tr>
 					<tr>
@@ -144,6 +144,18 @@ There is a tradeoff point in the mission where we should switch from water to hy
 					</tr>
 				</tbody>
 			</table>
+		</div>
+	</div>
+	<div class="outerDiv">
+		<div class="innerDiv" id="mercuryIsGoodForYou">
+			<h2>Mercury is good for you</h2>
+			<p>The balance between thrust, exhauste velocity and density impulse is an interesting one. Here I am going to present two of the optimization cases.</p>
+			<p>Optimization 1: Delta-v maximizing<br><br>
+Idea: Given a tank volume, figure out how it can be filled with various propellants to achieve maximum $\Delta v$.
+			</p>
+			<p>Optimization 2: Minimal thrust maximizing<br><br>
+Idea: Given a required velocity change, figure out how we can fill a tank with various propellants to get an optimal thrust-to-weight ratio.
+			</p>
 		</div>
 	</div>
 </div>
