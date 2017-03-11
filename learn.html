@@ -29,11 +29,11 @@ of the Moon."
 				{%include_relative _includes/learn/suborbital.html%}
 			</div>
 		</div>
-    <div class="outerDiv" id="LunarElevator">
-    	<div class="calcDiv">
+		<div class="outerDiv" id="LunarElevator">
+			<div class="calcDiv">
 				{%include_relative _includes/learn/lunarElevator.html%}
-    	</div>
-    </div>
+			</div>
+		</div>
 		<div class="outerDiv">
 			<div class="calcDiv">
 				{%include_relative _includes/learn/rocketEquation.html%}
@@ -47,6 +47,13 @@ of the Moon."
 						<img src="img/RotovatorCanvasLink.png" alt="link to rotovator page">
 					</a>
 				</div>
+			</div>
+		</div>
+		<div class="outerDiv">
+			<div cladd="calcDiv">
+				<!--Geogebra applet-->
+				<div id="applet_container3" style="width:900px;height:500px;padding:10px;margin-bottom:20px;"></div>
+				<!--end Geogebra applet-->
 			</div>
 		</div>
 	</section>
@@ -228,8 +235,15 @@ var applet2 = new GGBApplet(
 		"showtoolbar":false
 	},true
 );
+var applet3 = new GGBApplet(
+	{
+		filename:"GeoGebra/delta-v_ToScale.ggb",
+		"showtoolbar":false
+	},true
+);
 window.onload = function(){
 	applet1.inject('applet_container1','preferHTML5');
 	applet2.inject('applet_container2','preferHTML5');
+	applet3.inject('applet_container3','preferHTML5');
 }
 </script>
