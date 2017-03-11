@@ -64,16 +64,16 @@
 				"pressure":53844
 			}
 		],
-		"composition":{
-			"CO2":0.965,
-			"N2":0.035,
-			"SO2":0.00015,
-			"Ar":0.00007,
-			"H2O":0.00002,
-			"CO":0.000017,
-			"He":0.000012,
-			"Ne":0.000007
-		}
+		"composition":[
+			["CO2",0.965],
+			["N2",0.035],
+			["SO2",0.00015],
+			["Ar",0.00007],
+			["H2O",0.00002],
+			["CO",0.000017],
+			["He",0.000012],
+			["Ne",0.000007]
+		]
 	},
 	"orbit":{
 		"periapsis":10747700000,
@@ -165,17 +165,17 @@
 				"pressure":0.3734
 			}
 		],
-		"composition":{
-			"N2":0.78084,
-			"O2":0.20946,
-			"Ar":0.00934,
-			"CO2":0.000407,
-			"Ne":0.00001818,
-			"He":0.00000524,
-			"CH4":0.0000018,
-			"Kr":0.00000114,
-			"H2":0.00000055
-		},
+		"composition":[
+			["N2",0.78084],
+			["O2",0.20946],
+			["Ar",0.00934],
+			["CO2",0.000407],
+			["Ne",0.00001818],
+			["He",0.00000524],
+			["CH4",0.0000018],
+			["Kr",0.00000114],
+			["H2",0.00000055]
+		],
 		"molar":0.02896
 	},
 	"orbit":{
@@ -229,6 +229,42 @@
 						"target":"lowOrbit",
 						"cost":3210,
 						"air":true
+					},
+					{
+						"target":"marsTransfer",
+						"cost":390
+					},
+					{
+						"target":"venusTransfer",
+						"cost":280
+					},
+					{
+						"target":"mercuryTransfer",
+						"cost":2340
+					},
+					{
+						"target":"vestaTransfer",
+						"cost":1310
+					},
+					{
+						"target":"ceresTransfer",
+						"cost":1690
+					},
+					{
+						"target":"jupiterTransfer",
+						"cost":3090
+					},
+					{
+						"target":"saturnTransfer",
+						"cost":4080
+					},
+					{
+						"target":"uranusTransfer",
+						"cost":4770
+					},
+					{
+						"target":"neptuneTransfer",
+						"cost":5040
 					}
 				]
 			},
@@ -252,6 +288,60 @@
 			"marsTransfer":{
 				"external":{
 					"system":"mars",
+					"name":"earthTransfer"
+				}
+			},
+			"ceresTransfer":{
+				"external":{
+					"system":"ceres",
+					"name":"earthTransfer"
+				}
+			},
+			"vestaTransfer":{
+				"external":{
+					"system":"vesta",
+					"name":"earthTransfer"
+				}
+			},
+			"venusTransfer":{
+				"external":{
+					"system":"venus",
+					"name":"earthTransfer"
+				}
+			},
+			"mercuryTransfer":{
+				"external":{
+					"system":"mercury",
+					"name":"earthTransfer"
+				}
+			},
+			"jupiterTransfer":{
+				"external":{
+					"system":"jupiter",
+					"name":"earthTransfer"
+				}
+			},
+			"saturnTransfer":{
+				"external":{
+					"system":"saturn",
+					"name":"earthTransfer"
+				}
+			},
+			"uranusTransfer":{
+				"external":{
+					"system":"uranus",
+					"name":"earthTransfer"
+				}
+			},
+			"neptuneTransfer":{
+				"external":{
+					"system":"neptune",
+					"name":"earthTransfer"
+				}
+			},
+			"plutoTransfer":{
+				"external":{
+					"system":"pluto",
 					"name":"earthTransfer"
 				}
 			}
@@ -403,13 +493,13 @@
 				"density":null
 			}
 		],
-		"composition":{
-			"CO2":0.9597,
-			"Ar":0.0193,
-			"N2":0.0189,
-			"O2":0.00146,
-			"CO":0.000557
-		}
+		"composition":[
+			["CO2",0.9597],
+			["Ar",0.0193],
+			["N2",0.0189],
+			["O2",0.00146],
+			["CO",0.000557]
+		]
 	}
 },
 "phobos":{
@@ -524,14 +614,14 @@
 	"poleAsc":268.057,
 	"poleDec":64.496,
 	"atmosphere":{
-		"composition":{
-			"H2":0.898,
-			"He":0.102,
-			"CH4":0.003,
-			"NH3":0.00026,
-			"C2H6":0.000006,
-			"H2O":0.000004
-		}
+		"composition":[
+			["H2",0.898],
+			["He",0.102],
+			["CH4",0.003],
+			["NH3",0.00026],
+			["C2H6",0.000006],
+			["H2O",0.000004]
+		]
 	},
 	"orbit":{
 		"periapsis":740550000000,
@@ -553,9 +643,43 @@
 	"gm":3.7931187e16,
 	"orbit":{
 		"parent":"sun",
-		"children":["mimas","encheladus","tethys","dione","rhea","titan","hyperion","phoebe"]
+		"children":["janus","mimas","enceladus","tethys","dione","rhea","titan","hyperion","iapetus","phoebe"]
 	}
 },
+"janus":{},
+"mimas":{},
+"enceladus":{},
+"tethys":{},
+"dione":{},
+"rhea":{},
+"titan":{
+	"radius":2575500,
+	"area":8.3e13,
+	"volume":7.16e19,
+	"mass":1.3452e23,
+	"density":1879.8,
+	"gravity":1.352,
+	"atmosphere":{
+		"composition":[
+			["N2",0.984],
+			["CH4",0.014],
+			["H2",0.002]
+		]
+	},
+	"orbit":{
+		"parent":"saturn",
+		"periapsis":1186680000,
+		"apoapsis":1257060000,
+		"semiMajor":1221870000,
+		"eccentricity":0.0288,
+		"period":1377648,
+		"speed":5570,
+		"inclination":0.34854
+	}
+},
+"hyperion":{},
+"iapetus":{},
+"phoebe":{},
 "uranus":{
 	"type":"gas planet",
 	"gm":5.793939e15,
