@@ -4,13 +4,26 @@ title: Moonwards Virtual Moon Colony Project
 stylesheet: "css/main.nest.sass.css"
 description: "Some tech is just awesome."
 ---
+<script async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/x-mathjax-config">
+//this is a script for making the single $ inline delimeter for Mathjax work.
+//From this stack exchange post: http://tex.stackexchange.com/a/27656
+MathJax.Hub.Config({
+	tex2jax:{
+		inlineMath:[['$','$'],["\\(","\\)"]],
+		processEscapes:true
+	}
+});
+</script>
 <div class="container">
 	<section>
 		<div class="outerDiv">
 			<h1>Wacky tech</h1>
 			<p>This is a :idea-list: page, not one regulary browsed. Technologies Hoh wants to write about:</p>
+			<p>Articles have their origin here and move out when they are completed.</p>
 			<ul>
-				<li>Nuclear thermal rockets | high isp medium thrust propulsion | <span style="color:green">mentioned but not explained</span></li>
+				<li><a href="#nuclear">Nuclear thermal rockets</a> | high isp medium thrust propulsion | <span style="color:green">mentioned but not explained</span></li>
+				<li><a href="#moreThanHydrogen">More than just hydrogen</a> | nuclear engines are not picky | <span style="color:green">perspective</span></li>
 				<li>Beamed thermal rockets | high isp low thrust propulsion | <span style="color:blue">Wacky</span></li>
 				<li>Solar thermal rockets | high isp low thrust propulsion | <span style="color:blue">Wacky</span></li>
 				<li>Rotating tethers | momentum management | <span style="color:blue">Wacky</span></li>
@@ -76,6 +89,61 @@ Twice the efficiency is just the instantanous benefit. It keeps on increasing wi
 					</tbody>
 				</table>
 			</p>
+		</div>
+	</div>
+	<div class="outerDiv">
+		<div class="innerDiv" id="moreThanHydrogen">
+			<h2>More than just hydrogen</h2>
+			<p>
+We have already established the advantages of using nuclear rocket engines. As hydrogen is the perfect propellan, why should we use anything else? Well, it turns out hydrogen has some drawbacks.
+			</p>
+			<p>
+Firstly, it has to be stored cryogenically at a freezing −252.87 °C. That is not a huge problem if the hydrogen is used within minutes after launch like in a conventional upper stage. But what if it has to be stored for days? Months? Or even years? The refridgeration systems tend to be complicated, and the tanks require insulation. More added mass is a bad thing.
+			</p>
+			<p>
+Secondly, hydrogen has a very low density, only $71 \frac{kg}{m^3}$ or 7% of water if you like. That means huge tanks. But wait, if we have huge tanks we can fill them with more propellant if we use something with a higher density than hydrogen instead. After all, propellant is the cheapest part of a rocket. A worked example of why that can be a good thing:
+			</p>
+			<p>
+Consider a rocket with a dry mass of 1000 kg with a 1 m³ tank for propellant. We can then use the rocket equation to find the $\Delta v$ capabilities with both hydrogen and water. First, hydrogen:
+$$\Delta v = \ln \left(\frac{1071 kg}{1000 kg}\right) \cdot 9000 \frac{m}{s} = 617 \frac{m}{s}$$
+Then water:
+$$\Delta v = \ln \left(\frac{2000 kg}{1000 kg}\right) \cdot 4042\frac{m}{s} = 2802 \frac{m}{s}$$
+What? Water is <i>better</i> than hydrogen? The reason is that the second setup has a lot more propellant than the first one. That does not matter if we are launching from the ground as mass if free there. But mass is obviously not free in for instace LEO, in fact it is very expensive. That means a high density is a good thing at the beginning of the mission, but after a while only exhaust velocity is important. Exhaust velocity is of course also important at the beginning as well, so we are looking at a quantity, <b>density impulse</b>. Density impulse is propellant density multiplied by exhaust velocity. As the mission progresses, density impulse becomes less important and only exhaust velocity matters.
+			<p>
+			<p>
+There is a tradeoff point in the mission where we should switch from water to hydrogen, or even multiple such points for water-ammonia, ammonia-methane etc. The fascinating calculations about density impulse tradeoffs are discussed in "Why mercury is good for you", but as this article is not yet written I can only provide a link to a Stack Echange question in the absence of it: <a href="https://space.stackexchange.com/questions/13454/is-it-possible-to-use-zinc-powder-as-a-ntr-propellant">Is-it-possible-to-use-zinc-powder-as-a-ntr-propellant?</a>
+			</p>
+			<h3>Nuclear propellant reference</h3>
+			<p>Exhaust velocity may vary slightly from the listed value</p>
+			<table>
+				<tbody>
+					<tr>
+						<th>Propellant:</th>
+						<th>$V_ex$:</th>
+						<th>$\rho$:</th>
+					</tr>
+					<tr>
+						<td>Hydrogen $H_2$</td>
+						<td>$9000 \frac{m}{s}$</td>
+						<td>$70.8 \frac{kg}{m^3}$</td>
+					</tr>
+					<tr>
+						<td>Methane $CH_4$</td>
+						<td>$6300 \frac{m}{s}$</td>
+						<td>$423 \frac{kg}{m^3}$</td>
+					</tr>
+					<tr>
+						<td>Ammonia $NH_3$</td>
+						<td>$5101 \frac{m}{s}$</td>
+						<td>$682 \frac{kg}{m^3}$</td>
+					</tr>
+					<tr>
+						<td>Water $H_2O$</td>
+						<td>$4042 \frac{m}{s}$</td>
+						<td>$1000 \frac{kg}{m^3}$</td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
 	</div>
 </div>
