@@ -218,56 +218,48 @@
 					}
 				]
 			},
-			"escape":{
-				"transfer":[
-					{
-						"target":"moonTransfer",
-						"cost":90,
-						"air":true
-					},
-					{
-						"target":"lowOrbit",
-						"cost":3210,
-						"air":true
-					},
-					{
-						"target":"marsTransfer",
-						"cost":390
-					},
-					{
-						"target":"venusTransfer",
-						"cost":280
-					},
-					{
-						"target":"mercuryTransfer",
-						"cost":2340
-					},
-					{
-						"target":"vestaTransfer",
-						"cost":1310
-					},
-					{
-						"target":"ceresTransfer",
-						"cost":1690
-					},
-					{
-						"target":"jupiterTransfer",
-						"cost":3090
-					},
-					{
-						"target":"saturnTransfer",
-						"cost":4080
-					},
-					{
-						"target":"uranusTransfer",
-						"cost":4770
-					},
-					{
-						"target":"neptuneTransfer",
-						"cost":5040
-					}
-				]
-			},
+			"escape":[
+				{
+					"target":"moon",
+					"cost":90
+				},
+				{
+					"target":"mars",
+					"cost":390
+				},
+				{
+					"target":"venus",
+					"cost":280
+				},
+				{
+					"target":"mercury",
+					"cost":2340
+				},
+				{
+					"target":"vesta",
+					"cost":1310
+				},
+				{
+					"target":"ceres",
+					"cost":1690
+				},
+				{
+					"target":"jupiter",
+					"cost":3090
+				},
+				{
+					"target":"saturn",
+					"cost":4080
+				},
+				{
+					"target":"uranus",
+					"cost":4770
+				},
+				{
+					"target":"neptune",
+					"cost":5040
+				}
+			],
 			"moonTransfer":{
 				"transfer":[
 					{
@@ -282,66 +274,6 @@
 				],
 				"external":{
 					"system":"moon",
-					"name":"earthTransfer"
-				}
-			},
-			"marsTransfer":{
-				"external":{
-					"system":"mars",
-					"name":"earthTransfer"
-				}
-			},
-			"ceresTransfer":{
-				"external":{
-					"system":"ceres",
-					"name":"earthTransfer"
-				}
-			},
-			"vestaTransfer":{
-				"external":{
-					"system":"vesta",
-					"name":"earthTransfer"
-				}
-			},
-			"venusTransfer":{
-				"external":{
-					"system":"venus",
-					"name":"earthTransfer"
-				}
-			},
-			"mercuryTransfer":{
-				"external":{
-					"system":"mercury",
-					"name":"earthTransfer"
-				}
-			},
-			"jupiterTransfer":{
-				"external":{
-					"system":"jupiter",
-					"name":"earthTransfer"
-				}
-			},
-			"saturnTransfer":{
-				"external":{
-					"system":"saturn",
-					"name":"earthTransfer"
-				}
-			},
-			"uranusTransfer":{
-				"external":{
-					"system":"uranus",
-					"name":"earthTransfer"
-				}
-			},
-			"neptuneTransfer":{
-				"external":{
-					"system":"neptune",
-					"name":"earthTransfer"
-				}
-			},
-			"plutoTransfer":{
-				"external":{
-					"system":"pluto",
 					"name":"earthTransfer"
 				}
 			}
@@ -472,13 +404,7 @@
 					"name":"marsTransfer"
 				}
 			},
-			"escape":{},
-			"earthTransfer":{
-				"external":{
-					"system":"earth",
-					"name":"marsTransfer"
-				}
-			}
+			"escape":{}
 		}
 	},
 	"atmosphere":{
@@ -698,62 +624,20 @@
 				],
 				"altitude":100000
 			},
-			"escape":{
-				"transfer":[
-					{
-						"target":"lowOrbit",
-						"cost":730
-					},
-					{
-						"target":"europaTransfer",
-						"cost":null
-					},
-					{
-						"target":"ganymedeTransfer",
-						"cost":null
-					},
-					{
-						"target":"callistoTransfer",
-						"cost":null
-					}
-				]
-			},
-			"europaTransfer":{
-				"transfer":[
-					{
-						"target":"escape",
-						"cost":null
-					}
-				],
-				"external":{
-					"system":"europa",
-					"name":"Transfer"
+			"escape":[
+				{
+					"target":"europa",
+					"cost":null
+				},
+				{
+					"target":"ganymede",
+					"cost":null
+				},
+				{
+					"target":"callisto",
+					"cost":null
 				}
-			},
-			"ganymedeTransfer":{
-				"transfer":[
-					{
-						"target":"escape",
-						"cost":null
-					}
-				],
-				"external":{
-					"system":"ganymede",
-					"name":"Transfer"
-				}
-			},
-			"callistoTransfer":{
-				"transfer":[
-					{
-						"target":"escape",
-						"cost":null
-					}
-				],
-				"external":{
-					"system":"callisto",
-					"name":"Transfer"
-				}
-			}
+			]
 		}
 	}
 },
@@ -779,62 +663,20 @@
 				],
 				"altitude":100000
 			},
-			"escape":{
-				"transfer":[
-					{
-						"target":"lowOrbit",
-						"cost":580
-					},
-					{
-						"target":"ioTransfer",
-						"cost":null
-					},
-					{
-						"target":"ganymedeTransfer",
-						"cost":null
-					},
-					{
-						"target":"callistoTransfer",
-						"cost":null
-					}
-				]
-			},
-			"ioTransfer":{
-				"transfer":[
-					{
-						"target":"escape",
-						"cost":null
-					}
-				],
-				"external":{
-					"system":"io",
-					"name":"Transfer"
+			"escape":[
+				{
+					"target":"io",
+					"cost":null
+				},
+				{
+					"target":"ganymede",
+					"cost":null
+				},
+				{
+					"target":"callisto",
+					"cost":null
 				}
-			},
-			"ganymedeTransfer":{
-				"transfer":[
-					{
-						"target":"escape",
-						"cost":null
-					}
-				],
-				"external":{
-					"system":"ganymede",
-					"name":"Transfer"
-				}
-			},
-			"callistoTransfer":{
-				"transfer":[
-					{
-						"target":"escape",
-						"cost":null
-					}
-				],
-				"external":{
-					"system":"callisto",
-					"name":"Transfer"
-				}
-			}
+			]
 		}
 	}
 },
@@ -860,62 +702,20 @@
 				],
 				"altitude":100000
 			},
-			"escape":{
-				"transfer":[
-					{
-						"target":"lowOrbit",
-						"cost":790
-					},
-					{
-						"target":"ioTransfer",
-						"cost":null
-					},
-					{
-						"target":"europaTransfer",
-						"cost":null
-					},
-					{
-						"target":"callistoTransfer",
-						"cost":null
-					}
-				]
-			},
-			"ioTransfer":{
-				"transfer":[
-					{
-						"target":"escape",
-						"cost":null
-					}
-				],
-				"external":{
-					"system":"io",
-					"name":"Transfer"
+			"escape":[
+				{
+					"target":"io",
+					"cost":null
+				},
+				{
+					"target":"europa",
+					"cost":null
+				},
+				{
+					"target":"callisto",
+					"cost":null
 				}
-			},
-			"europaTransfer":{
-				"transfer":[
-					{
-						"target":"escape",
-						"cost":null
-					}
-				],
-				"external":{
-					"system":"europa",
-					"name":"Transfer"
-				}
-			},
-			"callistoTransfer":{
-				"transfer":[
-					{
-						"target":"escape",
-						"cost":null
-					}
-				],
-				"external":{
-					"system":"callisto",
-					"name":"Transfer"
-				}
-			}
+			]
 		}
 	}
 },
@@ -941,62 +741,20 @@
 				],
 				"altitude":100000
 			},
-			"escape":{
-				"transfer":[
-					{
-						"target":"lowOrbit",
-						"cost":700
-					},
-					{
-						"target":"ioTransfer",
-						"cost":null
-					},
-					{
-						"target":"europaTransfer",
-						"cost":null
-					},
-					{
-						"target":"ganymedeTransfer",
-						"cost":null
-					}
-				]
-			},
-			"ioTransfer":{
-				"transfer":[
-					{
-						"target":"escape",
-						"cost":null
-					}
-				],
-				"external":{
-					"system":"io",
-					"name":"Transfer"
+			"escape":[
+				{
+					"target":"io",
+					"cost":null
+				},
+				{
+					"target":"europa",
+					"cost":null
+				},
+				{
+					"target":"ganymede",
+					"cost":null
 				}
-			},
-			"europaTransfer":{
-				"transfer":[
-					{
-						"target":"escape",
-						"cost":null
-					}
-				],
-				"external":{
-					"system":"europa",
-					"name":"Transfer"
-				}
-			},
-			"ganymedeTransfer":{
-				"transfer":[
-					{
-						"target":"escape",
-						"cost":null
-					}
-				],
-				"external":{
-					"system":"ganymede",
-					"name":"Transfer"
-				}
-			}
+			]
 		}
 	}
 },
