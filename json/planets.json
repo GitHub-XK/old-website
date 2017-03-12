@@ -191,93 +191,49 @@
 		"parent":"sun",
 		"satellites":1,
 		"children":["moon"],
-		"nodes":{
-			"surface":{
-				"transfer":[
-					{
-						"target":"lowOrbit",
-						"cost":9500
-					}
-				]
+		"lowOrbit":{
+			"altitude":250000,
+			"surfaceCost":9500,
+			"escapeCost":3210
+		},
+		"escape":[
+			{
+				"target":"mars",
+				"cost":390
 			},
-			"lowOrbit":{
-				"altitude":250000,
-				"transfer":[
-					{
-						"target":"moonTransfer",
-						"cost":3120
-					},
-					{
-						"target":"escape",
-						"cost":3210
-					},
-					{
-						"target":"surface",
-						"cost":7770,
-						"air":true
-					}
-				]
+			{
+				"target":"venus",
+				"cost":280
 			},
-			"escape":[
-				{
-					"target":"moon",
-					"cost":90
-				},
-				{
-					"target":"mars",
-					"cost":390
-				},
-				{
-					"target":"venus",
-					"cost":280
-				},
-				{
-					"target":"mercury",
-					"cost":2340
-				},
-				{
-					"target":"vesta",
-					"cost":1310
-				},
-				{
-					"target":"ceres",
-					"cost":1690
-				},
-				{
-					"target":"jupiter",
-					"cost":3090
-				},
-				{
-					"target":"saturn",
-					"cost":4080
-				},
-				{
-					"target":"uranus",
-					"cost":4770
-				},
-				{
-					"target":"neptune",
-					"cost":5040
-				}
-			],
-			"moonTransfer":{
-				"transfer":[
-					{
-						"target":"lowOrbit",
-						"cost":3120,
-						"air":true
-					},
-					{
-						"target":"escape",
-						"cost":90
-					}
-				],
-				"external":{
-					"system":"moon",
-					"name":"earthTransfer"
-				}
+			{
+				"target":"mercury",
+				"cost":2340
+			},
+			{
+				"target":"vesta",
+				"cost":1310
+			},
+			{
+				"target":"ceres",
+				"cost":1690
+			},
+			{
+				"target":"jupiter",
+				"cost":3090
+			},
+			{
+				"target":"saturn",
+				"cost":4080
+			},
+			{
+				"target":"uranus",
+				"cost":4770
+			},
+			{
+				"target":"neptune",
+				"cost":5040
 			}
-		}
+		]
 	}
 },
 "moon":{
@@ -305,48 +261,11 @@
 		"speed":1022,
 		"inclination":5.145,
 		"parent":"earth",
-		"nodes":{
-			"surface":{
-				"transfer":[
-					{
-						"target":"lowOrbit",
-						"cost":1720
-					}
-				]
-			},
-			"lowOrbit":{
-				"transfer":[
-					{
-						"target":"surface",
-						"cost":1720
-					}
-				]
-			},
-			"earthTransfer":{
-				"transfer":[
-					{
-						"target":"escape",
-						"cost":140
-					}
-				],
-				"external":{
-					"system":"earth",
-					"name":"moonTransfer"
-				}
-			},
-			"escape":{
-				"transfer":[
-					{
-						"target":"lowOrbit",
-						"cost":680
-					},
-					{
-						"target":"earthTransfer",
-						"cost":140
-					}
-				]
-			}
-		}
+		"lowOrbit":{
+			"surfaceCost":1720,
+			"escapeCost":680
+		},
+		"escape":[]
 	},
 	"atmosphere":false
 },
@@ -374,38 +293,8 @@
 		"parent":"sun",
 		"satellites":2,
 		"children":["phobos","deimos"],
-		"nodes":{
-			"surface":{
-				"transfer":[
-					{
-						"target":"lowOrbit",
-						"cost":3600
-					}
-				]
-			},
-			"lowOrbit":{
-				"transfer":[
-					{
-						"target":"surface",
-						"cost":null,
-						"air":true
-					}
-				]
-			},
-			"phobosTransfer":{
-				"external":{
-					"system":"phobos",
-					"name":"marsTransfer"
-				}
-			},
-			"deimosTransfer":{
-				"external":{
-					"system":"deimos",
-					"name":"marsTransfer"
-				}
-			},
-			"escape":{}
-		}
+		"lowOrbit":{},
+		"escape":[]
 	},
 	"atmosphere":{
 		"layers":[
@@ -446,17 +335,8 @@
 		"period":27553.844,
 		"speed":2138,
 		"inclination":26.04,
-		"nodes":{
-			"lowOrbit":{},
-			"escape":{},
-			"deimosTransfer":{
-				"external":{
-					"system":"deimos",
-					"name":"phobosTransfer"
-				}
-			},
-			"marsTransfer":{}
-		}
+		"lowOrbit":{},
+		"escape":[]
 	},
 	"atmosphere":false
 },
@@ -477,17 +357,8 @@
 		"period":109123.2,
 		"speed":1351.3,
 		"inclination":27.58,
-		"nodes":{
-			"lowOrbit":{},
-			"escape":{},
-			"phobosTransfer":{
-				"external":{
-					"system":"phobos",
-					"name":"deimosTransfer"
-				}
-			},
-			"marsTransfer":{}
-		}
+		"lowOrbit":{},
+		"escape":[]
 	},
 	"atmosphere":false
 },
@@ -606,156 +477,84 @@
 		"speed":17334,
 		"inclination":0.05,
 		"parent":"jupiter",
-		"nodes":{
-			"surface":{
-				"transfer":[
-					{
-						"target":"lowOrbit",
-						"cost":1780
-					}
-				]
+		"lowOrbit":{},
+		"escape":[
+			{
+				"target":"europa",
+				"cost":null
 			},
-			"lowOrbit":{
-				"transfer":[
-					{
-						"target":"surface",
-						"cost":1780
-					}
-				],
-				"altitude":100000
+			{
+				"target":"ganymede",
+				"cost":null
 			},
-			"escape":[
-				{
-					"target":"europa",
-					"cost":null
-				},
-				{
-					"target":"ganymede",
-					"cost":null
-				},
-				{
-					"target":"callisto",
-					"cost":null
-				}
-			]
-		}
+			{
+				"target":"callisto",
+				"cost":null
+			}
+		]
 	}
 },
 "europa":{
 	"type":"moon",
 	"orbit":{
 		"parent":"jupiter",
-		"nodes":{
-			"surface":{
-				"transfer":[
-					{
-						"target":"lowOrbit",
-						"cost":1440
-					}
-				]
+		"lowOrbit":{},
+		"escape":[
+			{
+				"target":"io",
+				"cost":null
 			},
-			"lowOrbit":{
-				"transfer":[
-					{
-						"target":"surface",
-						"cost":1440
-					}
-				],
-				"altitude":100000
+			{
+				"target":"ganymede",
+				"cost":null
 			},
-			"escape":[
-				{
-					"target":"io",
-					"cost":null
-				},
-				{
-					"target":"ganymede",
-					"cost":null
-				},
-				{
-					"target":"callisto",
-					"cost":null
-				}
-			]
-		}
+			{
+				"target":"callisto",
+				"cost":null
+			}
+		]
 	}
 },
 "ganymede":{
 	"type":"moon",
 	"orbit":{
 		"parent":"jupiter",
-		"nodes":{
-			"surface":{
-				"transfer":[
-					{
-						"target":"lowOrbit",
-						"cost":1950
-					}
-				]
+		"lowOrbit":{},
+		"escape":[
+			{
+				"target":"io",
+				"cost":null
 			},
-			"lowOrbit":{
-				"transfer":[
-					{
-						"target":"surface",
-						"cost":1950
-					}
-				],
-				"altitude":100000
+			{
+				"target":"europa",
+				"cost":null
 			},
-			"escape":[
-				{
-					"target":"io",
-					"cost":null
-				},
-				{
-					"target":"europa",
-					"cost":null
-				},
-				{
-					"target":"callisto",
-					"cost":null
-				}
-			]
-		}
+			{
+				"target":"callisto",
+				"cost":null
+			}
+		]
 	}
 },
 "callisto":{
 	"type":"moon",
 	"orbit":{
 		"parent":"jupiter",
-		"nodes":{
-			"surface":{
-				"transfer":[
-					{
-						"target":"lowOrbit",
-						"cost":1750
-					}
-				]
+		"lowOrbit":{},
+		"escape":[
+			{
+				"target":"io",
+				"cost":null
 			},
-			"lowOrbit":{
-				"transfer":[
-					{
-						"target":"surface",
-						"cost":1750
-					}
-				],
-				"altitude":100000
+			{
+				"target":"europa",
+				"cost":null
 			},
-			"escape":[
-				{
-					"target":"io",
-					"cost":null
-				},
-				{
-					"target":"europa",
-					"cost":null
-				},
-				{
-					"target":"ganymede",
-					"cost":null
-				}
-			]
-		}
+			{
+				"target":"ganymede",
+				"cost":null
+			}
+		]
 	}
 },
 "saturn":{
@@ -781,25 +580,8 @@
 		"period":60018.65355,
 		"inclination":0.163,
 		"parent":"saturn",
-		"nodes":{
-			"surface":{
-				"transfer":[
-					{
-						"target":"lowOrbit",
-						"cost":null
-					}
-				]
-			},
-			"lowOrbit":{
-				"transfer":[
-					{
-						"target":"surface",
-						"cost":null
-					}
-				]
-			},
-			"escape":{}
-		}
+		"lowOrbit":{},
+		"escape":[]
 	}
 },
 "mimas":{
@@ -821,30 +603,8 @@
 		"speed":14280,
 		"inclination":1.574,
 		"parent":"saturn",
-		"nodes":{
-			"surface":{
-				"transfer":[
-					{
-						"target":"lowOrbit",
-						"cost":100
-					}
-				]
-			},
-			"lowOrbit":{
-				"transfer":[
-					{
-						"target":"surface",
-						"cost":100
-					},
-					{
-						"target":"escape",
-						"cost":40
-					}
-				],
-				"altitude":20000
-			},
-			"escape":{}
-		}
+		"lowOrbit":{},
+		"escape":[]
 	}
 },
 "enceladus":{
@@ -861,30 +621,8 @@
 		"period":118386.8352,
 		"inclination":0.019,
 		"parent":"saturn",
-		"nodes":{
-			"surface":{
-				"transfer":[
-					{
-						"target":"lowOrbit",
-						"cost":160
-					}
-				]
-			},
-			"lowOrbit":{
-				"transfer":[
-					{
-						"target":"surface",
-						"cost":160
-					},
-					{
-						"target":"escape",
-						"cost":70
-					}
-				],
-				"altitude":20000
-			},
-			"escape":{}
-		}
+		"lowOrbit":{},
+		"escape":[]
 	}
 },
 "tethys":{
@@ -902,30 +640,8 @@
 		"speed":11350,
 		"inclination":1.12,
 		"parent":"saturn",
-		"nodes":{
-			"surface":{
-				"transfer":[
-					{
-						"target":"lowOrbit",
-						"cost":270
-					}
-				]
-			},
-			"lowOrbit":{
-				"transfer":[
-					{
-						"target":"surface",
-						"cost":270
-					},
-					{
-						"target":"escape",
-						"cost":110
-					}
-				],
-				"altitude":50000
-			},
-			"escape":{}
-		}
+		"lowOrbit":{},
+		"escape":[]
 	}
 },
 "dione":{
@@ -943,30 +659,8 @@
 		"period":236469.456,
 		"inclination":0.019,
 		"parent":"saturn",
-		"nodes":{
-			"surface":{
-				"transfer":[
-					{
-						"target":"lowOrbit",
-						"cost":350
-					}
-				]
-			},
-			"lowOrbit":{
-				"transfer":[
-					{
-						"target":"surface",
-						"cost":350
-					},
-					{
-						"target":"escape",
-						"cost":140
-					}
-				],
-				"altitude":50000
-			},
-			"escape":{}
-		}
+		"lowOrbit":{},
+		"escape":[]
 	}
 },
 "rhea":{
@@ -985,30 +679,8 @@
 		"speed":8480,
 		"inclination":0.345,
 		"parent":"saturn",
-		"nodes":{
-			"surface":{
-				"transfer":[
-					{
-						"target":"lowOrbit",
-						"cost":450
-					}
-				]
-			},
-			"lowOrbit":{
-				"transfer":[
-					{
-						"target":"surface",
-						"cost":450
-					},
-					{
-						"target":"escape",
-						"cost":180
-					}
-				],
-				"altitude":50000
-			},
-			"escape":{}
-		}
+		"lowOrbit":{},
+		"escape":[]
 	}
 },
 "titan":{
@@ -1035,106 +707,32 @@
 		"period":1377648,
 		"speed":5570,
 		"inclination":0.34854,
-		"nodes":{
-			"surface":{
-				"transfer":[
-					{
-						"target":"lowOrbit",
-						"cost":7600
-					}
-				]
-			},
-			"lowOrbit":{
-				"transfer":[
-					{
-						"target":"surface",
-						"air":true
-					}
-				],
-				"altitude":1000000
-			},
-			"escape":{}
-		}
+		"lowOrbit":{},
+		"escape":[]
 	}
 },
 "hyperion":{
 	"type":"moon",
 	"orbit":{
 		"parent":"saturn",
-		"nodes":{
-			"surface":{
-				"transfer":[
-					{
-						"target":"lowOrbit",
-						"cost":null
-					}
-				]
-			},
-			"lowOrbit":{
-				"transfer":[
-					{
-						"target":"surface",
-						"cost":null
-					}
-				]
-			},
-			"escape":{}
-		}
+		"lowOrbit":{},
+		"escape":[]
 	}
 },
 "iapetus":{
 	"type":"moon",
 	"orbit":{
 		"parent":"saturn",
-		"nodes":{
-			"surface":{
-				"transfer":[
-					{
-						"target":"lowOrbit",
-						"cost":410
-					}
-				]
-			},
-			"lowOrbit":{
-				"transfer":[
-					{
-						"target":"surface",
-						"cost":410
-					},
-					{
-						"target":"escape",
-						"cost":150
-					}
-				],
-				"altitude":50000
-			},
-			"escape":{}
-		}
+		"lowOrbit":{},
+		"escape":[]
 	}
 },
 "phoebe":{
 	"type":"moon",
 	"orbit":{
 		"parent":"saturn",
-		"nodes":{
-			"surface":{
-				"transfer":[
-					{
-						"target":"lowOrbit",
-						"cost":null
-					}
-				]
-			},
-			"lowOrbit":{
-				"transfer":[
-					{
-						"target":"surface",
-						"cost":null
-					}
-				]
-			},
-			"escape":{}
-		}
+		"lowOrbit":{},
+		"escape":[]
 	}
 },
 "uranus":{
