@@ -564,6 +564,30 @@
 	},
 	"atmosphere":false
 },
+"vesta":{
+	"type":"asteroid",
+	"radius":262700,
+	"boxModel":[572600,557200,446400],
+	"area":8.66e11,
+	"volume":7.46e16,
+	"mass":2.59076e20,
+	"density":3456,
+	"gravity":0.25,
+	"sideralPeriod":19231.2,
+	"rotationVelocity":257.5,
+	"orbit":{
+		"periapsis":3.2197e11,
+		"apoapsis":3.8467e11,
+		"semiMajor":3.5332e11,
+		"eccentricity":0.08874,
+		"period":114544800,
+		"speed":19340,
+		"inclination":7.14043,
+		"ascending":103.85136,
+		"argument":151.19853,
+		"parent":"sun"
+	}
+},
 "ceres":{
 	"type":"dwarf planet",
 	"gm":6.26325e10,
@@ -588,13 +612,11 @@
 		"speed":17905,
 		"inclination":10.593,
 		"ascending":80.3293,
-		"argument":72.522
+		"argument":72.522,
+		"parent":"sun"
 	}
 },
 "pallas":{
-	"type":"asteroid"
-},
-"vesta":{
 	"type":"asteroid"
 },
 "jupiter":{
@@ -638,6 +660,30 @@
 		"children":["io","europa","ganymede","callisto"]
 	}
 },
+"io":{
+	"type":"moon",
+	"orbit":{
+		"parent":"jupiter"
+	}
+},
+"europa":{
+	"type":"moon",
+	"orbit":{
+		"parent":"jupiter"
+	}
+},
+"ganymede":{
+	"type":"moon",
+	"orbit":{
+		"parent":"jupiter"
+	}
+},
+"callisto":{
+	"type":"moon",
+	"orbit":{
+		"parent":"jupiter"
+	}
+},
 "saturn":{
 	"type":"gas planet",
 	"gm":3.7931187e16,
@@ -646,13 +692,158 @@
 		"children":["janus","mimas","enceladus","tethys","dione","rhea","titan","hyperion","iapetus","phoebe"]
 	}
 },
-"janus":{},
-"mimas":{},
-"enceladus":{},
-"tethys":{},
-"dione":{},
-"rhea":{},
+"janus":{
+	"type":"moon",
+	"orbit":{
+		"parent":"saturn",
+		"nodes":{
+			"surface":{
+				"transfer":[
+					{
+						"target":"lowOrbit",
+						"cost":null
+					}
+				]
+			},
+			"lowOrbit":{
+				"transfer":[
+					{
+						"target":"surface",
+						"cost":null
+					}
+				]
+			},
+			"escape":{}
+		}
+	}
+},
+"mimas":{
+	"type":"moon",
+	"orbit":{
+		"parent":"saturn",
+		"nodes":{
+			"surface":{
+				"transfer":[
+					{
+						"target":"lowOrbit",
+						"cost":null
+					}
+				]
+			},
+			"lowOrbit":{
+				"transfer":[
+					{
+						"target":"surface",
+						"cost":null
+					}
+				]
+			},
+			"escape":{}
+		}
+	}
+},
+"enceladus":{
+	"type":"moon",
+	"orbit":{
+		"parent":"saturn",
+		"nodes":{
+			"surface":{
+				"transfer":[
+					{
+						"target":"lowOrbit",
+						"cost":null
+					}
+				]
+			},
+			"lowOrbit":{
+				"transfer":[
+					{
+						"target":"surface",
+						"cost":null
+					}
+				]
+			},
+			"escape":{}
+		}
+	}
+},
+"tethys":{
+	"type":"moon",
+	"orbit":{
+		"parent":"saturn",
+		"nodes":{
+			"surface":{
+				"transfer":[
+					{
+						"target":"lowOrbit",
+						"cost":null
+					}
+				]
+			},
+			"lowOrbit":{
+				"transfer":[
+					{
+						"target":"surface",
+						"cost":null
+					}
+				]
+			},
+			"escape":{}
+		}
+	}
+},
+"dione":{
+	"type":"moon",
+	"orbit":{
+		"parent":"saturn",
+		"nodes":{
+			"surface":{
+				"transfer":[
+					{
+						"target":"lowOrbit",
+						"cost":null
+					}
+				]
+			},
+			"lowOrbit":{
+				"transfer":[
+					{
+						"target":"surface",
+						"cost":null
+					}
+				]
+			},
+			"escape":{}
+		}
+	}
+},
+"rhea":{
+	"type":"moon",
+	"orbit":{
+		"parent":"saturn",
+		"nodes":{
+			"surface":{
+				"transfer":[
+					{
+						"target":"lowOrbit",
+						"cost":null
+					}
+				]
+			},
+			"lowOrbit":{
+				"transfer":[
+					{
+						"target":"surface",
+						"cost":null
+					}
+				]
+			},
+			"escape":{}
+		}
+	}
+},
 "titan":{
+	"type":"moon",
 	"radius":2575500,
 	"area":8.3e13,
 	"volume":7.16e19,
@@ -674,12 +865,103 @@
 		"eccentricity":0.0288,
 		"period":1377648,
 		"speed":5570,
-		"inclination":0.34854
+		"inclination":0.34854,
+		"nodes":{
+			"surface":{
+				"transfer":[
+					{
+						"target":"lowOrbit",
+						"cost":null
+					}
+				]
+			},
+			"lowOrbit":{
+				"transfer":[
+					{
+						"target":"surface",
+						"cost":null
+					}
+				]
+			},
+			"escape":{}
+		}
 	}
 },
-"hyperion":{},
-"iapetus":{},
-"phoebe":{},
+"hyperion":{
+	"type":"moon",
+	"orbit":{
+		"parent":"saturn",
+		"nodes":{
+			"surface":{
+				"transfer":[
+					{
+						"target":"lowOrbit",
+						"cost":null
+					}
+				]
+			},
+			"lowOrbit":{
+				"transfer":[
+					{
+						"target":"surface",
+						"cost":null
+					}
+				]
+			},
+			"escape":{}
+		}
+	}
+},
+"iapetus":{
+	"type":"moon",
+	"orbit":{
+		"parent":"saturn",
+		"nodes":{
+			"surface":{
+				"transfer":[
+					{
+						"target":"lowOrbit",
+						"cost":null
+					}
+				]
+			},
+			"lowOrbit":{
+				"transfer":[
+					{
+						"target":"surface",
+						"cost":null
+					}
+				]
+			},
+			"escape":{}
+		}
+	}
+},
+"phoebe":{
+	"type":"moon",
+	"orbit":{
+		"parent":"saturn",
+		"nodes":{
+			"surface":{
+				"transfer":[
+					{
+						"target":"lowOrbit",
+						"cost":null
+					}
+				]
+			},
+			"lowOrbit":{
+				"transfer":[
+					{
+						"target":"surface",
+						"cost":null
+					}
+				]
+			},
+			"escape":{}
+		}
+	}
+},
 "uranus":{
 	"type":"gas planet",
 	"gm":5.793939e15,
