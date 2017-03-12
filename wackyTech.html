@@ -262,7 +262,12 @@ $$\Delta v_2 = \Delta v_1 + v_2ln\left(\frac{v_1\rho_1\left(\rho_2-\rho_3\right)
 				</table>
 			</p>
 			<p>Optimization 2: Minimal thrust maximizing<br><br>
-Idea: Given a required velocity change, figure out how we can fill a tank with various propellants to get an optimal thrust-to-weight ratio.
+Idea: Given a required velocity change, figure out how we can fill a tank with various propellants to get an optimal thrust-to-weight ratio.<br>
+			The acceleration of a rocket over time looks something like this:
+				<img src="img/overTime.png" alt="graph growing exponentially" class="diagram"><br>
+			Notice of the acceleration in the beginning is the limiting factor. But what if I told you it is possible to get better thrust in the beginning using the same engine but another propellant? The thrust obtained from a propellant in a thermal rocket engines is inversely proportional to its exhaust velocity. Why? Well, the reactor has a power $P$ the mass flow is then proportional to $\frac{P}{v^2}$. Thrust is proportional to mass flow times exhaust velocity, so there you have it, $Thrust \propto  \frac{1}{v}$. So we want to use one propellant in the beginning with a low exhaust velocity and one at the end with a high exhaust velocity. In this case however, it is worth it to mix propellants to get an ideal exhaust belocity at all points in time to get a flat thrust curve. The equations are complicated
+			</p><p>
+			[[Sadly I have to wait a little before I can continue this part as I have misplaced my notes]]
 			</p>
 		</div>
 	</div>
