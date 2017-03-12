@@ -360,6 +360,7 @@
 	"volume":2.1958e19,
 	"density":3344,
 	"sideralRotation":2360591.5104,
+	"locked":true,
 	"rotationVelocity":4.627,
 	"axialTilt":6.687,
 	"axialTiltEcliptic":1.5424,
@@ -694,7 +695,18 @@
 },
 "janus":{
 	"type":"moon",
+	"radius":89500,
+	"boxModel":[203000,185000,152600],
+	"volume":716000e9,
+	"mass":1.8975e18,
+	"density":630,
+	"gravity":0.014,
+	"locked":true,
 	"orbit":{
+		"semiMajor":151460000,
+		"eccentricity":0.0068,
+		"period":60018.65355,
+		"inclination":0.163,
 		"parent":"saturn",
 		"nodes":{
 			"surface":{
@@ -719,14 +731,29 @@
 },
 "mimas":{
 	"type":"moon",
+	"radius":198200,
+	"boxModel":[415600,393400,381200],
+	"area":495000e6,
+	"volume":32600000e9,
+	"mass":3.7493e19,
+	"density":1147.9,
+	"gravity":0.064,
+	"locked":true,
 	"orbit":{
+		"periapsis":181902000,
+		"apoapsis":189176000,
+		"semiMajor":185539000,
+		"eccentricity":0.0196,
+		"period":81388.8,
+		"speed":14280,
+		"inclination":1.574,
 		"parent":"saturn",
 		"nodes":{
 			"surface":{
 				"transfer":[
 					{
 						"target":"lowOrbit",
-						"cost":null
+						"cost":100
 					}
 				]
 			},
@@ -734,9 +761,14 @@
 				"transfer":[
 					{
 						"target":"surface",
-						"cost":null
+						"cost":100
+					},
+					{
+						"target":"escape",
+						"cost":40
 					}
-				]
+				],
+				"altitude":20000
 			},
 			"escape":{}
 		}
@@ -744,14 +776,24 @@
 },
 "enceladus":{
 	"type":"moon",
+	"radius":252100,
+	"boxModel":[513200,502800,496600],
+	"mass":1.08022e20,
+	"density":1609,
+	"gravity":0.113,
+	"locked":true,
 	"orbit":{
+		"semiMajor":237948000,
+		"eccentricity":0.0047,
+		"period":118386.8352,
+		"inclination":0.019,
 		"parent":"saturn",
 		"nodes":{
 			"surface":{
 				"transfer":[
 					{
 						"target":"lowOrbit",
-						"cost":null
+						"cost":160
 					}
 				]
 			},
@@ -759,9 +801,14 @@
 				"transfer":[
 					{
 						"target":"surface",
-						"cost":null
+						"cost":160
+					},
+					{
+						"target":"escape",
+						"cost":70
 					}
-				]
+				],
+				"altitude":20000
 			},
 			"escape":{}
 		}
@@ -769,14 +816,25 @@
 },
 "tethys":{
 	"type":"moon",
+	"radius":531100,
+	"boxModel":[1076800,1057400,1052600],
+	"mass":6.17449e20,
+	"density":984,
+	"gravity":0.146,
+	"locked":true,
 	"orbit":{
+		"semiMajor":294619000,
+		"eccentricity":0.0001,
+		"period":163106.0928,
+		"speed":11350,
+		"inclination":1.12,
 		"parent":"saturn",
 		"nodes":{
 			"surface":{
 				"transfer":[
 					{
 						"target":"lowOrbit",
-						"cost":null
+						"cost":270
 					}
 				]
 			},
@@ -784,9 +842,14 @@
 				"transfer":[
 					{
 						"target":"surface",
-						"cost":null
+						"cost":270
+					},
+					{
+						"target":"escape",
+						"cost":110
 					}
-				]
+				],
+				"altitude":50000
 			},
 			"escape":{}
 		}
@@ -794,14 +857,25 @@
 },
 "dione":{
 	"type":"moon",
+	"radius":561400,
+	"boxModel":[1128800,1122600,1119200],
+	"area":3964776.51e6,
+	"mass":1.095452e21,
+	"density":1478,
+	"gravity":0.232,
+	"locked":true,
 	"orbit":{
+		"semiMajor":377396000,
+		"eccentricity":0.0022,
+		"period":236469.456,
+		"inclination":0.019,
 		"parent":"saturn",
 		"nodes":{
 			"surface":{
 				"transfer":[
 					{
 						"target":"lowOrbit",
-						"cost":null
+						"cost":350
 					}
 				]
 			},
@@ -809,9 +883,14 @@
 				"transfer":[
 					{
 						"target":"surface",
-						"cost":null
+						"cost":350
+					},
+					{
+						"target":"escape",
+						"cost":140
 					}
-				]
+				],
+				"altitude":50000
 			},
 			"escape":{}
 		}
@@ -819,14 +898,26 @@
 },
 "rhea":{
 	"type":"moon",
+	"radius":763800,
+	"boxModel":[1532400,1525600,1524400],
+	"area":7337000e6,
+	"mass":2.306518e21,
+	"density":1236,
+	"gravity":0.264,
+	"locked":true,
 	"orbit":{
+		"semiMajor":527108000,
+		"eccentricity":0.0012583,
+		"period":390373.5168,
+		"speed":8480,
+		"inclination":0.345,
 		"parent":"saturn",
 		"nodes":{
 			"surface":{
 				"transfer":[
 					{
 						"target":"lowOrbit",
-						"cost":null
+						"cost":450
 					}
 				]
 			},
@@ -834,9 +925,14 @@
 				"transfer":[
 					{
 						"target":"surface",
-						"cost":null
+						"cost":450
+					},
+					{
+						"target":"escape",
+						"cost":180
 					}
-				]
+				],
+				"altitude":50000
 			},
 			"escape":{}
 		}
@@ -871,7 +967,7 @@
 				"transfer":[
 					{
 						"target":"lowOrbit",
-						"cost":null
+						"cost":7600
 					}
 				]
 			},
@@ -879,9 +975,10 @@
 				"transfer":[
 					{
 						"target":"surface",
-						"cost":null
+						"air":true
 					}
-				]
+				],
+				"altitude":1000000
 			},
 			"escape":{}
 		}
@@ -921,7 +1018,7 @@
 				"transfer":[
 					{
 						"target":"lowOrbit",
-						"cost":null
+						"cost":410
 					}
 				]
 			},
@@ -929,9 +1026,14 @@
 				"transfer":[
 					{
 						"target":"surface",
-						"cost":null
+						"cost":410
+					},
+					{
+						"target":"escape",
+						"cost":150
 					}
-				]
+				],
+				"altitude":50000
 			},
 			"escape":{}
 		}
