@@ -1,3 +1,4 @@
+planets =
 {
 "sun":{
 	"type":"star",
