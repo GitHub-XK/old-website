@@ -18,6 +18,7 @@ MathJax.Hub.Config({
 <div class="container">
 	<section>
 		<div class="outerDiv">
+		<div class="innerDiv">
 			<h1>Wacky tech</h1>
 			<p>This is a :idea-list: page, not one regulary browsed. Technologies Hoh wants to write about:</p>
 			<p>Articles have their origin here and move out when they are completed.</p>
@@ -34,6 +35,7 @@ MathJax.Hub.Config({
 				<li>C3=0 manifolds | pure two-body zero energy transfers | <span style="color:red">Magic</span></li>
 				<li><a href="#mercuryIsGoodForYou">Mercury is good for you</a>| Density impulse | <span style="color:orange">raw idea</span></li>
 			</ul>
+		</div>
 		</div>
 	</section>
 	<div class="outerDiv">
@@ -129,7 +131,7 @@ There is a tradeoff point in the mission where we should switch from water to hy
 					</tr>
 					<tr>
 						<td>Methane $CH_4$</td>
-						<td>$6300 \frac{m}{s}$</td>
+						<td>$6318 \frac{m}{s}$</td>
 						<td>$423 \frac{kg}{m^3}$</td>
 					</tr>
 					<tr>
@@ -151,10 +153,121 @@ There is a tradeoff point in the mission where we should switch from water to hy
 			<h2>Mercury is good for you</h2>
 			<p>The balance between thrust, exhauste velocity and density impulse is an interesting one. Here I am going to present two of the optimization cases.</p>
 			<p>Optimization 1: Delta-v maximizing<br><br>
-Idea: Given a tank volume, figure out how it can be filled with various propellants to achieve maximum $\Delta v$.
+Idea: Given a tank volume, figure out how it can be filled with various propellants to achieve maximum $\Delta v$.<br>
+Suppose that some time into the flight the relative importance of density impulse and exhaust velocity is such that it does not matter if we at this point use propellant 1 or 2. We say that happened after a velocity change of $\Delta v$. At this point both propellants must use the volume of the tank equally efficient. Suppose we have a quantity, $m_1$ of propellant 1. This can supply a momentum of $m_1v_1$ and takes up a volume of $\frac{m_1}{\rho_1}$. But it also takes some propellant to accelerate $m_1$ up to $\Delta v_x$, specifically $m_1\left(e^{\frac{\Delta v}{v_1}}-1\right)$. Of course this has a volume of $\frac{m_1\left(e^{\frac{\Delta v}{v_1}}-1\right)}{\rho_1}$. We can add those two masses together and end up with:
+$$\frac{m_1e^{\frac{\Delta v}{v_1}}}{\rho_1}$$
+Next, what if we used propellant 2 instead? Then we would only need a mass of $\frac{m_1v_1}{v_2}$ using a volume of $\frac{m_1v_1}{\rho_2v_2}$. This mass also needs to be accelerated up to $\Delta v$. But as this is supposed to be the cuttof point we are still using propellant 1 for that. That is a mass of $\frac{m_1v_1\left(e^{\frac{\Delta v}{v_1}}-1\right)}{v_2}$ corresponding to a volume of $\frac{m_1v_1\left(e^{\frac{\Delta v}{v_1}}-1\right)}{\rho_1v_2}$. Adding also these two together we have:
+$$\frac{m_1v_1}{\rho_2v_2}+\frac{m_1v_1\left(e^{\frac{\Delta v}{v_1}}-1\right)}{\rho_1v_2}$$
+From the definition of our cutoff point the two volumes should be equal.
+$$\frac{m_1e^{\frac{\Delta v}{v_1}}}{\rho_1}=\frac{m_1v_1}{\rho_2v_2}+\frac{m_1v_1\left(e^{\frac{\Delta v}{v_1}}-1\right)}{\rho_1v_2}$$
+Furthermore, it is clearly independent of $m_1$
+$$\frac{e^{\frac{\Delta v}{v_1}}}{\rho_1}=\frac{v_1}{\rho_2v_2}+\frac{v_1\left(e^{\frac{\Delta v}{v_1}}-1\right)}{\rho_1v_2}$$
+We are solving for $\Delta v$ so we want everything containing that on the same side
+$$\frac{e^{\frac{\Delta v}{v_1}}}{\rho_1}-\frac{v_1\left(e^{\frac{\Delta v}{v_1}}-1\right)}{\rho_1v_2}=\frac{v_1}{\rho_2v_2}$$
+And then get rid of the denominators
+$$v_2e^{\frac{\Delta v}{v_1}}-v_1\left(e^{\frac{\Delta v}{v_1}}-1\right)=\frac{\rho_1v_1}{\rho_2}$$
+Rearranging a little we are left with
+$$v_2e^{\frac{\Delta v}{v_1}}-v_1e^{\frac{\Delta v}{v_1}}=\frac{\rho_1v_1}{\rho_2}-v_1$$
+We can factorize that to obtain
+$$\left(v_2-v_1\right)e^{\frac{\Delta v}{v_1}}=\frac{v_1\left(\rho_1-\rho_2\right)}{\rho_2}$$
+And that allows us to isolate $\Delta v$ further
+$$e^{\frac{\Delta v}{v_1}}=\frac{v_1\left(\rho_1-\rho_2\right)}{\rho_2\left(v_2-v_1\right)}$$
+This can be used to get our desired value down to ground level
+$$\frac{\Delta v}{v_1}=ln\left(\frac{v_1\left(\rho_1-\rho_2\right)}{\rho_2\left(v_2-v_1\right)}\right)$$
+And finally
+$$\Delta v=v_1ln\left(\frac{v_1\left(\rho_1-\rho_2\right)}{\rho_2\left(v_2-v_1\right)}\right)$$
+We can calculate a few cutoff points using this equation:
+				<table>
+					<tbody>
+						<tr>
+							<th>Propellants</th>
+							<th>Cutoff point</th>
+						</tr>
+						<tr>
+							<td>Water - Ammonia</td>
+							<td>$2330 \frac{m}{s}$</td>
+						</tr>
+						<tr>
+							<td>Water - Methane</td>
+							<td>$3576 \frac{m}{s}$</td>
+						</tr>
+						<tr>
+							<td>Water - Hydrogen</td>
+							<td>$9580 \frac{m}{s}$</td>
+						</tr>
+						<tr>
+							<td>Ammonia - Methane</td>
+							<td>$4808 \frac{m}{s}$</td>
+						</tr>
+						<tr>
+							<td>Ammonia - Hydrogen</td>
+							<td>$12370 \frac{m}{s}$</td>
+						</tr>
+						<tr>
+							<td>Methane - Hydrogen</td>
+							<td>$15550 \frac{m}{s}$</td>
+						</tr>
+					</tbody>
+				</table>
+You might be wondering if it perhaps is beneficial to use a mix of two propellant in the transition between them. The answer is no.
+Here are some more exotic ones using the few elements with a reasonable melting and boiling point combinded with a very high density:
+				<table>
+					<tbody>
+						<tr>
+							<th>Propellants</th>
+							<th>Cutoff point</th>
+						</tr>
+						<tr>
+							<td>Mercury - Zinc</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>Mercury - Water</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>Zinc - Water</td>
+							<td></td>
+						</tr>
+					</tbody>
+				</table>
+Of course we can only use this approach to get the cutoff point between two different propellants. To get optimal solutions for more than that we need another equation.
+To get the cutoff point between the propellant 1 and propellant 3, we can apply a similar logic as before to set up the equation.
+$$\frac{e^{\frac{\Delta v_2-\Delta v_1}{v_2}}}{\rho_2} + \frac{e^{\frac{\Delta v_2-\Delta v_1}{v_2}}\left(e^{\frac{\Delta v_1}{v_1}}-1\right)}{\rho_1}=\frac{v_2}{\rho_3v_3}+\frac{v_2\left(e^{\frac{\Delta v_2-\Delta v_1}{v_2}}-1\right)}{\rho_2v_3}+\frac{v_2e^{\frac{\Delta v_2-\Delta v_1}{v_2}}\left(e^{\frac{\Delta v_1}{v_1}}-1\right)}{\rho_1v_3}$$
+We can solve this:
+$$\Delta v_2 = \Delta v_1 + v_2ln\left(\frac{v_1\rho_1\left(\rho_2-\rho_3\right)}{\rho_3\left(v_3-v_2\right)\left(\rho_1+\rho_2\left(e^{\frac{\Delta v_1}{v_1}}-1\right)\right)}\right)$$
+				<table>
+					<tbody>
+						<tr>
+							<th>Propellants</th>
+							<th>Secondary cutoff point</th>
+						</tr>
+						<tr>
+							<td>Water/Ammonia - methane</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>Water/Ammonia - Hydrogen</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>Water/Methane - Hydrogen</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>Ammonia/Methane - Hydrogen</td>
+							<td></td>
+						</tr>
+					</tbody>
+				</table>
 			</p>
 			<p>Optimization 2: Minimal thrust maximizing<br><br>
-Idea: Given a required velocity change, figure out how we can fill a tank with various propellants to get an optimal thrust-to-weight ratio.
+Idea: Given a required velocity change, figure out how we can fill a tank with various propellants to get an optimal thrust-to-weight ratio.<br>
+			The acceleration of a rocket over time looks something like this:
+				<img src="img/overTime.png" alt="graph growing exponentially" class="diagram"><br>
+			Notice of the acceleration in the beginning is the limiting factor. But what if I told you it is possible to get better thrust in the beginning using the same engine but another propellant? The thrust obtained from a propellant in a thermal rocket engines is inversely proportional to its exhaust velocity. Why? Well, the reactor has a power $P$ the mass flow is then proportional to $\frac{P}{v^2}$. Thrust is proportional to mass flow times exhaust velocity, so there you have it, $Thrust \propto  \frac{1}{v}$. So we want to use one propellant in the beginning with a low exhaust velocity and one at the end with a high exhaust velocity. In this case however, it is worth it to mix propellants to get an ideal exhaust belocity at all points in time to get a flat thrust curve. The equations are complicated
+			</p><p>
+			[[Sadly I have to wait a little before I can continue this part as I have misplaced my notes]]
 			</p>
 		</div>
 	</div>
