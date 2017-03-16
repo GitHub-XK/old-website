@@ -14,7 +14,7 @@ layout: null
 		<lastBuildDate>{{site.rss.last.pubDate | append: ' 00:00:00 CST' }}</lastBuildDate>
 		<docs>http://blogs.law.harvard.edu/tech/rss</docs>
 		<webMaster>kim@moonwards.com</webMaster>
-		{% for rss in site.rss reversed %}
+		{% for rss in site.rss %}
 		<item>
 			<title>{{rss.title}}</title>
 			<link>{{rss.link}}</link>
