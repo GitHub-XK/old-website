@@ -11,7 +11,7 @@ intro: What matters is understanding what <i>needs</i> to happen, and what <i>ca
 This is a part of the site that is expanded and detailed as the project develops. It will change and grow regularly.
 </details>
 <div class="columnSet">
- <article class="column">
+ <article class="column" id='TransportIntro'>
   <h1>Transport Systems</h1>
   <details>
   <summary>The key to success</summary>
@@ -23,7 +23,7 @@ This is a part of the site that is expanded and detailed as the project develops
    </p>
   </details>
  </article>
- <article class="column">
+ <article class="column" id="ColonyDevIntro">
   <h1>Colony Development</h1>
   <details>
    <summary>Go big, go robotic</summary>
@@ -32,7 +32,7 @@ This is a part of the site that is expanded and detailed as the project develops
    </p>
   </details>
  </article>
- <article class="column">
+ <article class="column" id="SocioEconomicIntro">
   <h1>Socio-Economic Development</h1>
   <details>
    <summary>A bridge to a new era</summary>
@@ -42,7 +42,7 @@ This is a part of the site that is expanded and detailed as the project develops
  </article>
 </div>
 <div class="columnSet">
- <article class="column">
+ <article class="column" id="FirstTransportShips">
   <h5><a href="machines2.html#AsteroidAnchors">First Asteroid Retrieval Mission</a></h5>
   <ul>
    <li>Based on the <a href="http://sites.nationalacademies.org/cs/groups/depssite/documents/webpage/deps_083266.pdf">ARM</a> mission design scaled by a factor of 10, aiming for an asteroid massing 7.5 metric kilotons</li>
@@ -64,19 +64,21 @@ This is a part of the site that is expanded and detailed as the project develops
    <li>A barrier needs to be between the shuttle and human habs so that people aren't exposed to its radiation when working outside</li>
    <li>To design the model, better data is needed on radiation shield design. </li>
   </ul>
- <h5><a href="machines2.html#CargoShip">Cargo Ship from LEO to LLO</a></h5>
+ <h5><a href="machines2.html#PodShip">Pod ship from LEO to LLO</a></h5>
  <ul>
   <li>uses next generation hydrolox upper stages capable of many restarts</li>
-  <li>On the LEO end, it meets a space station, loads the cargo waiting there and gets servicing</li>
-  <li>On the LLO end, it hands off its load to the nuclear shuttle</li>
+  <li>On the LEO end, it meets a space station, loads the cargo pods waiting there and gets servicing</li>
+  <li>On the LLO end, it hands off its load to the nuclear shuttle, and later to the tethers</li>
+  <li>When crew come, they arrive in pods outfitted for transporting people.</li>
+  <li>This ship is almost completely automatic, no pilots.</li>
   </ul>
-  <p><b>10 to 15 missions occur during this phase. The cargo ship takes payloads of up to 40 tons, the nuclear shuttle can land up to 12 tons on the surface.</b></p>
+  <p><b>10 to 15 missions occur during this phase. The pod ship takes payloads of up to 40 tons, the nuclear shuttle can land up to 12 tons on the surface.</b></p>
  </article>
- <article class="column">
+ <article class="column" id="RobotRoverTests">
   <h5><a href="machines.html#robots">Robot and Rover Test Missions</a></h5>
-<p>These can't start until the cargo ship and shuttle are running and have delivered their first payload to the site of the future base. The goal would be to have robotic machinery on the surface capable of performing the complex work of construction and volatile extraction by the time the asteroid for the first tether arrives in orbit.</p>
+<p>These can't start until the pod ship and shuttle are running and have delivered their first payload to the site of the future base. The goal would be to have robotic machinery on the surface capable of performing the complex work of construction and volatile extraction by the time the asteroid for the first tether arrives in orbit.</p>
   <ul>
-   <li>After the cargo ship has deployed the nuclear shuttle, and the two have taken the first deliveries of equipment and supplies to the base site on the rim of Peary crater, a crew is delivered to orbit by a conventional rocket. Their capsule is picked up by the nuclear shuttle and landed at the base site.
+   <li>After the pod ship has deployed the nuclear shuttle, and the two have taken the first deliveries of equipment and supplies to the base site on the rim of Peary crater, a crew is delivered to orbit by a conventional rocket. Their capsule is picked up by the nuclear shuttle and landed at the base site.
   </li>
   <li>Remotely operated equipment has already excavated a trench, placed an inflatable hab for the crew in it, and covered it over with enough regolith to form a good radiation barrier. If there were problems with this process, the human crew completes it. Other simple processes such as basic scouting and solar panel setup are done. </li>
   <li>Also the surface regolith is fused using simple Fresnel lenses. The thin layer created will tend to break up and shift, but by driving a grid of fused regolith stakes into the ground before passing the lens over an area, the melted surface fuses with the stakes into one piece. The cracking then doesn't lead to shifting. Thickening the fused layer by spreading more regolith overtop and heating it can also be done.
@@ -96,7 +98,7 @@ This is a part of the site that is expanded and detailed as the project develops
   </li>
   </ul>
  </article>
- <article class="column">
+ <article class="column" id="InternationalSpaceAgency">
   <h5>Creation of an international space agency body</h5>
   <p>The agencies of most of the major space-faring nations cooperated in the construction of the International Space Station: ESA, JAXA, Roscosmos, NASA, and CSA. This is the best precedent but is a minor collaboration compared to what would be involved in settling the Moon.</p>
   <p>Many questions of jurisdiction, ownership, information sharing, and legal responsibility would need to be settled. Again the agreements covering the ISS are the model that would need to be built on.</p>
@@ -106,7 +108,7 @@ This is a part of the site that is expanded and detailed as the project develops
  </article>
 </div>
 <div class="columnSet">
- <article class="column">
+ <article class="column" id="1stPolarTether">
   <h5><a href="machines2.html#TetherTransport">Vertical Tether Construction in Polar Orbit</a></h5>
   <ul>
    <li>An asteroid massing 7500 tons is brought into high polar orbit, 5000 km above the surface. Surveys of Near Earth Asteroids will be much more complete by then, so it is reasonable to expect a carbonaceous asteroid that is suitable will have been found and collected. Its content of carbon and metal would be its most valuable contribution, as water is being mined from the lunar pole at less expense. But its hydrated minerals are still of value.</li>
@@ -114,19 +116,16 @@ This is a part of the site that is expanded and detailed as the project develops
    <li>A tether begins to be extended from the asteroid towards the surface. The first increment is only a few kilometers, then increments of a hundred kilometers are added. The platform at the foot, the procedure by which the nuclear shuttle meets it and is grappled, oscillation control on the tether, the cable car, and cable car propulsion are all thoroughly tested at this scale and further refined.</li>
    <li>The tether is extended in increments of 1000 km until it reaches an altitude of 50 km above the surface. The lower tether is then complete.</li>
    <li>The cable car may receive power beamed from the asteroid's solar panels, or may have an onboard nuclear generator.</li>
-   <li>Once at its full length, the nuclear shuttle will only need to use 1/4th of the delta V needed to reach and return from lunar orbit to reach the platform of the tether foot and return. It will need that same 1/4th of the normal delta V to go anywhere on the Moon by grappling the platform and hanging off it until it is over its destination, and to return to base the same way.</li>
+   <li>Once at its full length, the nuclear shuttle will only need to use 1/4th of the delta V needed to reach and return from lunar orbit to reach the platform of the tether foot and return. It will need that same 1/4th of the normal delta V to go anywhere on the Moon by grappling the platform and hanging off it until it is over its destination, and to return to base the same way. The anchor has an array of HiPEP engines to correct orbit perturbations caused by momentum changes when ships and payloads come and go.</li>
    <li>Conversion of the asteroid to a space station begins. Early steps in that direction were carried out during tether construction, replacing payloads of asteroid material with simple vessels and beams made of fused regolith. The solar panels and engines of the retrieval ship are installed on the asteroid for use in orbital maintenance.</li>
    <li>The upper tether, extending outwards deeper into space, is also installed and given its own cable car and platform at the tip. This will proceed much faster as the dynamics of the system and good designs are now known.</li>
    <li>With this process completed, it takes about 2 km/s less delta V to get something to the Moon from Earth, and 3 km/s less to get something back.</li>
-   <li>The mining of ice from the poles now is used to fuel the cargo ship on the Earth/Moon run completely.</li>
+   <li>The mining of ice from the poles now is used to fuel the pod ship on the Earth/Moon run completely.</li>
   </ul>
 <p>A second asteroid retrieval mission is sent out from Earth to get the anchor mass for the equatorial tether complex. Target mass: 25 kilotons.</p>
 <p>Cargo runs between LEO and the polar tether occur at every opportunity, every 2 weeks, 26 per year.</p>
-<h5>Crew Transfer Vehicle</h5>
-<p>A sort of mother ship shuttles crew between the LEO space station and the polar tether anchor, where they transfer to the cable car, go to the foot platform, and are picked up by the nuclear shuttle. On the very first such run, they instead transfer to a new nuclear shuttle designed for passenger duties, and descend to the surface using that. After that the passenger shuttle is piloted to the tether foot when people need picking up.</p>
-<p>This ship has hydrolox engines and carries up to 30 people. It receives servicing at the LEO station, and fueling at the polar tether.</p>
  </article>
- <article class="column">
+ <article class="column" id="PearyFirstHab">
   <h5><a href="colonies.html#PearyModels">Completion of the Peary First Hab</a></h5>
   <ul>
    <li>The simple boards, beams, panels and such that the MIP stations can produce are sufficient for the bulk of this hab, without needing cables or fiber reinforcement. They can also be used to produce simple furnishings (tables, shelves, doors, chairs, beds ...) and simple implements (jugs, cups, bowls, boxes, shovels, rakes...) </li>
@@ -137,7 +136,7 @@ This is a part of the site that is expanded and detailed as the project develops
    <li>Due to the great significance of the first permanent habitat on another celestial body, the first completed hab is simply called First Hab. The second hab, for the first round of the RP, needs a name, as does the polar colony, the polar tether, and a number of other major installations being planned. This task will require consultation.</li>
   </ul>
  </article>
- <article class="column">
+ <article class="column" id="ResidenceProgramBegins">
   <h5>The Residence Program Begins</h5>
   <p>This is actually the final step of this phase, happening after everything in the other columns is done. However, preparation has been happening for years.</p>
   <ul>
@@ -159,7 +158,7 @@ This is a part of the site that is expanded and detailed as the project develops
   </article>
 </div>
 <div class="columnSet">
-<article class="spanAll">
+<article class="spanAll" id="ResidenceProgramTable">
   <h5>The Residence Program - Basic structure and rules</h5>
   <p>A lot happens during the course of the 7 rounds of the RP. By the time the last round is complete, Lalande and Peary have both reached the full extent shown in Phase 1 of the virtual colonies. Although the residents must qualify, and sign a contract stipulating their duties and obligations, they are free to pursue their own projects as time permits. In later rounds residents will have more free time and greater discretion to pursue activities aside from their official duties on the colony.</p>
   <table>
@@ -213,7 +212,7 @@ This is a part of the site that is expanded and detailed as the project develops
  </article>
 </div>
 <div class="columnSet">
-  <article class="column">
+  <article class="column" id="AsteroidforEquatorialTether">
     <h2>Transport cont'd</h2>
     <h5>Asteroid for Equatorial Tether arrives in orbit</h5>
     <p>
@@ -223,7 +222,7 @@ This is a part of the site that is expanded and detailed as the project develops
     A moonward and spaceward tether just like the ones on the polar tether are built outwards from the asteroid. These will be reinforced to take bigger payloads over time, and even to run multiple cars up and down.
     </p>
   </article>
-  <article class="column">
+  <article class="column" id="ExpansionofPeary">
     <h2>Colony Dev. con'd</h2>
     <h5>Expansion of Peary colony</h5>
     <p>
@@ -238,14 +237,14 @@ This is a part of the site that is expanded and detailed as the project develops
       <li>Once the above infrastructure is done, and the main local buildings are roughed in and capable of holding an atmosphere, the heavy construction equipment is transported to Lalande and begins work on Cernan's Promise.</li>
     </ul>
   </article>
-  <article class="column">
+  <article class="column" id="RPround1">
     <h2>Socio-Economic Dev. cont'd</h2>
     <p>The 200 residents from RP round 1 work alongside the First Hab crew to achieve the listed goals. English is the working language. The First Hab crew are the senior staff, and lead RP crews on the various projects. Work largely continues to be done remotely from within the habs at interface stations. </p>
     <p>Each married couple has a small apartment. Kitchens, bathrooms, showers, clothes washers, and everything else that involves plumbing, waste processing, or food is in centralized facilities shared by everyone. The second hab has a common exercise area, mult-use gathering area, and workshop for the use of residents on their own time. The greenhouses are also set up partially as relaxation and exercise areas. </p>
   </article>
 </div>
 <div class="columnSet">
-  <article class="column">
+  <article class="column" id="GagarinStation">
     <h5>The Equatorial Tether becomes Gagarin Station</h5>
     <p>
     The asteroid is mined, and as material from it is sent down to Cernan's Promise, components for a space station are sent back up, plus gravel and rocks to maintain or increase its mass. This space station will expand over time to fill certain economic niches:
@@ -256,7 +255,7 @@ This is a part of the site that is expanded and detailed as the project develops
       <li>Shipyard: Extending the previous idea, final assembly and outfitting of components from Cernan's Promise would be done at the asteroid. Complete ships combining those components with ones from Earth would be produced. Some would be nuclear ships. Some would be solar sail ships. Both kinds of ships would gain even more advantage than other designs through launch-release from the upper tether. Nuclear ships can avoid firing engines where the radiation spray could damage installations on the asteroid surface, solar sails save a ton of time by avoiding the need to break orbit themselves. </li>
     </ul>
   </article>
-  <article class="column">
+  <article class="column" id="ConstructCP">
     <h5>Construction of Cernan's Promise</h5>
     <p>As heavy industry will be concentrated at Cernan's Promise, once begun the priority is to get production going there as quickly as possible.</p>
     <ul>
@@ -275,7 +274,7 @@ This is a part of the site that is expanded and detailed as the project develops
     <h5>Expansion of Peary Colony</h5>
     <p>As the population grows, more greenhouses are needed. Ice mining also expands, now being done in a whole set of craters. The ice mining is now almost completely automated. The population at Peary levels off at 1000 people, and everyone else goes to Lalande. </p>
   </article>
-  <article class="column">
+  <article class="column" id="RPround2-5">
     <h5>Residence Program rounds 2 through 5</h5>
     <p>Total population at the completion of these events is 6300 people - 6200 from the RP, and 100 from the space-faring nations who continue to administer the colonies. The Moon Agency is created at this point, and staff is extended beyond the existing management staff from the space agencies to include some of the residents. The MA oversees colony activity beyond that point, following the dictates of a treaty created to establish its policies.</p>
     <p>Some programming broadcast from the colonies becomes quite popular on Earth. Certain sports have evolved into something unique and entertaining, and there are now leagues of small competing teams, and scheduled matches for several sports that include annual championships. A sort of variety talk show has also become very popular. An annual arts event gets considerable attention and includes virtual participation by people on Earth. Many of the video blogs of different resident groups have large loyal followings. The lunar population includes a number of people who have become international celebrities, and even more who are major celebrities in their home countries.</p>
@@ -285,20 +284,23 @@ This is a part of the site that is expanded and detailed as the project develops
   </article>
 </div>
 <div class="columnSet">
-  <article class="column">
+  <article class="column" id="MoreTethers">
     <h5>Addition of 3 More Polar Tethers</h5>
     <p>The original asteroid retrieval ship, now heavily upgraded, delivers asteroids for the remaining tethers for the Moon. They are placed in staggered polar orbits, one every 90&deg;, and all the tethers have the same orbital period so they will never interfere with each other. All three mass 25 kilotons, like the Gagarin asteroid. One is again carbonaceous, the other two are mostly metal. Mining installations are created on all three, but there is little call for human habitation on them and they have only basic facilities for a small, occasional crew. The mining and transport work is overseen remotely and is largely automatic.</p>
     <p>With this system complete, the maximum wait between convenient trajectories to or from a tether is 3.5 days anywhere on the Moon. With a reasonable fuel penalty, most places are accessible much more regularly. In a pinch a rescue crew can get anywhere in a few hours using the shuttles alone. So, now ice mining starts at the south pole as well, and many other places on the Moon are explored more extensively. In a few places, valuable ores, or very large lava tubes, or some especially exciting discovery is found, and expeditions begin development or exploration there.</p>
     <h5>Coil Gun Use Begins</h5>
     <p>Cernan's Promise starts using coil guns to launch cargo to the foot of Gagarin's tether, or straight into orbit or on a trajectory for LEO. These launches are in capsules that have thrusters sufficient for course corrections or orbital maneuvers, and most are reusable. Some can also be decelerated by a catcher with a similar structure on return, that system is made after the initial coil gun.</p>
     <p>Lalande B, at 8 km across and about 30 km north of Lalande, is used for this purpose. All spaceport activity is transferred there over time to provide a buffer zone between it and Lalande City. It also has  an even shape and smooth walls so the coil guns over time can be made longer, and to swivel on a track around the crater rim in order to launch or catch in any direction.</p>
-    <h5>Earth Orbital Tether Work Begins</h5>
-    <p>Another jump up in mass moved, the asteroid delivered to be the anchor mass is 1 metric megaton of material, largely metallic. Enough confidence in asteroid maneuvering and tether technology has built up to place it in orbit and begin the tether. Initially its orbit is circularized at 5000 km altitude, and the tether is built earthwards to an altitude of 250 km. </p>
-    <p>In order for this to work, a program to shift satellites to orbits that don't interfere with the tether is undertaken, starting a number of years before the anchor asteroid arrives. Many are shifted to below 250 km, and the incentive is that the tether complex will service and refuel these satellites for an excellent price. Other favored orbits are ones at the final orbital altitude of the anchor at 10 000 km, either moving with it or in a clear harmonic, or ones beyond its tip, which will be at 15 000 km. Satellites that really can't be adapted to any of these options are maintained by the achor station's servicing fleet anyways, which helps maintain its orbit clear of obstructions. But of course the tether must be constantly maintained, be designed to withstand large impacts, and be able to defend itself if a collision is anticipated.</p>
+    <h5><a href="machines2.html#EarthTether">Earth Orbital Tether Work Begins</a></h5>
+    <p>Another jump up in mass moved, the asteroid delivered to be the anchor mass is 1 metric megaton of material, largely metallic. Initially its orbit is circularized at 5000 km altitude, and the tether is built earthwards to an altitude of 250 km. </p>
     <p>At this altitude, the velocity needed to meet the foot is decreased to 5.5 km/s.</p>
   </article>
-  <article class="column">
-
+  <article class="column" id="FillIn">
+    <h5>Structures Filled In and Capacity Increased</h5>
+    <p>While all the structures of Cernan's Promise and Peary now exist, they are only slowly filling up. They were designed to be filled in organically over time, blank canvasses the residents could put their visions on to. As the population expands, they build their homes within the galleries. Each couple is given a floorspace, and they are able to use the MIP stations, 3d printers, and other gear to have custom houses made and assembled. As there is no need to install plumbing, wiring, or any weather protection, and the gravity is so low, the design options for the homes are wide open.</p>
+    <p>Kitchens and all facilities with plumbing continue to be shared, but are distributed much more widely and shared by much smaller groups. Each set of facilities takes on its own feel as the couples that share them come up with pleasing designs for them that express their personalities. They start to feel more like mini-spas and picnic spots. Some couples choose to pool the floorspaces assigned to them to build more elaborate, larger shared houses. Where personalities don't mesh, spaces are exchanged and couples join a different group, sometimes then deciding to alter their houses. The cost of this is minimal as the equipment is there and not fully occupied, and the structures are easily altered.  </p>
+    <p>The atriums, Teacup, and the polar greenhouses are filled with plants. The crops yielded incease in quality, quantity, and variety as knowledge is gained and resources increase. The colonies near food independence. </p>
+    <p>The colonists decide upon and build all the shared facilities they need or enjoy. Office space, workshops, gardens, meeting and lecture halls, theaters, sports arenas,  </p>
   </article>
     <p></p>
   <article class="column">
