@@ -83,9 +83,11 @@ function calc(){
 	tether.topOrbit = Math.sqrt(moon.gm/(tether.top + moon.radius));
 	tether.footOrbit = Math.sqrt(moon.gm/(tether.foot + moon.radius));
 	tether.escapeFromTop = Math.sqrt(tether.topVel*tether.topVel-tether.topOrbit*tether.topOrbit*2);
-	out("escape","Vinf after release from tether top " + myRound(tether.escapeFromTop,3) + " m/s");
+	out("escape","Vinf after release from tether top " + myRound(tether.escapeFromTop,3) + " m/s (1030 m/s is required to reach Earth)");
 	tether.hitTheGround = Math.sqrt(tether.footVel*tether.footVel + 2*moon.gm/moon.radius - tether.footOrbit*tether.footOrbit*2);
 	out("hitTheGround","Velocity at lunar surface after release from tether foot " + myRound(tether.hitTheGround,3) + " m/s");
+	tether.newApoapsis = tether.top*tether.top*tether.topVel*tether.topVel/(2*moon.gm-tether.top*tether.topVel*tether.topVel);
+	out("newApoapsis","Apoapsis after release from tether: " + myRound(tether.newApoapsis/1000,3) + " km (negative means escape)");
 	out("warnings",warnings);
 };
 		</script>
@@ -105,7 +107,9 @@ function calc(){
 				<p id="hitTheGround"></p>
 				<p id="centreVel"></p>
 				<p id="topVel"></p>
+				<h4>If released from top:</h4>
 				<p id="escape"></p>
+				<p id="newApoapsis"></p>
 			</div>
 		</div>
 	</body>
