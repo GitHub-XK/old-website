@@ -49,23 +49,47 @@ var moon = {
 };
 var tether = {};
 function calc(){
-	var form = documentGetElementById("input").elements;
+	var warnings = "";
+	var form = document.getElementById("input").elements;
 	var gnum = function(field){
 		return Number(form[field].value);
 	};
+	var out = function(id,message){
+		document.getElementById(id).innerHTML = message;
+	};
+	var myRound = function(num,digits){
+		return Math.floor(num*Math.pow(10,digits))/Math.pow(10,digits);
+	};
 	tether.foot = gnum("foot")*1000;
+	tether.top = gnum("top")*1000;
+	tether.centre = gnum("centre")*1000;
+	if(tether.foot > tether.top){
+		warnings  += "The tether foot can not be higher than the top!<br>";
+	}
+	else if(tether.centre < tether.foot || tether.centre > tether.top){
+		warnings += "The centre of the tether must be between the endpoints!<br>";
+	};
+	tether.time = 2*Math.PI*Math.sqrt(Math.pow(tether.centre + moon.radius,3)/moon.gm);
+	tether.centreVel = Math.sqrt(moon.gm/(moon.radius + tether.centre));
+	tether.footVel = tether.foot * tether.centreVel/tether.centre;
+	out("warnings",warnings);
+	out("period","Period: " + myRound(tether.time/3600,3) + " hours");
+	out("footVel","Tether velocity at foot " + myRound(tether.footVel,3) + " m/s");
 };
 		</script>
 		<div class="wrapper" id="main">
 			<h1>Tethers</h1>
+			<h3>Vertical tether</h3>
 			<form id="input">
 				<input name="foot">Tether foot altitude (km)<br>
 				<input name="top">Tether top altitude (km)<br>
 				<input name="centre">Tether centre altitude (km)<br>
-				<button onclick="calc()">Calculate</button>
+				<p style="color:red;" id="warnings"></p>
 			</form>
+			<button onclick="calc()">Calculate</button>
 			<div id="output">
 				<p id="period"></p>
+				<p id="footVel"></p>
 			</div>
 		</div>
 	</body>
