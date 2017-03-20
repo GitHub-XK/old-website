@@ -1,0 +1,72 @@
+---
+layout: toolTemplate
+title: Tethers
+---
+	</head>
+	<body>
+		<script>
+var moon = {
+	"type":"moon",
+	"mass":7.342e22,
+	"gm":4.9048695e12,
+	"gravity":1.62,
+	"radius":1737100,
+	"polarRadius":1736000,
+	"equatorRadius":1738100,
+	"area":3.793e13,
+	"volume":2.1958e19,
+	"density":3344,
+	"sideralRotation":2360591.5104,
+	"locked":true,
+	"rotationVelocity":4.627,
+	"axialTilt":6.687,
+	"axialTiltEcliptic":1.5424,
+	"orbit":{
+		"periapsis":362600000,
+		"apoapsis":405400000,
+		"semiMajor":384399000,
+		"eccentricity":0.0549,
+		"period":2360591,
+		"speed":1022,
+		"inclination":5.145,
+		"parent":"earth",
+		"lowOrbit":{
+			"surfaceCost":1720,
+			"escapeCost":680
+		},
+		"escape":[
+			{
+				"target":"earth",
+				"cost":140
+			},
+			{
+				"target":"escape",
+				"cost":90
+			}
+		]
+	},
+	"atmosphere":false
+};
+var tether = {};
+function calc(){
+	var form = documentGetElementById("input").elements;
+	var gnum = function(field){
+		return Number(form[field].value);
+	};
+	tether.foot = gnum("foot")*1000;
+};
+		</script>
+		<div class="wrapper" id="main">
+			<h1>Tethers</h1>
+			<form id="input">
+				<input name="foot">Tether foot altitude (km)<br>
+				<input name="top">Tether top altitude (km)<br>
+				<input name="centre">Tether centre altitude (km)<br>
+				<button onclick="calc()">Calculate</button>
+			</form>
+			<div id="output">
+				<p id="period"></p>
+			</div>
+		</div>
+	</body>
+</html>
