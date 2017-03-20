@@ -63,6 +63,9 @@ function calc(){
 	tether.foot = gnum("foot")*1000;
 	tether.top = gnum("top")*1000;
 	tether.centre = gnum("centre")*1000;
+	if(tether.foot < 0){
+		warnings  += "The tether foot is inside the Moon!<br>";
+	};
 	if(tether.foot > tether.top){
 		warnings  += "The tether foot can not be higher than the top!<br>";
 	}
@@ -71,10 +74,19 @@ function calc(){
 	};
 	tether.time = 2*Math.PI*Math.sqrt(Math.pow(tether.centre + moon.radius,3)/moon.gm);
 	tether.centreVel = Math.sqrt(moon.gm/(moon.radius + tether.centre));
-	tether.footVel = tether.foot * tether.centreVel/tether.centre;
-	out("warnings",warnings);
+	tether.footVel = (tether.foot + moon.radius) * tether.centreVel/(tether.centre + moon.radius);
+	tether.topVel = (tether.top + moon.radius) * tether.centreVel/(tether.centre + moon.radius);
 	out("period","Period: " + myRound(tether.time/3600,3) + " hours");
 	out("footVel","Tether velocity at foot " + myRound(tether.footVel,3) + " m/s");
+	out("centreVel","Tether velocity at centre " + myRound(tether.centreVel,3) + " m/s");
+	out("topVel","Tether velocity at top " + myRound(tether.topVel,3) + " m/s");
+	tether.topOrbit = Math.sqrt(moon.gm/(tether.top + moon.radius));
+	tether.footOrbit = Math.sqrt(moon.gm/(tether.foot + moon.radius));
+	tether.escapeFromTop = Math.sqrt(tether.topVel*tether.topVel-tether.topOrbit*tether.topOrbit*2);
+	out("escape","Vinf after release from tether top " + myRound(tether.escapeFromTop,3) + " m/s");
+	tether.hitTheGround = Math.sqrt(tether.footVel*tether.footVel + 2*moon.gm/moon.radius - tether.footOrbit*tether.footOrbit*2);
+	out("hitTheGround","Velocity at lunar surface after release from tether foot " + myRound(tether.hitTheGround,3) + " m/s");
+	out("warnings",warnings);
 };
 		</script>
 		<div class="wrapper" id="main">
@@ -90,6 +102,10 @@ function calc(){
 			<div id="output">
 				<p id="period"></p>
 				<p id="footVel"></p>
+				<p id="hitTheGround"></p>
+				<p id="centreVel"></p>
+				<p id="topVel"></p>
+				<p id="escape"></p>
 			</div>
 		</div>
 	</body>
