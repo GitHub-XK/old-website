@@ -47,7 +47,13 @@ var moon = {
 	},
 	"atmosphere":false
 };
-var tether = {};
+var tether = {
+	materials:{
+		zylon:[5800000000,1540],
+		aramid:[3757000000,1440],
+		steel:[2693000000,8000],
+	}
+};
 function calc(){
 	var warnings = "";
 	var form = document.getElementById("input").elements;
@@ -85,31 +91,54 @@ function calc(){
 	tether.escapeFromTop = Math.sqrt(tether.topVel*tether.topVel-tether.topOrbit*tether.topOrbit*2);
 	out("escape","Vinf after release from tether top " + myRound(tether.escapeFromTop,3) + " m/s (1030 m/s is required to reach Earth)");
 	tether.hitTheGround = Math.sqrt(tether.footVel*tether.footVel + 2*moon.gm/moon.radius - tether.footOrbit*tether.footOrbit*2);
-	out("hitTheGround","Velocity at lunar surface after release from tether foot " + myRound(tether.hitTheGround,3) + " m/s");
-	tether.newApoapsis = tether.top*tether.top*tether.topVel*tether.topVel/(2*moon.gm-tether.top*tether.topVel*tether.topVel);
+	out("hitTheGround","&nbsp;&nbsp;Velocity at lunar surface after release from tether foot " + myRound(tether.hitTheGround,3) + " m/s");
+	tether.newApoapsis = tether.top*tether.top*tether.topVel*tether.topVel/(2*moon.gm-(tether.top + moon.radius)*tether.topVel*tether.topVel);
 	out("newApoapsis","Apoapsis after release from tether: " + myRound(tether.newApoapsis/1000,3) + " km (negative means escape)");
+
+	if(form.overrideMaterial.checked){
+		tether.strength = gnum("tensileStrength")/gnum("density");
+	}
+	else{
+		tether.strength = tether.materials[form["material"]][0] / tether.materials[form["material"]][1];
+	};
+
 	out("warnings",warnings);
 };
 		</script>
 		<div class="wrapper" id="main">
 			<h1>Tethers</h1>
+			<p style="color:red;">This page uses "fast" development. Results may be inaccurate or WRONG</p>
 			<h3>Vertical tether</h3>
 			<form id="input">
-				<input name="foot">Tether foot altitude (km)<br>
-				<input name="top">Tether top altitude (km)<br>
-				<input name="centre">Tether centre altitude (km)<br>
+				<input name="foot" value="0">Tether foot altitude (km)<br>
+				<input name="top" value="0">Tether top altitude (km)<br>
+				<input name="centre" value="0">Tether centre altitude (km)<br>
+				<div class="container">
+					Tether material<select name="material">
+						<option value="zylon">Zylon</option>
+						<option value="aramid">Aramid</option>
+						<option value="steel">Steel (good)</option>
+					</select><br>
+					<input name="overrideMaterial" type="checkbox">Use custom material instead<br>
+					<input name="tensileStrength">Tensile strength (Pa)<br>
+					<input name="density">Density kg/m³<br>
+				</div>
 				<p style="color:red;" id="warnings"></p>
 			</form>
 			<button onclick="calc()">Calculate</button>
 			<div id="output">
-				<p id="period"></p>
-				<p id="footVel"></p>
-				<p id="hitTheGround"></p>
-				<p id="centreVel"></p>
-				<p id="topVel"></p>
-				<h4>If released from top:</h4>
-				<p id="escape"></p>
-				<p id="newApoapsis"></p>
+				<div class="container">
+					<p id="period"></p>
+					<p id="footVel"></p>
+					<p id="hitTheGround"></p>
+					<p id="centreVel"></p>
+					<p id="topVel"></p>
+				</div>
+				<div class="container">
+					<h4>If released from top:</h4>
+					<p id="escape"></p>
+					<p id="newApoapsis"></p>
+				</div>
 			</div>
 		</div>
 	</body>
