@@ -113,6 +113,13 @@ function calc(){
 		tether.strength = tether.materials[form["material"].value][0] / tether.materials[form["material"].value][1];
 	};
 
+	tether.lowAcceleration = moon.gm/Math.pow(moon.radius + tether.foot,2) - tether.footVel*tether.footVel/(moon.radius + tether.foot);
+	tether.highAcceleration = - moon.gm/Math.pow(moon.radius + tether.top,2) + tether.topVel*tether.topVel/(moon.radius + tether.top);
+	//tether.lowIntegral = ;
+	//tether.highIntegral = ;
+
+	out("lowAcceleration","Acceleration at tether foot: " + myRound(tether.lowAcceleration,5) + " m/s²");
+	out("highAcceleration","Acceleration at tether top: " + myRound(tether.highAcceleration,5) + " m/s²");
 	out("period","Period: " + myRound(tether.time/3600,3) + " hours");
 	out("footVel","Tether velocity at foot " + myRound(tether.footVel,3) + " m/s");
 	out("centreVel","Tether velocity at centre " + myRound(tether.centreVel,3) + " m/s");
@@ -162,8 +169,12 @@ function calc(){
 				</div>
 				<div class="container">
 					<h4>Tether properties</h4>
+					<p id="lowAcceleration"></p>
 					<p id="lowRatio"></p>
+					<p id="lowMass"></p>
+					<p id="highAcceleration"></p>
 					<p id="highRatio"></p>
+					<p id="highMass"></p>
 				</div>
 			</div>
 		</div>
