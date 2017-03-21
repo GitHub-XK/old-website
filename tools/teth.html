@@ -50,8 +50,9 @@ var moon = {
 var tether = {
 	materials:{
 		zylon:[5800000000,1540],
-		aramid:[3757000000,1440],
-		steel:[2693000000,8000],
+		aramid:[3620000000,1440],
+		steel:[2617000000,8000],
+		hppe:[2400000000,970]
 	}
 };
 function calc(){
@@ -82,25 +83,43 @@ function calc(){
 	tether.centreVel = Math.sqrt(moon.gm/(moon.radius + tether.centre));
 	tether.footVel = (tether.foot + moon.radius) * tether.centreVel/(tether.centre + moon.radius);
 	tether.topVel = (tether.top + moon.radius) * tether.centreVel/(tether.centre + moon.radius);
-	out("period","Period: " + myRound(tether.time/3600,3) + " hours");
-	out("footVel","Tether velocity at foot " + myRound(tether.footVel,3) + " m/s");
-	out("centreVel","Tether velocity at centre " + myRound(tether.centreVel,3) + " m/s");
-	out("topVel","Tether velocity at top " + myRound(tether.topVel,3) + " m/s");
+
 	tether.topOrbit = Math.sqrt(moon.gm/(tether.top + moon.radius));
 	tether.footOrbit = Math.sqrt(moon.gm/(tether.foot + moon.radius));
-	tether.escapeFromTop = Math.sqrt(tether.topVel*tether.topVel-tether.topOrbit*tether.topOrbit*2);
-	out("escape","Vinf after release from tether top " + myRound(tether.escapeFromTop,3) + " m/s (1030 m/s is required to reach Earth)");
-	tether.hitTheGround = Math.sqrt(tether.footVel*tether.footVel + 2*moon.gm/moon.radius - tether.footOrbit*tether.footOrbit*2);
-	out("hitTheGround","&nbsp;&nbsp;Velocity at lunar surface after release from tether foot " + myRound(tether.hitTheGround,3) + " m/s");
-	tether.newApoapsis = tether.top*tether.top*tether.topVel*tether.topVel/(2*moon.gm-(tether.top + moon.radius)*tether.topVel*tether.topVel);
-	out("newApoapsis","Apoapsis after release from tether: " + myRound(tether.newApoapsis/1000,3) + " km (negative means escape)");
+	tether.escapeFromTop = Math.sqrt(
+		tether.topVel * tether.topVel
+		- tether.topOrbit * tether.topOrbit * 2
+	);
+
+	tether.hitTheGround = Math.sqrt(
+		tether.footVel * tether.footVel
+		+ 2*moon.gm / moon.radius
+		- tether.footOrbit * tether.footOrbit*2
+	);
+
+	tether.newApoapsis = Math.pow(
+		(tether.top + moon.radius) * tether.topVel
+		,2
+	)/(
+		2*moon.gm
+		- (tether.top + moon.radius) * tether.topVel * tether.topVel
+	);
+
 
 	if(form.overrideMaterial.checked){
 		tether.strength = gnum("tensileStrength")/gnum("density");
 	}
 	else{
-		tether.strength = tether.materials[form["material"]][0] / tether.materials[form["material"]][1];
+		tether.strength = tether.materials[form["material"].value][0] / tether.materials[form["material"].value][1];
 	};
+
+	out("period","Period: " + myRound(tether.time/3600,3) + " hours");
+	out("footVel","Tether velocity at foot " + myRound(tether.footVel,3) + " m/s");
+	out("centreVel","Tether velocity at centre " + myRound(tether.centreVel,3) + " m/s");
+	out("topVel","Tether velocity at top " + myRound(tether.topVel,3) + " m/s");
+	out("newApoapsis","Apoapsis after release from tether: " + myRound(tether.newApoapsis/1000,3) + " km (negative means escape)");
+	out("escape","Vinf after release from tether top " + myRound(tether.escapeFromTop,3) + " m/s (1030 m/s is required to reach Earth)");
+	out("hitTheGround","&nbsp;&nbsp;Velocity at lunar surface after release from tether foot " + myRound(tether.hitTheGround,3) + " m/s");
 
 	out("warnings",warnings);
 };
@@ -117,7 +136,8 @@ function calc(){
 					Tether material<select name="material">
 						<option value="zylon">Zylon</option>
 						<option value="aramid">Aramid</option>
-						<option value="steel">Steel (good)</option>
+						<option value="hppe">HPPE</option>
+						<option value="steel">Steel</option>
 					</select><br>
 					<input name="overrideMaterial" type="checkbox">Use custom material instead<br>
 					<input name="tensileStrength">Tensile strength (Pa)<br>
@@ -128,6 +148,7 @@ function calc(){
 			<button onclick="calc()">Calculate</button>
 			<div id="output">
 				<div class="container">
+					<h4>General information</h4>
 					<p id="period"></p>
 					<p id="footVel"></p>
 					<p id="hitTheGround"></p>
@@ -138,6 +159,11 @@ function calc(){
 					<h4>If released from top:</h4>
 					<p id="escape"></p>
 					<p id="newApoapsis"></p>
+				</div>
+				<div class="container">
+					<h4>Tether properties</h4>
+					<p id="lowRatio"></p>
+					<p id="highRatio"></p>
 				</div>
 			</div>
 		</div>
