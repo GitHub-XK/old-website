@@ -115,8 +115,27 @@ function calc(){
 
 	tether.lowAcceleration = moon.gm/Math.pow(moon.radius + tether.foot,2) - tether.footVel*tether.footVel/(moon.radius + tether.foot);
 	tether.highAcceleration = - moon.gm/Math.pow(moon.radius + tether.top,2) + tether.topVel*tether.topVel/(moon.radius + tether.top);
-	//tether.lowIntegral = ;
-	//tether.highIntegral = ;
+
+	//accelertation = mu/r² - r * v_c²/r_c²
+	//integral = -mu/r - r²v_c²/(2r_c²)
+	//upper part formula = -mu/r_c - v_c²/2 + mu/x + x²v_c²/(2r_c²)
+	//upper taper formula = e^((-mu/r_c - v_c²/2 + mu/x + x²v_c²/(2r_c²))/strength)
+	//Integral[e^((a+b/x + c*x^2)/d),x]
+	// or Integral[e^(a+b/x + c*x^2),x] <-- somebody integrate this? Plz
+
+	tether.lowIntegral =
+		moon.gm/(moon.radius+tether.foot)
+		+ Math.pow((moon.radius+tether.foot)*tether.centreVel/(tether.centre+moon.radius),2)/2
+		- moon.gm/(moon.radius+tether.centre)
+		- Math.pow(tether.centreVel,2)/2
+	tether.highIntegral = 
+		moon.gm/(moon.radius+tether.centre)
+		+ Math.pow(tether.centreVel,2)/2
+		- moon.gm/(moon.radius+tether.top)
+		- Math.pow((moon.radius+tether.top)*tether.centreVel/(tether.centre+moon.radius),2)/2
+	;
+	tether.lowRatio = Math.pow(Math.E,tether.lowIntegral/tether.strength);
+	tether.highRatio = Math.pow(Math.E,-tether.highIntegral/tether.strength);
 
 	out("lowAcceleration","Acceleration at tether foot: " + myRound(tether.lowAcceleration,5) + " m/s²");
 	out("highAcceleration","Acceleration at tether top: " + myRound(tether.highAcceleration,5) + " m/s²");
@@ -127,6 +146,11 @@ function calc(){
 	out("newApoapsis","Apoapsis after release from tether: " + myRound(tether.newApoapsis/1000,3) + " km (negative means escape)");
 	out("escape","Vinf after release from tether top " + myRound(tether.escapeFromTop,3) + " m/s (1030 m/s is required to reach Earth)");
 	out("hitTheGround","&nbsp;&nbsp;Velocity at lunar surface after release from tether foot " + myRound(tether.hitTheGround,3) + " m/s");
+	out("lowRatio","foot-centre taper ratio: " + myRound(tether.lowRatio,3) + " Y");
+	out("highRatio","centre-top taper ratio: " + myRound(tether.highRatio,3) + " Y");
+	out("badLowMass","Bad (too high) mass estimate of lower tether: "
+		+ myRound(tether.lowAcceleration*(tether.centre-tether.foot)*(tether.lowRatio + 1)/(2*tether.strength),4)
+		+ " x payload mass (payload includes foot platform)");
 
 	out("warnings",warnings);
 };
@@ -171,10 +195,12 @@ function calc(){
 					<h4>Tether properties</h4>
 					<p id="lowAcceleration"></p>
 					<p id="lowRatio"></p>
+					<p id="badLowMass"></p>
 					<p id="lowMass"></p>
 					<p id="highAcceleration"></p>
 					<p id="highRatio"></p>
 					<p id="highMass"></p>
+					<p id="badHighMass"></p>
 				</div>
 			</div>
 		</div>
