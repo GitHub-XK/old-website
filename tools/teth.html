@@ -151,6 +151,9 @@ function calc(){
 	out("badLowMass","Bad (too high) mass estimate of lower tether: "
 		+ myRound(tether.lowAcceleration*(tether.centre-tether.foot)*(tether.lowRatio + 1)/(2*tether.strength),4)
 		+ " x payload mass (payload includes foot platform)");
+	out("badHighMass","Bad (too high) mass estimate of higher tether: "
+		+ myRound(tether.highAcceleration*(tether.top-tether.centre)*(tether.highRatio + 1)/(2*tether.strength),4)
+		+ " x payload mass (payload includes top platform)");
 
 	out("warnings",warnings);
 };
