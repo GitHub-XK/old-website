@@ -29,7 +29,7 @@
 					values="0 380 320;40 380 320;110 380 320"
 					dur="1s"
 					begin="start.click+4.2s"
-					fill="freeze" 
+					fill="freeze"
 				/>
 				<animateTransform
 					attributeName="transform"
@@ -48,15 +48,23 @@
 				values="0 0;20 25"
 				dur="1s"
 				begin="start.click+6s"
-				fill="freeze" 
+				fill="freeze"
 			/>
 			<animateTransform
 				attributeName="transform"
 				attributeType="XML"
 				type="translate"
-				values="20 25;350 110"
-				dur="5s"
+				values="20 25;670 195"
+				dur="10s"
 				begin="start.click+8s"
+			/>
+			<animateTransform
+				attributeName="transform"
+				attributeType="XML"
+				type="rotate"
+				values="20 25;0 0"
+				dur="0s"
+				begin="start.click+17s"
 				fill="freeze" 
 			/>
 		</g>
