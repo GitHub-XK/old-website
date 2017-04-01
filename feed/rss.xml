@@ -10,7 +10,7 @@ layout: null
 		<description>The Virtual Moon Colony Project</description>
 		<category>space exploration</category>
 		<language>en-us</language>
-		<pubDate>Sun, 13 Nov 2016 17:50:00 GMT</pubDate>
+		<pubDate>{{site.rss.last.pubDate | append: ' 00:00:00 CST' }}</pubDate>
 		<lastBuildDate>{{site.rss.last.pubDate | append: ' 00:00:00 CST' }}</lastBuildDate>
 		<docs>http://blogs.law.harvard.edu/tech/rss</docs>
 		<webMaster>kim@moonwards.com</webMaster>
