@@ -276,7 +276,7 @@ planets =
 			{
 				"target":"earth",
 				"cost":140
-			}
+			},
 			{
 				"target":"escape",
 				"cost":90
@@ -526,6 +526,13 @@ planets =
 "europa":{
 	"type":"moon",
 	"orbit":{
+		"periapsis":664862000,
+		"apoapsis":676938000,
+		"semiMajor":670900000,
+		"eccentricity":0.009,
+		"period":306822.0384,
+		"speed":13740,
+		"inclination":0.47,
 		"parent":"jupiter",
 		"lowOrbit":{},
 		"escape":[
@@ -632,7 +639,11 @@ planets =
 		"speed":14280,
 		"inclination":1.574,
 		"parent":"saturn",
-		"lowOrbit":{},
+		"lowOrbit":{
+			"altitude":20000,
+			"surfaceCost":100,
+			"escapeCost":40
+		},
 		"escape":[]
 	}
 },
@@ -650,7 +661,11 @@ planets =
 		"period":118386.8352,
 		"inclination":0.019,
 		"parent":"saturn",
-		"lowOrbit":{},
+		"lowOrbit":{
+			"altitude":20000,
+			"surfaceCost":160,
+			"escapeCost":70
+		},
 		"escape":[]
 	}
 },
@@ -669,7 +684,11 @@ planets =
 		"speed":11350,
 		"inclination":1.12,
 		"parent":"saturn",
-		"lowOrbit":{},
+		"lowOrbit":{
+			"altitude":50000,
+			"surfaceCost":270,
+			"escapeCost":110
+		},
 		"escape":[]
 	}
 },
@@ -688,7 +707,11 @@ planets =
 		"period":236469.456,
 		"inclination":0.019,
 		"parent":"saturn",
-		"lowOrbit":{},
+		"lowOrbit":{
+			"altitude":50000,
+			"surfaceCost":350,
+			"escapeCost":140
+		},
 		"escape":[]
 	}
 },
@@ -708,7 +731,11 @@ planets =
 		"speed":8480,
 		"inclination":0.345,
 		"parent":"saturn",
-		"lowOrbit":{},
+		"lowOrbit":{
+			"altitude":50000,
+			"surfaceCost":450,
+			"escapeCost":180
+		},
 		"escape":[]
 	}
 },
@@ -736,7 +763,11 @@ planets =
 		"period":1377648,
 		"speed":5570,
 		"inclination":0.34854,
-		"lowOrbit":{},
+		"lowOrbit":{
+			"altitude":1000000,
+			"surfaceCost":7600,
+			"escapeCost":560
+		},
 		"escape":[]
 	}
 },
@@ -752,7 +783,11 @@ planets =
 	"type":"moon",
 	"orbit":{
 		"parent":"saturn",
-		"lowOrbit":{},
+		"lowOrbit":{
+			"altitude":50000,
+			"surfaceCost":410,
+			"escapeCost":150
+		},
 		"escape":[]
 	}
 },

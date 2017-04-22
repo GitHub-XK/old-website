@@ -70,6 +70,8 @@ function calc(){
 	tether.foot = gnum("foot")*1000;
 	tether.top = gnum("top")*1000;
 	tether.centre = gnum("centre")*1000;
+	tether.centralMass = gnum("centralMass");
+	tether.payload = gnum("payloadMass");
 	if(tether.foot < 0){
 		warnings  += "The tether foot is inside the Moon!<br>";
 	};
@@ -137,6 +139,39 @@ function calc(){
 	tether.lowRatio = Math.pow(Math.E,tether.lowIntegral/tether.strength);
 	tether.highRatio = Math.pow(Math.E,-tether.highIntegral/tether.strength);
 
+	tether.dockedMomentum = tether.centreVel * tether.centralMass * (moon.radius + tether.centre)
+		+ tether.payload * tether.footVel * (moon.radius + tether.foot);
+
+	tether.dockedEnergy = tether.centreVel * tether.centreVel * tether.centralMass/2
+		+ tether.footVel*tether.footVel *tether.payload/2
+		- tether.payload * moon.gm/(moon.radius + tether.foot)
+		- tether.centralMass * moon.gm/(moon.radius + tether.centre);
+/*Some math:
+
+(newAltitude + mr) * x * pay + central * (newAltitude + mr + centre - foot) * (newAltitude + mr + centre - foot) * x/(newAltitude + mr)
+	= tether.dockedMomentum
+
+x = tether.dockedMomentum/(
+		(newAltitude + mr) * pay + central * (newAltitude + mr + centre - foot)²/(newAltitude + mr)
+	)
+
+tether.dockedEnergy = 
+	(
+		tether.dockedMomentum/(
+			(newAltitude + mr) * pay + central * (newAltitude + mr + centre - foot)²/(newAltitude + mr)
+		)
+	)² * pay
+	+ (
+		(newAltitude + mr + centre - foot) * tether.dockedMomentum/(
+			(newAltitude + mr) * pay + central * (newAltitude + mr + centre - foot)²/(newAltitude + mr)
+		)/(newAltitude + mr)
+	)² * central
+	- pay * moon.gm/(newAltitude + mr)
+	- central * moon.gm/(newAltitude + mr + centre - foot)
+
+
+*/
+
 	out("lowAcceleration","Acceleration at tether foot: " + myRound(tether.lowAcceleration,5) + " m/s²");
 	out("highAcceleration","Acceleration at tether top: " + myRound(tether.highAcceleration,5) + " m/s²");
 	out("period","Period: " + myRound(tether.time/3600,3) + " hours");
@@ -176,6 +211,10 @@ function calc(){
 					<input name="overrideMaterial" type="checkbox">Use custom material instead<br>
 					<input name="tensileStrength">Tensile strength (Pa)<br>
 					<input name="density">Density kg/m³<br>
+				</div>
+				<div class="container">
+					<input name="centralMass">Central mass<br>
+					<input name="payloadMass">Mass of docking shuttle<br>
 				</div>
 				<p style="color:red;" id="warnings"></p>
 			</form>
