@@ -2,20 +2,39 @@
 layout: toolTemplate
 title: Engine Search
 ---
-<script src="../js/planets.js"></script>
 <div class="wrapper" id="main">
-	<form>
-		<select>
-			<option>Sun</option>
-			<option>Earth</option>
-			<option>Moon</option>
-			<option>Mars</option>
-		</select>
-		<select>
-			<option>Sun</option>
-			<option>Earth</option>
-			<option>Moon</option>
-			<option>Mars</option>
-		</select>
+	<form id="selection">
 	</form>
 </div>
+<script src="../js/planets.js"></script>
+<script>
+var selectionContext = {
+	unselectedQueue:["sun"],
+	objectQueue:[],
+	prober:function(){
+		if(this.unselectedQueue.length){
+			var nextUp = this.unselectedQueue.pop();
+			this.objectQueue.push(nextUp);
+			if(planets[nextUp].hasOwnProperty("orbit")){
+				if(planets[nextUp].orbit.hasOwnProperty("children")){
+					for(var i=0;i<planets[nextUp].orbit.children.length;i++){
+						this.unselectedQueue.push(planets[nextUp].orbit.children[i]);
+					};
+				};
+			};
+			this.prober();
+		};
+		return;
+	},
+	renderSelection:function(){
+		var target = "<select>";
+		for(var i=0;i<this.objectQueue.length;i++){
+			target += "<option>" + this.objectQueue[i] + "</option>";
+		};
+		target += "</select>";
+		document.getElementById("selection").innerHTML = target;
+	}
+};
+selectionContext.prober();
+selectionContext.renderSelection();
+</script>
