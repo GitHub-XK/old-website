@@ -807,12 +807,60 @@ planets =
 		"children":["titania","oberon","umbriel","ariel","miranda"]
 	}
 },
+"miranda":{
+	"type":"moon",
+	"orbit":{
+		"parent":"uranus"
+	}
+},
+"ariel":{
+	"type":"moon",
+	"orbit":{
+		"parent":"uranus"
+	}
+},
+"umbriel":{
+	"type":"moon",
+	"orbit":{
+		"parent":"uranus"
+	}
+},
+"oberon":{
+	"type":"moon",
+	"orbit":{
+		"parent":"uranus"
+	}
+},
+"titania":{
+	"type":"moon",
+	"orbit":{
+		"parent":"uranus"
+	}
+},
 "neptune":{
 	"type":"gas planet",
 	"gm":6.836529e15,
 	"orbit":{
 		"parent":"sun",
 		"children":["triton","proteus","nereid"]
+	}
+},
+"nereid":{
+	"type":"moon",
+	"orbit":{
+		"parent":"neptune"
+	}
+},
+"proteus":{
+	"type":"moon",
+	"orbit":{
+		"parent":"neptune"
+	}
+},
+"triton":{
+	"type":"moon",
+	"orbit":{
+		"parent":"neptune"
 	}
 },
 "pluto":{
@@ -825,6 +873,18 @@ planets =
 	}
 },
 "charon":{
+	"type":"moon",
+	"orbit":{
+		"parent":"pluto"
+	}
+},
+"nix":{
+	"type":"moon",
+	"orbit":{
+		"parent":"pluto"
+	}
+},
+"hydra":{
 	"type":"moon",
 	"orbit":{
 		"parent":"pluto"
