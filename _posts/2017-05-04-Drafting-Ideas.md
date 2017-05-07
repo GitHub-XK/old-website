@@ -1,4 +1,4 @@
- ---
+---
 layout: post
 title: Drafting Ideas
 date: 2017-05-04
@@ -9,7 +9,8 @@ We were chatting over the last week about the thermal energy storage system we h
 
 <figure>
 <img src="https://www.moonwards.com/img/demotank.jpg" alt="cutaway of the tank heated by pipes from the parabolic mirrors, showing heat exchange systems.">
-<figcaption>A jumble of pipes and a huge amount of lava - it's the future!  [The model is here](https://sketchfab.com/models/4061fa2ce9dc4096b9639713c070e700) on our SketchFab page.</figcaption>
+<figcaption>A jumble of pipes and a huge amount of lava - it's the future!  <a href="https://sketchfab.com/models/4061fa2ce9dc4096b9639713c070e700">The model is here</a> on our SketchFab page.</figcaption>
+</figure>
 
 This system is discussed in the section on [solar thermal turbines](https://www.moonwards.com/machines2.html#power) on the website. We started talking about the heat storage mass. Right now the hot pipes from the mirrors dive straight into the ground and the deep pond of lava created around them simply has to be big enough that even as heat drains from it all through the long night, it is still hot enough to heat the gas that drives the turbines. Powder regolith insulates very well, so that actually isn't as crazy as it may sound. However, it does mean that a lot of the mirrors in the system are simply there to make the heat store big enough to last through the night. Mirrors are simple to make, so why not just make those extra ones instead of making an actual tank to hold a huge amount of lava? Well, the pipes full of molten salt that carry that heat back to the reservoir are not simple to make and will need repair more often, and the longer they are, the less efficient they are. Besides, once you have made the tank, the performance of the whole system goes up, and stays up. Such a tank will last a very long time with little upkeep.
 
