@@ -2,6 +2,8 @@
 layout: toolTemplate
 title: Engine Search
 ---
+<h1>Transfer calculator</h1>
+<p>Data from planets.json</p>
 <div class="wrapper" id="main">
 	<form id="selection">
 	</form>
@@ -27,12 +29,12 @@ var selectionContext = {
 		return;
 	},
 	renderSelection:function(){
-		var target = "<select>";
+		var target = "";
 		for(var i=0;i<this.objectQueue.length;i++){
 			target += "<option>" + this.objectQueue[i] + "</option>";
 		};
 		target += "</select>";
-		document.getElementById("selection").innerHTML = target;
+		document.getElementById("selection").innerHTML = "from" + "<select name='from'>" +  target + "to" + "<select name='to'>" + target + "(TODO: alphabetic list)";
 	}
 };
 selectionContext.prober();
