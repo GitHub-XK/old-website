@@ -1,13 +1,16 @@
 ---
 layout: post
+comments: true
 title: Getting in Virtual Shape
-date: '2016-07-27T10:51:00.001-07:00'
+date: 2016-07-27
 author: kim holder
 tags:
 modified_time: '2016-09-27T07:29:31.415-07:00'
 thumbnail: https://1.bp.blogspot.com/-MnI8NwuNFt8/V5jQZvTAEeI/AAAAAAAAWNo/6Fg1_VxyZIU7LzOCN2xTZSw8e5M4hgzoACK4B/s72-c/obsolete.jpg
 blogger_id: tag:blogger.com,1999:blog-2741304674651227490.post-8626250129605980207
 blogger_orig_url: http://moonwards1.blogspot.com/2016/07/getting-in-virtual-shape.html
+url: 2016/07/27/getting-in-virtual-shape.html
+identifier: 2016-07-27
 ---
 
 This may not shock anybody, but building an entire virtual Moon colony is a really big job with many challenges. Trying to become more methodical and organized about it has led to a lull in visible output right now. It has also made the stack of tasks on my desktop look that much more daunting. For now. I hear that once a project is properly organized, things go much more smoothly. That would be really nice.

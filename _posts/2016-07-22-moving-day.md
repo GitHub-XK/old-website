@@ -1,13 +1,16 @@
 ---
 layout: post
+comments: true
 title: 'Moving day '
-date: '2016-07-22T16:57:00.000-07:00'
+date: 2016-07-22
 author: kim holder
 tags:
 modified_time: '2016-07-22T16:57:43.074-07:00'
 thumbnail: https://3.bp.blogspot.com/-RVgtRC3hKLc/V5KxRJAiDQI/AAAAAAAAWKY/rUvqt6innfwbGSMWpiqrE9_wVXHceJwjQCK4B/s72-c/2016021018045356bb7bc524762.jpg
 blogger_id: tag:blogger.com,1999:blog-2741304674651227490.post-1199299183123830649
 blogger_orig_url: http://moonwards1.blogspot.com/2016/07/moving-day.html
+url: 2016/07/22/moving-day.html
+identifier: 2016-07-22h
 ---
 
 (Originally posted on site forum, Feb 10th, 2016.)

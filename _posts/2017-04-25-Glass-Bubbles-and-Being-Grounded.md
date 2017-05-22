@@ -1,8 +1,11 @@
 ---
 layout: post
+comments: true
 title: On Glass Bubbles and Being Grounded
 date: 2017-04-25
 tags:
+url: 2017/04/25/Glass-Bubbles-and-Being-Grounded.html
+identifier: 2017-04-25
 ---
 
 I couldn't get along without windows. I don't care how big the cave is, how realistic display screens are at projecting pleasant outdoor scenes (holographic? well, that would help, but still), or how much time i spend outside (and i don't think it would be more than 10 or 15 hours a week) - big windows on the Moon make a big, big difference. I wouldn't expect people to have any enthusiasm at all for living there unless they have lots of natural sunlight, broad vistas, and can spend as much time looking outside as they like with no concern about radiation. So, we need to be able to make lots of glass there. LOOOOOOTS of glass.end-excerpt

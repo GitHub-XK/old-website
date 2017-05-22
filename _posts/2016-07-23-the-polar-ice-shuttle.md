@@ -1,13 +1,16 @@
 ---
 layout: post
+comments: true
 title: The Polar Ice Shuttle
-date: '2016-07-23T11:30:00.001-07:00'
+date: 2016-07-23
 author: kim holder
 tags:
 modified_time: '2016-07-23T11:46:53.943-07:00'
 thumbnail: https://3.bp.blogspot.com/-lk6IXuK0KDk/V5O2uigjX-I/AAAAAAAAWMQ/8pwh8S4vKKg3wZjz4u_z8KDWjjMmAdL3QCK4B/s72-c/2016031918322456ed9b38efcde.png
 blogger_id: tag:blogger.com,1999:blog-2741304674651227490.post-3873926165857867203
 blogger_orig_url: http://moonwards1.blogspot.com/2016/07/the-polar-ice-shuttle.html
+url: 2016/07/23/the-polar-ice-shuttle.html
+identifier: 2016-07-23a
 ---
 
 (Originally posted on site forum Mar 19th, 2016.)

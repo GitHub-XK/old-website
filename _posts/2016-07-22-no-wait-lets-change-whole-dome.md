@@ -1,13 +1,16 @@
 ---
 layout: post
+comments: true
 title: 'No, wait... let''s change the whole dome '
-date: '2016-07-22T14:31:00.000-07:00'
+date: 2016-07-22
 author: kim holder
 tags:
 modified_time: '2016-07-22T14:31:11.584-07:00'
 thumbnail: https://3.bp.blogspot.com/-aDvYCw7-imU/V5KP_55rRtI/AAAAAAAAWIw/fc0oW8z9ZtMcingjkdV580iNoU6SYL6AQCK4B/s72-c/how-to-make-gummy-alphabet-letters.jpg
 blogger_id: tag:blogger.com,1999:blog-2741304674651227490.post-6303750590097374498
 blogger_orig_url: http://moonwards1.blogspot.com/2016/07/no-wait-lets-change-whole-dome.html
+url: 2016/07/22/no-wait-lets-change-whole-dome.html
+identifier: 2016-07-22f
 ---
 
 (Originally posted on site forum Jan 7th, 2016.)

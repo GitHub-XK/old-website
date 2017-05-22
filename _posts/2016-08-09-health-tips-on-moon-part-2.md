@@ -1,13 +1,16 @@
 ---
 layout: post
+comments: true
 title: Health tips on the Moon - Part 2
-date: '2016-08-09T11:18:00.001-07:00'
+date: 2016-08-09
 author: kim holder
 tags:
 modified_time: '2016-09-27T07:28:51.909-07:00'
 thumbnail: https://1.bp.blogspot.com/-99jykR2PvS8/V6omxmOK_GI/AAAAAAAAWPM/h_U_PGXfFD07S0ZrRxCw-z2V_pyvGzKMwCK4B/s72-c/swimming_pool1000.jpg
 blogger_id: tag:blogger.com,1999:blog-2741304674651227490.post-2282708788616696199
 blogger_orig_url: http://moonwards1.blogspot.com/2016/08/health-tips-on-moon-part-2.html
+url: 2016/08/09/health-tips-on-moon-part-2.html
+identifier: 2016-08-09
 ---
 
 Before i do anything else i am going to deliberately refer you away from this blog, to the wonderful <a href="https://what-if.xkcd.com/124/">Lunar Swimming</a> entry on Randall Munroe's What If blog, and please note that i asked that question. Please return for further discussion of the proposition.

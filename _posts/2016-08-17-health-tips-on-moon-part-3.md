@@ -1,13 +1,16 @@
 ---
 layout: post
+comments: true
 title: Health Tips on the Moon - Part 3
-date: '2016-08-17T18:42:00.001-07:00'
+date: 2016-08-17
 author: kim holder
 tags:
 modified_time: '2016-09-27T07:28:31.994-07:00'
 thumbnail: https://3.bp.blogspot.com/-gcGTy98WgQY/V7UCIgHxVKI/AAAAAAAAWPg/sJJCNJE_JN8-y-Si1OSPJ7UUSHQJddaZwCK4B/s72-c/solid-W-window-wall.jpg
 blogger_id: tag:blogger.com,1999:blog-2741304674651227490.post-2632294516377304025
 blogger_orig_url: http://moonwards1.blogspot.com/2016/08/health-tips-on-moon-part-3.html
+url: 2016/08/17/health-tips-on-moon-part-3.html
+identifier: 2016-08-17
 ---
 
 It is time to speak of radiation on the Moon. First i am going to explain it a bit, and point out things a lot of people don't know. One, we can only make decent guesses how much radiation there is on the Moon. Two, we don't know what it will do to people. Three, a bit of shielding makes it much worse, not better.

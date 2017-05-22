@@ -1,13 +1,16 @@
 ---
 layout: post
+comments: true
 title: The Sunken Hall (Extensive Edit)
-date: '2016-07-23T11:45:00.000-07:00'
+date: 2016-07-23
 author: kim holder
 tags:
 modified_time: '2016-07-23T11:45:19.017-07:00'
 thumbnail: https://2.bp.blogspot.com/-xWlnE5TH3H8/V5O5kZa_m7I/AAAAAAAAWMc/3Nb5jHXCx_wNez1idXwO8SkPIKpF9Mg8ACK4B/s72-c/2016040118501956fec2ebd4dcc.jpg
 blogger_id: tag:blogger.com,1999:blog-2741304674651227490.post-8653966908637853932
 blogger_orig_url: http://moonwards1.blogspot.com/2016/07/the-sunken-hall-extensive-edit.html
+url: 2016/07/23/the-sunken-hall-extensive-edit.html
+identifier: 2016-07-23
 ---
 
 (Originally posted on site forum April 2nd, 2016.)

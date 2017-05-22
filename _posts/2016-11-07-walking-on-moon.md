@@ -1,13 +1,16 @@
 ---
 layout: post
+comments: true
 title: Walking on the Moon
-date: '2016-11-07T15:49:00.000-08:00'
+date: 2016-11-07
 author: kim holder
 tags:
 modified_time: '2016-12-20T13:17:19.147-08:00'
 thumbnail: https://1.bp.blogspot.com/-G2fDv3xrMO0/WBkDyt8DxKI/AAAAAAAAWUE/EUe0ot6c2X4LJ2P8r_KPChDxQjTazkzXwCK4B/s72-c/LalandeLOLA.jpg
 blogger_id: tag:blogger.com,1999:blog-2741304674651227490.post-2178644973514489727
 blogger_orig_url: http://moonwards1.blogspot.com/2016/11/walking-on-moon.html
+url: 2016/11/07/walking-on-moon.html
+identifier: 2016-11-07
 ---
 
 I have spent a lot of time in and around Lalande Crater on the various maps of the Moon. I have my favorite spots. I've developed an inordinate fondness for it as clearly one of the handsomest craters. I have burning questions about what is really there. So, when i decided it was time to make a 3d model of it using LRO imagery and topographical data, it isn't surprising this activity stretched to over a month.

@@ -1,12 +1,15 @@
 ---
 layout: post
+comments: true
 title: The Transport Tipping Point
-date: '2016-10-12T13:06:00.001-07:00'
+date: 2016-10-12
 author: kim holder
 tags:
 modified_time: '2016-11-07T15:50:36.595-08:00'
 blogger_id: tag:blogger.com,1999:blog-2741304674651227490.post-8015242725827994514
 blogger_orig_url: http://moonwards1.blogspot.com/2016/10/the-transport-tipping-point.html
+url: 2016/10/12/the-transport-tipping-point.html
+identifier: 2016-10-12
 ---
 
 Giant rockets and giant rocket explosions have been all the buzz for the last few weeks. It has gotten me thinking how little conversation there really is about the future being pursued here. There is lots of analysis of the market and the technology, but not of where we are headed. Sure, the viability of colonizing Mars is discussed, and the reasons for pursuing space settlement in general. But there is no sense of how scale affects the whole thing, and changes the whole panorama.

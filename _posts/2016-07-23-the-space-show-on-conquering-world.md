@@ -1,12 +1,15 @@
 ---
 layout: post
+comments: true
 title: 'The Space Show on Conquering the World '
-date: '2016-07-23T12:10:00.002-07:00'
+date: 2016-07-23
 author: kim holder
 tags:
 modified_time: '2016-07-23T12:54:50.434-07:00'
 blogger_id: tag:blogger.com,1999:blog-2741304674651227490.post-2995639245979846481
 blogger_orig_url: http://moonwards1.blogspot.com/2016/07/the-space-show-on-conquering-world.html
+url: 2016/07/23/the-space-show-on-conquering-world.html
+identifier: 2016-07-23
 ---
 
 (Originally posted on site forum June 6th, 2016.)

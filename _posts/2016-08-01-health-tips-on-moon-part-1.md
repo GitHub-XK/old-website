@@ -1,13 +1,16 @@
 ---
 layout: post
+comments: true
 title: Health tips on the Moon - Part 1
-date: '2016-08-01T15:34:00.000-07:00'
+date: 2016-08-01
 author: kim holder
 tags:
 modified_time: '2016-09-27T07:29:12.397-07:00'
 thumbnail: https://2.bp.blogspot.com/-kvTPzs4jyG8/V5-HZcb7zYI/AAAAAAAAWN4/BBlA3bKY0r8Eumea43n0tPN5VSpQqcR4ACK4B/s72-c/Blut_zentrifuge_l.jpg
 blogger_id: tag:blogger.com,1999:blog-2741304674651227490.post-8054528403305919452
 blogger_orig_url: http://moonwards1.blogspot.com/2016/08/health-tips-on-moon-part-1.html
+url: 2016/08/01/health-tips-on-moon-part-1.html
+identifier: 2016-08-01
 ---
 
 I've been mulling how to address effective exercise on the Moon to address a host of health problems that come with low gravity. The<a href="https://en.wikipedia.org/wiki/Effect_of_spaceflight_on_the_human_body"> main issues</a> are loss of muscle and bone mass, and problems associated with redistribution of fluids, in particular how this can degrade eyesight. Also with the first habitat model coming along, i took a more critical look at its radiation protection and beefed it up.

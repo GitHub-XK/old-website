@@ -1,12 +1,15 @@
 ---
 layout: post
+comments: true
 title: The Pyramid Paradigm
-date: '2016-09-21T10:56:00.000-07:00'
+date: 2016-09-21
 author: kim holder
 tags:
 modified_time: '2016-09-27T07:25:52.655-07:00'
 blogger_id: tag:blogger.com,1999:blog-2741304674651227490.post-2850457750373808326
 blogger_orig_url: http://moonwards1.blogspot.com/2016/09/the-pyramid-paradigm.html
+url: 2016/09/21/the-pyramid-paradigm.html
+identifier: 2016-09-21
 ---
 
 Long, long ago, all of the very first nations on the face of the Earth made really big things. They made the very biggest things they could figure out how to. For a long time they raised [huge stones](https://en.wikipedia.org/wiki/Megalith) over tombs or temples. Then they took to building a wide variety of [pyramids](https://en.wikipedia.org/wiki/Step_pyramid). The one we simply know as the Great Pyramid remains the heaviest structure ever built, handily beating the [Romanian Palace of the Parliament](https://en.wikipedia.org/wiki/Palace_of_the_Parliament), which is the heaviest modern building and an interesting point of comparison.
