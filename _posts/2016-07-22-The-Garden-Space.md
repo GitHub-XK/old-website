@@ -1,13 +1,16 @@
 ---
 layout: post
+comments: true
 title: 'The Garden Space with Sky Views - Yes we can :) '
-date: '2016-07-22T17:26:00.004-07:00'
+date: 2016-07-22
 author: kim holder
 tags:
 modified_time: '2016-07-22T17:29:17.058-07:00'
 thumbnail: https://1.bp.blogspot.com/-ZaN2fPomzhk/V5K3t6VtGwI/AAAAAAAAWK8/voXu4W0VVCsrVbt7Q2FNFWkcjxjopLX0ACK4B/s72-c/2016021600473756c271a9ce711.png
 blogger_id: tag:blogger.com,1999:blog-2741304674651227490.post-8426910066198029829
 blogger_orig_url: http://moonwards1.blogspot.com/2016/07/note-following-is-one-of-various-posts_21.html
+url: 2016/07/22/The-Garden-Space.html
+identifier: 2016-07-22b
 ---
 
 (Originally posted on site forum Feb 16th, 2016.)  

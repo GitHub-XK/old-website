@@ -1,12 +1,15 @@
 ---
 layout: post
+comments: true
 title: Ice Mines Don't Sell
-date: '2016-12-16T08:50:00.000-08:00'
+date: 2016-12-16
 author: kim holder
 tags:
 modified_time: '2016-12-31T11:48:24.481-08:00'
 blogger_id: tag:blogger.com,1999:blog-2741304674651227490.post-3156352983384272776
 blogger_orig_url: http://moonwards1.blogspot.com/2016/12/kapitalist-asked-if-moonwards-could.html
+url: 2016/12/16/kapitalist-asked-if-moonwards-could.html
+identifier: 2016-12-16
 ---
 
 Kapitalist asked if Moonwards could also work on a plan that could happen in the world we know in a comment on the previous post. That was like pressing a big red button in the middle of my forehead, so i am responding here.

@@ -1,13 +1,16 @@
 ---
 layout: post
+comments: true
 title: 'Radiation and windows - a cosmic ray blind design '
-date: '2016-07-22T17:16:00.000-07:00'
+date: 2016-07-22
 author: kim holder
 tags:
 modified_time: '2016-07-22T17:16:00.174-07:00'
 thumbnail: https://4.bp.blogspot.com/-2ABazHTTDjQ/V5K1hjfhNlI/AAAAAAAAWKw/pGNhLafImcAMAcmgMW1yGbwxmWjxreDdQCK4B/s72-c/2016021318185556bf738f6b2be.jpg
 blogger_id: tag:blogger.com,1999:blog-2741304674651227490.post-7434816463905017840
 blogger_orig_url: http://moonwards1.blogspot.com/2016/07/radiation-and-windows-cosmic-ray-blind.html
+url: 2016/07/22/radiation-and-windows-cosmic-ray-blind.html
+identifier: 2016-07-22c
 ---
 
 (Originally posted on site forum Feb 13th, 2016.)  

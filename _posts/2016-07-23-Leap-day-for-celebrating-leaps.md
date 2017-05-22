@@ -1,12 +1,15 @@
 ---
 layout: post
+comments: true
 title: 'Leap day for celebrating leaps! '
-date: '2016-07-23T10:29:00.004-07:00'
+date: 2016-07-23
 author: kim holder
 tags:
 modified_time: '2016-07-23T10:30:21.350-07:00'
 blogger_id: tag:blogger.com,1999:blog-2741304674651227490.post-8484994200291058486
 blogger_orig_url: http://moonwards1.blogspot.com/2016/07/note-following-is-one-of-various-posts_23.html
+url: 2016/07/23/note-following-is-one-of-various-posts_23.html
+identifier: 2016-07-23b
 ---
 
 (Originally posted on site forum Mar 1st, 2016.)

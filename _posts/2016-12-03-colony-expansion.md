@@ -1,13 +1,16 @@
 ---
 layout: post
+comments: true
 title: Colony Expansion
-date: '2016-12-03T14:06:00.002-08:00'
+date: 2016-12-03
 author: kim holder
 tags:
 modified_time: '2016-12-20T13:17:46.517-08:00'
 thumbnail: https://3.bp.blogspot.com/-Z4REko7F0S0/WEMbraRQWII/AAAAAAAAWXs/YQjlzTYVFBsNLjPNHITPZxNeQs1e4wOQwCK4B/s72-c/OverviewBirdsEye.jpg
 blogger_id: tag:blogger.com,1999:blog-2741304674651227490.post-4976455686104115344
 blogger_orig_url: http://moonwards1.blogspot.com/2016/12/colony-expansion.html
+url: 2016/12/03/colony-expansion.html
+identifier: 2016-12-03
 ---
 
 Sketching things rapidly is really helpful for discussion. In the last 3 weeks i've sketched all the main installations of the colony in order to create an overview, and a framework that can be the basis for improvement. There are still a number of undocumented things, nonetheless there is so much more in the colony models i'm having trouble deciding how to explain it. At the same time, the models are such simple sketches, they don't really get across the richness of the ideas unless the viewer fills in a fair bit... Let me see if i can paint this picture for you now with what we have...

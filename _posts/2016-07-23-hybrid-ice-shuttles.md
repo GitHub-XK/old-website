@@ -1,13 +1,16 @@
 ---
 layout: post
+comments: true
 title: Hybrid Ice Shuttles
-date: '2016-07-23T12:10:00.001-07:00'
+date: 2016-07-23
 author: kim holder
 tags:
 modified_time: '2016-07-23T12:14:24.295-07:00'
 thumbnail: https://4.bp.blogspot.com/--7vJaMmnAMw/V5PAuu-8PnI/AAAAAAAAWNY/bRabcxN81dU7bNXYoAuL1qiol50OQbcbgCK4B/s72-c/201604220847455719e531aef31.png
 blogger_id: tag:blogger.com,1999:blog-2741304674651227490.post-6477771346237081816
 blogger_orig_url: http://moonwards1.blogspot.com/2016/07/hybrid-ice-shuttles.html
+url: 2016/07/23/hybrid-ice-shuttles.html
+identifier: 2016-07-23c
 ---
 
 (Originally posted on site forum April 22nd, 2016.)  
@@ -55,4 +58,4 @@ Thrust when needed, efficiency when possible.
 >
 > Oh - Aristillus. It is also a KREEP hotspot. Perhaps it can get the second full colony, but i think we are too far along to move the colony again, and actually, i think there is a decent argument against it. The likelihood of an ilmenite deposit is much higher at Lalande, based on Clemintine data of TiO2 on the surface. Concentration of TiO2 is much higher at Lalande than at Aristillus. ilmenite gets water and iron when reacted with hydrogen. Aristillus also looks a lot older and doesn't have the wonderfully clean walls that Lalande has, that look so very much like the digging depth to get to bedrock isn't much. And the equator has a big advantage if you start doing stuff with tethers, whether you go through EML1 or make a lunavator. So Lalande it is. Which is also nice because i've become quite fond of Lalande after looking at it so much.
 >
-> Things are shaping up nicely 
+> Things are shaping up nicely

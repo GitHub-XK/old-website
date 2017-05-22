@@ -1,8 +1,11 @@
 ---
 layout: post
+comments: true
 title: Timeline to the Space Boom
 date: 2017-03-28
 tags:
+url: 2017/03/28/timeline-to-the-space-boom.html
+identifier: 2017-03-28
 ---
 
 The timeline for the virtual colonies, it turns out, is not the digestible list of bullet points i thought it would be when i started on it a couple of weeks ago. It is 130,000 words, and i stopped myself before it sucked me in completely. It maps out how the whole society on the Moon works, how a very achievable set of technologies supports it, and how the colonies develop industry and agriculture over the course of 50 years - in a dense but readable format. Outlining decades of humanity's greatest ever undertaking can't be done much more briefly. That's my story and i'm sticking to it.

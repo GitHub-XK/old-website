@@ -1,12 +1,15 @@
 ---
 layout: post
+comments: true
 title: Walking Rovers on the Moon
-date: '2016-07-23T13:31:00.002-07:00'
+date: 2016-07-23
 author: kim holder
 tags:
 modified_time: '2016-07-23T13:31:36.529-07:00'
 blogger_id: tag:blogger.com,1999:blog-2741304674651227490.post-3303175945317340366
 blogger_orig_url: http://moonwards1.blogspot.com/2016/07/walking-rovers-on-moon.html
+url: 2016/07/23/walking-rovers-on-moon.html
+identifier: 2016-07-23
 ---
 
 Moon dust is super nasty. It is composed of particles of shrapnel, essentially, created during meteor strikes. The only bits that aren't all sharp edges are the blobs of glass from the portion that was thrown up as lava. You want to stay away from it as much as possible.

@@ -1,12 +1,15 @@
 ---
 layout: post
+comments: true
 title: Transportation that Builds Momentum
-date: '2016-08-25T15:29:00.003-07:00'
+date: 2016-08-25
 author: kim holder
 tags:
 modified_time: '2016-09-27T07:26:49.564-07:00'
 blogger_id: tag:blogger.com,1999:blog-2741304674651227490.post-7453129860237751063
 blogger_orig_url: http://moonwards1.blogspot.com/2016/08/transportation-that-builds-momentum.html
+url: 2016/08/25/transportation-that-builds-momentum.html
+identifier: 2016-08-25
 ---
 
 There is no way around it. The different resources of the Moon are in different places, and they don't seem to be close together. Mapping of resources is really patchy, low-resolution, and incomplete, so maybe there is a sweet spot that helps with this we have only to discover. Probably not, though, and even if there is, if you are talking about serious development, you are going to need to go get things from far away sooner or later.

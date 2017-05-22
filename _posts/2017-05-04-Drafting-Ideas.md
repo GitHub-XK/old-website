@@ -1,10 +1,12 @@
 ---
 layout: post
+comments: true
 title: Drafting Ideas
 date: 2017-05-04
 tags:
+url: 2017/05/04/Drafting-Ideas.html
+identifier: 2017-05-04
 ---
-
 We were chatting over the last week about the thermal energy storage system we have drafted right now for the colony, which is a bit like some solar thermal power plants here on Earth. (I always sort of enjoy it when i have a legitimate reason to specify that i'm referring to something 'on Earth'.) Our [chat room](https://chat.stackexchange.com/rooms/37071/moonwards) has been rather productive in the last while, this discussion was such a case. To encourage that, i made a new cutaway sketch of the heat reservoir and connected systems in order for us to better visualize the concepts discussed and improve the design. As usual, it is a design for an advanced colony, and so it is rather audacious by current standards. Once we are there and thriving, something like it will make sense on the Moon. end-excerpt
 
 <figure>

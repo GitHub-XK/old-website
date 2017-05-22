@@ -1,13 +1,16 @@
 ---
 layout: post
+comments: true
 title: Nice Even Temperatures Through the Magic of Thermal Mass
-date: '2016-10-02T17:36:00.002-07:00'
+date: 2016-10-02
 author: kim holder
 tags:
 modified_time: '2016-10-08T08:02:06.356-07:00'
 thumbnail: https://1.bp.blogspot.com/-N0MlpGpsvHc/V_GkpdPdXmI/AAAAAAAAWRU/e3hGwYfJrH0CpiVmOZSRYHaxbNIswEbVQCLcB/s72-c/bedrock-depth.jpg
 blogger_id: tag:blogger.com,1999:blog-2741304674651227490.post-4413656618449089658
 blogger_orig_url: http://moonwards1.blogspot.com/2016/10/nice-even-temperatures-through-magic-of.html
+url: 2016/10/02/nice-even-temperatures-through-magic-of.html
+identifier: 2016-10-02
 ---
 
 An entry came in on the website forum about the extreme temperature swings between day and night on the Moon, and the difficulty of keeping temperatures even because of this. The poster, Sam D, mentioned in another post how lava tubes help with this, and that is indeed one reason why the idea of just sealing one up and using it as a hab is popular. I haven't ever properly explained why the habs we've designed will have very stable temperatures, so, now i am. (There is a different version of this on the forum more tailored to the asker, here i'm rearranging it a bit.)
