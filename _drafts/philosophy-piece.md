@@ -1,12 +1,3 @@
----
-layout: post
-comments: true
-title: Flee-osophy
-date: 2017-05-20
-tags:
-url: 2017/05/20/Flee-osophy.html
-identifier: 2017-05-20
----
 There is a strong tinge of escapism among space fans. That isn't necessarily a bad thing, escapism gets a bad wrap. It just has to be used with care. I think it's good for people to remember that things could be way, way better than they are. A vision of something that would be wonderful but can only be achieved with great effort can actually bring people together and focus them on making that effort. The problems begin with the false promises and hand-waving. If your head is out there, but your heart isn't rooted down here, you're in for trouble. end-excerpt
 
 When i look around at the epic space projects proselytized by most of the prominent space advocates out there - settlement of Mars, supply of the world's power from space, salvation of humanity, riches beyond compare - i'm disheartened. And please bear in mind that i *believe in these things*. I just think they have the order of operations all wrong. They skip over the heart and soul of the case to be made here. Many of them neglect it so badly they advocate sending people into danger, as though a bright future is secure as long as we manage to get out there and build giant things at whatever cost.
@@ -15,6 +6,28 @@ Au contraire. The brightness of our future is directly proportional to how good 
 
 The important thing here is not milestones. To hell with milestones. The inspirational thing about Apollo was not the small step for a man, it was the giant leap for mankind. The Apollo astronauts knew it better than anyone. They weren't there because they were great heroes, their mundane workdays on the Moon were not the source of inspiration. They were there because literally hundreds of thousands of people working closely together, and exerted themselves to the utmost mentally, to plan and build the most astonishingly complex machines we had ever made. Our ability to work together in that way was the magical thing. That took us to a magical place. It wouldn't have been magical if we hadn't overcome our own limitations to get there. That's why people mostly don't even look out airplane windows anymore. The Earth stretched out below means nothing to us anymore. Achieving flight hasn't freed us from our suffering. It has only made it a bit more complex.
 
+Proposing a mission on a scale that requires a change in priorities and perspective must start with why it is worth it. If you can't explain that in a way that is convincing to the public, you can't move on. Democratic society should never take such a grand decision unless the public understands and supports it. We can't lean on the complexity of these proposals and how outside normal experience they are as reasons not to properly execute that step. Our arguments have not been convincing, and so progress has not proceeded at the pace we would like. We should be focusing on why our arguments aren't convincing.
+
+First, we aren't ready to go. Don't tell me that's wrong because we did it 50 years ago. If we had proceeded with more missions people would have started to die. A rate of total loss of mission of 5 to 10 percent is probable. It would have been tremendously expensive, and had no tangible benefit back on Earth. Sure, development of the technology has spin-off benefits, but development of any cutting-edge technology has that, so one might as well develop the most beneficial things. Human deep-space missions were correctly identified as not the right choice. When robots are sophisticated enough to do the work by remote operation, then we are ready. The same thing goes for space mining and solar power.
+
+Second, we have no central vision. The visions usually presented are conjured by oversimplifying, downplaying problems, and neglecting to mention alternatives. I don't understand the aversion to admitting that doing this properly requires tremendous long-term investment before there is a net profit, and that we simply don't have a lot of the key technology. The truth will set you free. Admit that, and then analyze what it would really take,
+
+
+
+ include a complete explanation of how hard it is really going to be, and how much it will really cost. When your audience frowns and doubts, then it includes the explanation of why it is worth it. If you properly execute those steps, then you have a mass of people behind you who are as committed as you. A democratic society should never take such a grand decision under any other circumstances  Deciding to convince just the decision-makers
+
+
+The standard for proposing a mission so that we come together and overcome our limits
+
+
+
+So i don't take issue with telling anyone who will listen that settling Mars would fundamentally change us and is worth the expense and effort. This is true. (Not as true as if we settled the Moon, but true enough.) The problem is
+
+
+The important thing is to understand why. People are attracted to the idea because it is a worthy vision for our urge to overcome our limitations. If missions towards great goals in space don't satisfy
+
+What we space nerds have to give the world is our sense of the great abilities and experiences that lie in our future if we work hard together.
+
 That's why Apollo can't be repeated. It's when you overcome yourself that you are taken to a place of magic. It's not necessary to reach a new place to experience that. It is necessary to see the place you are for what it is - endlessly complex and interconnected with everything else.
 
-To have that experience, take your time, share everything, listen well, and speak with care and honesty. What we space nerds have to give the world is our sense of the great abilities and experiences that lie in our future if we work hard together. That should be enough. Be content, and don't get distracted with trying to make it happen. Just try to get across what it would mean. After all, that's why it matters to you. Just pass that on.
+To have that experience, take your time, share everything, listen well, and speak with care and honesty.  That should be enough. Be content, and don't get distracted with trying to make it happen. Just try to get across what it would mean. After all, that's why it matters to you. Just pass that on.
