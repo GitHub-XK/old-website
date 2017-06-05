@@ -25,65 +25,72 @@ title: Pellet Simulator
 			<canvas width="500" height="500" id="canvas"></canvas>
 		</div>
 		<script>
-var canvas = document.getElementById("canvas");
-var ctx = canvas.getContext("2d");
-var fps;
-var deltaTime;
-var pellets = [];
-var oldPosi = [];
-function update(){
-	var form = documentGetElementById("controls").elements;
-	var gnum = function(field){
-		return Number(form[field].value);
-	};
-	fps = Math.floor(gnum("graphics")*1000/gnum("physics"));
-	deltaTime = Math.floor(gnum("physics")/gnum("graphics"))*gnum("graphics")*gnum("simSpeed");
-	pellets = [];
-	var velocity0 = gnum("velocity0");
-	var velocity1 = gnum("velocity1");
-	var direction = Math.PI * gnum("direction")/180;
-	var radius = gnum("radius");
-	var argument = Math.PI *gnum("argument")/180;
-	if(form.origin.value === "earth"){
-		x = Math.cos(argument) * radius /* - EARTH_TO_BALANCE*/;
-	}
-	else{
-		x = Math.cos(argument) * radius  /* + BALANCE_TO_MOON*/;
-	};
-	var y = Math.sin(argument) * radius;
-	for(var i = 0;i < gnum("pellets");i++){
-		var pellet = {};
-		var velocity = velocity0 + (velocity1 - velocity0)*i/(gnum("pellets")-1);
-		pellet.vx = Math.cos(direction + argument) * velocity;
-		pellet.vx = Math.sin(direction + argument) * velocity;
-		pellet.y = y;
-		pellet.x = x;
-		oldPosu.push([x,y]);
-		pellets.push(pellet);
-	};
-	mainLoop = setInterval(
-		function(){
-			physics();
-			draw();
-			for(var i = 0;i < pellets.length;i++){
-				oldPosi[i][0] = pellets[i].x;
-				oldPosi[i][1] = pellets[i].y;
+var simulator = {
+	init : function(){
+		var canvas = document.getElementById("canvas");
+		this.ctx = canvas.getContext("2s");
+	},
+	physics : {
+		params : {},
+		state : {},
+		step : function(state){
+			for(var i=0;i<state.pellets.length;i++){
+				state.pellets[i].x += state.pellets[i].vx * state.deltaTime;
+				state.pellets[i].y += state.pellets[i].vy * state.deltaTime;
 			};
 		},
-		fps
-	)
+	},
+	draw : function(state){
+	},
+	update : function(){
+		var form = documentGetElementById("controls");
+		form.find = function(field){
+			return Number(this.elements[field].value);
+		};
+
+		var params;
+		params.fps = Math.floor(
+			form.find("graphics") * 1000 / form.find("physics")
+		);
+		params.deltaTime = Math.floor(
+			form.find("physics") / form.find("graphics")
+		) * form.find("graphics") * form.find("simSpeed");
+		pellets = [];
+		params.velocity0 = form.find("velocity0");
+		params.velocity1 = form.find("velocity1");
+		params.direction = Math.PI * form.find("direction")/180;
+		params.radius = form.find("radius");
+		params.argument = Math.PI * form.find("argument")/180;
+		if(form.origin.value === "earth"){
+			x = Math.cos(params.argument) * params.radius /* - EARTH_TO_BALANCE*/;
+		}
+		else{
+			x = Math.cos(params.argument) * params.radius  /* + BALANCE_TO_MOON*/;
+		};
+		var y = Math.sin(params.argument) * params.radius;
+		for(var i = 0;i < form.find("pellets");i++){
+			var pellet = {};
+			var velocity = params.velocity0 + (params.velocity1 - params.velocity0) * i/(form.find("pellets")-1);
+			pellet.vx = Math.cos(params.direction + params.argument) * velocity;
+			pellet.vx = Math.sin(params.direction + params.argument) * velocity;
+			pellet.y = y;
+			pellet.x = x;
+			oldPosu.push([x,y]);
+			pellets.push(pellet);
+		};
+		this.physics.state = pellets;
+		this.physics.params = params;
+		this.mainLoop = setInterval(
+			function(){
+				var this.physics.state = this.physics(this.physics.state);
+				this.draw(this.physicsState);
+			},
+			fps
+		)
+	},
+	pause : function(){
+		clearInterval(this.mainLoop);
+	}
 };
-function physics(){
-	for(var i=0;i<pellets.length;i++){
-		pellets[i].x += pellets[i].vx*deltaTime;
-		pellets[i].y += pellets[i].vy*deltaTime;
-	};
-};
-function pause(){
-};
-function draw(){
-};
-function init(){
-};
-init();
+simulator.init();
 		</script>
