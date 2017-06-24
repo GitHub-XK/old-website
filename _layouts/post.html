@@ -21,15 +21,11 @@ $(document).ready(function() {
 <div class="back2index">
  <a href="https://www.moonwards.com/blogMain.html">Return to post index</a>
 </div>
-	<header>
-		<p>
-     What if a group of nations was determined to
-     colonize the Moon, and they based their decisions only on
-     technical and economic merit?
-		</p>
-	</header>
-	<div class="container">
+<header>
 		<h1>{{page.title}}</h1>
+</header>
+<div class="container">
+
 {{content | remove: 'end-excerpt'}}
 
 {% if page.comments %}
