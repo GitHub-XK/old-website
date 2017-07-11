@@ -1,0 +1,43 @@
+---
+layout: default
+title: Learn Moon Settlement Science and Math
+stylesheet: "css/content.nest.sass.css"
+description: "A realistic virtual lunar colony, showing how space
+settlement will affect our future. The technology and science of living
+on the Moon, the challenges and opportunities of low gravity, hard vacuum,
+high radiation, intense sun, large temperature swings, and the substances
+of the Moon."
+---
+<div id="tether_moduleContainer">
+	<svg>
+	</svg>
+<!--svg+SMIL intro, plays first then replaced with a canvas-->
+</div>
+<script>
+//this one is going to be injected after the SMIL is done with the intro
+t_module = {
+	injectionPoint:"tether_moduleContainer",
+	width:800,
+	height:400,
+	init:function(){
+		this.inject();
+		this.render();
+	},
+	inject:function(){
+		document.getElementById(this.injectionPoint).innerHTML = "<canvas id=\"tether_module\"></canvas>";
+		this.moduleObject = document.getElementById("tether_module");
+	},
+	render:function(){
+		//draw UI
+		//draw main graphic field
+	},
+	graphics:{
+		"moon":{//placeholder
+			source:"",
+			height:100,
+			width:100
+		}
+	}
+};
+t_module.init();
+</script>
