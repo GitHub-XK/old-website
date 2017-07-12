@@ -10,6 +10,7 @@ of the Moon."
 ---
 <div id="tether_moduleContainer">
 	<svg>
+		<rect fill="black"/>
 	</svg>
 <!--svg+SMIL intro, plays first then replaced with a canvas-->
 </div>
@@ -19,9 +20,17 @@ t_module = {
 	injectionPoint:"tether_moduleContainer",
 	width:800,
 	height:400,
+	ms_perGraphicsFrame:40,
+	ms_perPhysicsFrame:10,
 	init:function(){
 		this.inject();
-		this.render();
+		var graph = setInterval(function(){
+			this.render();
+		},ms_perGraphicsFrame);
+		var phys = setInterval(function(){
+			this.physics.thing.x += this.physics.thing.vx * ms_perPhysicsFrame;
+			this.physics.thing.y += this.physics.thing.vy * ms_perPhysicsFrame;
+		},ms_perPhysicsFrame);
 	},
 	inject:function(){
 		document.getElementById(this.injectionPoint).innerHTML = "<canvas id=\"tether_module\"></canvas>";
@@ -30,6 +39,7 @@ t_module = {
 	render:function(){
 		//draw UI
 		//draw main graphic field
+		
 	},
 	graphics:{
 		"moon":{//placeholder
@@ -37,7 +47,13 @@ t_module = {
 			height:100,
 			width:100
 		}
-	}
+	},
+	physics:{
+		thing:{
+			x:0,y:0.02,
+			vx:0.01,vy:0
+		}
+	},
 };
 t_module.init();
 </script>
