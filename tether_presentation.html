@@ -8,12 +8,15 @@ on the Moon, the challenges and opportunities of low gravity, hard vacuum,
 high radiation, intense sun, large temperature swings, and the substances
 of the Moon."
 ---
-<div id="tether_moduleContainer">
-	<svg>
-		<rect fill="black"/>
-	</svg>
-<!--svg+SMIL intro, plays first then replaced with a canvas-->
+<div>
+	<div id="tether_moduleContainer" style="position:relative;display:inline-block;">
+		<canvas id="tether_module" style="position:absolute"></canvas>
+		<svg id="tether_module_svg" style="position:absolute;left:0;top:0" width="800" height="400">
+			<rect width="20" height="20" x="20" y="20" fill="red"/>
+		</svg>
+	</div>
 </div>
+<script src="js/space.js"></script>
 <script>
 //this one is going to be injected after the SMIL is done with the intro
 t_module = {
@@ -24,19 +27,34 @@ t_module = {
 	ms_perPhysicsFrame:10,
 	init:function(){
 		this.inject();
+		this.moduleObject.width = this.width;
+		this.moduleObject.height = this.height;
+//css:
+		this.container.style.marginLeft = "10%";
+		this.container.style.marginTop = "10%";
+
+		this.moduleObject.style.borderStyle = "solid";
+		this.moduleObject.style.borderWidth = "5px";
+		this.moduleObjectSvg.style.padding = "5px";//compensate
+		this.moduleObject.style.borderColor = "orange";
+//end css
+		this.ctx = this.moduleObject.getContext("2d");
 		var graph = setInterval(function(){
-			this.render();
-		},ms_perGraphicsFrame);
+			t_module.render();
+		},this.ms_perGraphicsFrame);
 		var phys = setInterval(function(){
-			this.physics.thing.x += this.physics.thing.vx * ms_perPhysicsFrame;
-			this.physics.thing.y += this.physics.thing.vy * ms_perPhysicsFrame;
-		},ms_perPhysicsFrame);
+			t_module.physics.thing.x += t_module.physics.thing.vx * this.ms_perPhysicsFrame;
+			t_module.physics.thing.y += t_module.physics.thing.vy * this.ms_perPhysicsFrame;
+		},this.ms_perPhysicsFrame);
 	},
 	inject:function(){
-		document.getElementById(this.injectionPoint).innerHTML = "<canvas id=\"tether_module\"></canvas>";
+		this.container = document.getElementById("tether_moduleContainer");
 		this.moduleObject = document.getElementById("tether_module");
+		this.moduleObjectSvg = document.getElementById("tether_module_svg");
 	},
 	render:function(){
+		this.ctx.fillStyle = "black";
+		this.ctx.fillRect(0,0,this.width,this.height);
 		//draw UI
 		//draw main graphic field
 		

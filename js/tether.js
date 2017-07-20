@@ -70,7 +70,7 @@ var tether = function(){
 		warnings += "It seems like your star and end altitude values are wrong!<br>Try to flip them. ";
 	};
 	if(endaltitude > eml1DistanceFromTheMoon){
-		warnings += "Your end altitude is beyond EML1!<br>If you think that will give you sensible result, you are wrong. ";
+		warnings += "Your end altitude is beyond EML1!<br>If you think that will give you sensible results, you are wrong. ";
 	};
 	document.getElementById("resultLE").innerHTML = "Acceleration potential: <b>"+resultLE+"</b> Yuri";
 	document.getElementById("resultLE2").innerHTML = "Taper ratio: <b>"+resultLE2+"</b><br>"+warnings;
