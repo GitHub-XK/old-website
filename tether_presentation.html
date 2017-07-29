@@ -11,8 +11,22 @@ of the Moon."
 <div>
 	<div id="tether_moduleContainer" style="position:relative;display:inline-block;">
 		<canvas id="tether_module" style="position:absolute"></canvas>
-		<svg id="tether_module_svg" style="position:absolute;left:0;top:0" width="800" height="400">
+		<svg id="tether_module_svg" style="position:absolute;left:0;top:0" width="1100" height="600">
 			<rect width="20" height="20" x="20" y="20" fill="red"/>
+<script>
+var svg   = document.documentElement;
+var svgNS = svg.namespaceURI;
+var circle = document.createElementNS(svgNS,'circle');
+circle.setAttribute('cx',100);
+circle.setAttribute('cy',200);
+circle.setAttribute('r',50);
+circle.setAttribute('fill','red');
+circle.setAttribute('stroke','black');
+circle.setAttribute('stroke-width','20px');
+circle.setAttribute('stroke-opacity','0.5');
+
+svg.appendChild(circle);
+</script>
 		</svg>
 	</div>
 </div>
@@ -21,8 +35,8 @@ of the Moon."
 //this one is going to be injected after the SMIL is done with the intro
 t_module = {
 	injectionPoint:"tether_moduleContainer",
-	width:800,
-	height:400,
+	width:1100,
+	height:600,
 	ms_perGraphicsFrame:40,
 	ms_perPhysicsFrame:10,
 	init:function(){
@@ -30,21 +44,22 @@ t_module = {
 		this.moduleObject.width = this.width;
 		this.moduleObject.height = this.height;
 //css:
-		this.container.style.marginLeft = "10%";
-		this.container.style.marginTop = "10%";
+		this.container.style.marginLeft = "5%";
+		this.container.style.marginTop = "5%";
 
 		this.moduleObject.style.borderStyle = "solid";
 		this.moduleObject.style.borderWidth = "5px";
 		this.moduleObjectSvg.style.padding = "5px";//compensate
 		this.moduleObject.style.borderColor = "orange";
+		this.moduleObject.style.borderRadius = "5px";
 //end css
 		this.ctx = this.moduleObject.getContext("2d");
 		var graph = setInterval(function(){
 			t_module.render();
 		},this.ms_perGraphicsFrame);
 		var phys = setInterval(function(){
-			t_module.physics.thing.x += t_module.physics.thing.vx * this.ms_perPhysicsFrame;
-			t_module.physics.thing.y += t_module.physics.thing.vy * this.ms_perPhysicsFrame;
+			x += vx * this.ms_perPhysicsFrame;
+			y += vy * this.ms_perPhysicsFrame;
 		},this.ms_perPhysicsFrame);
 	},
 	inject:function(){
@@ -65,13 +80,12 @@ t_module = {
 			height:100,
 			width:100
 		}
-	},
-	physics:{
-		thing:{
-			x:0,y:0.02,
-			vx:0.01,vy:0
-		}
-	},
+	}
 };
 t_module.init();
+//dirty globs
+var x = 100;
+var y = 100;
+var vx = 0;
+var vy = 0.01;
 </script>
