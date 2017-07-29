@@ -1,60 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="1200" height="600" viewBox="0 0 1200 600" xmlns:xlink= "http://www.w3.org/1999/xlink">
+<svg xmlns="http://www.w3.org/2000/svg"
+	version="1.1"
+	width="1200"
+	height="600"
+	viewBox="0 0 1200 600"
+	xmlns:xlink= "http://www.w3.org/1999/xlink">
 
-	<rect width="100%" height="100%" fill="#444444" x="0" y="0"/><!--background-->
-
+	<rect width="100%" height="100%" fill="black" x="0" y="0"/><!--background-->
+	<!--Animated background-->
 	<g>
-		<image href="blank.png" x="-1500" y="-1500" height="3000" width="3000" opacity="0.3"/><!--need better image-->
+		<image href="moon-and-sky-centered.jpg" x="-1500" y="-1100" height="2800" width="2800" opacity="0.9"/>
 		<animateTransform attributeName="transform"
 			attributeType="XML"
 			type="rotate"
-			from="0 0 300"
-			to="360 0 300"
-			dur="15s"
+			from="0 -100 300"
+			to="360 -100 300"
+			dur="22s"
 			fill="freeze"
 			begin="0s;start.click"
 			end="stop.click"
-			repeatCount="indefinite"/>
+			repeatCount="indefinite"/><!--animate both from the beginning and after a click on the start button-->
 	</g>
-	<text fill="red" y="100" x="200">I need a star background</text>
-	<text fill="red" y="130" x="200">The Moon should rotate too, but then I need an image of the Moon with transparent background</text>
-	<image href="moon_part.png" x="-10%" y="-50%" height="200%" width="30%" transform="rotate(180,50,300)"/>
 
 	<svg id="tether" width="110%" height="100%" viewBox="-500 -500 1000 1000"><!--nested svg tags are good for some responsive positioning-->
 		<rect width="100%" height="100%" fill="none" x="-500" y="-500"/><!--element background, in case this part must me reverse enginered-->
 		<g transform="scale(1.3)"><!--responsible, so just change it if you want-->
+
 		<!--cable-->
-			<line stroke="black" stroke-width="1" x1="-500" y1="0" x2="500" y2="0"/>
+			<line stroke="orange" stroke-width="1" x1="-500" y1="0" x2="500" y2="0"/>
+
 		<!--gagarin station-->
 			<g transform="translate(270,0)">
 				<g transform="scale(1)">
 					<g transform="translate(-50,-100)">
 						<image href="Gagarin.png" x="0" y="0" height="200" width="100"/>
 						<rect id="gagarinTrigger" x="0" y="0" height="200" width="100" fill="black" fill-opacity="0" stroke="none" stroke-width="5"><!--opacity instead of fill=none to make mouseover work-->
+							<!--border on mouseover-->
 							<set attributeName="stroke" attributeType="XML" begin="mouseover" to="white"/>
 							<set attributeName="stroke" attributeType="XML" begin="mouseout" to="none"/>
 						</rect>
 					</g>
 				</g>
+				<!--info box-->
 				<g opacity="0">
 					<rect x="-50" y="120" height="200" width="400" fill="grey"/>
 					<g transform="translate(-40,150)">
-<!--Info text: Gagarin station-->
-	<text x="0" y="0" fill="orange" font-size="30">Gagarin station</text><!--Headline-->
-	<text x="0" y="25" fill="white" font-size="15">Lorem ipsum</text>
-	<text x="0" y="50" fill="white" font-size="15">Lorem ipsum</text>
-	<text x="0" y="75" fill="white" font-size="15">Lorem ipsum</text>
-	<text x="0" y="100" fill="white" font-size="15">Change the font?</text>
-	<text x="0" y="125" fill="white" font-size="15">Lorem ipsum</text>
-	<text x="0" y="150" fill="white" font-size="15">Lorem ipsum</text>
-<!--end info-->
+					<!--Info text: Gagarin station-->
+						<text x="0" y="0" fill="orange" font-size="30">Gagarin station</text><!--Headline-->
+						<g fill="white" font-size="15">
+							<text y="25">Lorem ipsum</text>
+							<text y="50">Lorem ipsum</text>
+							<text y="75">Lorem ipsum</text>
+							<text y="100">Change the font?</text>
+							<text y="125">Lorem ipsum</text>
+							<text y="150">Lorem ipsum</text>
+						</g>
+					<!--end info-->
 					</g>
+					<!--visibility on station mouseover-->
 					<animate attributeName="opacity" attributeType="XML" begin="gagarinTrigger.mouseover" dur="0.4s" fill="freeze" to="0.8"/>
 					<animate attributeName="opacity" attributeType="XML" begin="gagarinTrigger.mouseout" dur="0.2s" fill="freeze" to="0"/>
 				</g>
 			</g>
+
 		<!--climber-->
-			<g><!--animation-->
+			<g><!--movement animation-->
 				<g transform="translate(150,0)">
 					<g transform="scale(0.7)">
 						<g transform="rotate(90,0,0)">
@@ -70,18 +80,30 @@
 					<g opacity="0">
 						<rect x="-50" y="120" height="200" width="400" fill="grey"/>
 						<g transform="translate(-40,150)">
-<!--Info text: Climber-->
-	<text x="0" y="0" fill="orange" font-size="30">Tether climber</text><!--Headline-->
-	<text x="0" y="25" fill="white" font-size="15">Lorem ipsum</text>
-	<text x="0" y="50" fill="white" font-size="15">Lorem ipsum</text>
-	<text x="0" y="75" fill="white" font-size="15">Lorem ipsum</text>
-	<text x="0" y="100" fill="white" font-size="15">Change the font?</text>
-	<text x="0" y="125" fill="white" font-size="15">Lorem ipsum</text>
-	<text x="0" y="150" fill="white" font-size="15">Lorem ipsum</text>
-<!--end info-->
+						<!--Info text: Tether climber-->
+							<text x="0" y="0" fill="orange" font-size="30">Tether climber</text><!--Headline-->
+							<g fill="white" font-size="15">
+								<text y="25">Lorem ipsum</text>
+								<text y="50">Lorem ipsum</text>
+								<text y="75">Lorem ipsum</text>
+								<text y="100">Change the font?</text>
+								<text y="125">Lorem ipsum</text>
+								<text y="150">Lorem ipsum</text>
+							</g>
+						<!--end info-->
 						</g>
-						<animate attributeName="opacity" attributeType="XML" begin="tetherClimberTrigger.mouseover" dur="0.4s" fill="freeze" to="0.8"/>
-						<animate attributeName="opacity" attributeType="XML" begin="tetherClimberTrigger.mouseout" dur="0.2s" fill="freeze" to="0"/>
+						<animate attributeName="opacity"
+							attributeType="XML"
+							begin="tetherClimberTrigger.mouseover"
+							dur="0.4s"
+							fill="freeze"
+							to="0.8"/>
+						<animate attributeName="opacity"
+							attributeType="XML"
+							begin="tetherClimberTrigger.mouseout"
+							dur="0.2s"
+							fill="freeze"
+							to="0"/>
 					</g>
 				</g>
 				<animateTransform attributeName="transform"
@@ -94,6 +116,7 @@
 					end="stop.click;tetherClimberTrigger.mouseover"
 					repeatCount="indefinite"/>
 			</g>
+
 		<!--foot station-->
 			<g transform="translate(-500,0)">
 				<g transform="scale(0.35)">
@@ -110,20 +133,23 @@
 				<g opacity="0">
 					<rect x="-50" y="120" height="200" width="400" fill="grey"/>
 					<g transform="translate(-40,150)">
-<!--Info text: Foot station-->
-	<text x="0" y="0" fill="orange" font-size="30">Foot station</text><!--Headline-->
-	<text x="0" y="25" fill="white" font-size="15">Lorem ipsum</text>
-	<text x="0" y="50" fill="white" font-size="15">Lorem ipsum</text>
-	<text x="0" y="75" fill="white" font-size="15">Lorem ipsum</text>
-	<text x="0" y="100" fill="white" font-size="15">Change the font?</text>
-	<text x="0" y="125" fill="white" font-size="15">Lorem ipsum</text>
-	<text x="0" y="150" fill="white" font-size="15">Lorem ipsum</text>
-<!--end info-->
+					<!--Info text: Foot station-->
+						<text x="0" y="0" fill="orange" font-size="30">Foot station</text><!--Headline-->
+						<g fill="white" font-size="15">
+							<text y="25">Lorem ipsum</text>
+							<text y="50">Lorem ipsum</text>
+							<text y="75">Lorem ipsum</text>
+							<text y="100">Change the font?</text>
+							<text y="125">Lorem ipsum</text>
+							<text y="150">Lorem ipsum</text>
+						</g>
+					<!--end info-->
 					</g>
 					<animate attributeName="opacity" attributeType="XML" begin="tetherFootTrigger.mouseover" dur="0.4s" fill="freeze" to="0.8"/>
 					<animate attributeName="opacity" attributeType="XML" begin="tetherFootTrigger.mouseout" dur="0.2s" fill="freeze" to="0"/>
 				</g>
 			</g>
+
 		<!--top station-->
 			<g transform="translate(500,0)">
 				<g transform="scale(0.35)">
@@ -140,23 +166,26 @@
 				<g opacity="0">
 					<rect x="-210" y="120" height="200" width="400" fill="grey"/>
 					<g transform="translate(-200,150)">
-<!--Info text: Foot station-->
-	<text x="0" y="0" fill="orange" font-size="30">Top station</text><!--Headline-->
-	<text x="0" y="25" fill="white" font-size="15">Lorem ipsum</text>
-	<text x="0" y="50" fill="white" font-size="15">Lorem ipsum</text>
-	<text x="0" y="75" fill="white" font-size="15">Lorem ipsum</text>
-	<text x="0" y="100" fill="white" font-size="15">Change the font?</text>
-	<text x="0" y="125" fill="white" font-size="15">Lorem ipsum</text>
-	<text x="0" y="150" fill="white" font-size="15">Lorem ipsum</text>
-<!--end info-->
+					<!--Info text: Foot station-->
+						<text x="0" y="0" fill="orange" font-size="30">Top station</text><!--Headline-->
+						<g fill="white" font-size="15">
+							<text y="25">Lorem ipsum</text>
+							<text y="50">Lorem ipsum</text>
+							<text y="75">Lorem ipsum</text>
+							<text y="100">Change the font?</text>
+							<text y="125">Lorem ipsum</text>
+							<text y="150">Lorem ipsum</text>
+						</g>
+					<!--end info-->
 					</g>
 					<animate attributeName="opacity" attributeType="XML" begin="tetherTopTrigger.mouseover" dur="0.4s" fill="freeze" to="0.8"/>
 					<animate attributeName="opacity" attributeType="XML" begin="tetherTopTrigger.mouseout" dur="0.2s" fill="freeze" to="0"/>
 				</g>
 			</g>
 		</g>
-	</svg>
-display="none
+	</svg><!--end tether-->
+
+	<!--Button in the rop right corner-->
 	<g transform="translate(1000,50)">
 		<g transform="scale(6)">
 			<g id="start" display="none">
