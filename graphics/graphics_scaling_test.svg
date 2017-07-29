@@ -21,7 +21,11 @@
 			end="stop.click"
 			repeatCount="indefinite"/><!--animate both from the beginning and after a click on the start button-->
 	</g>
-
+	<g transform="scale(0.3)">
+		<a xlink:href="http://moonwards.com/" xlink:title="Moonwards.com" xlink:show="new">
+			<image x="300%" y="300%" href="../img/MWLogo-for-black-bckgnd.png" width="327" height="146"/>
+		</a>
+	</g>
 	<svg id="tether" width="110%" height="100%" viewBox="-500 -500 1000 1000"><!--nested svg tags are good for some responsive positioning-->
 		<rect width="100%" height="100%" fill="none" x="-500" y="-500"/><!--element background, in case this part must me reverse enginered-->
 		<g transform="scale(1.3)"><!--responsible, so just change it if you want-->

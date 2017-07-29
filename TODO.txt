@@ -1,11 +1,7 @@
 Hoh:
 
 -Finish the transfer calculator (low priority)
--Migrate favicons to /img (low priority, maybe not)
 -Add more to the learn page introduction to orb mec
--Embed youtube video somehow to avoid overhead
--Test fakesmile in IE
--Plot engines in engine list
 -Get pellet graphics
 
 SOLVED:
@@ -15,3 +11,5 @@ SOLVED:
 -3D model thumbnailing //done, no longer relevant
 -Fix tooltips so they do not create a void at the bottom of the page //partly fixed with css, no longer relevant with new page
 -Migrate navbar from absolute width //no longer relevant
+-Plot engines in engine list
+-Embed youtube video somehow to avoid overhead //video proxy

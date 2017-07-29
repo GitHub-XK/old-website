@@ -11,7 +11,7 @@ title: Pellet Simulator
 					<input name="physics" type="text" value="200">Physics frames per second<br>
 					<input name="simSpeed" type="text" value="60">Time per second<br>
 					<input name="graphics" type="text" value="10">Physics frames per graphic frame<br>
-					Origin of coordinate system<input name="origin" type="radio" value="earth">Earth <input name="origin" type="radio" value="moon" checked> Moon.
+					Origin of coordinate system<input name="origin" type="radio" value="earth">Earth <input name="origin" type="radio" value="moon" checked> Moon.<br>
 					<input name="radius" type="text">Radius (km)<br>
 					<input name="argument" type="text" value="0">Argument (degrees)<br>
 					<p>Pellet velocity (m/s)</p>
@@ -22,9 +22,19 @@ title: Pellet Simulator
 				<button onclick="simulator.update()">Update form</button>
 				<button onclick="simulator.pause()">Pause</button>
 			</div>
-			<canvas width="500" height="500" id="canvas"></canvas>
+			<canvas width="1000" height="1000" id="canvas"></canvas>
 		</div>
 		<script>
+String.prototype.hashCode = function(){
+	var hash = 0, i, chr;
+	if(this.length === 0) return hash;
+	for(i = 0; i < this.length; i++){
+		chr = this.charCodeAt(i);
+		hash = ((hash << 5) - hash) + chr;
+		hash |= 0;
+	};
+	return hash;
+};
 var simulator = {
 	init : function(){
 		this.canvas = document.getElementById("canvas");
@@ -45,10 +55,26 @@ var simulator = {
 	draw : function(state){
 		var ctx = this.ctx;
 		ctx.clearRect(0,0,this.canvas.width,this.canvas.height);
+		ctx.fillStyle = "black";
+		ctx.fillRect(0,0,this.canvas.width,this.canvas.height);
 		ctx.beginPath();
 		ctx.fillStyle = "blue";
 		ctx.arc(this.canvas.width/2,this.canvas.height/2,6378000/this.mPerPx,0,2*Math.PI);//earth
 		ctx.fill();
+		ctx.beginPath();
+		ctx.fillStyle = "grey";
+		ctx.arc(
+			this.canvas.width/2 + (384400000/this.mPerPx)*Math.cos(2*Math.PI*this.physics.params.time/(27.321661*86400)),
+			this.canvas.height/2 - (384400000/this.mPerPx)*Math.sin(2*Math.PI*this.physics.params.time/(27.321661*86400)),
+			1738000/this.mPerPx,0,2*Math.PI);//moon
+		ctx.fill();
+		ctx.fillStyle = "red";
+		var pellets = this.physics.state.pellets;
+		for(var i=0;i<pellets.length;i++){
+			ctx.beginPath();
+			ctx.arc(this.canvas.width/2 + pellets[i].x/this.mPerPx,this.canvas.height/2 + pellets[i].y/this.mPerPx,3,0,2*Math.PI);
+			ctx.fill();
+		};
 	},
 	update : function(){
 		var form = document.getElementById("controls");
@@ -72,10 +98,10 @@ var simulator = {
 		params.argument = Math.PI * form.find("argument")/180;
 		params.time = 0;
 		if(form.origin.value === "earth"){
-			x = Math.cos(params.argument) * params.radius /* - EARTH_TO_BALANCE*/;
+			x = Math.cos(params.argument) * params.radius;
 		}
 		else{
-			x = Math.cos(params.argument) * params.radius  /* + BALANCE_TO_MOON*/;
+			x = Math.cos(params.argument) * params.radius + 384400000;
 		};
 		var y = Math.sin(params.argument) * params.radius;
 		for(var i = 0;i < form.find("pellets");i++){
