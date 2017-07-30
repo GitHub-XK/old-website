@@ -27,7 +27,9 @@ title: Pellet Simulator
 		<script>
 String.prototype.hashCode = function(){
 	var hash = 0, i, chr;
-	if(this.length === 0) return hash;
+	if(this.length === 0){
+		return hash;
+	};
 	for(i = 0; i < this.length; i++){
 		chr = this.charCodeAt(i);
 		hash = ((hash << 5) - hash) + chr;
@@ -38,7 +40,16 @@ String.prototype.hashCode = function(){
 var simulator = {
 	init : function(){
 		this.canvas = document.getElementById("canvas");
-		this.ctx = this.canvas.getContext("2d");
+		var ctx = this.canvas.getContext("2d");
+		ctx.circle = function(x,y,radius,color){
+			var colorBuffer = ctx.fillStyle;
+			ctx.beginPath();
+			ctx.arc(x,y,radius,0,2*Math.PI);
+			ctx.fillStyle = color;
+			ctx.fill();
+			ctx.fillStyle = colorBuffer;
+		};
+		this.ctx = ctx;
 	},
 	physics : {
 		params : {},
@@ -53,65 +64,76 @@ var simulator = {
 	},
 	mPerPx : 1000000,
 	draw : function(state){
+		var canvas = this.canvas;
 		var ctx = this.ctx;
-		ctx.clearRect(0,0,this.canvas.width,this.canvas.height);
+		ctx.clearRect(0,0,canvas.width,canvas.height);
 		ctx.fillStyle = "black";
-		ctx.fillRect(0,0,this.canvas.width,this.canvas.height);
-		ctx.beginPath();
-		ctx.fillStyle = "blue";
-		ctx.arc(this.canvas.width/2,this.canvas.height/2,6378000/this.mPerPx,0,2*Math.PI);//earth
-		ctx.fill();
-		ctx.beginPath();
-		ctx.fillStyle = "grey";
-		ctx.arc(
-			this.canvas.width/2 + (384400000/this.mPerPx)*Math.cos(2*Math.PI*this.physics.params.time/(27.321661*86400)),
-			this.canvas.height/2 - (384400000/this.mPerPx)*Math.sin(2*Math.PI*this.physics.params.time/(27.321661*86400)),
-			1738000/this.mPerPx,0,2*Math.PI);//moon
-		ctx.fill();
-		ctx.fillStyle = "red";
+		ctx.fillRect(0,0,canvas.width,canvas.height);
+		ctx.translate(canvas.width/2,canvas.height/2);
+		ctx.circle(0,0,planets["earth"].radius/this.mPerPx,"blue");//earth
+		var moon = planets["moon"];
+		ctx.circle(
+			moon.orbit.semiMajor * Math.cos(2*Math.PI*this.physics.params.time/moon.orbit.period) / this.mPerPx,
+			moon.orbit.semiMajor * Math.sin(2*Math.PI*this.physics.params.time/moon.orbit.period) / this.mPerPx,
+			moon.radius/this.mPerPx,"grey");//moon
 		var pellets = this.physics.state.pellets;
 		for(var i=0;i<pellets.length;i++){
 			ctx.beginPath();
-			ctx.arc(this.canvas.width/2 + pellets[i].x/this.mPerPx,this.canvas.height/2 + pellets[i].y/this.mPerPx,3,0,2*Math.PI);
+			ctx.fillStyle = pellets[i].color;
+			ctx.arc(pellets[i].x/this.mPerPx,pellets[i].y/this.mPerPx,3,0,2*Math.PI);
 			ctx.fill();
 		};
+		ctx.translate(-this.canvas.width/2,-this.canvas.height/2);
 	},
 	update : function(){
 		var form = document.getElementById("controls");
 		form.find = function(field){
 			return Number(this.elements[field].value);
 		};
+		var rainbowColors = function(index,number){
+			if(index < (number-1)/2){
+				return "rgb("+(255-index*510/(number-1))+","+(255+index*510/(number-1))+",0)";
+			}
+			else if(index == (number-1)/2){
+				return "rgb(0,255,0)";
+			}
+			else{
+				return "rgb(0,"+(510-index*510/(number-1))+","+(-255+index*510/(number-1))+")";
+			};
+		};
 
-		var params = {};
-		params.fps = Math.floor(
-			form.find("graphics") * 1000 / form.find("physics")
-		);
-		params.deltaTime = Math.floor(
-			form.find("physics") / form.find("graphics")
-		) * form.find("graphics") * form.find("simSpeed");
-		params.simSpeed = form.find("simSpeed");
-		pellets = [];
-		params.velocity0 = form.find("velocity0");
-		params.velocity1 = form.find("velocity1");
-		params.direction = Math.PI * form.find("direction")/180;
-		params.radius = form.find("radius");
-		params.argument = Math.PI * form.find("argument")/180;
-		params.time = 0;
+		var params = {
+			fps       : Math.floor(
+				form.find("graphics") * 1000 / form.find("physics")
+			),
+			deltaTime : Math.floor(
+				form.find("physics") / form.find("graphics")
+			) * form.find("graphics") * form.find("simSpeed"),
+			simSpeed  : form.find("simSpeed"),
+			velocity0 : form.find("velocity0"),
+			velocity1 : form.find("velocity1"),
+			direction : Math.PI * form.find("direction")/180,
+			radius    : form.find("radius"),
+			argument  : Math.PI * form.find("argument")/180,
+			time      : 0
+		};
+		var pellets = [];
 		if(form.origin.value === "earth"){
 			x = Math.cos(params.argument) * params.radius;
 		}
 		else{
-			x = Math.cos(params.argument) * params.radius + 384400000;
+			x = Math.cos(params.argument) * params.radius + planets["moon"].orbit.semiMajor;
 		};
 		var y = Math.sin(params.argument) * params.radius;
 		for(var i = 0;i < form.find("pellets");i++){
-			var pellet = {};
 			var velocity = params.velocity0 + (params.velocity1 - params.velocity0) * i/(form.find("pellets")-1);
-			pellet.vx = Math.cos(params.direction + params.argument) * velocity;
-			pellet.vx = Math.sin(params.direction + params.argument) * velocity;
-			pellet.y = y;
-			pellet.x = x;
-			//oldPosu.push([x,y]);
+			var pellet = {
+				vx : Math.cos(params.direction + params.argument) * velocity,
+				vx : Math.sin(params.direction + params.argument) * velocity,
+				y  : y,
+				x  : x,
+				color : rainbowColors(i,form.find("pellets"))
+			};
 			pellets.push(pellet);
 		};
 		this.physics.state.pellets = pellets;

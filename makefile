@@ -17,5 +17,5 @@ content.nest.sass.css : sass/content.sass
 _data/planets.yml : json/planets.json
 	python3 extractor.py
 
-js/planets.js : json/engines.json json/planets.json
+js/planets.js js/engines.js js/stars.js : json/engines.json json/planets.json json/stars.json
 	./extractor.sh
