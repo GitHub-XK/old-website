@@ -16,10 +16,10 @@ title: Pellet Simulator
 					Origin of coordinate system
 					<input name="origin" type="radio" value="earth" checked>Earth
 					<input name="origin" type="radio" value="moon" > Moon.<br>
-					<input name="radius" type="text">Radius (km)<br>
-					<input name="argument" type="text" value="0">Argument (degrees)<br>
+					<input name="radius" type="text" value="400000">Radius (km)<br>
+					<input name="argument" type="text" value="20">Argument (degrees)<br>
 					<p>Pellet velocity (m/s)</p>
-					From: <input name="velocity0" type="text" value="100"> to: <input name="velocity1" type="text" value="500"><br>
+					From: <input name="velocity0" type="text" value="500"> to: <input name="velocity1" type="text" value="600"><br>
 					<input name="pellets" type="number" value="400">Number of pellets<br>
 					<input name="direction" value="90">Vector direction (degrees)<br>
 				</form>
@@ -67,6 +67,18 @@ var simulator = {
 				var sqHyp = state.pellets[i].x * state.pellets[i].x + state.pellets[i].y * state.pellets[i].y;
 				if(Math.sqrt(sqHyp) < planets["earth"].radius + planets["earth"].atmosphere.ceiling){
 					state.pellets.splice(i--,1);//collision
+					this.params.earth++;
+					continue;
+				}
+				else if(Math.sqrt(sqHyp) > planets["moon"].orbit.semiMajor * 5){
+					if(
+						state.pellets[i].vx * state.pellets[i].vx + state.pellets[i].vy * state.pellets[i].vy
+						> 2 * planets["earth"].gm / (planets["moon"].orbit.semiMajor * 5)
+					){
+						state.pellets.splice(i--,1);//escape
+						this.params.escaped++;
+						continue;
+					};
 				};
 				var acceleration = planets["earth"].gm/sqHyp;
 				state.pellets[i].vx += acceleration * (-state.pellets[i].x/Math.sqrt(sqHyp)) * this.params.deltaTime;
@@ -79,6 +91,8 @@ var simulator = {
 				sqHyp = relx * relx + rely * rely;
 				if(Math.sqrt(sqHyp) < planets["moon"].radius){
 					state.pellets.splice(i--,1);//collision
+					this.params.moon++;
+					continue;
 				};
 				var acceleration = planets["moon"].gm/sqHyp;
 				state.pellets[i].vx += acceleration * (-relx/Math.sqrt(sqHyp)) * this.params.deltaTime;
@@ -109,6 +123,11 @@ var simulator = {
 			ctx.fill();
 		};
 		ctx.translate(-this.canvas.width/2,-this.canvas.height/2);
+		ctx.fillStyle = "white";
+		ctx.fillText("Object count: "+pellets.length,10,15);
+		ctx.fillText("Earth collisions: "+this.physics.params.earth,10,30);
+		ctx.fillText("Moon collisions: "+this.physics.params.moon,10,45);
+		ctx.fillText("Escaped: "+this.physics.params.escaped,10,60);
 	},
 	update : function(){
 		var form = document.getElementById("controls");
@@ -141,7 +160,10 @@ var simulator = {
 			direction : Math.PI * form.find("direction")/180,
 			radius    : form.find("radius")*1000,
 			argument  : Math.PI * form.find("argument")/180,
-			time      : 0
+			time      : 0,
+			escaped   : 0,
+			earth     : 0,
+			moon      : 0
 		};
 		var pellets = [];
 		if(form.origin.value === "earth"){
