@@ -22,25 +22,19 @@ title: Pellet Simulator
 					From: <input name="velocity0" type="text" value="500"> to: <input name="velocity1" type="text" value="600"><br>
 					<input name="pellets" type="number" value="400">Number of pellets<br>
 					<input name="direction" value="90">Vector direction (degrees)<br>
+					View <select name="view">
+						<option value="earth">Geocentric</option>
+						<option value="moon">Selenocentric</option>
+						<option value="normal">Inertial</option>
+						<!--<option value="rotating">Co-rotating</option>-->
+					</select>
 				</form>
 				<button onclick="simulator.update()">Update form</button>
-				<button onclick="simulator.pause()">Pause</button>
+				<button onclick="if(simulator.loopID === 0){simulator.unpause()}else{simulator.pause()}" id="pause">Pause</button>
 			</div>
 			<canvas width="1000" height="1000" id="canvas"></canvas>
 		</div>
 		<script>
-String.prototype.hashCode = function(){
-	var hash = 0, i, chr;
-	if(this.length === 0){
-		return hash;
-	};
-	for(i = 0; i < this.length; i++){
-		chr = this.charCodeAt(i);
-		hash = ((hash << 5) - hash) + chr;
-		hash |= 0;
-	};
-	return hash;
-};
 var simulator = {
 	init : function(){
 		//setup a canvas
@@ -109,18 +103,55 @@ var simulator = {
 		ctx.fillStyle = "black";
 		ctx.fillRect(0,0,canvas.width,canvas.height);
 		ctx.translate(canvas.width/2,canvas.height/2);
-		ctx.circle(0,0,planets["earth"].radius/this.mPerPx,"blue");//earth
+
 		var moon = planets["moon"];
+		var earth = planets["earth"];
+		var massRatio = earth.gm / moon.gm;
+		moon.x = moon.orbit.semiMajor * Math.cos(2*Math.PI*this.physics.params.time/moon.orbit.period) * massRatio/(massRatio + 1);
+		moon.y = -moon.orbit.semiMajor * Math.sin(2*Math.PI*this.physics.params.time/moon.orbit.period) * massRatio/(massRatio + 1);
+		earth.x = -moon.x/massRatio;
+		earth.y = -moon.y/massRatio;
+
+
+		//the following is the definition of transform functions for the different views.
+		if(this.physics.params.view == "normal"){
+			var x = function(ox){
+				return ox;
+			};
+			var y = function(oy){
+				return oy;
+			};
+		}
+		else if(this.physics.params.view == "earth"){
+			var x = function(ox){
+				return ox - earth.x;
+			};
+			var y = function(oy){
+				return oy - earth.y;
+			};
+		}
+		else if(this.physics.params.view == "moon"){
+			var x = function(ox){
+				return ox - moon.x;
+			};
+			var y = function(oy){
+				return oy - moon.y;
+			};
+		};
+
+
 		ctx.circle(
-			moon.orbit.semiMajor * Math.cos(2*Math.PI*this.physics.params.time/moon.orbit.period) / this.mPerPx,
-			-moon.orbit.semiMajor * Math.sin(2*Math.PI*this.physics.params.time/moon.orbit.period) / this.mPerPx,
+			x(moon.x) / this.mPerPx,
+			y(moon.y) / this.mPerPx,
 			moon.radius/this.mPerPx,"grey");//moon
+		ctx.circle(
+			x(earth.x) / this.mPerPx,
+			y(earth.y) / this.mPerPx,
+			earth.radius/this.mPerPx,"blue");//earth
+
 		var pellets = this.physics.state.pellets;
 		for(var i=0;i<pellets.length;i++){
-			ctx.beginPath();
-			ctx.fillStyle = pellets[i].color;
-			ctx.arc(pellets[i].x/this.mPerPx,pellets[i].y/this.mPerPx,3,0,2*Math.PI);
-			ctx.fill();
+			ctx.circle(x(pellets[i].x)/this.mPerPx,y(pellets[i].y)/this.mPerPx,3,pellets[i].color);
 		};
 		ctx.translate(-this.canvas.width/2,-this.canvas.height/2);
 		ctx.fillStyle = "white";
@@ -163,7 +194,8 @@ var simulator = {
 			time      : 0,
 			escaped   : 0,
 			earth     : 0,
-			moon      : 0
+			moon      : 0,
+			view      : form.elements.view.options[form.elements.view.selectedIndex].value//just why did they design <select> like this?
 		};
 		var pellets = [];
 		if(form.origin.value === "earth"){
@@ -189,27 +221,25 @@ var simulator = {
 		this.loop = function(){
 			for(var i=0;i<this.physics.params.graphics;i++){
 				this.physics.state = this.physics.step(this.physics.state);
+				this.physics.params.time += this.physics.params.deltaTime;
 			};
-			this.physics.params.time += this.physics.params.simSpeed/(1000/this.physics.params.fps);
 			this.draw(this.physicsState);
 		};
-		this.loopID = setInterval(
-			function(){
-				simulator.loop()
-			},
-			this.physics.params.fps
-		)
+		simulator.unpause();
 	},
 	pause : function(){
-		clearInterval(this.loopID);
+		clearInterval(simulator.loopID);
+		simulator.loopID = 0;//not used by any browser
+		document.getElementById("pause").innerHTML = "Unpause";
 	},
 	unpause : function(){
-		this.loopID = setInterval(
+		simulator.loopID = setInterval(
 			function(){
 				simulator.loop()
 			},
 			this.physics.params.fps
-		)
+		);
+		document.getElementById("pause").innerHTML = "Pause";
 	}
 };
 simulator.init();
