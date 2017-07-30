@@ -7,6 +7,8 @@ title: Pellet Simulator
 		<div class="wrapper" id="main">
 			<h1>Pellet simulator</h1>
 			<div class="container">
+				<p>Finding very sensitive trajectories, like those requiring multiple gravity assists, is a very time consuming trial and error process. This tool allows you to try a whole range of velocities at once to narrow down the trajectory much faster. The idea is neither new nor mine, this is just an implementation.</p>
+				<p>This tool is not yet completed</p>
 				<form id="controls">
 					<input name="physics" type="text" value="200">Physics frames per second<br>
 					<input name="simSpeed" type="text" value="60">Time per second<br>
@@ -56,8 +58,8 @@ var simulator = {
 		state : {},
 		step : function(state){
 			for(var i=0;i<state.pellets.length;i++){
-				state.pellets[i].x += state.pellets[i].vx * state.deltaTime;
-				state.pellets[i].y += state.pellets[i].vy * state.deltaTime;
+				state.pellets[i].x += state.pellets[i].vx * this.params.deltaTime;
+				state.pellets[i].y += state.pellets[i].vy * this.params.deltaTime;
 			};
 			return state;
 		},
@@ -74,7 +76,7 @@ var simulator = {
 		var moon = planets["moon"];
 		ctx.circle(
 			moon.orbit.semiMajor * Math.cos(2*Math.PI*this.physics.params.time/moon.orbit.period) / this.mPerPx,
-			moon.orbit.semiMajor * Math.sin(2*Math.PI*this.physics.params.time/moon.orbit.period) / this.mPerPx,
+			-moon.orbit.semiMajor * Math.sin(2*Math.PI*this.physics.params.time/moon.orbit.period) / this.mPerPx,
 			moon.radius/this.mPerPx,"grey");//moon
 		var pellets = this.physics.state.pellets;
 		for(var i=0;i<pellets.length;i++){
@@ -106,10 +108,11 @@ var simulator = {
 			fps       : Math.floor(
 				form.find("graphics") * 1000 / form.find("physics")
 			),
-			deltaTime : Math.floor(
-				form.find("physics") / form.find("graphics")
-			) * form.find("graphics") * form.find("simSpeed"),
+			deltaTime : (Math.floor(
+				form.find("graphics") * 1000 / form.find("physics")
+			)/1000) * form.find("simSpeed") / form.find("graphics"),
 			simSpeed  : form.find("simSpeed"),
+			graphics  : form.find("graphics"),
 			velocity0 : form.find("velocity0"),
 			velocity1 : form.find("velocity1"),
 			direction : Math.PI * form.find("direction")/180,
@@ -129,7 +132,7 @@ var simulator = {
 			var velocity = params.velocity0 + (params.velocity1 - params.velocity0) * i/(form.find("pellets")-1);
 			var pellet = {
 				vx : Math.cos(params.direction + params.argument) * velocity,
-				vx : Math.sin(params.direction + params.argument) * velocity,
+				vy : Math.sin(params.direction + params.argument) * velocity,
 				y  : y,
 				x  : x,
 				color : rainbowColors(i,form.find("pellets"))
@@ -139,8 +142,10 @@ var simulator = {
 		this.physics.state.pellets = pellets;
 		this.physics.params = params;
 		this.loop = function(){
-			this.physics.state = this.physics.step(this.physics.state);
-			this.physics.params.time += this.physics.params.simSpeed/this.physics.params.fps;
+			for(var i=0;i<this.physics.params.graphics;i++){
+				this.physics.state = this.physics.step(this.physics.state);
+			};
+			this.physics.params.time += this.physics.params.simSpeed/(1000/this.physics.params.fps);
 			this.draw(this.physicsState);
 		};
 		this.loopID = setInterval(
