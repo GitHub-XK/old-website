@@ -25,6 +25,11 @@
 		<a xlink:href="http://moonwards.com/" xlink:title="Moonwards.com" xlink:show="new">
 			<image x="300%" y="300%" href="../img/MWLogo-for-black-bckgnd.png" width="327" height="146"/>
 		</a>
+<!--
+		<a xlink:href="http://creativecommons.org/licenses/by/4.0/" xlink:title="license" xlink:show="new" width="88" height="31">
+			<image x="200%" y="200%" href="https://i.creativecommons.org/l/by/4.0/88x31.png" />
+		</a>
+-->
 	</g>
 	<svg id="tether" width="110%" height="100%" viewBox="-500 -500 1000 1000"><!--nested svg tags are good for some responsive positioning-->
 		<rect width="100%" height="100%" fill="none" x="-500" y="-500"/><!--element background, in case this part must me reverse enginered-->
