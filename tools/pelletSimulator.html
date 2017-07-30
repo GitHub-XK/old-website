@@ -11,15 +11,17 @@ title: Pellet Simulator
 				<p>This tool is not yet completed</p>
 				<form id="controls">
 					<input name="physics" type="text" value="200">Physics frames per second<br>
-					<input name="simSpeed" type="text" value="60">Time per second<br>
+					<input name="simSpeed" type="text" value="50000">Time per second<br>
 					<input name="graphics" type="text" value="10">Physics frames per graphic frame<br>
-					Origin of coordinate system<input name="origin" type="radio" value="earth">Earth <input name="origin" type="radio" value="moon" checked> Moon.<br>
+					Origin of coordinate system
+					<input name="origin" type="radio" value="earth" checked>Earth
+					<input name="origin" type="radio" value="moon" > Moon.<br>
 					<input name="radius" type="text">Radius (km)<br>
 					<input name="argument" type="text" value="0">Argument (degrees)<br>
 					<p>Pellet velocity (m/s)</p>
-					From: <input name="velocity0" type="text"> to: <input name="velocity1" type="text"><br>
-					<input name="pellets" type="number" value="5">Number of pellets<br>
-					<input name="direction" value="0">Vector direction (degrees)<br>
+					From: <input name="velocity0" type="text" value="100"> to: <input name="velocity1" type="text" value="500"><br>
+					<input name="pellets" type="number" value="400">Number of pellets<br>
+					<input name="direction" value="90">Vector direction (degrees)<br>
 				</form>
 				<button onclick="simulator.update()">Update form</button>
 				<button onclick="simulator.pause()">Pause</button>
@@ -41,6 +43,7 @@ String.prototype.hashCode = function(){
 };
 var simulator = {
 	init : function(){
+		//setup a canvas
 		this.canvas = document.getElementById("canvas");
 		var ctx = this.canvas.getContext("2d");
 		ctx.circle = function(x,y,radius,color){
@@ -60,6 +63,26 @@ var simulator = {
 			for(var i=0;i<state.pellets.length;i++){
 				state.pellets[i].x += state.pellets[i].vx * this.params.deltaTime;
 				state.pellets[i].y += state.pellets[i].vy * this.params.deltaTime;
+				//earth gravity:
+				var sqHyp = state.pellets[i].x * state.pellets[i].x + state.pellets[i].y * state.pellets[i].y;
+				if(Math.sqrt(sqHyp) < planets["earth"].radius + planets["earth"].atmosphere.ceiling){
+					state.pellets.splice(i--,1);//collision
+				};
+				var acceleration = planets["earth"].gm/sqHyp;
+				state.pellets[i].vx += acceleration * (-state.pellets[i].x/Math.sqrt(sqHyp)) * this.params.deltaTime;
+				state.pellets[i].vy += acceleration * (-state.pellets[i].y/Math.sqrt(sqHyp)) * this.params.deltaTime;
+				//moon gravity:
+				var relx = state.pellets[i].x
+					- planets["moon"].orbit.semiMajor * Math.cos(2*Math.PI*this.params.time/planets["moon"].orbit.period);
+				var rely = state.pellets[i].y
+					+ planets["moon"].orbit.semiMajor * Math.sin(2*Math.PI*this.params.time/planets["moon"].orbit.period);
+				sqHyp = relx * relx + rely * rely;
+				if(Math.sqrt(sqHyp) < planets["moon"].radius){
+					state.pellets.splice(i--,1);//collision
+				};
+				var acceleration = planets["moon"].gm/sqHyp;
+				state.pellets[i].vx += acceleration * (-relx/Math.sqrt(sqHyp)) * this.params.deltaTime;
+				state.pellets[i].vy += acceleration * (-rely/Math.sqrt(sqHyp)) * this.params.deltaTime;
 			};
 			return state;
 		},
@@ -94,7 +117,7 @@ var simulator = {
 		};
 		var rainbowColors = function(index,number){
 			if(index < (number-1)/2){
-				return "rgb("+(255-index*510/(number-1))+","+(255+index*510/(number-1))+",0)";
+				return "rgb("+(255-index*510/(number-1))+","+(index*510/(number-1))+",0)";
 			}
 			else if(index == (number-1)/2){
 				return "rgb(0,255,0)";
@@ -116,7 +139,7 @@ var simulator = {
 			velocity0 : form.find("velocity0"),
 			velocity1 : form.find("velocity1"),
 			direction : Math.PI * form.find("direction")/180,
-			radius    : form.find("radius"),
+			radius    : form.find("radius")*1000,
 			argument  : Math.PI * form.find("argument")/180,
 			time      : 0
 		};
