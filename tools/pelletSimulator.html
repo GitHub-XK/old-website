@@ -167,13 +167,13 @@ var simulator = {
 		};
 		var rainbowColors = function(index,number){
 			if(index < (number-1)/2){
-				return "rgb("+(255-index*510/(number-1))+","+(index*510/(number-1))+",0)";
+				return "rgb("+Math.floor((255-index*510/(number-1)))+","+Math.floor((index*510/(number-1)))+",0)";
 			}
 			else if(index == (number-1)/2){
 				return "rgb(0,255,0)";
 			}
 			else{
-				return "rgb(0,"+(510-index*510/(number-1))+","+(-255+index*510/(number-1))+")";
+				return "rgb(0,"+Math.floor((510-index*510/(number-1)))+","+Math.floor((-255+index*510/(number-1)))+")";
 			};
 		};
 
