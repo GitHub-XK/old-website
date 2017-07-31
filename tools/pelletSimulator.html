@@ -21,6 +21,15 @@ title: Pellet Simulator
 					From: <input name="velocity0" type="text" value="600"> to: <input name="velocity1" type="text" value="700"><br>
 					<input name="pellets" type="number" value="800">Number of pellets<br>
 					<input name="direction" value="90">Vector direction (degrees)<br>
+					<p>Or load a scenario from the list below:</p>
+					<select name="scenario" onchange="simulator.loadScenario()">
+						<option value="" selected></option>
+						<option value="gravityAssist">Gravity assist</option>
+						<option value="EML1">EML1</option>
+						<option value="EML2">EML2</option>
+						<option value="EML3">EML3</option>
+						<option value="EML4">EML4</option>
+					</select>
 					<h3>View options</h3>
 					<p>Adjust to change speed, view, and rendering of current simulation</p>
 					<input name="simSpeed" type="text" value="100000" onchange="simulator.change()">Simulation speed<br>
@@ -355,6 +364,55 @@ var simulator = {
 		}
 		else if(unicode == 45){
 			simulator.mPerPx *= 2;
+		};
+	},
+	scenarios : {
+		"EML4" : {
+			velocity : [1000,1030],
+			radius : 384400,
+			argument : 60,
+			direction : 270,
+			origin : "earth"
+		},
+		"EML1" : {
+			velocity : [850,890],
+			radius : 326390,
+			argument : 0,
+			direction : 270,
+			origin : "earth"
+		},
+		"EML2" : {
+			velocity : [1180,1220],
+			radius : 448900,
+			argument : 0,
+			direction : 270,
+			origin : "earth"
+		},
+		"EML3" : {
+			velocity : [1000,1050],
+			radius : -381680,
+			argument : 0,
+			direction : 90,
+			origin : "earth"
+		},
+		"gravityAssist" : {
+			velocity : [8720,8760],
+			radius : 10000,
+			argument : 120,
+			direction : 270,
+			origin : "earth"
+		}
+	},
+	loadScenario : function(){
+		var form = document.getElementById("controls");
+		var scenario = form.elements.scenario.options[form.elements.scenario.selectedIndex].value;
+		if(scenario != ""){
+			form.elements.velocity0.value = this.scenarios[scenario].velocity[0];
+			form.elements.velocity1.value = this.scenarios[scenario].velocity[1];
+			form.elements.radius.value = this.scenarios[scenario].radius;
+			form.elements.argument.value = this.scenarios[scenario].argument;
+			form.elements.direction.value = this.scenarios[scenario].direction;
+			form.origin.value = this.scenarios[scenario].origin;
 		};
 	}
 };
