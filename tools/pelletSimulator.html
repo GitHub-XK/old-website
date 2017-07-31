@@ -86,6 +86,9 @@ var simulator = {
 			ctx.fill();
 		};
 		this.ctx = ctx;
+		this.physics.moon = planets["moon"];
+		this.physics.earth = planets["earth"];
+		this.physics.massRatio = this.physics.earth.gm / this.physics.moon.gm;
 	},
 	physics : {
 		params : {},
@@ -93,11 +96,18 @@ var simulator = {
 			pellets : []
 		},
 		step : function(state){
+			var earth = this.earth;
+			var moon = this.moon;
+			var massRatio = this.massRatio;
 			for(var i=0;i<state.pellets.length;i++){
 				state.pellets[i].x += state.pellets[i].vx * this.params.deltaTime;
 				state.pellets[i].y += state.pellets[i].vy * this.params.deltaTime;
 				//earth gravity:
-				var sqHyp = state.pellets[i].x * state.pellets[i].x + state.pellets[i].y * state.pellets[i].y;
+				var relx = state.pellets[i].x
+					+ moon.orbit.semiMajor * Math.cos(2*Math.PI*this.params.time/moon.orbit.period) * 1/(massRatio + 1);
+				var rely = state.pellets[i].y
+					- moon.orbit.semiMajor * Math.sin(2*Math.PI*this.params.time/moon.orbit.period) * 1/(massRatio + 1);
+				sqHyp = relx * relx + rely * rely;
 				if(Math.sqrt(sqHyp) < planets["earth"].radius + planets["earth"].atmosphere.ceiling){
 					state.pellets.splice(i--,1);//collision
 					this.params.earth++;
@@ -114,13 +124,13 @@ var simulator = {
 					};
 				};
 				var acceleration = planets["earth"].gm/sqHyp;
-				state.pellets[i].vx += acceleration * (-state.pellets[i].x/Math.sqrt(sqHyp)) * this.params.deltaTime;
-				state.pellets[i].vy += acceleration * (-state.pellets[i].y/Math.sqrt(sqHyp)) * this.params.deltaTime;
+				state.pellets[i].vx += acceleration * (-relx/Math.sqrt(sqHyp)) * this.params.deltaTime;
+				state.pellets[i].vy += acceleration * (-rely/Math.sqrt(sqHyp)) * this.params.deltaTime;
 				//moon gravity:
 				var relx = state.pellets[i].x
-					- planets["moon"].orbit.semiMajor * Math.cos(2*Math.PI*this.params.time/planets["moon"].orbit.period);
+					- moon.orbit.semiMajor * Math.cos(2*Math.PI*this.params.time/moon.orbit.period) * massRatio/(massRatio + 1);
 				var rely = state.pellets[i].y
-					+ planets["moon"].orbit.semiMajor * Math.sin(2*Math.PI*this.params.time/planets["moon"].orbit.period);
+					+ moon.orbit.semiMajor * Math.sin(2*Math.PI*this.params.time/moon.orbit.period) * massRatio/(massRatio + 1);
 				sqHyp = relx * relx + rely * rely;
 				if(Math.sqrt(sqHyp) < planets["moon"].radius){
 					state.pellets.splice(i--,1);//collision
@@ -136,6 +146,9 @@ var simulator = {
 	},
 	mPerPx : 1000000,
 	draw : function(state){
+		var moon = this.physics.moon;
+		var earth = this.physics.earth;
+		var massRatio = this.physics.massRatio;
 		var canvas = this.canvas;
 		var ctx = this.ctx;
 		ctx.clearRect(0,0,canvas.width,canvas.height);
@@ -143,9 +156,6 @@ var simulator = {
 		ctx.fillRect(0,0,canvas.width,canvas.height);
 		ctx.translate(canvas.width/2,canvas.height/2);
 
-		var moon = planets["moon"];
-		var earth = planets["earth"];
-		var massRatio = earth.gm / moon.gm;
 		moon.x = moon.orbit.semiMajor * Math.cos(2*Math.PI*this.physics.params.time/moon.orbit.period) * massRatio/(massRatio + 1);
 		moon.y = -moon.orbit.semiMajor * Math.sin(2*Math.PI*this.physics.params.time/moon.orbit.period) * massRatio/(massRatio + 1);
 		earth.x = -moon.x/massRatio;
