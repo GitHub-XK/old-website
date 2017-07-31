@@ -43,6 +43,8 @@ title: Pellet Simulator
 					</select>
 				</form><br>
 				<p>Move around width W,A,S,D zoom with + and -</p>
+				<button onclick="simulator.exportScenario()">Export current scenario</button>
+				<button onclick="simulator.importScenario()">Import a scenario</button><br><br>
 				<button onclick="simulator.update()">Restart simulation</button>
 				<button onclick="simulator.pause()">Pause</button><button onclick="simulator.unpause()">Unpause</button>
 			</div>
@@ -414,6 +416,31 @@ var simulator = {
 			form.elements.direction.value = this.scenarios[scenario].direction;
 			form.origin.value = this.scenarios[scenario].origin;
 		};
+	},
+	exportScenario : function(){
+		var form = document.getElementById("controls");
+		form.find = function(field){
+			return Number(this.elements[field].value);
+		};
+		var scenario = {
+			velocity : [form.find("velocity0"),form.find("velocity1")],
+			radius : form.find("radius"),
+			argument : form.find("argument"),
+			direction : form.find("direction"),
+			origin : form.origin.value
+		};
+		alert(btoa(JSON.stringify(scenario)));
+	},
+	importScenario : function(){
+		var form = document.getElementById("controls");
+		var scenarioString = prompt("Paste your save:");
+		var scenario = JSON.parse(atob(scenarioString));
+		form.elements.velocity0.value = scenario.velocity[0];
+		form.elements.velocity1.value = scenario.velocity[1];
+		form.elements.radius.value = scenario.radius;
+		form.elements.argument.value = scenario.argument;
+		form.elements.direction.value = scenario.direction;
+		form.origin.value = scenario.origin;
 	}
 };
 simulator.init();
