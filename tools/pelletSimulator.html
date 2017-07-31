@@ -25,11 +25,13 @@ title: Pellet Simulator
 					<select name="scenario" onchange="simulator.loadScenario()">
 						<option value="" selected></option>
 						<option value="gravityAssist">Gravity assist</option>
+						<option value="doubleGravityAssist">Double gravity assist</option>
 						<option value="EML1">EML1</option>
 						<option value="EML2">EML2</option>
 						<option value="EML3">EML3</option>
 						<option value="EML4">EML4</option>
 					</select>
+					<p>(Note: some scenarios require high physics fps and/or low simulation speed to work)</p>
 					<h3>View options</h3>
 					<p>Adjust to change speed, view, and rendering of current simulation</p>
 					<input name="simSpeed" type="text" value="100000" onchange="simulator.change()">Simulation speed<br>
@@ -398,8 +400,15 @@ var simulator = {
 			origin : "earth"
 		},
 		"gravityAssist" : {
-			velocity : [8720,8760],
-			radius : 10000,
+			velocity : [4949,5005],
+			radius : 30000,
+			argument : 120,
+			direction : 270,
+			origin : "earth"
+		},
+		"doubleGravityAssist" : {
+			velocity : [4995.8,4995.9],
+			radius : 30000,
 			argument : 120,
 			direction : 270,
 			origin : "earth"
