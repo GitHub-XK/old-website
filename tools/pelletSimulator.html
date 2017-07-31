@@ -40,6 +40,40 @@ title: Pellet Simulator
 			<canvas width="1000" height="1000" id="canvas"></canvas>
 		</div>
 		<script>
+var timeFormat = function(seconds){
+	seconds = Math.floor(seconds);
+	var minutes = Math.floor(seconds / 60);
+	seconds -= minutes*60;
+	var hours = Math.floor(minutes / 60);
+	minutes -= hours*60;
+	var days = Math.floor(hours / 24);
+	hours -= days*24;
+	var years = Math.floor(days / 365);
+	days -= years*365;
+	var timeString = "";
+	var topFlag = false;
+	if(years > 0 || topFlag){
+		timeString += years + "y ";
+		topFlag = true;
+	};
+	if(days > 0 || topFlag){
+		timeString += days + "d ";
+		topFlag = true;
+	};
+	if(hours > 0 || topFlag){
+		timeString += hours + "h ";
+		topFlag = true;
+	};
+	if(minutes > 0 || topFlag){
+		timeString += minutes + "m ";
+		topFlag = true;
+	};
+	if(seconds > 0 || topFlag){
+		timeString += seconds + "s ";
+		topFlag = true;
+	};
+	return timeString;
+};
 var simulator = {
 	init : function(){
 		//setup a canvas
@@ -122,24 +156,24 @@ var simulator = {
 		if(this.physics.params.view == "normal"){
 			var transform = function(position){
 				return {
-					x : position.x/simulator.mPerPx,
-					y : position.y/simulator.mPerPx
+					x : position.x/simulator.mPerPx + simulator.offsetX,
+					y : position.y/simulator.mPerPx + simulator.offsetY
 				};
 			};
 		}
 		else if(this.physics.params.view == "earth"){
 			var transform = function(position){
 				return {
-					x : (position.x - earth.x)/simulator.mPerPx,
-					y : (position.y - earth.y)/simulator.mPerPx
+					x : (position.x - earth.x)/simulator.mPerPx + simulator.offsetX,
+					y : (position.y - earth.y)/simulator.mPerPx + simulator.offsetY
 				};
 			};
 		}
 		else if(this.physics.params.view == "moon"){
 			var transform = function(position){
 				return {
-					x : (position.x - moon.x)/simulator.mPerPx,
-					y : (position.y - moon.y)/simulator.mPerPx
+					x : (position.x - moon.x)/simulator.mPerPx + simulator.offsetX,
+					y : (position.y - moon.y)/simulator.mPerPx + simulator.offsetY
 				};
 			};
 		}
@@ -147,8 +181,8 @@ var simulator = {
 			var transform = function(position){
 				var angle = 2*Math.PI*simulator.physics.params.time/moon.orbit.period;
 				return {
-					x : (position.x * Math.cos(angle) - position.y * Math.sin(angle))/simulator.mPerPx,
-					y : (position.y * Math.cos(angle) + position.x * Math.sin(angle))/simulator.mPerPx
+					x : (position.x * Math.cos(angle) - position.y * Math.sin(angle))/simulator.mPerPx + simulator.offsetX,
+					y : (position.y * Math.cos(angle) + position.x * Math.sin(angle))/simulator.mPerPx + simulator.offsetY
 				};
 			};
 		};
@@ -178,10 +212,11 @@ var simulator = {
 		};
 		ctx.translate(-this.canvas.width/2,-this.canvas.height/2);
 		ctx.fillStyle = "white";
-		ctx.fillText("Object count: "+pellets.length,10,15);
-		ctx.fillText("Earth collisions: "+this.physics.params.earth,10,30);
-		ctx.fillText("Moon collisions: "+this.physics.params.moon,10,45);
-		ctx.fillText("Escaped: "+this.physics.params.escaped,10,60);
+		ctx.fillText("Time elapsed: "+timeFormat(this.physics.params.time),10,15);
+		ctx.fillText("Object count: "+pellets.length,10,30);
+		ctx.fillText("Earth collisions: "+this.physics.params.earth,10,45);
+		ctx.fillText("Moon collisions: "+this.physics.params.moon,10,60);
+		ctx.fillText("Escaped: "+this.physics.params.escaped,10,75);
 	},
 	update : function(){
 		var form = document.getElementById("controls");
@@ -288,20 +323,22 @@ var simulator = {
 			},this.physics.params.graphicsFPS
 		);
 	},
+	offsetX : 0,
+	offsetY : 0,
 	keypress : function(e){
 		var evtobj = window.event? event : e;
 		var unicode = evtobj.charCode? evtobj.charCode : evtobj.keyCode;
 		if(unicode == 97){
-			simulator.ctx.translate(-10,0);
+			simulator.offsetX -= 10;
 		}
 		else if(unicode == 100){
-			simulator.ctx.translate(10,0);
+			simulator.offsetX += 10;
 		}
 		else if(unicode == 115){
-			simulator.ctx.translate(0,10);
+			simulator.offsetY += 10;
 		}
 		else if(unicode == 119){
-			simulator.ctx.translate(0,-10);
+			simulator.offsetY -= 10;
 		}
 		else if(unicode == 43){
 			simulator.mPerPx *= 0.5;
