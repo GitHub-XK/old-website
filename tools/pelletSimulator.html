@@ -13,7 +13,8 @@ title: Pellet Simulator
 					<p>Requires restart to take effect</p>
 					Origin of coordinate system
 					<input name="origin" type="radio" value="earth" checked>Earth
-					<input name="origin" type="radio" value="moon" > Moon.<br>
+					<input name="origin" type="radio" value="moon" > Moon
+					<input name="origin" type="radio" value="normal" > Barycentre<br>
 					<input name="radius" type="text" value="400000">Radius (km)<br>
 					<input name="argument" type="text" value="20">Argument (degrees)<br>
 					<p>Pellet velocity (m/s)</p>
@@ -29,7 +30,7 @@ title: Pellet Simulator
 						<option value="earth">Geocentric</option>
 						<option value="moon">Selenocentric</option>
 						<option value="normal">Inertial</option>
-						<!--<option value="rotating">Co-rotating</option>-->
+						<option value="rotating">Co-rotating</option>
 					</select>
 				</form><br>
 				<p>Move around width W,A,S,D zoom with + and -</p>
@@ -44,13 +45,11 @@ var simulator = {
 		//setup a canvas
 		this.canvas = document.getElementById("canvas");
 		var ctx = this.canvas.getContext("2d");
-		ctx.circle = function(x,y,radius,color){
-			var colorBuffer = ctx.fillStyle;
+		ctx.circle = function(position,radius,color){
 			ctx.beginPath();
-			ctx.arc(x,y,radius,0,2*Math.PI);
+			ctx.arc(position.x,position.y,radius,0,2*Math.PI);
 			ctx.fillStyle = color;
 			ctx.fill();
-			ctx.fillStyle = colorBuffer;
 		};
 		this.ctx = ctx;
 	},
@@ -121,43 +120,61 @@ var simulator = {
 
 		//the following is the definition of transform functions for the different views.
 		if(this.physics.params.view == "normal"){
-			var x = function(ox){
-				return ox;
-			};
-			var y = function(oy){
-				return oy;
+			var transform = function(position){
+				return {
+					x : position.x/simulator.mPerPx,
+					y : position.y/simulator.mPerPx
+				};
 			};
 		}
 		else if(this.physics.params.view == "earth"){
-			var x = function(ox){
-				return ox - earth.x;
-			};
-			var y = function(oy){
-				return oy - earth.y;
+			var transform = function(position){
+				return {
+					x : (position.x - earth.x)/simulator.mPerPx,
+					y : (position.y - earth.y)/simulator.mPerPx
+				};
 			};
 		}
 		else if(this.physics.params.view == "moon"){
-			var x = function(ox){
-				return ox - moon.x;
+			var transform = function(position){
+				return {
+					x : (position.x - moon.x)/simulator.mPerPx,
+					y : (position.y - moon.y)/simulator.mPerPx
+				};
 			};
-			var y = function(oy){
-				return oy - moon.y;
+		}
+		else if(this.physics.params.view == "rotating"){
+			var transform = function(position){
+				var angle = 2*Math.PI*simulator.physics.params.time/moon.orbit.period;
+				return {
+					x : (position.x * Math.cos(angle) - position.y * Math.sin(angle))/simulator.mPerPx,
+					y : (position.y * Math.cos(angle) + position.x * Math.sin(angle))/simulator.mPerPx
+				};
 			};
 		};
 
 
 		ctx.circle(
-			x(moon.x) / this.mPerPx,
-			y(moon.y) / this.mPerPx,
+			transform({
+				x : moon.x,
+				y : moon.y
+			}),
 			moon.radius/this.mPerPx,"grey");//moon
 		ctx.circle(
-			x(earth.x) / this.mPerPx,
-			y(earth.y) / this.mPerPx,
+			transform({
+				x : earth.x,
+				y : earth.y
+			}),
 			earth.radius/this.mPerPx,"blue");//earth
 
 		var pellets = this.physics.state.pellets;
 		for(var i=0;i<pellets.length;i++){
-			ctx.circle(x(pellets[i].x)/this.mPerPx,y(pellets[i].y)/this.mPerPx,3,pellets[i].color);
+			ctx.circle(
+				transform({
+					x : pellets[i].x,
+					y : pellets[i].y
+				}),
+				3,pellets[i].color);
 		};
 		ctx.translate(-this.canvas.width/2,-this.canvas.height/2);
 		ctx.fillStyle = "white";
@@ -200,11 +217,15 @@ var simulator = {
 			view      : form.elements.view.options[form.elements.view.selectedIndex].value//just why did they design <select> like this?
 		};
 		var pellets = [];
+		var moon = planets["moon"];
+		var earth = planets["earth"];
+		var massRatio = earth.gm / moon.gm;
+		var x = Math.cos(params.argument) * params.radius;
 		if(form.origin.value === "earth"){
-			x = Math.cos(params.argument) * params.radius;
+			x -= planets["moon"].orbit.semiMajor * 1/(massRatio + 1);
 		}
-		else{
-			x = Math.cos(params.argument) * params.radius + planets["moon"].orbit.semiMajor;
+		else if(form.origin.value === "moon"){
+			x += planets["moon"].orbit.semiMajor * massRatio/(massRatio + 1);
 		};
 		var y = Math.sin(params.argument) * params.radius;
 		for(var i = 0;i < form.find("pellets");i++){
