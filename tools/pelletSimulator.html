@@ -8,11 +8,9 @@ title: Pellet Simulator
 			<h1>Pellet simulator</h1>
 			<div class="container">
 				<p>Finding very sensitive trajectories, like those requiring multiple gravity assists, is a very time consuming trial and error process. This tool allows you to try a whole range of velocities at once to narrow down the trajectory much faster. The idea is neither new nor mine, this is just an implementation.</p>
-				<p>This tool is not yet completed</p>
 				<form id="controls">
-					<input name="physics" type="text" value="200">Physics frames per second<br>
-					<input name="simSpeed" type="text" value="100000">Time per second<br>
-					<input name="graphics" type="text" value="10">Physics frames per graphic frame<br>
+					<h3>Initial state</h3>
+					<p>Requires restart to take effect</p>
 					Origin of coordinate system
 					<input name="origin" type="radio" value="earth" checked>Earth
 					<input name="origin" type="radio" value="moon" > Moon.<br>
@@ -22,15 +20,21 @@ title: Pellet Simulator
 					From: <input name="velocity0" type="text" value="600"> to: <input name="velocity1" type="text" value="700"><br>
 					<input name="pellets" type="number" value="800">Number of pellets<br>
 					<input name="direction" value="90">Vector direction (degrees)<br>
-					View <select name="view">
+					<h3>View options</h3>
+					<p>Adjust to change speed, view, and rendering of current simulation</p>
+					<input name="simSpeed" type="text" value="100000" onchange="simulator.change()">Simulation speed<br>
+					<input name="physics" type="text" value="200" onchange="simulator.change()">Physics fps<br>
+					<input name="graphics" type="text" value="20" onchange="simulator.change()">Graphics fps<br>
+					View <select name="view" onchange="simulator.change()">
 						<option value="earth">Geocentric</option>
 						<option value="moon">Selenocentric</option>
 						<option value="normal">Inertial</option>
 						<!--<option value="rotating">Co-rotating</option>-->
 					</select>
-				</form>
-				<button onclick="simulator.update()">Update form</button>
-				<button onclick="if(simulator.loopID === 0){simulator.unpause()}else{simulator.pause()}" id="pause">Pause</button>
+				</form><br>
+				<p>Move around width W,A,S,D zoom with + and -</p>
+				<button onclick="simulator.update()">Restart simulation</button>
+				<button onclick="simulator.pause()">Pause</button><button onclick="simulator.unpause()">Unpause</button>
 			</div>
 			<canvas width="1000" height="1000" id="canvas"></canvas>
 		</div>
@@ -52,7 +56,9 @@ var simulator = {
 	},
 	physics : {
 		params : {},
-		state : {},
+		state : {
+			pellets : []
+		},
 		step : function(state){
 			for(var i=0;i<state.pellets.length;i++){
 				state.pellets[i].x += state.pellets[i].vx * this.params.deltaTime;
@@ -93,7 +99,7 @@ var simulator = {
 				state.pellets[i].vy += acceleration * (-rely/Math.sqrt(sqHyp)) * this.params.deltaTime;
 			};
 			return state;
-		},
+		}
 	},
 	mPerPx : 1000000,
 	draw : function(state){
@@ -178,13 +184,9 @@ var simulator = {
 		};
 
 		var params = {
-			fps       : Math.floor(
-				form.find("graphics") * 1000 / form.find("physics")
-			),
-			deltaTime : (Math.floor(
-				form.find("graphics") * 1000 / form.find("physics")
-			)/1000) * form.find("simSpeed") / form.find("graphics"),
-			simSpeed  : form.find("simSpeed"),
+			physicsFPS : 1000 / form.find("physics"),
+			graphicsFPS : 1000 / form.find("graphics"),
+			deltaTime : form.find("simSpeed") / form.find("physics"),
 			graphics  : form.find("graphics"),
 			velocity0 : form.find("velocity0"),
 			velocity1 : form.find("velocity1"),
@@ -218,29 +220,76 @@ var simulator = {
 		};
 		this.physics.state.pellets = pellets;
 		this.physics.params = params;
-		this.loop = function(){
-			for(var i=0;i<this.physics.params.graphics;i++){
-				this.physics.state = this.physics.step(this.physics.state);
-				this.physics.params.time += this.physics.params.deltaTime;
-			};
-			this.draw(this.physicsState);
+		this.physicsLoop = function(){
+			this.physics.state = this.physics.step(this.physics.state);
+			this.physics.params.time += this.physics.params.deltaTime;
 		};
-		simulator.unpause();
+		this.graphicsLoop = function(){
+			this.draw(this.physics.State);
+		};
+		physicsLoopID = setInterval(
+			function(){
+				simulator.physicsLoop();
+			},this.physics.params.physicsFPS
+		);
+		graphicsLoopID = setInterval(
+			function(){
+				simulator.graphicsLoop();
+			},this.physics.params.graphicsFPS
+		);
+	},
+	change : function(){
+		var form = document.getElementById("controls");
+		form.find = function(field){
+			return Number(this.elements[field].value);
+		};
+		this.physics.params.physicsFPS = 1000 / form.find("physics");
+		this.physics.params.graphicsFPS = 1000 / form.find("graphics");
+		this.physics.params.deltaTime = form.find("simSpeed") / form.find("physics");
+		this.physics.params.graphics = form.find("graphics");
+		this.physics.params.view = form.elements.view.options[form.elements.view.selectedIndex].value;
+		this.pause();
+		this.unpause();
 	},
 	pause : function(){
-		clearInterval(simulator.loopID);
-		simulator.loopID = 0;//not used by any browser
-		document.getElementById("pause").innerHTML = "Unpause";
+		clearInterval(graphicsLoopID);
+		clearInterval(physicsLoopID);
 	},
 	unpause : function(){
-		simulator.loopID = setInterval(
+		physicsLoopID = setInterval(
 			function(){
-				simulator.loop()
-			},
-			this.physics.params.fps
+				simulator.physicsLoop();
+			},this.physics.params.physicsFPS
 		);
-		document.getElementById("pause").innerHTML = "Pause";
+		graphicsLoopID = setInterval(
+			function(){
+				simulator.graphicsLoop();
+			},this.physics.params.graphicsFPS
+		);
+	},
+	keypress : function(e){
+		var evtobj = window.event? event : e;
+		var unicode = evtobj.charCode? evtobj.charCode : evtobj.keyCode;
+		if(unicode == 97){
+			simulator.ctx.translate(-10,0);
+		}
+		else if(unicode == 100){
+			simulator.ctx.translate(10,0);
+		}
+		else if(unicode == 115){
+			simulator.ctx.translate(0,10);
+		}
+		else if(unicode == 119){
+			simulator.ctx.translate(0,-10);
+		}
+		else if(unicode == 43){
+			simulator.mPerPx *= 0.5;
+		}
+		else if(unicode == 45){
+			simulator.mPerPx *= 2;
+		};
 	}
 };
 simulator.init();
+document.onkeypress = simulator.keypress;
 		</script>
