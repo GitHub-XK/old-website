@@ -15,19 +15,20 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-//Global stuff, here be dragons
+//depends on planets.js for data
+
 idIcon = 0;
 //A few values that are used a lot:
 g = 9.80665; //m/s^2
-eml1DistanceFromTheMoon = 58730214;
+
 //Common operations:
 rad = function(degrees){
 	return degrees/180 * Math.PI;
 };
 toXYZ = function(long,lat){//transform coordinates from angular to cartesian
-	x = Math.cos(rad(long)) * Math.cos(rad(lat)) * space.moon.radius;
-	y = Math.sin(rad(long)) * Math.cos(rad(lat)) * space.moon.radius;
-	z = Math.sin(rad(lat)) * space.moon.radius;
+	x = Math.cos(rad(long)) * Math.cos(rad(lat)) * planets["moon"].radius;
+	y = Math.sin(rad(long)) * Math.cos(rad(lat)) * planets["moon"].radius;
+	z = Math.sin(rad(lat)) * planets["moon"].radius;
 	return [x,y,z];
 };
 //main function:
