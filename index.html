@@ -25,7 +25,27 @@ of the Moon."
 				</li>
 			</ul>
 			<article class="blackInnerDiv under-tabs tabcontent" id="blog">
-				<iframe class="goodHeight" src="blogMain.html" width="100%" style="border:none;"></iframe>
+				<section class="container">
+					<p>All blog posts linked below:</p>
+					<div id="blogPostDiv" style="display:inline;height:600px;overflow-y:scroll;margin-right:50px;">
+						<ul>
+						{% for post in site.posts %}
+							{% if forloop.index <= 5 %}
+							<li>
+								<h1><a href="{{post.url | remove_first: "/" }}">{{post.title}}</a></h1>
+								<h3>{{ post.excerpt | strip_html}}</h3>
+							</li>
+							{% else %}
+							<li>
+								<h2><a href="{{post.url | remove_first: "/" }}">{{post.title}}</a></h2>
+								<h3>{{ post.content | truncatewords: 50 | strip_html}}</h3>
+							</li>
+							{% endif%}
+						{% endfor %}
+						</ul>
+					</div>
+					<p style="cursor:s-resize" onclick="document.getElementById('blogPostDiv').style.height = '100%';this.style.display = 'none'">Expand</p>
+				</section>
 			</article>
 			<article class="innerDiv under-tabs tabcontent" id="intro">
 				<h1>Realistic Lunar Colony, Coming Online</h1>
