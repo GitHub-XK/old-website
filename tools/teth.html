@@ -5,48 +5,7 @@ title: Tethers
 	</head>
 	<body>
 		<script>
-var moon = {
-	"type":"moon",
-	"mass":7.342e22,
-	"gm":4.9048695e12,
-	"gravity":1.62,
-	"radius":1737100,
-	"polarRadius":1736000,
-	"equatorRadius":1738100,
-	"area":3.793e13,
-	"volume":2.1958e19,
-	"density":3344,
-	"sideralRotation":2360591.5104,
-	"locked":true,
-	"rotationVelocity":4.627,
-	"axialTilt":6.687,
-	"axialTiltEcliptic":1.5424,
-	"orbit":{
-		"periapsis":362600000,
-		"apoapsis":405400000,
-		"semiMajor":384399000,
-		"eccentricity":0.0549,
-		"period":2360591,
-		"speed":1022,
-		"inclination":5.145,
-		"parent":"earth",
-		"lowOrbit":{
-			"surfaceCost":1720,
-			"escapeCost":680
-		},
-		"escape":[
-			{
-				"target":"earth",
-				"cost":140
-			},
-			{
-				"target":"escape",
-				"cost":90
-			}
-		]
-	},
-	"atmosphere":false
-};
+var moon = planets["moon"];
 var tether = {
 	materials:{
 		zylon:[5800000000,1540],
@@ -172,14 +131,20 @@ tether.dockedEnergy =
 
 */
 
-	out("lowAcceleration","Acceleration at tether foot: " + myRound(tether.lowAcceleration,5) + " m/s²");
+	out("lowAcceleration","Acceleration at tether foot: " + myRound(tether.lowAcceleration,5) + " m/s² (" + myRound(100*tether.lowAcceleration/moon.gravity,2) + "% of lunar surface gravity)");
 	out("highAcceleration","Acceleration at tether top: " + myRound(tether.highAcceleration,5) + " m/s²");
 	out("period","Period: " + myRound(tether.time/3600,3) + " hours");
 	out("footVel","Tether velocity at foot " + myRound(tether.footVel,3) + " m/s");
 	out("centreVel","Tether velocity at centre " + myRound(tether.centreVel,3) + " m/s");
 	out("topVel","Tether velocity at top " + myRound(tether.topVel,3) + " m/s");
-	out("newApoapsis","Apoapsis after release from tether: " + myRound(tether.newApoapsis/1000,3) + " km (negative means escape)");
-	out("escape","Vinf after release from tether top " + myRound(tether.escapeFromTop,3) + " m/s (1030 m/s is required to reach Earth)");
+	if(tether.newApoapsis > 0){
+		out("escape","Does not reach escape velocity");
+		out("newApoapsis","Apoapsis after release from tether: " + myRound(tether.newApoapsis/1000,3) + " km");
+	}
+	else{
+		out("escape","Vinf after release from tether top " + myRound(tether.escapeFromTop,3) + " m/s (1030 m/s is required to reach Earth)");
+		out("newApoapsis","Apoapsis after release from tether: " + myRound(tether.newApoapsis/1000,3) + " km (negative means escape)");
+	};
 	out("hitTheGround","&nbsp;&nbsp;Velocity at lunar surface after release from tether foot " + myRound(tether.hitTheGround,3) + " m/s");
 	out("lowRatio","foot-centre taper ratio: " + myRound(tether.lowRatio,3) + " Y");
 	out("highRatio","centre-top taper ratio: " + myRound(tether.highRatio,3) + " Y");
@@ -199,7 +164,7 @@ tether.dockedEnergy =
 			<form id="input">
 				<input name="foot" value="0">Tether foot altitude (km)<br>
 				<input name="top" value="0">Tether top altitude (km)<br>
-				<input name="centre" value="0">Tether centre altitude (km)<br>
+				<input name="centre" value="0">Tether centre altitude (km). The part of the tether in circular orbit<br>
 				<div class="container">
 					Tether material<select name="material">
 						<option value="zylon">Zylon</option>
