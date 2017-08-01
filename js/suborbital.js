@@ -1,3 +1,5 @@
+//depends on planets.js for data
+var moon = planets["moon"];
 var subOrbitalCanvas = document.getElementById("subOrbitalCanvas");
 var subctx = subOrbitalCanvas.getContext("2d");
 var moonMap = document.getElementById("moonMap");
@@ -9,18 +11,18 @@ rad = function(degrees){
 	return degrees/180 * Math.PI;
 };
 toXYZ = function(long,lat){//transform coordinates from angular to cartesian
-	x = Math.cos(rad(long)) * Math.cos(rad(lat)) * space.moon.radius;
-	y = Math.sin(rad(long)) * Math.cos(rad(lat)) * space.moon.radius;
-	z = Math.sin(rad(lat)) * space.moon.radius;
+	x = Math.cos(rad(long)) * Math.cos(rad(lat)) * moon.radius;
+	y = Math.sin(rad(long)) * Math.cos(rad(lat)) * moon.radius;
+	z = Math.sin(rad(lat)) * moon.radius;
 	return [x,y,z];
 };
 subHop = function(){
 	var cords1 = toXYZ(longitude1,latitude1);
 	var cords2 = toXYZ(longitude2,latitude2);
 	var distance = Math.sqrt(Math.pow(cords1[0] - cords2[0],2) + Math.pow(cords1[1] - cords2[1],2) + Math.pow(cords1[2] - cords2[2],2));
-	var semimajor = space.moon.radius/2 + distance/4;
+	var semimajor = moon.radius/2 + distance/4;
 //output
-	var totalDeltav = 2*Math.sqrt(space.moon.gm * (2/space.moon.radius - 1/semimajor));
+	var totalDeltav = 2*Math.sqrt(moon.gm * (2/moon.radius - 1/semimajor));
 	totalDeltav = Math.round(totalDeltav*100)/100;
 	document.getElementById("resultSH").innerHTML = "Delta-v: <b>" + totalDeltav + " m/s</b> ("+Math.round((totalDeltav/3359.84)*100)+"% of an orbital mission)";
 };

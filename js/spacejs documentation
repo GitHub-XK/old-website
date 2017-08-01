@@ -8,7 +8,7 @@
 /_________/ / /__/ /        /__/ / /__/ / /_________/\  /_________/\  /__/\  /_________/ / /_________/ /
 \_________\/  \__\/         \__\/  \__\/  \_________\/  \_________\/  \__\/  \_________\/  \_________\/
 
-Latest update 2016.11.05 by Sigvart Brendberg
+Latest update 2017.08.01 by Sigvart Brendberg
 
 Welcome to the space.js library documentation.
 
@@ -22,41 +22,7 @@ This is ment to be used as a script file. space.js is not suitable for json, as 
 
 ==Data library==
 
-One of the things space.js provides is accurate numerical data on various planets and moons.
-
-This data con be accessed using the body in question as a property of the space object:
-
-    space.moon.mass
-
-!WARNING, the data library may be migrated to its own property in the futue, and may then be accessed like 	space.data.moon.mass
-
-All planets and moons are properties of the space object, written in lower case.
-
-At the moment, we have data on the following objects:
-
-    earth
-    moon
-    mars
-
-The following properies are defined:
-
-    mass
-    gm
-    gravity
-    radius
-    polarRadius
-    equatorRadius
-    orbit:{
-        periapsis
-        apoapsis
-        radius
-        eccentricity
-        period
-        speed
-        inclination
-        parent
-    }
-    satellites:[]
+migrated to planets.js
 
 ==Orbital functions==
 
