@@ -1,23 +1,23 @@
-<!doctype html>
+---
+title: "Page Not Found"
+stylesheet: "css/main.nest.sass.css"
+description: "Page Not Found"
+---
+<!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="x-ua-compatible" content="IE=edge, chrome=1">
-	<meta name="theme-color" content="#ffffff">
-	<meta name="description" content="{{page.description}}">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16">
-	<link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32">
-	<link rel="icon" type="image/png" href="favicon-96x96.png" sizes="96x96">
-	<link rel="icon" type="image/svg+xml" href="img/animatedIcon.svg"><!--svg icon in Firefox, ignored in other browsers-->
-	<title>Page Not Found</title>
+	<title>{{page.title}}</title>
+	{%include commonHeadElements.html%}
+	<link rel="stylesheet" href="{{page.stylesheet}}">
 	<link rel="stylesheet" href="css/404css.nest.sass.css">
 </head>
 <body>
-	<svg width="150" heigth="150">
-		<path d="M90 10A1 1 0 0 0 90 140A0.85 1 0 0 1 90 10" fill="grey"/>
-	</svg>
-	<h1>Page Not Found</h1>
+	<a href="index.html" title="Home" class="plzNoHoverBackground">
+		<svg width="150" heigth="150">
+			<path d="M90 10A1 1 0 0 0 90 140A0.85 1 0 0 1 90 10" fill="grey"/>
+		</svg>
+	</a>
+	<h2>Page Not Found</h2>
 	<p>Sorry, but the page you were trying to view does not exist.</p>
 </body>
 </html>
