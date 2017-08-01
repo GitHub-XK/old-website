@@ -12,49 +12,52 @@
 	You should have received a copy of the GNU General Public License
 	along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
-//depends on space.js for data
+//depends on planets.js for data
 var idIcon = 0;
-var eml1DistanceFromTheMoon = 58730214;
+var moon = planets["moon"];
+var earth= planets["earth"];
 var integralCallInitializer = function(start,end){
-	var EMmassRatio = space.moon.gm/(space.moon.gm + space.earth.gm);
+	var EMmassRatio = moon.gm/(moon.gm + earth.gm);
 	var firstPoint = integralCall(
-		start/space.moon.orbit.radius,
+		start/moon.orbit.semiMajor,
 		EMmassRatio
 	);
 	var secondPoint = integralCall(
-		end/space.moon.orbit.radius,
+		end/moon.orbit.semiMajor,
 		EMmassRatio
 	);
 	return (secondPoint - firstPoint)
-		* (space.earth.gm + space.moon.gm)
-		/ space.moon.orbit.radius;
+		* (earth.gm + moon.gm)
+		/ moon.orbit.semiMajor;
 };
 var integralCall = function(dist,jst){
 	return - dist*dist/2 + dist * (1 - jst) - jst/Math.abs(dist) + (1 - jst)/(-Math.abs(dist - 1));
 };
 var tether = function(){
-	var surfacecheck  = document.getElementById("surface").checked;
-	var eml1check     = document.getElementById("eml1").checked;
-	var zyloncheck    = document.getElementById("zylon").checked;
-	var masscheck     = document.getElementById("tethermass").checked;
+	var check = {
+		surface : document.getElementById("surface").checked,
+		eml1    : document.getElementById("eml1").checked,
+		zylon   : document.getElementById("zylon").checked,
+		mass    : document.getElementById("tethermass").checked
+	};
 	var startaltitude = Number(document.getElementById("start").value);
 	var endaltitude   = Number(document.getElementById("end").value);
 	var strength      = Number(document.getElementById("material").value);
-	if(surfacecheck){
-		startaltitude = space.moon.radius;
-		document.getElementById("start").value = space.moon.radius/1000;
+	if(check.surface){
+		startaltitude = moon.radius;
+		document.getElementById("start").value = moon.radius/1000;
 	}
 	else{
 		startaltitude *= 1000;
 	};
-	if(eml1check){
-		endaltitude = eml1DistanceFromTheMoon;
-		document.getElementById("end").value = eml1DistanceFromTheMoon/1000;
+	if(check.eml1){
+		endaltitude = moon.orbit.l1Distance;
+		document.getElementById("end").value = moon.orbit.l1Distance/1000;
 	}
 	else{
 		endaltitude *= 1000;
 	};
-	if(zyloncheck){
+	if(check.zylon){
 		strength = 3720000;
 		document.getElementById("material").value = 3720000;
 	};
@@ -69,16 +72,16 @@ var tether = function(){
 	if(startaltitude > endaltitude){
 		warnings += "It seems like your star and end altitude values are wrong!<br>Try to flip them. ";
 	};
-	if(endaltitude > eml1DistanceFromTheMoon){
+	if(endaltitude > moon.orbit.l1Distance){
 		warnings += "Your end altitude is beyond EML1!<br>If you think that will give you sensible results, you are wrong. ";
 	};
 	document.getElementById("resultLE").innerHTML = "Acceleration potential: <b>"+resultLE+"</b> Yuri";
 	document.getElementById("resultLE2").innerHTML = "Taper ratio: <b>"+resultLE2+"</b><br>"+warnings;
-	if(masscheck){
+	if(check.mass){
 		var step = (endaltitude - startaltitude)/10000; //change to taste
 		var payloadMass = Number(document.getElementById("payloadmass").value);
 		var safety = Number(document.getElementById("safety").value);
-		var maxLoadCrossSectionDensity = safety * payloadMass * space.moon.gm/(startaltitude * startaltitude * strength);
+		var maxLoadCrossSectionDensity = safety * payloadMass * moon.gm/(startaltitude * startaltitude * strength);
 		var resultLE3 = 0;
 		for(i = startaltitude; i < endaltitude; i += step){
 			resultLE3 += step * maxLoadCrossSectionDensity * Math.pow(Math.E,integralCallInitializer(startaltitude,i)/strength);
@@ -88,9 +91,9 @@ var tether = function(){
 	};
 //Draw the tether graphics
 	var tetherCanvas = document.getElementById("tetherCanvas");
-	tetherCanvas.width = tetherCanvas.width;
 	var ctx = tetherCanvas.getContext("2d");
-	var visibleRadius = 325*space.moon.radius/endaltitude;
+	ctx.clearRect(0,0,tetherCanvas.width,tetherCanvas.height);
+	var visibleRadius = 325*moon.radius/endaltitude;
 	ctx.beginPath();
 	ctx.arc(50,50,visibleRadius,0,2*Math.PI);
 	ctx.stroke();

@@ -267,6 +267,9 @@ planets =
 		"period":2360591,
 		"speed":1022,
 		"inclination":5.145,
+		"l1Distance":58009000,
+		"l2Distance":64501000,
+		"l3Distance":766079000,
 		"parent":"earth",
 		"lowOrbit":{
 			"surfaceCost":1720,
