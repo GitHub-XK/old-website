@@ -314,6 +314,7 @@ planets =
 		}
 	},
 	"atmosphere":{
+		"ceiling":100000,
 		"layers":[
 			{
 				"ceiling":10000,
@@ -515,6 +516,8 @@ planets =
 },
 "europa":{
 	"type":"moon",
+	"radius":1560.8e3,
+	"mass":4.799844e22,
 	"orbit":{
 		"periapsis":664862000,
 		"apoapsis":676938000,
@@ -534,7 +537,11 @@ planets =
 },
 "ganymede":{
 	"type":"moon",
+	"radius":2634.1e3,
+	"mass":1.4819e23,
 	"orbit":{
+		"semiMajor":1070400000,
+		"period":618153.375744,
 		"parent":"jupiter",
 		"lowOrbit":{},
 		"escape":{
@@ -546,7 +553,11 @@ planets =
 },
 "callisto":{
 	"type":"moon",
+	"radius":2410.3e3,
+	"mass":1.075938e23,
 	"orbit":{
+		"semiMajor":1882700000,
+		"period":1441931.18976,
 		"parent":"jupiter",
 		"lowOrbit":{},
 		"escape":{
@@ -559,6 +570,7 @@ planets =
 "saturn":{
 	"type":"gas planet",
 	"gm":3.7931187e16,
+	"radius":58232e3,
 	"color":"#b08f36",
 	"orbit":{
 		"parent":"sun",
@@ -737,7 +749,11 @@ planets =
 },
 "hyperion":{
 	"type":"moon",
+	"radius":135e3,
+	"mass":5.6199e18,
 	"orbit":{
+		"semiMajor":1481009e3,
+		"period":1838246.4,
 		"parent":"saturn",
 		"lowOrbit":{},
 		"escape":[]
@@ -745,7 +761,11 @@ planets =
 },
 "iapetus":{
 	"type":"moon",
+	"radius":734.5e3,
+	"mass":1.805635e21,
 	"orbit":{
+		"semiMajor":3560820e3,
+		"period":6853377.6,
 		"parent":"saturn",
 		"lowOrbit":{
 			"altitude":50000,
@@ -757,7 +777,11 @@ planets =
 },
 "phoebe":{
 	"type":"moon",
+	"radius":106.5e3,
+	"mass":8.292e18,
 	"orbit":{
+		"semiMajor":12.96e9,
+		"period":47568784.5504,
 		"parent":"saturn",
 		"lowOrbit":{},
 		"escape":[]
@@ -765,6 +789,7 @@ planets =
 },
 "uranus":{
 	"type":"gas planet",
+	"radius":25362e3,
 	"gm":5.793939e15,
 	"color":"#5580aa",
 	"orbit":{
@@ -804,6 +829,7 @@ planets =
 },
 "neptune":{
 	"type":"gas planet",
+	"radius":24622e3,
 	"gm":6.836529e15,
 	"color":"#366896",
 	"orbit":{
@@ -831,6 +857,7 @@ planets =
 },
 "pluto":{
 	"type":"dwarf planet",
+	"radius":1189.9e3,
 	"gm":8.71e11,
 	"orbit":{
 		"parent":"sun",
@@ -840,7 +867,11 @@ planets =
 },
 "charon":{
 	"type":"moon",
+	"radius":606e3,
+	"mass":1.586e21,
 	"orbit":{
+		"semiMajor":19571e3,
+		"period":551856.70656,
 		"parent":"pluto"
 	}
 },
