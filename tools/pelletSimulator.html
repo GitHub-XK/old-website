@@ -154,7 +154,7 @@ var simulator = {
 
 				//secondary gravity:
 				for(var j=0;j<children.length;j++){
-					var angle = Math.cos(2*Math.PI*this.params.time/children[j].orbit.period);
+					var angle = 2*Math.PI*this.params.time/children[j].orbit.period;
 					var radius = children[j].orbit.semiMajor - secondary.orbit.semiMajor * 1/(massRatio + 1);
 					var relx = state.pellets[i].x - Math.cos(angle) * radius;
 					var rely = state.pellets[i].y + Math.sin(angle) * radius;
