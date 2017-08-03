@@ -4,6 +4,7 @@
 	"mass":1.98855e30,
 	"gm":1.32712440018e20,
 	"radius":695700000,
+	"color":"#FFFF00",
 	"orbit":{
 		"children":[
 			"mercury","venus","earth","mars",
@@ -808,19 +809,31 @@
 },
 "ariel":{
 	"type":"moon",
+	"radius":578.9e3,
+	"mass":1.353e21,
 	"orbit":{
+		"semiMajor":191020e3,
+		"period":217728,
 		"parent":"uranus"
 	}
 },
 "umbriel":{
 	"type":"moon",
+	"radius":584.7e3,
+	"mass":1.172e21,
 	"orbit":{
+		"semiMajor":266000e3,
+		"period":358041.6,
 		"parent":"uranus"
 	}
 },
 "oberon":{
 	"type":"moon",
+	"radius":761.4e3,
+	"mass":3.014e21,
 	"orbit":{
+		"semiMajor":583520e3,
+		"period":1163223.4176,
 		"parent":"uranus"
 	}
 },
@@ -908,7 +921,10 @@
 },
 "eris":{
 	"type":"dwarf planet",
-	"gm":1.108e12
+	"gm":1.108e12,
+	"orbit":{
+		"parent":"sun"
+	}
 },
 "META":{
 	"author":"Sigvart Brendberg",
