@@ -13,11 +13,10 @@ title: Pellet Simulator
 					<p>Requires restart to take effect</p>
 					System<select name="system" onchange="simulator.getSecondary()"></select><br><!--dynamically added-->
 					Secondary body<select name="secondary"></select><!--dynamically added-->
-					<p>NOTE! Only the Earth-Moon system works at this point</p>
 					<p>Pellet start point</p>
 					Origin of coordinate system
-					<input name="origin" type="radio" value="earth" checked>Parent body
-					<input name="origin" type="radio" value="moon" >Secondary body
+					<input name="origin" type="radio" value="parent" checked>Parent body
+					<input name="origin" type="radio" value="secondary" >Secondary body
 					<input name="origin" type="radio" value="normal" >Barycentre<br>
 
 					<input name="radius" type="text" value="400000">Radius (km)<br>
@@ -42,8 +41,8 @@ title: Pellet Simulator
 					<input name="physics" type="text" value="200" onchange="simulator.change()">Physics fps<br>
 					<input name="graphics" type="text" value="20" onchange="simulator.change()">Graphics fps<br>
 					View <select name="view" onchange="simulator.change()">
-						<option value="earth">Geocentric</option>
-						<option value="moon">Selenocentric</option>
+						<option value="system">Parent body</option>
+						<option value="secondary">Secondary body</option>
 						<option value="normal">Inertial</option>
 						<option value="rotating">Co-rotating</option>
 					</select><br>
@@ -109,10 +108,7 @@ var simulator = {
 			ctx.fillRect(0,0,canvas.width,canvas.height);
 		};
 		this.ctx = ctx;
-		this.getAvailableSystems();
-		this.physics.moon = planets["moon"];
-		this.physics.earth = planets["earth"];
-		this.physics.massRatio = this.physics.earth.gm / this.physics.moon.gm;
+		this.getAvailableSystems();//update select list from available data in planets.js
 	},
 	physics : {
 		params : {},
@@ -120,74 +116,83 @@ var simulator = {
 			pellets : []
 		},
 		step : function(state){
-			var earth = this.earth;
-			var moon = this.moon;
-			var massRatio = this.massRatio;
+			var system = this.params.system;
+			var secondary = this.params.secondary;
+			var children = this.params.children;
+			var massRatio = this.params.massRatio;
 			for(var i=0;i<state.pellets.length;i++){
 				state.pellets[i].x += state.pellets[i].vx * this.params.deltaTime;
 				state.pellets[i].y += state.pellets[i].vy * this.params.deltaTime;
-				//earth gravity:
+
+				//primary body gravity:
 				var relx = state.pellets[i].x
-					+ moon.orbit.semiMajor * Math.cos(2*Math.PI*this.params.time/moon.orbit.period) * 1/(massRatio + 1);
+					+ secondary.orbit.semiMajor * Math.cos(2*Math.PI*this.params.time/secondary.orbit.period) * 1/(massRatio + 1);
 				var rely = state.pellets[i].y
-					- moon.orbit.semiMajor * Math.sin(2*Math.PI*this.params.time/moon.orbit.period) * 1/(massRatio + 1);
+					- secondary.orbit.semiMajor * Math.sin(2*Math.PI*this.params.time/secondary.orbit.period) * 1/(massRatio + 1);
 				sqHyp = relx * relx + rely * rely;
-				if(Math.sqrt(sqHyp) < planets["earth"].radius + planets["earth"].atmosphere.ceiling){
+				var acceleration = system.gm/sqHyp;
+				state.pellets[i].vx += acceleration * (-relx/Math.sqrt(sqHyp)) * this.params.deltaTime;
+				state.pellets[i].vy += acceleration * (-rely/Math.sqrt(sqHyp)) * this.params.deltaTime;
+				//end gracity primary
+				//primary collitions and escape:
+				if(Math.sqrt(sqHyp) < system.radius + system.atmosphere.ceiling){
 					state.pellets.splice(i--,1);//collision
-					this.params.earth++;
+					this.params.system.collisions++;
 					continue;
 				}
-				else if(Math.sqrt(sqHyp) > planets["moon"].orbit.semiMajor * 5){
+				else if(Math.sqrt(sqHyp) > children[children.length-1].orbit.semiMajor * 5){
 					if(
 						state.pellets[i].vx * state.pellets[i].vx + state.pellets[i].vy * state.pellets[i].vy
-						> 2 * planets["earth"].gm / (planets["moon"].orbit.semiMajor * 5)
+						> 2 * system.gm / (children[children.length-1].orbit.semiMajor * 5)
 					){
-						state.pellets.splice(i--,1);//escape
+						state.pellets.splice(i--,1);
 						this.params.escaped++;
 						continue;
 					};
 				};
-				var acceleration = planets["earth"].gm/sqHyp;
-				state.pellets[i].vx += acceleration * (-relx/Math.sqrt(sqHyp)) * this.params.deltaTime;
-				state.pellets[i].vy += acceleration * (-rely/Math.sqrt(sqHyp)) * this.params.deltaTime;
-				//moon gravity:
-				var relx = state.pellets[i].x
-					- moon.orbit.semiMajor * Math.cos(2*Math.PI*this.params.time/moon.orbit.period) * massRatio/(massRatio + 1);
-				var rely = state.pellets[i].y
-					+ moon.orbit.semiMajor * Math.sin(2*Math.PI*this.params.time/moon.orbit.period) * massRatio/(massRatio + 1);
-				sqHyp = relx * relx + rely * rely;
-				if(Math.sqrt(sqHyp) < planets["moon"].radius){
-					state.pellets.splice(i--,1);//collision
-					this.params.moon++;
-					continue;
+				//end collision primary and escape
+
+				//secondary gravity:
+				for(var j=0;j<children.length;j++){
+					var angle = Math.cos(2*Math.PI*this.params.time/children[j].orbit.period);
+					var radius = children[j].orbit.semiMajor - secondary.orbit.semiMajor * 1/(massRatio + 1);
+					var relx = state.pellets[i].x - Math.cos(angle) * radius;
+					var rely = state.pellets[i].y + Math.sin(angle) * radius;
+					var sqHyp = relx * relx + rely * rely;
+					var acceleration = children[j].gm/sqHyp;
+					state.pellets[i].vx += acceleration * (-relx/Math.sqrt(sqHyp)) * this.params.deltaTime;
+					state.pellets[i].vy += acceleration * (-rely/Math.sqrt(sqHyp)) * this.params.deltaTime;
+					if(Math.sqrt(sqHyp) < children[j].radius + children[j].atmosphere.ceiling){
+						state.pellets.splice(i--,1);
+						this.params.children[j].collisions++;
+						continue;
+					};
 				};
-				var acceleration = planets["moon"].gm/sqHyp;
-				state.pellets[i].vx += acceleration * (-relx/Math.sqrt(sqHyp)) * this.params.deltaTime;
-				state.pellets[i].vy += acceleration * (-rely/Math.sqrt(sqHyp)) * this.params.deltaTime;
 			};
 			return state;
 		}
 	},
 	mPerPx : 1000000,
 	draw : function(state){
-		var moon = this.physics.moon;
-		var earth = this.physics.earth;
-		var massRatio = this.physics.massRatio;
+		var secondary = this.physics.params.secondary;
+		var system = this.physics.params.system;
+		var children = this.physics.params.children;
+		var massRatio = this.physics.params.massRatio;
 		var canvas = this.canvas;
 		var ctx = this.ctx;
 		if(this.physics.params.tracing){
 			ctx.fillStyle = "black";
-			ctx.fillRect(0,0,250,100);//top left corner information
+			ctx.fillRect(0,0,250,70 + children.length*15);//top left corner information
 		}
 		else{
 			ctx.blackAll(canvas);
 		};
 		ctx.translate(canvas.width/2,canvas.height/2);
 
-		moon.x = moon.orbit.semiMajor * Math.cos(2*Math.PI*this.physics.params.time/moon.orbit.period) * massRatio/(massRatio + 1);
-		moon.y = -moon.orbit.semiMajor * Math.sin(2*Math.PI*this.physics.params.time/moon.orbit.period) * massRatio/(massRatio + 1);
-		earth.x = -moon.x/massRatio;
-		earth.y = -moon.y/massRatio;
+		secondary.x = secondary.orbit.semiMajor * Math.cos(2*Math.PI*this.physics.params.time/secondary.orbit.period) * massRatio/(massRatio + 1);
+		secondary.y = -secondary.orbit.semiMajor * Math.sin(2*Math.PI*this.physics.params.time/secondary.orbit.period) * massRatio/(massRatio + 1);
+		system.x = -secondary.x/massRatio;
+		system.y = -secondary.y/massRatio;
 
 
 		//the following is the definition of transform functions for the different views.
@@ -199,25 +204,25 @@ var simulator = {
 				};
 			};
 		}
-		else if(this.physics.params.view == "earth"){
+		else if(this.physics.params.view == "system"){
 			var transform = function(position){
 				return {
-					x : (position.x - earth.x)/simulator.mPerPx + simulator.offsetX,
-					y : (position.y - earth.y)/simulator.mPerPx + simulator.offsetY
+					x : (position.x - system.x)/simulator.mPerPx + simulator.offsetX,
+					y : (position.y - system.y)/simulator.mPerPx + simulator.offsetY
 				};
 			};
 		}
-		else if(this.physics.params.view == "moon"){
+		else if(this.physics.params.view == "secondary"){
 			var transform = function(position){
 				return {
-					x : (position.x - moon.x)/simulator.mPerPx + simulator.offsetX,
-					y : (position.y - moon.y)/simulator.mPerPx + simulator.offsetY
+					x : (position.x - secondary.x)/simulator.mPerPx + simulator.offsetX,
+					y : (position.y - secondary.y)/simulator.mPerPx + simulator.offsetY
 				};
 			};
 		}
 		else if(this.physics.params.view == "rotating"){
 			var transform = function(position){
-				var angle = 2*Math.PI*simulator.physics.params.time/moon.orbit.period;
+				var angle = 2*Math.PI*simulator.physics.params.time/secondary.orbit.period;
 				return {
 					x : (position.x * Math.cos(angle) - position.y * Math.sin(angle))/simulator.mPerPx + simulator.offsetX,
 					y : (position.y * Math.cos(angle) + position.x * Math.sin(angle))/simulator.mPerPx + simulator.offsetY
@@ -225,19 +230,22 @@ var simulator = {
 			};
 		};
 
-
 		ctx.circle(
 			transform({
-				x : moon.x,
-				y : moon.y
+				x : system.x,
+				y : system.y
 			}),
-			moon.radius/this.mPerPx,moon.color);//moon
-		ctx.circle(
-			transform({
-				x : earth.x,
-				y : earth.y
-			}),
-			earth.radius/this.mPerPx,earth.color);//earth
+			system.radius/this.mPerPx,system.color);//main body rendering
+		for(var i=0;i<children.length;i++){
+			var angle = 2*Math.PI*this.physics.params.time/children[i].orbit.period;
+			var radius = children[i].orbit.semiMajor - secondary.orbit.semiMajor * 1/(massRatio + 1);
+			ctx.circle(
+				transform({
+					x : Math.cos(angle) * radius,
+					y : - Math.sin(angle) * radius
+				}),
+				children[i].radius/this.mPerPx,children[i].color);
+		};
 
 		var pellets = this.physics.state.pellets;
 		for(var i=0;i<pellets.length;i++){
@@ -252,9 +260,12 @@ var simulator = {
 		ctx.fillStyle = "white";
 		ctx.fillText("Time elapsed: "+timeFormat(this.physics.params.time),10,15);
 		ctx.fillText("Object count: "+pellets.length,10,30);
-		ctx.fillText("Earth collisions: "+this.physics.params.earth,10,45);
-		ctx.fillText("Moon collisions: "+this.physics.params.moon,10,60);
-		ctx.fillText("Escaped: "+this.physics.params.escaped,10,75);
+		ctx.fillText("Escaped: "+this.physics.params.escaped,10,45);
+		ctx.fillText("primary collisions: "+this.physics.params.system.collisions,10,60);
+		for(var i=0;i<children.length;i++){
+			ctx.fillText(system.orbit.children[i] + " collisions: "+this.physics.params.children[i].collisions,10,75 + i*15);
+		};
+
 	},
 	update : function(){
 		this.ctx.blackAll(this.canvas);
@@ -291,22 +302,42 @@ var simulator = {
 			secondary : planets[form.elements.secondary.value],
 			time      : 0,
 			escaped   : 0,
-			earth     : 0,
-			moon      : 0,
 			view      : form.elements.view.options[form.elements.view.selectedIndex].value,//just why did they design <select> like this?
 			tracing   : form.elements.tracing.checked,
-			pelletRadius : form.find("pelletRadius")
+			pelletRadius : form.find("pelletRadius"),
+			children  : []
+		};
+		if(!params.system.hasOwnProperty("atmosphere") || !params.system.atmosphere.hasOwnProperty("ceiling")){
+			params.system.atmosphere = {};
+			params.system.atmosphere.ceiling = 0;
+		};
+		if(!params.system.hasOwnProperty("gm")){
+			params.system.gm = params.system.mass * 6.67408e-11;
+		};
+		params.system.collisions = 0;
+		for(var i=0;i<params.system.orbit.children.length;i++){
+			var child = planets[params.system.orbit.children[i]];
+			if(!child.hasOwnProperty("color")){
+				child.color = "#FFFFFF";
+			};
+			if(!child.hasOwnProperty("gm")){
+				child.gm = child.mass * 6.67408e-11;
+			};
+			if(!child.hasOwnProperty("atmosphere") || !child.atmosphere.hasOwnProperty("ceiling")){
+				child.atmosphere = {};
+				child.atmosphere.ceiling = 0;
+			};
+			child.collisions = 0;
+			params.children.push(child);
 		};
 		var pellets = [];
-		var moon = planets["moon"];
-		var earth = planets["earth"];
-		var massRatio = earth.gm / moon.gm;
+		params.massRatio = params.system.gm / params.secondary.gm;
 		var x = Math.cos(params.argument) * params.radius;
-		if(form.origin.value === "earth"){
-			x -= planets["moon"].orbit.semiMajor * 1/(massRatio + 1);
+		if(form.origin.value === "parent"){
+			x -= params.secondary.orbit.semiMajor * 1/(params.massRatio + 1);
 		}
-		else if(form.origin.value === "moon"){
-			x += planets["moon"].orbit.semiMajor * massRatio/(massRatio + 1);
+		else if(form.origin.value === "secondary"){
+			x += params.secondary.orbit.semiMajor * params.massRatio/(params.massRatio + 1);
 		};
 		var y = Math.sin(params.argument) * params.radius;
 		for(var i = 0;i < form.find("pellets");i++){
@@ -414,42 +445,35 @@ var simulator = {
 			radius : 384400,
 			argument : 60,
 			direction : 270,
-			origin : "earth"
+			origin : "parent"
 		},
 		"EML1" : {
 			velocity : [850,890],
 			radius : 326390,
 			argument : 0,
 			direction : 270,
-			origin : "earth"
+			origin : "parent"
 		},
 		"EML2" : {
 			velocity : [1180,1220],
 			radius : 448900,
 			argument : 0,
 			direction : 270,
-			origin : "earth"
+			origin : "parent"
 		},
 		"EML3" : {
 			velocity : [1000,1050],
 			radius : -381680,
 			argument : 0,
 			direction : 90,
-			origin : "earth"
+			origin : "parent"
 		},
 		"gravityAssist" : {
 			velocity : [4949,5005],
 			radius : 30000,
 			argument : 120,
 			direction : 270,
-			origin : "earth"
-		},
-		"doubleGravityAssist" : {
-			velocity : [4995.8,4995.9],
-			radius : 30000,
-			argument : 120,
-			direction : 270,
-			origin : "earth"
+			origin : "parent"
 		}
 	},
 	loadScenario : function(){
