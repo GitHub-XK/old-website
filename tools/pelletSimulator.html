@@ -11,14 +11,15 @@ title: Pellet Simulator
 				<form id="controls">
 					<h3>Initial state</h3>
 					<p>Requires restart to take effect</p>
+					<p>Pellet start point</p>
 					Origin of coordinate system
 					<input name="origin" type="radio" value="earth" checked>Earth
 					<input name="origin" type="radio" value="moon" > Moon
 					<input name="origin" type="radio" value="normal" > Barycentre<br>
 					<input name="radius" type="text" value="400000">Radius (km)<br>
 					<input name="argument" type="text" value="20">Argument (degrees)<br>
-					<p>Pellet velocity (m/s)</p>
-					From: <input name="velocity0" type="text" value="600"> to: <input name="velocity1" type="text" value="700"><br>
+					<p>Pellet velocity</p>
+					From: <input name="velocity0" type="text" value="600">m/s To: <input name="velocity1" type="text" value="700">m/s<br>
 					<input name="pellets" type="number" min="1" value="800">Number of pellets<br>
 					<input name="direction" value="90">Vector direction (degrees)<br>
 					<p>Or load a scenario from the list below:</p>
@@ -43,7 +44,8 @@ title: Pellet Simulator
 						<option value="normal">Inertial</option>
 						<option value="rotating">Co-rotating</option>
 					</select><br>
-					<input name="tracing" onchange="simulator.change()" type="checkbox">Tracing</input>
+					<input name="tracing" onchange="simulator.change()" type="checkbox">Tracing<br>
+					<input name="pelletRadius" onchange="simulator.change()" type="number" min="1" value="3">Pellet radius
 				</form><br>
 				<p>Move around width W,A,S,D zoom with + and -</p>
 				<button onclick="simulator.exportScenario()">Export current scenario</button>
@@ -240,7 +242,7 @@ var simulator = {
 					x : pellets[i].x,
 					y : pellets[i].y
 				}),
-				3,pellets[i].color);
+				this.physics.params.pelletRadius,pellets[i].color);
 		};
 		ctx.translate(-this.canvas.width/2,-this.canvas.height/2);
 		ctx.fillStyle = "white";
@@ -286,7 +288,8 @@ var simulator = {
 			earth     : 0,
 			moon      : 0,
 			view      : form.elements.view.options[form.elements.view.selectedIndex].value,//just why did they design <select> like this?
-			tracing   : form.elements.tracing.checked
+			tracing   : form.elements.tracing.checked,
+			pelletRadius : form.find("pelletRadius")
 		};
 		var pellets = [];
 		var moon = planets["moon"];
@@ -349,7 +352,8 @@ var simulator = {
 			this.ctx.blackAll(this.canvas);
 		};
 		this.physics.params.tracing = form.elements.tracing.checked;
-		this.pause();
+		this.physics.params.pelletRadius = form.find("pelletRadius");
+		this.pause();//intervals must be cleared for fps changes to take effect
 		this.unpause();
 	},
 	pause : function(){
