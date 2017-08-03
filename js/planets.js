@@ -30,6 +30,9 @@ planets =
 		"inclination":7.005,
 		"ascending":48.331,
 		"argument":29.124,
+		"l1Distance":220050000,
+		"l2Distance":220950000,
+		"l3Distance":115818050000,
 		"parent":"sun"
 	}
 },
@@ -86,6 +89,9 @@ planets =
 		"inclination":3.39458,
 		"ascending":76.68,
 		"argument":54.884,
+		"l1Distance":1.008e9,
+		"l2Distance":1.012e9,
+		"l3Distance":2.16418e11,
 		"parent":"sun"
 	}
 },
@@ -189,6 +195,9 @@ planets =
 		"inclination":0,
 		"ascending":-11.26064,
 		"argument":114.20783,
+		"l1Distance":1.488023e9,
+		"l2Distance":1.501977e9,
+		"l3Distance":2.99198023e11,
 		"parent":"sun",
 		"satellites":1,
 		"children":["moon"],
@@ -196,51 +205,21 @@ planets =
 			"altitude":250000,
 			"surfaceCost":9500,
 			"escapeCost":3210,
-			"satellites":[
-				{
-					"target":"moon",
-					"cost":3120
-				}
-			]
-		},
-		"escape":[
-			{
-				"target":"mars",
-				"cost":390
-			},
-			{
-				"target":"venus",
-				"cost":280
-			},
-			{
-				"target":"mercury",
-				"cost":2340
-			},
-			{
-				"target":"vesta",
-				"cost":1310
-			},
-			{
-				"target":"ceres",
-				"cost":1690
-			},
-			{
-				"target":"jupiter",
-				"cost":3090
-			},
-			{
-				"target":"saturn",
-				"cost":4080
-			},
-			{
-				"target":"uranus",
-				"cost":4770
-			},
-			{
-				"target":"neptune",
-				"cost":5040
+			"satellites":{
+				"moon":3120
 			}
-		]
+		},
+		"escape":{
+			"mars":390,
+			"venus":280,
+			"mercury":2340,
+			"vesta":1310,
+			"ceres":1690,
+			"jupiter":3090,
+			"saturn":4080,
+			"uranus":4770,
+			"neptune":5040
+		}
 	}
 },
 "moon":{
@@ -275,16 +254,10 @@ planets =
 			"surfaceCost":1720,
 			"escapeCost":680
 		},
-		"escape":[
-			{
-				"target":"earth",
-				"cost":140
-			},
-			{
-				"target":"escape",
-				"cost":90
-			}
-		]
+		"escape":{
+			"earth":140,
+			"escape":90
+		}
 	},
 	"atmosphere":false
 },
@@ -309,24 +282,31 @@ planets =
 		"inclination":1.85,
 		"ascending":49.558,
 		"argument":286.502,
+		"l1Distance":1.0792e9,
+		"l2Distance":1.0908e9,
+		"l3Distance":4.558792e11,
 		"parent":"sun",
 		"satellites":2,
 		"children":["phobos","deimos"],
 		"lowOrbit":{
-			"surfaceCost":null,
-			"escapeCost":null,
-			"satellites":[
-				{
-					"target":"phobos",
-					"cost":null
-				},
-				{
-					"target":"phobos",
-					"cost":null
-				}
-			]
+			"surfaceCost":3600,
+			"escapeCost":2110,
+			"satellites":{
+				"phobos":700,
+				"deimos":1100
+			}
 		},
-		"escape":[]
+		"escape":{
+			"earth":670,
+			"venus":null,
+			"mercury":null,
+			"vesta":null,
+			"ceres":null,
+			"jupiter":null,
+			"saturn":null,
+			"uranus":null,
+			"neptune":null
+		}
 	},
 	"atmosphere":{
 		"layers":[
@@ -367,8 +347,13 @@ planets =
 		"period":27553.844,
 		"speed":2138,
 		"inclination":26.04,
-		"lowOrbit":{},
-		"escape":[]
+		"lowOrbit":{
+			"surfaceCost":6,
+			"escapeCost":3
+		},
+		"escape":{
+			"mars":540
+		}
 	},
 	"atmosphere":false
 },
@@ -389,8 +374,13 @@ planets =
 		"period":109123.2,
 		"speed":1351.3,
 		"inclination":27.58,
-		"lowOrbit":{},
-		"escape":[]
+		"lowOrbit":{
+			"surfaceCost":4,
+			"escapeCost":2
+		},
+		"escape":{
+			"mars":650
+		}
 	},
 	"atmosphere":false
 },
@@ -510,20 +500,11 @@ planets =
 		"inclination":0.05,
 		"parent":"jupiter",
 		"lowOrbit":{},
-		"escape":[
-			{
-				"target":"europa",
-				"cost":null
-			},
-			{
-				"target":"ganymede",
-				"cost":null
-			},
-			{
-				"target":"callisto",
-				"cost":null
-			}
-		]
+		"escape":{
+			"europa":null,
+			"ganymede":null,
+			"callisto":null
+		}
 	}
 },
 "europa":{
@@ -538,20 +519,11 @@ planets =
 		"inclination":0.47,
 		"parent":"jupiter",
 		"lowOrbit":{},
-		"escape":[
-			{
-				"target":"io",
-				"cost":null
-			},
-			{
-				"target":"ganymede",
-				"cost":null
-			},
-			{
-				"target":"callisto",
-				"cost":null
-			}
-		]
+		"escape":{
+			"io":null,
+			"ganymede":null,
+			"callisto":null
+		}
 	}
 },
 "ganymede":{
@@ -559,20 +531,11 @@ planets =
 	"orbit":{
 		"parent":"jupiter",
 		"lowOrbit":{},
-		"escape":[
-			{
-				"target":"io",
-				"cost":null
-			},
-			{
-				"target":"europa",
-				"cost":null
-			},
-			{
-				"target":"callisto",
-				"cost":null
-			}
-		]
+		"escape":{
+			"io":null,
+			"europa":null,
+			"callisto":null
+		}
 	}
 },
 "callisto":{
@@ -580,20 +543,11 @@ planets =
 	"orbit":{
 		"parent":"jupiter",
 		"lowOrbit":{},
-		"escape":[
-			{
-				"target":"io",
-				"cost":null
-			},
-			{
-				"target":"europa",
-				"cost":null
-			},
-			{
-				"target":"ganymede",
-				"cost":null
-			}
-		]
+		"escape":{
+			"io":null,
+			"ganymede":null,
+			"europa":null
+		}
 	}
 },
 "saturn":{

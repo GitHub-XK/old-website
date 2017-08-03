@@ -19,7 +19,7 @@ title: Pellet Simulator
 					<input name="argument" type="text" value="20">Argument (degrees)<br>
 					<p>Pellet velocity (m/s)</p>
 					From: <input name="velocity0" type="text" value="600"> to: <input name="velocity1" type="text" value="700"><br>
-					<input name="pellets" type="number" value="800">Number of pellets<br>
+					<input name="pellets" type="number" min="1" value="800">Number of pellets<br>
 					<input name="direction" value="90">Vector direction (degrees)<br>
 					<p>Or load a scenario from the list below:</p>
 					<select name="scenario" onchange="simulator.loadScenario()">
@@ -247,6 +247,9 @@ var simulator = {
 			return Number(this.elements[field].value);
 		};
 		var rainbowColors = function(index,number){
+			if(number == 1){
+				return "rgb(255,0,0)";//a single pellet should be the lower part of the velocity range, red
+			};
 			if(index < (number-1)/2){
 				return "rgb("+Math.floor((255-index*510/(number-1)))+","+Math.floor((index*510/(number-1)))+",0)";
 			}
@@ -287,7 +290,10 @@ var simulator = {
 		};
 		var y = Math.sin(params.argument) * params.radius;
 		for(var i = 0;i < form.find("pellets");i++){
-			var velocity = params.velocity0 + (params.velocity1 - params.velocity0) * i/(form.find("pellets")-1);
+			var velocity = params.velocity0;
+			if(form.find("pellets") > 1){
+				velocity += (params.velocity1 - params.velocity0) * i/(form.find("pellets")-1);
+			};
 			var pellet = {
 				vx : Math.cos(params.direction + params.argument) * velocity,
 				vy : Math.sin(params.direction + params.argument) * velocity,
