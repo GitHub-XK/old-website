@@ -11,11 +11,15 @@ title: Pellet Simulator
 				<form id="controls">
 					<h3>Initial state</h3>
 					<p>Requires restart to take effect</p>
+					System<select name="system" onchange="simulator.getSecondary()"></select><br><!--dynamically added-->
+					Secondary body<select name="secondary"></select><!--dynamically added-->
+					<p>NOTE! Only the Earth-Moon system works at this point</p>
 					<p>Pellet start point</p>
 					Origin of coordinate system
-					<input name="origin" type="radio" value="earth" checked>Earth
-					<input name="origin" type="radio" value="moon" > Moon
-					<input name="origin" type="radio" value="normal" > Barycentre<br>
+					<input name="origin" type="radio" value="earth" checked>Parent body
+					<input name="origin" type="radio" value="moon" >Secondary body
+					<input name="origin" type="radio" value="normal" >Barycentre<br>
+
 					<input name="radius" type="text" value="400000">Radius (km)<br>
 					<input name="argument" type="text" value="20">Argument (degrees)<br>
 					<p>Pellet velocity</p>
@@ -26,7 +30,6 @@ title: Pellet Simulator
 					<select name="scenario" onchange="simulator.loadScenario()">
 						<option value="" selected></option>
 						<option value="gravityAssist">Gravity assist</option>
-						<option value="doubleGravityAssist">Double gravity assist</option>
 						<option value="EML1">EML1</option>
 						<option value="EML2">EML2</option>
 						<option value="EML3">EML3</option>
@@ -106,6 +109,7 @@ var simulator = {
 			ctx.fillRect(0,0,canvas.width,canvas.height);
 		};
 		this.ctx = ctx;
+		this.getAvailableSystems();
 		this.physics.moon = planets["moon"];
 		this.physics.earth = planets["earth"];
 		this.physics.massRatio = this.physics.earth.gm / this.physics.moon.gm;
@@ -227,13 +231,13 @@ var simulator = {
 				x : moon.x,
 				y : moon.y
 			}),
-			moon.radius/this.mPerPx,"grey");//moon
+			moon.radius/this.mPerPx,moon.color);//moon
 		ctx.circle(
 			transform({
 				x : earth.x,
 				y : earth.y
 			}),
-			earth.radius/this.mPerPx,"blue");//earth
+			earth.radius/this.mPerPx,earth.color);//earth
 
 		var pellets = this.physics.state.pellets;
 		for(var i=0;i<pellets.length;i++){
@@ -283,6 +287,8 @@ var simulator = {
 			direction : Math.PI * form.find("direction")/180,
 			radius    : form.find("radius")*1000,
 			argument  : Math.PI * form.find("argument")/180,
+			system    : planets[form.elements.system.value],
+			secondary : planets[form.elements.secondary.value],
 			time      : 0,
 			escaped   : 0,
 			earth     : 0,
@@ -482,6 +488,43 @@ var simulator = {
 		form.elements.argument.value = scenario.argument;
 		form.elements.direction.value = scenario.direction;
 		form.origin.value = scenario.origin;
+	},
+	getAvailableSystems : function(){//planets.js has lots of data, why not make all possible systems available?
+		var availableSystems = [];
+		//we on
+		for(var planet in planets){//all keys, not only bodies
+			if(planets[planet].hasOwnProperty("orbit")){//only those with orbital data
+				if(planets[planet].orbit.hasOwnProperty("children")){//..that have satellites
+					if(planets[planet].orbit.children.length > 0){
+						availableSystems.push(planet);
+					};
+				};
+			};
+		};
+		//maka a <select> list out of all the systems
+		var systemSelector = document.getElementsByName("system")[0];
+		for(var i=0;i<availableSystems.length;i++){
+			var opt = document.createElement('option');
+			opt.value = availableSystems[i];
+			opt.innerHTML = availableSystems[i][0].toUpperCase() + availableSystems[i].slice(1);
+			systemSelector.appendChild(opt);
+			if(availableSystems[i] == "earth"){//earth should be default
+				systemSelector.selectedIndex = i;
+			};
+		};
+		this.getSecondary();//update the list of available secondary bodies (mostly moons)
+	},
+	getSecondary : function(){
+		var systemSelector = document.getElementsByName("system")[0];
+		var system = systemSelector.options[systemSelector.selectedIndex].value;
+		var secondarySelector = document.getElementsByName("secondary")[0];
+		secondarySelector.options.length = 0;//remove all previous options
+		for(var i=0;i<planets[system].orbit.children.length;i++){
+			var opt = document.createElement('option');
+			opt.value = planets[system].orbit.children[i];
+			opt.innerHTML = planets[system].orbit.children[i][0].toUpperCase() + planets[system].orbit.children[i].slice(1);
+			secondarySelector.appendChild(opt);
+		};
 	}
 };
 simulator.init();

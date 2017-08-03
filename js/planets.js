@@ -19,6 +19,7 @@ planets =
 	"mass":3.3011e23,
 	"gm":2.2032e13,
 	"radius":2439700,
+	"color":"#1a1a1a",
 	"atmosphere":false,
 	"orbit":{
 		"periapsis":46001200000,
@@ -42,6 +43,7 @@ planets =
 	"gm":3.24859e14,
 	"gravity":8.87,
 	"radius":6051800,
+	"color":"#e6e6e6",
 	"area":4.6023e14,
 	"volume":9.2843e20,
 	"density":5243,
@@ -101,6 +103,7 @@ planets =
 	"gm":3.986004418e14,
 	"gravity":9.807,
 	"radius":6371000,
+	"color":"#2f6a69",
 	"polarRadius":6356800,
 	"equatorRadius":6378100,
 	"area":510072000e6,
@@ -228,6 +231,7 @@ planets =
 	"gm":4.9048695e12,
 	"gravity":1.62,
 	"radius":1737100,
+	"color":"#1F1F1F",
 	"polarRadius":1736000,
 	"equatorRadius":1738100,
 	"area":3.793e13,
@@ -267,6 +271,7 @@ planets =
 	"gm":4.282837e13,
 	"gravity":3.711,
 	"radius":3389500,
+	"color":"#993d00",
 	"polarRadius":3376200,
 	"equatorRadius":3396200,
 	"volume":1.6318e20,
@@ -443,6 +448,7 @@ planets =
 	"type":"gas planet",
 	"gm":1.26686534e17,
 	"radius":69911000,
+	"color":"#b07f35",
 	"polarRadius":66854000,
 	"equatorRadius":71492000,
 	"area":6.1419e16,
@@ -553,6 +559,7 @@ planets =
 "saturn":{
 	"type":"gas planet",
 	"gm":3.7931187e16,
+	"color":"#b08f36",
 	"orbit":{
 		"parent":"sun",
 		"children":["janus","mimas","enceladus","tethys","dione","rhea","titan","hyperion","iapetus","phoebe"]
@@ -759,6 +766,7 @@ planets =
 "uranus":{
 	"type":"gas planet",
 	"gm":5.793939e15,
+	"color":"#5580aa",
 	"orbit":{
 		"parent":"sun",
 		"children":["titania","oberon","umbriel","ariel","miranda"]
@@ -797,6 +805,7 @@ planets =
 "neptune":{
 	"type":"gas planet",
 	"gm":6.836529e15,
+	"color":"#366896",
 	"orbit":{
 		"parent":"sun",
 		"children":["triton","proteus","nereid"]
@@ -854,6 +863,6 @@ planets =
 "META":{
 	"author":"Sigvart Brendberg",
 	"updated":2017,
-	"url":"http://moonwards.com/json/planets.json"
+	"url":"https://moonwards.com/json/planets.json"
 }
 }
