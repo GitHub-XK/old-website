@@ -799,7 +799,11 @@ planets =
 },
 "miranda":{
 	"type":"moon",
+	"radius":235.8e3,
+	"mass":6.59e19,
 	"orbit":{
+		"semiMajor":129390e3,
+		"period":122123.808,
 		"parent":"uranus"
 	}
 },
@@ -823,7 +827,11 @@ planets =
 },
 "titania":{
 	"type":"moon",
+	"radius":788.4e3,
+	"mass":3.527e21,
 	"orbit":{
+		"semiMajor":435910e3,
+		"period":752218.6176,
 		"parent":"uranus"
 	}
 },
@@ -839,19 +847,31 @@ planets =
 },
 "nereid":{
 	"type":"moon",
+	"radius":170e3,
+	"mass":30872569721802200000,
 	"orbit":{
+		"semiMajor":5513787e3,
+		"period":31115767.68,
 		"parent":"neptune"
 	}
 },
 "proteus":{
 	"type":"moon",
+	"radius":210e3,
+	"mass":4.4e19,
 	"orbit":{
+		"semiMajor":117647e3,
+		"period":96967.996128,
 		"parent":"neptune"
 	}
 },
 "triton":{
 	"type":"moon",
+	"radius":1353.4e3,
+	"mass":2.14e22,
 	"orbit":{
+		"semiMajor":354759e3,
+		"period":-507760.1856,
 		"parent":"neptune"
 	}
 },
