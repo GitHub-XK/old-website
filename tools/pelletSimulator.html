@@ -53,7 +53,7 @@ title: Pellet Simulator
 				<button onclick="simulator.exportScenario()">Export current scenario</button>
 				<button onclick="simulator.importScenario()">Import a scenario</button><br><br>
 				<button onclick="simulator.update()">Restart simulation</button>
-				<button onclick="simulator.pause()">Pause</button><button onclick="simulator.unpause()">Unpause</button>
+				<button onclick="simulator.pause();requestPause=true">Pause</button><button onclick="simulator.unpause();requestPause=false">Unpause</button>
 			</div>
 			<canvas width="1000" height="1000" id="canvas"></canvas>
 		</div>
@@ -366,11 +366,17 @@ var simulator = {
 		physicsLoopID = setInterval(
 			function(){
 				simulator.physicsLoop();
+				if(requestPause){
+					clearInterval(physicsLoopID);
+				};
 			},this.physics.params.physicsFPS
 		);
 		graphicsLoopID = setInterval(
 			function(){
 				simulator.graphicsLoop();
+				if(requestPause){
+					clearInterval(graphicsLoopID);
+				};
 			},this.physics.params.graphicsFPS
 		);
 	},
@@ -398,16 +404,18 @@ var simulator = {
 		clearInterval(physicsLoopID);
 	},
 	unpause : function(){
-		physicsLoopID = setInterval(
-			function(){
-				simulator.physicsLoop();
-			},this.physics.params.physicsFPS
-		);
-		graphicsLoopID = setInterval(
-			function(){
-				simulator.graphicsLoop();
-			},this.physics.params.graphicsFPS
-		);
+		if(requestPause){
+			physicsLoopID = setInterval(
+				function(){
+					simulator.physicsLoop();
+				},this.physics.params.physicsFPS
+			);
+			graphicsLoopID = setInterval(
+				function(){
+					simulator.graphicsLoop();
+				},this.physics.params.graphicsFPS
+			);
+		};
 	},
 	offsetX : 0,
 	offsetY : 0,
@@ -554,4 +562,5 @@ var simulator = {
 simulator.init();
 document.onkeypress = simulator.keypress;
 simulator.ctx.blackAll(simulator.canvas);
+var requestPause = false;
 		</script>
