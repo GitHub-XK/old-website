@@ -42,7 +42,8 @@ title: Pellet Simulator
 						<option value="moon">Selenocentric</option>
 						<option value="normal">Inertial</option>
 						<option value="rotating">Co-rotating</option>
-					</select>
+					</select><br>
+					<input name="tracing" onchange="simulator.change()" type="checkbox">Tracing</input>
 				</form><br>
 				<p>Move around width W,A,S,D zoom with + and -</p>
 				<button onclick="simulator.exportScenario()">Export current scenario</button>
@@ -97,6 +98,10 @@ var simulator = {
 			ctx.arc(position.x,position.y,radius,0,2*Math.PI);
 			ctx.fillStyle = color;
 			ctx.fill();
+		};
+		ctx.blackAll = function(canvas){
+			ctx.fillStyle = "black";
+			ctx.fillRect(0,0,canvas.width,canvas.height);
 		};
 		this.ctx = ctx;
 		this.physics.moon = planets["moon"];
@@ -164,9 +169,13 @@ var simulator = {
 		var massRatio = this.physics.massRatio;
 		var canvas = this.canvas;
 		var ctx = this.ctx;
-		ctx.clearRect(0,0,canvas.width,canvas.height);
-		ctx.fillStyle = "black";
-		ctx.fillRect(0,0,canvas.width,canvas.height);
+		if(this.physics.params.tracing){
+			ctx.fillStyle = "black";
+			ctx.fillRect(0,0,250,100);//top left corner information
+		}
+		else{
+			ctx.blackAll(canvas);
+		};
 		ctx.translate(canvas.width/2,canvas.height/2);
 
 		moon.x = moon.orbit.semiMajor * Math.cos(2*Math.PI*this.physics.params.time/moon.orbit.period) * massRatio/(massRatio + 1);
@@ -242,6 +251,7 @@ var simulator = {
 		ctx.fillText("Escaped: "+this.physics.params.escaped,10,75);
 	},
 	update : function(){
+		this.ctx.blackAll(this.canvas);
 		var form = document.getElementById("controls");
 		form.find = function(field){
 			return Number(this.elements[field].value);
@@ -275,7 +285,8 @@ var simulator = {
 			escaped   : 0,
 			earth     : 0,
 			moon      : 0,
-			view      : form.elements.view.options[form.elements.view.selectedIndex].value//just why did they design <select> like this?
+			view      : form.elements.view.options[form.elements.view.selectedIndex].value,//just why did they design <select> like this?
+			tracing   : form.elements.tracing.checked
 		};
 		var pellets = [];
 		var moon = planets["moon"];
@@ -332,7 +343,12 @@ var simulator = {
 		this.physics.params.graphicsFPS = 1000 / form.find("graphics");
 		this.physics.params.deltaTime = form.find("simSpeed") / form.find("physics");
 		this.physics.params.graphics = form.find("graphics");
-		this.physics.params.view = form.elements.view.options[form.elements.view.selectedIndex].value;
+		var newView = form.elements.view.options[form.elements.view.selectedIndex].value;
+		if(this.physics.params.view != newView){
+			this.physics.params.view = newView;
+			this.ctx.blackAll(this.canvas);
+		};
+		this.physics.params.tracing = form.elements.tracing.checked;
 		this.pause();
 		this.unpause();
 	},
@@ -359,21 +375,27 @@ var simulator = {
 		var unicode = evtobj.charCode? evtobj.charCode : evtobj.keyCode;
 		if(unicode == 97){
 			simulator.offsetX -= 10;
+			simulator.ctx.blackAll(simulator.canvas);
 		}
 		else if(unicode == 100){
 			simulator.offsetX += 10;
+			simulator.ctx.blackAll(simulator.canvas);
 		}
 		else if(unicode == 115){
 			simulator.offsetY += 10;
+			simulator.ctx.blackAll(simulator.canvas);
 		}
 		else if(unicode == 119){
 			simulator.offsetY -= 10;
+			simulator.ctx.blackAll(simulator.canvas);
 		}
 		else if(unicode == 43){
 			simulator.mPerPx *= 0.5;
+			simulator.ctx.blackAll(simulator.canvas);
 		}
 		else if(unicode == 45){
 			simulator.mPerPx *= 2;
+			simulator.ctx.blackAll(simulator.canvas);
 		};
 	},
 	scenarios : {
@@ -460,4 +482,5 @@ var simulator = {
 };
 simulator.init();
 document.onkeypress = simulator.keypress;
+simulator.ctx.blackAll(simulator.canvas);
 		</script>
