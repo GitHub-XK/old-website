@@ -506,6 +506,9 @@ planets =
 		"period":152853.5047,
 		"speed":17334,
 		"inclination":0.05,
+		"argument":84.129,
+		"ascending":43.977,
+		"meanAnomaly":342.021,
 		"parent":"jupiter",
 		"lowOrbit":{},
 		"escape":{
@@ -527,6 +530,9 @@ planets =
 		"period":306822.0384,
 		"speed":13740,
 		"inclination":0.47,
+		"argument":88.970,
+		"ascending":219.106,
+		"meanAnomaly":171.016,
 		"parent":"jupiter",
 		"lowOrbit":{},
 		"escape":{
@@ -543,6 +549,9 @@ planets =
 	"orbit":{
 		"semiMajor":1070400000,
 		"period":618153.375744,
+		"argument":192.417,
+		"ascending":63.552,
+		"meanAnomaly":317.540,
 		"parent":"jupiter",
 		"lowOrbit":{},
 		"escape":{
@@ -559,6 +568,9 @@ planets =
 	"orbit":{
 		"semiMajor":1882700000,
 		"period":1441931.18976,
+		"argument":52.643,
+		"ascending":298.848,
+		"meanAnomaly":181.408,
 		"parent":"jupiter",
 		"lowOrbit":{},
 		"escape":{

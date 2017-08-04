@@ -127,9 +127,9 @@ var simulator = {
 
 				//primary body gravity:
 				var relx = state.pellets[i].x
-					+ secondary.orbit.semiMajor * Math.cos(2*Math.PI*this.params.time/secondary.orbit.period) * 1/(massRatio + 1);
+					+ secondary.orbit.semiMajor * Math.cos(secondary.orbit.displacement + 2*Math.PI*this.params.time/secondary.orbit.period) * 1/(massRatio + 1);
 				var rely = state.pellets[i].y
-					- secondary.orbit.semiMajor * Math.sin(2*Math.PI*this.params.time/secondary.orbit.period) * 1/(massRatio + 1);
+					- secondary.orbit.semiMajor * Math.sin(secondary.orbit.displacement + 2*Math.PI*this.params.time/secondary.orbit.period) * 1/(massRatio + 1);
 				sqHyp = relx * relx + rely * rely;
 				var acceleration = system.gm/sqHyp;
 				state.pellets[i].vx += acceleration * (-relx/Math.sqrt(sqHyp)) * this.params.deltaTime;
@@ -155,7 +155,7 @@ var simulator = {
 
 				//secondary gravity:
 				for(var j=0;j<children.length;j++){
-					var angle = 2*Math.PI*this.params.time/children[j].orbit.period;
+					var angle = children[j].orbit.displacement + 2*Math.PI*this.params.time/children[j].orbit.period;
 					var radius = children[j].orbit.semiMajor - secondary.orbit.semiMajor * 1/(massRatio + 1);
 					var relx = state.pellets[i].x - Math.cos(angle) * radius;
 					var rely = state.pellets[i].y + Math.sin(angle) * radius;
@@ -190,8 +190,8 @@ var simulator = {
 		};
 		ctx.translate(canvas.width/2,canvas.height/2);
 
-		secondary.x = secondary.orbit.semiMajor * Math.cos(2*Math.PI*this.physics.params.time/secondary.orbit.period) * massRatio/(massRatio + 1);
-		secondary.y = -secondary.orbit.semiMajor * Math.sin(2*Math.PI*this.physics.params.time/secondary.orbit.period) * massRatio/(massRatio + 1);
+		secondary.x = secondary.orbit.semiMajor * Math.cos(secondary.orbit.displacement + 2*Math.PI*this.physics.params.time/secondary.orbit.period) * massRatio/(massRatio + 1);
+		secondary.y = -secondary.orbit.semiMajor * Math.sin(secondary.orbit.displacement + 2*Math.PI*this.physics.params.time/secondary.orbit.period) * massRatio/(massRatio + 1);
 		system.x = -secondary.x/massRatio;//according to two body mechanics
 		system.y = -secondary.y/massRatio;
 
@@ -223,7 +223,7 @@ var simulator = {
 		}
 		else if(this.physics.params.view == "rotating"){
 			var transform = function(position){
-				var angle = 2*Math.PI*simulator.physics.params.time/secondary.orbit.period;
+				var angle = secondary.orbit.displacement + 2*Math.PI*simulator.physics.params.time/secondary.orbit.period;
 				return {
 					x : (position.x * Math.cos(angle) - position.y * Math.sin(angle))/simulator.mPerPx + simulator.offsetX,
 					y : (position.y * Math.cos(angle) + position.x * Math.sin(angle))/simulator.mPerPx + simulator.offsetY
@@ -238,7 +238,7 @@ var simulator = {
 			}),
 			system.radius/this.mPerPx,system.color);//main body rendering
 		for(var i=0;i<children.length;i++){
-			var angle = 2*Math.PI*this.physics.params.time/children[i].orbit.period;
+			var angle = children[i].orbit.displacement + 2*Math.PI*this.physics.params.time/children[i].orbit.period;
 			var radius = children[i].orbit.semiMajor - secondary.orbit.semiMajor * 1/(massRatio + 1);
 			ctx.circle(
 				transform({
@@ -338,9 +338,30 @@ var simulator = {
 				child.atmosphere = {};
 				child.atmosphere.ceiling = 0;
 			};
+			if(//realistic moon configuration if data available
+				child.orbit.hasOwnProperty("argument") &&
+				child.orbit.hasOwnProperty("ascending") &&
+				child.orbit.hasOwnProperty("meanAnomaly")
+			){
+				child.orbit.displacement = Math.PI * (child.orbit.argument + child.orbit.ascending + child.orbit.meanAnomaly)/180;
+			}
+			else{
+				child.orbit.displacement = 0;
+			};
 			child.collisions = 0;
 			params.children.push(child);
 		};
+		if(//realistic moon configuration if data available
+			params.secondary.orbit.hasOwnProperty("argument") &&
+			params.secondary.orbit.hasOwnProperty("ascending") &&
+			params.secondary.orbit.hasOwnProperty("meanAnomaly")
+		){
+			params.secondary.orbit.displacement = Math.PI * (params.secondary.orbit.argument + params.secondary.orbit.ascending + params.secondary.orbit.meanAnomaly)/180;
+		}
+		else{
+			params.secondary.orbit.displacement = 0;
+		};
+		
 		//start to create the pellets
 		var pellets = [];
 		params.massRatio = params.system.gm / params.secondary.gm;
