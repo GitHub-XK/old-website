@@ -790,9 +790,26 @@
 "uranus":{
 	"type":"gas planet",
 	"radius":25362e3,
+	"polarRadius":24973e3,
+	"equatorRadius":25559e3,
+	"area":8.1156e15,
+	"volum":6.833e22,
 	"gm":5.793939e15,
+	"mass":8.6810e25,
+	"density":1270,
+	"gravity":8.69,
 	"color":"#5580aa",
 	"orbit":{
+		"semiMajor":2875.04e9,
+		"periapsis":2742e9,
+		"apoapsis":3008e9,
+		"eccentricity":0.046381,
+		"period":2651486400,
+		"speed":6800,
+		"inclination":0.773,
+		"ascending":74.006,
+		"argument":96.998857,
+		"satellites":27,
 		"parent":"sun",
 		"children":["titania","oberon","umbriel","ariel","miranda"]
 	}
@@ -830,9 +847,17 @@
 "oberon":{
 	"type":"moon",
 	"radius":761.4e3,
+	"area":7285000e6,
+	"volume":1849000000e9,
 	"mass":3.014e21,
+	"gravity":0.346,
+	"density":1630,
+	"geometricalAlbedo":0.31,
+	"bondAlbedo":0.14,
 	"orbit":{
 		"semiMajor":583520e3,
+		"eccentricity":0.0014,
+		"inclination":0.058,
 		"period":1163223.4176,
 		"parent":"uranus"
 	}
