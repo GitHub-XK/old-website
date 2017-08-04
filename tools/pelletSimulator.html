@@ -6,6 +6,7 @@ title: Pellet Simulator
 	<body>
 		<div class="wrapper" id="main">
 			<h1>Pellet simulator</h1>
+			<h5 style="text-align: right; line-height: 0.5em;"><a href="https://www.moonwards.com">Moonwards Home</a></h5>
 			<div class="container">
 				<p>Finding very sensitive trajectories, like those requiring multiple gravity assists, is a very time consuming trial and error process. This tool allows you to try a whole range of velocities at once to narrow down the trajectory much faster. The idea is neither new nor mine, this is just an implementation.</p>
 				<form id="controls">
@@ -361,7 +362,7 @@ var simulator = {
 		else{
 			params.secondary.orbit.displacement = 0;
 		};
-		
+
 		//start to create the pellets
 		var pellets = [];
 		params.massRatio = params.system.gm / params.secondary.gm;
@@ -557,7 +558,7 @@ var simulator = {
 		form.origin.value = scenario.origin;
 		form.elements.system.selectedIndex = scenario.system;
 		system.getSecondary();//available moons is dependent of the system
-		form.elements.secondary.selectedIndex = scenario.secondary;		
+		form.elements.secondary.selectedIndex = scenario.secondary;
 	},
 	getAvailableSystems : function(){//planets.js has lots of data, why not make all possible systems available?
 		var availableSystems = [];
