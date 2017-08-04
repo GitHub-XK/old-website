@@ -97,6 +97,7 @@ var simulator = {
 		//setup a canvas
 		this.canvas = document.getElementById("canvas");
 		var ctx = this.canvas.getContext("2d");
+		//additional draw functions:
 		ctx.circle = function(position,radius,color){
 			ctx.beginPath();
 			ctx.arc(position.x,position.y,radius,0,2*Math.PI);
@@ -140,7 +141,7 @@ var simulator = {
 					this.params.system.collisions++;
 					continue;
 				}
-				else if(Math.sqrt(sqHyp) > children[children.length-1].orbit.semiMajor * 5){
+				else if(Math.sqrt(sqHyp) > children[children.length-1].orbit.semiMajor * 5){//escaped if it has more than escape velocity and is more than 5 times further out than the outermost moon.
 					if(
 						state.pellets[i].vx * state.pellets[i].vx + state.pellets[i].vy * state.pellets[i].vy
 						> 2 * system.gm / (children[children.length-1].orbit.semiMajor * 5)
@@ -180,7 +181,7 @@ var simulator = {
 		var massRatio = this.physics.params.massRatio;
 		var canvas = this.canvas;
 		var ctx = this.ctx;
-		if(this.physics.params.tracing){
+		if(this.physics.params.tracing){//only clear the background of the information if we want to preserve traces
 			ctx.fillStyle = "black";
 			ctx.fillRect(0,0,250,70 + children.length*15);//top left corner information
 		}
@@ -191,11 +192,11 @@ var simulator = {
 
 		secondary.x = secondary.orbit.semiMajor * Math.cos(2*Math.PI*this.physics.params.time/secondary.orbit.period) * massRatio/(massRatio + 1);
 		secondary.y = -secondary.orbit.semiMajor * Math.sin(2*Math.PI*this.physics.params.time/secondary.orbit.period) * massRatio/(massRatio + 1);
-		system.x = -secondary.x/massRatio;
+		system.x = -secondary.x/massRatio;//according to two body mechanics
 		system.y = -secondary.y/massRatio;
 
 
-		//the following is the definition of transform functions for the different views.
+		//the following is the definition of transform functions for the different views. Coordinates are in an inertial frame by default
 		if(this.physics.params.view == "normal"){
 			var transform = function(position){
 				return {
@@ -267,13 +268,13 @@ var simulator = {
 		};
 
 	},
-	update : function(){
+	update : function(){//new settings for simulation restart
 		this.ctx.blackAll(this.canvas);
 		var form = document.getElementById("controls");
 		form.find = function(field){
 			return Number(this.elements[field].value);
 		};
-		var rainbowColors = function(index,number){
+		var rainbowColors = function(index,number){//unifor color districution
 			if(number == 1){
 				return "rgb(255,0,0)";//a single pellet should be the lower part of the velocity range, red
 			};
@@ -307,18 +308,28 @@ var simulator = {
 			pelletRadius : form.find("pelletRadius"),
 			children  : []
 		};
-		if(!params.system.hasOwnProperty("atmosphere") || !params.system.atmosphere.hasOwnProperty("ceiling")){
+		//some checks for available data
+		if(params.system.hasOwnProperty("equatorRadius")){//the view is polar, so this is a little more correct if this data is available
+			params.system.radius = params.system.equatorRadius;
+		};
+		if(!params.system.hasOwnProperty("atmosphere") || !params.system.atmosphere.hasOwnProperty("ceiling")){//if the object has no atmosphere, it has an atmosphere of height 0. Used for collision detection
 			params.system.atmosphere = {};
 			params.system.atmosphere.ceiling = 0;
 		};
-		if(!params.system.hasOwnProperty("gm")){
-			params.system.gm = params.system.mass * 6.67408e-11;
+		if(!params.system.hasOwnProperty("gm")){//no gravitational available? Use mass instead
+			params.system.gm = params.system.mass * 6.67408e-11;//gravitational constant
+		};
+		if(!params.system.hasOwnProperty("color")){//if no color, set to white for good contrast
+			params.system.color = "#FFFFFF";
 		};
 		params.system.collisions = 0;
-		for(var i=0;i<params.system.orbit.children.length;i++){
+		for(var i=0;i<params.system.orbit.children.length;i++){//make an array with all the moons
 			var child = planets[params.system.orbit.children[i]];
-			if(!child.hasOwnProperty("color")){
+			if(!child.hasOwnProperty("color")){//same checks as above with parent body
 				child.color = "#FFFFFF";
+			};
+			if(child.hasOwnProperty("equatorRadius")){
+				child.radius = child.equatorRadius;
 			};
 			if(!child.hasOwnProperty("gm")){
 				child.gm = child.mass * 6.67408e-11;
@@ -330,6 +341,7 @@ var simulator = {
 			child.collisions = 0;
 			params.children.push(child);
 		};
+		//start to create the pellets
 		var pellets = [];
 		params.massRatio = params.system.gm / params.secondary.gm;
 		var x = Math.cos(params.argument) * params.radius;
@@ -380,7 +392,7 @@ var simulator = {
 			},this.physics.params.graphicsFPS
 		);
 	},
-	change : function(){
+	change : function(){//dynamically changed settings
 		var form = document.getElementById("controls");
 		form.find = function(field){
 			return Number(this.elements[field].value);
@@ -390,7 +402,7 @@ var simulator = {
 		this.physics.params.deltaTime = form.find("simSpeed") / form.find("physics");
 		this.physics.params.graphics = form.find("graphics");
 		var newView = form.elements.view.options[form.elements.view.selectedIndex].value;
-		if(this.physics.params.view != newView){
+		if(this.physics.params.view != newView){//only clear traces if we switch to a new view
 			this.physics.params.view = newView;
 			this.ctx.blackAll(this.canvas);
 		};
@@ -417,9 +429,9 @@ var simulator = {
 			);
 		};
 	},
-	offsetX : 0,
+	offsetX : 0,//WASD movement
 	offsetY : 0,
-	keypress : function(e){
+	keypress : function(e){//WASD movement and zoom handling
 		var evtobj = window.event? event : e;
 		var unicode = evtobj.charCode? evtobj.charCode : evtobj.keyCode;
 		if(unicode == 97){
@@ -506,7 +518,9 @@ var simulator = {
 			radius : form.find("radius"),
 			argument : form.find("argument"),
 			direction : form.find("direction"),
-			origin : form.origin.value
+			origin : form.origin.value,
+			system : form.elements.system.selectedIndex,
+			secondary : form.elements.secondary.selectedIndex
 		};
 		alert(btoa(JSON.stringify(scenario)));
 	},
@@ -520,6 +534,9 @@ var simulator = {
 		form.elements.argument.value = scenario.argument;
 		form.elements.direction.value = scenario.direction;
 		form.origin.value = scenario.origin;
+		form.elements.system.selectedIndex = scenario.system;
+		system.getSecondary();//available moons is dependent of the system
+		form.elements.secondary.selectedIndex = scenario.secondary;		
 	},
 	getAvailableSystems : function(){//planets.js has lots of data, why not make all possible systems available?
 		var availableSystems = [];
@@ -546,7 +563,7 @@ var simulator = {
 		};
 		this.getSecondary();//update the list of available secondary bodies (mostly moons)
 	},
-	getSecondary : function(){
+	getSecondary : function(){//get moons of current system
 		var systemSelector = document.getElementsByName("system")[0];
 		var system = systemSelector.options[systemSelector.selectedIndex].value;
 		var secondarySelector = document.getElementsByName("secondary")[0];
