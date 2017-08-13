@@ -2,10 +2,22 @@
 layout: toolTemplate
 title: Engine Search
 ---
-<h1>Transfer calculator</h1>
-<p>Data from planets.json</p>
 <div class="wrapper" id="main">
-	<form id="selection">
+	<h1>Transfer calculator</h1>
+	<p>Data from planets.json</p>
+	<form id="selection" style="font-family:monospace;">
+		Origin <select name="origin"></select>
+		<select>
+			<option value="surface">Surface</option>
+			<option value="lowOrbit" selected>Low orbit</option>
+			<option value="escape">Escape</option>
+		</select><br>
+		Target <select name="target"></select>
+		<select>
+			<option value="surface">Surface</option>
+			<option value="lowOrbit" selected>Low orbit</option>
+			<option value="escape">Escape</option>
+		</select><br>
 	</form>
 </div>
 <script src="../js/planets.js"></script>
@@ -26,15 +38,26 @@ var selectionContext = {
 			};
 			this.prober();
 		};
+		this.objectQueue.sort();
 		return;
 	},
 	renderSelection:function(){
-		var target = "";
+		var originList = document.getElementsByName("origin")[0];
+		var targetList = document.getElementsByName("target")[0];
 		for(var i=0;i<this.objectQueue.length;i++){
-			target += "<option>" + this.objectQueue[i] + "</option>";
+			var value = this.objectQueue[i];
+			var html = this.objectQueue[i][0].toUpperCase() + this.objectQueue[i].slice(1);
+			var option = document.createElement('option');
+			option.value = value;
+			option.innerHTML = html;
+			originList.appendChild(option);
+			var option = document.createElement('option');
+			option.value = value;
+			option.innerHTML = html;
+			targetList.appendChild(option);
 		};
-		target += "</select>";
-		document.getElementById("selection").innerHTML = "from" + "<select name='from'>" +  target + "to" + "<select name='to'>" + target + "(TODO: alphabetic list)";
+		originList.selectedIndex = this.objectQueue.indexOf("earth");
+		targetList.selectedIndex = this.objectQueue.indexOf("moon");
 	}
 };
 selectionContext.prober();

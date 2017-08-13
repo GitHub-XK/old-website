@@ -2,11 +2,7 @@
 layout: toolTemplate
 title: Pellet Simulator
 ---
-	</head>
-	<body>
-		<div class="wrapper" id="main">
 			<h1>Pellet simulator</h1>
-			<h5 style="text-align: right; line-height: 0.5em;"><a href="https://www.moonwards.com/learn.html">Back to Learn</a></h5>
 			<div class="container">
 				<p>Finding very sensitive trajectories, like those requiring multiple gravity assists, is a very time consuming trial and error process. This tool allows you to try a whole range of velocities at once to narrow down the trajectory much faster. The idea is neither new nor mine, this is just an implementation.</p>
 				<form id="controls">
@@ -57,7 +53,6 @@ title: Pellet Simulator
 				<button onclick="simulator.pause();requestPause=true">Pause</button><button onclick="simulator.unpause();requestPause=false">Unpause</button>
 			</div>
 			<canvas width="1000" height="1000" id="canvas"></canvas>
-		</div>
 		<script>
 var timeFormat = function(seconds){
 	seconds = Math.floor(seconds);
