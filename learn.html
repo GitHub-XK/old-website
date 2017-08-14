@@ -222,16 +222,27 @@ of the Moon."
 	</div>
 	<div class="outerDiv">
 		<div class="innerDiv">
+			<h2>Delta-v: The core idea of rockets</h2>
+			<p>
+				We have seen that the way of controlling our trajectory through space is to change the spacecraft's velocity. How is that done?
+				Rocket propulsion depends upon conservation of momentum. At first, this looks troubeling. Surely, if our momentum is going to stay the same, so is our velocity as momentum is simply velocity multiplied by mass.
+				But velocity is a vector quantity. If two equal masses are going with the same speed in opposite direction of each other, their momentum are together still zero. So as a first working model, we can imagine two spacecraft starting together, then pushing of from each other. One goes in the direction we want, the other one... wherever stuff ends up while drifting through space.
+				Sacrificing a second spacecraft for every maneuver would be quite wastefull. Indeed, this way of 'propulsion' does not depend upon the other vehicle being a spacecraft, it just has to be something with mass. That allows us to pick something that is for example convenient to store onboard.
+				Another concern of efficiency is the speed the reaction mass is ejected. Low speeds give us only a little momentum, so in order to get the most out of our propellant we wish the 'exhaust velocity' to be as high as possible.
+				One more thing to consider is that while the last bit of ejected mass only has to push our empty spacecraft, all the mass ejected before it has to push more or less of the propellant along with the vehicle. This means a velocity change costs exponential amounts of propellant.
+				There is a straight forward formula to find the total velocity change from what we know about the propulsion system:
+					$$\Delta v=\ln{\frac{m_0}{m_1}}v_e$$
+				Change in velocity equals the natural logarithm of start mass divided by end mass, multiplied by the exhaust velocity.<br>
+				The inverse equation is also conventient when we wish to find the required mass ratio for a given velocity change:
+					$$\frac{m_0}{m_1} = e^{\frac{\Delta v}{v_e}}$$
+			</p>
+		</div>
+	</div>
+	<div class="outerDiv">
+		<div class="innerDiv">
 			<a href="http://www.gnu.org/licenses/">
 				<p>All calculator scripts are released under the GPL version 3</p>
 			</a>
-		</div>
-	</div>
-</section>
-<section id="rockets">
-	<div class="outerDiv">
-		<div class="innerDiv">
-			<h2>Delta-v: The core idea of rockets</h2>
 		</div>
 	</div>
 </section>
