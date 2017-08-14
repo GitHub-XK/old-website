@@ -21,6 +21,10 @@ exclude:
   - blenderstuff
   - working
   - LICENSE.txt
+  - expandingDirectories.build
+  - build.sh
+  - cleanup.sh
+  - movedFiles.tmp
   - README.md
   - TODO.txt
   - basetemplate.html
@@ -30,6 +34,7 @@ exclude:
   - makefile
   - forum
   - drafts
+  - tools
 markdown: kramdown
 url: "https://www.moonwards.com"
 excerpt_separator: end-excerpt

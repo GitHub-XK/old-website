@@ -1,5 +1,7 @@
 complete : main.nest.sass.css learn.nest.sass.css blogMain.nest.sass.css posts.nest.sass.css content.nest.sass.css 404css.nets.sass.css js/planets.js
+	./build.sh
 	jekyll build
+	./cleanup.sh
 
 main.nest.sass.css : sass/main.sass
 	sass sass/main.sass css/main.nest.sass.css --sourcemap=none
