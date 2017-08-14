@@ -35,6 +35,7 @@ exclude:
   - forum
   - drafts
   - tools
+  - favicons
 markdown: kramdown
 url: "https://www.moonwards.com"
 excerpt_separator: end-excerpt
