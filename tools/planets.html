@@ -2,64 +2,229 @@
 layout: toolTemplate
 title: Engine Search
 ---
-<div class="wrapper" id="main">
 	<h1>Transfer calculator</h1>
 	<p>Data from planets.json</p>
+	<p>Not completed</p>
 	<form id="selection" style="font-family:monospace;">
 		Origin <select name="origin"></select>
-		<select>
+		<select name="originLocation">
 			<option value="surface">Surface</option>
 			<option value="lowOrbit" selected>Low orbit</option>
 			<option value="escape">Escape</option>
 		</select><br>
 		Target <select name="target"></select>
-		<select>
+		<select name="targetLocation">
 			<option value="surface">Surface</option>
 			<option value="lowOrbit" selected>Low orbit</option>
 			<option value="escape">Escape</option>
 		</select><br>
 	</form>
-</div>
+	<button onclick="calculate()">Calculate</button>
+	<p id="result"></p>
 <script src="../js/planets.js"></script>
 <script>
 var selectionContext = {
-	unselectedQueue:["sun"],
-	objectQueue:[],
-	prober:function(){
-		if(this.unselectedQueue.length){
-			var nextUp = this.unselectedQueue.pop();
-			this.objectQueue.push(nextUp);
+	prober:function(seed){
+		var unselectedQueue = seed;
+		var objectQueue = [];
+		while(unselectedQueue.length){
+			var nextUp = unselectedQueue.pop();
+			objectQueue.push(nextUp);
 			if(planets[nextUp].hasOwnProperty("orbit")){
 				if(planets[nextUp].orbit.hasOwnProperty("children")){
 					for(var i=0;i<planets[nextUp].orbit.children.length;i++){
-						this.unselectedQueue.push(planets[nextUp].orbit.children[i]);
+						unselectedQueue.push(planets[nextUp].orbit.children[i]);
 					};
 				};
 			};
-			this.prober();
 		};
-		this.objectQueue.sort();
-		return;
+		for(var i=0;i<objectQueue.length;i++){
+			if(!planets[objectQueue[i]].hasOwnProperty("gm")){
+				if(planets[objectQueue[i]].hasOwnProperty("mass")){
+					planets[objectQueue[i]].gm = planets[objectQueue[i]].mass * 6.67408e-11;
+				}
+				else{
+					objectQueue.splice(i--,1);
+				};
+			};
+			if(planets[objectQueue[i]].hasOwnProperty("equatorRadius")){
+				planets[objectQueue[i]].radius = planets[objectQueue[i]].equatorRadius;
+			};
+		};
+		objectQueue.sort();
+		objectQueue.splice(objectQueue.indexOf("sun"),1);
+		return objectQueue;
 	},
-	renderSelection:function(){
+	renderSelection:function(queue){
 		var originList = document.getElementsByName("origin")[0];
 		var targetList = document.getElementsByName("target")[0];
-		for(var i=0;i<this.objectQueue.length;i++){
-			var value = this.objectQueue[i];
-			var html = this.objectQueue[i][0].toUpperCase() + this.objectQueue[i].slice(1);
+		for(var i=0;i<queue.length;i++){
+			var html = queue[i][0].toUpperCase() + queue[i].slice(1);
 			var option = document.createElement('option');
-			option.value = value;
+			option.value = queue[i];
 			option.innerHTML = html;
 			originList.appendChild(option);
 			var option = document.createElement('option');
-			option.value = value;
+			option.value = queue[i];
 			option.innerHTML = html;
 			targetList.appendChild(option);
 		};
-		originList.selectedIndex = this.objectQueue.indexOf("earth");
-		targetList.selectedIndex = this.objectQueue.indexOf("moon");
+		originList.selectedIndex = queue.indexOf("earth");
+		targetList.selectedIndex = queue.indexOf("moon");
+	},
+	getForm:function(){
+		var form = document.getElementById("selection");
+		return {
+			origin : form.origin.value,
+			originLocation : form.originLocation.value,
+			target : form.target.value,
+			targetLocation : form.targetLocation.value
+		};
 	}
 };
-selectionContext.prober();
-selectionContext.renderSelection();
+selectionContext.renderSelection(selectionContext.prober(["sun"]));
+var calculate = function(){
+	var task = selectionContext.getForm();
+	var instructions = [];
+	var origin = task.origin;
+	var target = task.target;
+
+	var launch = function(place){
+		var radius = planets[place].radius + Math.sqrt(planets[place].radius/1000)*1000;
+		if(planets[place].hasOwnProperty("atmosphere") && planets[place].atmosphere){
+			radius += planets[place].atmosphere.ceiling;
+		};
+		return {
+			type : "launch",
+			cost : Math.sqrt(planets[place].gm/radius)
+		}
+	};
+	var lowToEscape = function(place){
+		var radius = planets[place].radius + Math.sqrt(planets[place].radius/1000)*1000;
+		if(planets[place].hasOwnProperty("atmosphere") && planets[place].atmosphere){
+			radius += planets[place].atmosphere.ceiling;
+		};
+		return [
+			[
+				{
+					type : "burn",
+					cost : Math.sqrt(planets[place].gm/radius)*(Math.sqrt(2)-1)
+				}
+			],
+			[
+				{
+					type : "spiral",
+					cost : Math.sqrt(planets[place].gm/radius)
+				}
+			]
+		];
+	};
+	var land = function(place){
+		var radius = planets[place].radius + Math.sqrt(planets[place].radius/1000)*1000;
+		if(planets[place].hasOwnProperty("atmosphere") && planets[place].atmosphere){
+			radius += planets[place].atmosphere.ceiling;
+			return [
+				[
+					{
+						type : "land",
+						cost : Math.sqrt(planets[place].gm/radius)
+					}
+				],
+				[
+					{
+						type : "break",
+						cost : 0
+					}
+				]
+			];
+		}
+		else{
+			return {
+				type : "land",
+				cost : Math.sqrt(planets[place].gm/radius)
+			};
+		};
+	};
+	var escapeToLow = function(place){
+		var radius = planets[place].radius + Math.sqrt(planets[place].radius/1000)*1000;
+		if(planets[place].hasOwnProperty("atmosphere") && planets[place].atmosphere){
+			radius += planets[place].atmosphere.ceiling;
+			return [
+				[
+					{
+						type : "burn",
+						cost : Math.sqrt(planets[place].gm/radius)*(Math.sqrt(2)-1)
+					}
+				],
+				[
+					{
+						type : "spiral",
+						cost : Math.sqrt(planets[place].gm/radius)
+					}
+				],
+				[
+					{
+						type : "break",
+						cost : 0
+					}
+				]
+			];
+		};
+		return [
+			[
+				{
+					type : "burn",
+					cost : Math.sqrt(planets[place].gm/radius)*(Math.sqrt(2)-1)
+				}
+			],
+			[
+				{
+					type : "spiral",
+					cost : Math.sqrt(planets[place].gm/radius)
+				}
+			]
+		];
+	};
+
+	if(origin == target){
+		if(task.originLocation == "surface"){
+			if(task.targetLocation == "lowOrbit"){
+				instructions.push(launch(origin));
+			}
+			else if(task.targetLocation == "escape"){
+				instructions.push(launch(origin));
+				instructions.push(lowToEscape(origin));
+			};
+		}
+		else if(task.originLocation == "lowOrbit"){
+			if(task.targetLocation == "surface"){
+				instructions.push(land(origin));
+			}
+			else if(task.targetLocation == "escape"){
+				instructions.push(lowToEscape(origin));
+			};
+		}
+		else if(task.originLocation == "escape"){
+			if(task.targetLocation == "surface"){
+				instructions.push(escapeToLow(origin));
+				instructions.push(land(origin));
+			}
+			else if(task.targetLocation == "lowOrbit"){
+				instructions.push(escapeToLow(origin));
+			};
+		};
+	}
+	else if(planets[origin].orbit.hasOwnProperty("children")){
+		if(planets[origin].orbit.children.indexOf(target) >= 0){}
+		else if(planets[planets[origin].obit.parent].orbit.children.indexOf(target) >= 0){}
+		else{};
+	};
+	var result = document.getElementById("result");
+	result.innerHTML = "";
+	if(!instructions.length){
+		result.innerHTML = "Origin and target are the same. No rocket science needed.";
+	};
+	for(var i=0;i<instructions.length;i++){
+	};
+};
 </script>
