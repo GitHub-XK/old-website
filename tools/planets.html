@@ -1,6 +1,6 @@
 ---
 layout: toolTemplate
-title: Engine Search
+title: Transfer calculator
 ---
 	<h1>Transfer calculator</h1>
 	<p>Data from planets.json</p>
@@ -225,6 +225,32 @@ var calculate = function(){
 		result.innerHTML = "Origin and target are the same. No rocket science needed.";
 	};
 	for(var i=0;i<instructions.length;i++){
+		var step = document.createElement('div');
+		step.setAttribute("class","container");
+		var indexing = document.createElement('p');
+		indexing.innerHTML = (i + 1) + ".";
+		step.appendChild(indexing);
+		if(Array.isArray(instructions[i])){
+			for(var j=0;j<instructions[i].length;j++){
+				var subStep = document.createElement('div');
+				subStep.setAttribute("class","container");
+				var indexing = document.createElement('p');
+				indexing.innerHTML = (i + 1) + String.fromCharCode(j + 97) + ".";
+				subStep.appendChild(indexing);
+				for(var k=0;k<instructions[i][j].length;k++){
+					var stepContent = document.createElement('p');
+					stepContent.innerHTML = instructions[i][j][k].type + " " + instructions[i][j][k].cost;
+					subStep.appendChild(stepContent);
+				};
+				step.appendChild(subStep);
+			};
+		}
+		else{
+			var stepContent = document.createElement('p');
+			stepContent.innerHTML = instructions[i].type + " " + instructions[i].cost;
+			step.appendChild(stepContent);
+		};
+		result.appendChild(step);
 	};
 };
 </script>
