@@ -4,6 +4,7 @@
 		<title>{{page.title}}</title>
 		{%include commonHeadElements.html%}
 		<script src="js/planets.js"></script>
+		<link rel="stylesheet" href="css/nav.nest.sass.css">
 		<style>
 body{
 	font-family:Arial,Helvetica,sans-serif;
@@ -64,6 +65,7 @@ a, a:hover, a:visited {
 	color:inherit;
 }
 	</style>
+		{%include nav.html%}
 		<div class="wrapper" id="main">
 			<h5 style="text-align: right; line-height: 0.5em;"><a href="learn.html">Back to Learn</a></h5>
 		{{content}}
