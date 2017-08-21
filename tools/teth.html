@@ -3,7 +3,6 @@ layout: toolTemplate
 title: Tethers
 ---
 <script>
-var moon = planets["moon"];
 var tether = {
 	materials:{
 		zylon:[5800000000,1540],
@@ -13,6 +12,8 @@ var tether = {
 	}
 };
 function calc(){
+	var selector = document.getElementsByName("system")[0];
+	var moon = planets[selector.options[selector.selectedIndex].value];
 	var warnings = "";
 	var form = document.getElementById("input").elements;
 	var gnum = function(field){
@@ -30,7 +31,7 @@ function calc(){
 	tether.centralMass = gnum("centralMass");
 	tether.payload = gnum("payloadMass");
 	if(tether.foot < 0){
-		warnings  += "The tether foot is inside the Moon!<br>";
+		warnings  += "The tether foot is inside the Body!<br>";
 	};
 	if(tether.foot > tether.top){
 		warnings  += "The tether foot can not be higher than the top!<br>";
@@ -157,8 +158,8 @@ tether.dockedEnergy =
 
 */
 
-	out("lowAcceleration","Acceleration at tether foot: " + myRound(tether.lowAcceleration,5) + " m/s² (" + myRound(100*tether.lowAcceleration/moon.gravity,2) + "% of lunar surface gravity)");
-	out("highAcceleration","Acceleration at tether top: " + myRound(tether.highAcceleration,5) + " m/s² (" + myRound(100*tether.highAcceleration/moon.gravity,2) + "% of lunar surface gravity)");
+	out("lowAcceleration","Acceleration at tether foot: " + myRound(tether.lowAcceleration,5) + " m/s² (" + myRound(100*tether.lowAcceleration/moon.gravity,2) + "% of surface gravity)");
+	out("highAcceleration","Acceleration at tether top: " + myRound(tether.highAcceleration,5) + " m/s² (" + myRound(100*tether.highAcceleration/moon.gravity,2) + "% of surface gravity)");
 	out("period","Period: " + myRound(tether.time/3600,3) + " hours");
 	out("footVel","Tether velocity at foot " + myRound(tether.footVel,3) + " m/s");
 	out("centreVel","Tether velocity at centre " + myRound(tether.centreVel,3) + " m/s");
@@ -168,10 +169,10 @@ tether.dockedEnergy =
 		out("newApoapsis","Apoapsis after release from tether: " + myRound(tether.newApoapsis/1000,3) + " km");
 	}
 	else{
-		out("escape","Vinf after release from tether top " + myRound(tether.escapeFromTop,3) + " m/s (1030 m/s is required to reach Earth)");
+		out("escape","Vinf after release from tether top " + myRound(tether.escapeFromTop,3) + " m/s (1030 m/s is required to reach Earth from the Moon)");
 		out("newApoapsis","Apoapsis after release from tether: " + myRound(tether.newApoapsis/1000,3) + " km (negative means escape)");
 	};
-	out("hitTheGround","&nbsp;&nbsp;Velocity at lunar surface after release from tether foot " + myRound(tether.hitTheGround,3) + " m/s");
+	out("hitTheGround","&nbsp;&nbsp;Velocity at surface after release from tether foot " + myRound(tether.hitTheGround,3) + " m/s");
 	out("lowRatio","foot-centre taper ratio: " + myRound(tether.lowRatio,3));
 	out("highRatio","centre-top taper ratio: " + myRound(tether.highRatio,3));
 	out("lowMass","Mass of lower tether: "
@@ -187,6 +188,7 @@ tether.dockedEnergy =
 };
 </script>
 			<h1>Tethers</h1>
+			System<select name="system"></select><br><!--dynamically added-->
 			<h3>Vertical tether</h3>
 			<form id="input">
 				<input name="foot" value="50">Tether foot altitude (km)<br>
@@ -239,3 +241,25 @@ tether.dockedEnergy =
 					<p id="highMass"></p>
 				</div>
 			</div>
+<script>
+(function(){//planets.js has lots of data, why not make all possible systems available?
+	var availableSystems = [];
+		//we on
+	for(var planet in planets){//all keys, not only bodies
+		if(planets[planet].hasOwnProperty("orbit")){//only those with orbital data
+			availableSystems.push(planet);
+		};
+	};
+	//maka a <select> list out of all the systems
+	var systemSelector = document.getElementsByName("system")[0];
+	for(var i=0;i<availableSystems.length;i++){
+		var opt = document.createElement('option');
+		opt.value = availableSystems[i];
+		opt.innerHTML = availableSystems[i][0].toUpperCase() + availableSystems[i].slice(1);
+		systemSelector.appendChild(opt);
+		if(availableSystems[i] == "moon"){//moon should be default
+			systemSelector.selectedIndex = i;
+		};
+	};
+})();
+</script>
