@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="700" height="500" viewBox="0 0 700 500">
+<g transform="translate(50,50)">
+	<path stroke-width="4" stroke="red" d="M0 0l312 0l14 0l68 0l172 0"/>
+	<circle r="5" fill="black" cx="0" cy="0"/>
+	<g transform="translate(0,-10)">
+		<text text-anchor="middle" x="0" y="0" font-family="Verdana" font-size="10" fill="black">LEO</text>
+	</g>
+	<circle r="5" fill="black" cx="312" cy="0"/>
+	<g transform="translate(156,15)">
+		<text text-anchor="middle" x="0" y="0" font-family="Verdana" font-size="10" fill="black">3120 m/s</text>
+	</g>
+	<g transform="translate(0,-10)">
+		<text text-anchor="middle" x="312" y="0" font-family="Verdana" font-size="10" fill="black">Moon transfer</text>
+	</g>
+	<circle r="2" fill="black" cx="326" cy="0"/>
+	<g transform="translate(0,-5)">
+		<text text-anchor="middle" x="326" y="0" font-family="Verdana" font-size="5" fill="black">Capture</text>
+	</g>
+	<g transform="translate(41,15)">
+		<text text-anchor="middle" x="312" y="0" font-family="Verdana" font-size="10" fill="black">820 m/s</text>
+	</g>
+	<circle r="5" fill="black" cx="394" cy="0"/>
+	<g transform="translate(0,-10)">
+		<text text-anchor="middle" x="394" y="0" font-family="Verdana" font-size="10" fill="black">LMO</text>
+	</g>
+	<circle r="5" fill="black" cx="566" cy="0"/>
+	<g transform="translate(0,-10)">
+		<text text-anchor="middle" x="566" y="0" font-family="Verdana" font-size="10" fill="black">Surface</text>
+	</g>
+	<g transform="translate(86,15)">
+		<text text-anchor="middle" x="394" y="0" font-family="Verdana" font-size="10" fill="black">1720 m/s</text>
+	</g>
+	<g transform="translate(-10,50)">
+		<text x="0" y="0" font-family="Verdana" font-size="10" fill="black">Hypergolics:</text>
+		<rect x="80" y="-8" height="10" width="50" fill="grey"/>
+		<rect x="130" y="-8" height="10" width="210" fill="violet"/>
+		<text x="88" y="0" font-family="Verdana" font-size="8" fill="black">Payload</text>
+		<text x="132" y="0" font-family="Verdana" font-size="8" fill="black">Propellant</text>
+	</g>
+	<g transform="translate(-10,65)">
+		<text x="0" y="0" font-family="Verdana" font-size="10" fill="black">LOX/LH2:</text>
+		<rect x="80" y="-8" height="10" width="50" fill="grey"/>
+		<rect x="130" y="-8" height="10" width="100" fill="violet"/>
+		<text x="88" y="0" font-family="Verdana" font-size="8" fill="black">Payload</text>
+		<text x="132" y="0" font-family="Verdana" font-size="8" fill="black">Propellant</text>
+	</g>
+	<g transform="translate(-10,80)">
+		<text x="0" y="0" font-family="Verdana" font-size="10" fill="black">Nuclear/LH2:</text>
+		<rect x="80" y="-8" height="10" width="50" fill="grey"/>
+		<rect x="130" y="-8" height="10" width="45" fill="violet"/>
+		<text x="88" y="0" font-family="Verdana" font-size="8" fill="black">Payload</text>
+		<text x="132" y="0" font-family="Verdana" font-size="8" fill="black">Propellant</text>
+	</g>
+</g>
+<g transform="translate(50,200)">
+	<path stroke-width="4" stroke="blue" d="M0 0l312 0m0 100l46 0"/>
+	<path stroke-width="2" stroke="black" d="M312 0l0 100"/>
+	<circle r="5" fill="black" cx="0" cy="0"/>
+	<g transform="translate(0,-10)">
+		<text text-anchor="middle" x="0" y="0" font-family="Verdana" font-size="10" fill="black">LEO</text>
+	</g>
+	<circle r="5" fill="black" cx="312" cy="0"/>
+	<g transform="translate(156,15)">
+		<text text-anchor="middle" x="0" y="0" font-family="Verdana" font-size="10" fill="black">3120 m/s</text>
+	</g>
+	<g transform="translate(0,-10)">
+		<text text-anchor="middle" x="312" y="0" font-family="Verdana" font-size="10" fill="black">Moon transfer</text>
+	</g>
+	<g transform="translate(-35,4)">
+		<text text-anchor="middle" x="312" y="100" font-family="Verdana" font-size="10" fill="black">Tether foot</text>
+	</g>
+	<g transform="translate(35,4)">
+		<text text-anchor="middle" x="312" y="0" font-family="Verdana" font-size="10" fill="black">Tether top</text>
+	</g>
+	<circle r="5" fill="black" cx="312" cy="100"/>
+	<g transform="translate(0,-10)">
+		<text text-anchor="middle" x="358" y="100" font-family="Verdana" font-size="10" fill="black">Surface</text>
+	</g>
+	<circle r="5" fill="black" cx="358" cy="100"/>
+	<text text-anchor="middle" x="338" y="50" font-family="Verdana" font-size="10" fill="black">Elevator</text>
+	<g transform="translate(335,115)">
+		<text text-anchor="middle" x="0" y="0" font-family="Verdana" font-size="10" fill="black">460 m/s</text>
+	</g>
+	<g transform="translate(-10,50)">
+		<text x="0" y="0" font-family="Verdana" font-size="10" fill="black">Hypergolics:</text>
+		<rect x="80" y="-8" height="10" width="50" fill="grey"/>
+		<rect x="130" y="-8" height="10" width="92" fill="violet"/>
+		<text x="88" y="0" font-family="Verdana" font-size="8" fill="black">Payload</text>
+		<text x="132" y="0" font-family="Verdana" font-size="8" fill="black">Propellant</text>
+	</g>
+	<g transform="translate(-10,65)">
+		<text x="0" y="0" font-family="Verdana" font-size="10" fill="black">LOX/LH2:</text>
+		<rect x="80" y="-8" height="10" width="50" fill="grey"/>
+		<rect x="130" y="-8" height="10" width="62.5" fill="violet"/>
+		<text x="88" y="0" font-family="Verdana" font-size="8" fill="black">Payload</text>
+		<text x="132" y="0" font-family="Verdana" font-size="8" fill="black">Propellant</text>
+	</g>
+	<g transform="translate(-10,80)">
+		<text x="0" y="0" font-family="Verdana" font-size="10" fill="black">Nuclear/LH2:</text>
+		<rect x="80" y="-8" height="10" width="50" fill="grey"/>
+		<rect x="130" y="-8" height="10" width="25" fill="violet"/>
+		<text x="88" y="0" font-family="Verdana" font-size="8" fill="black">Payload</text>
+		<text x="132" y="0" font-family="Verdana" font-size="8" fill="black">Prop.</text>
+	</g>
+</g>
+<g transform="translate(540,160)">
+	<path stroke="green" fill="none" stroke-width="4" d="M0 0a30 30 0 0 0 60 0a45 45 0 0 0 -45 -45a45 45 0 0 0 -45 45a50 50 0 0 0 50 50a55 55 0 0 0 60 -55a60 60 0 0 0 -60 -60a65 65 0 0 0 -65 65a70 70 0 0 0 70 70"/>
+	<circle r="5" fill="black" cx="0" cy="0"/>
+	<g transform="translate(0,-10)">
+		<text text-anchor="middle" x="0" y="0" font-family="Verdana" font-size="10" fill="black">LEO</text>
+	</g>
+	<path stroke="grey" fill="none" stroke-width="4" d="M25 70a30 30 0 0 1 30 30a25 25 0 0 1 -25 25a20 20 0 0 1 -20 -20a15 15 0 0 1 15 -15"/>
+	<path stroke="red" fill="none" stroke-width="4" d="M25 90l-41 167"/>
+	<path stroke="black" fill="none" stroke-width="2" d="M30 125l0 132"/>
+	<path stroke="blue" fill="none" stroke-width="4" d="M-16 257l46 0"/>
+	<circle r="5" fill="black" cx="25" cy="90"/>
+	<g transform="translate(0,-7)">
+		<text text-anchor="middle" x="25" y="90" font-family="Verdana" font-size="10" fill="black">LMO</text>
+	</g>
+	<text text-anchor="middle" x="110" y="0" font-family="Verdana" font-size="10" fill="black">6750 m/s</text>
+	<text text-anchor="middle" x="80" y="90" font-family="Verdana" font-size="10" fill="black">850 m/s</text>
+	<text text-anchor="middle" x="-18" y="105" font-family="Verdana" font-size="10" fill="black">870 m/s</text>
+	<text text-anchor="middle" x="57" y="190" font-family="Verdana" font-size="10" fill="black">Elevator</text>
+	<text text-anchor="middle" x="-45" y="260" font-family="Verdana" font-size="10" fill="black">Surface</text>
+	<text text-anchor="middle" x="65" y="260" font-family="Verdana" font-size="10" fill="black">Tether foot</text>
+	<text text-anchor="middle" x="70" y="140" font-family="Verdana" font-size="10" fill="black">Tether anchor</text>
+	<circle r="5" fill="black" cx="30" cy="125"/>
+	<circle r="5" fill="black" cx="-16" cy="257"/>
+	<circle r="5" fill="black" cx="30" cy="257"/>
+	<g transform="translate(10,272)">
+		<text text-anchor="middle" x="0" y="0" font-family="Verdana" font-size="10" fill="black">460 m/s</text>
+	</g>
+	<g transform="translate(-5,172)">
+		<g transform="rotate(-77)">
+			<text text-anchor="middle" x="0" y="0" font-family="Verdana" font-size="10" fill="black">1720 m/s</text>
+		</g>
+	</g>
+	<g transform="translate(-250,240)">
+		<text x="0" y="-12" font-family="Verdana" font-size="10" fill="black">5000s. LEO-Tether anchor</text>
+		<text x="0" y="0" font-family="Verdana" font-size="10" fill="black">Xenon/electric:</text>
+		<rect x="80" y="-8" height="10" width="50" fill="grey"/>
+		<rect x="130" y="-8" height="10" width="8.35" fill="green"/>
+		<text x="88" y="0" font-family="Verdana" font-size="8" fill="black">Payload</text>
+		<text x="132" y="0" font-family="Verdana" font-size="8" fill="black">P</text>
+	</g>
+</g>
+</svg>

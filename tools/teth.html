@@ -158,7 +158,7 @@ tether.dockedEnergy =
 */
 
 	out("lowAcceleration","Acceleration at tether foot: " + myRound(tether.lowAcceleration,5) + " m/s² (" + myRound(100*tether.lowAcceleration/moon.gravity,2) + "% of lunar surface gravity)");
-	out("highAcceleration","Acceleration at tether top: " + myRound(tether.highAcceleration,5) + " m/s²");
+	out("highAcceleration","Acceleration at tether top: " + myRound(tether.highAcceleration,5) + " m/s² (" + myRound(100*tether.highAcceleration/moon.gravity,2) + "% of lunar surface gravity)");
 	out("period","Period: " + myRound(tether.time/3600,3) + " hours");
 	out("footVel","Tether velocity at foot " + myRound(tether.footVel,3) + " m/s");
 	out("centreVel","Tether velocity at centre " + myRound(tether.centreVel,3) + " m/s");
@@ -180,6 +180,8 @@ tether.dockedEnergy =
 	out("highMass","Mass of higher tether: "
 		+ myRound(tether.highMass,4)
 		+ " x payload mass (payload includes top platform)");
+	out("lowClimber","Lower tether climber energy usage: " + myRound(tether.lowIntegral,0) + " J/kg");
+	out("highClimber","Upper tether climber energy usage: " + myRound(tether.highIntegral,0) + " J/kg");
 
 	out("warnings",warnings);
 };
@@ -187,9 +189,9 @@ tether.dockedEnergy =
 			<h1>Tethers</h1>
 			<h3>Vertical tether</h3>
 			<form id="input">
-				<input name="foot" value="0">Tether foot altitude (km)<br>
-				<input name="top" value="0">Tether top altitude (km)<br>
-				<input name="centre" value="0">Tether centre altitude (km). The part of the tether in circular orbit<br>
+				<input name="foot" value="50">Tether foot altitude (km)<br>
+				<input name="top" value="9500">Tether top altitude (km)<br>
+				<input name="centre" value="5000">Tether centre altitude (km). The part of the tether in circular orbit<br>
 				<div class="container">
 					Tether material<select name="material">
 						<option value="zylon">Zylon</option>
@@ -221,6 +223,11 @@ tether.dockedEnergy =
 					<h4>If released from top:</h4>
 					<p id="escape"></p>
 					<p id="newApoapsis"></p>
+				</div>
+				<div class="container">
+					<h4>Climber:</h4>
+					<p id="lowClimber"></p>
+					<p id="highClimber"></p>
 				</div>
 				<div class="container">
 					<h4>Tether properties</h4>
