@@ -68,10 +68,10 @@ function calc(){
 
 
 	if(form.overrideMaterial.checked){
-		tether.strength = gnum("tensileStrength")/gnum("density");
+		tether.strength = (gnum("tensileStrength")/gnum("safety"))/gnum("density");
 	}
 	else{
-		tether.strength = tether.materials[form["material"].value][0] / tether.materials[form["material"].value][1];
+		tether.strength = (tether.materials[form["material"].value][0]/gnum("safety")) / tether.materials[form["material"].value][1];
 	};
 
 	tether.lowAcceleration = moon.gm/Math.pow(moon.radius + tether.foot,2) - tether.footVel*tether.footVel/(moon.radius + tether.foot);
@@ -132,6 +132,39 @@ function calc(){
 		+ tether.footVel*tether.footVel *tether.payload/2
 		- tether.payload * moon.gm/(moon.radius + tether.foot)
 		- tether.centralMass * moon.gm/(moon.radius + tether.centre);
+	/*var potentialTargets = {
+		parent : [],
+		siblings : [],
+		aunts : []
+	};
+	if(moon.orbit.hasOwnProperty("parent")){//What about creating variables? Meh, just let the object paths grow :P
+		potentialTargets.parent.push(moon.orbit.parent);
+		if(planets[moon.orbit.parent].orbit.hasOwnProperty("children")){
+			for(var i=0;i<planets[moon.orbit.parent].orbit.children.length;i++){
+				if(planets[moon.orbit.parent].orbit.children[i] != selector.options[selector.selectedIndex].value){
+					potentialTargets.siblings.push(planets[moon.orbit.parent].orbit.children[i]);
+				};
+			};
+		};
+		if(planets[moon.orbit.parent].orbit.hasOwnProperty("parent") && planets[planets[moon.orbit.parent].orbit.parent].orbit.hasOwnProperty("children")){
+			for(var i=0;i<planets[planets[moon.orbit.parent].orbit.parent].orbit.children.length;i++){
+				if(planets[planets[moon.orbit.parent].orbit.parent].children[i] != moon.orbit.parent){
+					potentialTargets.aunts.push(planets[moon.orbit.parent].orbit.children[i]);
+				};
+			};
+		};
+	};
+	var targets = [];
+	for(var i=0;i<potentialTargets.parent.length;i++){
+		targets.push(
+			{
+				name : potentialTargets.parent[i],
+				vinf : moon.orbit.speed - Math.sqrt(
+					planets[moon.orbit.parent].gm * (2/(moon.orbit.semiMajor) - 2/(moon.orbit.semiMajor + planets[moon.orbit.parent].radius))
+				)
+			}
+		);
+	};*/
 /*Some math:
 
 (newAltitude + mr) * x * pay + central * (newAltitude + mr + centre - foot) * (newAltitude + mr + centre - foot) * x/(newAltitude + mr)
@@ -185,6 +218,7 @@ tether.dockedEnergy =
 	out("highClimber","Upper tether climber energy usage: " + myRound(tether.highIntegral,0) + " J/kg");
 
 	out("warnings",warnings);
+	var illustration = document.createElementNS("http://www.w3.org/2000/svg","svg");
 };
 </script>
 			<h1>Tethers</h1>
@@ -204,6 +238,7 @@ tether.dockedEnergy =
 					<input name="overrideMaterial" type="checkbox">Use custom material instead<br>
 					<input name="tensileStrength">Tensile strength (Pa)<br>
 					<input name="density">Density kg/m³<br>
+					<input name="safety" value="1">Safety factor<br>
 				</div>
 				<div class="container">
 					<input name="centralMass">Central mass<br>
@@ -213,6 +248,7 @@ tether.dockedEnergy =
 			</form>
 			<button onclick="calc()">Calculate</button>
 			<div id="output">
+				<div class="container" id="tetherSketch"></div><br>
 				<div class="container">
 					<h4>General information</h4>
 					<p id="period"></p>
@@ -220,17 +256,17 @@ tether.dockedEnergy =
 					<p id="hitTheGround"></p>
 					<p id="centreVel"></p>
 					<p id="topVel"></p>
-				</div>
+				</div><br>
 				<div class="container">
 					<h4>If released from top:</h4>
 					<p id="escape"></p>
 					<p id="newApoapsis"></p>
-				</div>
+				</div><br>
 				<div class="container">
 					<h4>Climber:</h4>
 					<p id="lowClimber"></p>
 					<p id="highClimber"></p>
-				</div>
+				</div><br>
 				<div class="container">
 					<h4>Tether properties</h4>
 					<p id="lowAcceleration"></p>
