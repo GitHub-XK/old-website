@@ -4,11 +4,10 @@
 	<head>
 		<title>{{page.title}}</title>
 		{% include commonHeadElements.html %}
-		<link rel="stylesheet" href="https://www.moonwards.com/css/posts.nest.sass.css">
+		<link rel="stylesheet" href="{{page.stylesheet}}">
 		<link href="https://fonts.googleapis.com/css?family=Titillium+Web:200,200i,300,300i,400,400i,600" rel="stylesheet">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-		<script type="text/javascript" src="https://www.moonwards.com/js/tooltipster.bundle.min.js"></script>
-		<!--<script type="text/javascript" src="js/iframeResizer.contentWindow.min.js"></script>-->
+		<script type="text/javascript" src="js/tooltipster.bundle.min.js"></script>
 		<script>
 $(document).ready(function() {
 	 $('.tooltip').tooltipster({
@@ -19,7 +18,7 @@ $(document).ready(function() {
 	</head>
 <body>
 <div class="back2index">
- <a href="https://www.moonwards.com/blogMain.html">Return to post index</a>
+ <a href="https://www.moonwards.com/index.html">Return to main page</a>
 </div>
 <header>
 		<h1>{{page.title}}</h1>
