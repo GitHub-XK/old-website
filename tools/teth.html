@@ -8,7 +8,9 @@ var tether = {
 		zylon:[5800000000,1540],
 		aramid:[3620000000,1440],
 		steel:[2617000000,8000],
-		hppe:[2400000000,970]
+		hppe:[2400000000,970],
+		mwcnt: [40000000000,1800],
+		xxmwcnt: [120000000000,1800]
 	}
 };
 function calc(){
@@ -228,7 +230,7 @@ x = tether.dockedMomentum/(
 		(newAltitude + mr) * pay + central * (newAltitude + mr + centre - foot)²/(newAltitude + mr)
 	)
 
-tether.dockedEnergy = 
+tether.dockedEnergy =
 	(
 		tether.dockedMomentum/(
 			(newAltitude + mr) * pay + central * (newAltitude + mr + centre - foot)²/(newAltitude + mr)
@@ -272,7 +274,7 @@ tether.dockedEnergy =
 	out("highClimber","Upper tether climber energy usage: " + myRound(tether.highIntegral,0) + " J/kg");
 
 	out("warnings",warnings);
-	var svgNS = "http://www.w3.org/2000/svg";  
+	var svgNS = "http://www.w3.org/2000/svg";
 	var illustration = document.getElementById("svg_ilu");
 	while(illustration.lastChild){
     	illustration.removeChild(illustration.lastChild);
@@ -331,24 +333,24 @@ tether.dockedEnergy =
 	foot_marker.setAttributeNS(null,"r",(tether.top - tether.foot)/90000);
 
 	var foot_marker_text = document.createElementNS(svgNS,"text");
-	foot_marker_text.setAttributeNS(null,"x",(tether.foot + moon.radius)/1000);     
-	foot_marker_text.setAttributeNS(null,"y",(tether.top - tether.foot)/30000); 
+	foot_marker_text.setAttributeNS(null,"x",(tether.foot + moon.radius)/1000);
+	foot_marker_text.setAttributeNS(null,"y",(tether.top - tether.foot)/30000);
 	foot_marker_text.setAttributeNS(null,"font-size",(tether.top - tether.foot)/40000);
 
 	var textNode = document.createTextNode("Foot");
 	foot_marker_text.appendChild(textNode);
 
 	var top_marker_text = document.createElementNS(svgNS,"text");
-	top_marker_text.setAttributeNS(null,"x",(tether.top+ moon.radius)/1000);     
-	top_marker_text.setAttributeNS(null,"y",(tether.top - tether.foot)/30000); 
+	top_marker_text.setAttributeNS(null,"x",(tether.top+ moon.radius)/1000);
+	top_marker_text.setAttributeNS(null,"y",(tether.top - tether.foot)/30000);
 	top_marker_text.setAttributeNS(null,"font-size",(tether.top - tether.foot)/40000);
 
 	var textNode = document.createTextNode("Top");
 	top_marker_text.appendChild(textNode);
 
 	var anchor_marker_text = document.createElementNS(svgNS,"text");
-	anchor_marker_text.setAttributeNS(null,"x",(tether.centre+ moon.radius)/1000);     
-	anchor_marker_text.setAttributeNS(null,"y",(tether.top - tether.foot)/30000); 
+	anchor_marker_text.setAttributeNS(null,"x",(tether.centre+ moon.radius)/1000);
+	anchor_marker_text.setAttributeNS(null,"y",(tether.top - tether.foot)/30000);
 	anchor_marker_text.setAttributeNS(null,"font-size",(tether.top - tether.foot)/40000);
 
 	var textNode = document.createTextNode("Anchor");
@@ -365,7 +367,7 @@ tether.dockedEnergy =
 	top_marker.setAttributeNS(null,"cy",0);
 	top_marker.setAttributeNS(null,"fill","red");
 	top_marker.setAttributeNS(null,"r",(tether.top - tether.foot)/90000);
-	
+
 	var marker_container = document.createElementNS(svgNS,"g");
 	var text_marker_container = document.createElementNS(svgNS,"g");
 
@@ -388,8 +390,8 @@ tether.dockedEnergy =
 		marker.setAttributeNS(null,"fill","blue");
 		marker.setAttributeNS(null,"r",(tether.top - tether.foot)/100000);
 		var marker_text = document.createElementNS(svgNS,"text");
-		marker_text.setAttributeNS(null,"x",targets[i].location/1000);     
-		marker_text.setAttributeNS(null,"y",(tether.top - tether.foot)/30000); 
+		marker_text.setAttributeNS(null,"x",targets[i].location/1000);
+		marker_text.setAttributeNS(null,"y",(tether.top - tether.foot)/30000);
 		marker_text.setAttributeNS(null,"font-size",(tether.top - tether.foot)/40000);
 		marker_text.setAttributeNS(null,"fill","blue");
 		var textNode = document.createTextNode(targets[i].name[0].toUpperCase() + targets[i].name.slice(1));
@@ -420,10 +422,12 @@ tether.dockedEnergy =
 				<input name="centre" value="5000">Tether centre altitude (km). The part of the tether in circular orbit<br>
 				<div class="container">
 					Tether material<select name="material">
-						<option value="zylon">Zylon</option>
-						<option value="aramid">Aramid</option>
-						<option value="hppe">HPPE</option>
-						<option value="steel">Steel</option>
+						<option value="zylon">Zylon (5.8 GPa, 1.54 g/cm<sup>3</sup>)</option>
+						<option value="aramid">Aramid (3.62 GPa, 1.44 g/cm<sup>3</sup>)</option>
+						<option value="hppe">HPPE (2.4 GPa, 0.97 g/cm<sup>3</sup>)</option>
+						<option value="steel">Steel (2.62 GPa, 8 g/cm<sup>3</sup>)</option>
+						<option value="mwcnt">Future Carbon Nanotubes (40 GPa, 1.8 g/cm<sup>3</sup>)</option>
+						<option value="xxmwcnt">Super-Future Carbon Nanotubes (120 GPa, 1.8 g/cm<sup>3</sup>)</option>
 					</select><br>
 					<input name="overrideMaterial" type="checkbox">Use custom material instead<br>
 					<input name="tensileStrength">Tensile strength (Pa)<br>
