@@ -132,7 +132,7 @@ function calc(){
 		+ tether.footVel*tether.footVel *tether.payload/2
 		- tether.payload * moon.gm/(moon.radius + tether.foot)
 		- tether.centralMass * moon.gm/(moon.radius + tether.centre);
-	/*var potentialTargets = {
+	var potentialTargets = {
 		parent : [],
 		siblings : [],
 		aunts : []
@@ -148,7 +148,7 @@ function calc(){
 		};
 		if(planets[moon.orbit.parent].orbit.hasOwnProperty("parent") && planets[planets[moon.orbit.parent].orbit.parent].orbit.hasOwnProperty("children")){
 			for(var i=0;i<planets[planets[moon.orbit.parent].orbit.parent].orbit.children.length;i++){
-				if(planets[planets[moon.orbit.parent].orbit.parent].children[i] != moon.orbit.parent){
+				if(planets[planets[moon.orbit.parent].orbit.parent].orbit.children[i] != moon.orbit.parent){
 					potentialTargets.aunts.push(planets[moon.orbit.parent].orbit.children[i]);
 				};
 			};
@@ -160,11 +160,24 @@ function calc(){
 			{
 				name : potentialTargets.parent[i],
 				vinf : moon.orbit.speed - Math.sqrt(
-					planets[moon.orbit.parent].gm * (2/(moon.orbit.semiMajor) - 2/(moon.orbit.semiMajor + planets[moon.orbit.parent].radius))
+					planets[potentialTargets.parent[i]].gm * (2/(moon.orbit.semiMajor) - 2/(moon.orbit.semiMajor + planets[potentialTargets.parent[i]].radius))
 				)
 			}
 		);
-	};*/
+	};
+	for(var i=0;i<potentialTargets.siblings.length;i++){
+		targets.push(
+			{
+				name : potentialTargets.parent[i],
+				vinf : Math.abs(moon.orbit.speed - Math.sqrt(
+					planets[moon.orbit.parent].gm * (2/(moon.orbit.semiMajor) - 2/(moon.orbit.semiMajor + planets[potentialTargets.siblings[i]].radius))
+				))
+			}
+		);
+	};
+	for(var i=0;i<targets.length;i++){
+		//alert(targets[i].vinf);
+	}
 /*Some math:
 
 (newAltitude + mr) * x * pay + central * (newAltitude + mr + centre - foot) * (newAltitude + mr + centre - foot) * x/(newAltitude + mr)
@@ -202,7 +215,7 @@ tether.dockedEnergy =
 		out("newApoapsis","Apoapsis after release from tether: " + myRound(tether.newApoapsis/1000,3) + " km");
 	}
 	else{
-		out("escape","Vinf after release from tether top " + myRound(tether.escapeFromTop,3) + " m/s (1030 m/s is required to reach Earth from the Moon)");
+		out("escape","Vinf after release from tether top " + myRound(tether.escapeFromTop,3) + " m/s (840 m/s is required to reach Earth from the Moon)");
 		out("newApoapsis","Apoapsis after release from tether: " + myRound(tether.newApoapsis/1000,3) + " km (negative means escape)");
 	};
 	out("hitTheGround","&nbsp;&nbsp;Velocity at surface after release from tether foot " + myRound(tether.hitTheGround,3) + " m/s");
@@ -218,7 +231,127 @@ tether.dockedEnergy =
 	out("highClimber","Upper tether climber energy usage: " + myRound(tether.highIntegral,0) + " J/kg");
 
 	out("warnings",warnings);
-	var illustration = document.createElementNS("http://www.w3.org/2000/svg","svg");
+	var svgNS = "http://www.w3.org/2000/svg";  
+	var illustration = document.getElementById("svg_ilu");
+	while(illustration.lastChild){
+    	illustration.removeChild(illustration.lastChild);
+	};
+	illustration.setAttributeNS(null,"viewBox",-moon.radius/900 + " " + (-moon.radius/900) + " " + (moon.radius*2 + tether.top)/900 + " " + moon.radius/450);
+
+
+//lots of svg drawing:
+	var svg_planet = document.createElementNS(svgNS,"circle");
+	svg_planet.setAttributeNS(null,"cx",0);
+	svg_planet.setAttributeNS(null,"cy",0);
+	svg_planet.setAttributeNS(null,"fill","grey");
+	svg_planet.setAttributeNS(null,"r",moon.radius/1000);
+
+	var svg_tether = document.createElementNS(svgNS,"line");
+	svg_tether.setAttributeNS(null,"x1",(moon.radius + tether.foot)/1000);
+	svg_tether.setAttributeNS(null,"y1",0);
+	svg_tether.setAttributeNS(null,"x2",(moon.radius + tether.top)/1000);
+	svg_tether.setAttributeNS(null,"y2",0);
+	svg_tether.setAttributeNS(null,"stroke","black");
+	svg_tether.setAttributeNS(null,"stroke-linecap","butt");
+	svg_tether.setAttributeNS(null,"stroke-width",(tether.top - tether.foot)/100000);
+
+	var svg_rotate = document.createElementNS(svgNS,"animate");
+	svg_rotate.setAttributeNS(null,"attributeName","viewBox");
+	svg_rotate.setAttributeNS(null,"begin","indefinite");
+	svg_rotate.setAttributeNS(null,"from",-moon.radius/900 + " " + (-moon.radius/900) + " " + (moon.radius*2 + tether.top)/225 + " " + moon.radius/112);
+	svg_rotate.setAttributeNS(null,"to",-moon.radius/900 + " " + (-moon.radius/900) + " " + (moon.radius*2 + tether.top)/900 + " " + moon.radius/450);
+	svg_rotate.setAttributeNS(null,"dur",0.5);
+
+    var animation = document.createElementNS(svgNS,"animate");
+    animation.setAttributeNS(null,"attributeName","opacity");
+    animation.setAttributeNS(null,"begin","indefinite");
+    animation.setAttributeNS(null,"values","0;0;1");
+    animation.setAttributeNS(null,"dur", 1.5);
+    animation.setAttributeNS(null,"fill","freeze");
+
+    var marker_animation = document.createElementNS(svgNS,"animate");
+    marker_animation.setAttributeNS(null,"attributeName","opacity");
+    marker_animation.setAttributeNS(null,"begin","indefinite");
+    marker_animation.setAttributeNS(null,"values","0;0;0;0;1");
+    marker_animation.setAttributeNS(null,"dur", 2);
+    marker_animation.setAttributeNS(null,"fill","freeze");
+
+    var text_marker_animation = document.createElementNS(svgNS,"animate");
+    text_marker_animation.setAttributeNS(null,"attributeName","opacity");
+    text_marker_animation.setAttributeNS(null,"begin","indefinite");
+    text_marker_animation.setAttributeNS(null,"values","0;0;0;0;0;1");
+    text_marker_animation.setAttributeNS(null,"dur", 3);
+    text_marker_animation.setAttributeNS(null,"fill","freeze");
+
+	var foot_marker = document.createElementNS(svgNS,"circle");
+	foot_marker.setAttributeNS(null,"cx",(tether.foot + moon.radius)/1000);
+	foot_marker.setAttributeNS(null,"cy",0);
+	foot_marker.setAttributeNS(null,"fill","red");
+	foot_marker.setAttributeNS(null,"r",(tether.top - tether.foot)/90000);
+
+	var foot_marker_text = document.createElementNS(svgNS,"text");
+	foot_marker_text.setAttributeNS(null,"x",(tether.foot + moon.radius)/1000);     
+	foot_marker_text.setAttributeNS(null,"y",(tether.top - tether.foot)/30000); 
+	foot_marker_text.setAttributeNS(null,"font-size",(tether.top - tether.foot)/40000);
+
+	var textNode = document.createTextNode("Foot");
+	foot_marker_text.appendChild(textNode);
+
+	var top_marker_text = document.createElementNS(svgNS,"text");
+	top_marker_text.setAttributeNS(null,"x",(tether.top+ moon.radius)/1000);     
+	top_marker_text.setAttributeNS(null,"y",(tether.top - tether.foot)/30000); 
+	top_marker_text.setAttributeNS(null,"font-size",(tether.top - tether.foot)/40000);
+
+	var textNode = document.createTextNode("Top");
+	top_marker_text.appendChild(textNode);
+
+	var anchor_marker_text = document.createElementNS(svgNS,"text");
+	anchor_marker_text.setAttributeNS(null,"x",(tether.centre+ moon.radius)/1000);     
+	anchor_marker_text.setAttributeNS(null,"y",(tether.top - tether.foot)/30000); 
+	anchor_marker_text.setAttributeNS(null,"font-size",(tether.top - tether.foot)/40000);
+
+	var textNode = document.createTextNode("Centre");
+	anchor_marker_text.appendChild(textNode);
+
+	var anchor_marker = document.createElementNS(svgNS,"circle");
+	anchor_marker.setAttributeNS(null,"cx",(tether.centre + moon.radius)/1000);
+	anchor_marker.setAttributeNS(null,"cy",0);
+	anchor_marker.setAttributeNS(null,"fill","red");
+	anchor_marker.setAttributeNS(null,"r",(tether.top - tether.foot)/90000);
+
+	var top_marker = document.createElementNS(svgNS,"circle");
+	top_marker.setAttributeNS(null,"cx",(tether.top + moon.radius)/1000);
+	top_marker.setAttributeNS(null,"cy",0);
+	top_marker.setAttributeNS(null,"fill","red");
+	top_marker.setAttributeNS(null,"r",(tether.top - tether.foot)/90000);
+	
+	var marker_container = document.createElementNS(svgNS,"g");
+	var text_marker_container = document.createElementNS(svgNS,"g");
+
+	svg_tether.appendChild(animation);
+	illustration.appendChild(svg_planet);
+	illustration.appendChild(svg_tether);
+	illustration.appendChild(svg_rotate);
+	marker_container.appendChild(foot_marker);
+	marker_container.appendChild(anchor_marker);
+	marker_container.appendChild(top_marker);
+
+	text_marker_container.appendChild(foot_marker_text);
+	text_marker_container.appendChild(anchor_marker_text);
+	text_marker_container.appendChild(top_marker_text);
+	text_marker_container.appendChild(text_marker_animation);
+
+	marker_container.appendChild(marker_animation);
+	illustration.appendChild(marker_container);
+	illustration.appendChild(text_marker_container);
+	svg_rotate.beginElement();
+	animation.beginElement();
+	marker_animation.beginElement();
+	text_marker_animation.beginElement();
+	//var illustrationNode = document.getElementById("tetherSketch");
+	/*while(illustrationNode.firstChild){
+		illustrationNode.removeChild(illustrationNode.firstChild);
+	};*/
 };
 </script>
 			<h1>Tethers</h1>
@@ -248,7 +381,9 @@ tether.dockedEnergy =
 			</form>
 			<button onclick="calc()">Calculate</button>
 			<div id="output">
-				<div class="container" id="tetherSketch"></div><br>
+				<div class="container" id="tetherSketch">
+					<svg width="800" height="200" id="svg_ilu"></svg>
+				</div><br>
 				<div class="container">
 					<h4>General information</h4>
 					<p id="period"></p>
