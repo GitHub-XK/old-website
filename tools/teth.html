@@ -208,6 +208,9 @@ function calc(){
 		};
 		return val;
 	};
+	while(document.getElementById("releases").hasChildNodes()){
+		document.getElementById("releases").removeChild(document.getElementById("releases").lastChild);
+	};
 	for(var i=0;i<targets.length;i++){
 		targets[i].location = findRadiusFromVinf(targets[i].vinf,tether.angularVelocity);
 		var item = document.createElement("p");
