@@ -381,6 +381,22 @@ tether.dockedEnergy =
 	text_marker_container.appendChild(anchor_marker_text);
 	text_marker_container.appendChild(top_marker_text);
 	text_marker_container.appendChild(text_marker_animation);
+	for(var i=0;i<targets.length;i++){
+		var marker = document.createElementNS(svgNS,"circle");
+		marker.setAttributeNS(null,"cx",targets[i].location/1000);
+		marker.setAttributeNS(null,"cy",0);
+		marker.setAttributeNS(null,"fill","blue");
+		marker.setAttributeNS(null,"r",(tether.top - tether.foot)/100000);
+		var marker_text = document.createElementNS(svgNS,"text");
+		marker_text.setAttributeNS(null,"x",targets[i].location/1000);     
+		marker_text.setAttributeNS(null,"y",(tether.top - tether.foot)/30000); 
+		marker_text.setAttributeNS(null,"font-size",(tether.top - tether.foot)/40000);
+		marker_text.setAttributeNS(null,"fill","blue");
+		var textNode = document.createTextNode(targets[i].name[0].toUpperCase() + targets[i].name.slice(1));
+		marker_text.appendChild(textNode);
+		marker_container.appendChild(marker);
+		text_marker_container.appendChild(marker_text);
+	};
 
 	marker_container.appendChild(marker_animation);
 	illustration.appendChild(marker_container);
