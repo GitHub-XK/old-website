@@ -891,6 +891,15 @@ planets =
 	"gm":6.836529e15,
 	"color":"#366896",
 	"orbit":{
+		"periapsis":4459500000000,
+		"apoapsis":4537300000000,
+		"semiMajor":4504400000000,
+		"eccentricity":0.009456,
+		"period":5200783120,
+		"speed":5430,
+		"inclination":1.768,
+		"ascending":131.784,
+		"argument":276.336,
 		"parent":"sun",
 		"children":["triton","proteus","nereid"]
 	}
@@ -930,6 +939,15 @@ planets =
 	"radius":1189.9e3,
 	"gm":8.71e11,
 	"orbit":{
+		"periapsis":4436800000000,
+		"apoapsis":7375900000000,
+		"semiMajor":5906100000000,
+		"eccentricity":0.2488,
+		"period":7826421200,
+		"speed":4670,
+		"inclination":17.16,
+		"ascending":110.299,
+		"argument":113.834,
 		"parent":"sun",
 		"satellites":5,
 		"children":["charon","nix","hydra"]
