@@ -1,0 +1,19 @@
+Build on linux system
+
+install jekyll:
+    dnf install rubygem-jekyll
+    yum install rubygem-jekyll
+
+install jekyll-timeago:
+    gem install jekyll-timeago
+
+To build run: 
+    make 
+
+results are in moonwards.com directory
+
+To test locally run:
+    jekyll serve
+    by default, site content should be accessible at http://127.0.0.1:4000/
+
+    or browse it locally from moonward.com/index.html
