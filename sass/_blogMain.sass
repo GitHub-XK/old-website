@@ -1,48 +1,12 @@
-$outerBkgd: rgba(50, 50, 0, 0.7)
-$innerBkgd: rgba(10, 10, 10, 0.7)
-$tabBkgd: rgba(0, 0, 0, 0.4)
-$sideBkgd: rgba(0, 0, 0, 0.7)
-$outRadius: 2rem
-$inRadius: 1.5rem
-$sideRadius: 1.5rem 0 0 1.5rem
-$mainPad: 1rem
-$navAnchor: rgb(250, 200, 25)
-$navAHover: yellow
-$headingColor: rgb(150, 145, 45)
-$lightAccent: rgb(115, 115, 15)
-$darkAccent: rgb(80, 80, 15)
-$introRadius: 0 1.5rem 1.5rem 0
-$figcapSize: 0.8rem
-$linx: yellow
-$aVisited: rgb(190,238,50)
-$aHoverBk: rgb(60,60,10)
-
-html
-  margin: 0
-  color: rgb(247,247,220)
-  font: 1rem/1.5rem 'Titillium Web', sans-serif
-
-header.blog
-  background-color: #000
-  border-top: 1px solid $aHoverBk
-  border-bottom: 1px solid $aHoverBk
-  width: 100%
-  p
-    box-sizing: border-box
-    margin-left: 1rem
-    padding-bottom: 0.2rem
-    color: $headingColor
-    font-weight: 300
-    font-size: 1.1rem
-    line-height: 1.4rem
-    letter-spacing: 2px
-
-body.blog
-  background-color: #000
-
-.blogcontainer
-  margin-left: 3%
-  background-color: rgba(0, 0, 0, 0.8)
+p.blog
+  box-sizing: border-box
+  margin-left: 1rem
+  padding-bottom: 0.2rem
+  color: $headingColor
+  font-weight: 300
+  font-size: 1.1rem
+  line-height: 1.5rem
+  letter-spacing: 2px
 
 figure.blog
   display: block
@@ -59,8 +23,6 @@ figure.blog
     width: 90%
     background: $outerBkgd
 
-
-
 ul.blog
   list-style-type: none
   margin: 0
@@ -69,13 +31,14 @@ ul.blog
 
 h1.blog
   color: $headingColor
-  font-weight: 300
+  font-weight: 600
   font-size: 20px
   font-style: italic
   line-height: 24px
   padding: 15px 20px 12px 45px
   margin: 0
   border-bottom: 1px solid $headingColor
+  border-top: none
 
 h2.blog
   color: $headingColor
@@ -86,6 +49,8 @@ h2.blog
   margin: auto
   padding: 15px 0 15px 30px
   margin: 0
+  border-bottom: 1px solid $headingColor
+  border-top: none
 
 h3.blog
   color: $headingColor
@@ -95,24 +60,5 @@ h3.blog
   margin: auto
   padding: 15px 0 15px 45px
   margin: 0
-
-.goodHeight
-  overflow-y:auto
-  @media only screen and (min-height: 400px)
-    height: 280px
-  @media only screen and (min-height: 450px)
-    height: 330px
-  @media only screen and (min-height: 500px)
-    height: 380px
-  @media only screen and (min-height: 550px)
-    height: 430px
-  @media only screen and (min-height: 600px)
-    height: 500px
-  @media only screen and (min-height: 700px)
-    height: 600px
-  @media only screen and (min-height: 800px)
-    height: 700px
-  @media only screen and (min-height: 900px)
-    height: 800px
-  @media only screen and (min-height: 1000px)
-    height: 900px
+  border-bottom: 1px solid $headingColor
+  border-top: none
