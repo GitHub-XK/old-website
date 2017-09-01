@@ -3,7 +3,7 @@ layout: toolTemplate
 title: Tethers
 ---
 <script>
-var tether = {
+var tether = {//remember to also update the select list in the HTML
 	materials:{
 		zylon:[5800000000,1540],
 		aramid:[3620000000,1440],
@@ -13,26 +13,33 @@ var tether = {
 		xxmwcnt: [120000000000,1800]
 	}
 };
+String.prototype.capitalize = function(){
+	if(this.length === 0){
+		return "";
+	};
+	return this[0].toUpperCase() + this.slice(1);
+};
 function calc(){
-	var selector = document.getElementsByName("system")[0];
-	var moon = planets[selector.options[selector.selectedIndex].value];
-	var warnings = "";
+	var selector = document.getElementsByName("system")[0];//full support of all bodies in planets.json
+	var moon = planets[selector.options[selector.selectedIndex].value];//parent object of the tether
+	var warnings = "";//message the user about malformed input
 	var form = document.getElementById("input").elements;
-	var gnum = function(field){
+	var gnum = function(field){//form parser
 		return Number(form[field].value);
 	};
-	var out = function(id,message){
+	var out = function(id,message){//return output to containers
 		document.getElementById(id).innerHTML = message;
 	};
 	var myRound = function(num,digits){
 		return Math.floor(num*Math.pow(10,digits))/Math.pow(10,digits);
 	};
+//construction of tether object
 	tether.foot = gnum("foot")*1000;
 	tether.top = gnum("top")*1000;
 	tether.centre = gnum("centre")*1000;
 	tether.centralMass = gnum("centralMass");
 	tether.payload = gnum("payloadMass");
-	if(tether.foot < 0){
+	if(tether.foot < 0){//some checks about malformed input
 		warnings  += "The tether foot is inside the Body!<br>";
 	};
 	if(tether.foot > tether.top){
@@ -89,6 +96,8 @@ function calc(){
 	//alternatively:
 	//acceleration = mu/r² - w²r
 	//integral = -mu/r - w²r²/2
+
+//calculation of taper ratio
 	var integral = function(gm,angularVelocity,foot,top){
 		return Math.abs(
 			(
@@ -99,8 +108,18 @@ function calc(){
 		);
 	};
 
-	tether.lowIntegral = integral(moon.gm,tether.angularVelocity,tether.foot + moon.radius,tether.centre + moon.radius);
-	tether.highIntegral = integral(moon.gm,tether.angularVelocity,tether.centre + moon.radius,tether.top + moon.radius);
+	tether.lowIntegral = integral(
+		moon.gm,
+		tether.angularVelocity,
+		tether.foot + moon.radius,
+		tether.centre + moon.radius
+	);
+	tether.highIntegral = integral(
+		moon.gm,
+		tether.angularVelocity,
+		tether.centre + moon.radius,
+		tether.top + moon.radius
+	);
 	tether.lowRatio = Math.pow(Math.E,tether.lowIntegral/tether.strength);
 	tether.highRatio = Math.pow(Math.E,tether.highIntegral/tether.strength);
 
@@ -109,6 +128,7 @@ function calc(){
 	var iteratorLimit = 1000;
 	var lowCrosses = [];
 	var highCrosses = [];
+//numverical way to find the tether mass. Also used for plotting the width of it
 	for(var i=0;i<iteratorLimit;i++){
 		var lowCross = Math.pow(
 			Math.E,
@@ -131,7 +151,6 @@ function calc(){
 			highCrosses.push(lowCross);
 		};
 	};
-	//alert(lowCrosses);
 
 	tether.lowMass = tether.lowAcceleration*(tether.centre-tether.foot)*(lowIteratorSum/iteratorLimit)/tether.strength;
 	tether.highMass = tether.highAcceleration*(tether.top-tether.centre)*(highIteratorSum/iteratorLimit)/tether.strength;
@@ -143,26 +162,28 @@ function calc(){
 		+ tether.footVel*tether.footVel *tether.payload/2
 		- tether.payload * moon.gm/(moon.radius + tether.foot)
 		- tether.centralMass * moon.gm/(moon.radius + tether.centre);
+
+//parsing of planets.json to find bodies reachable after release from the tether
 	var potentialTargets = {
-		parent : [],
-		siblings : [],
-		aunts : []
+		parent : [],//for the Moon, this is Earth
+		siblings : [],//aka other Moons
+		aunts : []//for the Moon, this is all the other planets
 	};
 	if(moon.orbit.hasOwnProperty("parent")){//What about creating variables? Meh, just let the object paths grow :P
 		potentialTargets.parent.push(moon.orbit.parent);
-		if(planets[moon.orbit.parent].orbit.hasOwnProperty("children")){
+		if(planets[moon.orbit.parent].orbit.hasOwnProperty("children")){//find siblings
 			for(var i=0;i<planets[moon.orbit.parent].orbit.children.length;i++){
-				if(planets[moon.orbit.parent].orbit.children[i] != selector.options[selector.selectedIndex].value){
-					if(planets[planets[moon.orbit.parent].orbit.children[i]].hasOwnProperty("orbit") && planets[planets[moon.orbit.parent].orbit.children[i]].orbit.hasOwnProperty("semiMajor")){
+				if(planets[moon.orbit.parent].orbit.children[i] != selector.options[selector.selectedIndex].value){//not select itself
+					if(planets[planets[moon.orbit.parent].orbit.children[i]].hasOwnProperty("orbit") && planets[planets[moon.orbit.parent].orbit.children[i]].orbit.hasOwnProperty("semiMajor")){//must have orbital data to be usable
 						potentialTargets.siblings.push(planets[moon.orbit.parent].orbit.children[i]);
 					};
 				};
 			};
 		};
-		if(planets[moon.orbit.parent].orbit.hasOwnProperty("parent") && planets[planets[moon.orbit.parent].orbit.parent].orbit.hasOwnProperty("children")){
+		if(planets[moon.orbit.parent].orbit.hasOwnProperty("parent") && planets[planets[moon.orbit.parent].orbit.parent].orbit.hasOwnProperty("children")){//find aunts
 			for(var i=0;i<planets[planets[moon.orbit.parent].orbit.parent].orbit.children.length;i++){
-				if(planets[planets[moon.orbit.parent].orbit.parent].orbit.children[i] != moon.orbit.parent){
-					if(planets[planets[planets[moon.orbit.parent].orbit.parent].orbit.children[i]].hasOwnProperty("orbit") && planets[planets[planets[moon.orbit.parent].orbit.parent].orbit.children[i]].orbit.hasOwnProperty("semiMajor")){
+				if(planets[planets[moon.orbit.parent].orbit.parent].orbit.children[i] != moon.orbit.parent){//not select the parent
+					if(planets[planets[planets[moon.orbit.parent].orbit.parent].orbit.children[i]].hasOwnProperty("orbit") && planets[planets[planets[moon.orbit.parent].orbit.parent].orbit.children[i]].orbit.hasOwnProperty("semiMajor")){//must have orbital data to be usable
 						potentialTargets.aunts.push(planets[planets[moon.orbit.parent].orbit.parent].orbit.children[i]);
 					};
 				};
@@ -225,7 +246,7 @@ function calc(){
 	for(var i=0;i<targets.length;i++){
 		targets[i].location = findRadiusFromVinf(targets[i].vinf,tether.angularVelocity);
 		var item = document.createElement("p");
-		item.innerHTML = targets[i].name[0].toUpperCase() + targets[i].name.slice(1);
+		item.innerHTML = targets[i].name.capitalize();
 		item.innerHTML += " " + myRound((targets[i].location - moon.radius)/1000,2) + "km";
 		document.getElementById("releases").appendChild(item);
 	};
@@ -292,11 +313,35 @@ tether.dockedEnergy =
 
 
 //lots of svg drawing:
+	var addText = function(container,content,x,y,size,color){
+		var newMarker = document.createElementNS(svgNS,"text");
+		newMarker.setAttributeNS(null,"x",x);
+		newMarker.setAttributeNS(null,"y",y);
+		newMarker.setAttributeNS(null,"font-size",size);
+		newMarker.setAttributeNS(null,"fill",color);
+
+		var textNode = document.createTextNode(content);
+		newMarker.appendChild(textNode);
+		container.appendChild(newMarker);
+	};
+	var addToolTip = function(container,content){
+		var newToolTip = document.createElementNS(svgNS,"title");
+		var textNode = document.createTextNode(content);
+		newToolTip.appendChild(textNode);
+		container.appendChild(newToolTip);
+	};
 	var svg_planet = document.createElementNS(svgNS,"circle");
 	svg_planet.setAttributeNS(null,"cx",0);
 	svg_planet.setAttributeNS(null,"cy",0);
-	svg_planet.setAttributeNS(null,"fill","grey");
+	if(moon.hasOwnProperty("color")){
+		svg_planet.setAttributeNS(null,"fill",moon.color);
+	}
+	else{
+		svg_planet.setAttributeNS(null,"fill","grey");
+	};
 	svg_planet.setAttributeNS(null,"r",moon.radius/1000);
+
+	addToolTip(svg_planet,selector.options[selector.selectedIndex].value.capitalize());
 
 	var svg_tether = document.createElementNS(svgNS,"line");
 	svg_tether.setAttributeNS(null,"x1",(moon.radius + tether.foot)/1000);
@@ -313,6 +358,9 @@ tether.dockedEnergy =
 	svg_rotate.setAttributeNS(null,"from",-moon.radius/900 + " " + (-moon.radius/900) + " " + (moon.radius*2 + tether.top)/225 + " " + moon.radius/112);
 	svg_rotate.setAttributeNS(null,"to",Math.max(-moon.radius/900,(moon.radius - (tether.top + tether.foot)/2)/1000) + " " + Math.max(-moon.radius/900,-(tether.top - tether.foot)/4000) + " " + Math.min((moon.radius + tether.top)/850,(tether.top - tether.foot)/450) + " " + Math.min(moon.radius/450,(tether.top - tether.foot)/2000));
 	svg_rotate.setAttributeNS(null,"dur",0.5);
+
+	var marker_container = document.createElementNS(svgNS,"g");
+	var text_marker_container = document.createElementNS(svgNS,"g");
 
     var animation = document.createElementNS(svgNS,"animate");
     animation.setAttributeNS(null,"attributeName","opacity");
@@ -341,29 +389,30 @@ tether.dockedEnergy =
 	foot_marker.setAttributeNS(null,"fill","red");
 	foot_marker.setAttributeNS(null,"r",(tether.top - tether.foot)/90000);
 
-	var foot_marker_text = document.createElementNS(svgNS,"text");
-	foot_marker_text.setAttributeNS(null,"x",(tether.foot + moon.radius)/1000);
-	foot_marker_text.setAttributeNS(null,"y",(tether.top - tether.foot)/30000);
-	foot_marker_text.setAttributeNS(null,"font-size",(tether.top - tether.foot)/40000);
-
-	var textNode = document.createTextNode("Foot");
-	foot_marker_text.appendChild(textNode);
-
-	var top_marker_text = document.createElementNS(svgNS,"text");
-	top_marker_text.setAttributeNS(null,"x",(tether.top+ moon.radius)/1000);
-	top_marker_text.setAttributeNS(null,"y",(tether.top - tether.foot)/30000);
-	top_marker_text.setAttributeNS(null,"font-size",(tether.top - tether.foot)/40000);
-
-	var textNode = document.createTextNode("Top");
-	top_marker_text.appendChild(textNode);
-
-	var anchor_marker_text = document.createElementNS(svgNS,"text");
-	anchor_marker_text.setAttributeNS(null,"x",(tether.centre+ moon.radius)/1000);
-	anchor_marker_text.setAttributeNS(null,"y",(tether.top - tether.foot)/30000);
-	anchor_marker_text.setAttributeNS(null,"font-size",(tether.top - tether.foot)/40000);
-
-	var textNode = document.createTextNode("Anchor");
-	anchor_marker_text.appendChild(textNode);
+	addText(
+		text_marker_container,
+		"Foot",
+		(tether.foot + moon.radius)/1000,
+		(tether.top - tether.foot)/30000,
+		(tether.top - tether.foot)/40000,
+		"black"
+	);
+	addText(
+		text_marker_container,
+		"Top",
+		(tether.top + moon.radius)/1000,
+		(tether.top - tether.foot)/30000,
+		(tether.top - tether.foot)/40000,
+		"black"
+	);
+	addText(
+		text_marker_container,
+		"Anchor",
+		(tether.centre + moon.radius)/1000,
+		(tether.top - tether.foot)/30000,
+		(tether.top - tether.foot)/40000,
+		"black"
+	);
 
 	var anchor_marker = document.createElementNS(svgNS,"circle");
 	anchor_marker.setAttributeNS(null,"cx",(tether.centre + moon.radius)/1000);
@@ -377,9 +426,6 @@ tether.dockedEnergy =
 	top_marker.setAttributeNS(null,"fill","red");
 	top_marker.setAttributeNS(null,"r",(tether.top - tether.foot)/90000);
 
-	var marker_container = document.createElementNS(svgNS,"g");
-	var text_marker_container = document.createElementNS(svgNS,"g");
-
 	svg_tether.appendChild(animation);
 	illustration.appendChild(svg_planet);
 	illustration.appendChild(svg_tether);
@@ -388,9 +434,6 @@ tether.dockedEnergy =
 	marker_container.appendChild(anchor_marker);
 	marker_container.appendChild(top_marker);
 
-	text_marker_container.appendChild(foot_marker_text);
-	text_marker_container.appendChild(anchor_marker_text);
-	text_marker_container.appendChild(top_marker_text);
 	text_marker_container.appendChild(text_marker_animation);
 	for(var i=0;i<targets.length;i++){
 		var marker = document.createElementNS(svgNS,"circle");
@@ -398,15 +441,18 @@ tether.dockedEnergy =
 		marker.setAttributeNS(null,"cy",0);
 		marker.setAttributeNS(null,"fill","blue");
 		marker.setAttributeNS(null,"r",(tether.top - tether.foot)/100000);
-		var marker_text = document.createElementNS(svgNS,"text");
-		marker_text.setAttributeNS(null,"x",targets[i].location/1000);
-		marker_text.setAttributeNS(null,"y",(tether.top - tether.foot)/30000);
-		marker_text.setAttributeNS(null,"font-size",(tether.top - tether.foot)/40000);
-		marker_text.setAttributeNS(null,"fill","blue");
-		var textNode = document.createTextNode(targets[i].name[0].toUpperCase() + targets[i].name.slice(1));
-		marker_text.appendChild(textNode);
+		addToolTip(marker,"Release point for " + targets[i].name.capitalize() + " transfer\nAltitude " + myRound((targets[i].location - moon.radius)/1000,2) + "km\nVinf " + myRound(targets[i].vinf,2) + "m/s");
+
 		marker_container.appendChild(marker);
-		text_marker_container.appendChild(marker_text);
+
+		addText(
+			text_marker_container,
+			targets[i].name.capitalize(),
+			targets[i].location/1000,
+			(tether.top - tether.foot)/30000,
+			(tether.top - tether.foot)/40000,
+			"blue"
+		);
 	};
 	//construct path
 	var lowerPath = "M"+(tether.foot + moon.radius)/1000 + " " + (tether.top - tether.foot)/20000 + "l" + (tether.centre - tether.foot)/1000 + " 0l0 " + (tether.top - tether.foot)/20000;
@@ -471,7 +517,7 @@ tether.dockedEnergy =
 			<button onclick="calc()">Calculate</button>
 			<div id="output">
 				<div class="container" id="tetherSketch">
-					<svg width="800" height="200" id="svg_ilu"></svg>
+					<svg width="900" height="250" id="svg_ilu"></svg>
 				</div><br>
 				<div class="container">
 					<h4>General information</h4>
@@ -508,16 +554,27 @@ tether.dockedEnergy =
 	var availableSystems = [];
 		//we on
 	for(var planet in planets){//all keys, not only bodies
-		if(planets[planet].hasOwnProperty("orbit")){//only those with orbital data
-			availableSystems.push(planet);
+		if(planets[planet].hasOwnProperty("orbit") && planets[planet].orbit.hasOwnProperty("semiMajor")){//only those with orbital data
+			if(planets[planet].hasOwnProperty("radius")){
+				if(!planets[planet].hasOwnProperty("gm")){
+					if(planets[planet].hasOwnProperty("mass")){
+						planets[planet].gm = planets[planet].mass * 6.67408e-11;
+					}
+					else{
+						continue;
+					};
+				};
+				availableSystems.push(planet);
+			};
 		};
 	};
+	availableSystems.sort();
 	//maka a <select> list out of all the systems
 	var systemSelector = document.getElementsByName("system")[0];
 	for(var i=0;i<availableSystems.length;i++){
 		var opt = document.createElement('option');
 		opt.value = availableSystems[i];
-		opt.innerHTML = availableSystems[i][0].toUpperCase() + availableSystems[i].slice(1);
+		opt.innerHTML = availableSystems[i].capitalize();
 		systemSelector.appendChild(opt);
 		if(availableSystems[i] == "moon"){//moon should be default
 			systemSelector.selectedIndex = i;
