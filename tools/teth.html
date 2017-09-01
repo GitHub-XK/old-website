@@ -554,10 +554,21 @@ tether.dockedEnergy =
 	var availableSystems = [];
 		//we on
 	for(var planet in planets){//all keys, not only bodies
-		if(planets[planet].hasOwnProperty("orbit")){//only those with orbital data
-			availableSystems.push(planet);
+		if(planets[planet].hasOwnProperty("orbit") && planets[planet].orbit.hasOwnProperty("semiMajor")){//only those with orbital data
+			if(planets[planet].hasOwnProperty("radius")){
+				if(!planets[planet].hasOwnProperty("gm")){
+					if(planets[planet].hasOwnProperty("mass")){
+						planets[planet].gm = planets[planet].mass * 6.67408e-11;
+					}
+					else{
+						continue;
+					};
+				};
+				availableSystems.push(planet);
+			};
 		};
 	};
+	availableSystems.sort();
 	//maka a <select> list out of all the systems
 	var systemSelector = document.getElementsByName("system")[0];
 	for(var i=0;i<availableSystems.length;i++){
