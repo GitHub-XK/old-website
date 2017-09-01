@@ -4,7 +4,7 @@ comments: true
 title: The Mother Ship
 date: 2017-08-25
 tags:
-url: 2017/08/25/The-Mother-Ship.html
+url: 2017/08/25/The-Mothership.html
 identifier: 2017-08-25
 ---
 True space settlement depends on being able to have children out there, including pregnancy, childbirth, and the whole process of raising a happy, healthy child. We know very, very little about what it takes to do this in the harsh environment of space. What we do know suggests that the radiation protection and gravity required is far higher than for an adult. As a mental exercise, let us tackle a chunk of this question. Here follows a sketch of the mother ship - a ship compliant with conservative estimates of the protection needed to safely transport an expectant mother from the Moon to Earth. end-excerpt
