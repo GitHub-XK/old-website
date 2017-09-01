@@ -1,4 +1,6 @@
-complete : css/main.nest.sass.css css/learn.nest.sass.css css/posts.nest.sass.css css/content.nest.sass.css css/404css.nest.sass.css css/nav.nest.sass.css js/planets.js
+SHELL := /bin/bash
+complete : css/main.nest.sass.css css/learn.nest.sass.css  css/posts.nest.sass.css css/content.nest.sass.css css/404css.nest.sass.css css/nav.nest.sass.css js/planets.js
+
 	./build.sh
 	jekyll build
 	./cleanup.sh
