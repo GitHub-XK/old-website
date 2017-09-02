@@ -74,6 +74,13 @@ function calc(){
 		2*moon.gm
 		- (tether.top + moon.radius) * tether.topVel * tether.topVel
 	);
+	tether.newPeriapsis = Math.pow(
+		(tether.foot + moon.radius) * tether.footVel
+		,2
+	)/(
+		2*moon.gm
+		- (tether.foot + moon.radius) * tether.footVel * tether.footVel
+	);
 
 
 	if(form.overrideMaterial.checked){
@@ -427,9 +434,18 @@ tether.dockedEnergy =
 	top_marker.setAttributeNS(null,"r",(tether.top - tether.foot)/90000);
 
 	svg_tether.appendChild(animation);
-	illustration.appendChild(svg_planet);
-	illustration.appendChild(svg_tether);
-	illustration.appendChild(svg_rotate);
+
+	var descent_trajectory = document.createElementNS(svgNS,"path");
+	var semiMajor = (tether.newPeriapsis + moon.radius + tether.foot)/2000;
+	var semiMinor = Math.sqrt(semiMajor*semiMajor - (((tether.foot + moon.radius - tether.newPeriapsis)/2000)*((tether.foot + moon.radius - tether.newPeriapsis)/2000)));
+	var descent_path = "M" + (moon.radius + tether.foot)/1000 + " 0a" + semiMajor + " " + semiMinor + " 0 0 0 " + 2*-semiMajor + " 0a" + semiMajor + " " + semiMinor + " 0 0 0 " + semiMajor*2 + " 0";
+	descent_trajectory.setAttributeNS(null,"d",descent_path);
+	descent_trajectory.setAttributeNS(null,"stroke","green");
+	descent_trajectory.setAttributeNS(null,"fill","none");
+	descent_trajectory.setAttributeNS(null,"stroke-width",(tether.top - tether.foot)/300000);
+	descent_trajectory.setAttributeNS(null,"stroke-dasharray",(tether.top - tether.foot)/200000);
+
+	marker_container.appendChild(descent_trajectory);
 	marker_container.appendChild(foot_marker);
 	marker_container.appendChild(anchor_marker);
 	marker_container.appendChild(top_marker);
@@ -466,17 +482,23 @@ tether.dockedEnergy =
 	var tether_cross_low = document.createElementNS(svgNS,"path");
 	tether_cross_low.setAttributeNS(null,"fill","black");
 	tether_cross_low.setAttributeNS(null,"d",lowerPath);
+	tether_cross_low.setAttributeNS(null,"id","lowerPath");
 	tether_cross_low.setAttributeNS(null,"stroke","none");
+	addToolTip(tether_cross_low,"Lower tether diameter\nDiameter ratio " + myRound(Math.sqrt(tether.lowRatio),3) + "\nCross section ratio " + myRound(tether.lowRatio,3));
 	text_marker_container.appendChild(tether_cross_low);
 	var tether_cross_high = document.createElementNS(svgNS,"path");
 	tether_cross_high.setAttributeNS(null,"fill","black");
 	tether_cross_high.setAttributeNS(null,"d",upperPath);
+	tether_cross_high.setAttributeNS(null,"id","upperPath");
 	tether_cross_high.setAttributeNS(null,"stroke","none");
 	text_marker_container.appendChild(tether_cross_high);
 
 	marker_container.appendChild(marker_animation);
+	illustration.appendChild(svg_tether);
 	illustration.appendChild(marker_container);
 	illustration.appendChild(text_marker_container);
+	illustration.appendChild(svg_planet);
+	illustration.appendChild(svg_rotate);
 	svg_rotate.beginElement();
 	animation.beginElement();
 	marker_animation.beginElement();
