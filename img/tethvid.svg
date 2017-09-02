@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-10000 -10000 20000 20000" viewport-fill="black">
+	<defs>
+		<radialGradient id="atmosphere">
+			<stop offset="0%" stop-color="blue"/>
+			<stop offset="98.12%" stop-color="blue"/>
+			<stop offset="98.12%" stop-color="white"/>
+			<stop offset="100%" stop-color="black"/>
+		</radialGradient>
+	</defs>
+	<rect x="-100%" y="-100%" width="200%" height="200%" fill="black"/>
+	<g>	
+		<circle cx="0" cy="0" r="6500" fill="url(#atmosphere)"></circle>
+		<circle cx="0" cy="0" r="800" fill="white"></circle>
+		<circle cx="0" cy="2000" r="1000" fill="green"></circle>
+		<circle cx="500" cy="3100" r="1200" fill="green"></circle>
+		<animateTransform
+			attributeName="transform"
+			type="rotate"
+			begin="0s"
+			attributeType="XML"
+			dur="0.997s"
+			repeatCount="indefinite"
+			values="0 0 0;-360 0 0"
+			fill="freeze"/>
+	</g>
+	<g>
+		<path d="M0 7000a7000 7000 0 0 0 0 -14000a7000 7000 0 0 0 0 14000"
+     		 stroke="grey" stroke-width="20" fill="none" id="lowOrbit"/>
+	</g>
+	<g>
+		<path d="M0 384400a384400 384400 0 0 0 0 -768800a384400 384400 0 0 0 0 768800"
+     		 stroke="white" stroke-width="100" fill="none" id="moonOrbit"/>
+		<circle cx="" cy="" r="1738" fill="grey">
+			<animateMotion
+				path="a384400 384400 0 0 0 0 -768800a384400 384400 0 0 0 0 768800"
+				begin="0s"
+				repeatCount="indefinite"
+				dur="27.32s">
+				<mpath xlink:href="#moonOrbit"/>
+			</animateMotion>
+		</circle>
+	</g>
+	<animate
+attributeName="viewBox"
+attributeType="XML"
+from="-10000 -10000 20000 20000"
+to="-200000 -200000 700000 700000"
+begin="5s"
+dur="10s"
+fill="freeze"/>
+</svg>
