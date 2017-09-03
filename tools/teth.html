@@ -37,6 +37,7 @@ function calc(){
 	tether.foot = gnum("foot")*1000;
 	tether.top = gnum("top")*1000;
 	tether.centre = gnum("centre")*1000;
+	tether.Length = tether.top - tether.foot;
 	tether.centralMass = gnum("centralMass");
 	tether.payload = gnum("payloadMass");
 	if(tether.foot < 0){//some checks about malformed input
@@ -222,12 +223,14 @@ function calc(){
 		targets.push(
 			{
 				name : potentialTargets.aunts[i],
-				vinf : Math.sqrt(Math.pow(planets[moon.orbit.parent].orbit.speed - Math.sqrt(planets[planets[moon.orbit.parent].orbit.parent].gm * (2/(planets[moon.orbit.parent].orbit.semiMajor) - 2/(planets[moon.orbit.parent].orbit.semiMajor + planets[potentialTargets.aunts[i]].orbit.semiMajor))),2) + moon.orbit.speed*moon.orbit.speed*2) - moon.orbit.speed
+				vinf : Math.sqrt(
+					Math.pow(planets[moon.orbit.parent].orbit.speed - Math.sqrt(planets[planets[moon.orbit.parent].orbit.parent].gm * (2/(planets[moon.orbit.parent].orbit.semiMajor) - 2/(planets[moon.orbit.parent].orbit.semiMajor + planets[potentialTargets.aunts[i]].orbit.semiMajor))),2) + moon.orbit.speed*moon.orbit.speed*2
+				) - moon.orbit.speed
 			}
 		);
 	};
 
-	var findRadiusFromVinf = function(vinf,angular){
+	var findRadiusFromVinf = function(vinf,angular){//a binary search
 		var vinf_squared = vinf*vinf;
 		var angular_squared = angular*angular;
 		var val = moon.radius + tether.centre;
@@ -313,10 +316,14 @@ tether.dockedEnergy =
 	out("warnings",warnings);
 	var svgNS = "http://www.w3.org/2000/svg";
 	var illustration = document.getElementById("svg_ilu");
-	while(illustration.lastChild){
+	while(illustration.lastChild){//clean svg
     	illustration.removeChild(illustration.lastChild);
 	};
-	illustration.setAttributeNS(null,"viewBox",Math.max(-moon.radius/900,(moon.radius - (tether.top + tether.foot)/2)/1000) + " " + Math.max(-moon.radius/900,-(tether.top - tether.foot)/4000) + " " + Math.min((moon.radius + tether.top)/850,(tether.top - tether.foot)/450) + " " + Math.min(moon.radius/450,(tether.top - tether.foot)/2000));
+	var minimum_x_coordinate = Math.max(-moon.radius/900,(moon.radius - (tether.top + tether.foot)/2)/1000);
+	var minimum_y_coordinate = Math.max(-moon.radius/900,-tether.Length/4000);
+	var minimum_x_distance = Math.min((moon.radius + tether.top)/850,tether.Length/450);
+	var minimum_y_distance = Math.min(moon.radius/450,tether.Length/2000);
+	illustration.setAttributeNS(null,"viewBox",minimum_x_coordinate + " " + minimum_y_coordinate + " " + minimum_x_distance + " " + minimum_y_distance);
 
 
 //lots of svg drawing:
@@ -350,6 +357,8 @@ tether.dockedEnergy =
 
 	addToolTip(svg_planet,selector.options[selector.selectedIndex].value.capitalize());
 
+	var svg_scale = tether.Length/100000;
+
 	var svg_tether = document.createElementNS(svgNS,"line");
 	svg_tether.setAttributeNS(null,"x1",(moon.radius + tether.foot)/1000);
 	svg_tether.setAttributeNS(null,"y1",0);
@@ -357,13 +366,13 @@ tether.dockedEnergy =
 	svg_tether.setAttributeNS(null,"y2",0);
 	svg_tether.setAttributeNS(null,"stroke","black");
 	svg_tether.setAttributeNS(null,"stroke-linecap","butt");
-	svg_tether.setAttributeNS(null,"stroke-width",(tether.top - tether.foot)/100000);
+	svg_tether.setAttributeNS(null,"stroke-width",svg_scale);
 
 	var svg_rotate = document.createElementNS(svgNS,"animate");
 	svg_rotate.setAttributeNS(null,"attributeName","viewBox");
 	svg_rotate.setAttributeNS(null,"begin","indefinite");
 	svg_rotate.setAttributeNS(null,"from",-moon.radius/900 + " " + (-moon.radius/900) + " " + (moon.radius*2 + tether.top)/225 + " " + moon.radius/112);
-	svg_rotate.setAttributeNS(null,"to",Math.max(-moon.radius/900,(moon.radius - (tether.top + tether.foot)/2)/1000) + " " + Math.max(-moon.radius/900,-(tether.top - tether.foot)/4000) + " " + Math.min((moon.radius + tether.top)/850,(tether.top - tether.foot)/450) + " " + Math.min(moon.radius/450,(tether.top - tether.foot)/2000));
+	svg_rotate.setAttributeNS(null,"to",minimum_x_coordinate + " " + minimum_y_coordinate + " " + minimum_x_distance + " " + minimum_y_distance);
 	svg_rotate.setAttributeNS(null,"dur",0.5);
 
 	var marker_container = document.createElementNS(svgNS,"g");
@@ -394,30 +403,30 @@ tether.dockedEnergy =
 	foot_marker.setAttributeNS(null,"cx",(tether.foot + moon.radius)/1000);
 	foot_marker.setAttributeNS(null,"cy",0);
 	foot_marker.setAttributeNS(null,"fill","red");
-	foot_marker.setAttributeNS(null,"r",(tether.top - tether.foot)/90000);
+	foot_marker.setAttributeNS(null,"r",svg_scale*1.12);
 
 	addText(
 		text_marker_container,
 		"Foot",
 		(tether.foot + moon.radius)/1000,
-		(tether.top - tether.foot)/30000,
-		(tether.top - tether.foot)/40000,
+		svg_scale*3,
+		svg_scale*2.5,
 		"black"
 	);
 	addText(
 		text_marker_container,
 		"Top",
 		(tether.top + moon.radius)/1000,
-		(tether.top - tether.foot)/30000,
-		(tether.top - tether.foot)/40000,
+		svg_scale*3,
+		svg_scale*2.5,
 		"black"
 	);
 	addText(
 		text_marker_container,
 		"Anchor",
 		(tether.centre + moon.radius)/1000,
-		(tether.top - tether.foot)/30000,
-		(tether.top - tether.foot)/40000,
+		svg_scale*3,
+		svg_scale*2.5,
 		"black"
 	);
 
@@ -425,25 +434,28 @@ tether.dockedEnergy =
 	anchor_marker.setAttributeNS(null,"cx",(tether.centre + moon.radius)/1000);
 	anchor_marker.setAttributeNS(null,"cy",0);
 	anchor_marker.setAttributeNS(null,"fill","red");
-	anchor_marker.setAttributeNS(null,"r",(tether.top - tether.foot)/90000);
+	anchor_marker.setAttributeNS(null,"r",svg_scale*1.12);
 
 	var top_marker = document.createElementNS(svgNS,"circle");
 	top_marker.setAttributeNS(null,"cx",(tether.top + moon.radius)/1000);
 	top_marker.setAttributeNS(null,"cy",0);
 	top_marker.setAttributeNS(null,"fill","red");
-	top_marker.setAttributeNS(null,"r",(tether.top - tether.foot)/90000);
+	top_marker.setAttributeNS(null,"r",svg_scale*1.12);
 
 	svg_tether.appendChild(animation);
 
 	var descent_trajectory = document.createElementNS(svgNS,"path");
 	var semiMajor = (tether.newPeriapsis + moon.radius + tether.foot)/2000;
-	var semiMinor = Math.sqrt(semiMajor*semiMajor - (((tether.foot + moon.radius - tether.newPeriapsis)/2000)*((tether.foot + moon.radius - tether.newPeriapsis)/2000)));
+	var semiMinor = Math.sqrt(
+		semiMajor*semiMajor
+		- Math.pow((tether.foot + moon.radius - tether.newPeriapsis)/2000,2)
+	);
 	var descent_path = "M" + (moon.radius + tether.foot)/1000 + " 0a" + semiMajor + " " + semiMinor + " 0 0 0 " + 2*-semiMajor + " 0a" + semiMajor + " " + semiMinor + " 0 0 0 " + semiMajor*2 + " 0";
 	descent_trajectory.setAttributeNS(null,"d",descent_path);
 	descent_trajectory.setAttributeNS(null,"stroke","green");
 	descent_trajectory.setAttributeNS(null,"fill","none");
-	descent_trajectory.setAttributeNS(null,"stroke-width",(tether.top - tether.foot)/300000);
-	descent_trajectory.setAttributeNS(null,"stroke-dasharray",(tether.top - tether.foot)/200000);
+	descent_trajectory.setAttributeNS(null,"stroke-width",svg_scale/3);
+	descent_trajectory.setAttributeNS(null,"stroke-dasharray",svg_scale/2);
 
 	marker_container.appendChild(descent_trajectory);
 	marker_container.appendChild(foot_marker);
@@ -456,7 +468,7 @@ tether.dockedEnergy =
 		marker.setAttributeNS(null,"cx",targets[i].location/1000);
 		marker.setAttributeNS(null,"cy",0);
 		marker.setAttributeNS(null,"fill","blue");
-		marker.setAttributeNS(null,"r",(tether.top - tether.foot)/100000);
+		marker.setAttributeNS(null,"r",svg_scale);
 		addToolTip(marker,"Release point for " + targets[i].name.capitalize() + " transfer\nAltitude " + myRound((targets[i].location - moon.radius)/1000,2) + "km\nVinf " + myRound(targets[i].vinf,2) + "m/s");
 
 		marker_container.appendChild(marker);
@@ -465,17 +477,17 @@ tether.dockedEnergy =
 			text_marker_container,
 			targets[i].name.capitalize(),
 			targets[i].location/1000,
-			(tether.top - tether.foot)/30000,
-			(tether.top - tether.foot)/40000,
+			svg_scale*3,
+			svg_scale*2.5,
 			"blue"
 		);
 	};
-	//construct path
-	var lowerPath = "M"+(tether.foot + moon.radius)/1000 + " " + (tether.top - tether.foot)/20000 + "l" + (tether.centre - tether.foot)/1000 + " 0l0 " + (tether.top - tether.foot)/20000;
-	var upperPath = "M"+(tether.top + moon.radius)/1000 +  " " + (tether.top - tether.foot)/20000 + "l" + (tether.centre - tether.top)/1000 + " 0l0 " + (tether.top - tether.foot)/20000;
+	//construct path for tether width diagram
+	var lowerPath = "M" + (tether.foot + moon.radius)/1000 + " " + svg_scale*5 + "l" + (tether.centre - tether.foot)/1000 + " 0l0 " + svg_scale*5;
+	var upperPath = "M" + (tether.top  + moon.radius)/1000 + " " + svg_scale*5 + "l" + (tether.centre - tether.top )/1000 + " 0l0 " + svg_scale*5;
 	for(var i=1;i<lowCrosses.length;i++){
-		lowerPath += "l-" + (tether.centre - tether.foot)/(1000*lowCrosses.length) + " " + (Math.sqrt(1/lowCrosses[i]) -  Math.sqrt(1/lowCrosses[i-1]))*(tether.top - tether.foot)/20000;
-		upperPath += "l" + (tether.top - tether.centre)/(1000*highCrosses.length) + " " + (Math.sqrt(1/highCrosses[i]) -  Math.sqrt(1/highCrosses[i-1]))*(tether.top - tether.foot)/20000;
+		lowerPath += "l-" + (tether.centre - tether.foot)/(1000*lowCrosses.length) + " " + (Math.sqrt(1/lowCrosses[i]) -  Math.sqrt(1/lowCrosses[i-1]))*svg_scale*5;
+		upperPath += "l" + (tether.top - tether.centre)/(1000*highCrosses.length) + " " + (Math.sqrt(1/highCrosses[i]) -  Math.sqrt(1/highCrosses[i-1]))*svg_scale*5;
 	};
 	lowerPath += "l-" + (tether.centre - tether.foot)/(1000*lowCrosses.length) + " 0z";
 	upperPath += "l" + (tether.top - tether.centre)/(1000*highCrosses.length) + " 0z";
@@ -485,12 +497,16 @@ tether.dockedEnergy =
 	tether_cross_low.setAttributeNS(null,"id","lowerPath");
 	tether_cross_low.setAttributeNS(null,"stroke","none");
 	addToolTip(tether_cross_low,"Lower tether diameter\nDiameter ratio " + myRound(Math.sqrt(tether.lowRatio),3) + "\nCross section ratio " + myRound(tether.lowRatio,3));
+
 	text_marker_container.appendChild(tether_cross_low);
+
 	var tether_cross_high = document.createElementNS(svgNS,"path");
 	tether_cross_high.setAttributeNS(null,"fill","black");
 	tether_cross_high.setAttributeNS(null,"d",upperPath);
 	tether_cross_high.setAttributeNS(null,"id","upperPath");
 	tether_cross_high.setAttributeNS(null,"stroke","none");
+	addToolTip(tether_cross_high,"Upper tether diameter\nDiameter ratio " + myRound(Math.sqrt(tether.highRatio),3) + "\nCross section ratio " + myRound(tether.highRatio,3));
+
 	text_marker_container.appendChild(tether_cross_high);
 
 	marker_container.appendChild(marker_animation);
@@ -503,10 +519,6 @@ tether.dockedEnergy =
 	animation.beginElement();
 	marker_animation.beginElement();
 	text_marker_animation.beginElement();
-	//var illustrationNode = document.getElementById("tetherSketch");
-	/*while(illustrationNode.firstChild){
-		illustrationNode.removeChild(illustrationNode.firstChild);
-	};*/
 };
 </script>
 			<h1>Tethers</h1>
