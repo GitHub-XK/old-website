@@ -254,7 +254,7 @@ function calc(){
 		highIteratorSum += highCross;
 		if(i % 10 == 0){
 			lowCrosses.push(lowCross);
-			highCrosses.push(lowCross);
+			highCrosses.push(highCross);
 		};
 	};
 
@@ -418,7 +418,7 @@ tether.dockedEnergy =
 	};
 	minimum_x_coordinate = Math.max(-moon.radius/900,(moon.radius - (tether.top + tether.foot)/2)/1000);
 	minimum_y_coordinate = Math.max(-moon.radius/900,-tether.Length/4000);
-	minimum_x_distance = Math.min((moon.radius + tether.top)/850,tether.top/300);
+	minimum_x_distance = Math.min((moon.radius + tether.top)/850,tether.top/300) + Math.min(tether.Length/4000,moon.radius/1000);
 	minimum_y_distance = Math.min(moon.radius/450,tether.Length/2000);
 	illustration.setAttributeNS(null,"viewBox",minimum_x_coordinate + " " + minimum_y_coordinate + " " + minimum_x_distance + " " + minimum_y_distance);
 
