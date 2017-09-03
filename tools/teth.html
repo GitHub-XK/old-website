@@ -29,7 +29,8 @@ title: Tethers
 				</div>
 				<p style="color:red;" id="warnings"></p>
 			</form>
-			<button onclick="calc()">Calculate</button>
+			<button onclick="calc();hardReload();">Calculate</button><br>
+			<p>You can also adjust the tether by dragging the red markers below:</p>
 			<div id="output">
 				<div class="container" id="tetherSketch">
 					<svg width="900" height="250" id="svg_ilu"></svg>
@@ -104,6 +105,7 @@ String.prototype.capitalize = function(){
 })();
 var svgNS = "http://www.w3.org/2000/svg";
 var illustration = document.getElementById("svg_ilu");
+var form = document.getElementById("input").elements;
 var selector = document.getElementsByName("system")[0];//full support of all bodies in planets.json
 var moon = planets[selector.options[selector.selectedIndex].value];//parent object of the tether
 
@@ -120,7 +122,6 @@ var tether = {//remember to also update the select list in the HTML
 function calc(){
 	moon = planets[selector.options[selector.selectedIndex].value];//parent object of the tether
 	var warnings = "";//message the user about malformed input
-	var form = document.getElementById("input").elements;
 	var gnum = function(field){//form parser
 		return Number(form[field].value);
 	};
@@ -415,10 +416,10 @@ tether.dockedEnergy =
 	while(illustration.lastChild){//clean svg
     	illustration.removeChild(illustration.lastChild);
 	};
-	var minimum_x_coordinate = Math.max(-moon.radius/900,(moon.radius - (tether.top + tether.foot)/2)/1000);
-	var minimum_y_coordinate = Math.max(-moon.radius/900,-tether.Length/4000);
-	var minimum_x_distance = Math.min((moon.radius + tether.top)/850,tether.Length/450);
-	var minimum_y_distance = Math.min(moon.radius/450,tether.Length/2000);
+	minimum_x_coordinate = Math.max(-moon.radius/900,(moon.radius - (tether.top + tether.foot)/2)/1000);
+	minimum_y_coordinate = Math.max(-moon.radius/900,-tether.Length/4000);
+	minimum_x_distance = Math.min((moon.radius + tether.top)/850,tether.top/300);
+	minimum_y_distance = Math.min(moon.radius/450,tether.Length/2000);
 	illustration.setAttributeNS(null,"viewBox",minimum_x_coordinate + " " + minimum_y_coordinate + " " + minimum_x_distance + " " + minimum_y_distance);
 
 
@@ -428,6 +429,7 @@ tether.dockedEnergy =
 		newMarker.setAttributeNS(null,"x",x);
 		newMarker.setAttributeNS(null,"y",y);
 		newMarker.setAttributeNS(null,"font-size",size);
+		newMarker.setAttributeNS(null,"class","svgText");
 		newMarker.setAttributeNS(null,"fill",color);
 
 		var textNode = document.createTextNode(content);
@@ -457,7 +459,7 @@ tether.dockedEnergy =
 
 	var svg_scale = tether.Length/100000;
 
-	var svg_tether = document.createElementNS(svgNS,"line");
+	svg_tether = document.createElementNS(svgNS,"line");
 	svg_tether.setAttributeNS(null,"x1",(moon.radius + tether.foot)/1000);
 	svg_tether.setAttributeNS(null,"y1",0);
 	svg_tether.setAttributeNS(null,"x2",(moon.radius + tether.top)/1000);
@@ -466,36 +468,8 @@ tether.dockedEnergy =
 	svg_tether.setAttributeNS(null,"stroke-linecap","butt");
 	svg_tether.setAttributeNS(null,"stroke-width",svg_scale);
 
-	var svg_rotate = document.createElementNS(svgNS,"animate");
-	svg_rotate.setAttributeNS(null,"attributeName","viewBox");
-	svg_rotate.setAttributeNS(null,"begin","indefinite");
-	svg_rotate.setAttributeNS(null,"from",-moon.radius/900 + " " + (-moon.radius/900) + " " + (moon.radius*2 + tether.top)/225 + " " + moon.radius/112);
-	svg_rotate.setAttributeNS(null,"to",minimum_x_coordinate + " " + minimum_y_coordinate + " " + minimum_x_distance + " " + minimum_y_distance);
-	svg_rotate.setAttributeNS(null,"dur",0.5);
-
-	var marker_container = document.createElementNS(svgNS,"g");
-	var text_marker_container = document.createElementNS(svgNS,"g");
-
-    var animation = document.createElementNS(svgNS,"animate");
-    animation.setAttributeNS(null,"attributeName","opacity");
-    animation.setAttributeNS(null,"begin","indefinite");
-    animation.setAttributeNS(null,"values","0;0;1");
-    animation.setAttributeNS(null,"dur", 1.5);
-    animation.setAttributeNS(null,"fill","freeze");
-
-    var marker_animation = document.createElementNS(svgNS,"animate");
-    marker_animation.setAttributeNS(null,"attributeName","opacity");
-    marker_animation.setAttributeNS(null,"begin","indefinite");
-    marker_animation.setAttributeNS(null,"values","0;0;0;0;1");
-    marker_animation.setAttributeNS(null,"dur", 2);
-    marker_animation.setAttributeNS(null,"fill","freeze");
-
-    var text_marker_animation = document.createElementNS(svgNS,"animate");
-    text_marker_animation.setAttributeNS(null,"attributeName","opacity");
-    text_marker_animation.setAttributeNS(null,"begin","indefinite");
-    text_marker_animation.setAttributeNS(null,"values","0;0;0;0;0;1");
-    text_marker_animation.setAttributeNS(null,"dur", 3);
-    text_marker_animation.setAttributeNS(null,"fill","freeze");
+	marker_container = document.createElementNS(svgNS,"g");
+	text_marker_container = document.createElementNS(svgNS,"g");
 
 	addText(
 		text_marker_container,
@@ -527,25 +501,27 @@ tether.dockedEnergy =
 	foot_marker.setAttributeNS(null,"cy",0);
 	foot_marker.setAttributeNS(null,"fill","red");
 	foot_marker.setAttributeNS(null,"class","draggable");
-	foot_marker.setAttributeNS(null,"r",svg_scale*1.12);
+	foot_marker.setAttributeNS(null,"id","foot");
+	foot_marker.setAttributeNS(null,"onmousedown","selectElement(evt)");
+	foot_marker.setAttributeNS(null,"r",svg_scale*1.4);
 
 	var anchor_marker = document.createElementNS(svgNS,"circle");
 	anchor_marker.setAttributeNS(null,"cx",(tether.centre + moon.radius)/1000);
 	anchor_marker.setAttributeNS(null,"cy",0);
-	anchor_marker.setAttributeNS(null,"fill","red");
+	anchor_marker.setAttributeNS(null,"fill","#900000");
 	anchor_marker.setAttributeNS(null,"class","draggable");
-	anchor_marker.setAttributeNS(null,"transform","matrix(1 0 0 1 0 0)");
+	anchor_marker.setAttributeNS(null,"id","anchor");
 	anchor_marker.setAttributeNS(null,"onmousedown","selectElement(evt)");
-	anchor_marker.setAttributeNS(null,"r",svg_scale*1.12);
+	anchor_marker.setAttributeNS(null,"r",svg_scale*1.4);
 
 	var top_marker = document.createElementNS(svgNS,"circle");
 	top_marker.setAttributeNS(null,"cx",(tether.top + moon.radius)/1000);
 	top_marker.setAttributeNS(null,"cy",0);
 	top_marker.setAttributeNS(null,"fill","red");
 	top_marker.setAttributeNS(null,"class","draggable");
-	top_marker.setAttributeNS(null,"r",svg_scale*1.12);
-
-	svg_tether.appendChild(animation);
+	top_marker.setAttributeNS(null,"id","top");
+	top_marker.setAttributeNS(null,"onmousedown","selectElement(evt)");
+	top_marker.setAttributeNS(null,"r",svg_scale*1.4);
 
 	var descent_trajectory = document.createElementNS(svgNS,"path");
 	var semiMajor = (tether.newPeriapsis + moon.radius + tether.foot)/2000;
@@ -565,7 +541,6 @@ tether.dockedEnergy =
 	marker_container.appendChild(anchor_marker);
 	marker_container.appendChild(top_marker);
 
-	text_marker_container.appendChild(text_marker_animation);
 	for(var i=0;i<targets.length;i++){
 		var marker = document.createElementNS(svgNS,"circle");
 		marker.setAttributeNS(null,"cx",targets[i].location/1000);
@@ -611,21 +586,53 @@ tether.dockedEnergy =
 	addToolTip(tether_cross_high,"Upper tether diameter\nDiameter ratio " + myRound(Math.sqrt(tether.highRatio),3) + "\nCross section ratio " + myRound(tether.highRatio,3));
 
 	text_marker_container.appendChild(tether_cross_high);
-
-	marker_container.appendChild(marker_animation);
 	illustration.appendChild(svg_tether);
 	illustration.appendChild(marker_container);
 	illustration.appendChild(text_marker_container);
 	illustration.appendChild(svg_planet);
 
+};
+var hardReload = function(){
+    var animation = document.createElementNS(svgNS,"animate");
+    animation.setAttributeNS(null,"attributeName","opacity");
+    animation.setAttributeNS(null,"begin","indefinite");
+    animation.setAttributeNS(null,"values","0;0;1");
+    animation.setAttributeNS(null,"dur", 1.5);
+    animation.setAttributeNS(null,"fill","freeze");
+
+    var marker_animation = document.createElementNS(svgNS,"animate");
+    marker_animation.setAttributeNS(null,"attributeName","opacity");
+    marker_animation.setAttributeNS(null,"begin","indefinite");
+    marker_animation.setAttributeNS(null,"values","0;0;0;0;1");
+    marker_animation.setAttributeNS(null,"dur", 2);
+    marker_animation.setAttributeNS(null,"fill","freeze");
+
+    var text_marker_animation = document.createElementNS(svgNS,"animate");
+    text_marker_animation.setAttributeNS(null,"attributeName","opacity");
+    text_marker_animation.setAttributeNS(null,"begin","indefinite");
+    text_marker_animation.setAttributeNS(null,"values","0;0;0;0;0;1");
+    text_marker_animation.setAttributeNS(null,"dur", 3);
+    text_marker_animation.setAttributeNS(null,"fill","freeze");
+
+	var svg_rotate = document.createElementNS(svgNS,"animate");
+	svg_rotate.setAttributeNS(null,"attributeName","viewBox");
+	svg_rotate.setAttributeNS(null,"begin","indefinite");
+	svg_rotate.setAttributeNS(null,"from",-moon.radius/900 + " " + (-moon.radius/900) + " " + (moon.radius*2 + tether.top)/225 + " " + moon.radius/112);
+	svg_rotate.setAttributeNS(null,"to",minimum_x_coordinate + " " + minimum_y_coordinate + " " + minimum_x_distance + " " + minimum_y_distance);
+	svg_rotate.setAttributeNS(null,"dur",0.5);
+
+	svg_tether.appendChild(animation);
+	text_marker_container.appendChild(text_marker_animation);
+	marker_container.appendChild(marker_animation);
 	illustration.appendChild(svg_rotate);
+
 	svg_rotate.beginElement();
 	animation.beginElement();
 	marker_animation.beginElement();
 	text_marker_animation.beginElement();
 };
 var selectedElement = 0;
-function selectElement(evt) {
+function selectElement(evt){
 	selectedElement = evt.target;
 	illustration.setAttributeNS(null, "onmousemove", "moveElement(evt)");
 	illustration.setAttributeNS(null, "onmouseup", "deselectElement(evt)");
@@ -635,9 +642,28 @@ function moveElement(evt){
 	pt.x = evt.clientX;
 	pt.y = evt.clientY;
 	svgP = pt.matrixTransform(illustration.getScreenCTM().inverse());
-	selectedElement.setAttributeNS(null,"cx",svgP.x);
-	//document.getElementById("input").elements["centre"].value = svgP.x*1000 + planets[document.getElementsByName("system")[0].options[document.getElementsByName("system")[0].selectedIndex].value].radius;
-	//calc();
+	if(selectedElement.id == "anchor"){
+		if(svgP.x > (tether.foot + moon.radius)/1000 && svgP.x < (tether.top + moon.radius)/1000){
+			selectedElement.setAttributeNS(null,"cx",svgP.x);
+			form["centre"].value = svgP.x - moon.radius/1000;
+		};
+	}
+	else if(selectedElement.id == "foot"){
+		if(svgP.x < (tether.centre + moon.radius)/1000){
+			selectedElement.setAttributeNS(null,"cx",svgP.x);
+			form["foot"].value = svgP.x - moon.radius/1000;
+		};
+	}
+	else if(selectedElement.id == "top"){
+		if(svgP.x > (tether.centre + moon.radius)/1000){
+			selectedElement.setAttributeNS(null,"cx",svgP.x);
+			form["top"].value = svgP.x - moon.radius/1000;
+		};
+	}
+	else{//default behaviour of move
+		selectedElement.setAttributeNS(null,"cx",svgP.x);
+		selectedElement.setAttributeNS(null,"cy",svgP.y);
+	};
 };
 function deselectElement(evt){
 	if(selectedElement != 0){
@@ -645,5 +671,7 @@ function deselectElement(evt){
 		illustration.removeAttributeNS(null, "onmouseup");
 		selectedElement = 0;
 	};
+	calc();
 };
+calc();hardReload();
 </script>
