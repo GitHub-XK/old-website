@@ -650,7 +650,7 @@ function moveElement(evt){
 		};
 	}
 	else if(selectedElement.id == "foot"){
-		if(svgP.x < (tether.centre + moon.radius)/1000){
+		if(svgP.x < (tether.centre + moon.radius)/1000 && svgP.x > moon.radius/1000){
 			selectedElement.setAttributeNS(null,"cx",svgP.x);
 			form["foot"].value = svgP.x - moon.radius/1000;
 		};
