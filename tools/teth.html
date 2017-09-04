@@ -122,6 +122,9 @@ var tether = {//remember to also update the select list in the HTML
 };
 function calc(){
 	moon = planets[selector.options[selector.selectedIndex].value];//parent object of the tether
+	if(!moon.hasOwnProperty("atmosphere") || !moon.atmosphere.hasOwnProperty("ceiling")){
+		moon.atmosphere.ceiling = 0;
+	};
 	var warnings = "";//message the user about malformed input
 	var gnum = function(field){//form parser
 		return Number(form[field].value);
@@ -444,19 +447,27 @@ tether.dockedEnergy =
 		newToolTip.appendChild(textNode);
 		container.appendChild(newToolTip);
 	};
-	var svg_planet = document.createElementNS(svgNS,"circle");
+	var svg_planet = document.createElementNS(svgNS,"g");
+	var svg_planet_main = document.createElementNS(svgNS,"circle");
+	var svg_planet_atmosphere = document.createElementNS(svgNS,"circle");
 
-	svg_planet.setAttributeNS(null,"cx",0);
-	svg_planet.setAttributeNS(null,"cy",0);
+	svg_planet_main.setAttributeNS(null,"cx",0);
+	svg_planet_main.setAttributeNS(null,"cy",0);
+	svg_planet_atmosphere.setAttributeNS(null,"cx",0);
+	svg_planet_atmosphere.setAttributeNS(null,"cy",0);
 	if(moon.hasOwnProperty("color")){
-		svg_planet.setAttributeNS(null,"fill",moon.color);
+		svg_planet_main.setAttributeNS(null,"fill",moon.color);
 	}
 	else{
-		svg_planet.setAttributeNS(null,"fill","grey");
+		svg_planet_main.setAttributeNS(null,"fill","grey");
 	};
-	svg_planet.setAttributeNS(null,"r",moon.radius/1000);
+	svg_planet_atmosphere.setAttributeNS(null,"fill","#E0E0E0");
+	svg_planet_main.setAttributeNS(null,"r",moon.radius/1000);
+	svg_planet_atmosphere.setAttributeNS(null,"r",(moon.radius + moon.atmosphere.ceiling)/1000);
+	addToolTip(svg_planet_main,selector.options[selector.selectedIndex].value.capitalize());
 
-	addToolTip(svg_planet,selector.options[selector.selectedIndex].value.capitalize());
+	svg_planet.appendChild(svg_planet_atmosphere);
+	svg_planet.appendChild(svg_planet_main);
 
 	var svg_scale = tether.Length/100000;
 
