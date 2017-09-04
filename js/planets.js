@@ -737,6 +737,7 @@ planets =
 	"density":1879.8,
 	"gravity":1.352,
 	"atmosphere":{
+		"ceiling":800000,
 		"composition":[
 			["N2",0.984],
 			["CH4",0.014],
