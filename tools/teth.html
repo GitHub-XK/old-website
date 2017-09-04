@@ -123,6 +123,7 @@ var tether = {//remember to also update the select list in the HTML
 function calc(){
 	moon = planets[selector.options[selector.selectedIndex].value];//parent object of the tether
 	if(!moon.hasOwnProperty("atmosphere") || !moon.atmosphere.hasOwnProperty("ceiling")){
+		moon.atmosphere = {};
 		moon.atmosphere.ceiling = 0;
 	};
 	var warnings = "";//message the user about malformed input
@@ -184,7 +185,9 @@ function calc(){
 		2*moon.gm
 		- (tether.foot + moon.radius) * tether.footVel * tether.footVel
 	);
-
+	tether.collisionAngle = Math.acos(
+		tether.angularVelocity*(tether.foot + moon.radius)*(tether.foot/moon.radius + 1)/tether.hitTheGround
+	);
 
 	if(form.overrideMaterial.checked){
 		tether.strength = (gnum("tensileStrength")/gnum("safety"))/gnum("density");
@@ -403,7 +406,12 @@ tether.dockedEnergy =
 		out("escape","Vinf after release from tether top " + myRound(tether.escapeFromTop,3) + " m/s (840 m/s is required to reach Earth from the Moon)");
 		out("newApoapsis","Apoapsis after release from tether: " + myRound(tether.newApoapsis/1000,3) + " km (negative means escape)");
 	};
-	out("hitTheGround","&nbsp;&nbsp;Velocity at surface after release from tether foot " + myRound(tether.hitTheGround,3) + " m/s");
+	if(tether.newPeriapsis < moon.radius){
+		out("hitTheGround","&nbsp;&nbsp;Velocity at surface after release from tether foot " + myRound(tether.hitTheGround,3) + " m/s (collision angle " + myRound(180*(Math.PI/2 -tether.collisionAngle)/Math.PI,2) + "º from vertical)");
+	}
+	else{
+		out("hitTheGround","");
+	};
 	out("lowRatio","foot-centre taper ratio: " + myRound(tether.lowRatio,3));
 	out("highRatio","centre-top taper ratio: " + myRound(tether.highRatio,3));
 	out("lowMass","Mass of lower tether: "
@@ -471,14 +479,16 @@ tether.dockedEnergy =
 
 	var svg_scale = tether.Length/100000;
 
-	svg_tether = document.createElementNS(svgNS,"line");
-	svg_tether.setAttributeNS(null,"x1",(moon.radius + tether.foot)/1000);
-	svg_tether.setAttributeNS(null,"y1",0);
-	svg_tether.setAttributeNS(null,"x2",(moon.radius + tether.top)/1000);
-	svg_tether.setAttributeNS(null,"y2",0);
-	svg_tether.setAttributeNS(null,"stroke","black");
-	svg_tether.setAttributeNS(null,"stroke-linecap","butt");
-	svg_tether.setAttributeNS(null,"stroke-width",svg_scale);
+	svg_tether = document.createElementNS(svgNS,"g");
+	var svg_tether_main = document.createElementNS(svgNS,"line");
+	svg_tether_main.setAttributeNS(null,"x1",(moon.radius + tether.foot)/1000);
+	svg_tether_main.setAttributeNS(null,"y1",0);
+	svg_tether_main.setAttributeNS(null,"x2",(moon.radius + tether.top)/1000);
+	svg_tether_main.setAttributeNS(null,"y2",0);
+	svg_tether_main.setAttributeNS(null,"stroke","black");
+	svg_tether_main.setAttributeNS(null,"stroke-linecap","butt");
+	svg_tether_main.setAttributeNS(null,"stroke-width",svg_scale);
+	svg_tether.appendChild(svg_tether_main);
 
 	marker_container = document.createElementNS(svgNS,"g");
 	text_marker_container = document.createElementNS(svgNS,"g");
@@ -547,8 +557,99 @@ tether.dockedEnergy =
 	descent_trajectory.setAttributeNS(null,"fill","none");
 	descent_trajectory.setAttributeNS(null,"stroke-width",svg_scale/3);
 	descent_trajectory.setAttributeNS(null,"stroke-dasharray",svg_scale/2);
+	if(tether.newPeriapsis < moon.radius){
+		var collision_point = document.createElementNS(svgNS,"circle");
+		var angle = Math.asin(
+			(2*(tether.foot + moon.radius)*tether.newPeriapsis - moon.radius*(tether.foot + moon.radius + tether.newPeriapsis))
+			/(moon.radius*(tether.foot + moon.radius - tether.newPeriapsis))
+		) + Math.PI/2;
+		var secondAngle = angle + tether.collisionAngle - Math.PI/2;
+		collision_point.setAttributeNS(null,"cx",Math.cos(angle)*moon.radius/1000);
+		collision_point.setAttributeNS(null,"cy",-Math.sin(angle)*moon.radius/1000);
+		collision_point.setAttributeNS(null,"fill","blue");
+		collision_point.setAttributeNS(null,"r",svg_scale);
+		var collision_line = document.createElementNS(svgNS,"line");
+		collision_line.setAttributeNS(null,"x1",0);
+		collision_line.setAttributeNS(null,"y1",0);
+		collision_line.setAttributeNS(null,"x2",Math.cos(angle)*moon.radius/1000);
+		collision_line.setAttributeNS(null,"y2",-Math.sin(angle)*moon.radius/1000);
+		collision_line.setAttributeNS(null,"fill","none");
+		collision_line.setAttributeNS(null,"stroke","pink");
+		collision_line.setAttributeNS(null,"stroke-linecap","round");
+		collision_line.setAttributeNS(null,"stroke-width",svg_scale/2);
+		var reference_line = document.createElementNS(svgNS,"line");
+		reference_line.setAttributeNS(null,"x1",0);
+		reference_line.setAttributeNS(null,"y1",0);
+		reference_line.setAttributeNS(null,"x2",moon.radius/1000);
+		reference_line.setAttributeNS(null,"y2",0);
+		reference_line.setAttributeNS(null,"fill","none");
+		reference_line.setAttributeNS(null,"stroke","pink");
+		reference_line.setAttributeNS(null,"stroke-linecap","round");
+		reference_line.setAttributeNS(null,"stroke-width",svg_scale/2);
+		var reference_angle = document.createElementNS(svgNS,"path");
+		reference_angle.setAttributeNS(null,"d","M "+moon.radius/3000+" 0A"+moon.radius/3000+" "+moon.radius/3000+" 0 0 0 "+Math.cos(angle)*moon.radius/3000+" "+Math.sin(angle)*moon.radius/-3000);
+		reference_angle.setAttributeNS(null,"fill","none");
+		reference_angle.setAttributeNS(null,"stroke","pink");
+		reference_angle.setAttributeNS(null,"stroke-linecap","round");
+		reference_angle.setAttributeNS(null,"stroke-width",svg_scale/2);
+		var collision_angle = document.createElementNS(svgNS,"path");
+		collision_angle.setAttributeNS(
+			null,"d",
+			"M "+2*Math.cos(angle)*moon.radius/3000+" "
+			+2*-Math.sin(angle)*moon.radius/3000+"A"
+			+moon.radius/3000+" "+moon.radius/3000+" 0 0 1 "
+			+(Math.cos(angle)*moon.radius/1000 - moon.radius*Math.cos(secondAngle)/3000)+" "
+			+(Math.sin(angle)*-moon.radius/1000 + moon.radius*Math.sin(secondAngle)/3000)
+		);
+		collision_angle.setAttributeNS(null,"fill","none");
+		collision_angle.setAttributeNS(null,"stroke","red");
+		collision_angle.setAttributeNS(null,"stroke-linecap","round");
+		collision_angle.setAttributeNS(null,"stroke-width",svg_scale/2);
+		var velocity_line = document.createElementNS(svgNS,"line");
+		velocity_line.setAttributeNS(null,"x1",Math.cos(angle)*moon.radius/1000 - moon.radius*Math.cos(secondAngle)/1000);
+		velocity_line.setAttributeNS(null,"y1",-Math.sin(angle)*moon.radius/1000 + moon.radius*Math.sin(secondAngle)/1000);
+		velocity_line.setAttributeNS(null,"x2",Math.cos(angle)*moon.radius/1000 + moon.radius*Math.cos(secondAngle)/1000);
+		velocity_line.setAttributeNS(null,"y2",-Math.sin(angle)*moon.radius/1000 - moon.radius*Math.sin(secondAngle)/1000);
+		velocity_line.setAttributeNS(null,"fill","none");
+		velocity_line.setAttributeNS(null,"stroke","red");
+		velocity_line.setAttributeNS(null,"stroke-linecap","round");
+		velocity_line.setAttributeNS(null,"stroke-width",svg_scale/2);
+		addText(
+			text_marker_container,
+			myRound(180*angle/Math.PI,1) + "º",
+			Math.cos(angle/2)*moon.radius/2500,
+			-Math.sin(angle/2)*moon.radius/2500,
+			svg_scale*2.5,
+			"pink"
+		);
+		addText(
+			text_marker_container,
+			myRound(180*(Math.PI/2 -tether.collisionAngle)/Math.PI,1) + "º",
+			Math.cos(angle)*moon.radius/1000 - moon.radius*Math.cos((secondAngle + angle)/2)/1800,
+			-Math.sin(angle)*moon.radius/1000 + moon.radius*Math.sin((secondAngle + angle)/2)/1800,
+			svg_scale*2.5,
+			"red"
+		);
 
-	marker_container.appendChild(descent_trajectory);
+		marker_container.appendChild(collision_angle);
+		marker_container.appendChild(collision_line);
+		marker_container.appendChild(reference_line);
+		marker_container.appendChild(velocity_line);
+		marker_container.appendChild(reference_angle);
+		marker_container.appendChild(collision_point);
+	};
+
+	var anchor_trajectory = document.createElementNS(svgNS,"circle");
+	anchor_trajectory.setAttributeNS(null,"stroke","green");
+	anchor_trajectory.setAttributeNS(null,"fill","none");
+	anchor_trajectory.setAttributeNS(null,"cx",0);
+	anchor_trajectory.setAttributeNS(null,"cy",0);
+	anchor_trajectory.setAttributeNS(null,"r",(tether.centre + moon.radius)/1000);
+	anchor_trajectory.setAttributeNS(null,"stroke-width",svg_scale/3);
+	anchor_trajectory.setAttributeNS(null,"stroke-dasharray",svg_scale/2);
+
+	svg_tether.appendChild(descent_trajectory);
+	svg_tether.appendChild(anchor_trajectory);
 	marker_container.appendChild(foot_marker);
 	marker_container.appendChild(anchor_marker);
 	marker_container.appendChild(top_marker);
@@ -599,9 +700,9 @@ tether.dockedEnergy =
 
 	text_marker_container.appendChild(tether_cross_high);
 	illustration.appendChild(svg_tether);
+	illustration.appendChild(svg_planet);
 	illustration.appendChild(marker_container);
 	illustration.appendChild(text_marker_container);
-	illustration.appendChild(svg_planet);
 
 };
 var hardReload = function(){
