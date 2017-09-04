@@ -682,11 +682,16 @@ tether.dockedEnergy =
 		);
 	};
 	//construct path for tether width diagram
-	var lowerPath = "M" + (tether.foot + moon.radius)/1000 + " " + svg_scale*5 + "l" + (tether.centre - tether.foot)/1000 + " 0l0 " + svg_scale*5;
-	var upperPath = "M" + (tether.top  + moon.radius)/1000 + " " + svg_scale*5 + "l" + (tether.centre - tether.top )/1000 + " 0l0 " + svg_scale*5;
+	var tether_width_scale = Math.min(
+		Math.sqrt(tether.lowRatio)*svg_scale*4,
+		Math.sqrt(tether.highRatio)*svg_scale*4,
+		svg_scale*13
+	);
+	var lowerPath = "M" + (tether.foot + moon.radius)/1000 + " " + svg_scale*4.5 + "l" + (tether.centre - tether.foot)/1000 + " 0l0 " + tether_width_scale;
+	var upperPath = "M" + (tether.top  + moon.radius)/1000 + " " + svg_scale*4.5 + "l" + (tether.centre - tether.top )/1000 + " 0l0 " + tether_width_scale;
 	for(var i=1;i<lowCrosses.length;i++){
-		lowerPath += "l-" + (tether.centre - tether.foot)/(1000*lowCrosses.length) + " " + (Math.sqrt(1/lowCrosses[i]) -  Math.sqrt(1/lowCrosses[i-1]))*svg_scale*5;
-		upperPath += "l" + (tether.top - tether.centre)/(1000*highCrosses.length) + " " + (Math.sqrt(1/highCrosses[i]) -  Math.sqrt(1/highCrosses[i-1]))*svg_scale*5;
+		lowerPath += "l-" + (tether.centre - tether.foot)/(1000*lowCrosses.length) + " " + (Math.sqrt(1/lowCrosses[i]) -  Math.sqrt(1/lowCrosses[i-1]))*tether_width_scale;
+		upperPath += "l" + (tether.top - tether.centre)/(1000*highCrosses.length) + " " + (Math.sqrt(1/highCrosses[i]) -  Math.sqrt(1/highCrosses[i-1]))*tether_width_scale;
 	};
 	lowerPath += "l-" + (tether.centre - tether.foot)/(1000*lowCrosses.length) + " 0z";
 	upperPath += "l" + (tether.top - tether.centre)/(1000*highCrosses.length) + " 0z";
