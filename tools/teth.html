@@ -359,6 +359,10 @@ function calc(){
 		document.getElementById("releases").removeChild(document.getElementById("releases").lastChild);
 	};
 	for(var i=0;i<targets.length;i++){
+		if(Number.isNaN(targets[i].vinf)){
+			targets.splice(i,1);
+			continue;
+		};
 		targets[i].location = findRadiusFromVinf(targets[i].vinf,tether.angularVelocity);
 		var item = document.createElement("p");
 		item.innerHTML = targets[i].name.capitalize();
