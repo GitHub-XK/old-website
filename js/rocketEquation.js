@@ -18,8 +18,6 @@
 //depends on planets.js for data
 
 idIcon = 0;
-//A few values that are used a lot:
-g = 9.80665; //m/s^2
 
 //Common operations:
 rad = function(degrees){
@@ -33,12 +31,12 @@ toXYZ = function(long,lat){//transform coordinates from angular to cartesian
 };
 //main function:
 rocket = function(){
-	var ispcheck = document.getElementById("ispcheckboxRE").checked;
-	var just = 1;
-	if(ispcheck){just = g};
 	var exhaust = Number(document.getElementById("exhaustvelocityRE").value);
 	var massratio = Number(document.getElementById("massratioRE").value);
-	var result = Math.log(massratio) * exhaust * just;
+	var result = Math.log(massratio) * exhaust;
+	if(document.getElementById("ispcheckboxRE").checked){
+		result *= planets.earth.gravity;
+	};
 	result = Math.round(result*100)/100;
 	if(result === NaN){
 		document.getElementById("moreThan").innerHTML = "";
@@ -47,14 +45,14 @@ rocket = function(){
 	else{
 		document.getElementById("resultRE").innerHTML = "Delta-v: <b>" + result + " m/s</b>";
 		for(var i=0;i<comparissionTable.length;i++){
-			if(i != 0){
+			if(i){
 				document.getElementById("moreThan").innerHTML = "More than "+comparissionTable[i-1][1]+" ("+comparissionTable[i-1][0]+" m/s)";
 			};
 			if(comparissionTable[i][0] > result){
 				document.getElementById("lessThan").innerHTML = "Less than "+comparissionTable[i][1]+" ("+comparissionTable[i][0]+" m/s)";
 				i=comparissionTable.length;
 			}
-				else if(i === comparissionTable.length-1){
+			else if(i === comparissionTable.length-1){
 				document.getElementById("lessThan").innerHTML = "";
 			};
 		};
