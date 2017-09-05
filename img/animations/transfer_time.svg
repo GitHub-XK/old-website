@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="-120 -120 240 240">
+	<path stroke-width="0" fill="blue" stroke="none" d="M-67 0L-100 0a100 74.54 0 0 0 66.67 70.27 z" opacity="1">
+		<set attributeName="opacity" attributeType="XML" begin="0s;start.click+0s" fill="freeze" from="1" to="0"/>
+		<set attributeName="opacity" attributeType="XML" begin="1.5s;start.click+1.5s" fill="freeze" from="0" to="0.3"/>
+	</path>
+	<line stroke-width="1" stroke="black" x1="-66.67" y1="0" x2="-33.33" y2="70.27"/>
+	<line stroke-width="1" stroke="black" x1="-66.67" y1="0" x2="-100" y2="0"/>
+	<path stroke-width="0" fill="red" stroke="none" d="M0 0L-100 0a100 100 0 0 0 66.67 94.28 z" opacity="1">
+		<set attributeName="opacity" attributeType="XML" begin="0s;start.click+0s" fill="freeze" from="1" to="0"/>
+		<set attributeName="d" attributeType="XML" begin="0s;start.click+0s" fill="freeze" to="M0 0L-100 0a100 100 0 0 0 66.67 94.28 z"/>
+		<set attributeName="opacity" attributeType="XML" begin="7.8s;start.click+7.8s" fill="freeze" from="0" to="0.3"/>
+		<set attributeName="d" attributeType="XML" begin="8.8s;start.click+8.8s" fill="freeze" from="M0 0L-100 0a100 100 0 0 0 66.67 94.28 z" to="M-33.33 0L-100 0a100 100 0 0 0 66.67 94.28 z"/>
+		<set attributeName="d" attributeType="XML" begin="9.5s;start.click+9.5s" fill="freeze" from="M-33.33 0L-100 0a100 100 0 0 0 66.67 94.28 z" to="M-66.67 0L-100 0a100 100 0 0 0 66.67 94.28 z"/>
+		<animate attributeName="d" attributeType="XML" begin="10.5s;start.click+10.5s" dur="1s" fill="freeze" from="M-66.67 0L-100 0a100 100 0 0 0 66.67 94.28 z" to="M-67 0L-100 0a100 74.54 0 0 0 66.67 70.27 z"/>
+	</path>
+	<line stroke-width="1" stroke="black" x1="0" y1="0" x2="-100" y2="0">
+		<animateTransform
+			attributeName="transform"
+			attributeType="XML"
+			type="rotate"
+			from="0 0 0"
+			to="360 0 0"
+			begin="4.2s;start.click+4.2"
+			dur="2s"/>
+	</line>
+	<line stroke-width="1" stroke="black" x1="-33.33" y1="0" x2="-33.33" y2="94.28" opacity="1">
+		<set attributeName="opacity" attributeType="XML" begin="0s;start.click+0s" fill="freeze" from="1" to="0"/>
+		<set attributeName="y2" attributeType="XML" begin="0s;start.click+0s" fill="freeze" from="70.27" to="94.28"/>
+		<set attributeName="opacity" attributeType="XML" begin="6.5s;start.click+6.5s" fill="freeze" from="0" to="1"/>
+		<animate attributeName="y2" attributeType="XML" begin="10.5s;start.click+10.5s" dur="1s" fill="freeze" from="94.28" to="70.27"/>
+	</line>
+	<line stroke-width="1" stroke="black" x1="0" y1="0" x2="-33.33" y2="94.28" opacity="0">
+		<set attributeName="opacity" attributeType="XML" begin="7s;start.click+7s" fill="freeze" from="0" to="1"/>
+		<set attributeName="opacity" attributeType="XML" begin="8.8s;start.click+8.8s" fill="freeze" from="1" to="0"/>
+	</line>
+	<line stroke-width="1" stroke="black" x1="-66.67" y1="0" x2="-33.33" y2="94.28" opacity="1">
+		<set attributeName="opacity" attributeType="XML" begin="0s;start.click+0s" fill="freeze" from="1" to="0"/>
+		<set attributeName="y2" attributeType="XML" begin="0s;start.click+0s" dur="1s" fill="freeze" to="94.28"/>
+		<set attributeName="opacity" attributeType="XML" begin="7s;start.click+7s" fill="freeze" from="0" to="1"/>
+		<animate attributeName="y2" attributeType="XML" begin="10.5s;start.click+10.5s" dur="1s" fill="freeze" from="94.28" to="70.27"/>
+	</line>
+	<circle cx="0" cy="0" r="3" fill="black"/>
+	<circle cx="-66.67" cy="0" r="5" fill="blue"/>
+	<path stroke-width="2" fill="none" stroke="black" d="M-100 0a100 74.54 0 0 0 200 0a100 74.54 0 0 0 -200 0">
+		<animate attributeName="d" attributeType="XML" begin="3s;start.click+3s" dur="1s" fill="freeze" from="M-100 0a100 74.54 0 0 0 200 0a100 74.54 0 0 0 -200 0" to="M-100 0a100 100 0 0 0 200 0a100 100 0 0 0 -200 0"/>
+		<animate attributeName="d" attributeType="XML" begin="10.5s;start.click+10.5s" dur="1s" fill="freeze" from="M-100 0a100 100 0 0 0 200 0a100 100 0 0 0 -200 0" to="M-100 0a100 74.54 0 0 0 200 0a100 74.54 0 0 0 -200 0"/>
+	</path>
+	<g id="start">
+		<rect x="-100" y="-100" width="50" height="20" fill="#00FF00" stroke="blue">
+			<set attributeName="fill" attributeType="XML" begin="mouseover" to="#00A000"/>
+			<set attributeName="fill" attributeType="XML" begin="mouseout" to="#00D000"/>
+		</rect>
+		<text pointer-events="none" x="-98" y="-85" fill="blue" font-size="12">Restart</text>
+		<set attributeName="opacity" attributeType="XML" begin="0s;start.click+0s" fill="freeze" from="1" to="0"/>
+		<set attributeName="opacity" attributeType="XML" begin="12s;start.click+12s" fill="freeze" from="0" to="1"/>
+	</g>
+</svg>
