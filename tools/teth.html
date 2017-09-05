@@ -87,6 +87,9 @@ String.prototype.capitalize = function(){
 						continue;
 					};
 				};
+				if(!planets[planet].hasOwnProperty("gravity")){
+					planets[planet].gravity = planets[planet].gm/Math.pow(planets[planet].radius,2);
+				};
 				if(!planets[planet].orbit.hasOwnProperty("speed") && planets[planet].orbit.hasOwnProperty("parent")){
 					planets[planet].orbit.speed = Math.sqrt(planets[planets[planet].orbit.parent].gm/planets[planet].orbit.semiMajor);
 				};
