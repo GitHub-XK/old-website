@@ -3,6 +3,6 @@
 <p id="{{rss.guid | prepend: 'item' }}" class="atom">
 	<span class="datetime">{{rss.pubDate}}</span>
 	<span class="title"><a href="{{rss.link}}">{{rss.title}}</a></span>
-	<span class="description">{{rss.content | xml_escape}}</span>
+	<span class="description">{{rss.content}}</span>
 </p>
 {% endfor %}
