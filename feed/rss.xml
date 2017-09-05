@@ -18,7 +18,7 @@ layout: null
 		<item>
 			<title>{{rss.title}}</title>
 			<link>{{rss.link}}</link>
-			<description>{{rss.content | xml_escape}}</description>
+			<description><![CDATA[{{rss.content}}]]></description>
 			<pubDate>{{rss.pubDate | append: ' 00:00:00 CST' }}</pubDate>
 			<guid isPermaLink="false">{{rss.guid | prepend: 'item' }}</guid>
 		</item>
