@@ -1,0 +1,3 @@
+[submodule "moonwards-colony-files"]
+	path = moonwards-colony-files
+	url = https://github.com/briligg/moonwards-colony-files
