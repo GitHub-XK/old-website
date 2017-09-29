@@ -178,7 +178,7 @@ div .gallery
 
 .columnSet
   +display(flex)
-  +flex-flow(row nowrap)
+  +flex-flow(column nowrap)
   +justify-content(center)
   +align-items(stretch)
   width: 90%
@@ -192,8 +192,6 @@ div .gallery
     background-color: $innerBkgd
   article:nth-child(0n+3)
     background-color: $thirdBkgd
-  @media only screen and (max-width: 1000px)
-    +flex-flow(column nowrap)
 
 .column
   +flex(1 1 30%)
