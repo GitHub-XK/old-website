@@ -19,6 +19,8 @@ planets =
 	"type":"terrestrial planet",
 	"mass":3.3011e23,
 	"gm":2.2032e13,
+	"gravity":3.7,
+	"density":5427,
 	"radius":2439700,
 	"color":"#1a1a1a",
 	"atmosphere":false,
@@ -100,7 +102,7 @@ planets =
 },
 "earth":{
 	"type":"terrestrial planet",
-	"mass":7.342e24,
+	"mass":5.97237e24,
 	"gm":3.986004418e14,
 	"gravity":9.807,
 	"radius":6371000,
@@ -565,6 +567,8 @@ planets =
 	"type":"moon",
 	"radius":2410.3e3,
 	"mass":1.075938e23,
+	"density":1834,
+	"gravity":1.235,
 	"orbit":{
 		"semiMajor":1882700000,
 		"period":1441931.18976,

@@ -99,7 +99,7 @@
 },
 "earth":{
 	"type":"terrestrial planet",
-	"mass":7.342e24,
+	"mass":5.97237e24,
 	"gm":3.986004418e14,
 	"gravity":9.807,
 	"radius":6371000,

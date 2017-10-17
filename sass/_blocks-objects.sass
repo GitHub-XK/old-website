@@ -178,7 +178,7 @@ div .gallery
 
 .columnSet
   +display(flex)
-  +flex-flow(row nowrap)
+  +flex-flow(column nowrap)
   +justify-content(center)
   +align-items(stretch)
   width: 90%
@@ -186,12 +186,12 @@ div .gallery
   padding: 0
   background-color: rgba(0, 0, 0, 0.6)
   border-bottom: 3px solid black
-  article:nth-child(odd)
+  article:nth-child(0n+1)
     background-color: $outerBkgd
-  article:nth-child(even)
+  article:nth-child(0n+2)
     background-color: $innerBkgd
-  @media only screen and (max-width: 1000px)
-    +flex-flow(column nowrap)
+  article:nth-child(0n+3)
+    background-color: $thirdBkgd
 
 .column
   +flex(1 1 30%)
@@ -200,6 +200,8 @@ div .gallery
   padding: 15px
 
 .spanAll
+  box-sizing: border-box
   width: 100%
   margin: 0
   padding: 15px
+  background-color: $tabBkgd
