@@ -49,7 +49,7 @@
       <p>Each launch skyhook is paired to a surface skyhook with a matching orbit, offset by 20&deg; or so, slightly inclined to each other. They are in orbital resonance, usually with a ratio of 7:1. For instance, the Venus surface skyhook orbits once for each 7 orbits of the launch skyhook. So, at any given altitude, the launch skyhook is moving 7 times the speed of the surface skyhook. </p>
       <p>The upper tether of a launch skyhook masses 10% to 20% less than the upper tether of a skyhook like the original Gagarin skyhook, that combines both surface and launch duties. For interplanetary skyhooks, upper tethers are by far the heaviest, as they bear heavy payloads and have high accelerations at their tips. The cable mass savings of building paired skyhooks remains significant even though there are 4 tethers instead of 2, and the extra tethers add very useful capacity.</p>
       <p>The savings are multiplied by handling Chukwas entirely on the surface skyhook. The upper tethers of these skyhooks are much shorter, with just enough range to get a Chukwa to the next hop on their trip. If the 100 kt behemoths stick to that skyhook, and the launch skyhook handles ships massing no more than 30 kt, that cable can mass 30% of what it otherwise would. That's the cable that makes up the lion's share of the mass of all the cables.</p>
-      <p>But most of those savings get reinvested as extra carrying capacity on the foot platform of the launch skyhooks. As they are so short, the cable mass needed to carry each ton of payload is much less than a ton. And there is an imperative to position the center of gravity of the whole skyhook near the anchor station. If it isn't there, and instead is far out along the upper tether because that thing is so heavy, the whole orbit drops down and that is either really wasteful or a disaster that causes the whole thing to crash. However, that same great mass of the upper tether means it takes an awful lot of mass at the anchor station to move the center of gravity down within 50 or 100 km of it. </p>
+      <p>But most of those savings get reinvested as extra carrying capacity on the foot platform of the launch skyhooks. As they are so short, the cable mass needed to carry each ton of payload is much less than a ton. And there is an imperative to position the center of gravity of the whole skyhook near the center of mass. If it isn't there, and instead is far out along the upper tether because that thing is so heavy, the whole orbit drops down and that is either really wasteful or a disaster that causes the whole thing to crash. However, that same great mass of the upper tether means it takes an awful lot of mass at the anchor station to move the center of gravity down within 50 or 100 km of it. </p>
       <p>The efficient thing to do is to put a really heavy foot station on the bottom of the launch skyhook. Ton for ton, that moves the center of gravity many times more than putting more mass in the anchor. And since that is the best move anyhow, now we are free to have two stations on these skyhooks instead of one. Those foot stations are all within 100 km of the surface, a couple are only 20 km above it. There is plenty of mass in the budget to leave enough rock on the roof for good shielding, and still have the mass left over for a station that houses thousands of people plus all the bells and whistles for it to be an observation platform, beam power to the surface, and whatever else.</p>
 
     </details>
@@ -76,7 +76,8 @@
           <p>In the rows that show tether mass, this is the mass of just the CNT cable. Those numbers show the mass first in kilotons, and then in the brackets, as what multiple it is of the payload mass. Really the payload mass should be multiplied by 1.05 to account for the mass of the climber, the foot platform, and all the infrastructure on the tether for maintenance and power transmission. Also, some cable masses should be multiplied by 1.05 to account for the center of gravity not being at the anchor mass, but a little above or below it. These things aren't done for the sake of simplicity.</p>
           <p>These figures use a safety factor of 2. That factor accounts for what a tether needs to operate safely even despite wear and tear, manufacturing defects, and damage due to any micrometeoroid strikes. Safety factor of 2 means the taper ratio used is the square of what it would be if it was just barely enough to bear the loads on it. In that case, even if the cable's tensile strength was reduced by half, it would still be just strong enough to bear the weight on it. All skyhooks are made of an open weave of cables known as a <a href="http://www.tethers.com/Hoytether.html"> 'Hoytether'</a> weave, after Robert Hoyt of Tethers Unlimited. That design makes it easy for maintenance carts to weave in new cables when they detect a weakness on a cable. This may mean that a lower safety factor would be just fine. The mass of a tether changes drastically with a change in safety factor, so that would be a big help. Thus bear in mind that as in all things here, this number is estimated on the conservative side. </p>
         </details>
-        <table>
+
+        <table id="SINtable">
           <tr>
             <th><span style="color: rgba(80,80,0,0.1)">lolololololol</span></th>
             <th>Mercury<sup class="note tooltip" data-tooltip-content="#polar-equator">[?]</sup></th>
@@ -88,7 +89,11 @@
             <th>Titan</th>
           </tr>
           <tr>
-            <td>Surface Skyhook Foot, km</td>
+            <td style="font-weight: 600">Surface Skyhook</td>
+            <td colspan="7"></td>
+          </tr>
+          <tr>
+            <td>Foot, km</td>
             <td>20</td>
             <td>100</td>
             <td>100</td>
@@ -96,8 +101,9 @@
             <td>50<sup class="note tooltip" data-tooltip-content="#phobosFoot">[?]</sup></td>
             <td>20</td>
             <td>800<sup class="note tooltip" data-tooltip-content="#titanFoot">[?]</sup></td>
+          </tr>
           <tr>
-            <td>SS Anchor, km</td>
+            <td>Anchor, km</td>
             <td>10000</td>
             <td>7000</td>
             <td>6500</td>
@@ -107,7 +113,7 @@
             <td>10000</td>
           </tr>
           <tr>
-            <td>SS Tip, km</td>
+            <td>Tip, km</td>
             <td>45000</td>
             <td>15500</td>
             <td>14000</td>
@@ -117,8 +123,18 @@
             <td>20000</td>
           </tr>
           <tr>
-            <td>SS Lower Tether Mass, kt (xP)</td>
-            <td>15.5 (5.16)</td>
+            <td style="text-align: center"><i>Lower Tether</i></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td style="text-align: right">Mass, kt (xP)</td>
+            <td>31 (5.16)</td>
             <td>51.1 (17.0)</td>
             <td>54 (18.0)</td>
             <td>22.8 (1.14)</td>
@@ -127,8 +143,8 @@
             <td>77 (0.08)</td>
           </tr>
           <tr>
-            <td>SS Lower Tether Payload, kt</td>
-            <td>3</td>
+            <td style="text-align: right">Payload, kt</td>
+            <td>6</td>
             <td>3</td>
             <td>3</td>
             <td>20</td>
@@ -136,8 +152,8 @@
             <td>10</td>
             <td>100</td>
           </tr>
-          <tr>
-            <td>SS Foot Speed, m/s</td>
+          <tr style="text-align: right">
+            <td>Foot Speed, m/s</td>
             <td>263</td>
             <td>2352</td>
             <td>2798<sup class="note tooltip" data-tooltip-content="#footSpeed">[?]</sup></th></td>
@@ -147,7 +163,17 @@
             <td>227</td>
           </tr>
           <tr>
-            <td>SS Upper Tether Mass, kt (xP)</td>
+            <td style="text-align: center"><i>Upper Tether</i></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td style="text-align: right">Mass, kt (xP)</td>
             <td>249 (2.49)</td>
             <td>287 (2.87)</td>
             <td>296 (2.96)</td>
@@ -157,7 +183,7 @@
             <td>7.7 (0.077)</td>
           </tr>
           <tr>
-            <td>SS Upper Tether Payload, kt</td>
+            <td style="text-align: right">Payload, kt</td>
             <td>100</td>
             <td>100</td>
             <td>100</td>
@@ -167,7 +193,7 @@
             <td>100</td>
           </tr>
           <tr>
-            <td>SS Upper Tether V(inf), m/s</td>
+            <td style="text-align: right">V(inf), m/s</td>
             <td>4983<sup class="note tooltip" data-tooltip-content="#Merc-SS-Vinf">[?]</sup></td>
             <td>6142<sup class="note tooltip" data-tooltip-content="#Venus-SS-Vinf">[?]</sup></td>
             <td>6200<sup class="note tooltip" data-tooltip-content="#Earth-SS-Vinf">[?]</sup></td>
@@ -177,7 +203,7 @@
             <td>1227<sup class="note tooltip" data-tooltip-content="#Titan-SS-Vinf">[?]</sup></td>
           </tr>
           <tr>
-            <td>SS Total Mass, kt</td>
+            <td> Total Mass, kt</td>
             <td>152.5</td>
             <td>338.1</td>
             <td>350</td>
@@ -187,7 +213,11 @@
             <td>84.7</td>
           </tr>
           <tr>
-            <td>Launch Skyhook Foot, km</td>
+            <td style="font-weight: 600">Launch Skyhook</td>
+            <td colspan="7"></td>
+          </tr>
+          <tr>
+            <td>Foot, km</td>
             <td>50</td>
             <td>100</td>
             <td>100</td>
@@ -197,7 +227,7 @@
             <td>800</td>
           </tr>
           <tr>
-            <td>LS Anchor, km</td>
+            <td>Anchor, km</td>
             <td>1714</td>
             <td>1000</td>
             <td>1000</td>
@@ -207,7 +237,7 @@
             <td>2000</td>
           </tr>
           <tr>
-            <td>LS Tip, km</td>
+            <td>Tip, km</td>
             <td>10000</td>
             <td>6500</td>
             <td>7000</td>
@@ -217,47 +247,62 @@
             <td>20000</td>
           </tr>
           <tr>
-            <td>LS Lower Tether Mass, kt</td>
-            <td>135<sup class="note tooltip" data-tooltip-content="#ballast">[?]</sup>(0.47)</td>
-            <td>50 (0.25)</td>
-            <td>270(0.27)</td>
-            <td>11(0.11)</td>
-            <td>65 (0.13)</td>
-            <td>3.9 (0.04)</td>
-            <td>5.2 (0.05)</td>
+            <td style="text-align: center"><i>Lower Tether</i></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td>
           </tr>
           <tr>
-            <td>LS Lower Tether Payload, kt</td>
-            <td>50</td>
-            <td>200</td>
-            <td>1000</td>
-            <td>500</td>
-            <td>100</td>
-            <td>100</td>
-            <td>100</td>
+            <td style="text-align: right">Mass, kt</td>
+            <td>47 (0.47)</td> <!--mercury-->
+            <td>30 (0.25)</td><!--venus-->
+            <td>108(0.27)</td><!--earth-->
+            <td>11(0.11)</td><!--moon-->
+            <td>39 (0.13)</td><!--mars-->
+            <td>3.9 (0.04)</td><!--callisto-->
+            <td>5.2 (0.05)</td><!--titan-->
           </tr>
           <tr>
-            <td>LS Upper Tether Mass, kt</td>
-            <td>551<sup class="note tooltip" data-tooltip-content="#payloadDemand">[?]</sup>(5.51)</td>
-            <td>522 (17.4)</td>
-            <td>3493 (29.7)</td>
-            <td>606 (20.2)</td>
-            <td>2000 (20.0)</td>
-            <td>184 (6.13)</td>
-            <td>89.1(2.97)</td>
+            <td style="text-align: right">Foot Station Mass,<sup class="note tooltip" data-tooltip-content="#footStation">[?]</sup>  kt</td>
+            <td>90</td><!--mercury-->
+            <td>110</td><!--venus-->
+            <td></td><!--earth-->
+            <td></td><!--moon-->
+            <td></td><!--mars-->
+            <td></td><!--callisto-->
+            <td></td><!--titan-->
+          <tr>
+            <td style="text-align: right">Payload, kt</td>
+            <td>10</td><!--mercury-->
+            <td>10</td><!--venus-->
+            <td>20</td><!--earth-->
+            <td>100</td><!--moon-->
+            <td>300</td><!--mars-->
+            <td>100</td><!--callisto-->
+            <td>100</td><!--titan-->
           </tr>
           <tr>
-            <td>LS Upper Tether Payload, kt</td>
-            <td>100</td>
-            <td>30</td>
-            <td>60</td>
-            <td>30</td>
-            <td>100</td>
-            <td>30</td>
-            <td>30</td>
+            <td style="text-align: center"><i>Upper Tether</i></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td>
           </tr>
           <tr>
-            <td>LS Upper Tether V(inf), m/s</td>
+            <td style="text-align: right">Mass, kt</td>
+            <td>551<sup class="note tooltip" data-tooltip-content="#payloadDemand">[?]</sup>(5.51)</td><!--mercury-->
+            <td>522 (17.4)</td><!--venus-->
+            <td>3493 (29.7)</td><!--earth-->
+            <td>606 (20.2)</td><!--moon-->
+            <td>2000 (20.0)</td><!--mars-->
+            <td>184 (6.13)</td><!--callisto-->
+            <td>89.1(2.97)</td><!--titan-->
+          </tr>
+          <tr>
+            <td style="text-align: right">Payload, kt</td>
+            <td>100</td><!--mercury-->
+            <td>100</td><!--venus-->
+            <td>30</td><!--earth-->
+            <td>30</td><!--moon-->
+            <td>60</td><!--mars-->
+            <td>30</td><!--callisto-->
+            <td>100</td><!--titan-->
+          </tr>
+          <tr>
+            <td style="text-align: right">V(inf), m/s</td>
             <td>6635<sup class="note tooltip" data-tooltip-content="#Merc-LS-Vinf">[?]</sup></td>
             <td>9705<sup class="note tooltip" data-tooltip-content="#Venus-LS-Vinf">[?]</sup></td>
             <td>10878<sup class="note tooltip" data-tooltip-content="#Earth-LS-Vinf">[?]</sup></td>
@@ -267,25 +312,20 @@
             <td>5285<sup class="note tooltip" data-tooltip-content="#Titan-LS-Vinf">[?]</sup></td>
           </tr>
           <tr>
-            <td>LS Total Mass, kt</td>
-            <td>626</td>
-            <td>572</td>
-            <td>3763</td>
-            <td>617</td>
-            <td>2013</td>
-            <td>188</td>
-            <td>94.3</td>
+            <td>Total Mass, kt</td>
+            <td>626</td><!--mercury-->
+            <td>572</td><!--venus-->
+            <td>3601</td><!--earth-->
+            <td>617</td><!--moon-->
+            <td>2039</td><!--mars-->
+            <td>188</td><!--callisto-->
+            <td>94.3</td><!--titan-->
           </tr>
         </table>
         <br><br>
       <div class="tooltip_templates">
         <span id="polar-equator">
           The Mercury colony will be at the north pole, so the surface skyhook has a polar orbit. The launch skyhook needs to have an orbit inclined 7&deg; from the equator or it is rarely aligned for launches to other planets. So, ships coming and going are all going to have to deal with an 83&deg; plane changes when moving between skyhooks. Being able to do the plane change between two upper tethers should reduce the fuel needed compared to plane changes without that assistance.
-        </span>
-      </div>
-      <div class="tooltip_templates">
-        <span id="ballast">
-          This tether mass takes account of the inclusion of a heavy foot station built for ballast. It takes a while to assemble enough mass at the anchor to stabilize the skyhook's orbit close to it, at the correct altitude. Before that time, the mass of the lower tether and the foot is used to lower the center of gravity of the whole complex to the point needed so that the upper tether reaches the desired altitude.
         </span>
       </div>
       <div class="tooltip_templates">
@@ -316,6 +356,11 @@
       <div class="tooltip_templates">
         <span id="titanFoot">
           Titan's atmosphere is so dense (1.45 times Earth's at its surface), and its gravity so low (0.14 g, similar to the Moon), that it extends to a great height. Even at this altitude, the foot platform will experience measurable drag that will occasionally need to be corrected for. Vehicles from the surface headed for the foot platform will be able to use lift to get most of the way and require little fuel to cover the remaining distance.
+        </span>
+      </div>
+      <div class="tooltip_templates">
+        <span id="footStation">
+          To place the center of gravity of the launch skyhooks where it needs to be - at the anchor station - the most mass efficient method is to add mass at the foot. If this isn't done, the much greater mass of the upper tether puts the center of gravity inside that tether. A very heavy anchor station goes a long way to fixing this issue, but it isn't enough, and at any rate a solution is needed while that anchor mass be being accumulated. Making a cable capable of sustaining the heavy mass of a large foot station is cheap, it takes only a fraction of a ton for each ton of payload. And then a great facility can be created at the foot, that takes advantage of the proximity to the surface for a great view and reduced radiation shielding needs.
         </span>
       </div>
       <div class="tooltip_templates">
@@ -412,17 +457,30 @@
         <p>These skyhooks take over most of the Earth's long-distance telecoms services, and also provide a large fraction of all internet service. They are bases for servicing and launching of satellites, taking over those duties from the space stations. Small Hoppers stationed on them do orbital debris cleanup duty. They are observation platforms with a broad suite of instruments - telescopes across all wavelengths, radar, lidar, monitoring of the magnetosphere and radiation around Earth, gravimetry.</p>
     </details>
     <details>
-      <summary><h5>Horizontal Landing and Take-off, and Rejigging the Lunar Skyhooks</h5></summary>
+      <summary><h5>Horizontal Takeoff and Landing, and Rejigging the Lunar Skyhooks</h5></summary>
       <p>As shipping volumes increase, and construction at scale becomes widespread, new shuttles are scaled down from the size of recent generations. They can still haul up to 60 tons, but their engines are far smaller, and no longer nuclear. They have just enough thrust to overcome lunar gravity, but that capacity is only used in an emergency. Normally, their engines only fire to do the maneuvering needed to match vector and speed with skyhook foot platforms, then to line up the landing when returning to a runway.
       </p>
       <p> It becomes typical to launch a bunch of them in quick succession while the surface skyhook is in range, up to 50. Each one docks in the vertical stack of docking spaces that now extend up the foot of the skyhook. They are called Geese for the organized way they usually fly all in a row.
       </p>
+      <p>This works because a spaceport is built 35 km northeast of Lalande on a low mountain located there. Eight runways radiate from the terminal buried under the peak, each 2.5 km long. The landing gear on the shuttles is powered through electrical contact made with a rail down the middle of each runway, and with this power they are accelerated up the slope until they have a ballistic trajectory at take-off sufficient to reach the skyhook. This can be done every 10 seconds. On landing, contact is made with that same rail, and the energy harvested from magnetic braking is passed back into the system.
+      </p>
+      <p>So, it isn't exactly horizontal take-off and landing, more like 30&deg; takeoff and landing. The electric rail system imparts about 250 to 300 m/s to the launching spacecraft, and can do that over a wide range of vehicle masses.
+      </p>
+      <p>The big LNCs are converted to use these runways too. Their nuclear engines can bring them in on flat ground anywhere with no forward momentum, but at the spaceport they come in at 200 m/s or so and brake as they descend the slope to save fuel.
+      </p>
+      <p>Gagarin is moved to a higher orbit, at 7000 km, and all the polar skyhooks are raised to the same altitude to maintain their staggered orbital rhythm. The second equatorial skyhook is converted to the launcher skyhook. For this purpose its orbit is lowered to 1000 km, so it passes by Lalande 7 times for each time Gagarin passes by.</p>
+      <p>Over time, all the lunar skyhooks are converted from Zylon to CNT. The maintenance carts work on that as they are able. The 2nd equatorial skyhook has to be changed so much that is all done during it's conversion to the launch skyhook.
+      </p>
     </details>
     <details>
       <summary><h5>Great Sailing Ships</h5></summary>
+      The sunlight at Mercury is ten times as intense as at Earth, so a sail that catches that light and uses it to push a ship can gain or shed speed ten times faster. Building on experience gained when probes and small ships were sent to Mercury to test solar sails, truly giant sails are made and connected to a sort of tug ship. These tug ships attach to the Toss ships coming and going, and stay connected until they have imparted the speed they need to get to their destination in good time. Then they detach and tack back to Mercury. It is a delicate business, moving around those sails so they pull on vessels as desired, and never get tangled in anything.</p>
+      <p>The sail tugs almost never go beyond the orbit of Venus. They aren't needed that far out. </p>
     </details>
     <details>
       <summary><h5>Laser Propulsion</h5></summary>
+      <p>A laser system is built at Inukshuk that can be used with a special version of the solar sails (that can handle extremely intense light) to push small probes to relativistic speeds (speeds fast enough to be regarded as a fraction of the speed of light). A series of trials is done with it. Work is done on how to use the extensive infrastructure now spread across the solar system to deploy tools to keep lasers tightly focused on the sails longer. Tests using lenses orbiting several AU from Earth are done, to refocus the beam once the probe passes by. After a while, a second, and then a third laser is built and placed in orbits further from the sun. Schooners reposition the lasers between trials to align them such that they can fire on a probe once it passes their position.
+      </p>
     </details>
   </details>
   </article>
