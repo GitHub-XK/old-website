@@ -206,7 +206,7 @@ function calc(){
 	tether.lowAcceleration = moon.gm/Math.pow(moon.radius + tether.foot,2) - tether.footVel*tether.footVel/(moon.radius + tether.foot);
 	tether.highAcceleration = - moon.gm/Math.pow(moon.radius + tether.top,2) + tether.topVel*tether.topVel/(moon.radius + tether.top);
 
-	//accelertation = mu/r² - r * v_c²/r_c²
+	//acceleration = mu/r² - r * v_c²/r_c²
 	//integral = -mu/r - r²v_c²/(2r_c²)
 	//upper part formula = -mu/r_c - v_c²/2 + mu/x + x²v_c²/(2r_c²)
 	//upper taper formula = e^((-mu/r_c - v_c²/2 + mu/x + x²v_c²/(2r_c²))/strength)
