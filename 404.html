@@ -12,13 +12,20 @@ description: "Page Not Found"
 	<link rel="stylesheet" href="css/404css.nest.sass.css">
 </head>
 <body>
-	<a href="index.html" title="Home" class="plzNoHoverBackground">
-		<svg width="150" heigth="150">
-			<path d="M90 10A1 1 0 0 0 90 140A0.85 1 0 0 1 90 10" fill="grey"/>
-		</svg>
-	</a>
-	<h2>Page Not Found</h2>
-	<p>Sorry, but the page you were trying to view does not exist.</p>
+	{% include nav.html %}
+	<div style="margin: auto; width: 400px;">
+		<div style="width: 160px; float:right; margin-top: 3em">
+			<a href="index.html" title="Home" class="plzNoHoverBackground">
+				<svg width="150" heigth="150">
+					<path d="M90 10A1 1 0 0 0 90 140A0.85 1 0 0 1 90 10" fill="grey"/>
+				</svg>
+			</a>
+		</div>
+		<div style="width: 240px; float:left; margin-top: 4em">
+			<h2>Page Not Found</h2>
+			<p>Sorry, but the page you were trying to view does not exist.</p>
+		</div>
+	</div>
 </body>
 </html>
 <!-- IE needs 512+ bytes: http://blogs.msdn.com/b/ieinternals/archive/2010/08/19/http-error-pages-in-internet-explorer.aspx -->
