@@ -8,7 +8,7 @@
   <details id="earthEquatorialSpaceStation">
     <summary><h5 style="display: inline">Construction of the Earth Equatorial Space Station</h5></summary>
     <p>Because of the scale and nature of the work that happens on this station, it is built in an equatorial orbit. These orbits never pass through the South Atlantic Anomaly, so the radiation exposure of people on the station is a fraction of what crews on the ISS get. This architecture has been extensively explored by <a href="http://alglobus.net/">Al Globus et al.</a>. The station is the proving grounds for tele-operated robotic construction. Successful development of that and cost savings from reusable launch vehicles allows creation of a space station on a much grander scale than the current International Space Station. Progress in AI, tele-robotics, and in-situ lunar resource processing allow later materials to be obtained from the Moon.</p>
-    <details>
+    <details id="EESS-Includes">
       <summary>What the EESS includes</summary>
       <ul>
         <li>An area for on-orbit assembly of the ships that will go to the Moon (the Pod ships and the Lunar Nuclear Craft). This area is also the base for assembling the Station modules and components delivered from Earth. It is the first thing built - a hexagon of trusses all connected to a central module. </li>
@@ -25,12 +25,12 @@
       </ul>
     </details>
   </details>
-  <details>
+  <details id="podShips">
     <summary><h5><a href="machines2.html#PodShip">Pod Ships</a> start shuttling between Earth orbit and Lunar Orbit</h5></summary>
     <p>The Pod ships are operated remotely. They are capable of doing rendezvous and docking maneuvers on their own. Basically they are a nose with all the operating systems, a robotic arm, and a pair of solar panel wings, then a long truss with racks for the pods, and then the fuel tanks and engines on the far end.</p>
     <p>The pods are the space equivalent of shipping containers - standardized and mass-produced tubes with rounded ends covered in insulation and Whipple shielding, a sliding door, internal structures for storage, and connectors if items need power or a comms connection. A Pod ship can take 8 small pods or 4 long ones. Crew are transported in pods adapted for life support and basic accommodations. Some pods are  water tanks, returning mined water from the Moon to the EESS. Pod ships are designed for a maximum payload of 80 tons to lunar orbit when operations begin.
     </p>
-  <details>
+  <details id="podShipMissions">
       <summary>Pod Ship Operations and Early Missions</summary>
     <ul>
       <li>These ships have next gen hydrolox engines capable of many restarts. They get serviced between trips at the EESS.</li>
@@ -49,13 +49,13 @@
       Maintaining the orbit with this relationship to the terminator requires it be made to precess one revolution around the poles each year. Our estimate is that this requires a few meters per second of delta V each day, which fits easily into the fuel budget.
     </span>
   </div>
-  <details>
+  <details id="LunNucCraft">
     <summary><h5>Lunar Nuclear Craft (LNCs, pronounced 'links')</h5></summary>
     <p>These craft use nuclear thermal engines with a bipropellant design, known as a <a href="https://ntrs.nasa.gov/search.jsp?R=20170004744&hterms=lantr+nuclear+thermal&qs=N%3D0%26Ntk%3DAll%26Ntx%3Dmode%2Bmatchallany%26Ntt%3Dlantr%2Bnuclear%2Bthermal">LANTR design</a>. They get thrust by superheating hydrogen, and during launch and landing, can greatly augment that thrust by injecting oxygen into the engine nozzle, basically like an afterburner. They are designed for vertical landing and takeoff.
     </p>
     <p>The LNCs are similar in architecture to the Pod ships, including being self-piloting. The difference is their engines are nuclear, which means they include heavy shielding, and they don't have solar panels, as they draw their electrical power from the nuclear reactor as well. Their racks have space for up to 4 small pods or 2 large ones. Thanks to their bipropellant capability, they are able to launch and land about 20 tons of payload even before there is a tether reducing the delta V required, though it takes a lot more fuel to do so. Once the tether is in place, they are designed to move loads up to 40 tons to and from the tether foot.
     </p>
-    <details>
+    <details id="LNCOps">
       <summary>LNC Operations and Early Missions</summary>
       <ul>
         <li>Initially the LNCs help the surface rovers set up operations by providing supplemental power from their onboard reactors, acting as a comms link, and using their robotic arms</li>
@@ -66,7 +66,7 @@
       </ul>
   </details>
 </details>
-<details>
+<details id="Crossroads">
   <summary><h5><a href="https://www.moonwards.com/machines2.html#TetherTransport">Crossroads Skyhook</a> and Anchor Station Construction</h5></summary>
   <p>Once the superstructure for Crossroads is delivered, it is continuously occupied by crews of 8, who stay for 4 weeks at a time. Further deliveries by the Pod ships build up its capacity, and the regolith that the LNCs send up establish good shielding. Once there is enough shielding over key areas such as sleeping berths, crews begin to extend their stays. By the end of this phase a crew of 12 is always aboard, and people stay for up to a year at a time.
   </p>
@@ -74,7 +74,7 @@
   </p>
   <p>By the end of this phase, the lower tether is equipped with a foot platform that can berth a fully loaded LNC, a tip platform that can berth a fully loaded Pod ship, and climbers that can transfer the full payloads of both. This requires a total of 1000 tons of Zylon woven into a tubular mesh extending 5000 km downwards and another reaching 4500 km upwards, which can carry the load of the platforms, climbers, maintenance and motion control systems, berthed ships, and cargo, with a safety factor of 2. The foot platform is only 20 km above the lunar surface.</p>
   <p>The complete skyhook allows the LNCs to reach the foot platform using one fifth of the delta V needed to reach orbit, and the Pod ships to break lunar orbit on an Earth trajectory with no fuel use at all - they just let go of the top of the tether. The fuel thus saved allows the Pod ships to haul 100 tons instead of 80.</p>
-  <details>
+  <details id="SkyhookSysOps">
     <summary>Skyhook Systems and Operations</summary>
     <ul>
       <li>The climber cars run on <a href="https://www.nasa.gov/pdf/716070main_Mankins_2011_PhI_SPS_Alpha.pdf">power beamed as microwaves</a> from the anchor station and from the foot platform. Onboard flywheel energy storage allows them to go short distances without receiving external power. There are 10 waystations along both tethers, where cars can pass each other, and where microwave receivers and transmitters pass power from either end of the tether up or down. Such receivers and transmitters can be very light, though some need to be large to be effective. The large ones can be mostly on the anchor station, where their mass doesn't matter.<sup class="note tooltip" data-tooltip-content="#nukepower">[?]</sup> </li>
@@ -92,7 +92,7 @@
       An alternative is the climber cars run on nuclear power from a small reactor connected to Stirling engine generators. By putting the reactor in a separate car and running a power cable from there to the climber, the reactor can be kept a kilometer or more from the climber, allowing a shield with a smaller area to be used between the two. A shielded dock thus has to be made above the foot platform, so the climber can pass the reactor and reach its destination. A dock that is about 10 km from the anchor station is also needed, so the cone of shielded space is wide enough to cover the whole station, and anything that might stick out gets a weaker dose. Overall, the microwave beaming approach seems more flexible, more robust, and safer, as long as the beams can be kept well aligned despite oscillations due to actions on the tether. The transmitters would need to be able to rotate a small amount to keep receivers in their focus. Having flywheels to store energy as well thus is also interesting in that they can be used simultaneously to dampen oscillations. Energy harvested when climbers control descent by braking could also be used to spin up the flywheels. Perhaps calculations would show the flywheels would be too heavy to be a significant help, pending that it is just a thought.
     </span>
   </div>
-<details>
+<details id="FuelDepot">
   <summary><h5>EESS Fuel Depot and Reusable Upper Stages</h5></summary>
   <p>Once ice mining is in full swing, a plan to refuel the upper stages of rockets going to the EESS is initiated. Once complete, all the rockets delivering to the EESS are almost fully reusable - both stages and the capsule or cargo pod<sup class="note tooltip" data-tooltip-content="#BFR">[?]</sup>. This architecture would allow launch prices to drop by 80% to 90% from current levels, a critical goal if the high flight-rate lunar settlement requires is to be maintained. </p>
   <div class="tooltip_templates">
