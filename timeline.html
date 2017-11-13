@@ -27,9 +27,19 @@ intro: What matters is understanding what <i>needs</i> to happen, and what <i>ca
 <script>
 var linkedID = document.location.hash;
 if(linkedID != ""){
-	var detailsToExpand = document.getElementById(linkedID.slice(1)).getElementsByTagName('details');
-	for(var i=0;i<detailsToExpand.length;i++){
-		detailsToExpand[i].open = true;
+	var detailsToExpand = document.getElementById(linkedID.slice(1)).open = true;
+};
+var detailsToLink = document.getElementsByTagName("article");//this assumes we want all details to be linkable. Add a class in the future instead
+for(var i=0;i<detailsToLink.length;i++){
+	if(detailsToLink[i].id){
+		var detailsSummary = detailsToLink[i].getElementsByTagName('summary')[0];
+		var linkingNode = document.createElement("span");
+		linkingNode.innerHTML = " &#x1f517;";
+		linkingNode.setAttribute("class","permalink");
+		linkingNode.title = "permalink";
+		var linkingLocation = document.location.pathname + "#" + detailsToLink[i].id;
+		linkingNode.setAttribute("onclick","var linkingText = document.createElement(\"textarea\");linkingText.setAttribute(\"rows\",\"1\");linkingText.setAttribute(\"cols\",\"" + linkingLocation.length + "\");linkingText.value = \"" + linkingLocation + "\";this.appendChild(linkingText);this.setAttribute(\"onclick\",\"\")");
+		detailsSummary.appendChild(linkingNode);
 	};
 };
 </script>
