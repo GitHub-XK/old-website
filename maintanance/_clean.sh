@@ -2,6 +2,10 @@
 
 # _clean.sh repo_dir [-p list_to_protect] [-d list_to_delete]
 
+if [[ $# -eq 0 ]] ; then
+    echo "_clean.sh repo_dir [-p list_to_protect] [-d list_to_delete]"
+    exit 0
+fi
 
 repo=$1
 CWD=`pwd`
@@ -40,12 +44,12 @@ grep -v -F -x -f $CWD/cl.monw_current.lst $CWD/cl.monw_allfiles.lst | LC_COLLATE
 
 if [ ! -z $toprotect ]; then
     mv $CWD/cl.todelete.lst $CWD/cl.todelete.lst_tmp
-    grep -v -G -x -f $CWD/$toprotect $CWD/cl.todelete.lst > $CWD/cl.todelete.lst
+    grep -v -G -x -f $CWD/$toprotect $CWD/cl.todelete.lst_tmp > $CWD/cl.todelete.lst
 fi
 
 if [ ! -z $todelete ]; then
     mv $CWD/cl.todelete.lst $CWD/cl.todelete.lst_tmp
-    grep -G -x -f $CWD/$todelete $dfile > $CWD/cl.todelete.lst
+    grep -G -x -f $CWD/$todelete $CWD/cl.todelete.lst_tmp > $CWD/cl.todelete.lst
 fi
 
 cat $CWD/cl.blobs $CWD/cl.todelete.lst | LC_COLLATE=C  sort -u | awk 'BEGIN{FS="  --  "}; !/  --  / {file=$0;fresh=1}; /  --  /{if (file==$1){ print $2; fresh=0;}else {if(fresh==1){print "blob missing", file, " ", $1;}}}' > $CWD/cl.bids
