@@ -2,6 +2,10 @@
 
 # _clean.sh repo_dir [-p list_to_protect] [-d list_to_delete]
 
+if [[ $# -eq 0 ]] ; then
+    echo "_clean.sh repo_dir [-p list_to_protect] [-d list_to_delete]"
+    exit 0
+fi
 
 repo=$1
 CWD=`pwd`
