@@ -24,3 +24,12 @@ intro: What matters is understanding what <i>needs</i> to happen, and what <i>ca
 {% include_relative _includes/timeline/ph4-dev.html%}
 {% include_relative _includes/timeline/ph4-soceco.html%}
 {% include_relative _includes/timeline/birthOfWorlds.html%}
+<script>
+var linkedID = document.location.hash;
+if(linkedID != ""){
+	var detailsToExpand = document.getElementById(linkedID.slice(1)).getElementsByTagName('details');
+	for(var i=0;i<detailsToExpand.length;i++){
+		detailsToExpand[i].open = true;
+	};
+};
+</script>
