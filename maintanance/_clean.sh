@@ -36,18 +36,17 @@ esac
 done
 
 
-grep -v -F -x -f $CWD/cl.monw_current.lst $CWD/cl.monw_allfiles.lst | LC_COLLATE=C  sort -u > $CWD/cl.not_in_current_rev
+grep -v -F -x -f $CWD/cl.monw_current.lst $CWD/cl.monw_allfiles.lst | LC_COLLATE=C  sort -u > $CWD/cl.todelete.lst
 
 if [ ! -z $toprotect ]; then
-    grep -v -G -x -f $CWD/$toprotect $CWD/cl.not_in_current_rev > $CWD/cl.todelete.lst_tmp
+    mv $CWD/cl.todelete.lst $CWD/cl.todelete.lst_tmp
+    grep -v -G -x -f $CWD/$toprotect $CWD/cl.todelete.lst > $CWD/cl.todelete.lst
 fi
 
 if [ ! -z $todelete ]; then
-    if [ -f $CWD/cl.todelete.lst_tmp ]; then dfile="$CWD/cl.todelete.lst_tmp"; else dfile="$CWD/cl.not_in_current_rev"; fi
+    mv $CWD/cl.todelete.lst $CWD/cl.todelete.lst_tmp
     grep -G -x -f $CWD/$todelete $dfile > $CWD/cl.todelete.lst
 fi
-
-rm -f $CWD/cl.todelete.lst_tmp
 
 cat $CWD/cl.blobs $CWD/cl.todelete.lst | LC_COLLATE=C  sort -u | awk 'BEGIN{FS="  --  "}; !/  --  / {file=$0;fresh=1}; /  --  /{if (file==$1){ print $2; fresh=0;}else {if(fresh==1){print "blob missing", file, " ", $1;}}}' > $CWD/cl.bids
 
