@@ -1,0 +1,30 @@
+Convinient sequence probably is somehing like that:
+
+Take look for presence of old and big stuff
+
+#./show_big_and_old.sh
+
+Take more preciese look at which files present in the history and not present in the current revision
+
+#./_clean.sh ..
+
+take look at cl.todelete.lst file which is generated
+Edit _to_protect and _to_delete file lists and run the cleanup script again
+take look at cl.todelete.lst file again, for the presence of unwanted stuff.
+
+_to_protect and _to_delete files are --basic-regexp patterns for grep which does the sorting out job in the case.
+there basically two entries .* for anything, or full path/name. basically bash glob syntax except of '*' needs to be '.*' and the dot have meaning of any single symbol.
+
+after to delete list is satisfying, actual cleanup might happen.
+
+#java -jar ./bfg-1.12.15.jar -bi ./cl.bids ..
+#git reflog expire --expire=now --all && git gc --prune=now --aggressive
+
+
+BFG repo cleaner here https://rtyley.github.io/bfg-repo-cleaner/
+
+Backup is probably a necessity in all the changing process.
+bfg asks to make bare copy of repository but it works without that.
+
+Commands considered to be executed from scripts directory and assumed that bfg is present in the same directory.
+
