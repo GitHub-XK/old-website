@@ -27,9 +27,9 @@ intro: What matters is understanding what <i>needs</i> to happen, and what <i>ca
 <script>
 var linkedID = document.location.hash;
 if(linkedID != ""){
-	var detailsToExpand = document.getElementById(linkedID.slice(1)).open = true;
+	document.getElementById(linkedID.slice(1)).open = true;
 };
-var detailsToLink = document.getElementsByTagName("article");//this assumes we want all details to be linkable. Add a class in the future instead
+var detailsToLink = document.getElementsByTagName("details");//this assumes we want all details to be linkable. Add a class in the future instead
 for(var i=0;i<detailsToLink.length;i++){
 	if(detailsToLink[i].id){
 		var detailsSummary = detailsToLink[i].getElementsByTagName('summary')[0];
