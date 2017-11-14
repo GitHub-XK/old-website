@@ -3,5 +3,11 @@ blenderstuff/.*
 blend4web/.*
 .*[.]blend[.]zip
 .*[.]blend
-blend4web/Lalande/LalandeSmall.blend1
+trophy-jekyll-master/.*
+webplayer/.*
+whut.html
+why.html
+docs/.*
+archive/.*
+_site/.*
 
