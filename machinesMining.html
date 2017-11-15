@@ -1,8 +1,15 @@
+---
+layout: content
+title: Lunar Mining and Refining
+description: "Solar thermal power plants, nuclear reactors, solar power beamed from space, photovoltaic masts at the poles, and how flexible flywheels can store energy. Technologies that take advantage of the strong constant sun, lunar vacuum, and low gravity for greatly enhanced performance."
+headline: "Lunar Mining and Refining"
+intro: "The special challenges and opportunities of turning regolith into metals, glass materials, oxygen, and more."
+---
+
 <div class="container" id="mining">
 	<section>
 		<div class="outerDiv">
 			<div class="innerDiv">
-				<h1>Extraction: from Ore to Product</h1>
 				<p>The Moon has a marked tendency to either have lots of something, or none at all of something. Once we are able to really dig around there is reason to hope we will find some stuff there is no sign of on the surface. For the first years, it is prudent to assume what you have to work with is only what has been proven to be there.
 				</p>
 				<p>That list is adequate for a lot of things, but some ingenuity will be required to turn it into all we need for survival. Every way we process ore must be reinvented to suit the Moon. The chemicals most used in batch reactions to refine out certain products are entirely absent from the Moon. If water and other volatiles extracted from the poles (such as carbon dioxide and ammonia) are used in chemical processing, that reduces the amount available for a range of other essential uses - fuel, life support and ecosystem development, and as ingredients of important materials. Production sufficient to satisfy local needs will take time, and they will remain precious for much longer. If alternate practices can be developed that reduce the need to use them in refining and chemicals production, supply can go to uses where there is no substitute.
@@ -42,20 +49,17 @@
 <div class="container" id="Minerals">
   {% include_relative _includes/machines/mining/Minerals.html %}
 </div>
-
-
-</div>
-<div class="container" id="solarFurnace">
+<div class="container" id="SolarFurnace">
 	{% include_relative _includes/machines/mining/solarFurnace.html%}
 </div>
-<div class="container" id="solarReactor">
+<div class="container" id="SolarReactor">
 	{% include_relative _includes/machines/mining/solarReactor.html%}
 </div>
 </div>
-<div class="container" id="moltenElectrolysis">
+<div class="container" id="MoltenElectrolysis">
 	{% include_relative _includes/machines/mining/moltenElectrolysis.html%}
 </div>
-<div class="container" id="dustRoaster">
+<div class="container" id="DustRoaster">
 	{% include_relative _includes/machines/mining/dustRoaster.html%}
 </div>
 <div class="container" id="Glass">
@@ -64,3 +68,14 @@
 <div class="container" id="Excavation">
 	{% include_relative _includes/machines/mining/Excavation.html%}
 </div>
+
+{% comment %}
+machinesMining.html
+	Minerals.html
+	solarFurnace.html
+	solarReactor.html
+	moltenElectrolysis.html
+	dustRoaster.html
+	Glass.html
+	Excavation.html
+{% endcomment %}

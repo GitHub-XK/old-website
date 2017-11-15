@@ -1,8 +1,14 @@
-<div class="container" id="power">
+---
+layout: content
+title: Lunar Machines for Power
+description: "Solar thermal power plants, nuclear reactors, solar power beamed from space, photovoltaic masts at the poles, and how flexible flywheels can store energy. Technologies that take advantage of the strong constant sun, lunar vacuum, and low gravity for greatly enhanced performance."
+headline: "Power Infrastructure"
+intro: "Technologies that take advantage of the strong constant sun, lunar vacuum, and low gravity for greatly enhanced performance"
+---
+<div class="container">
 	<section>
 		<div class="outerDiv">
 			<div class="innerDiv">
-				<h1>Power Infrastructure</h1>
 				<p>Four power sources make sense on the Moon, three of which are variants on solar power. There's photovoltaic solar cells directly changing sunlight into electricity. That makes the most sense at the lunar poles, where there are places with sun most of the time. There's solar thermal power, where the heat of the sun is used to drive turbines or Stirling engines. That makes sense when it can be combined with other processes for producing materials, such as for glass production. A good design at large scale can continue to produce power at a pretty steady level all through the night, that is the purpose of the STeMP units. There's space-based solar power, where photovoltaics are placed in orbits that keep them in sunlight all the time, and then that power is beamed as microwaves to the surface. This is an excellent approach once there is a bit more infrastructure, and is the largest source of power on the Moon for some time. Then there is nuclear power. Nuclear reactors are the most versatile and reliable power source and therefore always have a place.
 				</p>
 				<p>Anywhere where there is new development far from existing infrastructure, there is a logical order in which to deploy the different power sources. Power from the reactors of the nuclear shuttles can be had immediately upon landing anywhere, day or night. A shuttle can also be fitted with a solar wing module if it is taking machinery out during the day. That powers machinery while initial setup is done. A solar panel and nuclear mix is also the best option after the shuttle leaves. The solar panels provide many times more watts per kilogram of their mass than a mobile nuclear reactor, but the reactor will power things through the night. (There are currently no power storage options that will provide consistent power for two weeks of night and have decent durability without massing more than a mobile reactor.) For best productivity in that configuration, activities that draw less power are best organized to happen during darkness. Once there are enough skyhooks set up with extensive solar power wings, part way through Phase 2, the next thing is to erect a rectenna unit that receives power beamed from those panels as microwaves. Rectennas are simple and light, that's pretty fast to do even though they are large. Finally, much later, Stirling generators can be connected to the units producing molten rock in bulk for construction and industry.
@@ -11,9 +17,27 @@
 		</div>
 	</section>
 </div>
-
+<div class="container" id="SolarThermal">
 {% include_relative _includes/machines/power/SolarThermal.html %}
+</div>
+<div class="container" id="NuclearReactors">
 {% include_relative _includes/machines/power/Nuclear.html %}
+</div>
+<div class="container" id="SolarPV">
 {% include_relative _includes/machines/power/SolarPV.html %}
+</div>
+<div class="container" id="SpaceSolar">
 {% include_relative _includes/machines/power/SpaceSolar.html%}
+</div>
+<div class="container" id="Flywheels">
 {% include_relative _includes/machines/power/flywheels.html %}
+</div>
+
+{% comment %}
+machinesPower.html
+	SolarThermal.html
+	Nuclear.html
+	SolarPV.html
+	SpaceSolar.html
+	flywheels.html
+{% endcomment %}
