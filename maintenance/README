@@ -1,0 +1,41 @@
+These files allow you to reduce the size of the repo if it has gotten too large.
+
+The convenient steps probably are something like this:
+
+0. Back up the whole repo to a safe place in case the following goes wrong.
+
+1. Open a terminal and go to the maintenance directory of the repo
+
+2. Run a search for old, big files, by entering
+
+    ./show_big_and_old.sh
+
+3. Search more narrowly for files present in the history but not present in the current revision by entering
+
+    ./_clean.sh ..
+
+4. Open the cl.todelete.lst file which is generated to see a list of everything found by the above tools. Go through it and decide what to eliminate and what to keep.
+
+5. Create a list of the files to be removed in the _to_delete.lst file, and if you wish, protect specific files in the _to_protect.lst file. Note the syntax options in the example list in the pre-existing _todelete.lst:
+ - Delete everything in a directory, including all sub-directories, by putting the wild card symbol of a period and an asterisk after the slash: forum/.*
+ - Delete all files terminating in a certain suffix by putting that same wild card symbol in front of it, but you must put square brackets around any periods: .*[.]blend[.]zip
+ - An example of a use for the _to_protect.lst is if you want to keep one .blend file, but delete the rest. Just add the name of that file in that list.
+ - Any other bash regular expression syntax for grep will also work
+
+6. Optionally, do steps 2, 3, and 4 again. This can be helpful if there is a lot of stuff to clean out and it's hard to go through the list well. What is already in the _to_delete.lst file won't be included this time, allowing you to work with a shorter list.
+Once you are satisfied with the delete list, start cleanup
+
+7. If you do not have BFG Repo Cleaner, get it here: https://rtyley.github.io/bfg-repo-cleaner/
+It is a repository clean-up utility written by Roberto Tyley. Download it and move it to the maintenance folder.
+
+8. Run BFG Repo Cleaner with the following command:
+
+    java -jar ./bfg-1.12.15.jar -bi ./cl.bids ..
+
+9. Once it has finished, it will show a report, and prompt you to enter the following command:
+
+    git reflog expire --expire=now --all && git gc --prune=now --aggressive
+
+10. You can roughly check the new size of the repo by right-clicking on the .git folder in the repo folder. (It is usually a hidden folder so you might have to adjust your settings to see it.) BFG Repo Cleaner also generates a report and puts it in the BFG Report folder it creates, you may wish to check that.
+
+11. Move to the repo directory and push the slimmed-down repo to GitHub. You will need to add --force as an option or it won't be accepted.
