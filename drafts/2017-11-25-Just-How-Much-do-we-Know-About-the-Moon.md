@@ -2,10 +2,10 @@
 layout: post
 comments: true
 title: Just How Much do we Know About the Moon?
-date: 2017-11-19
+date: 2017-11-25
 tags:
-url: 2017/11/19/Just-How-Much-do-we-Know-About-the-Moon.html
-identifier: 2017-11-19
+url: 2017/11/25/Just-How-Much-do-we-Know-About-the-Moon.html
+identifier: 2017-11-25
 ---
 
 Comparison of highest resolution images to google earth

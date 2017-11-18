@@ -37,7 +37,7 @@ for(var i=0;i<detailsToLink.length;i++){
 		linkingNode.innerHTML = " &#x1f517;";
 		linkingNode.setAttribute("class","permalink");
 		linkingNode.title = "permalink";
-		var linkingLocation = window.location.protocol + "//" + window.location.host + "/" + window.location.pathname + "#" + detailsToLink[i].id;
+		var linkingLocation = window.location.protocol + "//" + window.location.host +  window.location.pathname + "#" + detailsToLink[i].id;
 		linkingNode.setAttribute("onclick","var linkingText = document.createElement(\"textarea\");linkingText.setAttribute(\"rows\",\"1\");linkingText.setAttribute(\"cols\",\"" + linkingLocation.length + "\");linkingText.value = \"" + linkingLocation + "\";this.appendChild(linkingText);this.setAttribute(\"onclick\",\"\")");
 		detailsSummary.appendChild(linkingNode);
 	};
