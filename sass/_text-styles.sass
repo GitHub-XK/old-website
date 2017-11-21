@@ -18,45 +18,45 @@ a.clearbk:hover, a.clearbk:active
 
 
 h1
+  +align-self(center)
   color: $headingColor
   font-weight: 300
   font-style: italic
   font-size: 24px
   line-height: 28px
-  +align-self(center)
   padding: 15px 0 15px 45px
   margin: 0
   border-bottom: 2px solid $headingColor
 
 h2
+  +align-self(flex-end)
   color: $headingColor
   font-weight: 300
   font-size: 20px
   line-height: 24px
-  +align-self(flex-end)
   padding: 15px 20px 12px 45px
   margin: 0
   border-bottom: 1px solid $headingColor
 
 h3
+  +align-self(flex-end)
   color: $headingColor
   font-weight: 400
   font-size: 18px
   line-height: 24px
-  +align-self(flex-end)
   padding: 15px 4vw 0 8vw
   margin: 0
   border-bottom: 1px solid $headingColor
 
 h5
+  +align-self(center)
   color: $headingColor
   font-weight: 400
   line-height: 20px
   font-size: 18px
   padding: 4px 20px
   margin: 20px 0 5px 0
-  +align-self(center)
-
+  
 h6
   color: $headingColor
   background-color: $tabBkgd
@@ -76,6 +76,7 @@ h6
   text-align: right
   padding: 10px
   margin: 5px auto
+  display: inline
 
 .column h5
   display: inline
@@ -116,13 +117,3 @@ ul
 .plzNoHoverBackground
   &:hover
     background-color: transparent
-
-details
-  box-sizing: border-box
-  margin-left: 2%
-
-summary
-  color: $headingColor
-  font-weight: 600
-  background-color: $tabBkgd
-  margin-bottom: 12px
