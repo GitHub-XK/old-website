@@ -45,11 +45,16 @@ aside
   +RadiusOut
   background-color: $outerBkgd
   margin: 5px
+  @media print
+    background-color: transparent
+    border: 1px solid black
 
 .blackDiv
   +RadiusOut
   background-color: $sideBkgd
   padding: $mainPad
+  @media print
+    background-color: transparent
 
 .innerDiv
   +RadiusIn
@@ -58,6 +63,8 @@ aside
   +align-items(center)
   background-color: $innerBkgd
   margin: 15px
+  @media print
+    background-color: transparent
   p
     padding: 0.5rem 1.2rem
     margin: 0
@@ -71,6 +78,8 @@ aside
   +align-items(center)
   background-color: $sideBkgd
   margin: 15px
+  @media print
+    background-color: transparent
   p
     padding: 0.5rem 1.2rem
     margin: 0
@@ -85,6 +94,8 @@ aside
   +justify-content(center)
   background-color: $innerBkgd
   margin: 15px
+  @media print
+    background-color: transparent
   p, img
     +align-self(center)
   p
@@ -106,11 +117,15 @@ aside
 
 .pixHeader
   background-color: $innerBkgd
+  @media print
+    background-color: transparent
   border-radius: 15px 15px 0 0
   margin: 15px 15px 0 15px
 
 .pixBody
   background-color: $innerBkgd
+  @media print
+    background-color: transparent
   border-radius: 0 0 15px 15px
   +display(flex)
   +flex-flow(row wrap)
@@ -153,6 +168,8 @@ div .gallery
   background-color: $sideBkgd
   border-radius: $sideRadius
   padding: $mainPad
+  @media print
+    background-color: transparent
   img
     width: 90%
     border: 1px solid $lightAccent
@@ -161,6 +178,8 @@ div .gallery
   background-color: $sideBkgd
   border-radius: 1.5rem 0 0 0
   padding: $mainPad
+  @media print
+    background-color: transparent
   img
     width: 90%
     border: 1px solid $lightAccent
@@ -173,6 +192,8 @@ div .gallery
   letter-spacing: 1px
   line-height: 1.1rem
   text-align: right
+  @media print
+    background-color: transparent
 
 details
   box-sizing: border-box
@@ -182,6 +203,8 @@ summary
   color: $headingColor
   font-weight: 600
   background-color: $tabBkgd
+  @media print
+    background-color: transparent
   margin-bottom: 12px
 
 .columnSet
@@ -193,13 +216,21 @@ summary
   margin: 0 auto
   padding: 0
   background-color: rgba(0, 0, 0, 0.6)
+  @media print
+    background-color: transparent
   border-bottom: 3px solid black
   article:nth-child(0n+1)
     background-color: $outerBkgd
+    @media print
+      background-color: transparent
   article:nth-child(0n+2)
     background-color: $innerBkgd
+    @media print
+      background-color: transparent
   article:nth-child(0n+3)
     background-color: $thirdBkgd
+    @media print
+      background-color: transparent
 
 .column
   +flex(1 1 30%)
@@ -213,3 +244,5 @@ summary
   margin: 0
   padding: 15px
   background-color: $tabBkgd
+  @media print
+    background-color: transparent
