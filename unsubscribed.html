@@ -1,0 +1,26 @@
+---
+title: "Newsletter Goodbye"
+stylesheet: "css/main.nest.sass.css"
+description: "Visit us anytime"
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>{{page.title}}</title>
+	{%include commonHeadElements.html%}
+	<link rel="stylesheet" href="{{page.stylesheet}}">
+</head>
+<body>
+	{% include nav.html %}
+	<div style="margin: auto; width: 600px;">
+		<div style="width: 360px; float:right; margin-top: 3em">
+			<img src="img/MWLogo-for-black-bckgnd.svg" alt="Moonwards" id="Logo">
+		</div>
+		<div style="width: 240px; float:left; margin-top: 4em">
+			<h5>You won't get Moonwards News now</h5>
+			<p>We hope we can serve you in other ways.</p>
+		</div>
+	</div>
+</body>
+</html>
+<!-- IE needs 512+ bytes: http://blogs.msdn.com/b/ieinternals/archive/2010/08/19/http-error-pages-in-internet-explorer.aspx -->
