@@ -1,0 +1,33 @@
+---
+title: "Tasks and Oddities"
+stylesheet: "css/main.nest.sass.css"
+description: "If you are here, you should know why..."
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>{{page.title}}</title>
+	{%include commonHeadElements.html%}
+	<link rel="stylesheet" href="{{page.stylesheet}}">
+	<link rel="stylesheet" href="css/404css.nest.sass.css">
+</head>
+<body>
+	{% include nav.html %}
+	<div style="margin: auto; width: 400px;">
+		<div style="width: 160px; float:right; margin-top: 3em">
+			<a href="index.html" title="Home" class="plzNoHoverBackground">
+				<svg width="150" heigth="150">
+					<path d="M90 10A1 1 0 0 0 90 140A0.85 1 0 0 1 90 10" fill="grey"/>
+				</svg>
+			</a>
+		</div>
+		<div style="width: 240px; float:left; margin-top: 4em">
+			<h2>Tasks and Oddities</h2>
+			<p>If you are here, you should know why...</p>
+			<p><a href="downloads/RecHab-withGround.blend" download>RecHab-withGround.blend</a></p>
+			<p><a href="downloads/RecHabExportTest2.blend" download>RecHabExportTest2.blend</a></p>
+		</div>
+	</div>
+</body>
+</html>
+<!-- IE needs 512+ bytes: http://blogs.msdn.com/b/ieinternals/archive/2010/08/19/http-error-pages-in-internet-explorer.aspx -->
