@@ -15,10 +15,9 @@ defaults:
 
 destination: moonwards.com
 exclude:
-  - archive
   - graphics
   - details-shim-master
-  - blenderstuff
+  - downloads
   - working
   - LICENSE.txt
   - expandingDirectories.build
