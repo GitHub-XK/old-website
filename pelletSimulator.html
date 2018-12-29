@@ -1,0 +1,600 @@
+---
+layout: toolTemplate
+title: Pellet Simulator
+---
+			<h1>Pellet simulator</h1>
+			<div class="container">
+				<p>Finding very sensitive trajectories, like those requiring multiple gravity assists, is a very time consuming trial and error process. This tool allows you to try a whole range of velocities at once to narrow down the trajectory much faster. The idea is neither new nor mine, this is just an implementation.</p>
+				<form id="controls">
+					<h3>Initial state</h3>
+					<p>Requires restart to take effect</p>
+					System<select name="system" onchange="simulator.getSecondary()"></select><br><!--dynamically added-->
+					Secondary body<select name="secondary"></select><!--dynamically added-->
+					<p>Pellet start point</p>
+					Origin of coordinate system
+					<input name="origin" type="radio" value="parent" checked>Parent body
+					<input name="origin" type="radio" value="secondary" >Secondary body
+					<input name="origin" type="radio" value="normal" >Barycentre<br>
+
+					<input name="radius" type="text" value="400000">Radius (km)<br>
+					<input name="argument" type="text" value="20">Argument (degrees)<br>
+					<p>Pellet velocity</p>
+					From: <input name="velocity0" type="text" value="600">m/s To: <input name="velocity1" type="text" value="700">m/s<br>
+					<input name="pellets" type="number" min="1" value="800">Number of pellets<br>
+					<input name="direction" value="90">Vector direction (degrees)<br>
+					<p>Or load a scenario from the list below:</p>
+					<select name="scenario" onchange="simulator.loadScenario()">
+						<option value="" selected></option>
+						<option value="gravityAssist">Gravity assist</option>
+						<option value="EML1">EML1</option>
+						<option value="EML2">EML2</option>
+						<option value="EML3">EML3</option>
+						<option value="EML4">EML4</option>
+					</select>
+					<p>(Note: some scenarios require high physics fps and/or low simulation speed to work)</p>
+					<h3>View options</h3>
+					<p>Adjust to change speed, view, and rendering of current simulation</p>
+					<input name="simSpeed" type="text" value="100000" onchange="simulator.change()">Simulation speed<br>
+					<input name="physics" type="text" value="200" onchange="simulator.change()">Physics fps<br>
+					<input name="graphics" type="text" value="20" onchange="simulator.change()">Graphics fps<br>
+					View <select name="view" onchange="simulator.change()">
+						<option value="system">Parent body</option>
+						<option value="secondary">Secondary body</option>
+						<option value="normal">Inertial</option>
+						<option value="rotating">Co-rotating</option>
+					</select><br>
+					<input name="tracing" onchange="simulator.change()" type="checkbox">Tracing<br>
+					<input name="pelletRadius" onchange="simulator.change()" type="number" min="1" value="3">Pellet radius
+				</form><br>
+				<p>Move around width W,A,S,D zoom with + and -</p>
+				<button onclick="simulator.exportScenario()">Export current scenario</button>
+				<button onclick="simulator.importScenario()">Import a scenario</button><br><br>
+				<button onclick="simulator.update()">Restart simulation</button>
+				<button onclick="simulator.pause();requestPause=true">Pause</button><button onclick="simulator.unpause();requestPause=false">Unpause</button>
+			</div>
+			<canvas width="1000" height="1000" id="canvas"></canvas>
+		<script>
+var timeFormat = function(seconds){
+	seconds = Math.floor(seconds);
+	var minutes = Math.floor(seconds / 60);
+	seconds -= minutes*60;
+	var hours = Math.floor(minutes / 60);
+	minutes -= hours*60;
+	var days = Math.floor(hours / 24);
+	hours -= days*24;
+	var years = Math.floor(days / 365);
+	days -= years*365;
+	var timeString = "";
+	var topFlag = false;
+	if(years > 0 || topFlag){
+		timeString += years + "y ";
+		topFlag = true;
+	};
+	if(days > 0 || topFlag){
+		timeString += days + "d ";
+		topFlag = true;
+	};
+	if(hours > 0 || topFlag){
+		timeString += hours + "h ";
+		topFlag = true;
+	};
+	if(minutes > 0 || topFlag){
+		timeString += minutes + "m ";
+		topFlag = true;
+	};
+	if(seconds > 0 || topFlag){
+		timeString += seconds + "s ";
+		topFlag = true;
+	};
+	return timeString;
+};
+var simulator = {
+	init : function(){
+		//setup a canvas
+		this.canvas = document.getElementById("canvas");
+		var ctx = this.canvas.getContext("2d");
+		//additional draw functions:
+		ctx.circle = function(position,radius,color){
+			ctx.beginPath();
+			ctx.arc(position.x,position.y,radius,0,2*Math.PI);
+			ctx.fillStyle = color;
+			ctx.fill();
+		};
+		ctx.blackAll = function(canvas){
+			ctx.fillStyle = "black";
+			ctx.fillRect(0,0,canvas.width,canvas.height);
+		};
+		this.ctx = ctx;
+		this.getAvailableSystems();//update select list from available data in planets.js
+	},
+	physics : {
+		params : {},
+		state : {
+			pellets : []
+		},
+		step : function(state){
+			var system = this.params.system;
+			var secondary = this.params.secondary;
+			var children = this.params.children;
+			var massRatio = this.params.massRatio;
+			for(var i=0;i<state.pellets.length;i++){
+				state.pellets[i].x += state.pellets[i].vx * this.params.deltaTime;
+				state.pellets[i].y += state.pellets[i].vy * this.params.deltaTime;
+
+				//primary body gravity:
+				var relx = state.pellets[i].x
+					+ secondary.orbit.semiMajor * Math.cos(secondary.orbit.displacement + 2*Math.PI*this.params.time/secondary.orbit.period) * 1/(massRatio + 1);
+				var rely = state.pellets[i].y
+					- secondary.orbit.semiMajor * Math.sin(secondary.orbit.displacement + 2*Math.PI*this.params.time/secondary.orbit.period) * 1/(massRatio + 1);
+				sqHyp = relx * relx + rely * rely;
+				var acceleration = system.gm/sqHyp;
+				state.pellets[i].vx += acceleration * (-relx/Math.sqrt(sqHyp)) * this.params.deltaTime;
+				state.pellets[i].vy += acceleration * (-rely/Math.sqrt(sqHyp)) * this.params.deltaTime;
+				//end gracity primary
+				//primary collitions and escape:
+				if(Math.sqrt(sqHyp) < system.radius + system.atmosphere.ceiling){
+					state.pellets.splice(i--,1);//collision
+					this.params.system.collisions++;
+					continue;
+				}
+				else if(Math.sqrt(sqHyp) > children[children.length-1].orbit.semiMajor * 5){//escaped if it has more than escape velocity and is more than 5 times further out than the outermost moon.
+					if(
+						state.pellets[i].vx * state.pellets[i].vx + state.pellets[i].vy * state.pellets[i].vy
+						> 2 * system.gm / (children[children.length-1].orbit.semiMajor * 5)
+					){
+						state.pellets.splice(i--,1);
+						this.params.escaped++;
+						continue;
+					};
+				};
+				//end collision primary and escape
+
+				//secondary gravity:
+				for(var j=0;j<children.length;j++){
+					var angle = children[j].orbit.displacement + 2*Math.PI*this.params.time/children[j].orbit.period;
+					var radius = children[j].orbit.semiMajor - secondary.orbit.semiMajor * 1/(massRatio + 1);
+					var relx = state.pellets[i].x - Math.cos(angle) * radius;
+					var rely = state.pellets[i].y + Math.sin(angle) * radius;
+					var sqHyp = relx * relx + rely * rely;
+					var acceleration = children[j].gm/sqHyp;
+					state.pellets[i].vx += acceleration * (-relx/Math.sqrt(sqHyp)) * this.params.deltaTime;
+					state.pellets[i].vy += acceleration * (-rely/Math.sqrt(sqHyp)) * this.params.deltaTime;
+					if(Math.sqrt(sqHyp) < children[j].radius + children[j].atmosphere.ceiling){
+						state.pellets.splice(i--,1);
+						this.params.children[j].collisions++;
+						continue;
+					};
+				};
+			};
+			return state;
+		}
+	},
+	mPerPx : 1000000,
+	draw : function(state){
+		var secondary = this.physics.params.secondary;
+		var system = this.physics.params.system;
+		var children = this.physics.params.children;
+		var massRatio = this.physics.params.massRatio;
+		var canvas = this.canvas;
+		var ctx = this.ctx;
+		if(this.physics.params.tracing){//only clear the background of the information if we want to preserve traces
+			ctx.fillStyle = "black";
+			ctx.fillRect(0,0,250,70 + children.length*15);//top left corner information
+		}
+		else{
+			ctx.blackAll(canvas);
+		};
+		ctx.translate(canvas.width/2,canvas.height/2);
+
+		secondary.x = secondary.orbit.semiMajor * Math.cos(secondary.orbit.displacement + 2*Math.PI*this.physics.params.time/secondary.orbit.period) * massRatio/(massRatio + 1);
+		secondary.y = -secondary.orbit.semiMajor * Math.sin(secondary.orbit.displacement + 2*Math.PI*this.physics.params.time/secondary.orbit.period) * massRatio/(massRatio + 1);
+		system.x = -secondary.x/massRatio;//according to two body mechanics
+		system.y = -secondary.y/massRatio;
+
+
+		//the following is the definition of transform functions for the different views. Coordinates are in an inertial frame by default
+		if(this.physics.params.view == "normal"){
+			var transform = function(position){
+				return {
+					x : position.x/simulator.mPerPx + simulator.offsetX,
+					y : position.y/simulator.mPerPx + simulator.offsetY
+				};
+			};
+		}
+		else if(this.physics.params.view == "system"){
+			var transform = function(position){
+				return {
+					x : (position.x - system.x)/simulator.mPerPx + simulator.offsetX,
+					y : (position.y - system.y)/simulator.mPerPx + simulator.offsetY
+				};
+			};
+		}
+		else if(this.physics.params.view == "secondary"){
+			var transform = function(position){
+				return {
+					x : (position.x - secondary.x)/simulator.mPerPx + simulator.offsetX,
+					y : (position.y - secondary.y)/simulator.mPerPx + simulator.offsetY
+				};
+			};
+		}
+		else if(this.physics.params.view == "rotating"){
+			var transform = function(position){
+				var angle = secondary.orbit.displacement + 2*Math.PI*simulator.physics.params.time/secondary.orbit.period;
+				return {
+					x : (position.x * Math.cos(angle) - position.y * Math.sin(angle))/simulator.mPerPx + simulator.offsetX,
+					y : (position.y * Math.cos(angle) + position.x * Math.sin(angle))/simulator.mPerPx + simulator.offsetY
+				};
+			};
+		};
+
+		ctx.circle(
+			transform({
+				x : system.x,
+				y : system.y
+			}),
+			system.radius/this.mPerPx,system.color);//main body rendering
+		for(var i=0;i<children.length;i++){
+			var angle = children[i].orbit.displacement + 2*Math.PI*this.physics.params.time/children[i].orbit.period;
+			var radius = children[i].orbit.semiMajor - secondary.orbit.semiMajor * 1/(massRatio + 1);
+			ctx.circle(
+				transform({
+					x : Math.cos(angle) * radius,
+					y : - Math.sin(angle) * radius
+				}),
+				children[i].radius/this.mPerPx,children[i].color);
+		};
+
+		var pellets = this.physics.state.pellets;
+		for(var i=0;i<pellets.length;i++){
+			ctx.circle(
+				transform({
+					x : pellets[i].x,
+					y : pellets[i].y
+				}),
+				this.physics.params.pelletRadius,pellets[i].color);
+		};
+		ctx.translate(-this.canvas.width/2,-this.canvas.height/2);
+		ctx.fillStyle = "white";
+		ctx.fillText("Time elapsed: "+timeFormat(this.physics.params.time),10,15);
+		ctx.fillText("Object count: "+pellets.length,10,30);
+		ctx.fillText("Escaped: "+this.physics.params.escaped,10,45);
+		ctx.fillText("primary collisions: "+this.physics.params.system.collisions,10,60);
+		for(var i=0;i<children.length;i++){
+			ctx.fillText(system.orbit.children[i] + " collisions: "+this.physics.params.children[i].collisions,10,75 + i*15);
+		};
+
+	},
+	update : function(){//new settings for simulation restart
+		this.ctx.blackAll(this.canvas);
+		var form = document.getElementById("controls");
+		form.find = function(field){
+			return Number(this.elements[field].value);
+		};
+		var rainbowColors = function(index,number){//unifor color districution
+			if(number == 1){
+				return "rgb(255,0,0)";//a single pellet should be the lower part of the velocity range, red
+			};
+			if(index < (number-1)/2){
+				return "rgb("+Math.floor((255-index*510/(number-1)))+","+Math.floor((index*510/(number-1)))+",0)";
+			}
+			else if(index == (number-1)/2){
+				return "rgb(0,255,0)";
+			}
+			else{
+				return "rgb(0,"+Math.floor((510-index*510/(number-1)))+","+Math.floor((-255+index*510/(number-1)))+")";
+			};
+		};
+
+		var params = {
+			physicsFPS : 1000 / form.find("physics"),
+			graphicsFPS : 1000 / form.find("graphics"),
+			deltaTime : form.find("simSpeed") / form.find("physics"),
+			graphics  : form.find("graphics"),
+			velocity0 : form.find("velocity0"),
+			velocity1 : form.find("velocity1"),
+			direction : Math.PI * form.find("direction")/180,
+			radius    : form.find("radius")*1000,
+			argument  : Math.PI * form.find("argument")/180,
+			system    : planets[form.elements.system.value],
+			secondary : planets[form.elements.secondary.value],
+			time      : 0,
+			escaped   : 0,
+			view      : form.elements.view.options[form.elements.view.selectedIndex].value,//just why did they design <select> like this?
+			tracing   : form.elements.tracing.checked,
+			pelletRadius : form.find("pelletRadius"),
+			children  : []
+		};
+		//some checks for available data
+		if(params.system.hasOwnProperty("equatorRadius")){//the view is polar, so this is a little more correct if this data is available
+			params.system.radius = params.system.equatorRadius;
+		};
+		if(!params.system.hasOwnProperty("atmosphere") || !params.system.atmosphere.hasOwnProperty("ceiling")){//if the object has no atmosphere, it has an atmosphere of height 0. Used for collision detection
+			params.system.atmosphere = {};
+			params.system.atmosphere.ceiling = 0;
+		};
+		if(!params.system.hasOwnProperty("gm")){//no gravitational available? Use mass instead
+			params.system.gm = params.system.mass * 6.67408e-11;//gravitational constant
+		};
+		if(!params.system.hasOwnProperty("color")){//if no color, set to white for good contrast
+			params.system.color = "#FFFFFF";
+		};
+		params.system.collisions = 0;
+		for(var i=0;i<params.system.orbit.children.length;i++){//make an array with all the moons
+			var child = planets[params.system.orbit.children[i]];
+			if(!child.hasOwnProperty("color")){//same checks as above with parent body
+				child.color = "#FFFFFF";
+			};
+			if(child.hasOwnProperty("equatorRadius")){
+				child.radius = child.equatorRadius;
+			};
+			if(!child.hasOwnProperty("gm")){
+				child.gm = child.mass * 6.67408e-11;
+			};
+			if(!child.hasOwnProperty("atmosphere") || !child.atmosphere.hasOwnProperty("ceiling")){
+				child.atmosphere = {};
+				child.atmosphere.ceiling = 0;
+			};
+			if(//realistic moon configuration if data available
+				child.orbit.hasOwnProperty("argument") &&
+				child.orbit.hasOwnProperty("ascending") &&
+				child.orbit.hasOwnProperty("meanAnomaly")
+			){
+				child.orbit.displacement = Math.PI * (child.orbit.argument + child.orbit.ascending + child.orbit.meanAnomaly)/180;
+			}
+			else{
+				child.orbit.displacement = 0;
+			};
+			child.collisions = 0;
+			params.children.push(child);
+		};
+		if(//realistic moon configuration if data available
+			params.secondary.orbit.hasOwnProperty("argument") &&
+			params.secondary.orbit.hasOwnProperty("ascending") &&
+			params.secondary.orbit.hasOwnProperty("meanAnomaly")
+		){
+			params.secondary.orbit.displacement = Math.PI * (params.secondary.orbit.argument + params.secondary.orbit.ascending + params.secondary.orbit.meanAnomaly)/180;
+		}
+		else{
+			params.secondary.orbit.displacement = 0;
+		};
+
+		//start to create the pellets
+		var pellets = [];
+		params.massRatio = params.system.gm / params.secondary.gm;
+		var x = Math.cos(params.argument) * params.radius;
+		if(form.origin.value === "parent"){
+			x -= params.secondary.orbit.semiMajor * 1/(params.massRatio + 1);
+		}
+		else if(form.origin.value === "secondary"){
+			x += params.secondary.orbit.semiMajor * params.massRatio/(params.massRatio + 1);
+		};
+		var y = Math.sin(params.argument) * params.radius;
+		for(var i = 0;i < form.find("pellets");i++){
+			var velocity = params.velocity0;
+			if(form.find("pellets") > 1){
+				velocity += (params.velocity1 - params.velocity0) * i/(form.find("pellets")-1);
+			};
+			var pellet = {
+				vx : Math.cos(params.direction + params.argument) * velocity,
+				vy : Math.sin(params.direction + params.argument) * velocity,
+				y  : y,
+				x  : x,
+				color : rainbowColors(i,form.find("pellets"))
+			};
+			pellets.push(pellet);
+		};
+		this.physics.state.pellets = pellets;
+		this.physics.params = params;
+		this.physicsLoop = function(){
+			this.physics.state = this.physics.step(this.physics.state);
+			this.physics.params.time += this.physics.params.deltaTime;
+		};
+		this.graphicsLoop = function(){
+			this.draw(this.physics.State);
+		};
+		physicsLoopID = setInterval(
+			function(){
+				simulator.physicsLoop();
+				if(requestPause){
+					clearInterval(physicsLoopID);
+				};
+			},this.physics.params.physicsFPS
+		);
+		graphicsLoopID = setInterval(
+			function(){
+				simulator.graphicsLoop();
+				if(requestPause){
+					clearInterval(graphicsLoopID);
+				};
+			},this.physics.params.graphicsFPS
+		);
+	},
+	change : function(){//dynamically changed settings
+		var form = document.getElementById("controls");
+		form.find = function(field){
+			return Number(this.elements[field].value);
+		};
+		this.physics.params.physicsFPS = 1000 / form.find("physics");
+		this.physics.params.graphicsFPS = 1000 / form.find("graphics");
+		this.physics.params.deltaTime = form.find("simSpeed") / form.find("physics");
+		this.physics.params.graphics = form.find("graphics");
+		var newView = form.elements.view.options[form.elements.view.selectedIndex].value;
+		if(this.physics.params.view != newView){//only clear traces if we switch to a new view
+			this.physics.params.view = newView;
+			this.ctx.blackAll(this.canvas);
+		};
+		this.physics.params.tracing = form.elements.tracing.checked;
+		this.physics.params.pelletRadius = form.find("pelletRadius");
+		this.pause();//intervals must be cleared for fps changes to take effect
+		this.unpause();
+	},
+	pause : function(){
+		clearInterval(graphicsLoopID);
+		clearInterval(physicsLoopID);
+	},
+	unpause : function(){
+		if(requestPause){
+			physicsLoopID = setInterval(
+				function(){
+					simulator.physicsLoop();
+				},this.physics.params.physicsFPS
+			);
+			graphicsLoopID = setInterval(
+				function(){
+					simulator.graphicsLoop();
+				},this.physics.params.graphicsFPS
+			);
+		};
+	},
+	offsetX : 0,//WASD movement
+	offsetY : 0,
+	keypress : function(e){//WASD movement and zoom handling
+		var evtobj = window.event? event : e;
+		var unicode = evtobj.charCode? evtobj.charCode : evtobj.keyCode;
+		if(unicode == 97){
+			simulator.offsetX -= 10;
+			simulator.ctx.blackAll(simulator.canvas);
+		}
+		else if(unicode == 100){
+			simulator.offsetX += 10;
+			simulator.ctx.blackAll(simulator.canvas);
+		}
+		else if(unicode == 115){
+			simulator.offsetY += 10;
+			simulator.ctx.blackAll(simulator.canvas);
+		}
+		else if(unicode == 119){
+			simulator.offsetY -= 10;
+			simulator.ctx.blackAll(simulator.canvas);
+		}
+		else if(unicode == 43){
+			simulator.mPerPx *= 0.5;
+			simulator.ctx.blackAll(simulator.canvas);
+		}
+		else if(unicode == 45){
+			simulator.mPerPx *= 2;
+			simulator.ctx.blackAll(simulator.canvas);
+		};
+	},
+	scenarios : {
+		"EML4" : {
+			velocity : [1000,1030],
+			radius : 384400,
+			argument : 60,
+			direction : 270,
+			origin : "parent"
+		},
+		"EML1" : {
+			velocity : [850,890],
+			radius : 326390,
+			argument : 0,
+			direction : 270,
+			origin : "parent"
+		},
+		"EML2" : {
+			velocity : [1180,1220],
+			radius : 448900,
+			argument : 0,
+			direction : 270,
+			origin : "parent"
+		},
+		"EML3" : {
+			velocity : [1000,1050],
+			radius : -381680,
+			argument : 0,
+			direction : 90,
+			origin : "parent"
+		},
+		"gravityAssist" : {
+			velocity : [4949,5005],
+			radius : 30000,
+			argument : 120,
+			direction : 270,
+			origin : "parent"
+		}
+	},
+	loadScenario : function(){
+		var form = document.getElementById("controls");
+		var scenario = form.elements.scenario.options[form.elements.scenario.selectedIndex].value;
+		if(scenario != ""){
+			form.elements.velocity0.value = this.scenarios[scenario].velocity[0];
+			form.elements.velocity1.value = this.scenarios[scenario].velocity[1];
+			form.elements.radius.value = this.scenarios[scenario].radius;
+			form.elements.argument.value = this.scenarios[scenario].argument;
+			form.elements.direction.value = this.scenarios[scenario].direction;
+			form.origin.value = this.scenarios[scenario].origin;
+		};
+	},
+	exportScenario : function(){
+		var form = document.getElementById("controls");
+		form.find = function(field){
+			return Number(this.elements[field].value);
+		};
+		var scenario = {
+			velocity : [form.find("velocity0"),form.find("velocity1")],
+			radius : form.find("radius"),
+			argument : form.find("argument"),
+			direction : form.find("direction"),
+			origin : form.origin.value,
+			system : form.elements.system.selectedIndex,
+			secondary : form.elements.secondary.selectedIndex
+		};
+		alert(btoa(JSON.stringify(scenario)));
+	},
+	importScenario : function(){
+		var form = document.getElementById("controls");
+		var scenarioString = prompt("Paste your save:");
+		var scenario = JSON.parse(atob(scenarioString));
+		form.elements.velocity0.value = scenario.velocity[0];
+		form.elements.velocity1.value = scenario.velocity[1];
+		form.elements.radius.value = scenario.radius;
+		form.elements.argument.value = scenario.argument;
+		form.elements.direction.value = scenario.direction;
+		form.origin.value = scenario.origin;
+		form.elements.system.selectedIndex = scenario.system;
+		system.getSecondary();//available moons is dependent of the system
+		form.elements.secondary.selectedIndex = scenario.secondary;
+	},
+	getAvailableSystems : function(){//planets.js has lots of data, why not make all possible systems available?
+		var availableSystems = [];
+		//we on
+		for(var planet in planets){//all keys, not only bodies
+			if(planets[planet].hasOwnProperty("orbit")){//only those with orbital data
+				if(planets[planet].orbit.hasOwnProperty("children")){//..that have satellites
+					if(planets[planet].orbit.children.length > 0){
+						availableSystems.push(planet);
+					};
+				};
+			};
+		};
+		//maka a <select> list out of all the systems
+		var systemSelector = document.getElementsByName("system")[0];
+		for(var i=0;i<availableSystems.length;i++){
+			var opt = document.createElement('option');
+			opt.value = availableSystems[i];
+			opt.innerHTML = availableSystems[i][0].toUpperCase() + availableSystems[i].slice(1);
+			systemSelector.appendChild(opt);
+			if(availableSystems[i] == "earth"){//earth should be default
+				systemSelector.selectedIndex = i;
+			};
+		};
+		this.getSecondary();//update the list of available secondary bodies (mostly moons)
+	},
+	getSecondary : function(){//get moons of current system
+		var systemSelector = document.getElementsByName("system")[0];
+		var system = systemSelector.options[systemSelector.selectedIndex].value;
+		var secondarySelector = document.getElementsByName("secondary")[0];
+		secondarySelector.options.length = 0;//remove all previous options
+		for(var i=0;i<planets[system].orbit.children.length;i++){
+			var opt = document.createElement('option');
+			opt.value = planets[system].orbit.children[i];
+			opt.innerHTML = planets[system].orbit.children[i][0].toUpperCase() + planets[system].orbit.children[i].slice(1);
+			secondarySelector.appendChild(opt);
+		};
+	}
+};
+simulator.init();
+document.onkeypress = simulator.keypress;
+simulator.ctx.blackAll(simulator.canvas);
+var requestPause = false;
+		</script>
