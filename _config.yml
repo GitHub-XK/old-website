@@ -5,7 +5,7 @@ defaults:
       type: "pages"
     values:
       layout: "default"
-      stylesheet: "css/content.nest.sass.css"
+      stylesheet: "css/content.css"
   -
     scope:
       path: ""
