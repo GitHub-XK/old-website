@@ -13,10 +13,12 @@ image: "img/NewTESS-Stirlings.jpg"
 <div class="container">
 	<section class="wide">
 		<div class="outerDiv">
-			<div class="innerDiv">
+		<div class="innerDiv">
 			<div class="pixHeader">
-				<h2>Demo Draft of Virtual Lunar Colony</h2>
-				<p>Now you can download the full colony and fly around the installations. Download for:</p>
+				<h2>Download the Draft of the Virtual Lunar Town</h2>
+				<p>The structures of the town are done. You can fly around them in this preview. Soon, the full demo will also
+					include being able to walk around using an avatar, chat with others present, and activate objects and media.
+				</p>
 				<table width="95%">
 					<th>
 						<td><a href="downloads/MoonwardsColony-Win.zip" download><h6>Windows</h6></a></td>
@@ -24,96 +26,117 @@ image: "img/NewTESS-Stirlings.jpg"
 							<td><a href="downloads/MoonwardsColony-OSX.zip" download><h6>Mac</h6></a></td>
 						</th>
 						</table>
-		</div>
-			<div class="pixBody">
-			<div class="pix">
-				<img  src="img/CP-with-Spacer-1200.jpg">
 			</div>
 		</div>
 		</div>
-</div>
-	</section>
-	<section>
+		<div class="blackDiv" style="height: 380px">
+			<div style="margin: 0 auto"><iframe src="https://player.vimeo.com/video/299789053" 
+				width="640" height="360" frameborder="0" webkitallowfullscreen 
+				mozallowfullscreen allowfullscreen></iframe>
+			</div>				
+		</div>
 		<div class="outerDiv">
-			<ul class="tabs">
+			<ul class="tabs" style="padding-bottom: 10px">
 				<li>
 					<a href="javascript:void(0)"
-					onclick="openContent(event,'blog')" id="defaultOpen">Blog</a>
+							onclick="openContent(event, 'intro')" id="defaultOpen">Introduction</a>
 				</li>
 				<li>
 					<a href="javascript:void(0)"
-					onclick="openContent(event, 'intro')">Introduction</a>
+					onclick="openContent(event,'blog')">Blog</a>
 				</li>
 			</ul>
-			<article class="blackInnerDiv under-tabs tabcontent" id="blog">
-			<section class="goodHeight" style="overflow-y:auto; margin-top: 1rem">
-	 				<p class="blog">All blog posts linked below:</p>
-	 				<div>
-	 					<ul class="blog">
-	 					    {% for post in site.posts %}
-	 							{% if forloop.index <= 5 %}
-	 						<li>
-	 							<h1><a href="{{post.url }}">{{post.title}}</a></h1>
-	 							<p class="postindex">{{ post.excerpt | strip_html}}</p>
-	 						</li>
-	 						{% else %}
-	 						<li>
-	 							<h4><a href="{{post.url }}">{{post.title}}</a></h4>
-	 							<p class="postindex">{{ post.content | truncatewords: 50 | strip_html}}</p>
-	 						</li>
-	 						{% endif%}
-	 					{% endfor %}
-	 					</ul>
- 				</div>
- 			</section>
-			</article>
 			<article class="innerDiv under-tabs tabcontent" id="intro">
-				<h1>Realistic Lunar Colony, Coming Online</h1>
-					<p>
-						This project is building a series of virtual colonies on the Moon and in the Earth-Moon system. We are building rich immersive environments that are entirely plausible, technically and scientifically. In them we'll examine all the questions, consider all the implications of space settlement. When humanity undertakes ventures on such a vast scale, it matters a great deal
-						how many people have given it real thought beforehand. These colonies serve
-						that purpose.
-					</p>
-					<p>
-						The core colony, Cernan's Promise, shows a full town with a population of 25,000.
-						It has developed industries and facilities, spacious beautiful architecture,
-						and transport systems moving high volumes of people and cargo around the Moon and the solar system. It shows what happens just beyond the tipping point, when technology enables a space boom. To evaluate the importance of space exploration, this is the stage the public needs to understand.
-					</p>
-					<p>
-						The next two colonies work outwards from there... forwards to the city that
-						grows from the town, when technology allows a segmented glass dome to be placed over
-						a crater 23 km across, becoming home to a million people... and backwards to
-						the first missions that develop the basic techniques and infrastructure that
-						make it all possible.
-					</p>
-					<p>
-						These environments are places to explore, create, collaborate, tell stories, play,
-						and above all to learn and to contemplate our future. To that end, the project
-						assumes an ideal political environment, in which a broad alliance of countries
-						pursues lunar settlement with determination and vision, making the best
-						technical decisions and investing as much as it takes to do it properly. In this
-						way the project can educate regarding the real gamut of options before us,
-						and the complete scope of such a vast endeavor.
-					</p>
-					<p>
-						Moonwards will always be open source, free of copyright, and free of
-						charge to the public. In this way, as long as it has a strong core
-						framework, it has incredible potential for growth. Some virtual world project
-						along these lines is going to explode in the near future. The time is right.
-						Once a world is vivid enough, and provides the right tools, it will mushroom
-						as talented people see the potential and dive in. Never before has there
-						existed a way for so very many people to collaborate so powerfully.
-						Moonwards can reach towards two final frontiers -
-						the one above our heads, and the one inside our heads. Let us see how powerful
-						vision can be.
-					</p>
-					<p>
-						All the files used to build the website are on the <a href="https://github.com/briligg/moonwards"> GitHub repository of Moonwards</a>. The models and other assets can be found on the <a href="project.html">Project</a> page. It is at an early stage. It will always be 'under construction', though - that's its nature. You will see this website filling out and then get new content regularly as the project advances. You will see the models changing and new models being added, animated, and supplemented with other media. When the first, simple version of the virtual colony comes online, then we are really rolling. If you are inclined to take part, please use the contact options shown on the Progect page, or email me.
-					</p>
-					<p class="byline">
-						Kim Holder -- kim@moonwards.com
-					</p>
+				<section class="goodHeight" style="overflow-y:auto; margin-top: 1rem">
+					<h1>Realistic Moon Town, Coming Online</h1>
+
+
+						<p>What if a group of nations was determined to colonize the Moon, and they based their decisions only on technical and economic merit?</p>
+						<p>
+							We are building that town - . Ok, not a real town, a virtual moon with a virtual town, full of digital models of all the structures and machinery involved. Designs are absolutely technically feasible and sensible. They are based on an extensive, expansive timeline into the future, grounded in solid science and practical engineering. 
+						</p>
+						<div class="single">
+								<img src="img/TeacupSurface_1067.jpg">
+						</div>
+						<p>
+								We do this so ever more people will have a detailed vision of how our future in space will really be, whenever as a species we decide to truly invest in it. When the day comes that our daily reality shows us how we are part of a vast cosmos - who will we become? We feel that showing how vast this future is, how full of potential, helps us choose to reach for it instead of for the petty things that hold us back.
+						</p>
+						<h5>What We've Done So Far</h5>
+						<p>
+								We've built Cernan's Promise, a town of 25,000 people sited on the rim of Lalande Crater, near the Moon's equator. All of its buildings and most of its machinery exist. 
+						</p>
+						<p>
+								All the basic things needed for a permanent colony have been designed and built for Cernan's Promise. There are installations for producing glass, metals, ceramics, and cast stone. There are three different power stations - a nuclear plant, a solar cell array, and a giant beamed power receiver. There are specially designed flywheel arrays for storing power overnight. The habitats have been built for proper thermal control in the Moon's harsh environment, and to protect from radiation over decades. The massive Earth-Moon transport system needed for both an extensive population and a thriving economy has been designed. There are habitats for intensive farming. There's deep space communications. Radar. Rovers. Cranes. Remote ops. Artificial gravity. 3d printing. It's all there.
+						</p>
+						<div class="single">
+								<img src="img/WireframeAtriumHab1100.jpg">
+						</div>
+						<p>
+								All of this has been set in a world on a path. It's supported by a detailed timeline from the first outposts to a day when we roam the solar system at will. So people can understand that world, it is being richly documented. Plans for further colonies already exist.
+						</p>
+						<h5>A Forum for the Future</h5>
+						<p>
+								We intend to take this and make it a community, where people can explore all facets of our future. To this end we must now build a series of services.	
+						</p>
+						<ul style="padding: 20 20 20 35;">
+							<li>
+									Turn the models of the town into a place you can explore by avatar - moving around, operating things, talking with others, accessing added media. Put in details and make them beautiful.
+							</li>
+							<li>
+									Provide a platform for making films in Cernan's Promise. All our resources will be made freely available, no restrictions. There will be camera tools to get just the right shots, lighting rigs, rigged characters, a library of animations. Creations can be quick and simple, through an app, or production quality, through use of our libraries.
+							</li>
+							<li>
+									Provide a platform for making games, that can either be played within the virtual world by means of installing mods, or accessed through links within the world. Our resources will be made available freely without restriction. Fees for placing the games within Moonwards will only be charged if there is a fee for playing.
+							</li>
+							<li>
+									Create an app within the world for building structures there. People can use it to build something on reserved plots, which will stand as long as they continue to participate actively. Some options and some plots will require fees, but many standard plots will be free.
+							</li>
+							<li>
+									Cultivate and moderate forums through which users can collaborate and communicate, to add permanent infrastructure to the virtual world, create alternate versions either within it or separately, and develop any of the above projects.
+							</li>
+							<li>
+									Build further space settlements, and all the ships and operations that support them.
+							</li>
+						</ul>
+						<p>
+								To do all these things will take a lot of people and a lot of work. We are building everything open source so we can ally 
+								with the quickly growing open-source communities both in 3d modeling via Blender and in game programming through open source 
+								game engines - we are using Godot. A platform like this serves those communities well, as long as it is growing.
+								That part will take money. You can fund us through Gumroad, see the Support Development section on this page.
+						</p>
+						<p>
+								Help us help the world see a bigger future where we can leave our past behind us.
+						</p>
+						<div class="single">
+								<img src="img/ViewofGallery2_1067.jpg">
+						</div>
+						<p class="byline">
+							Kim Holder -- kim@moonwards.com
+						</p>
+					</section>
 				</article>
+				<article class="blackInnerDiv under-tabs tabcontent" id="blog">
+						<section class="goodHeight" style="overflow-y:auto; margin-top: 1rem">
+								 <p class="blog">All blog posts linked below:</p>
+								 <div>
+									 <ul class="blog">
+										 {% for post in site.posts %}
+											 {% if forloop.index <= 5 %}
+										 <li>
+											 <h1><a href="{{post.url }}">{{post.title}}</a></h1>
+											 <p class="postindex">{{ post.excerpt | strip_html}}</p>
+										 </li>
+										 {% else %}
+										 <li>
+											 <h4><a href="{{post.url }}">{{post.title}}</a></h4>
+											 <p class="postindex">{{ post.content | truncatewords: 50 | strip_html}}</p>
+										 </li>
+										 {% endif%}
+									 {% endfor %}
+									 </ul>
+							 </div>
+						 </section>
+						</article>
 		</div>
 	</section>
 

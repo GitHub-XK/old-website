@@ -113,7 +113,8 @@ aside
   border-radius: 15px 15px 0 0
   margin: 15px 15px 0 15px
 
-/* this is for a gallery where each image takes up as much room as it can without getting too big, and for images with captions.
+/* this is for a gallery where each image takes up as much room as it can without getting too big, 
+/* and for images with captions.
 .pixBody
   +display(flex)
   +flex-flow(row wrap)
@@ -125,7 +126,8 @@ aside
   border-radius: 0 0 15px 15px
   margin: 0 15px 15px 15px
 
-/* this is for a set of images that come with a paragraph or two after them, and they may also have captions. The layout has been tweaked for that.
+/* this is for a set of images that come with a paragraph or two after them, and they may 
+/*  also have captions. The layout has been tweaked for that.
 .pixWrap
   +display(flex)
   +flex-flow(row wrap)
@@ -135,12 +137,15 @@ aside
     margin: 5px
     padding: 10px
 
-/* pix is for a div wrapping images that go within pixBody or pixWrap.
+/* pix is for a div wrapping each image or item that goes within pixBody or pixWrap.
 .pix
   margin: 15px
   border: 1px solid $darkAccent
   flex: 1 1 auto
   img
+    width: 100%
+    height: auto
+  div
     width: 100%
     height: auto
 
@@ -161,6 +166,14 @@ div .gallery
 .imgResize
   +flex(auto)
   +align-self(center)
+  img
+    width: 90%
+    height: auto
+
+/* for images in articles that should be centered and a block element.
+.single 
+  width: 100%
+  padding: 15px
   img
     width: 90%
     height: auto
@@ -230,6 +243,7 @@ summary
   @media print
     background-color: transparent
   margin-bottom: 12px
+
 
 .columnSet
   +display(flex)
