@@ -38,7 +38,7 @@ exclude:
 markdown: kramdown
 url: "https://www.moonwards.com"
 excerpt_separator: end-excerpt
-plugins:
+plugins_dir:
   - jekyll-timeago
 collections:
  rss:

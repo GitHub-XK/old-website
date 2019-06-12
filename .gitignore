@@ -3,7 +3,11 @@
 *.swp
 # stuff used by jekyll or something #
 # tmp sass #
-.sass-cache
+*.sass-cache
+# sass mapping files? #
+*.map
+# config files for Visual Studio Code #
+.vscode/
 # folders not needed #
 moonwards.com/
 css/
