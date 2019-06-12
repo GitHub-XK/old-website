@@ -1,5 +1,5 @@
 # Moonwards
-Moonwards is a project to build a virtual lunar colony with the highest possible scientific and technological realism, interactive, vast, and media-rich. The goal is to bring space-faring alive in people's minds by showing them what it would be like through an intuitive medium. This is a prerequisite for understand the true importance of space exploration, after it reaches its tipping point and development explodes.
+Moonwards is a project to build a virtual lunar colony with the highest possible scientific and technological realism, interactive, vast, and media-rich. The virtual colony files can be found at https://github.com/moonwards1/Moonwards-Virtual-Moon
 
 ## Build Instructions
 1. Clone this repository
